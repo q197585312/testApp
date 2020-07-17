@@ -1,16 +1,16 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
-import com.unkonw.testapp.training.ScrollLayout;
 
 /**
  * Created by Administrator on 2017/4/20.
@@ -76,7 +76,7 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
 
     }
 
-    public void parseCommonBackground(int i, ScrollLayout sl) {
+    public void parseCommonBackground(int i, FrameLayout sl) {
         TextView overTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_overodds_tv);
         setCommonBackground(overTv);
         TextView underTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_underodds_tv);
@@ -93,7 +93,7 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
     }
 
 
-    public void parseMixBackground(OddsClickBean par, int i, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
+    public void parseMixBackground(OddsClickBean par, int i, FrameLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
         String transType = par.getType();
 
 
@@ -125,7 +125,7 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
 
     }
 
-    public void updateMixBackground(BallInfo item, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
+    public void updateMixBackground(BallInfo item, FrameLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
         String itemFullSocOddsId = item.getSocOddsId();
 
         OddsClickBean mixItem = getMixItem(itemFullSocOddsId);
@@ -134,7 +134,6 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
             parseMixBackground(mixItem, index, sl, type01, type02, type11, type12, type21, type22);
         } else {
             parseCommonBackground(0, sl);
-            parseCommonBackground(1, sl);
         }
     }
 

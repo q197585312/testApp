@@ -33,7 +33,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <WebView
+    <com.unkonw.testapp.libs.widget.LollipopFixedWebView
         android:id="@+id/web_wv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

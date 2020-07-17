@@ -207,10 +207,10 @@ public class ChipShowHelper {
 
     @SuppressLint("RtlHardcoded")
     public void setOperationButton(int x, View.OnClickListener clickSure, View.OnClickListener clickCancel, View.OnClickListener clickRepaet) {
-        int w = AutoUtils.getPercentHeightSize(38);
-        int h = AutoUtils.getPercentHeightSize(38);
-        int w1 = AutoUtils.getPercentHeightSize(53);
-        int h1 = AutoUtils.getPercentHeightSize(28);
+        int w = AutoUtils.getPercentHeightSize(36);
+        int h = AutoUtils.getPercentHeightSize(36);
+        int w1 = AutoUtils.getPercentHeightSize(49);
+        int h1 = AutoUtils.getPercentHeightSize(25);
         if (baseActivity instanceof DragonTigerActivity) {
             w = AutoUtils.getPercentHeightSize(35);
             h = AutoUtils.getPercentHeightSize(35);
@@ -237,7 +237,7 @@ public class ChipShowHelper {
             paramsTextRepeat.gravity = Gravity.CENTER;
             paramsTextSure.gravity = Gravity.RIGHT;
         } else {
-            int margin = 42;
+            int margin = 40;
             if (baseActivity instanceof DragonTigerActivity) {
                 margin = 35;
             }

@@ -61,10 +61,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.entity.ApngPlayBean;
 import gaming178.com.casinogame.Activity.entity.GoodRoadDataBean;
 import gaming178.com.casinogame.Bean.Baccarat;
@@ -130,276 +131,251 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     List<GoodRoadDataBean> goodRoadDataBeenList = new ArrayList<>();
 
 
-    @OnClick(R.id.iv_baccarat_change_table)
+    @OnClick(R2.id.iv_baccarat_change_table)
     public void clickTable(View v) {
         showChangeTable(v);
     }
 
 
     /*
-        @Bind(R.id.iv_baccarat_road_handle)
+        @BindView(R2.id.iv_baccarat_road_handle)
         ImageView iv;*/
-    @Bind(R.id.layout1)
+    @BindView(R2.id.layout1)
     HorizontalScrollView layout1;
-    @Bind(R.id.baccarat_background_gridlayout1)
+    @BindView(R2.id.baccarat_background_gridlayout1)
     GridBackgroundView baccarat_background_gridlayout1;
-    @Bind(R.id.baccarat_background_gridlayout1_big)
+    @BindView(R2.id.baccarat_background_gridlayout1_big)
     GridBackgroundView baccarat_background_gridlayout1_big;
-    @Bind(R.id.ll_big_road_parent2)
+    @BindView(R2.id.ll_big_road_parent2)
     LinearLayout ll_big_road_parent2;
-    @Bind(R.id.ll_small_road_parent)
+    @BindView(R2.id.ll_small_road_parent)
     LinearLayout ll_small_road_parent;
-    @Bind(R.id.fl_big_road1)
+    @BindView(R2.id.fl_big_road1)
     View fl_big_road1;
 
-    @Bind(R.id.hsv_small_road_1)
+    @BindView(R2.id.hsv_small_road_1)
     HorizontalScrollView hsv_small_road_1;
     View fl_small_road_parent1;
     GridBackgroundView smallway_item1;
     GridBackgroundView smallway_item1_big;
-    @Bind(R.id.hsv_small_road_2)
+    @BindView(R2.id.hsv_small_road_2)
     HorizontalScrollView hsv_small_road_2;
     FrameLayout fl_small_road_parent2;
     GridBackgroundView smallway_item2;
     GridBackgroundView smallway_item2_big;
-    @Bind(R.id.hsv_small_road_3)
+    @BindView(R2.id.hsv_small_road_3)
     HorizontalScrollView hsv_small_road_3;
     View fl_small_road_parent3;
     GridBackgroundView smallway_item3;
     GridBackgroundView smallway_item3_big;
 
-    @Bind(R.id.layout2)
+    @BindView(R2.id.layout2)
     View layout2;
-    @Bind(R.id.baccarat_background_gridlayout2)
+    @BindView(R2.id.baccarat_background_gridlayout2)
     GridBackgroundView baccarat_background_gridlayout2;
-    @Bind(R.id.baccarat_background_gridlayout2_big)
+    @BindView(R2.id.baccarat_background_gridlayout2_big)
     GridBackgroundView baccarat_background_gridlayout2_big;
 
-    @Bind(R.id.ll_baccarat_parent)
+    @BindView(R2.id.ll_baccarat_parent)
     View ll_baccarat_parent;
-    @Bind(R.id.ll_banker_ask)
+    @BindView(R2.id.ll_banker_ask)
     View ll_banker_ask;
-    @Bind(R.id.ll_player_ask)
+    @BindView(R2.id.ll_player_ask)
     View ll_player_ask;
-    @Bind(R.id.rl_good_road)
+    @BindView(R2.id.rl_good_road)
     View rl_good_road;
-    @Bind(R.id.tv_good_road_count)
+    @BindView(R2.id.tv_good_road_count)
     TextView tv_good_road_count;
-    @Bind(R.id.btn_limit)
+    @BindView(R2.id.btn_limit)
     TextView btn_limit;
-    @Bind(R.id.ll_bet_btn_parent)
+    @BindView(R2.id.ll_bet_btn_parent)
     LinearLayout ll_bet_btn_parent;
 
-    @Bind(R.id.fl_bet1_bg)
+    @BindView(R2.id.fl_bet1_bg)
     FrameLayout fl_bet1_bg;
 
-    @Bind(R.id.fl_baccarat_a_table)
+    @BindView(R2.id.fl_baccarat_a_table)
     View fl_baccarat_a_table;
 
-    @Bind(R.id.tv_ask1)
-    TextView tv_ask1;
-    @Bind(R.id.tv_ask2)
-    TextView tv_ask2;
-    @Bind(R.id.tv_ask1_name)
-    TextView tv_ask1_name;
-    @Bind(R.id.tv_ask2_name)
-    TextView tv_ask2_name;
-    @Bind(R.id.tv_good_road_name)
-    TextView tv_good_road_name;
-
-    @Bind(R.id.iv_baccarat_chat_logo)
+    @BindView(R2.id.iv_baccarat_chat_logo)
     TextView iv_baccarat_chat_logo;
-    @Bind(R.id.fl_baccarat_chat)
+    @BindView(R2.id.fl_baccarat_chat)
     FrameLayout fl_baccarat_chat;
-    @Bind(R.id.bottomPanel1)
+    @BindView(R2.id.bottomPanel1)
     Panel bottomPanel1;
-    @Bind(R.id.fl_baccarat_parent)
+    @BindView(R2.id.fl_baccarat_parent)
     View fl_baccarat_parent;
 
-    @Bind(R.id.iv_baccarat_table_banker)
+    @BindView(R2.id.iv_baccarat_table_banker)
     ImageView iv_baccarat_table_banker;
-    @Bind(R.id.iv_baccarat_table_player)
+    @BindView(R2.id.iv_baccarat_table_player)
     ImageView iv_baccarat_table_player;
-    @Bind(R.id.iv_baccarat_table_tie)
+    @BindView(R2.id.iv_baccarat_table_tie)
     ImageView iv_baccarat_table_tie;
-    @Bind(R.id.iv_baccarat_table_banker_pair)
+    @BindView(R2.id.iv_baccarat_table_banker_pair)
     ImageView iv_baccarat_table_banker_pair;
-    @Bind(R.id.iv_baccarat_table_player_pair)
+    @BindView(R2.id.iv_baccarat_table_player_pair)
     ImageView iv_baccarat_table_player_pair;
-    @Bind(R.id.fl_banker_pw_parent)
+    @BindView(R2.id.fl_banker_pw_parent)
     FrameLayout fl_banker_pw_parent;
-    @Bind(R.id.fl_player_pw_parent)
+    @BindView(R2.id.fl_player_pw_parent)
     FrameLayout fl_player_pw_parent;
-    @Bind(R.id.v_background_player)
+    @BindView(R2.id.v_background_player)
     View v_background_player;
     @Nullable
-    @Bind(R.id.img_left_player_rotate)
+    @BindView(R2.id.img_left_player_rotate)
     ImageView img_left_player_rotate;
     @Nullable
-    @Bind(R.id.img_right_player_rotate)
+    @BindView(R2.id.img_right_player_rotate)
     ImageView img_right_player_rotate;
     @Nullable
-    @Bind(R.id.img_center_player_rotate)
+    @BindView(R2.id.img_center_player_rotate)
     ImageView img_center_player_rotate;
     @Nullable
-    @Bind(R.id.img_left_banker_rotate)
+    @BindView(R2.id.img_left_banker_rotate)
     ImageView img_left_banker_rotate;
     @Nullable
-    @Bind(R.id.img_right_banker_rotate)
+    @BindView(R2.id.img_right_banker_rotate)
     ImageView img_right_banker_rotate;
     @Nullable
-    @Bind(R.id.img_center_banker_rotate)
+    @BindView(R2.id.img_center_banker_rotate)
     ImageView img_center_banker_rotate;
-    @Bind(R.id.v_background_banker)
+    @BindView(R2.id.v_background_banker)
     View v_background_banker;
 
-    @Bind(R.id.iv_poker_center_banker1)
+    @BindView(R2.id.iv_poker_center_banker1)
     ImageView iv_poker_center_banker1;
-    @Bind(R.id.iv_poker_center_banker2)
+    @BindView(R2.id.iv_poker_center_banker2)
     ImageView iv_poker_center_banker2;
-    @Bind(R.id.iv_poker_center_banker3)
+    @BindView(R2.id.iv_poker_center_banker3)
     ImageView iv_poker_center_banker3;
-    @Bind(R.id.iv_poker_center_player1)
+    @BindView(R2.id.iv_poker_center_player1)
     ImageView iv_poker_center_player1;
-    @Bind(R.id.iv_poker_center_player2)
+    @BindView(R2.id.iv_poker_center_player2)
     ImageView iv_poker_center_player2;
-    @Bind(R.id.iv_poker_center_player3)
+    @BindView(R2.id.iv_poker_center_player3)
     ImageView iv_poker_center_player3;
 
-    @Bind(R.id.fl_baccarat_table_player)
+    @BindView(R2.id.fl_baccarat_table_player)
     FrameLayout fl_baccarat_table_player;
-    @Bind(R.id.fl_baccarat_table_banker)
+    @BindView(R2.id.fl_baccarat_table_banker)
     FrameLayout fl_baccarat_table_banker;
-    @Bind(R.id.fl_baccarat_table_player_bg)
+    @BindView(R2.id.fl_baccarat_table_player_bg)
     FrameLayout fl_baccarat_table_player_bg;
-    @Bind(R.id.fl_baccarat_table_banker_bg)
+    @BindView(R2.id.fl_baccarat_table_banker_bg)
     FrameLayout fl_baccarat_table_banker_bg;
 
-    @Bind(R.id.fl_poker_parent)
+    @BindView(R2.id.fl_poker_parent)
     View fl_poker_parent;
 
 
-    @Bind(R.id.tv_player_bet_money)
+    @BindView(R2.id.tv_player_bet_money)
     TextView tv_player_bet_money;
-    @Bind(R.id.tv_banker_bet_money)
+    @BindView(R2.id.tv_banker_bet_money)
     TextView tv_banker_bet_money;
-    @Bind(R.id.tv_tie_bet_money)
+    @BindView(R2.id.tv_tie_bet_money)
     TextView tv_tie_bet_money;
-    @Bind(R.id.tv_banker_pair_bet_money)
+    @BindView(R2.id.tv_banker_pair_bet_money)
     TextView tv_banker_pair_bet_money;
-    @Bind(R.id.tv_player_pair_bet_money)
+    @BindView(R2.id.tv_player_pair_bet_money)
     TextView tv_player_pair_bet_money;
 
-    @Bind(R.id.tv_player_bet_count)
+    @BindView(R2.id.tv_player_bet_count)
     TextView tv_player_bet_count;
-    @Bind(R.id.tv_banker_pair_bet_count)
+    @BindView(R2.id.tv_banker_pair_bet_count)
     TextView tv_banker_pair_bet_count;
-    @Bind(R.id.tv_player_pair_bet_count)
+    @BindView(R2.id.tv_player_pair_bet_count)
     TextView tv_player_pair_bet_count;
-    @Bind(R.id.tv_banker_bet_count)
+    @BindView(R2.id.tv_banker_bet_count)
     TextView tv_banker_bet_count;
-    @Bind(R.id.tv_tie_bet_count)
+    @BindView(R2.id.tv_tie_bet_count)
     TextView tv_tie_bet_count;
-    @Bind(R.id.fl_poker_result)
+    @BindView(R2.id.fl_poker_result)
     FrameLayout fl_poker_result;
 
-    @Bind(R.id.tv_poker_center_left)
+    @BindView(R2.id.tv_poker_center_left)
     TextView tv_poker_center_left;
 
-    @Bind(R.id.tv_poker_center_right)
+    @BindView(R2.id.tv_poker_center_right)
     TextView tv_poker_center_right;
 
-    @Bind(R.id.tv_table_bet_replay)
+    @BindView(R2.id.tv_table_bet_replay)
     TextView tvTableBetReplay;
-    @Bind(R.id.tv_table_bet_sure)
+    @BindView(R2.id.tv_table_bet_sure)
     TextView tvTableBetSure;
-    @Bind(R.id.tv_table_bet_cancel)
+    @BindView(R2.id.tv_table_bet_cancel)
     TextView tvTableBetCancel;
-    /* @Bind(R.id.tv_table_bet_pol)
+    /* @BindView(R2.id.tv_table_bet_pol)
      TextView tvTableBetPol;*/
-    @Bind(R.id.leftPanel1)
+    @BindView(R2.id.leftPanel1)
     Panel leftPanel1;
-    @Bind(R.id.handle1)
+    @BindView(R2.id.handle1)
     View handle1;
-    @Bind(R.id.lv_table_pool)
+    @BindView(R2.id.lv_table_pool)
     ListView lv_table_pool;
-    @Bind(R.id.lv_person_bet_info)
+    @BindView(R2.id.lv_person_bet_info)
     ListView lv_person_bet_info;
-    @Bind(R.id.lv_table_bet_limit_red)
+    @BindView(R2.id.lv_table_bet_limit_red)
     ListView lvTableBetLimitRed;
-    /*  @Bind(R.id.ll_chip_parent)
+    /*  @BindView(R2.id.ll_chip_parent)
       LinearLayout ll_chip_parent;*/
-    @Bind(R.id.tv_table_timer)
+    @BindView(R2.id.tv_table_timer)
     TextView tv_table_timer;
-    @Bind(R.id.tv_mi_timer)
-    TextView tv_mi_timer;
-    @Bind(R.id.countdown_view)
+    @BindView(R2.id.countdown_view)
     CountDownView countdown_view;
-    @Bind(R.id.tv_menu)
+    @BindView(R2.id.tv_menu)
     TextView tvMenu;
 
-    @Bind(R.id.fl_poker_bottom_parent)
+    @BindView(R2.id.fl_poker_bottom_parent)
     View fl_poker_bottom_parent;
-    @Bind(R.id.rb_chat_usual)
+    @BindView(R2.id.rb_chat_usual)
     RadioButton rbChatUsual;
-    @Bind(R.id.rb_chat_emoticons)
+    @BindView(R2.id.rb_chat_emoticons)
     RadioButton rbChatEmoticons;
-    @Bind(R.id.rb_chat_content)
+    @BindView(R2.id.rb_chat_content)
     RadioButton rbChatContent;
-    @Bind(R.id.rg_chat_parent)
+    @BindView(R2.id.rg_chat_parent)
     RadioGroup rgChatParent;
-    @Bind(R.id.lv_chat_usual)
+    @BindView(R2.id.lv_chat_usual)
     ListView lvChatUsual;
-    @Bind(R.id.fl_chat_emoticons)
+    @BindView(R2.id.fl_chat_emoticons)
     FrameLayout gvChatEmoticons;
-    @Bind(R.id.lv_chat_content)
+    @BindView(R2.id.lv_chat_content)
     ListView lvChatContent;
-    @Bind(R.id.edt_chat_content)
+    @BindView(R2.id.edt_chat_content)
     EditText edtChatContent;
-    @Bind(R.id.btn_chat_send)
+    @BindView(R2.id.btn_chat_send)
     TextView btnChatSend;
-    @Bind(R.id.ll_chat_content)
+    @BindView(R2.id.ll_chat_content)
     LinearLayout llChatContent;
-    @Bind(R.id.FaceRelativeLayout)
+    @BindView(R2.id.FaceRelativeLayout)
     FaceRelativeLayout faceLayout;
-    @Bind(R.id.tv_table_game_number)
+    @BindView(R2.id.tv_table_game_number)
     TextView tv_table_game_number;
-    @Bind(R.id.tv_table_game_number1)
+    @BindView(R2.id.tv_table_game_number1)
     TextView tv_table_game_number1;
-    @Bind(R.id.tv_service_time)
+    @BindView(R2.id.tv_service_time)
     TextView serviceTime;
-    @Bind(R.id.ll_result)
+    @BindView(R2.id.ll_result)
     LinearLayout ll_result;
-    @Bind(R.id.tv_player_result)
+    @BindView(R2.id.tv_player_result)
     TextView tv_player_result;
-    @Bind(R.id.tv_banker_result)
+    @BindView(R2.id.tv_banker_result)
     TextView tv_banker_result;
-    @Bind(R.id.img_apng_player)
+    @BindView(R2.id.img_apng_player)
     ApngImageView img_apng_player;
-    @Bind(R.id.img_apng_tie)
+    @BindView(R2.id.img_apng_tie)
     ApngImageView img_apng_tie;
-    @Bind(R.id.img_apng_banker)
+    @BindView(R2.id.img_apng_banker)
     ApngImageView img_apng_banker;
-    @Bind(R.id.img_player_animation)
+    @BindView(R2.id.img_player_animation)
     ImageView img_player_animation;
-    @Bind(R.id.img_banker_animation)
+    @BindView(R2.id.img_banker_animation)
     ImageView img_banker_animation;
-    @Bind(R.id.rl_player_parent)
+    @BindView(R2.id.rl_player_parent)
     RelativeLayout rl_player_parent;
-    @Bind(R.id.rl_banker_parent)
+    @BindView(R2.id.rl_banker_parent)
     RelativeLayout rl_banker_parent;
-
-    @Bind(R.id.img_bet_bg_pp)
-    ImageView img_bet_bg_pp;
-    @Bind(R.id.img_bet_bg_bp)
-    ImageView img_bet_bg_bp;
-    @Bind(R.id.img_bet_bg_p)
-    ImageView img_bet_bg_p;
-    @Bind(R.id.img_bet_bg_t)
-    ImageView img_bet_bg_t;
-    @Bind(R.id.img_bet_bg_b)
-    ImageView img_bet_bg_b;
-
     private AnimationDrawable animationPlayer;
     private AnimationDrawable animationBanker;
     List<ApngPlayBean> apngPlayBeanList = new ArrayList<>();
@@ -527,6 +503,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
 
     public class UpdateStatus implements Runnable {
+        int iError = 0;
 
         public void run() {
             while (bGetStatus) {
@@ -568,10 +545,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             try {
                 Thread.sleep(1500);//必须延迟2秒，否则下注信息先得到的话，后面倒计时开始的时候会被清除掉
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                        + "&Xhid=" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + "&Blid=" + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber() +
-                        "&Xh=" + afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.BJL_BET_MONEY_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                        + "&Xhid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + "&Blid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber() +
+                        "&Xh=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_BET_MONEY_URL, params);
                 Log.i(WebSiteUrl.Tag, "UpdateBetMoney params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateBetMoney = " + strRes);
 
@@ -579,50 +556,50 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 10) {
                         if ("".equals(strInfo[2]) || strInfo[2] == null)
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setAllBetMoney(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setAllBetMoney(0);
                         else {
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setAllBetMoney((int) Double.parseDouble(strInfo[2]));
-                            if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getAllBetMoney() > 0)
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setAllBetMoney((int) Double.parseDouble(strInfo[2]));
+                            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAllBetMoney() > 0)
                                 bBetSucess = true;
                         }
                         if ("".equals(strInfo[4]) || strInfo[4] == null) {
                             //    Log.i(WebSiteUrl.Tag, "setBanker");
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBanker(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBanker(0);
                         } else {
                             //    Log.i(WebSiteUrl.Tag, "setBanker");
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBanker((int) Double.parseDouble(strInfo[4]));
-                            gameBetMap.put(afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber(), 2);
-                            //   Log.i(WebSiteUrl.Tag, "UpdateBetMoney Banker= " + afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker());
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBanker((int) Double.parseDouble(strInfo[4]));
+                            gameBetMap.put(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber(), 2);
+                            //   Log.i(WebSiteUrl.Tag, "UpdateBetMoney Banker= " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker());
 //                            setFlipBankerEnable(false);
                         }
                         if ("".equals(strInfo[3]) || strInfo[3] == null)
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setPlayer(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setPlayer(0);
                         else {
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setPlayer((int) Double.parseDouble(strInfo[3]));
-                            gameBetMap.put(afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber(), 1);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setPlayer((int) Double.parseDouble(strInfo[3]));
+                            gameBetMap.put(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber(), 1);
 //                            setFlipPlayerEnable(false);
                         }
 
                         if ("".equals(strInfo[5]) || strInfo[5] == null)
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setTie(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setTie(0);
                         else
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setTie((int) Double.parseDouble(strInfo[5]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setTie((int) Double.parseDouble(strInfo[5]));
                         if ("".equals(strInfo[6]) || strInfo[6] == null)
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBankerPair(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBankerPair(0);
                         else
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBankerPair((int) Double.parseDouble(strInfo[6]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBankerPair((int) Double.parseDouble(strInfo[6]));
                         if ("".equals(strInfo[7]) || strInfo[7] == null)
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setPlayerPair(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setPlayerPair(0);
                         else
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setPlayerPair((int) Double.parseDouble(strInfo[7]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setPlayerPair((int) Double.parseDouble(strInfo[7]));
                         if ("".equals(strInfo[8]) || strInfo[8] == null)
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBig(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBig(0);
                         else
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBig((int) Double.parseDouble(strInfo[8]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBig((int) Double.parseDouble(strInfo[8]));
                         if ("".equals(strInfo[9]) || strInfo[9] == null)
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setSmall(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setSmall(0);
                         else
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setSmall((int) Double.parseDouble(strInfo[9]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setSmall((int) Double.parseDouble(strInfo[9]));
                         handler.sendEmptyMessage(HandlerCode.SHOW_BET_MONEY);
                     }
                 }
@@ -657,24 +634,24 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     String bankerPair = "0";
 
                     if (playerBet > 0 && (type == BaccaratBetType.All || type == Player))
-                        player = "" + (playerBet - afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer());
+                        player = "" + (playerBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer());
                     if (bankerBet > 0 && (type == BaccaratBetType.All || type == Banker))
-                        banker = "" + (bankerBet - afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker());
+                        banker = "" + (bankerBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker());
                     if (tieBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.Tie))
-                        tie = "" + (tieBet - afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie());
+                        tie = "" + (tieBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie());
                     if (playerPairBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.PlayerPair))
-                        playerPair = "" + (playerPairBet - afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair());
+                        playerPair = "" + (playerPairBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair());
                     if (bankerPairBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.BankerPair))
-                        bankerPair = "" + (bankerPairBet - afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair());
+                        bankerPair = "" + (bankerPairBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair());
 
-                    String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                            + "&Xhid=" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + "&Blid=" + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber()
-                            + "&Xh=" + afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet()
-                            + "&Areaid=" + afbApp.getAreaId() + "&Serial=" + afbApp.getSerialId() + "&Hl=1"
+                    String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                            + "&Xhid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + "&Blid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber()
+                            + "&Xh=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet()
+                            + "&Areaid=" + mAppViewModel.getAreaId() + "&Serial=" + mAppViewModel.getSerialId() + "&Hl=1"
                             + "&Player=" + player + "&Banker=" + banker + "&Tie=" + tie + "&Bd=" + bankerPair + "&Pd=" + playerPair
                             + "&Big=0&Small=0";
 
-                    String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.BJL_BET_URL, params);
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_BET_URL, params);
                     Log.i(WebSiteUrl.Tag, "BaccaratBet params= " + params);
                     Log.i(WebSiteUrl.Tag, "BaccaratBet = " + strRes);
                     String strInfo[] = strRes.split("#");
@@ -683,36 +660,35 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                             if (isFirstBet) {
                                 isFirstBet = false;
                             }
-                            afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
+                            mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                             double resMoney = Double.parseDouble(strInfo[4]);
                             //清除之前的下注记录
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().Init();
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().Init();
 
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBanker((int) resMoney);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().setBanker((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBanker((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().setBanker((int) resMoney);
 
                             resMoney = Double.parseDouble(strInfo[2]);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setAllBetMoney((int) resMoney);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().setAllBetMoney((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setAllBetMoney((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().setAllBetMoney((int) resMoney);
 
                             resMoney = Double.parseDouble(strInfo[3]);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setPlayer((int) resMoney);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().setPlayer((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setPlayer((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().setPlayer((int) resMoney);
                             resMoney = Double.parseDouble(strInfo[5]);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setTie((int) resMoney);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().setTie((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setTie((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().setTie((int) resMoney);
                             resMoney = Double.parseDouble(strInfo[6]);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setBankerPair((int) resMoney);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().setBankerPair((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setBankerPair((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().setBankerPair((int) resMoney);
                             resMoney = Double.parseDouble(strInfo[7]);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().setPlayerPair((int) resMoney);
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().setPlayerPair((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setPlayerPair((int) resMoney);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().setPlayerPair((int) resMoney);
 
 
                             //提示下注成功,清除下注信息
                             bBetSucess = true;
                             betTimeCount = 0;
-                            clearAllShowChip();
                             handler.sendEmptyMessage(HandlerCode.SHOW_BET_SUCCESS);
 
 
@@ -757,13 +733,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             try {
                 if (bUpdateRoad == false)
                     Thread.sleep(3000);
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.BJL_LUZI_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_LUZI_URL, params);
                 //    Log.i(WebSiteUrl.Tag, "UpdateRoad params= " + params);
                 String strInfo[] = strRes.split("\\|");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-//                        afbApp.getBaccarat(afbApp.getTableId()).setBigRoad(strInfo[1]);
+//                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoad(strInfo[1]);
                     }
                 }
 
@@ -781,16 +757,16 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         public void run() {
 
             try {
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.BJL_TABLE_GAMENUM, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_TABLE_GAMENUM, params);
                 Log.i(WebSiteUrl.Tag, "UpdateGameNumber params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateGameNumber = " + strRes + ",gameNumber=" + gameNumber);
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
                         LogUtil.d("tv_baccarat_shoe_number", "UpdateGameNumber,setShoeNumber:" + strInfo[1] + "," + strInfo[2]);
-                        afbApp.getBaccarat(afbApp.getTableId()).setShoeNumber(strInfo[1]);
-                        afbApp.getBaccarat(afbApp.getTableId()).setGameNumber(strInfo[2]);
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setShoeNumber(strInfo[1]);
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameNumber(strInfo[2]);
                         handler.sendEmptyMessage(HandlerCode.UPDATE_GAME_NUMBER);
                     }
                 } else
@@ -811,22 +787,22 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             try {
 //                Thread.sleep(2000);
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                        + "&Xhid=" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + "&Blid=" + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber() +
-                        "&Xh=" + afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.BJL_WON_MONEY_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                        + "&Xhid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + "&Blid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber() +
+                        "&Xh=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_WON_MONEY_URL, params);
                 Log.i(WebSiteUrl.Tag, "UpdateWonMoney params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateWonMoney = " + strRes);
 
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        if (baccaratTimer == 0 && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5) {
-                            afbApp.getBaccarat(afbApp.getTableId()).setWonMoney(Double.parseDouble(strInfo[2]));
+                        if (baccaratTimer == 0 && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5) {
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setWonMoney(Double.parseDouble(strInfo[2]));
                         } else {
-                            afbApp.getBaccarat(afbApp.getTableId()).setWonMoney(0);
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setWonMoney(0);
                         }
-                        afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
+                        mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                         if (isShowWinLose) {
                             handler.sendEmptyMessage(HandlerCode.SHOW_WIN_LOSS);
                         }
@@ -850,7 +826,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private int finalShufflingStatus = -1;
 
     public void updateTimer() {
-        if (afbApp.getBaccarat(tableId).getGameStatus() == 8) {
+        if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 8) {
             shufflingTv.setVisibility(View.VISIBLE);
             currentShufflingStatus = 2;
         } else {
@@ -861,23 +837,22 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             setChip();
             finalShufflingStatus = currentShufflingStatus;
         }
-        if (baccaratTimer == 0 && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1 && afbApp.getBaccarat(afbApp.getTableId()).getTimer() > 0) {
+        if (baccaratTimer == 0 && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 1 && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTimer() > 0) {
             if (isShowWinLose) {
                 isShowWinLose = false;
                 updateWonMoney = new UpdateWonMoney();
                 threadUpdateWonMoney = new Thread(updateWonMoney);
                 threadUpdateWonMoney.start();
             }
-            afbApp.getBaccarat(afbApp.getTableId()).setWonMoney(0);
+            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setWonMoney(0);
     /*        if (updateGameNumber == null) {
                 updateGameNumber = new UpdateGameNumber();
                 threadUpdateGameNumber = new Thread(updateGameNumber);
                 threadUpdateGameNumber.start();
             }*/
-            if (!gameNumber.equals(afbApp.getBaccarat(afbApp.getTableId()).getGameNumber())) {
-                clearAllShowChip();
-                gameNumber = afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
-                baccaratTimer = afbApp.getBaccarat(afbApp.getTableId()).getTimer();
+            if (!gameNumber.equals(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber())) {
+                gameNumber = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber();
+                baccaratTimer = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTimer();
                 countdown_view.setCountdownTime(baccaratTimer);
                 countdown_view.startCountDown();
                 isCanRefreshBetImg = true;
@@ -894,7 +869,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     isRemove(fl_user_bet_img8);
                 }
                 stateInit = true;
-                afbApp.getBaccarat(afbApp.getTableId()).Init();
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).Init();
                 clearAllChips();
                 //    Log.i(WebSiteUrl.Tag,"-------baccaratTimer="+baccaratTimer);
                 bUpdateRoad = true;
@@ -910,8 +885,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 2, componentFront, mContext, afbApp.getFrontVolume());
-                gameIdNumber = afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 2, componentFront, mContext, mAppViewModel.getFrontVolume());
+                gameIdNumber = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber();
                 tv_table_game_number.setText(tableName + ":" + gameIdNumber);
                 tv_table_game_number1.setText(tv_table_game_number.getText().toString());
                 tv_baccarat_shoe_number.setText(gameIdNumber);
@@ -929,7 +904,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     bottomPanel1.setOpen(false, true);
                 }
             }
-        } else if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)//延迟3秒调用路子接口
+        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5)//延迟3秒调用路子接口
         {
 
             showPoker();
@@ -1015,9 +990,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }
 //                tablePop.setTablesData(afbApp, games);
             }
-        } else if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2) {
- /*           if (!gameNumber.equals(afbApp.getBaccarat(afbApp.getTableId()).getGameNumber())) {//如果第一局下注完，返回大厅，第2局开牌或者出结果的时候 需要清除筹码
-                //        Log.i(WebSiteUrl.Tag, "gameNumber="+gameNumber+",gameNumber1="+afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
+        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2) {
+ /*           if (!gameNumber.equals(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber())) {//如果第一局下注完，返回大厅，第2局开牌或者出结果的时候 需要清除筹码
+                //        Log.i(WebSiteUrl.Tag, "gameNumber="+gameNumber+",gameNumber1="+mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
                 clearAllChips();
             }*/
             if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
@@ -1027,19 +1002,19 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             showPoker();
             if (tvTableBetSure.isEnabled()) {
                 tvTableBetSure.setEnabled(false);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_NOMOREBETS, 3, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_NOMOREBETS, 3, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
         }
-        Log.d("GameStatus123", "bUpdateRoad: " + afbApp.getBaccarat(afbApp.getTableId()).getGameStatus());
+        Log.d("GameStatus123", "bUpdateRoad: " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus());
 
-        if ("0".equals(afbApp.getBaccarat(afbApp.getTableId()).getGameNumber())) {
-            tv_table_game_number.setText(tableName + ":" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - 0");
+        if ("0".equals(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber())) {
+            tv_table_game_number.setText(tableName + ":" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - 0");
             tv_table_game_number1.setText(tv_table_game_number.getText().toString());
         }
-//        Log.d("GameStatus123", "GameStatus: "+afbApp.getBaccarat(afbApp.getTableId()).getGameStatus());
+//        Log.d("GameStatus123", "GameStatus: "+mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus());
         Log.d("betTimeCount", "gameNumber: " + gameNumber);
         Log.d("betTimeCount", "betTimeCount: " + betTimeCount);
-        Log.d("betTimeCount", "getGameNumber: " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
+        Log.d("betTimeCount", "getGameNumber: " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
     }
 
     private void initPokerState() {
@@ -1078,7 +1053,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     boolean isCanHideResult = true;
 
     public void updateInterface() {
-        if (baccaratTimer > 0 && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 2) {
+        if (baccaratTimer > 0 && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 2) {
             for (int i = 0; i < apngPlayBeanList.size(); i++) {
                 if (apngPlayBeanList.get(i).getApngImageView().getVisibility() == View.VISIBLE) {
                     apngPlayBeanList.get(i).getApngImageView().stop();
@@ -1086,14 +1061,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     break;
                 }
             }
-            if ((objectAnimatorB.isRunning() || objectAnimatorP.isRunning() || objectAnimatorT.isRunning()) &&
-                    afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1 && baccaratTimer > 0) {
-                objectAnimatorB.cancel();
-                objectAnimatorP.cancel();
-                objectAnimatorT.cancel();
-                objectAnimatorBP.cancel();
-                objectAnimatorPP.cancel();
-                clearBetBg();
+            if (iv_baccarat_table_player.getVisibility() == View.VISIBLE || iv_baccarat_table_banker.getVisibility() == View.VISIBLE ||
+                    iv_baccarat_table_tie.getVisibility() == View.VISIBLE || iv_baccarat_table_player_pair.getVisibility() == View.VISIBLE ||
+                    iv_baccarat_table_banker_pair.getVisibility() == View.VISIBLE) {
+                iv_baccarat_table_player.setVisibility(View.GONE);
+                iv_baccarat_table_banker.setVisibility(View.GONE);
+                iv_baccarat_table_tie.setVisibility(View.GONE);
+                iv_baccarat_table_player_pair.setVisibility(View.GONE);
+                iv_baccarat_table_banker_pair.setVisibility(View.GONE);
                 animationPlayer.stop();
                 animationPlayer.selectDrawable(0);
                 animationBanker.stop();
@@ -1105,7 +1080,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
                 int[] location3 = new int[2];
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location3[1] < heightPixels && isCanHideResult && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1) {
+                if (location3[1] < heightPixels && isCanHideResult && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 1) {
                     isCanHideResult = false;
                     WidgetUtil.chipTranslateAnimation(ll_result, ScreenUtil.dip2px(mContext, -50), 0, new Animator.AnimatorListener() {
                         @Override
@@ -1116,7 +1091,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideResult = true;
-                            if (location2[1] >= heightPixels && isCanShowChip && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1) {
+                            if (location2[1] >= heightPixels && isCanShowChip && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 1) {
                                 isCanShowChip = false;
                                 WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0, ScreenUtil.dip2px(mContext, -54), new Animator.AnimatorListener() {
                                     @Override
@@ -1153,7 +1128,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         }
                     });
                 } else {
-                    if (location2[1] >= heightPixels && isCanShowChip && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1) {
+                    if (location2[1] >= heightPixels && isCanShowChip && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 1) {
                         isCanShowChip = false;
                         WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0, ScreenUtil.dip2px(mContext, -54), new Animator.AnimatorListener() {
                             @Override
@@ -1183,7 +1158,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
                 int[] location2 = new int[2];
                 ll_result.getLocationOnScreen(location2);
-                if (location2[0] == 0 && isCanHideResult && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1) {
+                if (location2[0] == 0 && isCanHideResult && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 1) {
                     isCanHideResult = false;
                     WidgetUtil.chipPortraitTranslateAnimation(ll_result, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
@@ -1197,7 +1172,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                             int[] location = new int[2];
                             lv_baccarat_chips.getLocationOnScreen(location);
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(BaccaratActivity.this);
-                            if (location[0] >= portraitScreenWidth && isCanShowChip && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1) {
+                            if (location[0] >= portraitScreenWidth && isCanShowChip && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 1) {
                                 isCanShowChip = false;
                                 WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                                     @Override
@@ -1236,7 +1211,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 } else {
                     int[] location = new int[2];
                     lv_baccarat_chips.getLocationOnScreen(location);
-                    if (location[0] >= portraitScreenWidth && isCanShowChip && afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 1) {
+                    if (location[0] >= portraitScreenWidth && isCanShowChip && mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 1) {
                         isCanShowChip = false;
                         WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                             @Override
@@ -1265,11 +1240,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             baccaratTimer--;
             tv_table_timer.setText("" + baccaratTimer);
 //            if (baccaratTimer == 10) {
-//                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_TIMER, 0, componentFront, mContext, afbApp.getFrontVolume());
+//                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_TIMER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
 //            }
             if (baccaratTimer < 6) {
                 tv_table_timer.setTextColor(getResources().getColor(R.color.red));
-                afbApp.startFrontMuzicService("TIMER", 1, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService("TIMER", 1, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else
                 tv_table_timer.setTextColor(getResources().getColor(R.color.white));
             //    tv_table_timer.setTextColor(getResources().getColor(R.color.green500));
@@ -1283,7 +1258,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
                 final int[] location3 = new int[2];
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location2[1] < heightPixels && isCanHideChip && (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)) {
+                if (location2[1] < heightPixels && isCanHideChip && (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5)) {
                     isCanHideChip = false;
                     WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, ScreenUtil.dip2px(mContext, -54), 0, new Animator.AnimatorListener() {
                         @Override
@@ -1295,7 +1270,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         public void onAnimationEnd(Animator animation) {
                             isCanHideChip = true;
                             if (tableId != 71) {
-                                if (location3[1] >= heightPixels && isCanShowResult && (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)) {
+                                if (location3[1] >= heightPixels && isCanShowResult && (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5)) {
                                     isCanShowResult = false;
                                     WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -50), new Animator.AnimatorListener() {
                                         @Override
@@ -1334,7 +1309,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     });
                 } else {
                     if (tableId != 71) {
-                        if (location3[1] >= heightPixels && isCanShowResult && (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)) {
+                        if (location3[1] >= heightPixels && isCanShowResult && (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5)) {
                             isCanShowResult = false;
                             WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -50), new Animator.AnimatorListener() {
                                 @Override
@@ -1364,7 +1339,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 int[] location = new int[2];
                 lv_baccarat_chips.getLocationOnScreen(location);
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
-                if (location[0] == 0 && isCanHideChip && (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)) {
+                if (location[0] == 0 && isCanHideChip && (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5)) {
                     isCanHideChip = false;
                     WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
@@ -1379,7 +1354,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                                 return;
                             }
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(BaccaratActivity.this);
-                            if (isCanShowResult && (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)) {
+                            if (isCanShowResult && (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5)) {
                                 isCanShowResult = false;
                                 WidgetUtil.chipPortraitTranslateAnimation(ll_result, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                                     @Override
@@ -1425,11 +1400,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //            if (stateInit)
 //                displayAll(false);
 //            stateInit = false;
-//            if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2) {
+//            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2) {
 //
 //            }
         }
-        String serverTimer = afbApp.getBaccarat(afbApp.getTableId()).getServerTime();
+        String serverTimer = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getServerTime();
         String time = "";
         if (serverTimer != null && serverTimer.indexOf("-") > 0)
             time = "GMT+7  " + serverTimer.substring(serverTimer.indexOf("-") + 1, serverTimer.length());
@@ -1439,17 +1414,17 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         updateInfo();
         updateBetPool();
         if (!isShowAskRoad) {
-            afbApp.updateRoad(mContext, density, afbApp.getBaccarat(afbApp.getTableId()), baccarat_head_road, baccarat_big_road, baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road
+            mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road, baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road
                     , tv_baccarat_shoe_number, tv_baccarat_total_number, tv_baccarat_banker_number, tv_baccarat_player_number, tv_baccarat_tie_number
                     , tv_baccarat_bp_number, tv_baccarat_pp_number, null, null, isBigShow, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3);
         }
         updatePool();
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5) {
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5) {
             timerOnFinish();
         }
-        String serverGameNumber = afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
+        String serverGameNumber = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber();
         if (!StringUtils.isNull(serverGameNumber) && !serverGameNumber.equals("0")) {
-            gameIdNumber = afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + serverGameNumber;
+            gameIdNumber = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + serverGameNumber;
             tv_table_game_number.setText(tableName + ":" + gameIdNumber);
             tv_table_game_number1.setText(tv_table_game_number.getText().toString());
         }
@@ -1494,7 +1469,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     layout1.setLayoutParams(layoutParams);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getBaccarat(tableId).setBigRoadOld("");
+                mAppViewModel.getBaccarat(tableId).setBigRoadOld("");
             }
         });
 
@@ -1517,7 +1492,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     baccarat_background_gridlayout2_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getBaccarat(tableId).setBigRoadOld("");
+                mAppViewModel.getBaccarat(tableId).setBigRoadOld("");
             }
         });
 
@@ -1544,7 +1519,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     smallway_item1_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getBaccarat(tableId).setBigRoadOld("");
+                mAppViewModel.getBaccarat(tableId).setBigRoadOld("");
             }
         });
         fl_small_road_parent2.setOnClickListener(new View.OnClickListener() {
@@ -1570,7 +1545,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     smallway_item2_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getBaccarat(tableId).setBigRoadOld("");
+                mAppViewModel.getBaccarat(tableId).setBigRoadOld("");
             }
         });
         fl_small_road_parent3.setOnClickListener(new View.OnClickListener() {
@@ -1596,7 +1571,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     smallway_item3_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getBaccarat(tableId).setBigRoadOld("");
+                mAppViewModel.getBaccarat(tableId).setBigRoadOld("");
             }
         });
 
@@ -1641,8 +1616,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         goodRoadDataBeenList.clear();
         for (int i = 0; i < otherTableIdList.size(); i++) {
             int otherTableId = otherTableIdList.get(i);
-            Baccarat baccarat = afbApp.getBaccarat(otherTableId);
-            String goodRoad = afbApp.updateGoodRoad(mContext, baccarat.getBigRoad());
+            Baccarat baccarat = mAppViewModel.getBaccarat(otherTableId);
+            String goodRoad = mAppViewModel.updateGoodRoad(mContext, baccarat.getBigRoad());
             if (!TextUtils.isEmpty(goodRoad)) {
                 String tableName = getTableName(otherTableId);
                 int goodRoadPic = getGoodRoadPic(goodRoad);
@@ -1717,46 +1692,46 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private void showAskRoadAnimation(final String type) {
         if (!isShowAskRoad) {
             isShowAskRoad = true;
-            afbApp.updateAskRoad(mContext, density, afbApp.getBaccarat(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                    baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getBaccarat(afbApp.getTableId()).getBigRoad() + type,
+            mAppViewModel.updateAskRoad(mContext, density, mAppViewModel.getBaccarat(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                    baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad() + type,
                     isBigShow, true, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, true);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateAskRoad(mContext, density, afbApp.getBaccarat(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getBaccarat(afbApp.getTableId()).getBigRoad(),
+                    mAppViewModel.updateAskRoad(mContext, density, mAppViewModel.getBaccarat(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad(),
                             isBigShow, false, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 500);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateAskRoad(mContext, density, afbApp.getBaccarat(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getBaccarat(afbApp.getTableId()).getBigRoad() + type,
+                    mAppViewModel.updateAskRoad(mContext, density, mAppViewModel.getBaccarat(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad() + type,
                             isBigShow, true, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 1000);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateAskRoad(mContext, density, afbApp.getBaccarat(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getBaccarat(afbApp.getTableId()).getBigRoad(),
+                    mAppViewModel.updateAskRoad(mContext, density, mAppViewModel.getBaccarat(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad(),
                             isBigShow, false, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 1500);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateAskRoad(mContext, density, afbApp.getBaccarat(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getBaccarat(afbApp.getTableId()).getBigRoad() + type,
+                    mAppViewModel.updateAskRoad(mContext, density, mAppViewModel.getBaccarat(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad() + type,
                             isBigShow, true, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 2000);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateAskRoad(mContext, density, afbApp.getBaccarat(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getBaccarat(afbApp.getTableId()).getBigRoad(),
+                    mAppViewModel.updateAskRoad(mContext, density, mAppViewModel.getBaccarat(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad(),
                             isBigShow, false, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, true);
                     isShowAskRoad = false;
                 }
@@ -1827,10 +1802,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 case HandlerCode.UPDATE_STATUS:
                     updateTimer();
                     updateInterface();
-                    if (isChangeTable) {
-                        isChangeTable = false;
-                        dismissBlockDialog();
-                    }
                     break;
                 case HandlerCode.SHOW_LIMIT_OVER_MAX:
                     Toast.makeText(mContext, R.string.show_limit_over_max, Toast.LENGTH_LONG).show();
@@ -1840,64 +1811,64 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     break;
                 case HandlerCode.UPDATE_GAME_NUMBER:
                     updateGameNumber = null;
-                    gameIdNumber = afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
-                    tv_table_game_number.setText(tableName + ":" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
+                    gameIdNumber = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber();
+                    tv_table_game_number.setText(tableName + ":" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
                     tv_table_game_number1.setText(tv_table_game_number.getText().toString());
-                    tv_baccarat_shoe_number.setText("" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
-                    LogUtil.d("tv_baccarat_shoe_number4", afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
+                    tv_baccarat_shoe_number.setText("" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
+                    LogUtil.d("tv_baccarat_shoe_number4", mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
 
-                    if (!gameNumber.equals(afbApp.getBaccarat(afbApp.getTableId()).getGameNumber())) {//如果第一局下注完，返回大厅，第2局开牌或者出结果的时候 需要清除筹码
-                        //        Log.i(WebSiteUrl.Tag, "gameNumber="+gameNumber+",gameNumber1="+afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
+                    if (!gameNumber.equals(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber())) {//如果第一局下注完，返回大厅，第2局开牌或者出结果的时候 需要清除筹码
+                        //        Log.i(WebSiteUrl.Tag, "gameNumber="+gameNumber+",gameNumber1="+mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
                         clearAllChips();
                     }
                     break;
                 case HandlerCode.SHOW_WIN_LOSS:
-                    serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
+                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
                     //提示输赢
                     if (bBetSucess) {
-//                        if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() >= 0) {
-//                            if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() > 0)
-//                                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, afbApp.getFrontVolume());
-//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getBaccarat(afbApp.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.blue_word));
-//                        } else if (/*Double.parseDouble(*/afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()/*)*/ == 0) {
+//                        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() >= 0) {
+//                            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() > 0)
+//                                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
+//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.blue_word));
+//                        } else if (/*Double.parseDouble(*/mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()/*)*/ == 0) {
 //                            ToastUtils.showToast(mContext, getResources().getString(tie), Color.GREEN);
 //
 //                        } else
-//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()), Color.RED);
-                        if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() > 0) {
-                            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, afbApp.getFrontVolume());
-                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getBaccarat(afbApp.getTableId()).getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
+//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()), Color.RED);
+                        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() > 0) {
+                            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
+                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
                         }
-                        if (afbApp.getTableId() == 71) {
-                            if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() > 0) {
+                        if (mAppViewModel.getTableId() == 71) {
+                            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() > 0) {
                                 tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.win_color));
-                                tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
+                                tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
                                 rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-                                rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
-                            } else if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() == 0) {
+                                rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
+                            } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() == 0) {
                                 tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_gold));
                                 tv_win_lose_bet.setText(getString(R.string.W_L) + " :0");
                                 rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.bet_color));
                                 rightWinLoseTv.setText(getString(R.string.W_L) + " :0");
                             } else {
                                 tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.lose_color));
-                                tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
+                                tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
                                 rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
-                                rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
+                                rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
                             }
                         }
                     }
                     //清除所有的下注的筹码
-//                    clearAllChips();
+                    clearAllChips();
 
                     break;
                 case HandlerCode.SHOW_BET_SUCCESS:
                     initBetInformation(type);
 
                     dismissBlockDialog();
-                    ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getAllBetMoney());
+                    ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAllBetMoney());
 
-                    serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
+                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
                     break;
                 case HandlerCode.SHOW_BET_MONEY:
                     showBetMoney();
@@ -2137,7 +2108,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     private void initNameBg(FrameLayout fl, String name, String index) {
-        String userNname = afbApp.getUser().getName();
+        String userNname = mAppViewModel.getUser().getName();
         switch (index) {
             case "1":
                 if (userNname.equals(name)) {
@@ -2193,7 +2164,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     public void initUI() {
         baccaratTimer = 0;
-        afbApp.getBaccarat(afbApp.getTableId()).setTimer(0);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setTimer(0);
         gameNumber = "0";
         tv_table_timer.setText("0");
         bBetSucess = false;
@@ -2207,7 +2178,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
+                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
             }
         }, 1000);
         videoHelper.loadVideo();
@@ -2253,9 +2224,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     @Override
     protected void leftClick() {
-        afbApp.setbLobby(true);
-        afbApp.getBaccarat(afbApp.getTableId()).setBigRoadOld("");
-        afbApp.getBaccarat(afbApp.getTableId()).Init();
+        mAppViewModel.setbLobby(true);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoadOld("");
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).Init();
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
         AppTool.activiyJump(mContext, LobbyBaccaratActivity.class, bundle);
@@ -2285,7 +2256,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //            updateWonMoney = new UpdateWonMoney();
 //            threadUpdateWonMoney = new Thread(updateWonMoney);
 //            threadUpdateWonMoney.start();
-//            afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
+//            mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
 
         }
     }
@@ -2294,6 +2265,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         if (updateStatus != null) {
             bGetStatus = false;
+
             updateStatus = null;
             threadStatus = null;
 
@@ -2307,8 +2279,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //            threadUpdateGameNumber = null;
 
         }
-        afbApp.closeMuzicService(mContext, BackgroudMuzicService.class);
-        afbApp.closeMuzicService(mContext, FrontMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
     }
 
     @Override
@@ -2402,22 +2374,27 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (savedInstanceState != null) {
             isFirstBet = savedInstanceState.getBoolean("isFirstBet");
         }
-        objectAnimatorB = WidgetUtil.startAlphaAnimation(img_bet_bg_b);
-        objectAnimatorP = WidgetUtil.startAlphaAnimation(img_bet_bg_p);
-        objectAnimatorT = WidgetUtil.startAlphaAnimation(img_bet_bg_t);
-        objectAnimatorBP = WidgetUtil.startAlphaAnimation(img_bet_bg_bp);
-        objectAnimatorPP = WidgetUtil.startAlphaAnimation(img_bet_bg_pp);
         initUI();
         animationPlayer = (AnimationDrawable) img_player_animation.getBackground();
         animationBanker = (AnimationDrawable) img_banker_animation.getBackground();
-        initApngList();
+        apngPlayBeanList.clear();
+        String lg = AppTool.getAppLanguage(mContext);
+        if (lg.equals("zh") || lg.equals("zh_TW")) {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_player, "assets://player_win_zh.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_cn.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_banker, "assets://banker_win_zh.png"));
+        } else {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_player, "assets://player_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_banker, "assets://banker_win_en.png"));
+        }
         initUserBetMsg();
         initOrientation();
         toolbar_right_bottom_tv.setVisibility(View.GONE);
         toolbar_right_top_tv.setVisibility(View.GONE);
         toolbar.setNavigationIcon(null);
-        hallId = afbApp.getHallId();
-        tableId = afbApp.getTableId();
+        hallId = mAppViewModel.getHallId();
+        tableId = Integer.parseInt(getIntent().getExtras().getString(AppConfig.ACTION_KEY_INITENT_DATA));
         areaId = getIntent().getIntExtra("areaId", -1);
         if (!WebSiteUrl.isDomain) {
             baccaratA = getIntent().getBooleanExtra("baccaratA", true);
@@ -2436,6 +2413,15 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }
             });
         }
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//            ll_baccarat_parent = (FrameLayout) findViewById(R.id.ll_baccarat_parent);
+//            if (tableId >= 1 && tableId <= 3) {
+//                ll_baccarat_parent.setBackgroundColor(getResources().getColor(R.color.baccarat_dragon_tiger_bg));
+//            } else {
+//                ll_baccarat_parent.setBackgroundColor(getResources().getColor(R.color.green_table));
+//            }
+//        }
+
 
         if (tableId == 71 && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -2462,12 +2448,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         initControl();
         ////////////////////
 
-        serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
+        serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
 
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);
 //        serviceTime.setVisibility(View.GONE);
-        afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
+        mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
         setTableBetPool(lv_person_bet_info, "Banker");
@@ -2478,8 +2464,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         setTableLimit();
         setClickListener();
         setChip();
-        afbApp.getBaccarat(afbApp.getTableId()).setBigRoadOld("");
-        gameIdNumber = afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoadOld("");
+        gameIdNumber = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber();
         otherTableIdList.clear();
         if (tableId == 1) {
             tableName = "LB1";
@@ -2519,7 +2505,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
         initArcMenu(tvMenu, tableName, hallId);
 
-        tv_table_game_number.setText(tableName + ":" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
+        tv_table_game_number.setText(tableName + ":" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
         tv_table_game_number1.setText(tv_table_game_number.getText().toString());
         initChat();
         if (tableId == 71)
@@ -2527,169 +2513,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             ll_baccarat_parent.setBackgroundResource(R.color.table_color);
         }
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker1(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker2(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker3(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer1(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer2(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer3(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBanker_palyer_tie(-100);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBankerPair(-100);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setPlayerPair(-100);
-        afbApp.getBaccarat(afbApp.getTableId()).setGameStatus(-1);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker1(0);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker2(0);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker3(0);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer1(0);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer2(0);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer3(0);
         setAskClick();
         startUpdateStatusThread();
-    }
-
-    private boolean isChangeTable = false;
-
-    @Override
-    public void initBaccarat() {
-        showBlockDialog();
-        isChangeTable = true;
-        tableId = afbApp.getTableId();
-        clearAllShowChip();
-        clearAllChips();
-        clearBetBg();
-        initPokerState();
-        hidePoker(3);
-        bUpdateRoad = true;
-        for (int i = 0; i < apngPlayBeanList.size(); i++) {
-            if (apngPlayBeanList.get(i).getApngImageView().getVisibility() == View.VISIBLE) {
-                apngPlayBeanList.get(i).getApngImageView().stop();
-                apngPlayBeanList.get(i).getApngImageView().setVisibility(View.INVISIBLE);
-                break;
-            }
-        }
-        objectAnimatorB.cancel();
-        objectAnimatorP.cancel();
-        objectAnimatorT.cancel();
-        objectAnimatorBP.cancel();
-        objectAnimatorPP.cancel();
-        animationPlayer.stop();
-        animationPlayer.selectDrawable(0);
-        animationBanker.stop();
-        animationBanker.selectDrawable(0);
-        countdown_view.stopCountDown();
-        betTimeCount = 0;
-        videoHelper.pauseVideo();
-        mPreview.setVisibility(View.INVISIBLE);
-        stopUpdateStatusThread();
-        initUI();
-        if (tableId == 71 && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-        }
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            shufflingTv.post(new Runnable() {
-                @Override
-                public void run() {
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) shufflingTv.getLayoutParams();
-                    layoutParams.topMargin = UIUtil.dip2px(mContext, 60);
-                    shufflingTv.setLayoutParams(layoutParams);
-                }
-            });
-        }
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            chipY = AutoUtils.getPercentHeightSize(50);
-            chipPlayerBankerY = AutoUtils.getPercentHeightSize(50);
-        } else {
-            chipY = AutoUtils.getPercentHeightSize(82);
-            chipPlayerBankerY = AutoUtils.getPercentHeightSize(82);
-        }
-        tipY = AutoUtils.getPercentHeightSize(30);
-        chipX = AutoUtils.getPercentHeightSize(4);
-        tieX = AutoUtils.getPercentHeightSize(4);
-        chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
-        initControl();
-        serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
-        afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
-        setTablePool(lv_pool);
-        setInfoData(lv_user_info);
-        setTableBetPool(lv_person_bet_info, "Banker");
-        setTableLimit();
-        setClickListener();
-        afbApp.getBaccarat(afbApp.getTableId()).setBigRoadOld("");
-        gameIdNumber = afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
-        otherTableIdList.clear();
-        if (tableId == 1) {
-            tableName = "LB1";
-        } else if (tableId == 2) {
-            tableName = "LB2";
-        } else if (tableId == 3) {
-            tableName = "LB3";
-        } else if (tableId == 61) {
-            tableName = "LB5";
-        } else if (tableId == 62) {
-            tableName = "LB6";
-        } else if (tableId == 63) {
-            tableName = "LB7";
-        } else if (tableId == 71) {
-            tableName = "BM1";
-        }
-        if (tableId != 1) {
-            otherTableIdList.add(1);
-        }
-        if (tableId != 2) {
-            otherTableIdList.add(2);
-        }
-        if (tableId != 3) {
-            otherTableIdList.add(3);
-        }
-        if (tableId != 61) {
-            otherTableIdList.add(61);
-        }
-        if (tableId != 62) {
-            otherTableIdList.add(62);
-        }
-        if (tableId != 63) {
-            otherTableIdList.add(63);
-        }
-        if (tableId != 71) {
-            otherTableIdList.add(71);
-        }
-        if (tableId != 71) {
-            if (tv_mi_timer.getVisibility() == View.VISIBLE) {
-                tv_mi_timer.setVisibility(View.GONE);
-                tv_table_timer.setVisibility(View.VISIBLE);
-            }
-        }
-        initArcMenu(tvMenu, tableName, hallId);
-        tv_table_game_number.setText(tableName + ":" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
-        tv_table_game_number1.setText(tv_table_game_number.getText().toString());
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker1(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker2(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker3(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer1(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer2(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer3(0);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBanker_palyer_tie(-100);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBankerPair(-100);
-        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setPlayerPair(-100);
-        afbApp.getBaccarat(afbApp.getTableId()).setGameStatus(-1);
-        startPlayVideo();
-        videoHelper.loadVideo();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startUpdateStatusThread();
-            }
-        }, 1500);
-    }
-
-    private void initApngList() {
-        apngPlayBeanList.clear();
-        String lg = AppTool.getAppLanguage(mContext);
-        if (lg.equals("zh") || lg.equals("zh_TW")) {
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_player, "assets://player_win_zh.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_cn.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_banker, "assets://banker_win_zh.png"));
-        } else {
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_player, "assets://player_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_banker, "assets://banker_win_en.png"));
-        }
     }
 
 
@@ -2925,65 +2756,58 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     public void setOnRepeatListener() {
         //    showPopBottom(lv_table_pool);
-        showRepeatBetBg();
+
         if (bBetSucess == false)//当前局还没有下注的时候允许重复下注
         {
-            if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0)//清楚未下注的筹码
             {
-                chipHelperPlayerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
-
-                playerPairBet = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair();
-                chipHelperCurrent = chipHelperPlayerPair;
-            } else
-                chipHelperPlayerPair.setOperationButtonDisplay(false);
-
-            if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0)//清楚未下注的筹码
-            {
-                chipHelperPlayer.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayer(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
-                playerBet = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayer();
-                chipHelperCurrent = chipHelperPlayer;
+                chipHelperPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+                playerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer();
+                chipHelperPlayer.setOperationButtonDisplay(true);
             } else {
                 chipHelperPlayer.setOperationButtonDisplay(false);
             }
-
-            if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0)//清楚未下注的筹码
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0)//清楚未下注的筹码
             {
-                chipHelperBanker.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBanker(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+                chipHelperBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
-                bankerBet = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBanker();
-                chipHelperCurrent = chipHelperBanker;
+                bankerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker();
+                chipHelperBanker.setOperationButtonDisplay(true);
             } else {
                 chipHelperBanker.setOperationButtonDisplay(false);
             }
-
-            if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getTie() > 0)//清楚未下注的筹码
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie() > 0)//清楚未下注的筹码
             {
-                chipHelperTie.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+                chipHelperTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
-                tieBet = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getTie();
-                chipHelperCurrent = chipHelperTie;
+                tieBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie();
+                chipHelperTie.setOperationButtonDisplay(true);
             } else {
                 chipHelperTie.setOperationButtonDisplay(false);
             }
-
-            if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0)//清楚未下注的筹码
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
             {
-                chipHelperBankerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+                chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
-                bankerPairBet = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBankerPair();
-                chipHelperCurrent = chipHelperBankerPair;
+                playerPairBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair();
+                chipHelperPlayerPair.setOperationButtonDisplay(true);
+            } else
+                chipHelperPlayerPair.setOperationButtonDisplay(false);
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0)//清楚未下注的筹码
+            {
+                chipHelperBankerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                bankerPairBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair();
+                chipHelperBankerPair.setOperationButtonDisplay(true);
             } else
                 chipHelperBankerPair.setOperationButtonDisplay(false);
-
-            if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0 ||
-                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0
-                    || afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getTie() > 0
-                    || afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0
-                    || afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0)
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0 ||
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0
+                    || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie() > 0
+                    || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0
+                    || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0)
                 BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
-            chipHelperCurrent.setOperationButtonDisplay(true);
-            closeOtherSure();
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
         }
     }
 
@@ -3013,13 +2837,30 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         tvTableBetCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearAllBet();
+                if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
+                }
+                clearNoBetChip();
+
             }
         });
         tvTableBetSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                betAll();
+                if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5)
+                    return;
+                if (mAppViewModel.getUser().getBalance() <= 0) {
+                    ToastUtils.showToast(mContext, getString(R.string.Insufficient));
+                    return;
+                }
+                if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
+                    //执行下注的线程
+                    baccaratBet = new BaccaratBet(BaccaratBetType.All);
+                    threadBaccaratBet = new Thread(baccaratBet);
+                    showBlockDialog();
+                    Executors.newSingleThreadExecutor().execute(threadBaccaratBet);
+                }
             }
         });
         if (!WebSiteUrl.isDomain) {
@@ -3057,7 +2898,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public void onPanelOpened(Panel panel) {
-                //  afbApp.getBaccarat(afbApp.getTableId()).setBigRoadOld("");
+                //  mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoadOld("");
                 showRoad = true;
 //                btn_limit.setVisibility(View.GONE);
             }
@@ -3071,36 +2912,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             }
         });
-    }
-
-    private void clearAllBet() {
-        if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
-        }
-        img_bet_bg_b.setBackgroundResource(0);
-        img_bet_bg_p.setBackgroundResource(0);
-        img_bet_bg_t.setBackgroundResource(0);
-        img_bet_bg_bp.setBackgroundResource(0);
-        img_bet_bg_pp.setBackgroundResource(0);
-        clearAllShowChip();
-        clearNoBetChip();
-    }
-
-    private void betAll() {
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)
-            return;
-        if (afbApp.getUser().getBalance() <= 0) {
-            ToastUtils.showToast(mContext, getString(R.string.Insufficient));
-            return;
-        }
-        if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
-            //执行下注的线程
-            baccaratBet = new BaccaratBet(BaccaratBetType.All);
-            threadBaccaratBet = new Thread(baccaratBet);
-            showBlockDialog();
-            Executors.newSingleThreadExecutor().execute(threadBaccaratBet);
-        }
     }
 
     public void clickBankerPair(View v) {
@@ -3151,17 +2962,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
     }
 
-    @Override
-    public void onSwitchChipFinish() {
-        chooseChip = 0;
-        if (selectedMap != null) {
-            selectedMap.clear();
-        }
-        setChip();
-    }
-
-    private List<ChipShowHelper> chipShowHelperList = new ArrayList<>();
-
     public void setChip() {
 
 
@@ -3181,8 +2981,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         @Override
                         public void run() {
                             if (position == 0) {
-                                int screenWidth = WidgetUtil.getScreenWidth(BaccaratActivity.this);
-                                int padding = (screenWidth - ScreenUtil.dip2px(mContext, 60) * 7) / 2;
+                                int padding = ScreenUtil.dip2px(mContext, 75);
                                 FrameLayout.LayoutParams layoutParams1 = (FrameLayout.LayoutParams) lv_baccarat_chips.getLayoutParams();
                                 layoutParams1.leftMargin = padding;
                                 layoutParams1.rightMargin = padding;
@@ -3190,7 +2989,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                             }
                         }
                     });
-                    int margin = ScreenUtil.dip2px(mContext, 5);
+                    int screenWidth = WidgetUtil.getScreenWidth(BaccaratActivity.this);
+                    int margin = ((screenWidth - ScreenUtil.dip2px(mContext, 75) * 2) / 9 - ScreenUtil.dip2px(mContext, 50)) / 2;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
                     layoutParams.width = ScreenUtil.dip2px(mContext, 50);
                     layoutParams.height = ScreenUtil.dip2px(mContext, 50);
@@ -3200,10 +3000,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     chipImg.setImageResource(item.getDrawableRes());
                 } else {
                     int screenWidth = WidgetUtil.getPortraitScreenWidth(BaccaratActivity.this);
-                    int margin = (screenWidth / 7 - ScreenUtil.dip2px(mContext, 50)) / 2;
+                    int margin = (screenWidth / 6 - ScreenUtil.dip2px(mContext, 60)) / 2;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 50);
-                    layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 60);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 60);
                     layoutParams.leftMargin = margin;
                     layoutParams.rightMargin = margin;
                     llParent.setLayoutParams(layoutParams);
@@ -3218,10 +3018,17 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         chipImg.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                     } else {
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 50);
-                        layoutParams.height = ScreenUtil.dip2px(mContext, 50);
-                        chipImg.setLayoutParams(layoutParams);
+                        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
+                            layoutParams.width = ScreenUtil.dip2px(mContext, 60);
+                            layoutParams.height = ScreenUtil.dip2px(mContext, 60);
+                            chipImg.setLayoutParams(layoutParams);
+                        } else {
+                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
+                            layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                            layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                            chipImg.setLayoutParams(layoutParams);
+                        }
                         helper.setBackgroundRes(R.id.ll_chip_parent, 0);
                     }
                 } else {
@@ -3234,18 +3041,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
                 @Override
                 public void itemCLick(View view, ChipBean chipBean, int position) {
-                    if (chipBean.getValue() != -101) {
-                        chooseChip = chipBean.getValue();
-                        selectedMap.put(true, position);
-                        chips.notifyDataSetChanged();
-                        initClickCount();
-                        afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
-                    } else {
-                        showChooseChip(view);
-                    }
+                    chooseChip = chipBean.getValue();
+                    selectedMap.put(true, position);
+                    chips.notifyDataSetChanged();
+                    initClickCount();
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             });
-            chips.setData(getCurrentChip(false));
+            chips.setData(chipListChoice);
         } else {
             chooseChip = 0;
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
@@ -3254,28 +3057,22 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
                 }
             });
-            chips.setData(getCurrentChip(false));
+            chips.setData(chipListCanNotChoice);
         }
-        chipShowHelperList.clear();
         chipHelperPlayer = new ChipShowHelper(mContext, fl_baccarat_table_player_bg, chipList);
         chipHelperBanker = new ChipShowHelper(mContext, fl_baccarat_table_banker_bg, chipList);
         chipHelperTie = new ChipShowHelper(mContext, fl_baccarat_table_tie, chipList);
         chipHelperPlayerPair = new ChipShowHelper(mContext, fl_baccarat_table_player_pair, chipList);
         chipHelperBankerPair = new ChipShowHelper(mContext, fl_baccarat_table_banker_pair, chipList);
-        chipShowHelperList.add(chipHelperPlayer);
-        chipShowHelperList.add(chipHelperBanker);
-        chipShowHelperList.add(chipHelperTie);
-        chipShowHelperList.add(chipHelperPlayerPair);
-        chipShowHelperList.add(chipHelperBankerPair);
         chipHelperPlayer.setOperationButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                betAll();
+                singleBet(Player);
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearAllBet();
+                clearNoBetChip(Player);
             }
         }, new View.OnClickListener() {
             @Override
@@ -3289,12 +3086,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperBanker.setOperationButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                betAll();
+                singleBet(Banker);
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearAllBet();
+                clearNoBetChip(Banker);
             }
         }, new View.OnClickListener() {
             @Override
@@ -3308,12 +3105,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperTie.setOperationButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                betAll();
+                singleBet(BaccaratBetType.Tie);
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearAllBet();
+                clearNoBetChip(BaccaratBetType.Tie);
             }
         }, new View.OnClickListener() {
             @Override
@@ -3327,12 +3124,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperPlayerPair.setOperationButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                betAll();
+                singleBet(BaccaratBetType.PlayerPair);
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearAllBet();
+                clearNoBetChip(BaccaratBetType.PlayerPair);
             }
         }, new View.OnClickListener() {
             @Override
@@ -3346,12 +3143,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperBankerPair.setOperationButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                betAll();
+                singleBet(BaccaratBetType.BankerPair);
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearAllBet();
+                clearNoBetChip(BaccaratBetType.BankerPair);
             }
         }, new View.OnClickListener() {
             @Override
@@ -3417,19 +3214,19 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             }
         });
         List<LiveInfoBean> limit = new ArrayList<LiveInfoBean>();
-        limit.add(new LiveInfoBean(getString(R.string.banker1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
-        limit.add(new LiveInfoBean(getString(R.string.player1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
-        limit.add(new LiveInfoBean(getString(R.string.tie1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinTieBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTieBet())));
-        limit.add(new LiveInfoBean(getString(R.string.PP1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinPairBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet())));
-        limit.add(new LiveInfoBean(getString(R.string.BP1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinPairBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet())));
+        limit.add(new LiveInfoBean(getString(R.string.banker1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
+        limit.add(new LiveInfoBean(getString(R.string.player1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
+        limit.add(new LiveInfoBean(getString(R.string.tie1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet())));
+        limit.add(new LiveInfoBean(getString(R.string.PP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
+        limit.add(new LiveInfoBean(getString(R.string.BP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
         contentList.setData(limit);
         tableName = "";
-        switch (afbApp.getTableId()) {
+        switch (mAppViewModel.getTableId()) {
             case 1:
                 tableName = "LB1";
                 break;
@@ -3507,32 +3304,32 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         tv_pp.setText("" + baccarat.getTotalPlayerPair());*/
 
         LiveInfoBean data = new LiveInfoBean();
-        //    Log.i(WebSiteUrl.Tag,"GetBankerPool = "+afbApp.getTableId());
-        //   Log.i(WebSiteUrl.Tag,"GetBankerPool = "+afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getBanker());
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getBanker() > 0)
-            data = new LiveInfoBean(getString(R.string.b) /*+ " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalBanker()*/, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getBanker() + "", "");
+        //    Log.i(WebSiteUrl.Tag,"GetBankerPool = "+mAppViewModel.getTableId());
+        //   Log.i(WebSiteUrl.Tag,"GetBankerPool = "+mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker());
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() > 0)
+            data = new LiveInfoBean(getString(R.string.b) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBanker()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.b) /*+ " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalBanker()*/, "0", "");
+            data = new LiveInfoBean(getString(R.string.b) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBanker()*/, "0", "");
         strData.add(data);
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getPlayer() > 0)
-            data = new LiveInfoBean(getString(R.string.p)/* + " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalPlayer()*/, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getPlayer() + "", "");
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() > 0)
+            data = new LiveInfoBean(getString(R.string.p)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayer()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.p) /*+ " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalPlayer()*/, "0", "");
+            data = new LiveInfoBean(getString(R.string.p) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayer()*/, "0", "");
         strData.add(data);
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getTie() > 0)
-            data = new LiveInfoBean(getString(R.string.tie)/* + " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalTie()*/, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getTie() + "", "");
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() > 0)
+            data = new LiveInfoBean(getString(R.string.tie)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalTie()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.tie) /*+ " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalTie()*/, "0", "");
+            data = new LiveInfoBean(getString(R.string.tie) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalTie()*/, "0", "");
         strData.add(data);
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getBankerPair() > 0)
-            data = new LiveInfoBean(getString(R.string.BP) /*+ " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalBankerPair()*/, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getBankerPair() + "", "");
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBankerPair() > 0)
+            data = new LiveInfoBean(getString(R.string.BP) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBankerPair()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBankerPair() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.BP)/* + " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalBankerPair()*/, "0", "");
+            data = new LiveInfoBean(getString(R.string.BP)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBankerPair()*/, "0", "");
         strData.add(data);
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getPlayerPair() > 0)
-            data = new LiveInfoBean(getString(R.string.PP)/* + " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalPlayerPair()*/, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().getPlayerPair() + "", "");
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayerPair() > 0)
+            data = new LiveInfoBean(getString(R.string.PP)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayerPair()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayerPair() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.PP)/* + " " + afbApp.getBaccarat(afbApp.getTableId()).getTotalPlayerPair()*/, "0", "");
+            data = new LiveInfoBean(getString(R.string.PP)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayerPair()*/, "0", "");
         strData.add(data);
         return strData;
     }
@@ -3541,13 +3338,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         List<String> strData = new ArrayList<String>();
         String data = "";
 
-        //   afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetInfomation()
-        for (int i = 0; i < afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetInfomation().size(); i++) {
-            if (afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetInfomation().get(i).getType().equals(type)) {
-                for (int j = 0; j < afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPlayer().size(); j++) {
-                    if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPlayer().get(j).getNumber().contains(afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetInfomation().get(i).getAreaId())) {
-                        data = afbApp.hideName(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPlayer().get(j).getName()) + " : " +
-                                afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetInfomation().get(i).getBetMoney();
+        //   mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation()
+        for (int i = 0; i < mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().size(); i++) {
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().get(i).getType().equals(type)) {
+                for (int j = 0; j < mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayer().size(); j++) {
+                    if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayer().get(j).getNumber().contains(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().get(i).getAreaId())) {
+                        data = mAppViewModel.hideName(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayer().get(j).getName()) + " : " +
+                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().get(i).getBetMoney();
                         strData.add(data);
                         break;
                     }
@@ -3585,28 +3382,18 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void startPlayVideo() {
-        if (mPreview==null){
-            mPreview = findViewById(R.id.surface);
-            videoHelper = new VideoHelper(mContext, mPreview) {
-                @Override
-                public void doVideoFix() {
-                    super.doVideoFix();
-                    if (mPreview.getVisibility()==View.INVISIBLE){
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mPreview.setVisibility(View.VISIBLE);
-                            }
-                        },500);
-                    }
-                    if (findViewById(R.id.fl_baccarat_bg) != null)
-                        findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
-                }
-            };
-        }
+        mPreview =  findViewById(R.id.surface);
+        videoHelper = new VideoHelper(mContext, mPreview) {
+            @Override
+            public void doVideoFix() {
+                super.doVideoFix();
+                if (findViewById(R.id.fl_baccarat_bg) != null)
+                    findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
+            }
+        };
         String localPath = "/myvideo1";
-        if (afbApp.getTableId() > 3) {
-            localPath = "/b" + afbApp.getTableId() + "1";
+        if (mAppViewModel.getTableId() > 3) {
+            localPath = "/b" + mAppViewModel.getTableId() + "1";
         }
         switch (tableId) {
             case 1:
@@ -3628,26 +3415,26 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 localPath = "/L063";
                 break;
         }
-        path = afbApp.getUser().getVideoUrl() + "/" + afbApp.getBaccarat(afbApp.getTableId()).getVideoUrlIndex() + localPath;
+        path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getVideoUrlIndex() + localPath;
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             switch (tableId) {
                 case 1:
-                    path = afbApp.getUser().getVideoUrl() + "/live/L01new";
+                    path = mAppViewModel.getUser().getVideoUrl() + "/live/L01new";
                     break;
                 case 2:
-                    path = afbApp.getUser().getVideoUrl() + "/live/L02new";
+                    path = mAppViewModel.getUser().getVideoUrl() + "/live/L02new";
                     break;
                 case 3:
-                    path = afbApp.getUser().getVideoUrl() + "/live/L03new";
+                    path = mAppViewModel.getUser().getVideoUrl() + "/live/L03new";
                     break;
                 case 61:
-                    path = afbApp.getUser().getVideoUrl() + "/live/L06new";
+                    path = mAppViewModel.getUser().getVideoUrl() + "/live/L06new";
                     break;
                 case 62:
-                    path = afbApp.getUser().getVideoUrl() + "/live/L07new";
+                    path = mAppViewModel.getUser().getVideoUrl() + "/live/L07new";
                     break;
                 case 63:
-                    path = afbApp.getUser().getVideoUrl() + "/live/L08new";
+                    path = mAppViewModel.getUser().getVideoUrl() + "/live/L08new";
                     break;
             }
         }
@@ -3660,9 +3447,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         super.onPause();
 //        stopUpdateStatusThread();
         videoHelper.pauseVideo();
-//        afbApp.getBaccarat(afbApp.getTableId()).setGameStatus(1);
-        afbApp.closeMuzicService(mContext, BackgroudMuzicService.class);
-        afbApp.closeMuzicService(mContext, FrontMuzicService.class);
+//        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameStatus(1);
+        mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
 //        hidePoker(0);
     }
 
@@ -3775,7 +3562,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     playerBetMoney8 = subStringBetMoneyInt(userBetMap.get(Bd8));
                     break;
             }
-            String userNname = afbApp.getUser().getName();
+            String userNname = mAppViewModel.getUser().getName();
             for (int j = 0; j < beanList.size(); j++) {
                 GameRefreshBean bean = beanList.get(j);
                 String name = bean.getName();
@@ -3846,7 +3633,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickname1(View fl) {
-        if (afbApp.getUser().getName().equals(tv_name1.getText().toString())) {
+        if (mAppViewModel.getUser().getName().equals(tv_name1.getText().toString())) {
             return;
         }
         clearUserBet();
@@ -3859,7 +3646,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickname2(View fl) {
-        if (afbApp.getUser().getName().equals(tv_name2.getText().toString())) {
+        if (mAppViewModel.getUser().getName().equals(tv_name2.getText().toString())) {
             return;
         }
         clearUserBet();
@@ -3872,7 +3659,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickname3(View fl) {
-        if (afbApp.getUser().getName().equals(tv_name3.getText().toString())) {
+        if (mAppViewModel.getUser().getName().equals(tv_name3.getText().toString())) {
             return;
         }
         clearUserBet();
@@ -3885,7 +3672,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickname5(View fl) {
-        if (afbApp.getUser().getName().equals(tv_name5.getText().toString())) {
+        if (mAppViewModel.getUser().getName().equals(tv_name5.getText().toString())) {
             return;
         }
         clearUserBet();
@@ -3898,7 +3685,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickname6(View fl) {
-        if (afbApp.getUser().getName().equals(tv_name6.getText().toString())) {
+        if (mAppViewModel.getUser().getName().equals(tv_name6.getText().toString())) {
             return;
         }
         clearUserBet();
@@ -3911,7 +3698,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickname7(View fl) {
-        if (afbApp.getUser().getName().equals(tv_name7.getText().toString())) {
+        if (mAppViewModel.getUser().getName().equals(tv_name7.getText().toString())) {
             return;
         }
         clearUserBet();
@@ -3924,7 +3711,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickname8(View fl) {
-        if (afbApp.getUser().getName().equals(tv_name8.getText().toString())) {
+        if (mAppViewModel.getUser().getName().equals(tv_name8.getText().toString())) {
             return;
         }
         clearUserBet();
@@ -3936,66 +3723,33 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         showUpPop();
     }
 
-    int bankerShowChip;
-    int playerShowChip;
-    int tieShowChip;
-    int bbShowChip;
-    int ppShowChip;
-
-    private void clearAllShowChip() {
-        bankerShowChip = 0;
-        playerShowChip = 0;
-        tieShowChip = 0;
-        bbShowChip = 0;
-        ppShowChip = 0;
-    }
-
     public void clickBetPlayer(final View fl) {
         if (checkChoose()) return;
         chipHelperCurrent = chipHelperPlayer;
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 1)
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
-        if (bankerBet > 0 || afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
+        if (bankerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
             Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
             return;
         }
         clickPlayerCount++;
 
-        int betMoney = afbApp.getBetMoney(chooseChip, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinBankerPlayerBet(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickPlayerCount,
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
-        playerShowChip = betMoney;
-        betMoney = getBetMoney(betMoney, "P");
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickPlayerCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
         if (betMoney > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
-            } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
-            }
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
-            chipHelperCurrent.showChip(betMoney, chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperPlayer.showChip(betMoney, chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerBet = betMoney;
-            //    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP,9,componentFront,this,afbApp.getFrontVolume());
-            closeOtherSure();
+            //    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP,9,componentFront,this,mAppViewModel.getFrontVolume());
         } else {
-//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickPlayerCount = 0;
             playerBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
 
-    }
-
-    private void closeOtherSure() {
-        for (int i = 0; i < chipShowHelperList.size(); i++) {
-            ChipShowHelper chipShowHelper = chipShowHelperList.get(i);
-            if (chipShowHelper != null) {
-                if (!chipShowHelper.equals(chipHelperCurrent)) {
-                    chipShowHelper.setOperationButtonDisplay(false);
-                }
-            }
-        }
     }
 
     public boolean checkChoose() {
@@ -4013,164 +3767,96 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //
 //        chipHelper1.showChip(chipCount,AutoUtils.getPercentHeightSize(4), AutoUtils.getPercentHeightSize(5), 80, 60, AutoUtils.getPercentHeightSize(46),tipY, AutoUtils.getPercentHeightSize(38), AutoUtils.getPercentHeightSize(20));
 //        ((AnimationDrawable) tableImage2.getBackground()).start();
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 1)
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
-        if (playerBet > 0 || afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
+        if (playerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
             Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
             return;
         }
         clickBankerCount++;
 
-        int betMoney = afbApp.getBetMoney(chooseChip, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinBankerPlayerBet(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickBankerCount,
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
-        bankerShowChip = betMoney;
-        betMoney = getBetMoney(betMoney, "B");
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickBankerCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
         if (betMoney > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
-            } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
-            }
-            chipHelperCurrent.showChip(betMoney, -chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBanker.showChip(betMoney, -chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             bankerBet = betMoney;
-            closeOtherSure();
         } else {
-//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickBankerCount = 0;
             bankerBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-
-    }
-
-    private int getBetMoney(int betMoney, String type) {
-        int allShowChip = 0;
-        int tie = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie();
-        int playerPair = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair();
-        int bankerPair = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair();
-        int banker = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker();
-        int player = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer();
-        switch (type) {
-            case "B":
-                allShowChip = playerShowChip + tieShowChip + bbShowChip + ppShowChip + player + tie + playerPair + bankerPair;
-                break;
-            case "P":
-                allShowChip = bankerShowChip + tieShowChip + bbShowChip + ppShowChip + banker + tie + playerPair + bankerPair;
-                break;
-            case "T":
-                allShowChip = bankerShowChip + playerShowChip + bbShowChip + ppShowChip + player + banker + playerPair + bankerPair;
-                break;
-            case "BB":
-                allShowChip = bankerShowChip + playerShowChip + tieShowChip + ppShowChip + player + tie + playerPair + banker;
-                break;
-            case "PP":
-                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + player + tie + banker + bankerPair;
-                break;
-        }
-        int maxTotalBet = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet();
-
-        int canBet = maxTotalBet - allShowChip;
-        Log.d("getBetMoney", "betMoney: " + betMoney + "----" + "maxTotalBet: " + maxTotalBet + "----" + "allShowChip: " + allShowChip + "----" + "canBet: " + canBet);
-        if (betMoney > canBet) {
-            betMoney = canBet;
-        }
-        return betMoney;
     }
 
     public void clickBetTie(final View f) {
         if (checkChoose()) return;
         chipHelperCurrent = chipHelperTie;
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 1)
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
         clickTieCount++;
-        int betMoney = afbApp.getBetMoney(chooseChip, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinTieBet(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTieBet(), clickTieCount,
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
-        tieShowChip = betMoney;
-        betMoney = getBetMoney(betMoney, "T");
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet(), clickTieCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+
         if (betMoney > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
-            } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
-            }
-            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+            chipHelperTie.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             tieBet = betMoney;
-            closeOtherSure();
         } else {
-//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickTieCount = 0;
             tieBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-
     }
 
     public void clickBetPlayerPair(final View fl2) {
         if (checkChoose()) return;
         chipHelperCurrent = chipHelperPlayerPair;
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 1)
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
         clickPlayerPairCount++;
-        int betMoney = afbApp.getBetMoney(chooseChip, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinPairBet(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet(), clickPlayerPairCount,
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
-        ppShowChip = betMoney;
-        betMoney = getBetMoney(betMoney, "PP");
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet(), clickPlayerPairCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
         if (betMoney > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
-            } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
-            }
-            chipHelperCurrent.showChip(betMoney, chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperPlayerPair.showChip(betMoney, chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerPairBet = betMoney;
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
-            closeOtherSure();
         } else {
-//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickPlayerPairCount = 0;
             playerPairBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-
     }
 
     public void clickBetBankerPair(final View fl) {
-        if (checkChoose()) return;
         chipHelperCurrent = chipHelperBankerPair;
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 1)
+        if (checkChoose()) return;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
         clickBankerPairCount++;
-        int betMoney = afbApp.getBetMoney(chooseChip, afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinPairBet(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet(), clickBankerPairCount,
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(),
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
-        bbShowChip = betMoney;
-        betMoney = getBetMoney(betMoney, "BB");
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet(), clickBankerPairCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
         if (betMoney > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
-            } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
-            }
-            chipHelperCurrent.showChip(betMoney, -chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBankerPair.showChip(betMoney, -chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             bankerPairBet = betMoney;
-            closeOtherSure();
         } else {
-//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBankerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickBankerPairCount = 0;
             bankerPairBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-
     }
 
     @Override
@@ -4191,11 +3877,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     public void clearNoBetChip() {
         chipHelperCurrent = null;
         clearAllChips();
-        /*chipHelperPlayer.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4),  chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
-        chipHelperBanker.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4),  chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
-        chipHelperTie.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
-        chipHelperPlayerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
-        chipHelperBankerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
+        /*chipHelperPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4),  chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
+        chipHelperBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4),  chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
+        chipHelperTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
+        chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
+        chipHelperBankerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32), AutoUtils.getPercentHeightSize(20));
 */
         initBetInformation(BaccaratBetType.All);
     }
@@ -4222,34 +3908,31 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void showBetMoney() {
-        //     Log.i(WebSiteUrl.Tag, "showBetMoney Banker= " + afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker());
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer() > 0)//清楚未下注的筹码
+        //     Log.i(WebSiteUrl.Tag, "showBetMoney Banker= " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker());
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0)//清楚未下注的筹码
         {
-            chipHelperPlayer.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
         }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker() > 0)//清楚未下注的筹码
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0)//清楚未下注的筹码
         {
-            chipHelperBanker.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
         }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie() > 0)//清楚未下注的筹码
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie() > 0)//清楚未下注的筹码
         {
-            chipHelperTie.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
         }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
         {
-            chipHelperPlayerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
         }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair() > 0)//清楚未下注的筹码
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair() > 0)//清楚未下注的筹码
         {
-            chipHelperBankerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBankerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 5) {
-            showBetBg();
         }
     }
 
@@ -4269,89 +3952,28 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
     }
 
-    ObjectAnimator objectAnimatorB;
-    ObjectAnimator objectAnimatorP;
-    ObjectAnimator objectAnimatorT;
-    ObjectAnimator objectAnimatorBP;
-    ObjectAnimator objectAnimatorPP;
-
     public void showResultsOnUI() {
-//        clearBetBg();
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 1) {
-//            iv_baccarat_table_banker.setVisibility(View.VISIBLE);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
-            } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
-            }
-            if (objectAnimatorB.isRunning()) {
-                objectAnimatorB.cancel();
-                objectAnimatorB.start();
-            } else {
-                objectAnimatorB.start();
-            }
+
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 1) {
+            iv_baccarat_table_banker.setVisibility(View.VISIBLE);
             showApng(2);
             animationBanker.start();
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 4, componentFront, mContext, afbApp.getFrontVolume());
-        } else if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 2) {
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 4, componentFront, mContext, mAppViewModel.getFrontVolume());
+        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 2) {
             showApng(0);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
-            } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
-            }
             animationPlayer.start();
-//            iv_baccarat_table_player.setVisibility(View.VISIBLE);
-            if (objectAnimatorP.isRunning()) {
-                objectAnimatorP.cancel();
-                objectAnimatorP.start();
-            } else {
-                objectAnimatorP.start();
-            }
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 5, componentFront, mContext, afbApp.getFrontVolume());
-        } else if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 3) {
+            iv_baccarat_table_player.setVisibility(View.VISIBLE);
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 5, componentFront, mContext, mAppViewModel.getFrontVolume());
+        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 3) {
             showApng(1);
-//            iv_baccarat_table_tie.setVisibility(View.VISIBLE);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
-            } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
-            }
-            if (objectAnimatorT.isRunning()) {
-                objectAnimatorT.cancel();
-                objectAnimatorT.start();
-            } else {
-                objectAnimatorT.start();
-            }
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 6, componentFront, mContext, afbApp.getFrontVolume());
+            iv_baccarat_table_tie.setVisibility(View.VISIBLE);
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 6, componentFront, mContext, mAppViewModel.getFrontVolume());
         }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().getBankerPair() == 1) {
-//            iv_baccarat_table_banker_pair.setVisibility(View.VISIBLE);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
-            } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
-            }
-            if (objectAnimatorBP.isRunning()) {
-                objectAnimatorBP.cancel();
-                objectAnimatorBP.start();
-            } else {
-                objectAnimatorBP.start();
-            }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBankerPair() == 1) {
+            iv_baccarat_table_banker_pair.setVisibility(View.VISIBLE);
         }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().getPlayerPair() == 1) {
-//            iv_baccarat_table_player_pair.setVisibility(View.VISIBLE);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
-            } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
-            }
-            if (objectAnimatorPP.isRunning()) {
-                objectAnimatorPP.cancel();
-                objectAnimatorPP.start();
-            } else {
-                objectAnimatorPP.start();
-            }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getPlayerPair() == 1) {
+            iv_baccarat_table_player_pair.setVisibility(View.VISIBLE);
         }
     }
 
@@ -4362,12 +3984,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 showPoker71();
                 return;
             }
-            if (!bottomPanel1.isOpen()) {
-                bottomPanel1.setOpen(true, true);
-            }
-            fl_poker_parent.setVisibility(View.VISIBLE);
-            ll_poker_parent.setVisibility(View.VISIBLE);
-            ll_poker_pw.setVisibility(View.GONE);
+            bottomPanel1.setOpen(true, true);
             BitmapFactory.Options opts = new BitmapFactory.Options();
 // 缩放的比例，缩放是很难按准备的比例进行缩放的，其值表明缩放的倍数，SDK中建议其值是2的指数值,值越大会导致图片不清晰
             opts.inSampleSize = 2;
@@ -4379,7 +3996,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     iv_poker_banker1.setVisibility(View.VISIBLE);
                     iv_poker_banker1.setImageBitmap(BitmapTool.skewBitmap(bitmap, xSkizeB1, 0f));
                     WidgetUtil.translateAnimation(iv_poker_banker1, banker1x, 0f, AutoUtils.getPercentWidthSize(animationHeight), 0f, animationTime);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
 
                 }
             }
@@ -4391,7 +4008,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     iv_poker_banker2.setVisibility(View.VISIBLE);
                     iv_poker_banker2.setImageBitmap(BitmapTool.skewBitmap(bitmap, xSkizeB2, 0f));
                     WidgetUtil.translateAnimation(iv_poker_banker2, banker2x, 0f, AutoUtils.getPercentWidthSize(animationHeight), 0f, animationTime);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
 
                 }
             }
@@ -4405,7 +4022,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     iv_poker_banker3.setVisibility(View.VISIBLE);
                     iv_poker_banker3.setImageBitmap(BitmapTool.skewBitmap(BitmapTool.toturn(bitmap, 90), xSkizeB3, 0f));
                     WidgetUtil.translateAnimation(iv_poker_banker3, banker3x, 0f, AutoUtils.getPercentWidthSize(animationHeight - 150), 0f, animationTime + 100);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             }
             if (getPlayer1() > 0) {
@@ -4415,7 +4032,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     iv_poker_player1.setVisibility(View.VISIBLE);
                     iv_poker_player1.setImageBitmap(BitmapTool.skewBitmap(bitmap, -xSkizeP1, 0f));
                     WidgetUtil.translateAnimation(iv_poker_player1, player1x, 0f, AutoUtils.getPercentWidthSize(animationHeight), 0f, animationTime);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             }
             if (getPlayer2() > 0) {
@@ -4426,7 +4043,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     iv_poker_player2.setVisibility(View.VISIBLE);
                     iv_poker_player2.setImageBitmap(BitmapTool.skewBitmap(bitmap, -xSkizeP2, 0f));
                     WidgetUtil.translateAnimation(iv_poker_player2, player2x, 0f, AutoUtils.getPercentWidthSize(animationHeight), 0f, animationTime);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             }
             if (getPlayer3() > 0) {
@@ -4439,14 +4056,19 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     iv_poker_player3.setVisibility(View.VISIBLE);
                     iv_poker_player3.setImageBitmap(BitmapTool.skewBitmap(BitmapTool.toturn(bitmap, 90), -xSkizeP3, 0f));
                     WidgetUtil.translateAnimation(iv_poker_player3, player3x, 0f, AutoUtils.getPercentWidthSize(animationHeight - 150), 0f, animationTime + 100);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             }
+            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
+                fl_baccarat_a_table.setBackgroundResource(R.mipmap.bet_a_bg_trans);
+
+
+            }
             if (getPlayer1() < 1 && getPlayer2() < 1 && getPlayer3() < 1 && getBanker1() < 1 && getBanker2() < 1 && getBanker3() < 1)
                 return;
 
-            afbApp.showPoint(getPlayer1(),
+            mAppViewModel.showPoint(getPlayer1(),
                     getPlayer2(),
                     getPlayer3(),
                     getBanker1(),
@@ -4461,31 +4083,22 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     protected void pokerFlipTimeCount(int duration, final TextView timerTv, final List<PageWidgetT> pws) {
         timerOnFinish();
         startTimer(duration, timerTv, pws);
-        if (!countdown_view.viewIsRunning()) {
-            countdown_view.setCountdownTime(duration);
-            countdown_view.startCountDown();
-        }
+
     }
 
     private void startTimer(final int duration, final TextView timerTv, final List<PageWidgetT> pws) {
         timerTv.setVisibility(View.VISIBLE);
-        tv_table_timer.setVisibility(View.GONE);
-        tv_mi_timer.setVisibility(View.VISIBLE);
         timer = new CountDownTimer(duration * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timerTv.setVisibility(View.VISIBLE);
-                String time = "" + millisUntilFinished / 1000;
-                timerTv.setText(time);
-                tv_mi_timer.setText(time);
+                timerTv.setText("" + millisUntilFinished / 1000);
+
             }
 
             @Override
             public void onFinish() {
                 timerTv.setText("0");
-                tv_mi_timer.setText("0");
-                tv_mi_timer.setVisibility(View.GONE);
-                tv_table_timer.setVisibility(View.VISIBLE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -4497,7 +4110,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     if (!isFinishing() && isAttached)
                         pw.flipPicAnimation3D();
                 }
-                afbApp.showPoint(getPlayer1(),
+                mAppViewModel.showPoint(getPlayer1(),
                         getPlayer2(),
                         getPlayer3(),
                         getBanker1(),
@@ -4517,11 +4130,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         super.onDestroy();
         videoHelper.stopVideo();
         stopUpdateStatusThread();
-        objectAnimatorB.cancel();
-        objectAnimatorP.cancel();
-        objectAnimatorT.cancel();
-        objectAnimatorBP.cancel();
-        objectAnimatorPP.cancel();
     }
 
     @Override
@@ -4925,7 +4533,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int banker1 = flipMap.get(gameIdNumber + "banker1") == null ? 0 : flipMap.get(gameIdNumber + "banker1");
         int banker2 = flipMap.get(gameIdNumber + "banker2") == null ? 0 : flipMap.get(gameIdNumber + "banker2");
         int banker3 = flipMap.get(gameIdNumber + "banker3") == null ? 0 : flipMap.get(gameIdNumber + "banker3");
-        afbApp.showPointBanker(banker1,
+        mAppViewModel.showPointBanker(banker1,
                 banker2,
                 banker3,
                 /*tv_point_banker*/tv_banker_result, /*getString(banker)*/"");
@@ -4945,7 +4553,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int player1 = flipMap.get(gameIdNumber + "player1") == null ? 0 : flipMap.get(gameIdNumber + "player1");
         int player2 = flipMap.get(gameIdNumber + "player2") == null ? 0 : flipMap.get(gameIdNumber + "player2");
         int player3 = flipMap.get(gameIdNumber + "player3") == null ? 0 : flipMap.get(gameIdNumber + "player3");
-        afbApp.showPointPlayer(player1,
+        mAppViewModel.showPointPlayer(player1,
                 player2,
                 player3,
                 /*tv_point_player*/tv_player_result, /*getString(player)*/"");
@@ -4986,7 +4594,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     //    p1:46  p2:26  p3:0  b1:36  b2:35  b3:0
     private int getBanker3() {
-        return afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().getBanker3();
+        return mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().getBanker3();
 //        return 0;
 //        i++;
 //        if (i / 8 % 2 == 0)
@@ -4996,31 +4604,31 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     private int getBanker2() {
-        return afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().getBanker2();
+        return mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().getBanker2();
 //        return 35;
 //        return 16;
     }
 
     private int getBanker1() {
-        return afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().getBanker1();
+        return mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().getBanker1();
 //        return 36;
 //        return 1;
     }
 
     private int getPlayer3() {
-        return afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().getPlayer3();
+        return mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().getPlayer3();
 //        return 0;
 //        return 19;
     }
 
     private int getPlayer2() {
-        return afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().getPlayer2();
+        return mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().getPlayer2();
 //        return 26;
 //        return 21;
     }
 
     private int getPlayer1() {
-        return afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().getPlayer1();
+        return mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().getPlayer1();
 //        return 46;
 //        return 41;
 
@@ -5064,7 +4672,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int p2 = getPlayer2();
         int b1 = getBanker1();
         int b2 = getBanker2();
-        Map<String, Integer> map = afbApp.getPoint(p1, p2, b1, b2);
+        Map<String, Integer> map = mAppViewModel.getPoint(p1, p2, b1, b2);
         int p = map.get("player");
         int b = map.get("banker");
         if (p < 6 && b < 3)
@@ -5092,7 +4700,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         iv_poker_player1.setVisibility(View.GONE);
         iv_poker_player2.setVisibility(View.GONE);
         iv_poker_player3.setVisibility(View.GONE);
-
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fl_baccarat_a_table.setBackgroundResource(R.mipmap.bet_a_bg_trans);
+         /*   if (AppTool.getAppLanguage(mContext).equals("zh")) {
+                fl_baccarat_b_table.setBackgroundResource(R.mipmap.bg_baccarat_b_zh);
+            } else {
+                fl_baccarat_b_table.setBackgroundResource(R.mipmap.bg_baccarat_b_en);
+            }*/
+        }
     }
 
     public int getPokerResource(int poker) {
@@ -5259,12 +4874,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void gotoLobby() {
-        afbApp.getBaccarat(afbApp.getTableId()).Init();
-        //   afbApp.setTableId(0);
-        afbApp.setSerialId(0);
-        afbApp.setAreaId(0);
-        afbApp.setbLobby(true);
-        afbApp.getBaccarat(afbApp.getTableId()).setBigRoadOld("");
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).Init();
+        //   mAppViewModel.setTableId(0);
+        mAppViewModel.setSerialId(0);
+        mAppViewModel.setAreaId(0);
+        mAppViewModel.setbLobby(true);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoadOld("");
 
 
         Bundle bundle = new Bundle();
@@ -5308,16 +4923,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 lvChatUsual.setVisibility(View.GONE);
                 gvChatEmoticons.setVisibility(View.GONE);
                 llChatContent.setVisibility(View.GONE);
-                switch (checkedId) {
-                    case R.id.rb_chat_content:
-                        llChatContent.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.rb_chat_emoticons:
-                        gvChatEmoticons.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.rb_chat_usual:
-                        lvChatUsual.setVisibility(View.VISIBLE);
-                        break;
+                if (checkedId == R.id.rb_chat_content) {
+                    llChatContent.setVisibility(View.VISIBLE);
+                } else if (checkedId == R.id.rb_chat_emoticons) {
+                    gvChatEmoticons.setVisibility(View.VISIBLE);
+                } else if (checkedId == R.id.rb_chat_usual) {
+                    lvChatUsual.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -5373,7 +4984,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void sendUsualMsg(String str) {
-        MsgBean msgBean = new MsgBean("sendMsg", afbApp.getUser().getName(), str);
+        MsgBean msgBean = new MsgBean("sendMsg", mAppViewModel.getUser().getName(), str);
         sendChatMsg(msgBean.toString());
     }
 
@@ -5396,47 +5007,47 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     };
 
     static class ViewBindHolder {
-        @Bind(R.id.iv_baccarat_table_player)
+        @BindView(R2.id.iv_baccarat_table_player)
         ImageView ivBaccaratTablePlayer;
-        @Bind(R.id.tv_player_bet_money)
+        @BindView(R2.id.tv_player_bet_money)
         TextView tvPlayerBetMoney;
-        @Bind(R.id.tv_player_bet_count)
+        @BindView(R2.id.tv_player_bet_count)
         TextView tvPlayerBetCount;
-        @Bind(R.id.fl_baccarat_table_player)
+        @BindView(R2.id.fl_baccarat_table_player)
         FrameLayout flBaccaratTablePlayer;
-        @Bind(R.id.fl_baccarat_table_player_bg)
+        @BindView(R2.id.fl_baccarat_table_player_bg)
         FrameLayout flBaccaratTablePlayer_bg;
-        @Bind(R.id.iv_baccarat_table_banker)
+        @BindView(R2.id.iv_baccarat_table_banker)
         ImageView ivBaccaratTableBanker;
-        @Bind(R.id.tv_banker_bet_money)
+        @BindView(R2.id.tv_banker_bet_money)
         TextView tvBankerBetMoney;
-        @Bind(R.id.tv_banker_bet_count)
+        @BindView(R2.id.tv_banker_bet_count)
         TextView tvBankerBetCount;
-        @Bind(R.id.fl_baccarat_table_banker)
+        @BindView(R2.id.fl_baccarat_table_banker)
         FrameLayout flBaccaratTableBanker;
-        @Bind(R.id.fl_baccarat_table_banker_bg)
+        @BindView(R2.id.fl_baccarat_table_banker_bg)
         FrameLayout flBaccaratTableBanker_bg;
-        @Bind(R.id.iv_baccarat_table_tie)
+        @BindView(R2.id.iv_baccarat_table_tie)
         ImageView ivBaccaratTableTie;
-        @Bind(R.id.tv_tie_bet_money)
+        @BindView(R2.id.tv_tie_bet_money)
         TextView tvTieBetMoney;
-        @Bind(R.id.tv_tie_bet_count)
+        @BindView(R2.id.tv_tie_bet_count)
         TextView tvTieBetCount;
-        @Bind(R.id.iv_baccarat_table_player_pair)
+        @BindView(R2.id.iv_baccarat_table_player_pair)
         ImageView ivBaccaratTablePlayerPair;
-        @Bind(R.id.tv_player_pair_bet_money)
+        @BindView(R2.id.tv_player_pair_bet_money)
         TextView tvPlayerPairBetMoney;
-        @Bind(R.id.tv_player_pair_bet_count)
+        @BindView(R2.id.tv_player_pair_bet_count)
         TextView tvPlayerPairBetCount;
-        @Bind(R.id.iv_baccarat_table_banker_pair)
+        @BindView(R2.id.iv_baccarat_table_banker_pair)
         ImageView ivBaccaratTableBankerPair;
-        @Bind(R.id.tv_banker_pair_bet_money)
+        @BindView(R2.id.tv_banker_pair_bet_money)
         TextView tvBankerPairBetMoney;
-        @Bind(R.id.tv_banker_pair_bet_count)
+        @BindView(R2.id.tv_banker_pair_bet_count)
         TextView tvBankerPairBetCount;
-//        @Bind(R.id.tv_banker_pair_bet_count)
+//        @BindView(R2.id.tv_banker_pair_bet_count)
 //        TextView tvbankerpairbetcount;
-//        @Bind(R.id.tv_player_pair_bet_count)
+//        @BindView(R2.id.tv_player_pair_bet_count)
 //        TextView tvplayerpairbetcount;
 
 
@@ -5446,12 +5057,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void singleBet(BaccaratBetType type) {
-        if (afbApp.getUser().getBalance() <= 0) {
+        if (mAppViewModel.getUser().getBalance() <= 0) {
             ToastUtils.showToast(mContext, getString(R.string.Insufficient));
             return;
         }
         if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
             //执行下注的线程
             if (type == Player)
                 chipHelperCurrent = chipHelperPlayer;
@@ -5476,34 +5087,35 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     public void clearNoBetChip(BaccaratBetType type) {
         chipHelperCurrent = null;
-        showBetBg();
         if (type == BaccaratBetType.All || type == Player) {
-            chipHelperPlayer.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerBet = 0;
             clickPlayerCount = 0;
             chipHelperPlayer.setOperationButtonDisplay(false);
 
         }
         if (type == BaccaratBetType.All || type == Banker) {
-            chipHelperBanker.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(), -chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker(), -chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             bankerBet = 0;
             clickBankerCount = 0;
             chipHelperBanker.setOperationButtonDisplay(false);
         }
         if (type == BaccaratBetType.All || type == BaccaratBetType.Tie) {
-            chipHelperTie.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             tieBet = 0;
             clickTieCount = 0;
             chipHelperTie.setOperationButtonDisplay(false);
         }
-        if (type == BaccaratBetType.All || type == BaccaratBetType.PlayerPair) {
-            chipHelperPlayerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(), chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+        if (type == BaccaratBetType.All || type == BaccaratBetType.PlayerPair)
+
+        {
+            chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair(), chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerPairBet = 0;
             clickPlayerPairCount = 0;
             chipHelperPlayerPair.setOperationButtonDisplay(false);
         }
         if (type == BaccaratBetType.All || type == BaccaratBetType.BankerPair) {
-            chipHelperBankerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(), -chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            chipHelperBankerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair(), -chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             bankerPairBet = 0;
             clickBankerPairCount = 0;
             chipHelperBankerPair.setOperationButtonDisplay(false);
@@ -5519,92 +5131,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 clickPlayerPairCount == 0 &&
                 clickTieCount == 0) {
             BetUiHelper.betStateColor(tvTableBetSure, false);
-        }
-    }
-
-    private void clearBetBg() {
-        img_bet_bg_p.setBackgroundResource(0);
-        img_bet_bg_b.setBackgroundResource(0);
-        img_bet_bg_t.setBackgroundResource(0);
-        img_bet_bg_pp.setBackgroundResource(0);
-        img_bet_bg_bp.setBackgroundResource(0);
-    }
-
-    private void showBetBg() {
-        clearBetBg();
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
-            } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
-            } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
-            } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
-            } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
-            } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
-            }
-        }
-    }
-
-    private void showRepeatBetBg() {
-        clearBetBg();
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
-            } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
-            } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getTie() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
-            } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
-            } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
-            }
-        }
-        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
-            } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
-            }
         }
     }
 
@@ -5624,17 +5150,17 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
     }
 
-    @Bind(R.id.ll_info)
+    @BindView(R2.id.ll_info)
     LinearLayout ll_info;
-    @Bind(R.id.lv_user_info)
+    @BindView(R2.id.lv_user_info)
     ListView lv_user_info;
-    @Bind(R.id.lv_pool)
+    @BindView(R2.id.lv_pool)
     ListView lv_pool;
-    @Bind(R.id.tv_time)
+    @BindView(R2.id.tv_time)
     TextView tv_time;
-    @Bind(R.id.tv_total_bet)
+    @BindView(R2.id.tv_total_bet)
     TextView tv_total_bet;
-    @Bind(R.id.tv_win_lose_bet)
+    @BindView(R2.id.tv_win_lose_bet)
     TextView tv_win_lose_bet;
 
     @Override
@@ -5657,53 +5183,53 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         String name = usName;
         data = new LiveInfoBean(getString(R.string.ID), name.toUpperCase(), "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer() +
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker() +
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie() +
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair() +
-                afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair() + ""
+        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() +
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() +
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie() +
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair() +
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair() + ""
                 , "");
         if (Integer.parseInt(data.getValue1()) > 0) {
-            tv_total_bet.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1())) + "");
-            rightBetTv.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1())) + "");
+            tv_total_bet.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
+            rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
         } else {
             tv_total_bet.setText(getString(R.string.BET) + " :0");
             rightBetTv.setText(getString(R.string.BET) + " :0");
         }
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.W_L), afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() + "", "");
-        if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() > 0) {
+        data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() + "", "");
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() > 0) {
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.win_color));
-            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
+            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
-        } else if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() == 0) {
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
+        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() == 0) {
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_gold));
             tv_win_lose_bet.setText(getString(R.string.W_L) + " :0");
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.bet_color));
             rightWinLoseTv.setText(getString(R.string.W_L) + " :0");
         } else {
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.lose_color));
-            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
+            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getBaccarat(afbApp.getTableId()).getWonMoney()) + "");
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
         }
         strData.add(data);
-        data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, getApp().getUser().getBalance() + "", "");
-        rightBalanceTv.setText(getApp().getUser().getBalance() + "");
+        data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, mAppViewModel.getUser().getBalance() + "", "");
+        rightBalanceTv.setText(mAppViewModel.getUser().getBalance() + "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.LIMIT_POP), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinBankerPlayerBet()) + "-" + afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet()), "");
+        data = new LiveInfoBean(getString(R.string.LIMIT_POP), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet()) + "-" + mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet()), "");
         strData.add(data);
-        strData.add(new LiveInfoBean(getString(R.string.banker1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
-        strData.add(new LiveInfoBean(getString(R.string.player1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tie1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinTieBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTieBet())));
-        strData.add(new LiveInfoBean(getString(R.string.PP1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinPairBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet())));
-        strData.add(new LiveInfoBean(getString(R.string.BP1), afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMinPairBet())
-                , afbApp.covertLimit(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet())));
+        strData.add(new LiveInfoBean(getString(R.string.banker1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
+        strData.add(new LiveInfoBean(getString(R.string.player1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
+        strData.add(new LiveInfoBean(getString(R.string.tie1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet())));
+        strData.add(new LiveInfoBean(getString(R.string.PP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
+        strData.add(new LiveInfoBean(getString(R.string.BP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
         return strData;
     }
 
@@ -5740,30 +5266,5 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             }
         });
         contentInfo.setData(updateInfoData());
-    }
-
-    @Override
-    public void onInGameChooseLanguage() {
-        initApngList();
-        afbApp.getBaccarat(afbApp.getTableId()).setBigRoadOld("");
-        fl_baccarat_a_table.setBackgroundResource(0);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            fl_baccarat_a_table.setBackgroundResource(R.mipmap.baccarat_bg_h);
-        } else {
-            fl_baccarat_a_table.setBackgroundResource(R.mipmap.bet_a_bg_trans);
-        }
-        tv_ask1.setText(getString(R.string.banker1));
-        tv_ask2.setText(getString(R.string.player1));
-        tv_ask1_name.setText(getString(R.string.ask));
-        tv_ask2_name.setText(getString(R.string.ask));
-        tv_good_road_name.setText(getString(R.string.good_road));
-        ((TextView) findViewById(R.id.tv_banker)).setText(getString(R.string.banker_m));
-        ((TextView) findViewById(R.id.tv_player)).setText(getString(R.string.player_m));
-        ((TextView) findViewById(R.id.tv_tie)).setText(getString(R.string.tie1));
-        ((TextView) findViewById(R.id.tv_banker_pair)).setText(getString(R.string.BP));
-        ((TextView) findViewById(R.id.tv_player_pair)).setText(getString(R.string.PP));
-        ((TextView) findViewById(R.id.tv_total)).setText(getString(R.string.total_m));
-        ((TextView) findViewById(R.id.tv_player_result_name)).setText(getString(R.string.player_home));
-        ((TextView) findViewById(R.id.tv_banker_result_name)).setText(getString(R.string.banker_home));
     }
 }

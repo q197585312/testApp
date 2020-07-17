@@ -1,8 +1,9 @@
 package com.nanyang.app.main.message;
 
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -18,7 +19,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * Created by 47184 on 2019/4/5.
@@ -26,7 +28,7 @@ import butterknife.Bind;
 
 public class MessageFragment extends BaseMoreFragment<MessagePresenter> {
 
-    @Bind(R.id.message_list)
+    @BindView(R.id.message_list)
     RecyclerView rv;
 
     @Override

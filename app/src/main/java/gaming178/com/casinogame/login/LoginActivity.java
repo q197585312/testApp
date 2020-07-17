@@ -33,7 +33,6 @@ import gaming178.com.casinogame.Bean.Liga365AgentBean;
 import gaming178.com.casinogame.Bean.UserBean;
 import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
-import gaming178.com.casinogame.Util.AfbApp;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -50,7 +49,6 @@ import gaming178.com.mylibrary.lib.util.LogUtil;
 public class LoginActivity extends BaseActivity {
     private EditText tv_name;
     private EditText tv_password;
-    private AfbApp afbApp;
     private BlockDialog dialog;
 
     private Button btn_login;
@@ -71,7 +69,6 @@ public class LoginActivity extends BaseActivity {
         AppTool.setAppLanguage(mContext,AppTool.getAppLanguage(mContext));
         version = AppTool.getApkInfo(mContext).versionName;
         toolbar.setVisibility(View.GONE);
-        afbApp = getApp();
         initControl();
     }
 
@@ -87,7 +84,7 @@ public class LoginActivity extends BaseActivity {
         view_bottom_center = findViewById(R.id.view_bottom_center);
         tv_register = (TextView) findViewById(R.id.tv_register);
         iv_language_flag = (ImageView) findViewById(R.id.iv_language_flag);
-        if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             tv_register.setVisibility(View.GONE);
             ll_language.setVisibility(View.VISIBLE);
         } else {
@@ -132,12 +129,12 @@ public class LoginActivity extends BaseActivity {
 
     private void initSiteMap() {
         siteMap = new HashMap<String, String>();
-        afbApp.setHttpClient(new HttpClient());
+        mAppViewModel.setHttpClient(new HttpClient());
         new Thread() {
             @Override
             public void run() {
                 String agentUrl = "http://www.appgd88.com/liga365agengt.php";
-                String agentResult = afbApp.getHttpClient().sendPost(agentUrl, "");
+                String agentResult = mAppViewModel.getHttpClient().sendPost(agentUrl, "");
                 Liga365AgentBean liga365AgentBean = null;
                 try {
                     liga365AgentBean = new Gson().fromJson(agentResult, Liga365AgentBean.class);
@@ -231,14 +228,14 @@ public class LoginActivity extends BaseActivity {
 
     public void clickLogin(View v) {
         String usName = tv_name.getText().toString().trim();
-        getApp().getUser().setName(usName);
-        getApp().getUser().setRealName(usName);
-        getApp().getUser().setPassword(tv_password.getText().toString().trim());
-        if (getApp().getUser().getName() == null || getApp().getUser().getName().length() == 0) {
+        mAppViewModel.getUser().setName(usName);
+        mAppViewModel.getUser().setRealName(usName);
+        mAppViewModel.getUser().setPassword(tv_password.getText().toString().trim());
+        if (mAppViewModel.getUser().getName() == null || mAppViewModel.getUser().getName().length() == 0) {
             //     showToast("Please input user name");
             return;
         }
-        if (getApp().getUser().getPassword() == null || getApp().getUser().getPassword().length() == 0) {
+        if (mAppViewModel.getUser().getPassword() == null || mAppViewModel.getUser().getPassword().length() == 0) {
             //   showToast("Please input user password");
             return;
         }
@@ -253,7 +250,7 @@ public class LoginActivity extends BaseActivity {
             default:
                 break;
         }
-        afbApp.setbInitLimit(false);
+        mAppViewModel.setbInitLimit(false);
         if (BuildConfig.FLAVOR.equals("liga365")) {
             EditText edt_site = (EditText) findViewById(R.id.login_site_edt);
             UserLoginBean userBean = new UserLoginBean(edt_site.getText().toString().trim(), usName, tv_password.getText().toString().trim());
@@ -285,10 +282,10 @@ public class LoginActivity extends BaseActivity {
                     String urlHost = WebSiteUrl.AppWebServiceUrl;
                     Gson gson = new Gson();
                     UserResponseBean res = null;
-                    afbApp.setHttpClient(new HttpClient());
-//                  String loginParams = "username=pakmc1"/* +getApp().getUser().getName()*/+"&password=bb123123"/*+getApp().getUser().getPassword()*/;
+                    mAppViewModel.setHttpClient(new HttpClient());
+//                  String loginParams = "username=pakmc1"/* +mAppViewModel.getUser().getName()*/+"&password=bb123123"/*+mAppViewModel.getUser().getPassword()*/;
                     String loginParams = gson.toJson(user);
-                    String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.PROXY_LOGIN_URL, loginParams);
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.PROXY_LOGIN_URL, loginParams);
                     Log.w("Afb88", strRes);
                     if (strRes.equals("netError")) {
                         handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -304,13 +301,13 @@ public class LoginActivity extends BaseActivity {
                     patameterMap.put("OperatorName", "liga365");
                     patameterMap.put("OperatorPwd", "gdccs$365");
 //"http://113.130.125.198/OLTGames/GDOnlineWS
-                /*    String soapRequestData = afbApp.getHttpClient().buildRequestData(patameterMap, WebSiteUrl.AppWebServiceNameSpace, "GetRandCode");
-                    String strPost = afbApp.getHttpClient().sendPostSoap(WebSiteUrl.AppWebServiceUrl, soapRequestData);
+                /*    String soapRequestData = mAppViewModel.getHttpClient().buildRequestData(patameterMap, WebSiteUrl.AppWebServiceNameSpace, "GetRandCode");
+                    String strPost = mAppViewModel.getHttpClient().sendPostSoap(WebSiteUrl.AppWebServiceUrl, soapRequestData);
 */
 //                    String paramsRandCode= "operatorName=liga365&OperatorPwd=gdccs$365&action=getRandCode";
                     String paramsRandCode = "{\"strUsername\":\""+res.getResult().getNickname()+"\",\"operatorName\":\"liga365\",\"operatorPwd\":\"gdccs$365\",\"action\":\"getRandCode\"}";
 
-                    String return_value = afbApp.getHttpClient().sendPostSoap(urlHost, paramsRandCode);
+                    String return_value = mAppViewModel.getHttpClient().sendPostSoap(urlHost, paramsRandCode);
                     Log.w("Afb88", return_value);
                     if (StringUtils.isNull(return_value) || "netError".equals(return_value)) {
                         handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -332,14 +329,14 @@ public class LoginActivity extends BaseActivity {
                         return;
                     }*/
                     //"http://113.130.125.198/OLTGames/lglogin.jsp?"
-                    String res1 = afbApp.getHttpClient().setHttpClient(WebSiteUrl.LOGIN_URL + "?txtAcctid=" + res.getResult().getNickname() + "&txtLang=&txtPwd=PWDsecw1755x!&txtLang&txtRandCode=" + return_value, "");
+                    String res1 = mAppViewModel.getHttpClient().setHttpClient(WebSiteUrl.LOGIN_URL + "?txtAcctid=" + res.getResult().getNickname() + "&txtLang=&txtPwd=PWDsecw1755x!&txtLang&txtRandCode=" + return_value, "");
                     LogUtil.d("Afb88", res1);
-                    String sessionId = afbApp.getHttpClient().getSessionId();
-                  /*  afbApp.getHttpClient().setSessionId(sessionId);*/
-              /*         afbApp.setCookie(sessionId);*/
+                    String sessionId = mAppViewModel.getHttpClient().getSessionId();
+                  /*  mAppViewModel.getHttpClient().setSessionId(sessionId);*/
+              /*         mAppViewModel.setCookie(sessionId);*/
 
                     String params = "GameType=11&Tbid=0&Usid=" + res.getResult().getNickname();
-                    strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, params);
+                    strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, params);
                     if (strRes.equals("netError")) {
                         handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                         return;
@@ -349,10 +346,10 @@ public class LoginActivity extends BaseActivity {
                         handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
                         return;
                     }
-//            afbApp.setbInitLimit(false);
-                    afbApp.splitTableInfo(strRes, 1);
+//            mAppViewModel.setbInitLimit(false);
+                    mAppViewModel.splitTableInfo(strRes, 1);
                     String annoucementParams = "GameType=11&lng=" + language + "&Usid=" + res.getResult().getNickname();
-                    strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+                    strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
                     Log.d("Afb88", "url:" + WebSiteUrl.TABLEINFO_URL_A + ",params:" + annoucementParams);
                     if (strRes.equals("netError")) {
                         //	Log.e(WebSiteUrl.Tag,strRes);
@@ -361,18 +358,18 @@ public class LoginActivity extends BaseActivity {
                     }
                     String ann[] = strRes.split("Results=ok\\|");
                     if (ann.length > 1)
-                        afbApp.setAnnouncement(ann[1]);
-                    strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + res.getResult().getNickname());
+                        mAppViewModel.setAnnouncement(ann[1]);
+                    strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + res.getResult().getNickname());
                     Log.d("Afb88", "url:" + WebSiteUrl.COUNTDOWN_URL_A + ",params:" + "GameType=11&Tbid=0&Usid=" + res.getResult().getNickname());
                     if (strRes.equals("netError")) {
                         handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                         return;
                     }
-                    afbApp.splitTimer(strRes);
-                    afbApp.setbLogin(true);
-                    afbApp.setbLobby(true);
-                    afbApp.getUser().setName(res.getResult().getNickname());
-                    afbApp.getUser().setRealName(user.getUsername());
+                    mAppViewModel.splitTimer(strRes);
+                    mAppViewModel.setbLogin(true);
+                    mAppViewModel.setbLobby(true);
+                    mAppViewModel.getUser().setName(res.getResult().getNickname());
+                    mAppViewModel.getUser().setRealName(user.getUsername());
 
                     handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
 
@@ -448,21 +445,21 @@ public class LoginActivity extends BaseActivity {
             urlHostInit();
             String strRes;
 //            getApp().setCookie("");
-            afbApp.setHttpClient(new HttpClient(WebSiteUrl.INDEX, ""));
+            mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, ""));
 
-            if (afbApp.getHttpClient().connect("POST") == false) {
+            if (mAppViewModel.getHttpClient().connect("POST") == false) {
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                 return;
             }
 
-            String loginParams = "txtLang=0&txtAcctid=" + afbApp.getUser().getName() + "&txtPwd=" + afbApp.getUser().getPassword() + "&OsType=Android" + "&OsVersion=" + version + "&txtRandCode=jBmkBignwbhcMiVEvneJNRPlNhLGKEgnsiToyrIjMbHZBbcLAm";
-            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);
+            String loginParams = "txtLang=0&txtAcctid=" + mAppViewModel.getUser().getName() + "&txtPwd=" + mAppViewModel.getUser().getPassword() + "&OsType=Android" + "&OsVersion=" + version + "&txtRandCode=jBmkBignwbhcMiVEvneJNRPlNhLGKEgnsiToyrIjMbHZBbcLAm";
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);
 
             if (strRes.startsWith("Results=error"))//登录失败，没有失败原因
             {
                 //	Log.e(WebSiteUrl.Tag,strRes);
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_USERNAME);
-                afbApp.setCookie("");
+                mAppViewModel.setCookie("");
                 return;
             } else if (!strRes.startsWith("Results=ok")) {
                 //	Log.e(WebSiteUrl.Tag,strRes);
@@ -470,21 +467,21 @@ public class LoginActivity extends BaseActivity {
                 return;
             } else if (strRes.startsWith("Results=ok")) {
                 String resultInfo[] = strRes.split("\\#");
-                afbApp.getUser().setCurrency(resultInfo[1]);
+                mAppViewModel.getUser().setCurrency(resultInfo[1]);
 
             }
 
-            String annoucementParams = "lng=" + language + "&Usid=" + afbApp.getUser().getName();
-            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+            String annoucementParams = "lng=" + language + "&Usid=" + mAppViewModel.getUser().getName();
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
             if (strRes.equals("netError")) {
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                 return;
             }
             String ann[] = strRes.split("Results=ok\\|");
             if (ann.length > 1)
-                afbApp.setAnnouncement(ann[1]);
+                mAppViewModel.setAnnouncement(ann[1]);
             //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
-            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
             if (strRes.equals("netError")) {
 
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -496,15 +493,15 @@ public class LoginActivity extends BaseActivity {
                 handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
                 return;
             }
-            afbApp.splitTableInfo(strRes, afbApp.getHallId());
-            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
+            mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
             if (strRes.equals("netError")) {
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                 return;
             }
-            afbApp.splitTimer(strRes);
-            afbApp.setbLogin(true);
-            afbApp.setbLobby(true);
+            mAppViewModel.splitTimer(strRes);
+            mAppViewModel.setbLogin(true);
+            mAppViewModel.setbLobby(true);
             handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
         }
 

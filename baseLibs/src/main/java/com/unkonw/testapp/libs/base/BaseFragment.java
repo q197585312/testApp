@@ -3,13 +3,14 @@ package com.unkonw.testapp.libs.base;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
@@ -142,7 +143,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     public String getTitle() {

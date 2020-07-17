@@ -14,7 +14,7 @@
 
         <variable
             name="shareModel"
-            type="gaming178.com.casinogame.base.SharedViewModel" />
+            type="gaming178.com.casinogame.base.AppViewModel" />
 
     </data>
 
@@ -23,7 +23,9 @@
         android:layout_height="match_parent"
         android:background="@mipmap/login_bg"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="15dp"
+        tools:context="gaming178.com.casinogame.load.LoginKtActivity"
+        >
 
         <include
             android:id="@+id/include"
@@ -45,7 +47,7 @@
 
 
         <FrameLayout
-            android:id="@+id/frameLayout"
+            android:id="@+id/ll_content"
             android:layout_width="match_parent"
             android:layout_height="338dp"
             android:layout_weight="1"
@@ -55,29 +57,67 @@
             app:layout_constraintVertical_weight="1"
             tools:layout_editor_absoluteX="15dp">
 
-            <EditText
-                android:id="@+id/login_site_edt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="@string/login_site"
-                android:paddingLeft="5dp"
-                android:singleLine="true"
-                android:textColor="@color/blue_table_bg"
-                android:textCursorDrawable="@null"
-                android:textSize="18sp"
-                android:visibility="gone" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/ll_bottom_btn"
                 android:layout_width="match_parent"
-                android:layout_height="222dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/ll_center"
                     android:layout_width="match_parent"
-                    android:layout_height="177dp"
-                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_white_top_corner5"
                     android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="@{shareModel.isLiga365 ? View.VISIBLE : View.GONE}">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@mipmap/website_green" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="www."
+                            android:textColor="@color/blue_table_bg"
+                            android:textColorHint="@color/blue_table_bg"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/login_site_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="@string/login_site"
+                            android:paddingLeft="5dp"
+                            android:singleLine="true"
+                            android:textColor="@color/blue_table_bg"
+                            android:textCursorDrawable="@null"
+                            android:textSize="18sp" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/grey_thick_line" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -141,23 +181,34 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@color/grey_thick_line" />
+
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/login_login_btn"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/layer_btn_login_bg"
-                    android:gravity="center"
-                    android:onClick="clickLogin"
-                    android:text="@string/login"
-                    android:textAllCaps="true"
-                    android:textColor="@color/gold_dark_title"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/rectangle_white_bottom_corner5" />
+
+                    <Button
+                        android:id="@+id/login_btn"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+
+                        android:layout_gravity="center"
+                        android:background="@drawable/layer_btn_login_bg"
+                        android:gravity="center"
+                        android:onClick="clickLogin"
+                        android:text="@string/login"
+                        android:textAllCaps="true"
+                        android:textColor="@color/gold_dark_title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -201,6 +252,7 @@
                     android:padding="5dp"
                     android:text="@string/register"
                     android:textColor="#56958D"
+                    android:onClick="@{(view) -> loginModel.clickLanguage(view)}"
                     android:visibility="@{shareModel.isMainFlavor ? View.GONE : View.VISIBLE}" />
 
                 <View

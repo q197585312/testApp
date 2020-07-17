@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
@@ -10,7 +11,6 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
 
 /**
  * Created by Administrator on 2017/3/14.
@@ -48,9 +48,8 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<BallInfo> {
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
 
         tvCollection.setVisibility(View.GONE);
-        ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH());
-        getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
+        FrameLayout sl = helper.getView(R.id.module_center_sl);
+         getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
         String itemFullSocOddsId = item.getSocOddsId();
 

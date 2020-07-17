@@ -12,7 +12,7 @@ import com.nanyang.app.main.BetCenter.Bean.HowToUse;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -21,26 +21,26 @@ import butterknife.OnClick;
 
 public class HowToUseFragment extends BaseMoreFragment {
 
-    @Bind(R.id.howtouse_content_layout)
+    @BindView(R.id.howtouse_content_layout)
     LinearLayout contentLayout;
-    @Bind(R.id.howtouse_redio_layout)
+    @BindView(R.id.howtouse_redio_layout)
     LinearLayout redioLayout;
     private List<HowToUse> dataList;
-    @Bind(R.id.howtouse_text1)
+    @BindView(R.id.howtouse_text1)
     TextView howtouseText1;
-    @Bind(R.id.howtouse_text2)
+    @BindView(R.id.howtouse_text2)
     TextView howtouseText2;
-    @Bind(R.id.howtouse_text3)
+    @BindView(R.id.howtouse_text3)
     TextView howtouseText3;
-    @Bind(R.id.howtosue_img)
+    @BindView(R.id.howtosue_img)
     ImageView img;
-    @Bind(R.id.howtouse_title)
+    @BindView(R.id.howtouse_title)
     TextView titleText;
-    @Bind(R.id.img_left)
+    @BindView(R.id.img_left)
     ImageView leftImg;
-    @Bind(R.id.img_right)
+    @BindView(R.id.img_right)
     ImageView rightImg;
-    @Bind(R.id.howtouse_btn)
+    @BindView(R.id.howtouse_btn)
     TextView hwotouseBtn;
 
     List<TextView> textList;

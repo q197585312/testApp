@@ -485,9 +485,9 @@ public class AfbUtils {
         beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
         beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright));
         SportIdBean soccerRunning = new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football);
-        soccerRunning.setKey("0");
+        soccerRunning.setKey("-1");
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
-        sportMap.put("0", soccerRunning);
+        sportMap.put("-1", soccerRunning);
         sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football));
         sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
         sportMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
@@ -553,7 +553,7 @@ public class AfbUtils {
         map.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_pg_symbol));
         map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
         map.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PS_GAMING, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ps_gaming));
-//        map.put("EVOPLAY", new SportIdBean("EVOPLAY", "", R.string.EV_Cashio, "EVOPLAY", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_evoplay));
+        map.put("EVOPLAY", new SportIdBean("EVOPLAY", "", R.string.EV_Cashio, "EVOPLAY", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_evoplay));
 
     }
 
@@ -749,7 +749,8 @@ public class AfbUtils {
     }
 
     public static void GildLoadResForImg(Context context, ImageView img, int res) {
-        Glide.with(context).load(res).asBitmap().into(img);
+
+        Glide.with(context).load(res).into(img);
     }
 
     public static String touzi_ed_values22 = "";
@@ -1150,15 +1151,5 @@ public class AfbUtils {
         }
         Log.d("end17", "end17:" + end17 + "," + nn);
         return AfbUtils.decimalValue(Float.parseFloat(index3) * Float.parseFloat(index9) / nn, "0.00");
-    }
-    public static void getMethodName() {
-        StackTraceElement[] temp = Thread.currentThread().getStackTrace();
-        if (temp.length > 3) {
-            for (int i = 3; i < (temp.length > 7 ? 7 : temp.length); i++) {
-                StackTraceElement a = temp[i];
-                LogUtil.d("getMethodName", a.getMethodName()+",class:"+  a.getClassName());
-            }
-
-        }
     }
 }

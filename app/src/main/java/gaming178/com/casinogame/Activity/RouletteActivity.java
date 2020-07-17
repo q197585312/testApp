@@ -45,9 +45,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.entity.BetTypeRow;
 import gaming178.com.casinogame.Activity.entity.ResultHintBean;
 import gaming178.com.casinogame.Bean.BetDetail;
@@ -96,873 +97,873 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     private TextView tv_game_number;
 
 
-    @OnClick(R.id.iv_baccarat_change_table)
+    @OnClick(R2.id.iv_baccarat_change_table)
     public void clickTable(View v) {
         showChangeTable(v);
     }
 
-    @Bind(R.id.tv_service_time)
+    @BindView(R2.id.tv_service_time)
     TextView serviceTime;
-    @Bind(R.id.fl_vedio_location_parent)
+    @BindView(R2.id.fl_vedio_location_parent)
     FrameLayout fl_vedio_location_parent;
-    @Bind(R.id.fl_roulette_result)
+    @BindView(R2.id.fl_roulette_result)
     FrameLayout fl_roulette_result;
-    @Bind(R.id.fl_surface_parent)
+    @BindView(R2.id.fl_surface_parent)
     FrameLayout fl_surface_parent;
-    @Bind(R.id.fl_vedio_parent)
+    @BindView(R2.id.fl_vedio_parent)
     FrameLayout fl_vedio_parent;
-    @Bind(R.id.handle1)
+    @BindView(R2.id.handle1)
     View handle1;
-    @Bind(R.id.rc_hot)
+    @BindView(R2.id.rc_hot)
     RecyclerView rc_hot;
-    @Bind(R.id.rc_ice)
+    @BindView(R2.id.rc_ice)
     RecyclerView rc_ice;
     RecyclerView roulette_content_fgv;
-    @Bind(R.id.tv_menu)
+    @BindView(R2.id.tv_menu)
     TextView tvMenu;
-    @Bind(R.id.ll_chip)
+    @BindView(R2.id.ll_chip)
     LinearLayout ll_chip;
-    @Bind(R.id.bottonPanel1)
+    @BindView(R2.id.bottonPanel1)
     FrameLayout bottonPanel1;
-    @Bind(R.id.iv_roulette_road_handle)
+    @BindView(R2.id.iv_roulette_road_handle)
     View iv_roulette_road_handle;
-    @Bind(R.id.btn_table_limit_red_title)
+    @BindView(R2.id.btn_table_limit_red_title)
     TextView btnTableLimitRedTitle;
-    //   @Bind(R.id.btn_table_pool_title)
+    //   @BindView(R2.id.btn_table_pool_title)
     private TextView btn_game_number;
 
-    @Bind(R.id.tv_table_bet_replay)
+    @BindView(R2.id.tv_table_bet_replay)
     TextView tvTableBetReplay;
-    @Bind(R.id.tv_table_bet_sure)
+    @BindView(R2.id.tv_table_bet_sure)
     TextView tvTableBetSure;
 
     AdapterView lvBaccaratChips;
-    @Bind(R.id.lv_limit)
+    @BindView(R2.id.lv_limit)
     ListView lvLimit;
-    @Bind(R.id.leftPanel1)
+    @BindView(R2.id.leftPanel1)
     Panel leftPanel1;
-    @Bind(R.id.fl_roulette_board_bg)
+    @BindView(R2.id.fl_roulette_board_bg)
     FrameLayout fl_roulette_board_bg;
-    @Bind(R.id.fl_roulette_board_bg_new)
+    @BindView(R2.id.fl_roulette_board_bg_new)
     FrameLayout fl_roulette_board_bg_new;
 
 
-    @Bind(R.id.fl_baccarat_parent)
+    @BindView(R2.id.fl_baccarat_parent)
     FrameLayout flBaccaratParent;
 
-    @Bind(R.id.iv_number03)
+    @BindView(R2.id.iv_number03)
     ImageView ivNumber03;
-    @Bind(R.id.iv_number03_new)
+    @BindView(R2.id.iv_number03_new)
     ImageView ivNumber03New;
-    @Bind(R.id.iv_number06)
+    @BindView(R2.id.iv_number06)
     ImageView ivNumber06;
-    @Bind(R.id.iv_number06_new)
+    @BindView(R2.id.iv_number06_new)
     ImageView ivNumber06New;
-    @Bind(R.id.iv_number09)
+    @BindView(R2.id.iv_number09)
     ImageView ivNumber09;
-    @Bind(R.id.iv_number09_new)
+    @BindView(R2.id.iv_number09_new)
     ImageView ivNumber09New;
-    @Bind(R.id.iv_number12)
+    @BindView(R2.id.iv_number12)
     ImageView ivNumber12;
-    @Bind(R.id.iv_number12_new)
+    @BindView(R2.id.iv_number12_new)
     ImageView ivNumber12New;
-    @Bind(R.id.iv_number15)
+    @BindView(R2.id.iv_number15)
     ImageView ivNumber15;
-    @Bind(R.id.iv_number15_new)
+    @BindView(R2.id.iv_number15_new)
     ImageView ivNumber15New;
-    @Bind(R.id.iv_number18)
+    @BindView(R2.id.iv_number18)
     ImageView ivNumber18;
-    @Bind(R.id.iv_number18_new)
+    @BindView(R2.id.iv_number18_new)
     ImageView ivNumber18New;
-    @Bind(R.id.iv_number21)
+    @BindView(R2.id.iv_number21)
     ImageView ivNumber21;
-    @Bind(R.id.iv_number21_new)
+    @BindView(R2.id.iv_number21_new)
     ImageView ivNumber21New;
-    @Bind(R.id.iv_number24)
+    @BindView(R2.id.iv_number24)
     ImageView ivNumber24;
-    @Bind(R.id.iv_number24_new)
+    @BindView(R2.id.iv_number24_new)
     ImageView ivNumber24New;
-    @Bind(R.id.iv_number27)
+    @BindView(R2.id.iv_number27)
     ImageView ivNumber27;
-    @Bind(R.id.iv_number27_new)
+    @BindView(R2.id.iv_number27_new)
     ImageView ivNumber27New;
-    @Bind(R.id.iv_number30)
+    @BindView(R2.id.iv_number30)
     ImageView ivNumber30;
-    @Bind(R.id.iv_number30_new)
+    @BindView(R2.id.iv_number30_new)
     ImageView ivNumber30New;
-    @Bind(R.id.iv_number33)
+    @BindView(R2.id.iv_number33)
     ImageView ivNumber33;
-    @Bind(R.id.iv_number33_new)
+    @BindView(R2.id.iv_number33_new)
     ImageView ivNumber33New;
-    @Bind(R.id.iv_1row1x2)
+    @BindView(R2.id.iv_1row1x2)
     ImageView iv1row1x2;
-    @Bind(R.id.iv_2row1x2)
+    @BindView(R2.id.iv_2row1x2)
     ImageView iv2row1x2;
-    @Bind(R.id.iv_number36)
+    @BindView(R2.id.iv_number36)
     ImageView ivNumber36;
-    @Bind(R.id.iv_number36_new)
+    @BindView(R2.id.iv_number36_new)
     ImageView ivNumber36New;
-    @Bind(R.id.fl_split0003)
+    @BindView(R2.id.fl_split0003)
     FrameLayout flSplit0003;
-    @Bind(R.id.fl_number03)
+    @BindView(R2.id.fl_number03)
     FrameLayout flNumber03;
-    @Bind(R.id.fl_number03_new)
+    @BindView(R2.id.fl_number03_new)
     FrameLayout flNumber03New;
-    @Bind(R.id.fl_split0306)
+    @BindView(R2.id.fl_split0306)
     FrameLayout flSplit0306;
-    @Bind(R.id.fl_number06)
+    @BindView(R2.id.fl_number06)
     FrameLayout flNumber06;
-    @Bind(R.id.fl_number06_new)
+    @BindView(R2.id.fl_number06_new)
     FrameLayout flNumber06New;
-    @Bind(R.id.fl_split0609)
+    @BindView(R2.id.fl_split0609)
     FrameLayout flSplit0609;
-    @Bind(R.id.fl_number09)
+    @BindView(R2.id.fl_number09)
     FrameLayout flNumber09;
-    @Bind(R.id.fl_number09_new)
+    @BindView(R2.id.fl_number09_new)
     FrameLayout flNumber09New;
-    @Bind(R.id.fl_split0912)
+    @BindView(R2.id.fl_split0912)
     FrameLayout flSplit0912;
-    @Bind(R.id.fl_number12)
+    @BindView(R2.id.fl_number12)
     FrameLayout flNumber12;
-    @Bind(R.id.fl_number12_new)
+    @BindView(R2.id.fl_number12_new)
     FrameLayout flNumber12New;
-    @Bind(R.id.fl_split1215)
+    @BindView(R2.id.fl_split1215)
     FrameLayout flSplit1215;
-    @Bind(R.id.fl_number15)
+    @BindView(R2.id.fl_number15)
     FrameLayout flNumber15;
-    @Bind(R.id.fl_number15_new)
+    @BindView(R2.id.fl_number15_new)
     FrameLayout flNumber15New;
-    @Bind(R.id.fl_split1518)
+    @BindView(R2.id.fl_split1518)
     FrameLayout flSplit1518;
-    @Bind(R.id.fl_number18)
+    @BindView(R2.id.fl_number18)
     FrameLayout flNumber18;
-    @Bind(R.id.fl_number18_new)
+    @BindView(R2.id.fl_number18_new)
     FrameLayout flNumber18New;
-    @Bind(R.id.fl_split1821)
+    @BindView(R2.id.fl_split1821)
     FrameLayout flSplit1821;
-    @Bind(R.id.fl_number21)
+    @BindView(R2.id.fl_number21)
     FrameLayout flNumber21;
-    @Bind(R.id.fl_number21_new)
+    @BindView(R2.id.fl_number21_new)
     FrameLayout flNumber21New;
-    @Bind(R.id.fl_split2124)
+    @BindView(R2.id.fl_split2124)
     FrameLayout flSplit2124;
-    @Bind(R.id.fl_number24)
+    @BindView(R2.id.fl_number24)
     FrameLayout flNumber24;
-    @Bind(R.id.fl_number24_new)
+    @BindView(R2.id.fl_number24_new)
     FrameLayout flNumber24New;
-    @Bind(R.id.fl_split2427)
+    @BindView(R2.id.fl_split2427)
     FrameLayout flSplit2427;
-    @Bind(R.id.fl_number27)
+    @BindView(R2.id.fl_number27)
     FrameLayout flNumber27;
-    @Bind(R.id.fl_number27_new)
+    @BindView(R2.id.fl_number27_new)
     FrameLayout flNumber27New;
-    @Bind(R.id.fl_split2730)
+    @BindView(R2.id.fl_split2730)
     FrameLayout flSplit2730;
-    @Bind(R.id.fl_number30)
+    @BindView(R2.id.fl_number30)
     FrameLayout flNumber30;
-    @Bind(R.id.fl_number30_new)
+    @BindView(R2.id.fl_number30_new)
     FrameLayout flNumber30New;
-    @Bind(R.id.fl_split3033)
+    @BindView(R2.id.fl_split3033)
     FrameLayout flSplit3033;
-    @Bind(R.id.fl_number33)
+    @BindView(R2.id.fl_number33)
     FrameLayout flNumber33;
-    @Bind(R.id.fl_number33_new)
+    @BindView(R2.id.fl_number33_new)
     FrameLayout flNumber33New;
-    @Bind(R.id.fl_split3336)
+    @BindView(R2.id.fl_split3336)
     FrameLayout flSplit3336;
-    @Bind(R.id.fl_number36)
+    @BindView(R2.id.fl_number36)
     FrameLayout flNumber36;
-    @Bind(R.id.fl_number36_new)
+    @BindView(R2.id.fl_number36_new)
     FrameLayout flNumber36New;
-    @Bind(R.id.fl_1row1x2)
+    @BindView(R2.id.fl_1row1x2)
     FrameLayout fl1row1x2;
-    @Bind(R.id.fl_street000203)
+    @BindView(R2.id.fl_street000203)
     FrameLayout flStreet000203;
-    @Bind(R.id.fl_split0203)
+    @BindView(R2.id.fl_split0203)
     FrameLayout flSplit0203;
-    @Bind(R.id.fl_corner02030506)
+    @BindView(R2.id.fl_corner02030506)
     FrameLayout flCorner02030506;
-    @Bind(R.id.fl_split0506)
+    @BindView(R2.id.fl_split0506)
     FrameLayout flSplit0506;
-    @Bind(R.id.fl_corner05060809)
+    @BindView(R2.id.fl_corner05060809)
     FrameLayout flCorner05060809;
-    @Bind(R.id.fl_split0809)
+    @BindView(R2.id.fl_split0809)
     FrameLayout flSplit0809;
-    @Bind(R.id.fl_corner08091112)
+    @BindView(R2.id.fl_corner08091112)
     FrameLayout flCorner08091112;
-    @Bind(R.id.fl_split1112)
+    @BindView(R2.id.fl_split1112)
     FrameLayout flSplit1112;
-    @Bind(R.id.fl_corner11121415)
+    @BindView(R2.id.fl_corner11121415)
     FrameLayout flCorner11121415;
-    @Bind(R.id.fl_split1415)
+    @BindView(R2.id.fl_split1415)
     FrameLayout flSplit1415;
-    @Bind(R.id.fl_corner14151718)
+    @BindView(R2.id.fl_corner14151718)
     FrameLayout flCorner14151718;
-    @Bind(R.id.fl_split1718)
+    @BindView(R2.id.fl_split1718)
     FrameLayout flSplit1718;
-    @Bind(R.id.fl_corner17182021)
+    @BindView(R2.id.fl_corner17182021)
     FrameLayout flCorner17182021;
-    @Bind(R.id.fl_split2021)
+    @BindView(R2.id.fl_split2021)
     FrameLayout flSplit2021;
-    @Bind(R.id.fl_corner20212324)
+    @BindView(R2.id.fl_corner20212324)
     FrameLayout flCorner20212324;
-    @Bind(R.id.fl_split2324)
+    @BindView(R2.id.fl_split2324)
     FrameLayout flSplit2324;
-    @Bind(R.id.fl_split2627)
+    @BindView(R2.id.fl_split2627)
     FrameLayout flSplit2627;
-    @Bind(R.id.fl_corner26272930)
+    @BindView(R2.id.fl_corner26272930)
     FrameLayout flCorner26272930;
-    @Bind(R.id.fl_split2930)
+    @BindView(R2.id.fl_split2930)
     FrameLayout flSplit2930;
-    @Bind(R.id.fl_corner29303233)
+    @BindView(R2.id.fl_corner29303233)
     FrameLayout flCorner29303233;
-    @Bind(R.id.fl_split3233)
+    @BindView(R2.id.fl_split3233)
     FrameLayout flSplit3233;
-    @Bind(R.id.fl_corner32333536)
+    @BindView(R2.id.fl_corner32333536)
     FrameLayout flCorner32333536;
-    @Bind(R.id.fl_split3536)
+    @BindView(R2.id.fl_split3536)
     FrameLayout flSplit3536;
-    @Bind(R.id.iv_number02)
+    @BindView(R2.id.iv_number02)
     ImageView ivNumber02;
-    @Bind(R.id.iv_number02_new)
+    @BindView(R2.id.iv_number02_new)
     ImageView ivNumber02New;
-    @Bind(R.id.iv_number05)
+    @BindView(R2.id.iv_number05)
     ImageView ivNumber05;
-    @Bind(R.id.iv_number05_new)
+    @BindView(R2.id.iv_number05_new)
     ImageView ivNumber05New;
-    @Bind(R.id.iv_number08)
+    @BindView(R2.id.iv_number08)
     ImageView ivNumber08;
-    @Bind(R.id.iv_number08_new)
+    @BindView(R2.id.iv_number08_new)
     ImageView ivNumber08New;
-    @Bind(R.id.iv_number11)
+    @BindView(R2.id.iv_number11)
     ImageView ivNumber11;
-    @Bind(R.id.iv_number11_new)
+    @BindView(R2.id.iv_number11_new)
     ImageView ivNumber11New;
-    @Bind(R.id.fl_number00)
+    @BindView(R2.id.fl_number00)
     FrameLayout flNumber00;
-    @Bind(R.id.fl_number00_new)
+    @BindView(R2.id.fl_number00_new)
     FrameLayout flNumber00New;
-    @Bind(R.id.iv_number14)
+    @BindView(R2.id.iv_number14)
     ImageView ivNumber14;
-    @Bind(R.id.iv_number14_new)
+    @BindView(R2.id.iv_number14_new)
     ImageView ivNumber14New;
-    @Bind(R.id.iv_number17)
+    @BindView(R2.id.iv_number17)
     ImageView ivNumber17;
-    @Bind(R.id.iv_number17_new)
+    @BindView(R2.id.iv_number17_new)
     ImageView ivNumber17New;
-    @Bind(R.id.iv_number20)
+    @BindView(R2.id.iv_number20)
     ImageView ivNumber20;
-    @Bind(R.id.iv_number20_new)
+    @BindView(R2.id.iv_number20_new)
     ImageView ivNumber20New;
-    @Bind(R.id.iv_number23)
+    @BindView(R2.id.iv_number23)
     ImageView ivNumber23;
-    @Bind(R.id.iv_number23_new)
+    @BindView(R2.id.iv_number23_new)
     ImageView ivNumber23New;
-    @Bind(R.id.iv_number26)
+    @BindView(R2.id.iv_number26)
     ImageView ivNumber26;
-    @Bind(R.id.iv_number26_new)
+    @BindView(R2.id.iv_number26_new)
     ImageView ivNumber26New;
-    @Bind(R.id.iv_number29)
+    @BindView(R2.id.iv_number29)
     ImageView ivNumber29;
-    @Bind(R.id.iv_number29_new)
+    @BindView(R2.id.iv_number29_new)
     ImageView ivNumber29New;
-    @Bind(R.id.iv_number32)
+    @BindView(R2.id.iv_number32)
     ImageView ivNumber32;
-    @Bind(R.id.iv_number32_new)
+    @BindView(R2.id.iv_number32_new)
     ImageView ivNumber32New;
-    @Bind(R.id.iv_number35)
+    @BindView(R2.id.iv_number35)
     ImageView ivNumber35;
-    @Bind(R.id.iv_number35_new)
+    @BindView(R2.id.iv_number35_new)
     ImageView ivNumber35New;
 
-    @Bind(R.id.fl_split0002)
+    @BindView(R2.id.fl_split0002)
     FrameLayout flSplit0002;
-    @Bind(R.id.fl_number02)
+    @BindView(R2.id.fl_number02)
     FrameLayout flNumber02;
-    @Bind(R.id.fl_number02_new)
+    @BindView(R2.id.fl_number02_new)
     FrameLayout flNumber02New;
-    @Bind(R.id.fl_split0205)
+    @BindView(R2.id.fl_split0205)
     FrameLayout flSplit0205;
-    @Bind(R.id.fl_number05)
+    @BindView(R2.id.fl_number05)
     FrameLayout flNumber05;
-    @Bind(R.id.fl_number05_new)
+    @BindView(R2.id.fl_number05_new)
     FrameLayout flNumber05New;
-    @Bind(R.id.fl_split0508)
+    @BindView(R2.id.fl_split0508)
     FrameLayout flSplit0508;
-    @Bind(R.id.fl_number08)
+    @BindView(R2.id.fl_number08)
     FrameLayout flNumber08;
-    @Bind(R.id.fl_number08_new)
+    @BindView(R2.id.fl_number08_new)
     FrameLayout flNumber08New;
-    @Bind(R.id.fl_split0811)
+    @BindView(R2.id.fl_split0811)
     FrameLayout flSplit0811;
-    @Bind(R.id.fl_number11)
+    @BindView(R2.id.fl_number11)
     FrameLayout flNumber11;
-    @Bind(R.id.fl_number11_new)
+    @BindView(R2.id.fl_number11_new)
     FrameLayout flNumber11New;
-    @Bind(R.id.fl_split1114)
+    @BindView(R2.id.fl_split1114)
     FrameLayout flSplit1114;
-    @Bind(R.id.fl_number14)
+    @BindView(R2.id.fl_number14)
     FrameLayout flNumber14;
-    @Bind(R.id.fl_number14_new)
+    @BindView(R2.id.fl_number14_new)
     FrameLayout flNumber14New;
-    @Bind(R.id.fl_split1417)
+    @BindView(R2.id.fl_split1417)
     FrameLayout flSplit1417;
-    @Bind(R.id.fl_number17)
+    @BindView(R2.id.fl_number17)
     FrameLayout flNumber17;
-    @Bind(R.id.fl_number17_new)
+    @BindView(R2.id.fl_number17_new)
     FrameLayout flNumber17New;
-    @Bind(R.id.fl_split1720)
+    @BindView(R2.id.fl_split1720)
     FrameLayout flSplit1720;
-    @Bind(R.id.fl_number20)
+    @BindView(R2.id.fl_number20)
     FrameLayout flNumber20;
-    @Bind(R.id.fl_number20_new)
+    @BindView(R2.id.fl_number20_new)
     FrameLayout flNumber20New;
-    @Bind(R.id.fl_split2023)
+    @BindView(R2.id.fl_split2023)
     FrameLayout flSplit2023;
-    @Bind(R.id.fl_number23)
+    @BindView(R2.id.fl_number23)
     FrameLayout flNumber23;
-    @Bind(R.id.fl_number23_new)
+    @BindView(R2.id.fl_number23_new)
     FrameLayout flNumber23New;
-    @Bind(R.id.fl_split2326)
+    @BindView(R2.id.fl_split2326)
     FrameLayout flSplit2326;
-    @Bind(R.id.fl_number26)
+    @BindView(R2.id.fl_number26)
     FrameLayout flNumber26;
-    @Bind(R.id.fl_number26_new)
+    @BindView(R2.id.fl_number26_new)
     FrameLayout flNumber26New;
-    @Bind(R.id.fl_split2629)
+    @BindView(R2.id.fl_split2629)
     FrameLayout flSplit2629;
-    @Bind(R.id.fl_number29)
+    @BindView(R2.id.fl_number29)
     FrameLayout flNumber29;
-    @Bind(R.id.fl_number29_new)
+    @BindView(R2.id.fl_number29_new)
     FrameLayout flNumber29New;
-    @Bind(R.id.fl_split2932)
+    @BindView(R2.id.fl_split2932)
     FrameLayout flSplit2932;
-    @Bind(R.id.fl_number32)
+    @BindView(R2.id.fl_number32)
     FrameLayout flNumber32;
-    @Bind(R.id.fl_number32_new)
+    @BindView(R2.id.fl_number32_new)
     FrameLayout flNumber32New;
-    @Bind(R.id.fl_split3235)
+    @BindView(R2.id.fl_split3235)
     FrameLayout flSplit3235;
-    @Bind(R.id.fl_number35)
+    @BindView(R2.id.fl_number35)
     FrameLayout flNumber35;
-    @Bind(R.id.fl_number35_new)
+    @BindView(R2.id.fl_number35_new)
     FrameLayout flNumber35New;
-    @Bind(R.id.fl_2row1x2)
+    @BindView(R2.id.fl_2row1x2)
     FrameLayout fl2row1x2;
-    @Bind(R.id.fl_street000102)
+    @BindView(R2.id.fl_street000102)
     FrameLayout flStreet000102;
-    @Bind(R.id.fl_split0102)
+    @BindView(R2.id.fl_split0102)
     FrameLayout flSplit0102;
-    @Bind(R.id.fl_corner01020405)
+    @BindView(R2.id.fl_corner01020405)
     FrameLayout flCorner01020405;
-    @Bind(R.id.fl_split0405)
+    @BindView(R2.id.fl_split0405)
     FrameLayout flSplit0405;
-    @Bind(R.id.fl_corner04050708)
+    @BindView(R2.id.fl_corner04050708)
     FrameLayout flCorner04050708;
-    @Bind(R.id.fl_split0708)
+    @BindView(R2.id.fl_split0708)
     FrameLayout flSplit0708;
-    @Bind(R.id.fl_corner07081011)
+    @BindView(R2.id.fl_corner07081011)
     FrameLayout flCorner07081011;
-    @Bind(R.id.fl_split1011)
+    @BindView(R2.id.fl_split1011)
     FrameLayout flSplit1011;
-    @Bind(R.id.fl_corner10111314)
+    @BindView(R2.id.fl_corner10111314)
     FrameLayout flCorner10111314;
-    @Bind(R.id.fl_split1314)
+    @BindView(R2.id.fl_split1314)
     FrameLayout flSplit1314;
-    @Bind(R.id.fl_corner13141617)
+    @BindView(R2.id.fl_corner13141617)
     FrameLayout flCorner13141617;
-    @Bind(R.id.fl_split1617)
+    @BindView(R2.id.fl_split1617)
     FrameLayout flSplit1617;
-    @Bind(R.id.fl_corner16171920)
+    @BindView(R2.id.fl_corner16171920)
     FrameLayout flCorner16171920;
-    @Bind(R.id.fl_split1920)
+    @BindView(R2.id.fl_split1920)
     FrameLayout flSplit1920;
-    @Bind(R.id.fl_corner19202223)
+    @BindView(R2.id.fl_corner19202223)
     FrameLayout flCorner19202223;
-    @Bind(R.id.fl_split2223)
+    @BindView(R2.id.fl_split2223)
     FrameLayout flSplit2223;
-    @Bind(R.id.fl_corner22232526)
+    @BindView(R2.id.fl_corner22232526)
     FrameLayout flCorner22232526;
-    @Bind(R.id.fl_split2526)
+    @BindView(R2.id.fl_split2526)
     FrameLayout flSplit2526;
-    @Bind(R.id.fl_corner25262829)
+    @BindView(R2.id.fl_corner25262829)
     FrameLayout flCorner25262829;
-    @Bind(R.id.fl_split2829)
+    @BindView(R2.id.fl_split2829)
     FrameLayout flSplit2829;
-    @Bind(R.id.fl_corner28293132)
+    @BindView(R2.id.fl_corner28293132)
     FrameLayout flCorner28293132;
-    @Bind(R.id.fl_split3132)
+    @BindView(R2.id.fl_split3132)
     FrameLayout flSplit3132;
-    @Bind(R.id.fl_corner31323435)
+    @BindView(R2.id.fl_corner31323435)
     FrameLayout flCorner31323435;
-    @Bind(R.id.fl_split3435)
+    @BindView(R2.id.fl_split3435)
     FrameLayout flSplit3435;
-    @Bind(R.id.iv_number01)
+    @BindView(R2.id.iv_number01)
     ImageView ivNumber01;
-    @Bind(R.id.iv_number01_new)
+    @BindView(R2.id.iv_number01_new)
     ImageView ivNumber01New;
-    @Bind(R.id.iv_number04)
+    @BindView(R2.id.iv_number04)
     ImageView ivNumber04;
-    @Bind(R.id.iv_number04_new)
+    @BindView(R2.id.iv_number04_new)
     ImageView ivNumber04New;
-    @Bind(R.id.iv_number07)
+    @BindView(R2.id.iv_number07)
     ImageView ivNumber07;
-    @Bind(R.id.iv_number07_new)
+    @BindView(R2.id.iv_number07_new)
     ImageView ivNumber07New;
-    @Bind(R.id.iv_number10)
+    @BindView(R2.id.iv_number10)
     ImageView ivNumber10;
-    @Bind(R.id.iv_number10_new)
+    @BindView(R2.id.iv_number10_new)
     ImageView ivNumber10New;
-    @Bind(R.id.iv_number13)
+    @BindView(R2.id.iv_number13)
     ImageView ivNumber13;
-    @Bind(R.id.iv_number13_new)
+    @BindView(R2.id.iv_number13_new)
     ImageView ivNumber13New;
-    @Bind(R.id.iv_number16)
+    @BindView(R2.id.iv_number16)
     ImageView ivNumber16;
-    @Bind(R.id.iv_number16_new)
+    @BindView(R2.id.iv_number16_new)
     ImageView ivNumber16New;
-    @Bind(R.id.iv_number19)
+    @BindView(R2.id.iv_number19)
     ImageView ivNumber19;
-    @Bind(R.id.iv_number19_new)
+    @BindView(R2.id.iv_number19_new)
     ImageView ivNumber19New;
-    @Bind(R.id.iv_number22)
+    @BindView(R2.id.iv_number22)
     ImageView ivNumber22;
-    @Bind(R.id.iv_number22_new)
+    @BindView(R2.id.iv_number22_new)
     ImageView ivNumber22New;
-    @Bind(R.id.iv_number25)
+    @BindView(R2.id.iv_number25)
     ImageView ivNumber25;
-    @Bind(R.id.iv_number25_new)
+    @BindView(R2.id.iv_number25_new)
     ImageView ivNumber25New;
-    @Bind(R.id.iv_number28)
+    @BindView(R2.id.iv_number28)
     ImageView ivNumber28;
-    @Bind(R.id.iv_number28_new)
+    @BindView(R2.id.iv_number28_new)
     ImageView ivNumber28New;
-    @Bind(R.id.iv_number31)
+    @BindView(R2.id.iv_number31)
     ImageView ivNumber31;
-    @Bind(R.id.iv_number31_new)
+    @BindView(R2.id.iv_number31_new)
     ImageView ivNumber31New;
-    @Bind(R.id.iv_number34)
+    @BindView(R2.id.iv_number34)
     ImageView ivNumber34;
-    @Bind(R.id.iv_number34_new)
+    @BindView(R2.id.iv_number34_new)
     ImageView ivNumber34New;
-    @Bind(R.id.iv_3row1x2)
+    @BindView(R2.id.iv_3row1x2)
     ImageView iv3row1x2;
-    @Bind(R.id.fl_split0001)
+    @BindView(R2.id.fl_split0001)
     FrameLayout flSplit0001;
-    @Bind(R.id.fl_number01)
+    @BindView(R2.id.fl_number01)
     FrameLayout flNumber01;
-    @Bind(R.id.fl_number01_new)
+    @BindView(R2.id.fl_number01_new)
     FrameLayout flNumber01New;
-    @Bind(R.id.fl_split0104)
+    @BindView(R2.id.fl_split0104)
     FrameLayout flSplit0104;
-    @Bind(R.id.fl_number04)
+    @BindView(R2.id.fl_number04)
     FrameLayout flNumber04;
-    @Bind(R.id.fl_number04_new)
+    @BindView(R2.id.fl_number04_new)
     FrameLayout flNumber04New;
-    @Bind(R.id.fl_split0407)
+    @BindView(R2.id.fl_split0407)
     FrameLayout flSplit0407;
-    @Bind(R.id.fl_number07)
+    @BindView(R2.id.fl_number07)
     FrameLayout flNumber07;
-    @Bind(R.id.fl_number07_new)
+    @BindView(R2.id.fl_number07_new)
     FrameLayout flNumber07New;
-    @Bind(R.id.fl_split0710)
+    @BindView(R2.id.fl_split0710)
     FrameLayout flSplit0710;
-    @Bind(R.id.fl_number10)
+    @BindView(R2.id.fl_number10)
     FrameLayout flNumber10;
-    @Bind(R.id.fl_number10_new)
+    @BindView(R2.id.fl_number10_new)
     FrameLayout flNumber10New;
-    @Bind(R.id.fl_split1013)
+    @BindView(R2.id.fl_split1013)
     FrameLayout flSplit1013;
-    @Bind(R.id.fl_number13)
+    @BindView(R2.id.fl_number13)
     FrameLayout flNumber13;
-    @Bind(R.id.fl_number13_new)
+    @BindView(R2.id.fl_number13_new)
     FrameLayout flNumber13New;
-    @Bind(R.id.fl_split1316)
+    @BindView(R2.id.fl_split1316)
     FrameLayout flSplit1316;
-    @Bind(R.id.fl_number16)
+    @BindView(R2.id.fl_number16)
     FrameLayout flNumber16;
-    @Bind(R.id.fl_number16_new)
+    @BindView(R2.id.fl_number16_new)
     FrameLayout flNumber16New;
-    @Bind(R.id.fl_split1619)
+    @BindView(R2.id.fl_split1619)
     FrameLayout flSplit1619;
-    @Bind(R.id.fl_number19)
+    @BindView(R2.id.fl_number19)
     FrameLayout flNumber19;
-    @Bind(R.id.fl_number19_new)
+    @BindView(R2.id.fl_number19_new)
     FrameLayout flNumber19New;
-    @Bind(R.id.fl_split1922)
+    @BindView(R2.id.fl_split1922)
     FrameLayout flSplit1922;
-    @Bind(R.id.fl_number22)
+    @BindView(R2.id.fl_number22)
     FrameLayout flNumber22;
-    @Bind(R.id.fl_number22_new)
+    @BindView(R2.id.fl_number22_new)
     FrameLayout flNumber22New;
-    @Bind(R.id.fl_split2225)
+    @BindView(R2.id.fl_split2225)
     FrameLayout flSplit2225;
-    @Bind(R.id.fl_number25)
+    @BindView(R2.id.fl_number25)
     FrameLayout flNumber25;
-    @Bind(R.id.fl_number25_new)
+    @BindView(R2.id.fl_number25_new)
     FrameLayout flNumber25New;
-    @Bind(R.id.fl_split2528)
+    @BindView(R2.id.fl_split2528)
     FrameLayout flSplit2528;
-    @Bind(R.id.fl_number28)
+    @BindView(R2.id.fl_number28)
     FrameLayout flNumber28;
-    @Bind(R.id.fl_number28_new)
+    @BindView(R2.id.fl_number28_new)
     FrameLayout flNumber28New;
-    @Bind(R.id.fl_split2831)
+    @BindView(R2.id.fl_split2831)
     FrameLayout flSplit2831;
-    @Bind(R.id.fl_number31)
+    @BindView(R2.id.fl_number31)
     FrameLayout flNumber31;
-    @Bind(R.id.fl_number31_new)
+    @BindView(R2.id.fl_number31_new)
     FrameLayout flNumber31New;
-    @Bind(R.id.fl_split3134)
+    @BindView(R2.id.fl_split3134)
     FrameLayout flSplit3134;
-    @Bind(R.id.fl_number34)
+    @BindView(R2.id.fl_number34)
     FrameLayout flNumber34;
-    @Bind(R.id.fl_number34_new)
+    @BindView(R2.id.fl_number34_new)
     FrameLayout flNumber34New;
-    @Bind(R.id.fl_3row1x2)
+    @BindView(R2.id.fl_3row1x2)
     FrameLayout fl3row1x2;
-    @Bind(R.id.fl_corner00010203)
+    @BindView(R2.id.fl_corner00010203)
     FrameLayout flCorner00010203;
-    @Bind(R.id.fl_street010203)
+    @BindView(R2.id.fl_street010203)
     FrameLayout flStreet010203;
-    @Bind(R.id.fl_line010203040506)
+    @BindView(R2.id.fl_line010203040506)
     FrameLayout flLine010203040506;
-    @Bind(R.id.fl_street040506)
+    @BindView(R2.id.fl_street040506)
     FrameLayout flStreet040506;
-    @Bind(R.id.fl_line040506070809)
+    @BindView(R2.id.fl_line040506070809)
     FrameLayout flLine040506070809;
-    @Bind(R.id.fl_street070809)
+    @BindView(R2.id.fl_street070809)
     FrameLayout flStreet070809;
-    @Bind(R.id.fl_line070809101112)
+    @BindView(R2.id.fl_line070809101112)
     FrameLayout flLine070809101112;
-    @Bind(R.id.fl_street101112)
+    @BindView(R2.id.fl_street101112)
     FrameLayout flStreet101112;
-    @Bind(R.id.fl_line101112131415)
+    @BindView(R2.id.fl_line101112131415)
     FrameLayout flLine101112131415;
-    @Bind(R.id.fl_street131415)
+    @BindView(R2.id.fl_street131415)
     FrameLayout flStreet131415;
-    @Bind(R.id.fl_line131415161718)
+    @BindView(R2.id.fl_line131415161718)
     FrameLayout flLine131415161718;
-    @Bind(R.id.fl_street161718)
+    @BindView(R2.id.fl_street161718)
     FrameLayout flStreet161718;
-    @Bind(R.id.fl_line161718192021)
+    @BindView(R2.id.fl_line161718192021)
     FrameLayout flLine161718192021;
-    @Bind(R.id.fl_street192021)
+    @BindView(R2.id.fl_street192021)
     FrameLayout flStreet192021;
-    @Bind(R.id.fl_line192021222324)
+    @BindView(R2.id.fl_line192021222324)
     FrameLayout flLine192021222324;
-    @Bind(R.id.fl_street222324)
+    @BindView(R2.id.fl_street222324)
     FrameLayout flStreet222324;
-    @Bind(R.id.fl_line222324252627)
+    @BindView(R2.id.fl_line222324252627)
     FrameLayout flLine222324252627;
-    @Bind(R.id.fl_street252627)
+    @BindView(R2.id.fl_street252627)
     FrameLayout flStreet252627;
-    @Bind(R.id.fl_line252627282930)
+    @BindView(R2.id.fl_line252627282930)
     FrameLayout flLine252627282930;
-    @Bind(R.id.fl_street282930)
+    @BindView(R2.id.fl_street282930)
     FrameLayout flStreet282930;
-    @Bind(R.id.fl_line282930313233)
+    @BindView(R2.id.fl_line282930313233)
     FrameLayout flLine282930313233;
-    @Bind(R.id.fl_street313233)
+    @BindView(R2.id.fl_street313233)
     FrameLayout flStreet313233;
-    @Bind(R.id.fl_line313233343536)
+    @BindView(R2.id.fl_line313233343536)
     FrameLayout flLine313233343536;
-    @Bind(R.id.fl_street343536)
+    @BindView(R2.id.fl_street343536)
     FrameLayout flStreet343536;
-    @Bind(R.id.fl_dozen1)
+    @BindView(R2.id.fl_dozen1)
     FrameLayout flDozen1;
-    @Bind(R.id.fl_dozen2)
+    @BindView(R2.id.fl_dozen2)
     FrameLayout flDozen2;
-    @Bind(R.id.fl_dozen3)
+    @BindView(R2.id.fl_dozen3)
     FrameLayout flDozen3;
-    @Bind(R.id.fl_low)
+    @BindView(R2.id.fl_low)
     FrameLayout flLow;
-    @Bind(R.id.fl_even)
+    @BindView(R2.id.fl_even)
     FrameLayout flEven;
-    @Bind(R.id.fl_black)
+    @BindView(R2.id.fl_black)
     FrameLayout flBlack;
-    @Bind(R.id.fl_red)
+    @BindView(R2.id.fl_red)
     FrameLayout flRed;
-    @Bind(R.id.fl_odd)
+    @BindView(R2.id.fl_odd)
     FrameLayout flOdd;
-    @Bind(R.id.fl_high)
+    @BindView(R2.id.fl_high)
     FrameLayout flHigh;
 
-    @Bind(R.id.tv_table_timer)
+    @BindView(R2.id.tv_table_timer)
     TextView tv_table_timer;
-    @Bind(R.id.countdown_view)
+    @BindView(R2.id.countdown_view)
     CountDownView countdown_view;
-    @Bind(R.id.tv_table_bet_cancel)
+    @BindView(R2.id.tv_table_bet_cancel)
     TextView tvTableBetCancel;
 
 
-    @Bind(R.id.text_red)
+    @BindView(R2.id.text_red)
     TextView textRed;
-    @Bind(R.id.text_black)
+    @BindView(R2.id.text_black)
     TextView textBlack;
-    @Bind(R.id.text_zero)
+    @BindView(R2.id.text_zero)
     TextView textZero;
-    @Bind(R.id.text_even)
+    @BindView(R2.id.text_even)
     TextView textEven;
-    @Bind(R.id.text_odd)
+    @BindView(R2.id.text_odd)
     TextView textOdd;
 
 
-    @Bind(R.id.btn_split0003)
+    @BindView(R2.id.btn_split0003)
     Button btnSplit0003;
-    @Bind(R.id.btn_split0306)
+    @BindView(R2.id.btn_split0306)
     Button btnSplit0306;
-    @Bind(R.id.btn_split0609)
+    @BindView(R2.id.btn_split0609)
     Button btnSplit0609;
-    @Bind(R.id.btn_split0912)
+    @BindView(R2.id.btn_split0912)
     Button btnSplit0912;
-    @Bind(R.id.btn_split1215)
+    @BindView(R2.id.btn_split1215)
     Button btnSplit1215;
-    @Bind(R.id.btn_split1518)
+    @BindView(R2.id.btn_split1518)
     Button btnSplit1518;
-    @Bind(R.id.btn_split1821)
+    @BindView(R2.id.btn_split1821)
     Button btnSplit1821;
-    @Bind(R.id.btn_split2124)
+    @BindView(R2.id.btn_split2124)
     Button btnSplit2124;
-    @Bind(R.id.btn_split2427)
+    @BindView(R2.id.btn_split2427)
     Button btnSplit2427;
-    @Bind(R.id.btn_split2730)
+    @BindView(R2.id.btn_split2730)
     Button btnSplit2730;
-    @Bind(R.id.btn_split3033)
+    @BindView(R2.id.btn_split3033)
     Button btnSplit3033;
-    @Bind(R.id.btn_split3336)
+    @BindView(R2.id.btn_split3336)
     Button btnSplit3336;
-    //    @Bind(R.id.btn_street000203)
+    //    @BindView(R2.id.btn_street000203)
 //    Button btnSplit000203;
-    @Bind(R.id.btn_split0203)
+    @BindView(R2.id.btn_split0203)
     Button btnSplit0203;
-    @Bind(R.id.btn_corner02030506)
+    @BindView(R2.id.btn_corner02030506)
     Button btnCorner02030506;
-    @Bind(R.id.btn_split0506)
+    @BindView(R2.id.btn_split0506)
     Button btnSplit0506;
-    @Bind(R.id.btn_corner05060809)
+    @BindView(R2.id.btn_corner05060809)
     Button btnCorner05060809;
-    @Bind(R.id.btn_split0809)
+    @BindView(R2.id.btn_split0809)
     Button btnSplit0809;
-    @Bind(R.id.btn_corner08091112)
+    @BindView(R2.id.btn_corner08091112)
     Button btnCorner08091112;
-    @Bind(R.id.btn_split1112)
+    @BindView(R2.id.btn_split1112)
     Button btnSplit1112;
-    @Bind(R.id.btn_corner11121415)
+    @BindView(R2.id.btn_corner11121415)
     Button btnCorner11121415;
-    @Bind(R.id.btn_split1415)
+    @BindView(R2.id.btn_split1415)
     Button btnSplit1415;
-    @Bind(R.id.btn_corner14151718)
+    @BindView(R2.id.btn_corner14151718)
     Button btnCorner14151718;
-    @Bind(R.id.btn_split1718)
+    @BindView(R2.id.btn_split1718)
     Button btnSplit1718;
-    @Bind(R.id.btn_corner17182021)
+    @BindView(R2.id.btn_corner17182021)
     Button btnCorner17182021;
-    @Bind(R.id.btn_split2021)
+    @BindView(R2.id.btn_split2021)
     Button btnSplit2021;
-    @Bind(R.id.btn_corner20212324)
+    @BindView(R2.id.btn_corner20212324)
     Button btnCorner20212324;
-    @Bind(R.id.btn_split2324)
+    @BindView(R2.id.btn_split2324)
     Button btnSplit2324;
-    @Bind(R.id.btn_corner23242627)
+    @BindView(R2.id.btn_corner23242627)
     Button btnCorner23242627;
-    @Bind(R.id.fl_corner23242627)
+    @BindView(R2.id.fl_corner23242627)
     FrameLayout flCorner23242627;
-    @Bind(R.id.btn_split2627)
+    @BindView(R2.id.btn_split2627)
     Button btnSplit2627;
-    @Bind(R.id.btn_corner26272930)
+    @BindView(R2.id.btn_corner26272930)
     Button btnCorner26272930;
-    @Bind(R.id.btn_split2930)
+    @BindView(R2.id.btn_split2930)
     Button btnSplit2930;
-    @Bind(R.id.btn_corner29303233)
+    @BindView(R2.id.btn_corner29303233)
     Button btnCorner29303233;
-    @Bind(R.id.btn_split3233)
+    @BindView(R2.id.btn_split3233)
     Button btnSplit3233;
-    @Bind(R.id.btn_corner32333536)
+    @BindView(R2.id.btn_corner32333536)
     Button btnCorner32333536;
-    @Bind(R.id.btn_split3536)
+    @BindView(R2.id.btn_split3536)
     Button btnSplit3536;
-    @Bind(R.id.btn_split0002)
+    @BindView(R2.id.btn_split0002)
     Button btnSplit0002;
-    @Bind(R.id.btn_split0205)
+    @BindView(R2.id.btn_split0205)
     Button btnSplit0205;
-    @Bind(R.id.btn_split0508)
+    @BindView(R2.id.btn_split0508)
     Button btnSplit0508;
-    @Bind(R.id.btn_split0811)
+    @BindView(R2.id.btn_split0811)
     Button btnSplit0811;
-    @Bind(R.id.btn_split1114)
+    @BindView(R2.id.btn_split1114)
     Button btnSplit1114;
-    @Bind(R.id.btn_split1417)
+    @BindView(R2.id.btn_split1417)
     Button btnSplit1417;
-    @Bind(R.id.btn_split1720)
+    @BindView(R2.id.btn_split1720)
     Button btnSplit1720;
-    @Bind(R.id.btn_split2023)
+    @BindView(R2.id.btn_split2023)
     Button btnSplit2023;
-    @Bind(R.id.btn_split2326)
+    @BindView(R2.id.btn_split2326)
     Button btnSplit2326;
-    @Bind(R.id.btn_split2629)
+    @BindView(R2.id.btn_split2629)
     Button btnSplit2629;
-    @Bind(R.id.btn_split2932)
+    @BindView(R2.id.btn_split2932)
     Button btnSplit2932;
-    @Bind(R.id.btn_split3235)
+    @BindView(R2.id.btn_split3235)
     Button btnSplit3235;
-    @Bind(R.id.btn_street000102)
+    @BindView(R2.id.btn_street000102)
     Button btnStreet000102;
-    @Bind(R.id.btn_split0102)
+    @BindView(R2.id.btn_split0102)
     Button btnSplit0102;
-    @Bind(R.id.btn_corner01020405)
+    @BindView(R2.id.btn_corner01020405)
     Button btnCorner01020405;
-    @Bind(R.id.btn_split0405)
+    @BindView(R2.id.btn_split0405)
     Button btnSplit0405;
-    @Bind(R.id.btn_corner04050708)
+    @BindView(R2.id.btn_corner04050708)
     Button btnCorner04050708;
-    @Bind(R.id.btn_split0708)
+    @BindView(R2.id.btn_split0708)
     Button btnSplit0708;
-    @Bind(R.id.btn_corner07081011)
+    @BindView(R2.id.btn_corner07081011)
     Button btnCorner07081011;
-    @Bind(R.id.btn_split1011)
+    @BindView(R2.id.btn_split1011)
     Button btnSplit1011;
-    @Bind(R.id.btn_corner10111314)
+    @BindView(R2.id.btn_corner10111314)
     Button btnCorner10111314;
-    @Bind(R.id.btn_split1314)
+    @BindView(R2.id.btn_split1314)
     Button btnSplit1314;
-    @Bind(R.id.btn_corner13141617)
+    @BindView(R2.id.btn_corner13141617)
     Button btnCorner13141617;
-    @Bind(R.id.btn_split1617)
+    @BindView(R2.id.btn_split1617)
     Button btnSplit1617;
-    @Bind(R.id.btn_corner16171920)
+    @BindView(R2.id.btn_corner16171920)
     Button btnCorner16171920;
-    @Bind(R.id.btn_split1920)
+    @BindView(R2.id.btn_split1920)
     Button btnSplit1920;
-    @Bind(R.id.btn_corner19202223)
+    @BindView(R2.id.btn_corner19202223)
     Button btnCorner19202223;
-    @Bind(R.id.btn_split2223)
+    @BindView(R2.id.btn_split2223)
     Button btnSplit2223;
-    @Bind(R.id.btn_corner22232526)
+    @BindView(R2.id.btn_corner22232526)
     Button btnCorner22232526;
-    @Bind(R.id.btn_split2526)
+    @BindView(R2.id.btn_split2526)
     Button btnSplit2526;
-    @Bind(R.id.btn_corner25262829)
+    @BindView(R2.id.btn_corner25262829)
     Button btnCorner25262829;
-    @Bind(R.id.btn_split2829)
+    @BindView(R2.id.btn_split2829)
     Button btnSplit2829;
-    @Bind(R.id.btn_corner28293132)
+    @BindView(R2.id.btn_corner28293132)
     Button btnCorner28293132;
-    @Bind(R.id.btn_split3132)
+    @BindView(R2.id.btn_split3132)
     Button btnSplit3132;
-    @Bind(R.id.btn_corner31323435)
+    @BindView(R2.id.btn_corner31323435)
     Button btnCorner31323435;
-    @Bind(R.id.btn_split3435)
+    @BindView(R2.id.btn_split3435)
     Button btnSplit3435;
-    @Bind(R.id.btn_split0001)
+    @BindView(R2.id.btn_split0001)
     Button btnSplit0001;
-    @Bind(R.id.btn_split0104)
+    @BindView(R2.id.btn_split0104)
     Button btnSplit0104;
-    @Bind(R.id.btn_split0407)
+    @BindView(R2.id.btn_split0407)
     Button btnSplit0407;
-    @Bind(R.id.btn_split0710)
+    @BindView(R2.id.btn_split0710)
     Button btnSplit0710;
-    @Bind(R.id.btn_split1013)
+    @BindView(R2.id.btn_split1013)
     Button btnSplit1013;
-    @Bind(R.id.btn_split1316)
+    @BindView(R2.id.btn_split1316)
     Button btnSplit1316;
-    @Bind(R.id.btn_split1619)
+    @BindView(R2.id.btn_split1619)
     Button btnSplit1619;
-    @Bind(R.id.btn_split1922)
+    @BindView(R2.id.btn_split1922)
     Button btnSplit1922;
-    @Bind(R.id.btn_split2225)
+    @BindView(R2.id.btn_split2225)
     Button btnSplit2225;
-    @Bind(R.id.btn_split2528)
+    @BindView(R2.id.btn_split2528)
     Button btnSplit2528;
-    @Bind(R.id.btn_split2831)
+    @BindView(R2.id.btn_split2831)
     Button btnSplit2831;
-    @Bind(R.id.btn_split3134)
+    @BindView(R2.id.btn_split3134)
     Button btnSplit3134;
-    @Bind(R.id.btn_corner00010203)
+    @BindView(R2.id.btn_corner00010203)
     Button btnCorner00010203;
-    @Bind(R.id.btn_street010203)
+    @BindView(R2.id.btn_street010203)
     Button btnStreet010203;
-    @Bind(R.id.btn_line010203040506)
+    @BindView(R2.id.btn_line010203040506)
     Button btnLine010203040506;
-    @Bind(R.id.btn_street040506)
+    @BindView(R2.id.btn_street040506)
     Button btnStreet040506;
-    @Bind(R.id.btn_line040506070809)
+    @BindView(R2.id.btn_line040506070809)
     Button btnLine040506070809;
-    @Bind(R.id.btn_street070809)
+    @BindView(R2.id.btn_street070809)
     Button btnStreet070809;
-    @Bind(R.id.btn_line070809101112)
+    @BindView(R2.id.btn_line070809101112)
     Button btnLine070809101112;
-    @Bind(R.id.btn_street101112)
+    @BindView(R2.id.btn_street101112)
     Button btnStreet101112;
-    @Bind(R.id.btn_line101112131415)
+    @BindView(R2.id.btn_line101112131415)
     Button btnLine101112131415;
-    @Bind(R.id.btn_street131415)
+    @BindView(R2.id.btn_street131415)
     Button btnStreet131415;
-    @Bind(R.id.btn_line131415161718)
+    @BindView(R2.id.btn_line131415161718)
     Button btnLine131415161718;
-    @Bind(R.id.btn_street161718)
+    @BindView(R2.id.btn_street161718)
     Button btnStreet161718;
-    @Bind(R.id.btn_line161718192021)
+    @BindView(R2.id.btn_line161718192021)
     Button btnLine161718192021;
-    @Bind(R.id.btn_street192021)
+    @BindView(R2.id.btn_street192021)
     Button btnStreet192021;
-    @Bind(R.id.btn_line192021222324)
+    @BindView(R2.id.btn_line192021222324)
     Button btnLine192021222324;
-    @Bind(R.id.btn_street222324)
+    @BindView(R2.id.btn_street222324)
     Button btnStreet222324;
-    @Bind(R.id.btn_line222324252627)
+    @BindView(R2.id.btn_line222324252627)
     Button btnLine222324252627;
-    @Bind(R.id.btn_street252627)
+    @BindView(R2.id.btn_street252627)
     Button btnStreet252627;
-    @Bind(R.id.btn_line252627282930)
+    @BindView(R2.id.btn_line252627282930)
     Button btnLine252627282930;
-    @Bind(R.id.btn_street282930)
+    @BindView(R2.id.btn_street282930)
     Button btnStreet282930;
-    @Bind(R.id.btn_line282930313233)
+    @BindView(R2.id.btn_line282930313233)
     Button btnLine282930313233;
-    @Bind(R.id.btn_street313233)
+    @BindView(R2.id.btn_street313233)
     Button btnStreet313233;
-    @Bind(R.id.btn_line313233343536)
+    @BindView(R2.id.btn_line313233343536)
     Button btnLine313233343536;
-    @Bind(R.id.btn_street343536)
+    @BindView(R2.id.btn_street343536)
     Button btnStreet343536;
-    @Bind(R.id.iv_number00)
+    @BindView(R2.id.iv_number00)
     ImageView ivNumber00;
-    @Bind(R.id.iv_number00_new)
+    @BindView(R2.id.iv_number00_new)
     ImageView ivNumber00New;
 
-    @Bind(R.id.iv_dozen1)
+    @BindView(R2.id.iv_dozen1)
     ImageView ivDozen1;
-    @Bind(R.id.iv_dozen2)
+    @BindView(R2.id.iv_dozen2)
     ImageView ivDozen2;
-    @Bind(R.id.iv_dozen3)
+    @BindView(R2.id.iv_dozen3)
     ImageView ivDozen3;
-    @Bind(R.id.iv_low)
+    @BindView(R2.id.iv_low)
     ImageView ivLow;
-    @Bind(R.id.iv_even)
+    @BindView(R2.id.iv_even)
     ImageView ivEven;
-    @Bind(R.id.iv_black)
+    @BindView(R2.id.iv_black)
     ImageView ivBlack;
-    @Bind(R.id.iv_red)
+    @BindView(R2.id.iv_red)
     ImageView ivRed;
-    @Bind(R.id.iv_odd)
+    @BindView(R2.id.iv_odd)
     ImageView ivOdd;
-    @Bind(R.id.iv_high)
+    @BindView(R2.id.iv_high)
     ImageView ivHigh;
 
-    @Bind(R.id.ll_bet_btn_parent)
+    @BindView(R2.id.ll_bet_btn_parent)
     View ll_bet_btn_parent;
-    @Bind(R.id.ll_chip_parent)
+    @BindView(R2.id.ll_chip_parent)
     View ll_chip_parent;
-    @Bind(R.id.tv_black_percentage)
+    @BindView(R2.id.tv_black_percentage)
     TextView tv_black_percentage;
-    @Bind(R.id.tv_red_percentage)
+    @BindView(R2.id.tv_red_percentage)
     TextView tv_red_percentage;
-    @Bind(R.id.tv_odd_percentage)
+    @BindView(R2.id.tv_odd_percentage)
     TextView tv_odd_percentage;
-    @Bind(R.id.tv_even_percentage)
+    @BindView(R2.id.tv_even_percentage)
     TextView tv_even_percentage;
-    @Bind(R.id.rc_road)
+    @BindView(R2.id.rc_road)
     RecyclerView rc_road;
     private boolean limitRedShowAble = false;
     private boolean betInfoShowAble = false;
@@ -1036,7 +1037,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void clickCenterSmall(View view) {
         if (checkChoose()) return;
-        if (afbApp.getRoulette01().getGameStatus() != 1)
+        if (mAppViewModel.getRoulette01().getGameStatus() != 1)
             return;
         if (ll_center_small == null)
             return;
@@ -1076,7 +1077,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void clickOrphelins(View view) {
         if (checkChoose()) return;
-        if (afbApp.getRoulette01().getGameStatus() != 1)
+        if (mAppViewModel.getRoulette01().getGameStatus() != 1)
             return;
         if (ll_center_orphelins == null)
             return;
@@ -1116,7 +1117,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void clickZero(View view) {
         if (checkChoose()) return;
-        if (afbApp.getRoulette01().getGameStatus() != 1)
+        if (mAppViewModel.getRoulette01().getGameStatus() != 1)
             return;
         if (ll_zero == null)
             return;
@@ -1165,7 +1166,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void clickCenterBig(View view) {
         if (checkChoose()) return;
-        if (afbApp.getRoulette01().getGameStatus() != 1)
+        if (mAppViewModel.getRoulette01().getGameStatus() != 1)
             return;
         if (ll_center_big == null)
             return;
@@ -1234,10 +1235,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
             try {
                 Thread.sleep(1500);
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                        + "&Blid=" + afbApp.getRoulette01().getGameNumber() +
-                        "&Xh=" + afbApp.getRoulette01().getRouletteLimit(getApp().getRoulette01().getLimitIndex()).getMaxTotalBet();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LP_BET_MONEY_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                        + "&Blid=" + mAppViewModel.getRoulette01().getGameNumber() +
+                        "&Xh=" + mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LP_BET_MONEY_URL, params);
                 Log.i(WebSiteUrl.Tag, "UpdateBetMoney params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateBetMoney = " + strRes);
 
@@ -1245,10 +1246,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 10) {
 
-                        afbApp.getRoulette01().getRouletteBetInformation().setAllBetMoney((int) Double.parseDouble(strInfo[2]));
-                        if (afbApp.getRoulette01().getRouletteBetInformation().getAllBetMoney() > 0)
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().setAllBetMoney((int) Double.parseDouble(strInfo[2]));
+                        if (mAppViewModel.getRoulette01().getRouletteBetInformation().getAllBetMoney() > 0)
                             bBetSucess = true;
-                        afbApp.getRoulette01().getRouletteBetInformation().getBetDetail().clear();
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail().clear();
                         saveBetInformation("DirectBet", strInfo[3], false);
                         saveBetInformation("SeparateBet", strInfo[4], false);
                         saveBetInformation("StreetBet", strInfo[5], false);
@@ -1333,79 +1334,79 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                             switch (listBetDetail.get(i).getType()) {
                                 case "RedBet":
                                     if (type.equals("all") || type.equals(listBetDetail.get(i).getNumber()))
-                                        RedBet = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        RedBet = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "BlackBet":
                                     if (type.equals("all") || type.equals(listBetDetail.get(i).getNumber()))
-                                        BlackBet = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        BlackBet = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "HightBet":
                                     if (type.equals("all") || type.equals(listBetDetail.get(i).getNumber()))
-                                        HightBet = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        HightBet = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "LowBet":
                                     if (type.equals("all") || type.equals(listBetDetail.get(i).getNumber()))
-                                        LowBet = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        LowBet = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "OddBet":
                                     if (type.equals("all") || type.equals(listBetDetail.get(i).getNumber()))
-                                        OddBet = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        OddBet = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "EvenBet":
                                     if (type.equals("all") || type.equals(listBetDetail.get(i).getNumber()))
-                                        EvenBet = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        EvenBet = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "FristRow":
                                     if (type.equals("all"))
-                                        FristRow = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        FristRow = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "SndRow":
                                     if (type.equals("all"))
-                                        SndRow = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        SndRow = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "ThrRow":
                                     if (type.equals("all"))
-                                        ThrRow = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        ThrRow = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "FristCol":
                                     if (type.equals("all"))
-                                        FristCol = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        FristCol = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "SndCol":
                                     if (type.equals("all"))
-                                        SndCol = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        SndCol = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "ThrCol":
                                     if (type.equals("all"))
-                                        ThrCol = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        ThrCol = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "FourBet":
                                     if (type.equals("all"))
-                                        FourBet = "" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        FourBet = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "DirectBet":
                                     if (type.equals("all") || type.equals(listBetDetail.get(i).getNumber()) || checkCenter(type, listBetDetail.get(i).getNumber()))
-                                        DirectBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
+                                        DirectBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
                                     break;
                                 case "SeparateBet":
                                     if (type.equals("all"))
-                                        SeparateBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
+                                        SeparateBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
                                     break;
                                 case "StreetBet":
                                     if (type.equals("all"))
-                                        StreetBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
+                                        StreetBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
                                     break;
                                 case "AngleBet":
                                     if (type.equals("all"))
-                                        AngleBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
+                                        AngleBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
                                     break;
                                 case "LineBet":
                                     if (type.equals("all"))
-                                        LineBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
+                                        LineBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
                                     break;
                                 case "ThreeBet":
                                     if (type.equals("all"))
-                                        ThreeBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
+                                        ThreeBet += listBetDetail.get(i).getNumber() + "#" + (listBetDetail.get(i).getMoney() - mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()) + "|");
                                     break;
                             }
 
@@ -1423,30 +1424,30 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     if ("".equals(ThreeBet))
                         ThreeBet = "0";
 
-                    String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                            + "&Blid=" + afbApp.getRoulette01().getGameNumber()
-                            + "&Xh=" + afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet()
+                    String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                            + "&Blid=" + mAppViewModel.getRoulette01().getGameNumber()
+                            + "&Xh=" + mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet()
                             + "&Hl=1"
                             + "&RedBet=" + RedBet + "&BlackBet=" + BlackBet + "&OddBet=" + OddBet + "&EvenBet=" + EvenBet + "&LowBet=" + LowBet + "&HightBet=" + HightBet
                             + "&FristRow=" + FristRow + "&SndRow=" + SndRow + "&ThrRow=" + ThrRow + "&FristCol=" + FristCol + "&SndCol=" + SndCol + "&ThrCol=" + ThrCol
                             + "&FourBet=" + FourBet
                             + "&DirectBet=" + DirectBet + "&SeparateBet=" + SeparateBet + "&StreetBet=" + StreetBet + "&AngleBet=" + AngleBet + "&LineBet=" + LineBet + "&ThreeBet=" + ThreeBet;
 
-                    String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LP_BET_URL, params);
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LP_BET_URL, params);
                     Log.i("RouletteBet params", "RouletteBet params= " + params);
                     Log.i("RouletteBet params", "RouletteBet = " + strRes);
                     String strInfo[] = strRes.split("\\^");
                     if (strRes.startsWith("Results=ok")) {
                         if (strInfo.length >= 10) {
-                            afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
+                            mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                             double resMoney = Double.parseDouble(strInfo[2]);
                             //清除之前的下注记录
-                            afbApp.getRoulette01().getRouletteBetRepeatInformation().Init();
-                            afbApp.getRoulette01().getRouletteBetInformation().setAllBetMoney((int) resMoney);
-                            afbApp.getRoulette01().getRouletteBetRepeatInformation().setAllBetMoney((int) resMoney);
+                            mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().Init();
+                            mAppViewModel.getRoulette01().getRouletteBetInformation().setAllBetMoney((int) resMoney);
+                            mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().setAllBetMoney((int) resMoney);
 
-                            afbApp.getRoulette01().getRouletteBetInformation().getBetDetail().clear();
-                            afbApp.getRoulette01().getRouletteBetRepeatInformation().getBetDetail().clear();
+                            mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail().clear();
+                            mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().getBetDetail().clear();
                             saveBetInformation("DirectBet", strInfo[3], true);
                             saveBetInformation("SeparateBet", strInfo[4], true);
                             saveBetInformation("StreetBet", strInfo[5], true);
@@ -1515,14 +1516,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         public void run() {
 
             try {
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LP_TABLE_GAMENUM, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LP_TABLE_GAMENUM, params);
                 Log.i(WebSiteUrl.Tag, "UpdateGameNumber params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateGameNumber = " + strRes);
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        afbApp.getRoulette01().setGameNumber(strInfo[1]);
+                        mAppViewModel.getRoulette01().setGameNumber(strInfo[1]);
                         handler.sendEmptyMessage(HandlerCode.UPDATE_GAME_NUMBER);
                     }
                 } else {
@@ -1546,27 +1547,27 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             try {
 //                if (bUpdateRoad == false)
 //                    Thread.sleep(3000);
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                        + "&Blid=" + afbApp.getRoulette01().getGameNumber() +
-                        "&Xh=" + afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LP_WON_MONEY_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                        + "&Blid=" + mAppViewModel.getRoulette01().getGameNumber() +
+                        "&Xh=" + mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LP_WON_MONEY_URL, params);
                 Log.i(WebSiteUrl.Tag, "UpdateWonMoney params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateWonMoney = " + strRes);
 
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        if (rouletteTimer == 0 && afbApp.getRoulette01().getGameStatus() == 5 && isShowWinLose) {
-                            afbApp.getRoulette01().setWonMoney(Double.parseDouble(strInfo[2]));
+                        if (rouletteTimer == 0 && mAppViewModel.getRoulette01().getGameStatus() == 5 && isShowWinLose) {
+                            mAppViewModel.getRoulette01().setWonMoney(Double.parseDouble(strInfo[2]));
                         } else {
-                            afbApp.getRoulette01().setWonMoney(0);
+                            mAppViewModel.getRoulette01().setWonMoney(0);
                         }
-                        afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
+                        mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                         if (isShowWinLose) {
                             handler.sendEmptyMessage(HandlerCode.SHOW_WIN_LOSS);
                         }
                     } else {
-                        afbApp.getRoulette01().setWonMoney(0);
+                        mAppViewModel.getRoulette01().setWonMoney(0);
                     }
                 }
 
@@ -1581,7 +1582,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     boolean isNeedBigVedio = true;
 
     public void updateTimer() {
-        if (rouletteTimer == 0 && afbApp.getRoulette01().getGameStatus() == 1 && afbApp.getRoulette01().getTimer() > 0) {
+        if (rouletteTimer == 0 && mAppViewModel.getRoulette01().getGameStatus() == 1 && mAppViewModel.getRoulette01().getTimer() > 0) {
             if (isShowWinLose) {
                 isShowWinLose = false;
                 updateWonMoney = new UpdateWonMoney();
@@ -1594,21 +1595,21 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             } else {
                 isNeedBigVedio = true;
             }
-            //   Log.i(WebSiteUrl.Tag,"gameNumber="+gameNumber+",getGameNumber="+afbApp.getRoulette01().getGameNumber()+"------");
+            //   Log.i(WebSiteUrl.Tag,"gameNumber="+gameNumber+",getGameNumber="+mAppViewModel.getRoulette01().getGameNumber()+"------");
             //需要调用一下gamegum.jsp接口，更新局号
 //            if(updateGameNumber == null){
 //                updateGameNumber = new UpdateGameNumber();
 //                threadUpdateGameNumber = new Thread(updateGameNumber);
 //                threadUpdateGameNumber.start();
 //            }
-            if (!gameNumber.equals(afbApp.getRoulette01().getGameNumber())) {
-                gameNumber = afbApp.getRoulette01().getGameNumber();
-                tv_game_number01.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
-                rouletteNumberTv.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
+            if (!gameNumber.equals(mAppViewModel.getRoulette01().getGameNumber())) {
+                gameNumber = mAppViewModel.getRoulette01().getGameNumber();
+                tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+                rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
                 stateInit = true;
-                afbApp.getRoulette01().Init();
+                mAppViewModel.getRoulette01().Init();
                 clearAllChips();
-                rouletteTimer = afbApp.getRoulette01().getTimer();
+                rouletteTimer = mAppViewModel.getRoulette01().getTimer();
                 countdown_view.setCountdownTime(rouletteTimer);
                 countdown_view.startCountDown();
                 bUpdateRoad = true;
@@ -1621,12 +1622,12 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
-                } else if (betTimeCount == 4) {
+                }else if (betTimeCount==4){
                     ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 16, componentFront, mContext, afbApp.getFrontVolume());
-                btn_game_number.setText(getString(R.string.number) + ":" + afbApp.getRoulette01().getGameNumber());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 16, componentFront, mContext, mAppViewModel.getFrontVolume());
+                btn_game_number.setText(getString(R.string.number) + ":" + mAppViewModel.getRoulette01().getGameNumber());
                 if (tv_game_number != null) {
                     tv_game_number.setText(gameNumber);
                 }
@@ -1643,7 +1644,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             //    hidePoker();
 
 
-        } else if (afbApp.getRoulette01().getGameStatus() == 5)//延迟3秒调用路子接口
+        } else if (mAppViewModel.getRoulette01().getGameStatus() == 5)//延迟3秒调用路子接口
         {
             if (bUpdateRoad) {
                 bUpdateRoad = false;
@@ -1657,7 +1658,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 showResultsOnUI();
 //            if(isActive)
 //                initPopResultsWindows();
-                if (!TextUtils.isEmpty(afbApp.getRoulette01().getResult())) {
+                if (!TextUtils.isEmpty(mAppViewModel.getRoulette01().getResult())) {
                     handler.sendEmptyMessageDelayed(HandlerCode.SHOW_POPUP_RESULTS_WINDOW, 1500);
                 }
 //                tablePop.setTablesData(afbApp, games);
@@ -1668,7 +1669,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             } else {
                 isNeedBigVedio = false;
             }
-        } else if (afbApp.getRoulette01().getGameStatus() == 2) {
+        } else if (mAppViewModel.getRoulette01().getGameStatus() == 2) {
             if (listBetDetail.size() > 0) {
                 //  Log.i(WebSiteUrl.Tag, "clearNoBetChip()");
                 clearBetChip("all");
@@ -1676,7 +1677,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
             if (tvTableBetSure != null && tvTableBetSure.isEnabled()) {
                 tvTableBetSure.setEnabled(false);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_NOMOREBETS, 14, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_NOMOREBETS, 14, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
             if (isNeedBigVedio && fl_vedio_parent.getHeight() <= fl_vedio_location_parent.getHeight()) {
                 isNeedBigVedio = false;
@@ -1687,14 +1688,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
        /*     //需要隐藏下注区域，看到视频里出结果
             hideBetPanel();*/
         }
-  /*      if (!gameNumber.equals(afbApp.getRoulette01().getGameNumber())) {
+  /*      if (!gameNumber.equals(mAppViewModel.getRoulette01().getGameNumber())) {
             clearAllChips();
         }*/
-        Log.d("shangpeishengaaaa", "rouletteResult: " + afbApp.getRoulette01().getResult());
+        Log.d("shangpeishengaaaa", "rouletteResult: " + mAppViewModel.getRoulette01().getResult());
     }
 
     private void updatePercentage() {
-        Roulette roulette = afbApp.getRoulette01();
+        Roulette roulette = mAppViewModel.getRoulette01();
         double red = roulette.getRed();
         double black = roulette.getBlack();
         double odd = roulette.getOdd();
@@ -1738,7 +1739,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             @Override
             public void run() {
                 //Results=ok^29#8#14#28#31#18#11#35#6#25#1#16#12#0#9#36#23#5#33#17#10#20#15#27#4#3#24#30#32#26#13#34#21#2#22#19#7#
-                String s = afbApp.getHttpClient().sendPost(WebSiteUrl.LP_ROAD_URL, "");
+                String s = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LP_ROAD_URL, "");
                 if (s.startsWith("Results=ok")) {
                     final List<String> hotList = new ArrayList<>();
                     final List<String> iceList = new ArrayList<>();
@@ -1842,7 +1843,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void updateInterface() {
 
-        if (rouletteTimer > 0 && afbApp.getRoulette01().getGameStatus() != 2) {
+        if (rouletteTimer > 0 && mAppViewModel.getRoulette01().getGameStatus() != 2) {
             Drawable number00Background = ivNumber00.getBackground();
             Drawable redBackground = ivRed.getBackground();
             Drawable blackBackground = ivBlack.getBackground();
@@ -1887,16 +1888,16 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
             tv_table_timer.setText("" + rouletteTimer);
 //            if (rouletteTimer == 10) {
-//                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_TIMER, 0, componentFront, mContext, afbApp.getFrontVolume());
+//                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_TIMER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
 //            }
             if (rouletteTimer < 6) {
                 tv_table_timer.setTextColor(getResources().getColor(R.color.red));
-                afbApp.startFrontMuzicService("TIMER", 1, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService("TIMER", 1, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else
                 tv_table_timer.setTextColor(getResources().getColor(R.color.white));
-            if (showRoad) {
-                tv_game_number01.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
-                rouletteNumberTv.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
+            if (showRoad){
+                tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+                rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
             }
 
         } else {
@@ -1931,14 +1932,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
             rouletteTimer = 0;
             tv_table_timer.setText("" + rouletteTimer);
-            if (afbApp.getRoulette01().getGameStatus() == 2) {
+            if (mAppViewModel.getRoulette01().getGameStatus() == 2) {
 
             }
 //            if (stateInit)
 //                displayAll(false);
 //            stateInit = false;
         }
-        String serverTimer = afbApp.getRoulette01().getServerTime();
+        String serverTimer = mAppViewModel.getRoulette01().getServerTime();
         String time = "";
         if (serverTimer != null && serverTimer.indexOf("-") > 0)
             time = "GMT+7  " + serverTimer.substring(serverTimer.indexOf("-") + 1, serverTimer.length());
@@ -1950,7 +1951,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         updateInfo();
 
         //    if (showRoad)
-        updateRoad(afbApp.getRoulette01(), tv_game_number, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
+        updateRoad(mAppViewModel.getRoulette01(), tv_game_number, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
 
     }
 
@@ -1977,30 +1978,30 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     break;
                 case HandlerCode.UPDATE_GAME_NUMBER:
                     updateGameNumber = null;
-                    btn_game_number.setText(getString(R.string.number) + ":" + afbApp.getRoulette01().getGameNumber());
+                    btn_game_number.setText(getString(R.string.number) + ":" + mAppViewModel.getRoulette01().getGameNumber());
                     //           contentResults.setData(getSicboResultsData());
                     //           contentResults.notifyDataSetChanged();
                     //      if (showRoad)
-                    tv_game_number01.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
-                    rouletteNumberTv.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
-                    tv_game_number.setText(afbApp.getRoulette01().getGameNumber());
-                    if (!gameNumber.equals(afbApp.getRoulette01().getGameNumber())) {
+                    tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+                    rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+                    tv_game_number.setText(mAppViewModel.getRoulette01().getGameNumber());
+                    if (!gameNumber.equals(mAppViewModel.getRoulette01().getGameNumber())) {
                         clearAllChips();
                     }
                     break;
                 case HandlerCode.SHOW_WIN_LOSS:
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
                     //提示输赢
                     if (bBetSucess) {
-//                        if (afbApp.getRoulette01().getWonMoney() >= 0/* && afbApp.getRoulette01().getGameStatus() == 5*/) {
-//                            if (afbApp.getRoulette01().getWonMoney() > 0)
-//                                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 15, componentFront, mContext, afbApp.getFrontVolume());
-//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getRoulette01().getWonMoney(), ContextCompat.getColor(mContext, R.color.blue_word));
+//                        if (mAppViewModel.getRoulette01().getWonMoney() >= 0/* && mAppViewModel.getRoulette01().getGameStatus() == 5*/) {
+//                            if (mAppViewModel.getRoulette01().getWonMoney() > 0)
+//                                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 15, componentFront, mContext, mAppViewModel.getFrontVolume());
+//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getRoulette01().getWonMoney(), ContextCompat.getColor(mContext, R.color.blue_word));
 //                        } else
-//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (afbApp.getRoulette01().getWonMoney() + "").substring(1, (afbApp.getRoulette01().getWonMoney() + "").length()), Color.RED);
-                        if (afbApp.getRoulette01().getWonMoney() > 0) {
-                            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, afbApp.getFrontVolume());
-                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getRoulette01().getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
+//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (mAppViewModel.getRoulette01().getWonMoney() + "").substring(1, (mAppViewModel.getRoulette01().getWonMoney() + "").length()), Color.RED);
+                        if (mAppViewModel.getRoulette01().getWonMoney() > 0) {
+                            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
+                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getRoulette01().getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
                         }
                     }
                     //清除所有的下注的筹码
@@ -2011,8 +2012,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
                     clearBetChip(type);
                     dismissBlockDialog();
-                    ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + afbApp.getRoulette01().getRouletteBetInformation().getAllBetMoney());
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + mAppViewModel.getRoulette01().getRouletteBetInformation().getAllBetMoney());
+                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
                     break;
                 case HandlerCode.SHOW_BET_MONEY:
                     showBetMoney(false);
@@ -2037,8 +2038,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     @Override
     protected void leftClick() {
-        afbApp.setbLobby(true);
-        afbApp.getRoulette01().setRoadOld("");
+        mAppViewModel.setbLobby(true);
+        mAppViewModel.getRoulette01().setRoadOld("");
         AppTool.activiyJump(mContext, LobbyRouletteActivity.class);
         finish();
     }
@@ -2073,8 +2074,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
 
         }
-        afbApp.closeMuzicService(mContext, BackgroudMuzicService.class);
-        afbApp.closeMuzicService(mContext, FrontMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
 
     }
 
@@ -2087,9 +2088,9 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 betDetail.setNumber(type);
                 betDetail.setType(type);
                 //   Log.i(WebSiteUrl.Tag,"type="+type+",betInfo="+betInfo);
-                afbApp.getRoulette01().getRouletteBetInformation().getBetDetail().add(betDetail);
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail().add(betDetail);
                 if (isRepeat)
-                    afbApp.getRoulette01().getRouletteBetRepeatInformation().getBetDetail().add(betDetail);
+                    mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().getBetDetail().add(betDetail);
             } else {
                 String strThree[] = betInfo.split("\\|");
 
@@ -2101,9 +2102,9 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         betDetail.setMoney((int) Double.parseDouble(strThreeDetail[1]));
                         betDetail.setNumber(strThreeDetail[0]);
                         betDetail.setType(type);
-                        afbApp.getRoulette01().getRouletteBetInformation().getBetDetail().add(betDetail);
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail().add(betDetail);
                         if (isRepeat)
-                            afbApp.getRoulette01().getRouletteBetRepeatInformation().getBetDetail().add(betDetail);
+                            mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().getBetDetail().add(betDetail);
                     }
 
                 }
@@ -2189,20 +2190,15 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         public void onClick(View v) {
 
 
-            switch (v.getId()) {
-                case R.id.tv_table_bet_replay:
-                    repeatBet();
-                    break;
-                case R.id.tv_table_bet_sure:
-                    bet();
-                    break;
-                case R.id.tv_table_bet_cancel:
-                    if (listBetDetail.size() > 0)
-                        afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
-                    clearBetChip("all");
-                    break;
-                default:
-                    break;
+            int id = v.getId();
+            if (id == R.id.tv_table_bet_replay) {
+                repeatBet();
+            } else if (id == R.id.tv_table_bet_sure) {
+                bet();
+            } else if (id == R.id.tv_table_bet_cancel) {
+                if (listBetDetail.size() > 0)
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
+                clearBetChip("all");
             }
         }
 
@@ -2285,14 +2281,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         toolbar.setNavigationIcon(null);
         initControl();
 
-        serviceTime.setText(getApp().getUser().getBalance() + "");
+        serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
 
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
 //        setTableBetPool(lv_person_bet_info,1);
-        mPreview = findViewById(R.id.surface);
+        mPreview =  findViewById(R.id.surface);
         setPlayVideo();
         setLeftPanel();
         /*setTableLimit();*/
@@ -2307,16 +2303,19 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public void onPanelOpened(Panel panel) {
-                //    afbApp.getRoulette01().setRoadOld("");
+                //    mAppViewModel.getRoulette01().setRoadOld("");
                 showRoad = true;
             }
         });
         leftPanel1.setInterpolator(new BounceInterpolator(EasingType.Type.OUT));
-        afbApp.getRoulette01().setRoadOld("");
-        btn_game_number.setText(getString(R.string.number) + ":" + afbApp.getRoulette01().getGameNumber());
-        tv_game_number01.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
-        rouletteNumberTv.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
+        mAppViewModel.getRoulette01().setRoadOld("");
+        btn_game_number.setText(getString(R.string.number) + ":" + mAppViewModel.getRoulette01().getGameNumber());
+        tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+        rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
         initArcMenu(tvMenu, "RL1", 1);
+        chipListChoice.add(new ChipBean(R.mipmap.sureimg, "", -1));
+        chipListChoice.add(new ChipBean(R.mipmap.noimg, "", -2));
+        chipListChoice.add(new ChipBean(R.mipmap.replayimg, "", -3));
         setChip();
         initUI();
         startUpdateStatusThread();
@@ -2330,7 +2329,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 //            super.doVideoFix();
             }
         };
-        String path = afbApp.getUser().getVideoUrl() + "/" + afbApp.getRoulette01().getVideoUrlIndex() + "/LR01";
+        String path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getRoulette01().getVideoUrlIndex() + "/LR01";
 //        path = "rtmp://202.36.58.169/live/LR01";
         videoHelper.setPlayUrl(path);
     }
@@ -2380,8 +2379,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             };
             rc_road.setAdapter(contentAdapter);
         } else {
-            if (afbApp.getRoulette01().getRoad() != null && !afbApp.getRoulette01().getRoad().equals(""))
-                afbApp.showRoulette(afbApp.getRoulette01().getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
+            if (mAppViewModel.getRoulette01().getRoad() != null && !mAppViewModel.getRoulette01().getRoad().equals(""))
+                mAppViewModel.showRoulette(mAppViewModel.getRoulette01().getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
         }
     }
 
@@ -2422,42 +2421,42 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         });
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         String data = "";
-        //   Log.i(WebSiteUrl.Tag, "GetBankerPool = " + afbApp.getTableId());
+        //   Log.i(WebSiteUrl.Tag, "GetBankerPool = " + mAppViewModel.getTableId());
         LiveInfoBean pool_max_min = new LiveInfoBean(getString(R.string.min_max), "0", "");
-        int index = afbApp.getRoulette01().getLimitIndex();
-        int minTotal = afbApp.getRoulette01().getRouletteLimit(index).getMinTotalBet();
-        int maxTotal = afbApp.getRoulette01().getRouletteLimit(index).getMaxTotalBet();
-        pool_max_min.setValue("" + afbApp.covertLimit(minTotal), afbApp.covertLimit(maxTotal));
+        int index = mAppViewModel.getRoulette01().getLimitIndex();
+        int minTotal = mAppViewModel.getRoulette01().getRouletteLimit(index).getMinTotalBet();
+        int maxTotal = mAppViewModel.getRoulette01().getRouletteLimit(index).getMaxTotalBet();
+        pool_max_min.setValue("" + mAppViewModel.covertLimit(minTotal), mAppViewModel.covertLimit(maxTotal));
         strData.add(pool_max_min);
 
         LiveInfoBean pool_single = new LiveInfoBean(getString(R.string.single), "0", "");
-        pool_single.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet()));
+        pool_single.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet()));
         strData.add(pool_single);
 
         LiveInfoBean pool_split = new LiveInfoBean(getString(R.string.split), "0", "");
-        pool_split.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet()));
+        pool_split.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet()));
         strData.add(pool_split);
 
         LiveInfoBean pool_street = new LiveInfoBean(getString(R.string.street), "0", "");
-        pool_street.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet()));
+        pool_street.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet()));
         strData.add(pool_street);
 
         LiveInfoBean pool_corner = new LiveInfoBean(getString(R.string.corner), "0", "");
-        pool_corner.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet()));
+        pool_corner.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet()));
         strData.add(pool_corner);
 
         LiveInfoBean pool_line = new LiveInfoBean(getString(R.string.line), "0", "");
-        pool_line.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet()));
+        pool_line.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet()));
         strData.add(pool_line);
 
         LiveInfoBean pool_colume = new LiveInfoBean(getString(R.string.colume), "0", "");
-        pool_colume.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
+        pool_colume.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
         strData.add(pool_colume);
         LiveInfoBean pool_dozen = new LiveInfoBean(getString(R.string.dozen), "0", "");
-        pool_dozen.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
+        pool_dozen.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
         strData.add(pool_dozen);
         LiveInfoBean pool_even = new LiveInfoBean(getString(R.string.even_lp), "0", "");
-        pool_even.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet()));
+        pool_even.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet()));
         strData.add(pool_even);
 
 
@@ -2469,15 +2468,6 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     ImageView currentSure;
     ImageView currentCancel;
-
-    @Override
-    public void onSwitchChipFinish() {
-        chooseChip = 0;
-        if (selectedMap != null) {
-            selectedMap.clear();
-        }
-        setChip();
-    }
 
     public void setChip() {
         final AdapterViewContent<ChipBean> chips = new AdapterViewContent<>(mContext, lvBaccaratChips);
@@ -2496,7 +2486,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         llParent.post(new Runnable() {
                             @Override
                             public void run() {
-                                int width = ScreenUtil.dip2px(mContext, 48) * 10;
+                                int width = ScreenUtil.dip2px(mContext, 48) * chipListChoice.size();
                                 int screenWidth = WidgetUtil.getScreenWidth(RouletteActivity.this);
                                 int padding = (screenWidth - width) / 2;
                                 if (padding > 0) {
@@ -2507,33 +2497,15 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                             }
                         });
                     }
-                    int w = 40;
-                    int h = 40;
-                    if (position == 7 || position == 9) {
-                        w = 60;
-                        h = 30;
-                    }
-                    int m = 3;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, w);
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 40);
                     layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                    if (position == 7) {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
-                    } else if (position == 8) {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
-                    } else if (position == 9) {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
-                    } else {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
-                    }
+                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 3);
+                    layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 3);
                     llParent.setLayoutParams(layoutParams);
                     LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams1.width = ScreenUtil.dip2px(mContext, w);
-                    layoutParams1.height = ScreenUtil.dip2px(mContext, h);
+                    layoutParams1.width = ScreenUtil.dip2px(mContext, 40);
+                    layoutParams1.height = ScreenUtil.dip2px(mContext, 40);
                     imgChip.setLayoutParams(layoutParams1);
                 }
                 if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
@@ -2543,17 +2515,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     imgChip.setLayoutParams(layoutParams);
                     helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                 } else {
-                    if (position == 7 || position == 9) {
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                        layoutParams.height = ScreenUtil.dip2px(mContext, 30);
-                        imgChip.setLayoutParams(layoutParams);
-                    } else {
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 40);
-                        layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                        imgChip.setLayoutParams(layoutParams);
-                    }
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 40);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 40);
+                    imgChip.setLayoutParams(layoutParams);
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
                 helper.setText(R.id.tv_chip_amount, item.getName());
@@ -2572,7 +2537,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     chips.notifyDataSetChanged();
                     chooseChip = chipBean.getValue();
                     initClickCount();
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, mAppViewModel.getFrontVolume());
                 } else {
                     switch (chipBean.getValue()) {
                         case -1:
@@ -2580,20 +2545,17 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                             break;
                         case -2:
                             if (listBetDetail.size() > 0)
-                                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
+                                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
                             clearBetChip("all");
                             break;
                         case -3:
                             repeatBet();
                             break;
-                        case -101:
-                            showChooseChip(view);
-                            break;
                     }
                 }
             }
         });
-        chips.setData(getCurrentChip(true));
+        chips.setData(chipListChoice);
     }
 
 
@@ -2663,43 +2625,43 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     public List<LiveInfoBean> getPoolData() {
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         String data = "";
-        //   Log.i(WebSiteUrl.Tag, "GetBankerPool = " + afbApp.getTableId());
+        //   Log.i(WebSiteUrl.Tag, "GetBankerPool = " + mAppViewModel.getTableId());
         LiveInfoBean pool_max_min = new LiveInfoBean(getString(R.string.min_max), "0", "");
-        pool_max_min.setValue("" + (afbApp.getRoulette01().getRoulettePool().getNumber()
-                + afbApp.getRoulette01().getRoulettePool().getColumn() + afbApp.getRoulette01().getRoulettePool().getCorner()
-                + afbApp.getRoulette01().getRoulettePool().getDozen() + afbApp.getRoulette01().getRoulettePool().getEven()
-                + afbApp.getRoulette01().getRoulettePool().getLine() + afbApp.getRoulette01().getRoulettePool().getRed_black_odd_even_big_small()
-                + afbApp.getRoulette01().getRoulettePool().getSplit() + afbApp.getRoulette01().getRoulettePool().getStreet()), "");
+        pool_max_min.setValue("" + (mAppViewModel.getRoulette01().getRoulettePool().getNumber()
+                + mAppViewModel.getRoulette01().getRoulettePool().getColumn() + mAppViewModel.getRoulette01().getRoulettePool().getCorner()
+                + mAppViewModel.getRoulette01().getRoulettePool().getDozen() + mAppViewModel.getRoulette01().getRoulettePool().getEven()
+                + mAppViewModel.getRoulette01().getRoulettePool().getLine() + mAppViewModel.getRoulette01().getRoulettePool().getRed_black_odd_even_big_small()
+                + mAppViewModel.getRoulette01().getRoulettePool().getSplit() + mAppViewModel.getRoulette01().getRoulettePool().getStreet()), "");
         strData.add(pool_max_min);
 
         LiveInfoBean pool_single = new LiveInfoBean(getString(R.string.single), "0", "");
-        pool_single.setValue("" + afbApp.getRoulette01().getRoulettePool().getNumber(), "");
+        pool_single.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getNumber(), "");
         strData.add(pool_single);
 
         LiveInfoBean pool_split = new LiveInfoBean(getString(R.string.split), "0", "");
-        pool_split.setValue("" + afbApp.getRoulette01().getRoulettePool().getSplit(), "");
+        pool_split.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getSplit(), "");
         strData.add(pool_split);
 
         LiveInfoBean pool_street = new LiveInfoBean(getString(R.string.street), "0", "");
-        pool_street.setValue("" + afbApp.getRoulette01().getRoulettePool().getStreet(), "");
+        pool_street.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getStreet(), "");
         strData.add(pool_street);
 
         LiveInfoBean pool_corner = new LiveInfoBean(getString(R.string.corner), "0", "");
-        pool_corner.setValue("" + afbApp.getRoulette01().getRoulettePool().getCorner(), "");
+        pool_corner.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getCorner(), "");
         strData.add(pool_corner);
 
         LiveInfoBean pool_line = new LiveInfoBean(getString(R.string.line), "0", "");
-        pool_line.setValue("" + afbApp.getRoulette01().getRoulettePool().getLine(), "");
+        pool_line.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getLine(), "");
         strData.add(pool_line);
 
         LiveInfoBean pool_colume = new LiveInfoBean(getString(R.string.colume), "0", "");
-        pool_colume.setValue("" + afbApp.getRoulette01().getRoulettePool().getColumn(), "");
+        pool_colume.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getColumn(), "");
         strData.add(pool_colume);
         LiveInfoBean pool_dozen = new LiveInfoBean(getString(R.string.dozen), "0", "");
-        pool_dozen.setValue("" + afbApp.getRoulette01().getRoulettePool().getDozen(), "");
+        pool_dozen.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getDozen(), "");
         strData.add(pool_dozen);
         LiveInfoBean pool_even = new LiveInfoBean(getString(R.string.even_lp), "0", "");
-        pool_even.setValue("" + afbApp.getRoulette01().getRoulettePool().getRed_black_odd_even_big_small(), "");
+        pool_even.setValue("" + mAppViewModel.getRoulette01().getRoulettePool().getRed_black_odd_even_big_small(), "");
         strData.add(pool_even);
 
 
@@ -2708,11 +2670,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void initUI() {
         rouletteTimer = 0;
-        afbApp.getRoulette01().setTimer(0);
+        mAppViewModel.getRoulette01().setTimer(0);
         gameNumber = "0";
         tv_table_timer.setText("0");
-        tv_game_number01.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
-        rouletteNumberTv.setText("RL1:" + afbApp.getRoulette01().getGameNumber());
+        tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+        rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
     }
 
     @Override
@@ -2736,12 +2698,15 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
+                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
             }
         }, 1000);
 //        startUpdateStatusThread();
         videoHelper.loadVideo();
     }
+
+
+
 
 
     public void clickSplit(View v) {
@@ -2881,7 +2846,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
                 roulette.setRoadOld(roulette.getRoad());
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    afbApp.showRoulette(roulette.getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
+                    mAppViewModel.showRoulette(roulette.getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
                 } else {
                     String roadDetail[] = roulette.getRoad().split("\\#");
                     if (roadDetail != null) {
@@ -2897,7 +2862,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 }
                 //      Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+roulette.getTableName()+",Luzi roads="+roulette.getRoadOld()+ ",Road="+roulette.getRoad()+",roadDetail="+roadDetail.length);
                 //更新局数
-                updateGameNumber(afbApp.getRoulette01(), tv_roulette_number, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
+                updateGameNumber(mAppViewModel.getRoulette01(), tv_roulette_number, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
                 updatePercentage();
             }
 
@@ -3061,7 +3026,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     public void clickChipBet(String number, String typebet, int chooseChip, int minLimit, int maxLimit,
                              int alreadyBet, int totalbet, FrameLayout fl_chip) {
         if (checkChoose()) return;
-        if (afbApp.getRoulette01().getGameStatus() != 1)
+        if (mAppViewModel.getRoulette01().getGameStatus() != 1)
             return;
         Log.i(WebSiteUrl.Tag, "alreadyBet = " + alreadyBet);
         boolean isIn = false;
@@ -3071,7 +3036,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             if (number.equals(listBetDetail.get(i).getNumber())) {
                 isIn = true;
                 listBetDetail.get(i).setClickCount(listBetDetail.get(i).getClickCount() + 1);
-                betMoney = afbApp.getBetMoney(chooseChip, minLimit,
+                betMoney = mAppViewModel.getBetMoney(chooseChip, minLimit,
                         maxLimit, listBetDetail.get(i).getClickCount(),
                         alreadyBet, totalbet, mContext, componentFront);
                 if (betMoney > 0) {
@@ -3089,7 +3054,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             betDetail.setNumber(number);
             betDetail.setClickCount(1);
 
-            betMoney = afbApp.getBetMoney(chooseChip, minLimit,
+            betMoney = mAppViewModel.getBetMoney(chooseChip, minLimit,
                     maxLimit, 1,
                     alreadyBet, totalbet, mContext, componentFront);
             betDetail.setMoney(betMoney);
@@ -3110,14 +3075,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     public void bet() {
-        if (afbApp.getRoulette01().getGameStatus() == 2 || afbApp.getRoulette01().getGameStatus() == 5)
+        if (mAppViewModel.getRoulette01().getGameStatus() == 2 || mAppViewModel.getRoulette01().getGameStatus() == 5)
             return;
-        if (afbApp.getUser().getBalance() <= 0) {
+        if (mAppViewModel.getUser().getBalance() <= 0) {
             ToastUtils.showToast(mContext, getString(R.string.Insufficient));
             return;
         }
         if (listBetDetail.size() > 0) {
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
             rouletteBet = new RouletteBet("all");
             threadRouletteBet = new Thread(rouletteBet);
 //            canBet = false;
@@ -3129,14 +3094,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     volatile boolean isCanbet = true;
 
     public void singleBet(String type) {
-        if (afbApp.getRoulette01().getGameStatus() == 2 || afbApp.getRoulette01().getGameStatus() == 5)
+        if (mAppViewModel.getRoulette01().getGameStatus() == 2 || mAppViewModel.getRoulette01().getGameStatus() == 5)
             return;
-        if (afbApp.getUser().getBalance() <= 0) {
+        if (mAppViewModel.getUser().getBalance() <= 0) {
             ToastUtils.showToast(mContext, getString(R.string.Insufficient));
             return;
         }
         if (listBetDetail.size() > 0) {
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
             rouletteBet = new RouletteBet(type);
             threadRouletteBet = new Thread(rouletteBet);
 //            canBet = false;
@@ -4149,7 +4114,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         List<BetDetail> betDetails = null;
         if (bRepeat) {
             listBetDetail.clear();
-            betDetails = afbApp.getRoulette01().getRouletteBetRepeatInformation().getBetDetail();
+            betDetails = mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().getBetDetail();
             if (betDetails.size() > 0) {
                 int sure = R.mipmap.sureimg_light;
                 if (currentSure != null && sure != 0) {
@@ -4159,10 +4124,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 if (currentCancel != null && no != 0) {
                     currentCancel.setBackgroundResource(no);
                 }
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
         } else {
-            betDetails = afbApp.getRoulette01().getRouletteBetInformation().getBetDetail();
+            betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
         }
         for (int i = 0; i < betDetails.size(); i++) {
             if (bRepeat)
@@ -4183,12 +4148,12 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     public void gotoLobby() {
-        afbApp.getRoulette01().Init();
-        //   afbApp.setTableId(0);
-        afbApp.setSerialId(0);
-        afbApp.setAreaId(0);
-        afbApp.setbLobby(true);
-        afbApp.getRoulette01().setRoadOld("");
+        mAppViewModel.getRoulette01().Init();
+        //   mAppViewModel.setTableId(0);
+        mAppViewModel.setSerialId(0);
+        mAppViewModel.setAreaId(0);
+        mAppViewModel.setbLobby(true);
+        mAppViewModel.getRoulette01().setRoadOld("");
 
 
         Bundle bundle = new Bundle();
@@ -4206,7 +4171,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             currentCancel.setBackgroundResource(no);
         }
         if (type.equals("all")) {
-            List<BetDetail> betDetails = afbApp.getRoulette01().getRouletteBetInformation().getBetDetail();
+            List<BetDetail> betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
             clearAllChips();
             for (int i = 0; i < betDetails.size(); i++) {
                 showBetChip(getFrameLayout(betDetails.get(i).getNumber()), true, betDetails.get(i).getMoney(), false);
@@ -4217,7 +4182,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 for (String number : smallList) {
                     showBetChipOld(getFrameLayout(number), false, 0);
                 }
-                List<BetDetail> betDetails = afbApp.getRoulette01().getRouletteBetInformation().getBetDetail();
+                List<BetDetail> betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
                 for (int i = 0; i < betDetails.size(); i++) {
                     if (smallList.contains(betDetails.get(i).getNumber())) {
                         showBetChip(getFrameLayout(betDetails.get(i).getNumber()), true, betDetails.get(i).getMoney(), false);
@@ -4229,7 +4194,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 for (String number : orphelinsList) {
                     showBetChipOld(getFrameLayout(number), false, 0);
                 }
-                List<BetDetail> betDetails = afbApp.getRoulette01().getRouletteBetInformation().getBetDetail();
+                List<BetDetail> betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
                 for (int i = 0; i < betDetails.size(); i++) {
                     if (orphelinsList.contains(betDetails.get(i).getNumber())) {
 
@@ -4242,7 +4207,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 for (String number : bigList) {
                     showBetChipOld(getFrameLayout(number), false, 0);
                 }
-                List<BetDetail> betDetails = afbApp.getRoulette01().getRouletteBetInformation().getBetDetail();
+                List<BetDetail> betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
                 for (int i = 0; i < betDetails.size(); i++) {
                     if (bigList.contains(betDetails.get(i).getNumber())) {
                         showBetChip(getFrameLayout(betDetails.get(i).getNumber()), true, betDetails.get(i).getMoney(), false);
@@ -4254,7 +4219,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 for (String number : zeroList) {
                     showBetChipOld(getFrameLayout(number), false, 0);
                 }
-                List<BetDetail> betDetails = afbApp.getRoulette01().getRouletteBetInformation().getBetDetail();
+                List<BetDetail> betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
                 for (int i = 0; i < betDetails.size(); i++) {
                     if (zeroList.contains(betDetails.get(i).getNumber())) {
                         showBetChipOld(getFrameLayout(betDetails.get(i).getNumber()), false, 0);
@@ -4268,7 +4233,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 if (chipHelper != null)
                     chipHelper.setOperationButtonDisplay(false);
                 showBetChipOld(fl, false, 0);
-                List<BetDetail> betDetails = afbApp.getRoulette01().getRouletteBetInformation().getBetDetail();
+                List<BetDetail> betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
                 for (int i = 0; i < betDetails.size(); i++) {
                     if (betDetails.get(i) != null && type.equals(betDetails.get(i).getNumber())) {
                         showBetChip(getFrameLayout(betDetails.get(i).getNumber()), true, betDetails.get(i).getMoney(), false);
@@ -4726,19 +4691,19 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     public void showResultsOnUI() {
-        if (afbApp.getRoulette01().getResult() != null && !"".equals(afbApp.getRoulette01().getResult())
-                && afbApp.getRoulette01().getGameStatus() == 5) {
+        if (mAppViewModel.getRoulette01().getResult() != null && !"".equals(mAppViewModel.getRoulette01().getResult())
+                && mAppViewModel.getRoulette01().getGameStatus() == 5) {
             int musicIndex = 17;
-            musicIndex += Integer.parseInt(afbApp.getRoulette01().getResult());
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, musicIndex, componentFront, mContext, afbApp.getFrontVolume());
-//            AnimationDrawable animationDrawable = getAnimationDrawable(afbApp.getRoulette01().getResult());
-            ResultHintBean animationDrawable = getAnimationDrawable(afbApp.getRoulette01().getResult());
+            musicIndex += Integer.parseInt(mAppViewModel.getRoulette01().getResult());
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, musicIndex, componentFront, mContext, mAppViewModel.getFrontVolume());
+//            AnimationDrawable animationDrawable = getAnimationDrawable(mAppViewModel.getRoulette01().getResult());
+            ResultHintBean animationDrawable = getAnimationDrawable(mAppViewModel.getRoulette01().getResult());
             if (animationDrawable == null) {
                 return;
             }
             animationDrawable.getImg().setBackgroundResource(animationDrawable.getRes());
-            if (!"0".equals(afbApp.getRoulette01().getResult())) {
-                switch (afbApp.getRoulette01().getResult()) {
+            if (!"0".equals(mAppViewModel.getRoulette01().getResult())) {
+                switch (mAppViewModel.getRoulette01().getResult()) {
 
                     case "2":
                     case "4":
@@ -4769,7 +4734,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 animationDrawable.getImg().setBackgroundResource(animationDrawable.getRes());
 
 
-                if (Integer.parseInt(afbApp.getRoulette01().getResult()) % 2 == 0) {
+                if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) % 2 == 0) {
                     animationDrawable = getAnimationDrawable("Even");
 
                 } else {
@@ -4780,7 +4745,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 animationDrawable.getImg().setBackgroundResource(animationDrawable.getRes());
 
 
-                if (Integer.parseInt(afbApp.getRoulette01().getResult()) > 18) {
+                if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) > 18) {
                     animationDrawable = getAnimationDrawable("High");
                 } else
                     animationDrawable = getAnimationDrawable("Low");
@@ -4788,17 +4753,17 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 animationDrawable.getImg().setBackgroundResource(animationDrawable.getRes());
 
 
-                if (Integer.parseInt(afbApp.getRoulette01().getResult()) > 0 && Integer.parseInt(afbApp.getRoulette01().getResult()) <= 12) {
+                if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) > 0 && Integer.parseInt(mAppViewModel.getRoulette01().getResult()) <= 12) {
                     animationDrawable = getAnimationDrawable("Col1");
-                } else if (Integer.parseInt(afbApp.getRoulette01().getResult()) >= 13 && Integer.parseInt(afbApp.getRoulette01().getResult()) <= 24) {
+                } else if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) >= 13 && Integer.parseInt(mAppViewModel.getRoulette01().getResult()) <= 24) {
                     animationDrawable = getAnimationDrawable("Col2");
-                } else if (Integer.parseInt(afbApp.getRoulette01().getResult()) >= 25 && Integer.parseInt(afbApp.getRoulette01().getResult()) <= 36) {
+                } else if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) >= 25 && Integer.parseInt(mAppViewModel.getRoulette01().getResult()) <= 36) {
                     animationDrawable = getAnimationDrawable("Col3");
                 }
 
                 animationDrawable.getImg().setBackgroundResource(animationDrawable.getRes());
 
-                switch (afbApp.getRoulette01().getResult()) {
+                switch (mAppViewModel.getRoulette01().getResult()) {
                     case "1":
                     case "4":
                     case "7":
@@ -4843,14 +4808,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickNumber(String number) {
-        int minLimit = afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet();
-        int maxLimit = afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet();
-        int alreadyBet = afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number);
-        int totalbet = afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet();
+        int minLimit = mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet();
+        int maxLimit = mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet();
+        int alreadyBet = mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number);
+        int totalbet = mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet();
         FrameLayout fl_chip = getFrameLayout(number);
         String typebet = "DirectBet";
         if (checkChoose()) return;
-        if (afbApp.getRoulette01().getGameStatus() != 1)
+        if (mAppViewModel.getRoulette01().getGameStatus() != 1)
             return;
 
         boolean isIn = false;
@@ -4860,7 +4825,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             if (number.equals(listBetDetail.get(i).getNumber())) {
                 isIn = true;
                 listBetDetail.get(i).setClickCount(listBetDetail.get(i).getClickCount() + 1);
-                betMoney = afbApp.getBetMoney(chooseChip, minLimit,
+                betMoney = mAppViewModel.getBetMoney(chooseChip, minLimit,
                         maxLimit, listBetDetail.get(i).getClickCount(),
                         alreadyBet, totalbet, mContext, componentFront);
                 if (betMoney > 0) {
@@ -4878,7 +4843,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             betDetail.setNumber(number);
             betDetail.setClickCount(1);
 
-            betMoney = afbApp.getBetMoney(chooseChip, minLimit,
+            betMoney = mAppViewModel.getBetMoney(chooseChip, minLimit,
                     maxLimit, 1,
                     alreadyBet, totalbet, mContext, componentFront);
             betDetail.setMoney(betMoney);
@@ -4900,10 +4865,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     public void clickNumber0(View v) {
 
         String number = "00";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
@@ -4911,456 +4876,456 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         //   showViewAnimation(v);
         //   showBetChipOld(flNumber01, true, 10);
         String number = "01";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet010203(View v) {
         String number = "010203";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber2(View v) {
 
         String number = "02";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber3(View v) {
 
         String number = "03";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber4(View v) {
 
         String number = "04";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber5(View v) {
 
         String number = "05";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber6(View v) {
 
         String number = "06";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber7(View v) {
 
         String number = "07";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber8(View v) {
 
         String number = "08";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber9(View v) {
 
         String number = "09";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber10(View v) {
 
         String number = "10";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber11(View v) {
 
         String number = "11";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber12(View v) {
 
         String number = "12";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber13(View v) {
 
         String number = "13";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber14(View v) {
 
         String number = "14";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber15(View v) {
         String number = "15";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber16(View v) {
 
         String number = "16";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber17(View v) {
         String number = "17";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber18(View v) {
         String number = "18";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber19(View v) {
 
         String number = "19";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber20(View v) {
         String number = "20";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber21(View v) {
 
         String number = "21";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber22(View v) {
 
         String number = "22";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber23(View v) {
 
         String number = "23";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber24(View v) {
 
         String number = "24";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber25(View v) {
 
         String number = "25";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber26(View v) {
 
         String number = "26";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber27(View v) {
 
         String number = "27";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber28(View v) {
 
         String number = "28";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber29(View v) {
 
         String number = "29";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber30(View v) {
         String number = "30";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber31(View v) {
 
         String number = "31";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber32(View v) {
 
         String number = "32";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber33(View v) {
 
         String number = "33";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber34(View v) {
         String number = "34";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber35(View v) {
 
         String number = "35";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickNumber36(View v) {
         String number = "36";
-        clickChipBet(number, "DirectBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DirectBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void click1Row1x2(View v) {
         if ((getNumberBetMoney("SndRow") > 0 && getNumberBetMoney("FristRow") > 0) ||
-                (afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndRow") > 0 &&
-                        afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristRow") > 0)) {
+                (mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndRow") > 0 &&
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristRow") > 0)) {
             Toast.makeText(mContext, R.string.show_limit_row, Toast.LENGTH_LONG).show();
             return;
         }
 
         String number = "ThrRow";
-        clickChipBet(number, "ThrRow", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "ThrRow", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void click2Row1x2(View v) {
         if ((getNumberBetMoney("ThrRow") > 0 && getNumberBetMoney("FristRow") > 0) ||
-                (afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrRow") > 0 &&
-                        afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristRow") > 0)) {
+                (mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrRow") > 0 &&
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristRow") > 0)) {
             Toast.makeText(mContext, R.string.show_limit_row, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "SndRow";
-        clickChipBet(number, "SndRow", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SndRow", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void click3Row1x2(View v) {
         if ((getNumberBetMoney("ThrRow") > 0 && getNumberBetMoney("SndRow") > 0) ||
-                (afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrRow") > 0 &&
-                        afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndRow") > 0)) {
+                (mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrRow") > 0 &&
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndRow") > 0)) {
             Toast.makeText(mContext, R.string.show_limit_row, Toast.LENGTH_LONG).show();
             return;
         }
 
         String number = "FristRow";
-        clickChipBet(number, "FristRow", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "FristRow", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickDozen1(View v) {
         if ((getNumberBetMoney("SndCol") > 0 && getNumberBetMoney("ThrCol") > 0) ||
-                (afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndCol") > 0 &&
-                        afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrCol") > 0)) {
+                (mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndCol") > 0 &&
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrCol") > 0)) {
             Toast.makeText(mContext, R.string.show_limit_column, Toast.LENGTH_LONG).show();
             return;
         }
 
         String number = "FristCol";
-        clickChipBet(number, "FristCol", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "FristCol", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickDozen2(View v) {
         if ((getNumberBetMoney("ThrCol") > 0 && getNumberBetMoney("FristCol") > 0) ||
-                (afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrCol") > 0 &&
-                        afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristCol") > 0)) {
+                (mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("ThrCol") > 0 &&
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristCol") > 0)) {
             Toast.makeText(mContext, R.string.show_limit_column, Toast.LENGTH_LONG).show();
             return;
         }
 
         String number = "SndCol";
-        clickChipBet(number, "SndCol", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SndCol", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickDozen3(View v) {
         if ((getNumberBetMoney("SndCol") > 0 && getNumberBetMoney("FristCol") > 0) ||
-                (afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndCol") > 0 &&
-                        afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristCol") > 0)) {
+                (mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("SndCol") > 0 &&
+                        mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("FristCol") > 0)) {
             Toast.makeText(mContext, R.string.show_limit_column, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "ThrCol";
-        clickChipBet(number, "ThrCol", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "ThrCol", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
@@ -5371,1044 +5336,1044 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void clickStreet000203(View view) {
         String number = "000203";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickHigh(View view) {
-        if (getNumberBetMoney("LowBet") > 0 || afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("LowBet") > 0) {
+        if (getNumberBetMoney("LowBet") > 0 || mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("LowBet") > 0) {
             Toast.makeText(mContext, R.string.show_limit_big_small, Toast.LENGTH_LONG).show();
             return;
         }
 
         String number = "HightBet";
-        clickChipBet(number, "HightBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "HightBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0306(View view) {
         String number = "0306";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0609(View view) {
         String number = "0609";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0912(View view) {
         String number = "0912";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1215(View view) {
         String number = "1215";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1518(View view) {
         String number = "1518";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1821(View view) {
         String number = "1821";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2124(View view) {
         String number = "2124";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2427(View view) {
         String number = "2427";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2730(View view) {
         String number = "2730";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit3033(View view) {
         String number = "3033";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit3336(View view) {
         String number = "3336";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0203(View view) {
         String number = "0203";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner02030506(View view) {
         String number = "02030506";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0506(View view) {
         String number = "0506";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner05060809(View view) {
         String number = "05060809";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0809(View view) {
         String number = "0809";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner08091112(View view) {
         String number = "08091112";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1112(View view) {
         String number = "1112";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner11121415(View view) {
         String number = "11121415";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1415(View view) {
         String number = "1415";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner14151718(View view) {
         String number = "14151718";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1718(View view) {
         String number = "1718";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner17182021(View view) {
         String number = "17182021";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2021(View view) {
         String number = "2021";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner20212324(View view) {
         String number = "20212324";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2324(View view) {
         String number = "2324";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner23242627(View view) {
         String number = "23242627";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2627(View view) {
         String number = "2627";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner26272930(View view) {
         String number = "26272930";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2930(View view) {
         String number = "2930";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner29303233(View view) {
         String number = "29303233";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit3233(View view) {
         String number = "3233";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner32333536(View view) {
         String number = "32333536";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clicksSlit3536(View view) {
         String number = "3536";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0002(View view) {
         String number = "0002";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0205(View view) {
         String number = "0205";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0508(View view) {
         String number = "0508";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0811(View view) {
         String number = "0811";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1114(View view) {
         String number = "1114";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1417(View view) {
         String number = "1417";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1720(View view) {
         String number = "1720";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2023(View view) {
         String number = "2023";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2326(View view) {
         String number = "2326";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2629(View view) {
         String number = "2629";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2932(View view) {
         String number = "2932";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit3235(View view) {
         String number = "3235";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet000102(View view) {
         String number = "000102";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0102(View view) {
         String number = "0102";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner01020405(View view) {
         String number = "01020405";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0405(View view) {
         String number = "0405";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner04050708(View view) {
         String number = "04050708";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0708(View view) {
         String number = "0708";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner07081011(View view) {
         String number = "07081011";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1011(View view) {
         String number = "1011";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner10111314(View view) {
         String number = "10111314";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1314(View view) {
         String number = "1314";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner13141617(View view) {
         String number = "13141617";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1617(View view) {
         String number = "1617";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner16171920(View view) {
         String number = "16171920";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1920(View view) {
         String number = "1920";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner19202223(View view) {
         String number = "19202223";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2223(View view) {
         String number = "2223";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner22232526(View view) {
         String number = "22232526";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2526(View view) {
         String number = "2526";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner25262829(View view) {
         String number = "25262829";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2829(View view) {
         String number = "2829";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner28293132(View view) {
         String number = "28293132";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit3132(View view) {
         String number = "3132";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner31323435(View view) {
         String number = "31323435";
-        clickChipBet(number, "AngleBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "AngleBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit3435(View view) {
         String number = "3435";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0001(View view) {
         String number = "0001";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0003(View view) {
         String number = "0003";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
 
     public void clickSplit0104(View view) {
         String number = "0104";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0407(View view) {
         String number = "0407";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit0710(View view) {
         String number = "0710";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1013(View view) {
         String number = "1013";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1316(View view) {
         String number = "1316";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1619(View view) {
         String number = "1619";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit1922(View view) {
         String number = "1922";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2225(View view) {
         String number = "2225";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2528(View view) {
         String number = "2528";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit2831(View view) {
         String number = "2831";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickSplit3134(View view) {
         String number = "3134";
-        clickChipBet(number, "SeparateBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "SeparateBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine010203040506(View view) {
         String number = "010203040506";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet040506(View view) {
         String number = "040506";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine040506070809(View view) {
         String number = "040506070809";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine070809101112(View view) {
         String number = "070809101112";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet101112(View view) {
         String number = "101112";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine101112131415(View view) {
         String number = "101112131415";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet131415(View view) {
         String number = "131415";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine131415161718(View view) {
         String number = "131415161718";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet161718(View view) {
         String number = "161718";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine161718192021(View view) {
         String number = "161718192021";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet192021(View view) {
         String number = "192021";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine192021222324(View view) {
         String number = "192021222324";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet222324(View view) {
         String number = "222324";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine222324252627(View view) {
         String number = "222324252627";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet252627(View view) {
         String number = "252627";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine252627282930(View view) {
         String number = "252627282930";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet282930(View view) {
         String number = "282930";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine282930313233(View view) {
         String number = "282930313233";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet313233(View view) {
         String number = "313233";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLine313233343536(View view) {
         String number = "313233343536";
-        clickChipBet(number, "LineBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LineBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet343536(View view) {
         String number = "343536";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickStreet070809(View view) {
         String number = "070809";
-        clickChipBet(number, "StreetBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "StreetBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickCorner00010203(View view) {
         String number = "FourBet";
-        clickChipBet(number, "FourBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "FourBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickLow(View view) {
-        if (getNumberBetMoney("HightBet") > 0 || afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("HightBet") > 0) {
+        if (getNumberBetMoney("HightBet") > 0 || mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("HightBet") > 0) {
             Toast.makeText(mContext, R.string.show_limit_big_small, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "LowBet";
-        clickChipBet(number, "LowBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "LowBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickBlack(View view) {
-        if (getNumberBetMoney("RedBet") > 0 || afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("RedBet") > 0) {
+        if (getNumberBetMoney("RedBet") > 0 || mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("RedBet") > 0) {
             Toast.makeText(mContext, R.string.show_limit_red_black, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "BlackBet";
-        clickChipBet(number, "BlackBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "BlackBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickRed(View view) {
-        if (getNumberBetMoney("BlackBet") > 0 || afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("BlackBet") > 0) {
+        if (getNumberBetMoney("BlackBet") > 0 || mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("BlackBet") > 0) {
             Toast.makeText(mContext, R.string.show_limit_red_black, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "RedBet";
-        clickChipBet(number, "RedBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "RedBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickOdd(View view) {
-        if (getNumberBetMoney("EvenBet") > 0 || afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("EvenBet") > 0) {
+        if (getNumberBetMoney("EvenBet") > 0 || mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("EvenBet") > 0) {
             Toast.makeText(mContext, R.string.show_limit_odd_even, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "OddBet";
-        clickChipBet(number, "OddBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "OddBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickEven(View view) {
-        if (getNumberBetMoney("OddBet") > 0 || afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney("OddBet") > 0) {
+        if (getNumberBetMoney("OddBet") > 0 || mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney("OddBet") > 0) {
             Toast.makeText(mContext, R.string.show_limit_odd_even, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "EvenBet";
-        clickChipBet(number, "EvenBet", chooseChip, afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
-                afbApp.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
-                afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "EvenBet", chooseChip, mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet(),
+                mAppViewModel.getRoulette01().getRouletteBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
 
     }
@@ -6539,9 +6504,9 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         TextView tv_pop_number = (TextView) fl_roulette_result.findViewById(R.id.tv_pop_number);
         TextView tv_red_black = (TextView) fl_roulette_result.findViewById(R.id.tv_red_black);
         TextView tv_odd_even = (TextView) fl_roulette_result.findViewById(R.id.tv_odd_even);
-        if (afbApp.getRoulette01().getResult() != null && !"".equals(afbApp.getRoulette01().getResult())
+        if (mAppViewModel.getRoulette01().getResult() != null && !"".equals(mAppViewModel.getRoulette01().getResult())
         ) {
-            switch (afbApp.getRoulette01().getResult()) {
+            switch (mAppViewModel.getRoulette01().getResult()) {
                 case "2":
                 case "4":
                 case "6":
@@ -6575,7 +6540,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 //                            tv_pop_number.setBackgroundResource(R.drawable.rectangle_red_corner2);
                     break;
             }
-            String resultStr = afbApp.getRoulette01().getResult();
+            String resultStr = mAppViewModel.getRoulette01().getResult();
             tv_pop_number.setText(resultStr);
             int result = Integer.parseInt(resultStr);
             if (result % 2 == 0) {
@@ -6642,7 +6607,9 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             lvBaccaratChips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
             roulette_content_fgv = (RecyclerView) findViewById(R.id.roulette_content_fgv);
         } else {
-            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+
+            {
                 lvBaccaratChips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
                 roulette_content_fgv = (RecyclerView) findViewById(R.id.roulette_content_fgv);
                 bigGradLayout = (GridLayout) findViewById(R.id.baccarat_gridlayout2);
@@ -6664,13 +6631,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         handler.removeCallbacksAndMessages(null);
     }
 
-    @Bind(R.id.ll_info)
+    @BindView(R2.id.ll_info)
     LinearLayout ll_info;
-    @Bind(R.id.lv_user_info)
+    @BindView(R2.id.lv_user_info)
     ListView lv_user_info;
-    @Bind(R.id.lv_pool)
+    @BindView(R2.id.lv_pool)
     ListView lv_pool;
-    @Bind(R.id.tv_time)
+    @BindView(R2.id.tv_time)
     TextView tv_time;
 
     @Override
@@ -6693,67 +6660,67 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         String name = usName;
         data = new LiveInfoBean(getString(R.string.ID), name.toUpperCase(), "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), afbApp.getRoulette01().getRouletteBetInformation().getAllBetMoney() + "", "");
+        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getRoulette01().getRouletteBetInformation().getAllBetMoney() + "", "");
         if (Integer.parseInt(data.getValue1()) > 0) {
-            rightBetTv.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1())) + "");
+            rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
         } else {
             rightBetTv.setText(getString(R.string.BET) + " :0");
         }
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.W_L), afbApp.getRoulette01().getWonMoney() + "", "");
-        if (afbApp.getRoulette01().getWonMoney() > 0) {
+        data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getRoulette01().getWonMoney() + "", "");
+        if (mAppViewModel.getRoulette01().getWonMoney() > 0) {
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getRoulette01().getWonMoney()) + "");
-        } else if (afbApp.getRoulette01().getWonMoney() == 0) {
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getRoulette01().getWonMoney()) + "");
+        } else if (mAppViewModel.getRoulette01().getWonMoney() == 0) {
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.bet_color));
             rightWinLoseTv.setText(getString(R.string.W_L) + " :0");
         } else {
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getRoulette01().getWonMoney()) + "");
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getRoulette01().getWonMoney()) + "");
         }
         strData.add(data);
-        data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, getApp().getUser().getBalance() + "", "");
-        rightBalanceTv.setText(getApp().getUser().getBalance() + "");
+        data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, mAppViewModel.getUser().getBalance() + "", "");
+        rightBalanceTv.setText(mAppViewModel.getUser().getBalance() + "");
         strData.add(data);
         LiveInfoBean limit = new LiveInfoBean(getString(R.string.LIMIT_POP), "0", "");
 
         LiveInfoBean pool_max_min = new LiveInfoBean(getString(R.string.min_max), "0", "");
-        int index = afbApp.getRoulette01().getLimitIndex();
-        int minTotal = afbApp.getRoulette01().getRouletteLimit(index).getMinTotalBet();
-        int maxTotal = afbApp.getRoulette01().getRouletteLimit(index).getMaxTotalBet();
-        limit.setValue("" + afbApp.covertLimit(minTotal), afbApp.covertLimit(maxTotal));
-        pool_max_min.setValue("" + afbApp.covertLimit(minTotal), afbApp.covertLimit(maxTotal));
+        int index = mAppViewModel.getRoulette01().getLimitIndex();
+        int minTotal = mAppViewModel.getRoulette01().getRouletteLimit(index).getMinTotalBet();
+        int maxTotal = mAppViewModel.getRoulette01().getRouletteLimit(index).getMaxTotalBet();
+        limit.setValue("" + mAppViewModel.covertLimit(minTotal), mAppViewModel.covertLimit(maxTotal));
+        pool_max_min.setValue("" + mAppViewModel.covertLimit(minTotal), mAppViewModel.covertLimit(maxTotal));
         strData.add(limit);
         strData.add(pool_max_min);
 
         LiveInfoBean pool_single = new LiveInfoBean(getString(R.string.single), "0", "");
-        pool_single.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinNumberBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxNumberBet()));
+        pool_single.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinNumberBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxNumberBet()));
         strData.add(pool_single);
 
         LiveInfoBean pool_split = new LiveInfoBean(getString(R.string.split), "0", "");
-        pool_split.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinSplitBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxSplitBet()));
+        pool_split.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinSplitBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxSplitBet()));
         strData.add(pool_split);
 
         LiveInfoBean pool_street = new LiveInfoBean(getString(R.string.street), "0", "");
-        pool_street.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinStreetBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxStreetBet()));
+        pool_street.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinStreetBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxStreetBet()));
         strData.add(pool_street);
 
         LiveInfoBean pool_corner = new LiveInfoBean(getString(R.string.corner), "0", "");
-        pool_corner.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinCornerBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxCornerBet()));
+        pool_corner.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinCornerBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxCornerBet()));
         strData.add(pool_corner);
 
         LiveInfoBean pool_line = new LiveInfoBean(getString(R.string.line), "0", "");
-        pool_line.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinLineBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxLineBet()));
+        pool_line.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinLineBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxLineBet()));
         strData.add(pool_line);
 
         LiveInfoBean pool_colume = new LiveInfoBean(getString(R.string.colume), "0", "");
-        pool_colume.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
+        pool_colume.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
         strData.add(pool_colume);
         LiveInfoBean pool_dozen = new LiveInfoBean(getString(R.string.dozen), "0", "");
-        pool_dozen.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
+        pool_dozen.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet()));
         strData.add(pool_dozen);
         LiveInfoBean pool_even = new LiveInfoBean(getString(R.string.even_lp), "0", "");
-        pool_even.setValue("" + afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMinEvenOddBet()), afbApp.covertLimit(afbApp.getRoulette01().getRouletteLimit(afbApp.getRoulette01().getLimitIndex()).getMaxEvenOddBet()));
+        pool_even.setValue("" + mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinEvenOddBet()), mAppViewModel.covertLimit(mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxEvenOddBet()));
         strData.add(pool_even);
         return strData;
     }
@@ -6791,14 +6758,5 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
         });
         contentInfo.setData(updateInfoData());
-    }
-
-    @Override
-    public void onInGameChooseLanguage() {
-        fl_roulette_board_bg.setBackgroundResource(0);
-        fl_roulette_board_bg_new.setBackgroundResource(0);
-        fl_roulette_board_bg.setBackgroundResource(R.mipmap.roulette_board);
-        fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.roulette_board_new1);
-        updatePercentage();
     }
 }

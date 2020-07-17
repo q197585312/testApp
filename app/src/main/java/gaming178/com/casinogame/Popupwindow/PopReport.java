@@ -11,7 +11,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -53,7 +52,7 @@ public class PopReport extends BasePopupWindow {
             language = "cn";
         }
         activity = (BaseActivity) context;
-        url = WebSiteUrl.REPORT_URL + "?Usid=" + activity.getApp().getUser().getName() + "&lng=" + language;
+        url = WebSiteUrl.REPORT_URL + "?Usid=" + activity.mAppViewModel.getUser().getName() + "&lng=" + language;
         webView = (WebView) view.findViewById(R.id.wv_report);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
@@ -87,10 +86,10 @@ public class PopReport extends BasePopupWindow {
         // 每次移除会有Cookie不一致问题，注释该地方
         //mCookieManager.removeSessionCookie();// 移除
         // Cookie是通过我们Volley活着HttpClient获取的
-        //  Log.i(WebSiteUrl.Tag,"cookie="+afbApp.getHttpClient().getCookie());
-        if (activity.getApp() != null) {
-            if (activity.getApp().getHttpClient() != null) {
-                String cookie = activity.getApp().getHttpClient().getCookie();
+        //  Log.i(WebSiteUrl.Tag,"cookie="+mAppViewModel.getHttpClient().getCookie());
+        if (activity.mAppViewModel != null) {
+            if (activity.mAppViewModel.getHttpClient() != null) {
+                String cookie = activity.mAppViewModel.getHttpClient().getCookie();
                 if (!TextUtils.isEmpty(cookie)) {
                     mCookieManager.setCookie(url, cookie);
                     CookieSyncManager.getInstance().sync();

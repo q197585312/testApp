@@ -25,6 +25,7 @@
             android:src="@mipmap/you_here_white"></ImageView>
 
         <TextView
+            android:id="@+id/tv_here"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

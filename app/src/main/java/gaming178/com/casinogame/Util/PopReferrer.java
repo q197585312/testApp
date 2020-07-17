@@ -76,8 +76,8 @@ public class PopReferrer extends BasePopupWindow {
                 String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getRefPlayer.jsp";
                 String param = "labelid=" + BuildConfig.Labelid;
                 LobbyActivity a = (LobbyActivity) context;
-                if (a.getApp().getHttpClient() != null) {
-                    String s = a.getApp().getHttpClient().sendPost(url, param);
+                if (a.mAppViewModel.getHttpClient() != null) {
+                    String s = a.mAppViewModel.getHttpClient().sendPost(url, param);
                     handler.sendMessage(handler.obtainMessage(1, s));
                 }
             }
