@@ -181,7 +181,7 @@ public class TableChangePop extends BasePopupWindow {
                             }
                         }
                     });
-                    String strRes = baseActivity.getApp().getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A_B, "GameType=11&Tbid=0&Usid=" + baseActivity.getApp().getUser().getName());
+                    String strRes = baseActivity.getApp().getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + baseActivity.getApp().getUser().getName());
                     if (strRes.startsWith("Results=ok")) {
                         String[] split = strRes.split("\\^");
                         //Results=ok#^1#1#18#^2#2#0#^3#5#0#^5#2#0#^21#2#0#^31#1#10#^61#5#0#^62#5#0#^63#1#0#^64#5#0#^65#5#0#^66#5#0#^71#2#0#^

@@ -210,10 +210,10 @@ public class PopGoodRoad extends BasePopupWindow {
         new Thread() {
             @Override
             public void run() {
-                String strRes = baseActivity.getApp().getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A_B, "GameType=11&Tbid=0&Usid=" + baseActivity.getApp().getUser().getName());
+                String strRes = baseActivity.getApp().getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + baseActivity.getApp().getUser().getName());
                 if (strRes.startsWith("Results=ok")) {
                     final String[] split = strRes.split("\\^");
-                    //Results=ok#^1#1#18#^2#2#0#^3#5#0#^5#2#0#^21#2#0#^31#1#10#^61#5#0#^62#5#0#^63#1#0#^64#5#0#^65#5#0#^66#5#0#^71#2#0#^
+                    //Results=ok#^1#1#21#^2#2#0#^3#1#25#^5#1#10#^21#1#37#^31#1#20#^71#2#0#^61#2#0#^62#1#12#^63#1#24#^
                     baseActivity.getHandler().post(new Runnable() {
                         @Override
                         public void run() {
@@ -267,7 +267,7 @@ public class PopGoodRoad extends BasePopupWindow {
                                     img_good_road3.setImageResource(goodRoadDataBean.getPic());
                                     viewGoodRoad3.setVisibility(View.VISIBLE);
                                 } else if (tableId.equals("61")) {
-                                    int timer = Integer.parseInt(split[7].split("#")[2]);
+                                    int timer = Integer.parseInt(split[8].split("#")[2]);
                                     if (timer < 6) {
                                         tv_timer61.setTextColor(Color.RED);
                                     } else {
@@ -282,7 +282,7 @@ public class PopGoodRoad extends BasePopupWindow {
                                     img_good_road61.setImageResource(goodRoadDataBean.getPic());
                                     viewGoodRoad61.setVisibility(View.VISIBLE);
                                 } else if (tableId.equals("62")) {
-                                    int timer = Integer.parseInt(split[8].split("#")[2]);
+                                    int timer = Integer.parseInt(split[9].split("#")[2]);
                                     if (timer < 6) {
                                         tv_timer62.setTextColor(Color.RED);
                                     } else {
@@ -297,7 +297,7 @@ public class PopGoodRoad extends BasePopupWindow {
                                     img_good_road62.setImageResource(goodRoadDataBean.getPic());
                                     viewGoodRoad62.setVisibility(View.VISIBLE);
                                 } else if (tableId.equals("63")) {
-                                    int timer = Integer.parseInt(split[9].split("#")[2]);
+                                    int timer = Integer.parseInt(split[10].split("#")[2]);
                                     if (timer < 6) {
                                         tv_timer63.setTextColor(Color.RED);
                                     } else {
@@ -312,7 +312,7 @@ public class PopGoodRoad extends BasePopupWindow {
                                     img_good_road63.setImageResource(goodRoadDataBean.getPic());
                                     viewGoodRoad63.setVisibility(View.VISIBLE);
                                 } else if (tableId.equals("71")) {
-                                    int timer = Integer.parseInt(split[13].split("#")[2]);
+                                    int timer = Integer.parseInt(split[7].split("#")[2]);
                                     if (timer < 6) {
                                         tv_timer71.setTextColor(Color.RED);
                                     } else {
