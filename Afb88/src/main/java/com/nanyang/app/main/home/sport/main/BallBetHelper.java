@@ -17,8 +17,6 @@ import java.util.List;
 
 import cn.finalteam.toolsfinal.StringUtils;
 
-import static com.nanyang.app.AfbUtils.getMethodName;
-
 /**
  * Created by Administrator on 2017/3/15.
  */
@@ -60,7 +58,6 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         final AfbApplication app = (AfbApplication) AfbApplication.getInstance();
         if (app.getMixBetList().size() < 1) {
             app.isSingleBet = true;
-            getMethodName();
         }
         if (app.isSingleBet) {
             handler.postDelayed(new Runnable() {
@@ -70,7 +67,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                     if ((baseActivity).getBetContent().v.getVisibility() == View.VISIBLE)
                         (baseActivity).getBetContent().stopUpdateOdds();
 
-                    if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
+                    if (oddsUrlBean!=null&&!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
                         LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
                         if (hasPar && typeHasPar) {
                             saveCurrentMixBet(oddsUrlBean);
@@ -81,6 +78,8 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                         if (StringUtils.isEmpty(app.getRefreshSingleOddsUrl())) {
                             (baseActivity).getBetContent().closePopupWindow();
                         } else {
+                            if (baseActivity.getOtType().toLowerCase().startsWith("r"))
+                                (baseActivity).getBetContent().isNeedInitWeb = true;
                             getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
                         }
                     }

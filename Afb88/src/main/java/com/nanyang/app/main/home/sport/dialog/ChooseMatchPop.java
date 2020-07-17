@@ -1,12 +1,13 @@
 package com.nanyang.app.main.home.sport.dialog;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -20,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 
@@ -60,16 +61,16 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
 
     List<T> tList;
     /*
-        @Bind(R.id.tv_toolbar_title)
+        @BindView(R.id.tv_toolbar_title)
         TextView tvToolbarTitle;
-        @Bind(R.id.tv_toolbar_right)
+        @BindView(R.id.tv_toolbar_right)
         TextView tvToolbarRight;
-        @Bind(R.id.toolbar)
+        @BindView(R.id.toolbar)
         Toolbar toolbar;*/
-    @Bind(R.id.base_rv)
+    @BindView(R.id.base_rv)
     RecyclerView baseRv;
 
-    @Bind(R.id.tv_submit)
+    @BindView(R.id.tv_submit)
     TextView tvSubmit;
 
     public ChooseMatchPop(Context context, View v, String type) {

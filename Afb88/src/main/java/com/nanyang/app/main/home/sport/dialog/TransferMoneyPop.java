@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
@@ -17,15 +17,15 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  */
 public abstract class TransferMoneyPop extends BasePopupWindow {
     Context context;
-    @Bind(R.id.tv_money_balance)
+    @BindView(R.id.tv_money_balance)
     TextView tv_balance;
-    @Bind(R.id.tv_casino_balance)
+    @BindView(R.id.tv_casino_balance)
     TextView tv_casino_balance;
-    @Bind(R.id.bet_amount_edt)
+    @BindView(R.id.bet_amount_edt)
     EditText edt_amount;
-    @Bind(R.id.tv_cancel_btn)
+    @BindView(R.id.tv_cancel_btn)
     TextView tv_cancel;
-    @Bind(R.id.tv_sure_btn)
+    @BindView(R.id.tv_sure_btn)
     TextView tv_sure;
 
     public TransferMoneyPop(Context context, View v) {

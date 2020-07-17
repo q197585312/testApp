@@ -41,7 +41,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
     protected void initView() {
         super.initView();
         tv_username = (TextView) findViewById(R.id.tv_username);
-        tv_username.setText("User Name:" + getApp().getUser().getName());
+        tv_username.setText("User Name:" + mAppViewModel.getUser().getName());
         tv_ok = (TextView) findViewById(R.id.tv_ok);
         edt_old_passwrod = (EditText) findViewById(R.id.edt_old_passwrod);
         edt_new_passwrod = (EditText) findViewById(R.id.edt_new_passwrod);
@@ -61,10 +61,8 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_ok:
-                submit();
-                break;
+        if (v.getId() == R.id.tv_ok) {
+            submit();
         }
     }
 
@@ -104,10 +102,10 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
             public void run() {
                 String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "changepwd.jsp";
                 String param = "oldpass=" + oldPassword + "&newpass1=" + newPassword + "&newpass2=" + confirmPassword;
-                if (afbApp.getHttpClient() == null || TextUtils.isEmpty(url) || TextUtils.isEmpty(param)) {
+                if (mAppViewModel.getHttpClient() == null || TextUtils.isEmpty(url) || TextUtils.isEmpty(param)) {
                     return;
                 }
-                String result = afbApp.getHttpClient().sendPost(url, param);
+                String result = mAppViewModel.getHttpClient().sendPost(url, param);
                 if (result.startsWith("Results=error")) {
                     handler.sendEmptyMessage(0);
                 } else if (result.startsWith("Results=ok")) {

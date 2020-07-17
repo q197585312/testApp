@@ -13,20 +13,21 @@ import com.unkonw.testapp.libs.base.BaseFragment;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * Created by Administrator on 2019/4/4.
  */
 
 public class BetCenterFragment extends BaseMoreFragment {
-    @Bind(R.id.rg_bet_center)
+    @BindView(R.id.rg_bet_center)
     RadioGroup rgBetCenter;
-    @Bind(R.id.rb_unsettled)
+    @BindView(R.id.rb_unsettled)
     RadioButton rbUnsettled;
-    @Bind(R.id.rb_statement)
+    @BindView(R.id.rb_statement)
     RadioButton rbStatement;
-    @Bind(R.id.rb_grade)
+    @BindView(R.id.rb_grade)
     RadioButton rbGrade;
 
     List<BaseFragment> baseFragmentList;
@@ -36,7 +37,7 @@ public class BetCenterFragment extends BaseMoreFragment {
     public static String unsettled = "unsettled";
     public static String statementNew = "statementNew";
     public static String grade = "grade";
-    private BaseFragment indexFragment ;
+    private BaseFragment indexFragment;
 
     @Override
     public int onSetLayoutId() {
@@ -80,6 +81,7 @@ public class BetCenterFragment extends BaseMoreFragment {
                         currentIndex = 2;
                         break;
                 }
+
                 switchFragment();
             }
         });
@@ -101,9 +103,9 @@ public class BetCenterFragment extends BaseMoreFragment {
         }
 
         BaseFragment fragment = baseFragmentList.get(currentIndex);
-        if (indexFragment == null||(fragment!=null&&!fragment .equals(indexFragment) ) ) {
+        if (indexFragment == null || (fragment != null && !fragment.equals(indexFragment))) {
             getBaseActivity().showFragmentToActivity(fragment, R.id.fl_betCenter_content);
-            if (indexFragment != null  ) {
+            if (indexFragment != null) {
                 getBaseActivity().hideFragmentToActivity(indexFragment);
             }
             indexFragment = fragment;

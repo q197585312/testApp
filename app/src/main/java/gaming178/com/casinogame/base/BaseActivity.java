@@ -22,16 +22,17 @@ import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.unkonw.testapp.libs.base.BaseApplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,15 +43,12 @@ import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Activity.ChangePasswordActivity;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
-import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.ReportFormActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
-import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Bean.BaccaratOtherUserBetInfomation;
 import gaming178.com.casinogame.Bean.BaccaratPlayer;
 import gaming178.com.casinogame.Bean.ChipBean;
-import gaming178.com.casinogame.Bean.DragonTiger;
 import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
@@ -58,15 +56,12 @@ import gaming178.com.casinogame.Popupwindow.PopReferralList;
 import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.ActivityPageManager;
-import gaming178.com.casinogame.Util.AfbApp;
 import gaming178.com.casinogame.Util.AfbUtils;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.FrontMuzicService;
-import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
-import gaming178.com.casinogame.Util.PopChooseChip;
 import gaming178.com.casinogame.Util.PopReferrer;
 import gaming178.com.casinogame.Util.TableChangePop;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -97,7 +92,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     private Thread threadGameStatus = null;
     private UpdateGameTimer updateGameTimer = null;
     private Thread threadGameTimer = null;
-    protected AfbApp afbApp = null;
+
     protected boolean bGetGameStatus = true;
     protected boolean bGetGameTimer = true;
     private String strResultsOld = "";
@@ -132,10 +127,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     protected LinearLayout ll_more_info;
     public float poolSize = 12;
+    public AppModel mAppViewModel;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        afbApp = getApp();
+
     }
 
     public void setOtherUserBetInformation(String areaId, String type, String money) {
@@ -144,7 +140,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         baccaratOtherUserBetInformation.setType(type);
         baccaratOtherUserBetInformation.setBetMoney(Integer.parseInt(money));
         Log.i(WebSiteUrl.Tag, "areaId=" + areaId + ",type=" + type + ",money=" + money);
-        afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetInfomation().add(baccaratOtherUserBetInformation);
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().add(baccaratOtherUserBetInformation);
     }
 
     public void getBaccaratStatus(String strRes) {
@@ -168,7 +164,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     for (int i = 1; i < tableDetailTemp.length; i++) {
                         tableDetail[i + 1] = tableDetailTemp[i];
                     }
-                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().Init();
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().Init();
 
                 } else if (tableDetailTemp.length == 17) {
                     tableDetail = new String[tableDetail.length + 1];
@@ -182,11 +178,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 if (tableDetail.length >= 14) {
                     // 第0个数据还要根据^拆分得到用户的下注信息
                     String betDetail[] = tableDetail[0].split("\\^");
-                    if (tableDetail[0].length() > 12 && !afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetString().equals(tableDetail[0]) && betDetail.length > 1) {
+                    if (tableDetail[0].length() > 12 && !mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetString().equals(tableDetail[0]) && betDetail.length > 1) {
                         //     Log.i(WebSiteUrl.Tag,"User BetInfo = "+betDetail[1]);
-                        afbApp.getBaccarat(afbApp.getTableId()).setOtherUserBetString(tableDetail[0]);
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setOtherUserBetString(tableDetail[0]);
 
-                        afbApp.getBaccarat(afbApp.getTableId()).getOtherUserBetInfomation().clear();
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().clear();
 
                         for (int j = 0; j < betDetail.length; j++) {
                             if (j == 0)
@@ -303,10 +299,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
                     }
                     ///////////第1个数据是次桌会员信息
-                    if (!afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPlayerString().equals(tableDetail[1])) {
-                        afbApp.getBaccarat(afbApp.getTableId()).setBaccaratPlayerString(tableDetail[1]);
+                    if (!mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayerString().equals(tableDetail[1])) {
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBaccaratPlayerString(tableDetail[1]);
                         String playerDetail[] = tableDetail[1].split("\\^");
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPlayer().clear();
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayer().clear();
                         for (int i = 0; i < playerDetail.length; i++) {
                             if (playerDetail[i] != null && !"".equals(playerDetail[i])) {
                                 String detail[] = playerDetail[i].split(":");
@@ -314,7 +310,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                     BaccaratPlayer baccaratPlayer = new BaccaratPlayer();
                                     baccaratPlayer.setName(detail[1]);
                                     baccaratPlayer.setNumber(detail[0]);
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPlayer().add(baccaratPlayer);
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayer().add(baccaratPlayer);
                                 }
 
                             }
@@ -322,68 +318,68 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     }
 
                     ///////////第2个数据是游戏状态
-                    afbApp.getBaccarat(afbApp.getTableId()).setGameStatus(Integer.parseInt(tableDetail[2]));
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameStatus(Integer.parseInt(tableDetail[2]));
                     ///////////第3个数据是倒计时
                     //   Log.i(WebSiteUrl.Tag,"baccaratTimer Base= "+tableDetail[3]);
-                    afbApp.getBaccarat(afbApp.getTableId()).setTimer(Integer.parseInt(tableDetail[3]));
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setTimer(Integer.parseInt(tableDetail[3]));
                     ///////////第4个数据是结果,将结果拆分好，放到路子信息里面
                     if (!"".equals(tableDetail[4]) && !"0".equals(tableDetail[4]) && tableDetail[4].length() == 4) {
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBanker_palyer_tie(Integer.parseInt(tableDetail[4].substring(0, 1)));
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBankerPair(Integer.parseInt(tableDetail[4].substring(1, 2)));
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setPlayerPair(Integer.parseInt(tableDetail[4].substring(2, 3)));
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBig_small(Integer.parseInt(tableDetail[4].substring(3, 4)));
-                        //   String road = afbApp.getBaccarat(afbApp.getTableId()).getBigRoad();
-                        //  afbApp.getBaccarat(afbApp.getTableId()).setBigRoad(road+tableDetail[4]);
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setBanker_palyer_tie(Integer.parseInt(tableDetail[4].substring(0, 1)));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setBankerPair(Integer.parseInt(tableDetail[4].substring(1, 2)));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setPlayerPair(Integer.parseInt(tableDetail[4].substring(2, 3)));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setBig_small(Integer.parseInt(tableDetail[4].substring(3, 4)));
+                        //   String road = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad();
+                        //  mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoad(road+tableDetail[4]);
                     }
                     ///////////第5个数据是庄下注
                     //    Log.i(WebSiteUrl.Tag,"BankerPool = "+Integer.parseInt(tableDetail[5]));
-                    if (!afbApp.getBaccarat(afbApp.getTableId()).getPoolString().equals(tableDetail[5] + tableDetail[6] + tableDetail[7]
+                    if (!mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getPoolString().equals(tableDetail[5] + tableDetail[6] + tableDetail[7]
                             + tableDetail[8] + tableDetail[9] + tableDetail[10] + tableDetail[11])) {
-                        afbApp.getBaccarat(afbApp.getTableId()).setPoolString(tableDetail[5] + tableDetail[6] + tableDetail[7]
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setPoolString(tableDetail[5] + tableDetail[6] + tableDetail[7]
                                 + tableDetail[8] + tableDetail[9] + tableDetail[10] + tableDetail[11]);
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().setBanker(Integer.parseInt(tableDetail[5]));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setBanker(Integer.parseInt(tableDetail[5]));
                         ///////////第6个数据是闲下注
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().setPlayer(Integer.parseInt(tableDetail[6]));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setPlayer(Integer.parseInt(tableDetail[6]));
                         ///////////第7个数据是和下注
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().setTie(Integer.parseInt(tableDetail[7]));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setTie(Integer.parseInt(tableDetail[7]));
                         ///////////第8个数据是庄对下注
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().setBankerPair(Integer.parseInt(tableDetail[8]));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setBankerPair(Integer.parseInt(tableDetail[8]));
                         ///////////第9个数据是闲对下注
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().setPlayerPair(Integer.parseInt(tableDetail[9]));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setPlayerPair(Integer.parseInt(tableDetail[9]));
                         ///////////第10个数据是大下注
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().setBig(Integer.parseInt(tableDetail[10]));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setBig(Integer.parseInt(tableDetail[10]));
                         ///////////第11个数据是小下注
-                        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPool().setSmall(Integer.parseInt(tableDetail[11]));
+                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setSmall(Integer.parseInt(tableDetail[11]));
                     }
 
 
                     ///////////第12个数据是系统时间
-                    afbApp.getBaccarat(afbApp.getTableId()).setServerTime(tableDetail[12].substring(0, tableDetail[12].length() - 3));
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setServerTime(tableDetail[12].substring(0, tableDetail[12].length() - 3));
 
-                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().Init();
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().Init();
                     Log.d("GameStatus123", "Banker: " + tableDetail[15] + "-" + tableDetail[16] + "-" + tableDetail[17]);
                     if (tableDetail.length > 15) {
                         if (!"null".equals(tableDetail[15]))
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker1(Integer.parseInt(tableDetail[15]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker1(Integer.parseInt(tableDetail[15]));
                         if (!"null".equals(tableDetail[16]))
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker2(Integer.parseInt(tableDetail[16]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker2(Integer.parseInt(tableDetail[16]));
                         if (!"null".equals(tableDetail[17]))
-                            afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker3(Integer.parseInt(tableDetail[17]));
+                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker3(Integer.parseInt(tableDetail[17]));
                         //拆分扑克牌信息
                         if (tableInfo.length >= 2) {
                             String pokerDetailPlayer[] = tableInfo[1].split("#");
                             Log.d("GameStatus123", "Player: " + tableInfo[1]);
                             if (pokerDetailPlayer.length > 3) {
                                 if (!"null".equals(pokerDetailPlayer[0]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
                                 if (!"null".equals(pokerDetailPlayer[1]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
                                 if (!"null".equals(pokerDetailPlayer[2]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
 
-                                afbApp.getBaccarat(afbApp.getTableId()).setShoeNumber(pokerDetailPlayer[3]);
+                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setShoeNumber(pokerDetailPlayer[3]);
                                 LogUtil.d("tv_baccarat_shoe_number", "getBaccaratStatus,setShoeNumber:" + pokerDetailPlayer[3] + "," + pokerDetailPlayer[4]);
-                                afbApp.getBaccarat(afbApp.getTableId()).setGameNumber(pokerDetailPlayer[4]);
+                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameNumber(pokerDetailPlayer[4]);
 
                             }
 
@@ -394,26 +390,26 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             String pokerDetailBanker[] = tableInfo[1].split("#");
                             if (pokerDetailBanker.length == 3) {
                                 if (!"null".equals(pokerDetailBanker[0]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker1(Integer.parseInt(pokerDetailBanker[0]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker1(Integer.parseInt(pokerDetailBanker[0]));
                                 if (!"null".equals(pokerDetailBanker[1]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker2(Integer.parseInt(pokerDetailBanker[1]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker2(Integer.parseInt(pokerDetailBanker[1]));
                                 if (!"null".equals(pokerDetailBanker[2]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker3(Integer.parseInt(pokerDetailBanker[2]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker3(Integer.parseInt(pokerDetailBanker[2]));
 
                             }
                             Log.d("GameStatus123", "Player: " + tableInfo[2]);
                             String pokerDetailPlayer[] = tableInfo[2].split("#");
                             if (pokerDetailPlayer.length > 3) {
                                 if (!"null".equals(pokerDetailPlayer[0]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
                                 if (!"null".equals(pokerDetailPlayer[1]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
                                 if (!"null".equals(pokerDetailPlayer[2]))
-                                    afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
+                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
 
-                                afbApp.getBaccarat(afbApp.getTableId()).setShoeNumber(pokerDetailPlayer[3]);
+                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setShoeNumber(pokerDetailPlayer[3]);
                                 LogUtil.d("tv_baccarat_shoe_number", "getBaccaratStatus,setShoeNumber:" + pokerDetailPlayer[3] + "," + pokerDetailPlayer[4]);
-                                afbApp.getBaccarat(afbApp.getTableId()).setGameNumber(pokerDetailPlayer[4]);
+                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameNumber(pokerDetailPlayer[4]);
 
                             }
 
@@ -437,15 +433,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
 
                 ///////////第1个数据是游戏状态
-                afbApp.getSicbo01().setGameStatus(Integer.parseInt(tableDetail[1]));
+                mAppViewModel.getSicbo01().setGameStatus(Integer.parseInt(tableDetail[1]));
                 ///////////第2个数据是倒计时
                 //  Log.i(WebSiteUrl.Tag,"baccaratTimer = "+tableDetail[3]);
-                afbApp.getSicbo01().setTimer(Integer.parseInt(tableDetail[2]));
+                mAppViewModel.getSicbo01().setTimer(Integer.parseInt(tableDetail[2]));
                 ///////////第3个数据是结果,将结果拆分好，放到路子信息里面
                 if (!"".equals(tableDetail[3]) && !"0".equals(tableDetail[3]) && tableDetail[3].length() == 3) {
                     String luzi = tableDetail[3].substring(0, 1) + "-" + tableDetail[3].substring(1, 2) + "-" + tableDetail[3].substring(2, 3);
-                    afbApp.getSicbo01().setResult(tableDetail[3]);
-                    String reslut[] = afbApp.getSicbo01().getRoad().split("#");
+                    mAppViewModel.getSicbo01().setResult(tableDetail[3]);
+                    String reslut[] = mAppViewModel.getSicbo01().getRoad().split("#");
                     String lastReslut = "";
                     if (!"".equals(reslut[reslut.length - 1]) && reslut[reslut.length - 1] != null)
                         lastReslut = reslut[reslut.length - 1];
@@ -455,34 +451,34 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     if (!luzi.equals(lastReslut)) {
                         //    Log.i(WebSiteUrl.Tag,"last  road = "+lastReslut);
                         //    Log.i(WebSiteUrl.Tag,"getSicboStatus update road = "+luzi);
-                        afbApp.getSicbo01().setRoad(afbApp.getSicbo01().getRoad().substring(6, afbApp.getSicbo01().getRoad().length()) + luzi + "#");
+                        mAppViewModel.getSicbo01().setRoad(mAppViewModel.getSicbo01().getRoad().substring(6, mAppViewModel.getSicbo01().getRoad().length()) + luzi + "#");
                     }
                 }
                 ///////////第4个数据是庄下注
                 //    Log.i(WebSiteUrl.Tag,"BankerPool = "+Integer.parseInt(tableDetail[5]));
-                if (!afbApp.getSicbo01().getPoolString().equals(tableDetail[4] + tableDetail[5] + tableDetail[6]
+                if (!mAppViewModel.getSicbo01().getPoolString().equals(tableDetail[4] + tableDetail[5] + tableDetail[6]
                         + tableDetail[7] + tableDetail[8] + tableDetail[9] + tableDetail[10])) {
-                    afbApp.getSicbo01().setPoolString(tableDetail[4] + tableDetail[5] + tableDetail[6]
+                    mAppViewModel.getSicbo01().setPoolString(tableDetail[4] + tableDetail[5] + tableDetail[6]
                             + tableDetail[7] + tableDetail[8] + tableDetail[9] + tableDetail[10]);
-                    afbApp.getSicbo01().getSicboPool().setBigSmall(Integer.parseInt(tableDetail[4]));
+                    mAppViewModel.getSicbo01().getSicboPool().setBigSmall(Integer.parseInt(tableDetail[4]));
                     ///////////第5个数据三军
-                    afbApp.getSicbo01().getSicboPool().setThreeforces(Integer.parseInt(tableDetail[5]));
+                    mAppViewModel.getSicbo01().getSicboPool().setThreeforces(Integer.parseInt(tableDetail[5]));
                     ///////////第6个数据是短牌，（1，2）
-                    afbApp.getSicbo01().getSicboPool().setNineway(Integer.parseInt(tableDetail[6]));
+                    mAppViewModel.getSicbo01().getSicboPool().setNineway(Integer.parseInt(tableDetail[6]));
                     ///////////第7个数据是对子，长牌
-                    afbApp.getSicbo01().getSicboPool().setPair(Integer.parseInt(tableDetail[7]));
+                    mAppViewModel.getSicbo01().getSicboPool().setPair(Integer.parseInt(tableDetail[7]));
                     ///////////第8个数据是围骰
-                    afbApp.getSicbo01().getSicboPool().setWaiDices(Integer.parseInt(tableDetail[8]));
+                    mAppViewModel.getSicbo01().getSicboPool().setWaiDices(Integer.parseInt(tableDetail[8]));
                     ///////////第9个数据是全围
-                    afbApp.getSicbo01().getSicboPool().setAllDices(Integer.parseInt(tableDetail[9]));
+                    mAppViewModel.getSicbo01().getSicboPool().setAllDices(Integer.parseInt(tableDetail[9]));
                     ///////////第10个数据是点数
-                    afbApp.getSicbo01().getSicboPool().setCombination(Integer.parseInt(tableDetail[10]));
+                    mAppViewModel.getSicbo01().getSicboPool().setCombination(Integer.parseInt(tableDetail[10]));
                 }
 
 
                 ///////////第12个数据是系统时间
-                afbApp.getSicbo01().setServerTime(tableDetail[13].substring(0, tableDetail[13].length() - 3));
-                afbApp.getSicbo01().setGameNumber(tableDetail[12]);
+                mAppViewModel.getSicbo01().setServerTime(tableDetail[13].substring(0, tableDetail[13].length() - 3));
+                mAppViewModel.getSicbo01().setGameNumber(tableDetail[12]);
             }
 
 
@@ -498,60 +494,60 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
 
                 ///////////第1个数据是游戏状态
-                afbApp.getRoulette01().setGameStatus(Integer.parseInt(tableDetail[1]));
+                mAppViewModel.getRoulette01().setGameStatus(Integer.parseInt(tableDetail[1]));
                 if (Integer.parseInt(tableDetail[1]) == 2)
                     updateRouletteRoad = true;
                 ///////////第2个数据是倒计时
                 //  Log.i(WebSiteUrl.Tag,"baccaratTimer = "+tableDetail[3]);
-                afbApp.getRoulette01().setTimer(Integer.parseInt(tableDetail[2]));
+                mAppViewModel.getRoulette01().setTimer(Integer.parseInt(tableDetail[2]));
                 ///////////第3个数据是结果,将结果拆分好，放到路子信息里面
-                if (!"".equals(tableDetail[3]) && afbApp.getRoulette01().getGameStatus() == 5 && updateRouletteRoad) {
+                if (!"".equals(tableDetail[3]) && mAppViewModel.getRoulette01().getGameStatus() == 5 && updateRouletteRoad) {
                     updateRouletteRoad = false;
                     String luzi = "";
-                    afbApp.getRoulette01().setResult(tableDetail[3]);
-                    String reslut[] = afbApp.getRoulette01().getRoad().split("#");
+                    mAppViewModel.getRoulette01().setResult(tableDetail[3]);
+                    String reslut[] = mAppViewModel.getRoulette01().getRoad().split("#");
                     for (int i = 1; i < reslut.length; i++) {
                         luzi += reslut[i] + "#";
                     }
                     luzi += tableDetail[3] + "#";
 
-                    //      Log.i(WebSiteUrl.Tag,"last  road = "+afbApp.getRoulette01().getRoad());
+                    //      Log.i(WebSiteUrl.Tag,"last  road = "+mAppViewModel.getRoulette01().getRoad());
 
-                    afbApp.getRoulette01().setRoad(luzi);
-                    //    Log.i(WebSiteUrl.Tag,"getSicboStatus update road = "+afbApp.getRoulette01().getRoad());
+                    mAppViewModel.getRoulette01().setRoad(luzi);
+                    //    Log.i(WebSiteUrl.Tag,"getSicboStatus update road = "+mAppViewModel.getRoulette01().getRoad());
                 }
                 ///////////第4个数据是庄下注
                 //    Log.i(WebSiteUrl.Tag,"BankerPool = "+Integer.parseInt(tableDetail[5]));
-                if (!afbApp.getRoulette01().getPoolString().equals(tableDetail[4] + tableDetail[5] + tableDetail[6]
+                if (!mAppViewModel.getRoulette01().getPoolString().equals(tableDetail[4] + tableDetail[5] + tableDetail[6]
                         + tableDetail[7] + tableDetail[8] + tableDetail[9] + tableDetail[10] + tableDetail[11])) {
-                    afbApp.getRoulette01().setPoolString(tableDetail[4] + tableDetail[5] + tableDetail[6]
+                    mAppViewModel.getRoulette01().setPoolString(tableDetail[4] + tableDetail[5] + tableDetail[6]
                             + tableDetail[7] + tableDetail[8] + tableDetail[9] + tableDetail[10] + tableDetail[11]);
                     ///////////第4个数是直注(35)DirectBet ,1-35个号码
-                    afbApp.getRoulette01().getRoulettePool().setNumber((int) Double.parseDouble(tableDetail[4]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setNumber((int) Double.parseDouble(tableDetail[4]));
                     ///////////第5个数分注(18)	SeparateBet
-                    afbApp.getRoulette01().getRoulettePool().setSplit((int) Double.parseDouble(tableDetail[5]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setSplit((int) Double.parseDouble(tableDetail[5]));
                     ///////////第6个数据3个号码(12)	StreetBet+ThreeBet
-                    afbApp.getRoulette01().getRoulettePool().setStreet((int) Double.parseDouble(tableDetail[6]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setStreet((int) Double.parseDouble(tableDetail[6]));
                     ///////////第7个数据是四个号码(9)	AngleBet+FourBet
-                    afbApp.getRoulette01().getRoulettePool().setCorner((int) Double.parseDouble(tableDetail[7]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setCorner((int) Double.parseDouble(tableDetail[7]));
                     ///////////第8个数据是6个号码(6)	LineBet
-                    afbApp.getRoulette01().getRoulettePool().setLine((int) Double.parseDouble(tableDetail[8]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setLine((int) Double.parseDouble(tableDetail[8]));
                     ///////////第9个数据是12个号码列注(2)	FristCol+SndCol+ThrCol
-                    afbApp.getRoulette01().getRoulettePool().setColumn((int) Double.parseDouble(tableDetail[9]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setColumn((int) Double.parseDouble(tableDetail[9]));
                     ///////////第10个数据是12个号码行注(2)	FristRow+SndRow+ThrRow，行注，打注
-                    afbApp.getRoulette01().getRoulettePool().setDozen((int) Double.parseDouble(tableDetail[10]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setDozen((int) Double.parseDouble(tableDetail[10]));
                     ///////////第11个数据是RedBet+BlackBet+OddBet+EvenBet+LowBet+HightBet
-                    afbApp.getRoulette01().getRoulettePool().setRed_black_odd_even_big_small((int) Double.parseDouble(tableDetail[11]));
+                    mAppViewModel.getRoulette01().getRoulettePool().setRed_black_odd_even_big_small((int) Double.parseDouble(tableDetail[11]));
                 }
 
 
                 ///////////第12个数据是系统时间
                 if (WebSiteUrl.isDomain && tableDetail.length == 16) {
-                    afbApp.getRoulette01().setServerTime(tableDetail[15].substring(0, tableDetail[15].length() - 3));
-                    afbApp.getRoulette01().setGameNumber(tableDetail[14]);
+                    mAppViewModel.getRoulette01().setServerTime(tableDetail[15].substring(0, tableDetail[15].length() - 3));
+                    mAppViewModel.getRoulette01().setGameNumber(tableDetail[14]);
                 } else {
-                    afbApp.getRoulette01().setServerTime(tableDetail[14].substring(0, tableDetail[14].length() - 3));
-                    afbApp.getRoulette01().setGameNumber(tableDetail[13]);
+                    mAppViewModel.getRoulette01().setServerTime(tableDetail[14].substring(0, tableDetail[14].length() - 3));
+                    mAppViewModel.getRoulette01().setGameNumber(tableDetail[13]);
                 }
             }
 
@@ -568,49 +564,49 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
 
                 ///////////第1个数据是游戏状态
-                afbApp.getDragonTiger01().setGameStatus(Integer.parseInt(tableDetail[1]));
+                mAppViewModel.getDragonTiger01().setGameStatus(Integer.parseInt(tableDetail[1]));
                 ///////////第2个数据是倒计时
                 //  Log.i(WebSiteUrl.Tag,"baccaratTimer = "+tableDetail[3]);
-                afbApp.getDragonTiger01().setTimer(Integer.parseInt(tableDetail[2]));
+                mAppViewModel.getDragonTiger01().setTimer(Integer.parseInt(tableDetail[2]));
                 ///////////第3个数据是结果,将结果拆分好，放到路子信息里面
 
                 if (!"".equals(tableDetail[3]) && !"0".equals(tableDetail[3]) && tableDetail[3].length() == 5) {
-                    afbApp.getDragonTiger01().getDragonTigerResults().setDragon_tiger_tie(Integer.parseInt(tableDetail[3].substring(0, 1)));
-                    afbApp.getDragonTiger01().getDragonTigerResults().setDragon_odd_even(Integer.parseInt(tableDetail[3].substring(1, 2)));
-                    afbApp.getDragonTiger01().getDragonTigerResults().setDragon_red_black(Integer.parseInt(tableDetail[3].substring(2, 3)));
-                    afbApp.getDragonTiger01().getDragonTigerResults().setTiger_odd_even(Integer.parseInt(tableDetail[3].substring(3, 4)));
-                    afbApp.getDragonTiger01().getDragonTigerResults().setTiger_red_black(Integer.parseInt(tableDetail[3].substring(4, 5)));
-                    //   String road = afbApp.getBaccarat(afbApp.getTableId()).getBigRoad();
-                    //  afbApp.getBaccarat(afbApp.getTableId()).setBigRoad(road+tableDetail[4]);
+                    mAppViewModel.getDragonTiger01().getDragonTigerResults().setDragon_tiger_tie(Integer.parseInt(tableDetail[3].substring(0, 1)));
+                    mAppViewModel.getDragonTiger01().getDragonTigerResults().setDragon_odd_even(Integer.parseInt(tableDetail[3].substring(1, 2)));
+                    mAppViewModel.getDragonTiger01().getDragonTigerResults().setDragon_red_black(Integer.parseInt(tableDetail[3].substring(2, 3)));
+                    mAppViewModel.getDragonTiger01().getDragonTigerResults().setTiger_odd_even(Integer.parseInt(tableDetail[3].substring(3, 4)));
+                    mAppViewModel.getDragonTiger01().getDragonTigerResults().setTiger_red_black(Integer.parseInt(tableDetail[3].substring(4, 5)));
+                    //   String road = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad();
+                    //  mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoad(road+tableDetail[4]);
                 }
                 ///////////第4个数据是庄下注
                 //    Log.i(WebSiteUrl.Tag,"BankerPool = "+Integer.parseInt(tableDetail[5]));
-                if (!afbApp.getDragonTiger01().getPoolString().equals(tableDetail[4] + tableDetail[5] + tableDetail[6]
+                if (!mAppViewModel.getDragonTiger01().getPoolString().equals(tableDetail[4] + tableDetail[5] + tableDetail[6]
                 )) {
-                    afbApp.getDragonTiger01().setPoolString(tableDetail[4] + tableDetail[5] + tableDetail[6]
+                    mAppViewModel.getDragonTiger01().setPoolString(tableDetail[4] + tableDetail[5] + tableDetail[6]
                     );
 
-                    afbApp.getDragonTiger01().getDragonTigerPool().setDragon((int) Double.parseDouble(tableDetail[4]));
+                    mAppViewModel.getDragonTiger01().getDragonTigerPool().setDragon((int) Double.parseDouble(tableDetail[4]));
 
-                    afbApp.getDragonTiger01().getDragonTigerPool().setTiger((int) Double.parseDouble(tableDetail[5]));
+                    mAppViewModel.getDragonTiger01().getDragonTigerPool().setTiger((int) Double.parseDouble(tableDetail[5]));
 
-                    afbApp.getDragonTiger01().getDragonTigerPool().setTie((int) Double.parseDouble(tableDetail[6]));
+                    mAppViewModel.getDragonTiger01().getDragonTigerPool().setTie((int) Double.parseDouble(tableDetail[6]));
 
                 }
 
 
                 ///////////第12个数据是系统时间
-                afbApp.getDragonTiger01().setServerTime(tableDetail[7].substring(0, tableDetail[7].length() - 3));
-                afbApp.getDragonTiger01().setShoeNumber(tableDetail[9]);
-                afbApp.getDragonTiger01().setGameNumber(tableDetail[10]);
+                mAppViewModel.getDragonTiger01().setServerTime(tableDetail[7].substring(0, tableDetail[7].length() - 3));
+                mAppViewModel.getDragonTiger01().setShoeNumber(tableDetail[9]);
+                mAppViewModel.getDragonTiger01().setGameNumber(tableDetail[10]);
                 String pokerDetail[] = tableDetail[8].split("\\|");
                 if (pokerDetail.length == 3) {
 
                     if (!"null".equals(pokerDetail[1]))
-                        afbApp.getDragonTiger01().getDragonTigerPoker().setDragon(Integer.parseInt(pokerDetail[1]));
+                        mAppViewModel.getDragonTiger01().getDragonTigerPoker().setDragon(Integer.parseInt(pokerDetail[1]));
                     if (!"null".equals(pokerDetail[2]))
-                        afbApp.getDragonTiger01().getDragonTigerPoker().setTiger(Integer.parseInt(pokerDetail[2]));
-                    //    Log.i(WebSiteUrl.Tag, "-------------- "+afbApp.getTableId()+","+strRes);
+                        mAppViewModel.getDragonTiger01().getDragonTigerPoker().setTiger(Integer.parseInt(pokerDetail[2]));
+                    //    Log.i(WebSiteUrl.Tag, "-------------- "+mAppViewModel.getTableId()+","+strRes);
                 }
 
 
@@ -629,10 +625,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         public void run() {
             while (bGetGameStatus) {
                 try {
-                    if (afbApp.isbLogin() && afbApp.isbLobby()) {
+                    if (mAppViewModel.isbLogin() && mAppViewModel.isbLobby()) {
                         String statusUrl = "";
                         statusUrl = WebSiteUrl.TABLEINFO_URL_A;
-                        String strRes = afbApp.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
+                        String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
                         Log.d("Afb88", strRes);
                         String tableInfo[] = strRes.split("\\^");
                         if (strRes.equals("netError") || strRes.equals("Results=no") || tableInfo.length < 9) {//连续5次拿不到数据就退出，返回到登录界面
@@ -642,12 +638,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             iError = 0;
 
                         if (iError == 5) {
-                            afbApp.setbLogin(false);
+                            mAppViewModel.setbLogin(false);
                             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                         }
 
                         if (iError == 0) {
-                            afbApp.splitTableInfo(strRes, afbApp.getHallId());
+                            mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
                             //拿公告信息
                             String language = AppTool.getAppLanguage(mContext);
                             switch (language) {
@@ -660,21 +656,21 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 default:
                                     break;
                             }
-                            String annoucementParams = "lng=" + language + "&Usid=" + afbApp.getUser().getName();
-                            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+                            String annoucementParams = "lng=" + language + "&Usid=" + mAppViewModel.getUser().getName();
+                            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
                             String ann[] = strRes.split("Results=ok\\|");
                             if (!strRes.equals("netError") && ann.length > 1) {
-                                afbApp.setAnnouncement(ann[1]);
+                                mAppViewModel.setAnnouncement(ann[1]);
                             }
                         }
                         //每隔10秒更新一下界面上的信息
 
 
                         Thread.sleep(10000);
-                    } else if (afbApp.isbLogin()) {
+                    } else if (mAppViewModel.isbLogin()) {
                         //    Log.i(WebSiteUrl.Tag, "-------------- UpdateSingleGameStatus");
                         String postUrl = "";
-                        switch (afbApp.getTableId()) {
+                        switch (mAppViewModel.getTableId()) {
                             case 1:
                             case 2:
                             case 3:
@@ -701,8 +697,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 postUrl = WebSiteUrl.LH_TABLE_STATUS_URL;
                                 break;
                         }
-                        String strRes = afbApp.getHttpClient().sendPost(postUrl, "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                                + "&Serial=" + afbApp.getSerialId() + "&Areaid=" + afbApp.getAreaId());
+                        String strRes = mAppViewModel.getHttpClient().sendPost(postUrl, "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                                + "&Serial=" + mAppViewModel.getSerialId() + "&Areaid=" + mAppViewModel.getAreaId());
                         Log.d("shangpeisheng", strRes);
                         refreshUserBetMsg(strRes);
                         Log.i(WebSiteUrl.Tag, strRes);
@@ -713,7 +709,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             iError = 0;
                             //Results=ok^Player1:100^Tie1:10^Player3:30^Banker5:150^#^player1:DLDLDLYY14^player3:LK00AWYUNUS1234^player5:LK00AKMAKASSAR888^player8:LK00BKJIIN^#2#0#0#1338#2885#36#29#20#0#0#KH 2016-04-19 13:41:40#1|null#null#null|null#null#null
 
-                            switch (afbApp.getTableId()) {
+                            switch (mAppViewModel.getTableId()) {
                                 case 1:
                                 case 2:
                                 case 3:
@@ -744,7 +740,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
 
                         if (iError == 10) {
-                            afbApp.setbLogin(false);
+                            mAppViewModel.setbLogin(false);
                             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                         }
 
@@ -764,9 +760,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     public class UpdateAllHallIdGameStatus implements Runnable {
 
         public void run() {
-            while (bGetGameStatus && !afbApp.isbLobby()) {
+            while (bGetGameStatus && !mAppViewModel.isbLobby()) {
                 try {
-                    if (afbApp.isbLogin()) {
+                    if (mAppViewModel.isbLogin()) {
                         updateLobbyData(1);
                         //每隔10秒更新一下界面上的信息
 //                        updateLobbyData(2);
@@ -784,13 +780,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         private void updateLobbyData(int hallId) {
             String statusUrl = "";
             statusUrl = WebSiteUrl.TABLEINFO_URL_A;
-            String strRes = afbApp.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
+            String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
             Log.d("Afb88", strRes);
             String tableInfo[] = strRes.split("\\^");
             if (strRes.equals("netError") || strRes.equals("Results=no") || tableInfo.length < 9) {//连续5次拿不到数据就退出，返回到登录界面
                 Log.d("Afb88", "netError--------" + statusUrl);
             } else
-                afbApp.splitTableInfo(strRes, hallId);
+                mAppViewModel.splitTableInfo(strRes, hallId);
 
         }
 
@@ -804,9 +800,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 try {
 
 
-                    if (afbApp.isbLogin() && afbApp.isbLobby()) {
+                    if (mAppViewModel.isbLogin() && mAppViewModel.isbLobby()) {
                         String statusUrl = "";
-                        switch (afbApp.getHallId()) {
+                        switch (mAppViewModel.getHallId()) {
                             case 1:
                                 statusUrl = WebSiteUrl.COUNTDOWN_URL_A;
                                 break;
@@ -817,7 +813,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 statusUrl = WebSiteUrl.COUNTDOWN_URL_C;
                                 break;
                         }
-                        String strRes = afbApp.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
+                        String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
                         Log.d("Afb88", strRes);
                         if (strRes.equals("netError") || strRes.equals("Results=no")) {//连续10次拿不到数据就退出，返回到登录界面
                             iError++;
@@ -826,13 +822,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             iError = 0;
 
                         if (iError == 10) {
-                            afbApp.setbLogin(false);
+                            mAppViewModel.setbLogin(false);
                             Log.d("Afb88", "netError:--------" + statusUrl);
                             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                         }
                         //      Log.i(WebSiteUrl.Tag, "++++++++++++++ "+strRes);
                         if (iError == 0)
-                            afbApp.splitTimer(strRes);
+                            mAppViewModel.splitTimer(strRes);
                     }
 
 
@@ -875,7 +871,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     dismissBlockDialog();
                     break;
                 case THREAD_ALL_LOBBY:
-                    if (!isAllLobbyEnd && afbApp != null && games != null) {
+                    if (!isAllLobbyEnd && games != null) {
 //                        tablePop.setTablesData(afbApp, games);
                         isAllLobbyEnd = true;
                     }
@@ -904,7 +900,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         rightBalanceTv = (TextView) findViewById(R.id.toolbar_balance_tv);
         changeBetUiTv = (TextView) findViewById(R.id.toolbar_change_bet_ui_tv);
         rouletteNumberTv = (TextView) findViewById(R.id.toolbar_roulette_number_tv);
-        afbApp = getApp();
+
         componentFront = new ComponentName(this,
                 FrontMuzicService.class);
         componentBack = new ComponentName(this,
@@ -912,7 +908,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         if (toolbar != null) {
             toolbar.setNavigationIcon(R.mipmap.arrow_left_back);
 //            backTv.setText(getResources().getString(R.string.back));
-            backTv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
+            if (backTv != null)
+                backTv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
 //            backTv.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -933,16 +930,17 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 rightTv.setGravity(Gravity.RIGHT);
                 rightTv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
                 rightTv.setCompoundDrawablePadding(3);
-            }
-        rightTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                rightTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                clickRight(v);
+                        clickRight(v);
+                    }
+
+                });
             }
 
-        });
-        appUserName = getApp().getUser().getName();
+        appUserName = mAppViewModel.getUser().getName();
         usName = appUserName;
         if (WebSiteUrl.isDomain) {
             try {
@@ -952,7 +950,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 usName = appUserName;
             }
         }
-        currency = getApp().getUser().getCurrency();
+        currency = mAppViewModel.getUser().getCurrency();
         popupGameChoose = new AbsListPopupWindow<String>(mContext, rightTv, ScreenUtil.dip2px(mContext, 180), LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected void popItemCLick(String gameMenuItem, int position) {
@@ -1005,7 +1003,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             protected void initView(View view) {
                 super.initView(view);
                 RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
-                int homeColor = afbApp.getHomeColor();
+                int homeColor = mAppViewModel.getHomeColor();
                 if (homeColor != 0) {
                     rv.setBackgroundColor(homeColor);
                 }
@@ -1025,7 +1023,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             case "Live_Casino":
                             case "Discount":
                                 closePopupWindow();
-                                getApp().setGameType(item.getType());
+                                mAppViewModel.setGameType(item.getType());
                                 ActivityPageManager.getInstance().finishAllActivity();
                                 break;
                             default:
@@ -1043,15 +1041,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         int mCurrentOrientation = getResources().getConfiguration().orientation;
         handleOrientation(mCurrentOrientation);
         if (mCurrentOrientation == Configuration.ORIENTATION_PORTRAIT) {
-            afbApp.setHeadSpeace(14);
-            afbApp.setHeadMargin(0);
+            mAppViewModel.setHeadSpeace(14);
+            mAppViewModel.setHeadMargin(0);
 
 //            rightTv.setTextSize(ScreenUtil.sp2px(mContext, 4));
 
 
         } else if (mCurrentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-            afbApp.setHeadSpeace(20);
-            afbApp.setHeadMargin(2);
+            mAppViewModel.setHeadSpeace(20);
+            mAppViewModel.setHeadMargin(2);
 
             rightTv.setTextSize(ScreenUtil.sp2px(mContext, 4));
 
@@ -1094,24 +1092,24 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         public void run() {
 
             try {
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.BJL_TABLE_HALL_CHOOSE_SINGLE_SEAT_URL, "Tbid=" + tableId + "&Usid=" + afbApp.getUser().getName());
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_TABLE_HALL_CHOOSE_SINGLE_SEAT_URL, "Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName());
                 String strInfo[] = strRes.split("\\^");
               /*  if (strRes != null && strRes.startsWith("Results=ok") ) {
                     if (strInfo.length < 2) {
-                        afbApp.setTableId(tableId);
-                        afbApp.setSerialId(0);
-                        afbApp.setAreaId(0);
-                        afbApp.setbLobby(false);
+                        mAppViewModel.setTableId(tableId);
+                        mAppViewModel.setSerialId(0);
+                        mAppViewModel.setAreaId(0);
+                        mAppViewModel.setbLobby(false);
                         handler.sendEmptyMessage(HandlerCode.CHOOSE_SEAT_SUCESS);
                         Log.i(WebSiteUrl.Tag, "T----------" + strRes);
                     } else {
                         String[] seatInfos = strInfo[1].split("#");
 
                         if (seatInfos != null && seatInfos.length > 1) {
-                            afbApp.setTableId(tableId);
-                            afbApp.setSerialId(Integer.valueOf(seatInfos[0]));
-                            afbApp.setAreaId(Integer.valueOf(seatInfos[1]));
-                            afbApp.setbLobby(false);
+                            mAppViewModel.setTableId(tableId);
+                            mAppViewModel.setSerialId(Integer.valueOf(seatInfos[0]));
+                            mAppViewModel.setAreaId(Integer.valueOf(seatInfos[1]));
+                            mAppViewModel.setbLobby(false);
 
                             handler.sendEmptyMessage(HandlerCode.CHOOSE_SEAT_SUCESS);
                             Log.i(WebSiteUrl.Tag, "T----------" + strRes);
@@ -1126,10 +1124,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 e.printStackTrace();
 //                handler.sendEmptyMessage(HandlerCode.THREAD_ERROR);
             }
-            afbApp.setTableId(tableId);
-            afbApp.setSerialId(0);
-            afbApp.setAreaId(0);
-            afbApp.setbLobby(false);
+            mAppViewModel.setTableId(tableId);
+            mAppViewModel.setSerialId(0);
+            mAppViewModel.setAreaId(0);
+            mAppViewModel.setbLobby(false);
             handler.sendEmptyMessage(HandlerCode.CHOOSE_SEAT_SUCESS);
 
         }
@@ -1204,6 +1202,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     PopChoiceLanguage popLanguage;
 
     public void showLanguagePop(View v, final float weight) {
+
         if (popLanguage == null) {
             popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20), ScreenUtil.dip2px(mContext, 200)) {
                 @Override
@@ -1219,7 +1218,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     ivFlag.setImageResource(item.getRes());
                     boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
                     if (itemLanguageSelected) {
-                        if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
                             tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
                         } else {
                             tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -1233,14 +1232,14 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 @Override
                 public void onClickItem(MenuItemInfo item, int position) {
                     closePopupWindow();
-                    if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                    if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
                         AppTool.setAppLanguage(BaseActivity.this, item.getType());
                         recreate();
                     } else {
                         int screenWidth = WidgetUtil.getPortraitScreenWidth((Activity) context);
                         int width = screenWidth / 15 * 14;
                         String type = item.getType();
-                        User u = afbApp.getUser();
+                        User u = mAppViewModel.getUser();
                         switch (type) {
                             case "deposit":
                                 DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -1304,51 +1303,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     }
 
-    private ArrayList<String> getSetLimitData(int tableId) {
-        Baccarat baccarat;
-        String limit1 = "0 - 0";
-        String limit2 = "0 - 0";
-        String limit3 = "0 - 0";
-        String limit4 = "0 - 0";
-        if (tableId == 1 || tableId == 2 || tableId == 3 || tableId == 61 || tableId == 62 || tableId == 63 || tableId == 71) {
-            baccarat = getApp().getBaccarat(tableId);
-            if (baccarat != null) {
-                limit1 = "" + (int) baccarat.getBaccaratLimit1().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit1().getMaxTotalBet();
-                limit2 = "" + (int) baccarat.getBaccaratLimit2().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit2().getMaxTotalBet();
-                limit3 = "" + (int) baccarat.getBaccaratLimit3().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit3().getMaxTotalBet();
-                limit4 = "" + (int) baccarat.getBaccaratLimit4().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit4().getMaxTotalBet();
-            }
-        } else if (tableId == 5) {
-            DragonTiger dragonTiger = getApp().getDragonTiger01();
-            if (dragonTiger != null) {
-                limit1 = "" + (int) dragonTiger.getDragonTigerLimit1().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit1().getMaxTotalBet();
-                limit2 = "" + (int) dragonTiger.getDragonTigerLimit2().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit2().getMaxTotalBet();
-                limit3 = "" + (int) dragonTiger.getDragonTigerLimit3().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit3().getMaxTotalBet();
-                limit4 = "" + (int) dragonTiger.getDragonTigerLimit4().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit4().getMaxTotalBet();
-            }
-        } else if (tableId == 21) {
-            if (getApp().getRoulette01() != null) {
-                limit1 = "" + (int) getApp().getRoulette01().getRouletteLimit1().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit1().getMaxTotalBet();
-                limit2 = "" + (int) getApp().getRoulette01().getRouletteLimit2().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit2().getMaxTotalBet();
-                limit3 = "" + (int) getApp().getRoulette01().getRouletteLimit3().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit3().getMaxTotalBet();
-                limit4 = "" + (int) getApp().getRoulette01().getRouletteLimit4().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit4().getMaxTotalBet();
-            }
-        } else if (tableId == 31) {
-            if (getApp().getSicbo01() != null) {
-                limit1 = "" + (int) getApp().getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit1().getMaxTotalBet();
-                limit2 = "" + (int) getApp().getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit2().getMaxTotalBet();
-                limit3 = "" + (int) getApp().getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit3().getMaxTotalBet();
-                limit4 = "" + (int) getApp().getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit4().getMaxTotalBet();
-            }
-        }
-        return new ArrayList<>(Arrays.asList(limit1, limit2, limit3, limit4));
-//        centerPop.setData());
-    }
-
-    public void onInGameChooseLanguage() {
-
-    }
-
     public void showSetPop(final View v, int gravity) {
         View center = v;
         if (v == null) {
@@ -1367,107 +1321,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.rg_switch);
-                RadioButton rb_limit = (RadioButton) view.findViewById(R.id.rb_limit);
-                RadioButton rb_language = (RadioButton) view.findViewById(R.id.rb_language);
-                if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                    rb_limit.setBackgroundResource(R.drawable.selector_music_choose_right);
-                    rb_language.setVisibility(View.GONE);
-                }
-                TextView tv_music_title = (TextView) view.findViewById(R.id.tv_music_title);
-                if (BaseActivity.this instanceof LobbyActivity) {
-                    rg_switch.setVisibility(View.GONE);
-                    tv_music_title.setVisibility(View.VISIBLE);
-                }
-                final LinearLayout ll_music = view.findViewById(R.id.ll_music);
-                final RecyclerView recyclerView = view.findViewById(R.id.base_rv);
-                final RecyclerView rc_lg = view.findViewById(R.id.rc_lg);
-                recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-                BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(afbApp.getTableId()), R.layout.item_popupwindow_text_select) {
-                    @Override
-                    public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                        holder.setText(R.id.pop_text_tv, item);
-                    }
-
-                };
-                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
-                    @Override
-                    public void onItemClick(View view, String s, int position) {
-                        if ("0 - 0".endsWith(s)) {
-                            return;
-                        }
-                        if (afbApp.getTableId() == 1 || afbApp.getTableId() == 2 || afbApp.getTableId() == 3 || afbApp.getTableId() == 61 || afbApp.getTableId() == 62 || afbApp.getTableId() == 63 || afbApp.getTableId() == 71) {
-                            getApp().getBaccarat(1).setLimitIndex(position + 1);
-                            getApp().getBaccarat(2).setLimitIndex(position + 1);
-                            getApp().getBaccarat(3).setLimitIndex(position + 1);
-                            getApp().getBaccarat(61).setLimitIndex(position + 1);
-                            getApp().getBaccarat(62).setLimitIndex(position + 1);
-                            getApp().getBaccarat(63).setLimitIndex(position + 1);
-                            getApp().getBaccarat(71).setLimitIndex(position + 1);
-                        } else if (afbApp.getTableId() == 5) {
-                            getApp().getDragonTiger01().setLimitIndex(position + 1);
-                        } else if (afbApp.getTableId() == 21) {
-                            getApp().getRoulette01().setLimitIndex(position + 1);
-                        } else if (afbApp.getTableId() == 31) {
-                            getApp().getSicbo01().setLimitIndex(position + 1);
-                        }
-                        closePopupWindow();
-                    }
-                });
-                recyclerView.setAdapter(baseRecyclerAdapter);
-
-                rc_lg.setLayoutManager(new GridLayoutManager(mContext, 2));
-                BaseRecyclerAdapter<MenuItemInfo<String>> recyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, new LanguageHelper(mContext).getLanguageItems(), R.layout.item_language_selected) {
-                    @Override
-                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
-                        ImageView ivFlag = holder.getView(R.id.iv_flag_country);
-                        TextView tvContent = holder.getView(R.id.selectable_text_content_tv);
-                        tvContent.setText(item.getText());
-                        ivFlag.setImageResource(item.getRes());
-                        boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
-                        if (itemLanguageSelected) {
-                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
-                        } else {
-                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        }
-                    }
-                };
-                recyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
-                    @Override
-                    public void onItemClick(View view, MenuItemInfo<String> item, int position) {
-                        AppTool.setAppLanguage(BaseActivity.this, item.getType());
-                        closePopupWindow();
-                        onInGameChooseLanguage();
-                    }
-                });
-                rc_lg.setAdapter(recyclerAdapter);
-
-                rg_switch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        switch (checkedId) {
-                            case R.id.rb_music:
-                                ll_music.setVisibility(View.VISIBLE);
-                                recyclerView.setVisibility(View.GONE);
-                                rc_lg.setVisibility(View.GONE);
-                                break;
-                            case R.id.rb_limit:
-                                ll_music.setVisibility(View.INVISIBLE);
-                                recyclerView.setVisibility(View.VISIBLE);
-                                rc_lg.setVisibility(View.GONE);
-                                break;
-                            case R.id.rb_language:
-                                ll_music.setVisibility(View.INVISIBLE);
-                                recyclerView.setVisibility(View.GONE);
-                                rc_lg.setVisibility(View.VISIBLE);
-                                break;
-                        }
-                    }
-                });
                 RadioGroup rg_music_rg = (RadioGroup) view.findViewById(R.id.rg_music_rg);
                 //         final  ComponentName componentBack = new ComponentName(mContext,
                 //                 BackgroudMuzicService.class);
-                switch (afbApp.getMuzicIndex()) {
+                switch (mAppViewModel.getMuzicIndex()) {
                     case 1:
                         rg_music_rg.check(R.id.rb_set_muzic1);
                         break;
@@ -1482,38 +1339,33 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 rg_music_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        switch (checkedId) {
-                            case R.id.rb_set_muzic1:
-                                afbApp.setMuzicIndex(1);
-                                //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 1");
-                                if (afbApp.isbLobby() == false)
-                                    afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
-                                break;
-                            case R.id.rb_set_muzic2:
-                                afbApp.setMuzicIndex(2);
-                                //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 2");
-                                if (afbApp.isbLobby() == false)
-                                    afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
-                                break;
-                            case R.id.rb_set_muzic3:
-                                afbApp.setMuzicIndex(3);
-                                //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 3");
-                                if (afbApp.isbLobby() == false)
-                                    afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
-                                break;
-
+                        if (checkedId == R.id.rb_set_muzic1) {
+                            mAppViewModel.setMuzicIndex(1);
+                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 1");
+                            if (mAppViewModel.isbLobby() == false)
+                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                        } else if (checkedId == R.id.rb_set_muzic2) {
+                            mAppViewModel.setMuzicIndex(2);
+                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 2");
+                            if (mAppViewModel.isbLobby() == false)
+                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                        } else if (checkedId == R.id.rb_set_muzic3) {
+                            mAppViewModel.setMuzicIndex(3);
+                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 3");
+                            if (mAppViewModel.isbLobby() == false)
+                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
                         }
                     }
                 });
                 SeekBar sb_front_voice = (SeekBar) view.findViewById(R.id.sb_front_voice);
                 SeekBar sb_background_voice = (SeekBar) view.findViewById(R.id.sb_background_voice);
-                sb_front_voice.setProgress(afbApp.getFrontVolume());
-                sb_background_voice.setProgress(afbApp.getBackgroudVolume());
+                sb_front_voice.setProgress(mAppViewModel.getFrontVolume());
+                sb_background_voice.setProgress(mAppViewModel.getBackgroudVolume());
                 sb_front_voice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        afbApp.setFrontVolume(seekBar.getProgress());
-                        afbApp.changeMuzicVolumeService(componentFront, mContext, seekBar.getProgress(), FrontMuzicService.PLAY_CHANGE_VOLUME);
+                        mAppViewModel.setFrontVolume(seekBar.getProgress());
+                        mAppViewModel.changeMuzicVolumeService(componentFront, mContext, seekBar.getProgress(), FrontMuzicService.PLAY_CHANGE_VOLUME);
                     }
 
                     @Override
@@ -1529,8 +1381,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 sb_background_voice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        afbApp.setBackgroudVolume(seekBar.getProgress());
-                        afbApp.changeMuzicVolumeService(componentBack, mContext, seekBar.getProgress(), BackgroudMuzicService.PLAY_CHANGE_VOLUME);
+                        mAppViewModel.setBackgroudVolume(seekBar.getProgress());
+                        mAppViewModel.changeMuzicVolumeService(componentBack, mContext, seekBar.getProgress(), BackgroudMuzicService.PLAY_CHANGE_VOLUME);
                     }
 
                     @Override
@@ -1564,25 +1416,16 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
     }
 
-    public void showChooseChip(View v) {
-        PopChooseChip popChooseChip = new PopChooseChip(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-            @Override
-            public void onChooseChipFinish() {
-                onSwitchChipFinish();
-            }
-        };
-        popChooseChip.showPopupCenterWindow();
-    }
-
-    public void onSwitchChipFinish() {
-
-    }
-
     protected void showChangeTable(View v) {
+        String name = usName;
+        String c = currency;
+        if (TextUtils.isEmpty(c)) {
+            c = getString(R.string.BAL);
+        }
         initOldBigRoad();
-        tablePop.setPopTopContent();
+        tablePop.setPopTopContent(getString(R.string.ID) + " :" + name.toUpperCase(), c + " :" + mAppViewModel.getUser().getBalance() + "");
         if (tablePop.getParentCount() > 0) {
-            tablePop.showPopupGravityWindow(Gravity.RIGHT, 0, 0);
+            tablePop.showPopupCenterWindow();
         }
     }
 
@@ -1654,15 +1497,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     private void goBaccarat(int tableId) {
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
-        afbApp.setTableId(tableId);
+        mAppViewModel.setTableId(tableId);
         bundle.putBoolean("baccaratA", true);
-        afbApp.setbLobby(false);
+        mAppViewModel.setbLobby(false);
         AppTool.activiyJump(mContext, BaccaratActivity.class, bundle);
         finish();
-    }
-
-    public void initBaccarat() {
-
     }
 
     private void initChangeTable(View v, String removeStr) {
@@ -1693,89 +1532,69 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
 
         }
-        int with = ScreenUtil.dip2px(mContext, 150);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            with = with * 2;
-        }
-        tablePop = new TableChangePop(mContext, v, with, ViewGroup.LayoutParams.MATCH_PARENT);
+        tablePop = new TableChangePop(mContext, v);
         tablePop.setClickImp(new ItemCLickImp<GameMenuItem>() {
             @Override
             public void itemCLick(View view, GameMenuItem gameMenuItem, int position) {
-                if (getApp().getTableId() == gameMenuItem.getDrawableRes()) {
-                    Toast.makeText(mContext, getString(R.string.your_here), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                tablePop.closePopupWindow();
-                if (getApp().getTableId() == 1 || getApp().getTableId() == 2 || getApp().getTableId() == 3 ||
-                        getApp().getTableId() == 71 || getApp().getTableId() == 61 || getApp().getTableId() == 62 || getApp().getTableId() == 63) {
-                    if (gameMenuItem.getDrawableRes() == 1 || gameMenuItem.getDrawableRes() == 2 || gameMenuItem.getDrawableRes() == 3 ||
-                            gameMenuItem.getDrawableRes() == 71 || gameMenuItem.getDrawableRes() == 61 || gameMenuItem.getDrawableRes() == 62 ||
-                            gameMenuItem.getDrawableRes() == 63) {
-                        afbApp.setTableId(gameMenuItem.getDrawableRes());
-                        tableId = gameMenuItem.getDrawableRes();
-                        initBaccarat();
-                        return;
-                    }
-                }
                 String menuStr = gameMenuItem.getTitle();
                 if (menuStr.equals("LB1")) {
-                    if (afbApp.getBaccarat(1).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(1).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    afbApp.setTableId(1);
+                    mAppViewModel.setTableId(1);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat01().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat01().getLimitIndex() == i) {
-                            afbApp.getBaccarat01().setLimitIndex(i);
+                        if (mAppViewModel.getBaccarat01().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getBaccarat01().setLimitIndex(i);
                             break;
                         }
                     }
                     tableId = 1;
                     goBaccarat(1);
                 } else if (menuStr.equals("LB2")) {
-                    if (afbApp.getBaccarat(2).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(2).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableId = 2;
-                    afbApp.setTableId(2);
+                    mAppViewModel.setTableId(2);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat02().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat02().getLimitIndex() == i) {
-                            afbApp.getBaccarat02().setLimitIndex(i);
+                        if (mAppViewModel.getBaccarat02().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getBaccarat02().setLimitIndex(i);
                             break;
                         }
                     }
                     goBaccarat(2);
                 } else if (menuStr.equals("LB3")) {
-                    if (afbApp.getBaccarat(3).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(3).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableId = 3;
-                    afbApp.setTableId(3);
+                    mAppViewModel.setTableId(3);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat03().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat03().getLimitIndex() == i) {
-                            afbApp.getBaccarat03().setLimitIndex(i);
+                        if (mAppViewModel.getBaccarat03().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getBaccarat03().setLimitIndex(i);
                             break;
                         }
                     }
                     goBaccarat(3);
                 } else if (menuStr.equals("BM1")) {
-                    if (afbApp.getBaccarat(71).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(71).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableId = 71;
-                    afbApp.setTableId(71);
+                    mAppViewModel.setTableId(71);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat71().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat71().getLimitIndex() == i) {
-                            afbApp.getBaccarat71().setLimitIndex(i);
+                        if (mAppViewModel.getBaccarat71().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getBaccarat71().setLimitIndex(i);
                             break;
                         }
                     }
                     goBaccarat(71);
                 } else if (menuStr.equals("RL1")) {
-                    if (afbApp.getRoulette01().getStatus() != 1) {
+                    if (mAppViewModel.getRoulette01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -1783,17 +1602,17 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     tableId = 21;
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "21");
-                    afbApp.setTableId(21);
+                    mAppViewModel.setTableId(21);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getRoulette01().getRouletteLimit(i).getMaxTotalBet() > 0) {
-                            getApp().getRoulette01().setLimitIndex(i);
+                        if (mAppViewModel.getRoulette01().getRouletteLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getRoulette01().setLimitIndex(i);
                             break;
                         }
                     }
                     AppTool.activiyJump(mContext, RouletteActivity.class, bundle);
                     finish();
                 } else if (menuStr.equals("SB1")) {
-                    if (afbApp.getSicbo01().getStatus() != 1) {
+                    if (mAppViewModel.getSicbo01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -1801,19 +1620,19 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     showBlockDialog();
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "31");
-                    afbApp.setTableId(31);
+                    mAppViewModel.setTableId(31);
                     String s = "";
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getSicbo01().getSicboLimit(i).getMaxTotalBet() > 0) {
-                            getApp().getSicbo01().setLimitIndex(i);
+                        if (mAppViewModel.getSicbo01().getSicboLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getSicbo01().setLimitIndex(i);
                             if (i == 1) {
-                                s = "" + (int) getApp().getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit1().getMaxTotalBet();
+                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMaxTotalBet();
                             } else if (i == 2) {
-                                s = "" + (int) getApp().getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit2().getMaxTotalBet();
+                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMaxTotalBet();
                             } else if (i == 3) {
-                                s = "" + (int) getApp().getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit3().getMaxTotalBet();
+                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMaxTotalBet();
                             } else {
-                                s = "" + (int) getApp().getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit4().getMaxTotalBet();
+                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMaxTotalBet();
                             }
                             break;
                         }
@@ -1822,7 +1641,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     AppTool.activiyJump(mContext, SicboActivity.class, bundle);
                     finish();
                 } else if (menuStr.equals("DT1")) {
-                    if (afbApp.getDragonTiger01().getStatus() != 1) {
+                    if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -1830,80 +1649,80 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     showBlockDialog();
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "5");
-                    afbApp.setTableId(5);
+                    mAppViewModel.setTableId(5);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getDragonTiger01().getDragonTigerLimit(i).getMaxTotalBet() > 0) {
-                            getApp().getDragonTiger01().setLimitIndex(i);
+                        if (mAppViewModel.getDragonTiger01().getDragonTigerLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getDragonTiger01().setLimitIndex(i);
                             break;
                         }
                     }
                     AppTool.activiyJump(mContext, DragonTigerActivity.class, bundle);
                     finish();
                 } else if (menuStr.equals("LB5")) {
-                    if (afbApp.getBaccarat(61).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(61).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableId = 61;
-                    afbApp.setTableId(61);
+                    mAppViewModel.setTableId(61);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat61().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat61().getLimitIndex() == i) {
-                            afbApp.getBaccarat61().setLimitIndex(i);
+                        if (mAppViewModel.getBaccarat61().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getBaccarat61().setLimitIndex(i);
                             break;
                         }
                     }
                     goBaccarat(61);
                 } else if (menuStr.equals("LB6")) {
-                    if (afbApp.getBaccarat(62).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(62).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableId = 62;
-                    afbApp.setTableId(62);
+                    mAppViewModel.setTableId(62);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat62().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat62().getLimitIndex() == i) {
-                            afbApp.getBaccarat62().setLimitIndex(i);
+                        if (mAppViewModel.getBaccarat62().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getBaccarat62().setLimitIndex(i);
                             break;
                         }
                     }
                     goBaccarat(62);
                 } else if (menuStr.equals("LB7")) {
-                    if (afbApp.getBaccarat(63).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(63).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableId = 63;
-                    afbApp.setTableId(63);
+                    mAppViewModel.setTableId(63);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat63().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat63().getLimitIndex() == i) {
-                            afbApp.getBaccarat63().setLimitIndex(i);
+                        if (mAppViewModel.getBaccarat63().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                            mAppViewModel.getBaccarat63().setLimitIndex(i);
                             break;
                         }
                     }
                     goBaccarat(63);
                 } else if (menuStr.equals("B04")) {
-                    if (afbApp.getBaccarat(64).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(64).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     changeSeatGame(64);
                 } else if (menuStr.equals("B05")) {
-                    if (afbApp.getBaccarat(65).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(65).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     changeSeatGame(65);
                 } else if (menuStr.equals("B06")) {
-                    if (afbApp.getBaccarat(66).getStatus() != 1) {
+                    if (mAppViewModel.getBaccarat(66).getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     changeSeatGame(66);
                 }
-                afbApp.setHallId(1);
+                mAppViewModel.setHallId(1);
             }
         });
-        tablePop.setTablesData(afbApp, games);
+        tablePop.setTablesData(mAppViewModel, games);
     }
 
     protected void showPool() {
@@ -1911,13 +1730,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
 
-    public AfbApp getApp() {
-        return (AfbApp) getApplication();
+    public BaseApplication getApp() {
+        return (BaseApplication) getApplication();
     }
 
     public void startUpdateStatus() {
         //   Log.i(WebSiteUrl.Tag, "startUpdateStatus() ");
-        if (afbApp != null && afbApp.isbLogin() && updateGameStatus == null) {
+        if (mAppViewModel.isbLogin() && updateGameStatus == null) {
             //        Log.i(WebSiteUrl.Tag, "StartUpdateGameStatus() Start");
             bGetGameStatus = true;
             bGetGameTimer = true;
@@ -1971,16 +1790,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     private void addGame(ArrayList<GameMenuItem> games1, GameMenuItem item, String removeStr) {
-//        if (!item.getTitle().equals(removeStr))
-//            games1.add(item);
-        games1.add(item);
+        if (!item.getTitle().equals(removeStr))
+            games1.add(item);
     }
 
     public void changeSeatGame(int tId) {
-        afbApp.setTableId(tId);
+        mAppViewModel.setTableId(tId);
         for (int i = 1; i <= 4; i++) {
-            if (afbApp.getBaccarat(tId).getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                getApp().getBaccarat(tId).setLimitIndex(i);
+            if (mAppViewModel.getBaccarat(tId).getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                mAppViewModel.getBaccarat(tId).setLimitIndex(i);
                 break;
             }
         }
@@ -2010,6 +1828,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         super.onCreate(savedInstanceState);
         startUpdateStatus();
         getMethodName();
+    }
+
+    @Override
+    protected void initView() {
+        mAppViewModel = getAppViewModelProvider().get(AppModel.class);
+        super.initView();
     }
 
     @Override
@@ -2078,32 +1902,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         LogUtil.d("Life", getClass().getSimpleName() + ":" + a.getMethodName() + "-" + b.getMethodName());
         return a.getMethodName() + "-" + b.getMethodName();
 
-    }
-
-    public List<ChipBean> getCurrentChip(boolean isNeedAddSure) {
-        List<ChipBean> list = new ArrayList<>();
-        String chipContent = Gd88Utils.getChipContent(this);
-        String[] split = chipContent.split("-");
-        for (int i = 0; i < split.length; i++) {
-            String chipSize = split[i];
-            A:
-            for (int j = 0; j < chipListChoice.size(); j++) {
-                ChipBean chipBean = chipListChoice.get(j);
-                String name = chipBean.getName();
-                if (name.equals(chipSize)) {
-                    list.add(chipBean);
-                    break A;
-                }
-
-            }
-        }
-        list.add(new ChipBean(R.mipmap.chip_choose, "CHOOSE", -101));
-        if (isNeedAddSure) {
-            list.add(new ChipBean(R.mipmap.noimg, "", -2));
-            list.add(new ChipBean(R.mipmap.replayimg, "", -3));
-            list.add(new ChipBean(R.mipmap.sureimg, "", -1));
-        }
-        return list;
     }
 
     public void initBetImg() {
@@ -2180,9 +1978,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     public void setToolbarNameAndBalance() {
         llCenter.setVisibility(View.VISIBLE);
         rightTv.setVisibility(View.GONE);
-        toolbar_right_top_tv.setText(getApp().getUser().getName());
+        toolbar_right_top_tv.setText(mAppViewModel.getUser().getName());
         toolbar_right_top_tv.setTextColor(Color.parseColor("#ffffff"));
-        toolbar_right_bottom_tv.setText(getApp().getUser().getBalance() + "");
+        toolbar_right_bottom_tv.setText(mAppViewModel.getUser().getBalance() + "");
         toolbar_right_bottom_tv.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.dollar_yellow, 0, 0, 0);
         toolbar_right_bottom_tv.setTextColor(getResources().getColor(R.color.yellow_gold));
     }
@@ -2236,7 +2034,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         rightReportTv.setVisibility(View.VISIBLE);
         rightReportTv.setBackgroundResource(R.mipmap.report_top);
         rightTv.setBackgroundResource(R.mipmap.pool_top);
-        rightMusicTv.setBackgroundResource(R.mipmap.set_black);
+        rightMusicTv.setBackgroundResource(R.mipmap.set_music_green);
         rightTableTv.setBackgroundResource(R.mipmap.table_top);
         rightReportTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2267,8 +2065,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     public void logout() {
-        if (afbApp != null)
-            afbApp.setbInitLimit(false);
+        if (mAppViewModel != null)
+            mAppViewModel.setbInitLimit(false);
         stopUpdateStatus();
         if (WebSiteUrl.isDomain) {
             ActivityPageManager.getInstance().finishAllActivity();
@@ -2284,7 +2082,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     public class Logout implements Runnable {
         public void run() {
             try {
-                afbApp.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL, "logout=out");
+                mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL, "logout=out");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -2316,15 +2114,20 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     public void initOldBigRoad() {
-        afbApp.getBaccarat(1).setBigRoadOld("");
-        afbApp.getBaccarat(2).setBigRoadOld("");
-        afbApp.getBaccarat(3).setBigRoadOld("");
-        afbApp.getBaccarat(61).setBigRoadOld("");
-        afbApp.getBaccarat(62).setBigRoadOld("");
-        afbApp.getBaccarat(63).setBigRoadOld("");
-        afbApp.getBaccarat(71).setBigRoadOld("");
-        afbApp.getDragonTiger01().setBigRoadOld("");
-        afbApp.getRoulette01().setRoadOld("");
-        afbApp.getSicbo01().setRoadOld("");
+        mAppViewModel.getBaccarat(1).setBigRoadOld("");
+        mAppViewModel.getBaccarat(2).setBigRoadOld("");
+        mAppViewModel.getBaccarat(3).setBigRoadOld("");
+        mAppViewModel.getBaccarat(61).setBigRoadOld("");
+        mAppViewModel.getBaccarat(62).setBigRoadOld("");
+        mAppViewModel.getBaccarat(63).setBigRoadOld("");
+        mAppViewModel.getBaccarat(71).setBigRoadOld("");
+        mAppViewModel.getDragonTiger01().setBigRoadOld("");
+        mAppViewModel.getRoulette01().setRoadOld("");
+        mAppViewModel.getSicbo01().setRoadOld("");
     }
+
+    public ViewModelProvider getAppViewModelProvider() {
+        return new ViewModelProvider(getApp().getViewModelStore(), getApp().getViewModelFactory());
+    }
+
 }

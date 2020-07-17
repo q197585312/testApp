@@ -32,7 +32,7 @@ public class AppConstant {
 
     //    public static String HOST="http://www.doo88.net/";
     public String HOST = BuildConfig.HOST_AFB;
-    public String WebSocket_HOST = "http://wsapp.afb1188.com:8888/";
+    public String WebSocket_HOST =BuildConfig.HOST_SPORT;
     //http://www.afb1188.com/W0/Pub/pcode.axd
     public String URL_LOGIN = HOST + "H50/Pub/pcode.axd";///W0/Pub/pcode.axd
     //    、、/W0/Pub/wfMain0.html

@@ -2,12 +2,13 @@ package com.nanyang.app.main.home;
 
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -39,16 +40,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 public class HomeFragment extends BaseSwitchFragment {
 
-    @Bind(R.id.auto_viewpager)
+    @BindView(R.id.auto_viewpager)
     AutoScrollViewPager viewPager;
-    @Bind(R.id.rv_content)
+    @BindView(R.id.rv_content)
     RecyclerView rvContent;
 
-    @Bind(R.id.in_layout)
+    @BindView(R.id.in_layout)
     LinearLayout inLayout;
     private JSONObject jsonObjectNum;
     private String lastAllMainData;
@@ -66,19 +68,8 @@ public class HomeFragment extends BaseSwitchFragment {
     public void initData() {
         super.initData();
         language = new LanguageHelper(mContext).getLanguage();
-        loadingUrlPics();
-    }
-
-    private void loadingUrlPics() {
-        ((MainPresenter) getBaseActivity().presenter).loadAllImages(new MainPresenter.CallBack<AllBannerImagesBean>() {
-            @Override
-            public void onBack(AllBannerImagesBean data) throws JSONException {
-                LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
-                ((MainActivity) getBaseActivity()).getApp().setListMainPictures(data.getMain());
-                ((MainActivity) getBaseActivity()).getApp().setListMainBanners(data.getMainBanners());
-                loadUi();
-            }
-        });
+        initContentAdapter(new ArrayList<AllBannerImagesBean.MainBannersBean>());
+        loadAllPic();
     }
 
 
@@ -105,16 +96,25 @@ public class HomeFragment extends BaseSwitchFragment {
         if (((AfbApplication) getBaseActivity().getApplication()).getListMainBanners() != null)
             loadUi();
         else {
-            loadingUrlPics();
+            loadAllPic();
         }
         updateTimer();
         initHomeToolBar();
 
     }
 
+    private void loadAllPic() {
+        ((MainActivity) getBaseToolbarActivity()).loadingUrlPics(new MainPresenter.CallBack<AllBannerImagesBean>() {
+            @Override
+            public void onBack(AllBannerImagesBean data) throws JSONException {
+                loadUi();
+            }
+        });
+    }
+
     private void loadUi() {
         initViewPager(((AfbApplication) getBaseActivity().getApplication()).getListMainBanners());
-        initContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
+        updateContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
     }
 
     private void initHomeToolBar() {
@@ -135,10 +135,9 @@ public class HomeFragment extends BaseSwitchFragment {
     }
 
 
-    private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
+    private void updateContent(List<AllBannerImagesBean.MainBannersBean> data) {
         this.mainList = data;
-        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
-        rvContent.setLayoutManager(layoutManager);
+
         Iterator<AllBannerImagesBean.MainBannersBean> iterator = data.iterator();
         if (AppConstant.IS_AGENT) {
             while (iterator.hasNext()) {
@@ -147,6 +146,13 @@ public class HomeFragment extends BaseSwitchFragment {
                     iterator.remove();
             }
         }
+        adapter.addAllAndClear(data);
+
+    }
+
+    private void initContentAdapter(List<AllBannerImagesBean.MainBannersBean> data) {
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
+        rvContent.setLayoutManager(layoutManager);
         adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.MainBannersBean item) {

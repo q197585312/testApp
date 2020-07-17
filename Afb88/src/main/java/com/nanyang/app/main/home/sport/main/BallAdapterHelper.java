@@ -7,6 +7,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,17 +33,15 @@ import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONException;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2017/3/12 0012.
@@ -61,11 +60,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private IRTMatchInfo additionBallItem;
 
 
-    public Set<ScrollLayout> getSlFollowers() {
-        return slFollowers;
-    }
 
-    private Set<ScrollLayout> slFollowers = new HashSet<>();
 
     void setSlIndex(int slIndex) {
         this.slIndex = slIndex;
@@ -121,10 +116,48 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
+
+
+        TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
+        TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
+
+        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+
+        View headV = helper.getView(R.id.module_match_head_v);
+        LeagueCollectionTv.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        back.clickView(view, item, position);
+                    }
+                }
+        );
+        View contentParentLl = helper.getView(R.id.ll_match_content);
+        contentParentLl.setBackgroundColor(item.getContentColor());
+        if (item.getType() == SportInfo.Type.ITME) {
+            matchTitleLl.setVisibility(View.GONE);
+            headV.setVisibility(View.GONE);
+            LeagueCollectionTv.setBackgroundResource(R.mipmap.sport_game_star_yellow);
+        } else {
+            LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.sport_game_star_yellow_open : R.mipmap.sport_game_star_yellow);
+            matchTitleLl.setVisibility(View.VISIBLE);
+            headV.setVisibility(View.VISIBLE);
+            matchTitleTv.setText(item.getModuleTitle());
+        }
+        setClickOneTeam(helper, item);
         final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
-        RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
-        View ll_title_list = helper.getView(R.id.ll_title_list);
         View ll_match_outside = helper.getView(R.id.ll_match_outside);
+        View ll_title_list = helper.getView(R.id.ll_title_list);
+        boolean contractedMatch = updateContractedMatch(helper, item);
+        if (contractedMatch) {
+            parent.setVisibility(View.GONE);
+            ll_title_list.setVisibility(View.GONE);
+            LogUtil.d("visiable:",contractedMatch+"getSocOddsId:"+item.getSocOddsId());
+            return;
+        }
+        LogUtil.d("visiable:",contractedMatch+"getSocOddsId:"+item.getSocOddsId());
+        RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
+
         if (onlyShowAdded) {
             ll_match_outside.setVisibility(View.GONE);
         } else {
@@ -133,7 +166,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
             ll_title_list.setVisibility(View.VISIBLE);
-
             liveSelectedHelper.iniSelectedHelper(rv_title_list, context, new MainPresenter.CallBack<MenuItemInfo>() {
                 @Override
                 public void onBack(MenuItemInfo data) throws JSONException {
@@ -185,13 +217,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
         onConvertHall(item, ivHall, position);
-
-        TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
-        TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
-
-        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
-
-        View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         ImageView lastGif = helper.getView(R.id.iv_last_call_gif);
         TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
@@ -279,14 +304,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 back.clickView(v, item, position);
             }
         });
-        LeagueCollectionTv.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        back.clickView(view, item, position);
-                    }
-                }
-        );
+
         String isHomeGive = item.getIsHomeGive();
         String hdp = item.getHdp();
         if (isHomeGive.equals("1")) {
@@ -314,20 +332,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         });
         gameSumTv.setText(item.getGamesSum());
-        View contentParentLl = helper.getView(R.id.ll_match_content);
-        contentParentLl.setBackgroundColor(item.getContentColor());
-        if (item.getType() == SportInfo.Type.ITME) {
-            matchTitleLl.setVisibility(View.GONE);
-            headV.setVisibility(View.GONE);
-            LeagueCollectionTv.setBackgroundResource(R.mipmap.sport_game_star_yellow);
-        } else {
-            LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.sport_game_star_yellow_open : R.mipmap.sport_game_star_yellow);
-            matchTitleLl.setVisibility(View.VISIBLE);
-            headV.setVisibility(View.VISIBLE);
-            matchTitleTv.setText(item.getModuleTitle());
-        }
-        setClickOneTeam(helper, item);
-        updateContractedMatch(helper, item);
+
         handleOddsContent(helper, item, position);
         String away = item.getAway();
         String home = item.getHome();
@@ -1183,10 +1188,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     public void handleOddsContent(MyRecyclerViewHolder helper, I item, int position) {
-        final ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        final ScrollLayout sl1 = helper.getView(R.id.module_center_sl1);
-        sl1.getChildAt(0).setVisibility(View.VISIBLE);
-        sl1.getChildAt(1).setVisibility(View.VISIBLE);
+        final FrameLayout sl = helper.getView(R.id.module_center_sl);
+
 
         String hasHdp = item.getHasHdp();
         String hdp = item.getHdp();
@@ -1202,50 +1205,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
 
-     /*   sl.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                sl.setFollowScrolls(slFollowers);
-                return false;
-            }
-        });
-        sl1.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                sl1.setFollowScrolls(slFollowers);
-
-                return false;
-            }
-        });*/
-       /* sl.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
-            @Override
-            public void changePosition(int index) {
-                if (slIndex != index) {
-                    slIndex = index;
-
-                }
-            }
-        });*/
-
-        if (sl.getTargetIndex() != slIndex)
-            sl.setCurrentIndex(slIndex);
-        if (sl1.getTargetIndex() != slIndex)
-            sl1.setCurrentIndex(slIndex);
     }
 
-   /* private void addAdded(String f1, String f2, String oid, boolean isHalf, LinearLayout parent, I item, String up1, String up2, String type1, String type2, String sc1, String sc2, int itemRes
-            , boolean hasPar1
-            , boolean hasPar2) {
-        addAdded(f1, f2, "", oid, isHalf, parent, item,
-                up1, up2, "", type1, type2, "", sc1, sc2, "", R.layout.addition_1x2_sport_item
-                , hasPar1
-                , hasPar2
-                , false);
-        View viewById = parent.getChildAt(parent.getChildCount() - 1).findViewById(R.id.content3_ll);
-        viewById.setVisibility(View.GONE);
-    }*/
 
     private void addAddedByColor(String f1, String f2, String oid, boolean isHalf, LinearLayout parent, I item, String up1, String up2, String type1, String type2, String sc1, String sc2, int itemRes, String colorType
             , boolean hasPar1
@@ -1737,7 +1698,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     }
 
-    protected void updateMixBackground(BallInfo item, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
+    protected void updateMixBackground(BallInfo item, FrameLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
         handler.updateMixBackground(item, sl, type01, type02, type11, type12, type21, type22);
     }
 
@@ -2253,37 +2214,37 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
 
     public static class ViewHolder {
-        @Bind(R.id.viewpager_match_home_hdp_tv)
+        @BindView(R.id.viewpager_match_home_hdp_tv)
         public TextView viewpagerMatchHomeHdpTv;
-        @Bind(R.id.viewpager_match_home_hdpodds_tv)
+        @BindView(R.id.viewpager_match_home_hdpodds_tv)
         public TextView viewpagerMatchHomeHdpoddsTv;
-        @Bind(R.id.viewpager_match_ou_tv)
+        @BindView(R.id.viewpager_match_ou_tv)
         public TextView viewpagerMatchOuTv;
-        @Bind(R.id.viewpager_match_overodds_tv)
+        @BindView(R.id.viewpager_match_overodds_tv)
         public TextView viewpagerMatchOveroddsTv;
-        @Bind(R.id.viewpager_odd_label_tv)
+        @BindView(R.id.viewpager_odd_label_tv)
         public TextView viewpagerOddLabelTv;
-        @Bind(R.id.viewpager_match_odd_tv)
+        @BindView(R.id.viewpager_match_odd_tv)
         public TextView viewpagerMatchOddTv;
-        @Bind(R.id.viewpager_match_visit_hdp_tv)
+        @BindView(R.id.viewpager_match_visit_hdp_tv)
         public TextView viewpagerMatchVisitHdpTv;
-        @Bind(R.id.viewpager_match_visit_hdpodds_tv)
+        @BindView(R.id.viewpager_match_visit_hdpodds_tv)
         public TextView viewpagerMatchVisitHdpoddsTv;
-        @Bind(R.id.viewpager_match_ou2_tv)
+        @BindView(R.id.viewpager_match_ou2_tv)
         public TextView viewpagerMatchOu2Tv;
-        @Bind(R.id.viewpager_match_underodds_tv)
+        @BindView(R.id.viewpager_match_underodds_tv)
         public TextView viewpagerMatchUnderoddsTv;
-        @Bind(R.id.viewpager_even_label_tv)
+        @BindView(R.id.viewpager_even_label_tv)
         public TextView viewpagerEvenLabelTv;
-        @Bind(R.id.viewpager_match_even_tv)
+        @BindView(R.id.viewpager_match_even_tv)
         public TextView viewpagerMatchEvenTv;
-        @Bind(R.id.img_up_down_up1)
+        @BindView(R.id.img_up_down_up1)
         public ImageView imgUpDownUp1;
-        @Bind(R.id.img_up_down_up2)
+        @BindView(R.id.img_up_down_up2)
         public ImageView imgUpDownUp2;
-        @Bind(R.id.img_up_down_down1)
+        @BindView(R.id.img_up_down_down1)
         public ImageView imgUpDownDown1;
-        @Bind(R.id.img_up_down_down2)
+        @BindView(R.id.img_up_down_down2)
         public ImageView imgUpDownDown2;
 
         public ViewHolder(View view) {
@@ -2302,13 +2263,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public void updateMixNormalBackground(MyRecyclerViewHolder helper, I item) {
 
-        ScrollLayout sl = helper.getView(R.id.module_center_sl);
+        FrameLayout sl = helper.getView(R.id.module_center_sl);
         updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 
     public void showLastCall(I item, TextView dateTv, ImageView lastGif, TextView dateTv1, TextView timeTv, TextView timeTv1, TextView liveTv, TextView liveTv1) {
         if (item.getIsLastCall() != null && item.getIsLastCall().equals("1")) {
-            Glide.with(context).load(R.mipmap.lastcall).asGif().into(lastGif);
+            Glide.with(context).load(R.mipmap.lastcall).into(lastGif);
             dateTv.setVisibility(View.GONE);
             dateTv1.setVisibility(View.GONE);
             liveTv.setVisibility(View.GONE);

@@ -7,8 +7,8 @@ import java.util.Map;
  * Created by Administrator on 2017/1/10 0010.
  */
 public class UserInfo {
-    /*String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
-    strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);*/
+    /*String loginParams = "txtLang=0&txtAcctid="+getApp().getUser().getName()+"&txtPwd="+getApp().getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
+    strRes = getApp().getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);*/
     String txtLang;
     String txtAcctid;
     String txtPwd;

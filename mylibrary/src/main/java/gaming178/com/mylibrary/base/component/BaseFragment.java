@@ -45,9 +45,4 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void initData(Bundle savedInstanceState);
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

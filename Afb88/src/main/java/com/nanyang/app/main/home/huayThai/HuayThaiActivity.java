@@ -2,11 +2,12 @@ package com.nanyang.app.main.home.huayThai;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
@@ -19,14 +20,15 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * Created by Administrator on 2017/3/24.
  */
 
 public class HuayThaiActivity extends BaseToolbarActivity {
-    @Bind(R.id.thai_thousand_rc)
+    @BindView(R.id.thai_thousand_rc)
     RecyclerView rc;
     private List<MenuItemInfo<String>> data;
 

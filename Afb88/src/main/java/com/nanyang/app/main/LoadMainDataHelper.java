@@ -55,6 +55,12 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                     if (!StringUtils.isNull(matches)) {
                         String group = StringUtils.findGroup(s2, matches, 1);
                         if (!StringUtils.isNull(group)) {
+                            /*CreatWS(\"ws://ws2.afb1188.net:8888/FnChat\");*/
+                            /*"^.*\"(http[^\"]+)\",.*$"*/
+                            String ws = StringUtils.findGroup(s2, "^.*CreatWS\\(\"([^\"]+)\\\".*$", 1);
+                            if (!StringUtils.isNull(ws) && ws.startsWith("ws")) {
+                                AppConstant.getInstance().WebSocket_HOST = ws;
+                            }
                             RefreshDataBean refreshDataBean = new Gson().fromJson(group, RefreshDataBean.class);
                             refreshDataBean.setACT("LOS");
                             refreshDataBean.setFAV("");
