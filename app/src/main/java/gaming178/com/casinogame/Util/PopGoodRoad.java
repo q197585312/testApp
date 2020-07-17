@@ -80,6 +80,10 @@ public class PopGoodRoad extends BasePopupWindow {
     CountDownView countdown_view63;
     CountDownView countdown_view71;
 
+    public void setContent(){
+        tv_wait.setText(context.getString(R.string.wait_good_road));
+    }
+
 
     @Override
     protected void initView(View view) {
@@ -182,18 +186,24 @@ public class PopGoodRoad extends BasePopupWindow {
             return;
         }
         baseActivity.getApp().setTableId(tableId);
-        for (int i = 1; i <= 4; i++) {
-            if (baccarat.getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                baccarat.setLimitIndex(i);
-                break;
+        if (baseActivity instanceof BaccaratActivity){
+            BaccaratActivity baccaratActivity = (BaccaratActivity) baseActivity;
+            baccaratActivity.initBaccarat();
+            closePopupWindow();
+        }else {
+            for (int i = 1; i <= 4; i++) {
+                if (baccarat.getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    baccarat.setLimitIndex(i);
+                    break;
+                }
             }
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
+            bundle.putBoolean("baccaratA", true);
+            baseActivity.getApp().setbLobby(false);
+            AppTool.activiyJump(context, BaccaratActivity.class, bundle);
+            baseActivity.finish();
         }
-        Bundle bundle = new Bundle();
-        bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
-        bundle.putBoolean("baccaratA", true);
-        baseActivity.getApp().setbLobby(false);
-        AppTool.activiyJump(context, BaccaratActivity.class, bundle);
-        baseActivity.finish();
     }
 
     public void initUi(final List<GoodRoadDataBean> goodRoadDataBeenList) {

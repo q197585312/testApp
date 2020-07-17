@@ -44,6 +44,7 @@ public class TableChangePop extends BasePopupWindow {
     private LinearLayout parent;
     private List<TableTimerBean> list;
     private TextView tv_b, tv_r, tv_s, tv_d;
+    List<TextView> hereList = new ArrayList<>();
 
     public TableChangePop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -134,6 +135,9 @@ public class TableChangePop extends BasePopupWindow {
     private boolean isNeedRefenshTimer;
 
     public void setPopTopContent() {
+        for (int i = 0; i < hereList.size(); i++) {
+            hereList.get(i).setText(context.getString(R.string.your_here));
+        }
         refreshTimer((BaseActivity) context);
     }
 
@@ -341,6 +345,8 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_baccarat_pp_number = (TextView) aB1.findViewById(R.id.text_pp);
                 View ll_good_road_parent = aB1.findViewById(R.id.ll_good_road_parent);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                hereList.add(tv_here);
                 if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
@@ -369,6 +375,8 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_roulette_big01 = (TextView) aB1.findViewById(R.id.text_big);
                 TextView tv_roulette_small01 = (TextView) aB1.findViewById(R.id.text_small);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                hereList.add(tv_here);
                 if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
@@ -434,6 +442,8 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_waidic01 = (TextView) aB1.findViewById(R.id.text_waidic);
                 LinearLayout linearlayout = (LinearLayout) aB1.findViewById(R.id.layout2);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                hereList.add(tv_here);
                 if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
@@ -474,6 +484,8 @@ public class TableChangePop extends BasePopupWindow {
                 LinearLayout ll_bp = (LinearLayout) aB1.findViewById(R.id.ll_bp);
                 ll_bp.setVisibility(View.GONE);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                hereList.add(tv_here);
                 if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }

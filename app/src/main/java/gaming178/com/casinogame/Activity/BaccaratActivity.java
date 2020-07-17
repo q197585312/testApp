@@ -1616,6 +1616,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         rl_good_road.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popGoodRoad.setContent();
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     int windowPos[] = new int[2];
                     rl_good_road.getLocationOnScreen(windowPos);
@@ -1827,10 +1828,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 case HandlerCode.UPDATE_STATUS:
                     updateTimer();
                     updateInterface();
-                    if (isChangeTable) {
-                        isChangeTable = false;
-                        dismissBlockDialog();
-                    }
                     break;
                 case HandlerCode.SHOW_LIMIT_OVER_MAX:
                     Toast.makeText(mContext, R.string.show_limit_over_max, Toast.LENGTH_LONG).show();
@@ -2541,12 +2538,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         startUpdateStatusThread();
     }
 
-    private boolean isChangeTable = false;
-
     @Override
     public void initBaccarat() {
-        showBlockDialog();
-        isChangeTable = true;
         tableId = afbApp.getTableId();
         clearAllShowChip();
         clearAllChips();
@@ -2572,8 +2565,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         animationBanker.selectDrawable(0);
         countdown_view.stopCountDown();
         betTimeCount = 0;
-        videoHelper.pauseVideo();
-        mPreview.setVisibility(View.INVISIBLE);
+        videoHelper.stopVideo();
         stopUpdateStatusThread();
         initUI();
         if (tableId == 71 && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -3585,20 +3577,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void startPlayVideo() {
-        if (mPreview==null){
+        if (mPreview == null) {
             mPreview = findViewById(R.id.surface);
             videoHelper = new VideoHelper(mContext, mPreview) {
                 @Override
                 public void doVideoFix() {
                     super.doVideoFix();
-                    if (mPreview.getVisibility()==View.INVISIBLE){
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mPreview.setVisibility(View.VISIBLE);
-                            }
-                        },500);
-                    }
                     if (findViewById(R.id.fl_baccarat_bg) != null)
                         findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
                 }
@@ -4477,6 +4461,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 timerTv.setVisibility(View.VISIBLE);
                 String time = "" + millisUntilFinished / 1000;
                 timerTv.setText(time);
+                if (millisUntilFinished < 6000) {
+                    tv_mi_timer.setTextColor(Color.RED);
+                } else {
+                    tv_mi_timer.setTextColor(Color.WHITE);
+                }
+
                 tv_mi_timer.setText(time);
             }
 
