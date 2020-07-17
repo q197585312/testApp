@@ -1603,7 +1603,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.getBaccarat(tableId).setBigRoadOld("");
             }
         });
-        //test
+        //新分支提交aaa
         ll_banker_ask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
