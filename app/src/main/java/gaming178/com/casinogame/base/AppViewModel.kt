@@ -15,17 +15,23 @@
  */
 package gaming178.com.casinogame.base
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import gaming178.com.baccaratgame.BuildConfig
-import java.util.*
+import gaming178.com.casinogame.Bean.User
 
-class SharedViewModel : ViewModel() {
-    val flavor = UnPeekLiveData<String>()
-    val isMainFlavor = UnPeekLiveData<Boolean>()
+class AppViewModel : ViewModel() {
 
-    init {
-        flavor.value = BuildConfig.FLAVOR
-        isMainFlavor.value = (flavor.value == "gd88" || flavor.value == "liga365")
+    val flavor = MutableLiveData<String>().apply {
+        value = BuildConfig.FLAVOR
     }
 
+    val isMainFlavor = MutableLiveData<Boolean>().apply {
+        value = (flavor.value == "gd88" || flavor.value == "liga365")
+    }
+
+    val  isLiga365 = MutableLiveData<Boolean>().apply {
+        value = flavor.value == "liga365"
+    }
+    var user=MutableLiveData<User>()
 }

@@ -15,7 +15,7 @@ import com.unkonw.testapp.libs.widget.listener.VideoListener;
 
 import java.io.IOException;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
@@ -23,15 +23,15 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  */
 
 public class LivePlayActivity extends BaseToolbarActivity {
-    @Bind(R.id.video_player_stream)
+    @BindView(R.id.video_player_stream)
     VideoPlayer videoPlayer;
-    @Bind(R.id.iv_play_status)
+    @BindView(R.id.iv_play_status)
     ImageView ivPlayStatus;
-    @Bind(R.id.iv_voice)
+    @BindView(R.id.iv_voice)
     ImageView ivVoice;
-    @Bind(R.id.iv_full_screen)
+    @BindView(R.id.iv_full_screen)
     ImageView ivFullScreen;
-    @Bind(R.id.ll_status)
+    @BindView(R.id.ll_status)
     LinearLayout llStatus;
     private String url;
     private boolean playing = true;

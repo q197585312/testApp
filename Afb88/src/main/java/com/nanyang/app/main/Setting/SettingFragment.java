@@ -42,14 +42,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * Created by Administrator on 2019/4/25.
  */
 
 public class SettingFragment extends BaseMoreFragment<MainPresenter> implements ILanguageView<String> {
-    @Bind(R.id.person_center_view)
+    @BindView(R.id.person_center_view)
     RecyclerView rcContent;
     BaseToolbarActivity aty;
     BaseRecyclerAdapter<SettingInfoBean> adapter;

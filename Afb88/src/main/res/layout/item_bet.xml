@@ -74,11 +74,11 @@
                 android:background="@drawable/rectangle_edt_white"
                 android:gravity="center"
                 android:hint="@string/single"
+                android:textColorHint="@color/grey_light"
                 android:imeOptions="flagNoExtractUi"
                 android:inputType="number|numberDecimal"
                 android:padding="2dp"
                 android:textColor="@color/black_grey"
-                android:textColorHint="@color/grey_background"
                 android:textSize="13sp" />
         </LinearLayout>
 

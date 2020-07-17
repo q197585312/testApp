@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.widget.Toolbar;
 
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -78,7 +77,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     }
 
     protected void initToolBar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar =findViewById(R.id.toolbar);
 
         setLayout = (LinearLayout) findViewById(R.id.layout_set);
         titleTv = (TextView) findViewById(R.id.toolbar_title);
@@ -130,13 +129,6 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
 
     protected abstract int getLayoutRes();
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
 
     public void setDialog(BlockDialog dialog) {
         this.dialog = dialog;

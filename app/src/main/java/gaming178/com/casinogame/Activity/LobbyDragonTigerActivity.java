@@ -24,8 +24,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Bean.DragonTiger;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.HandlerCode;
@@ -41,21 +42,21 @@ import gaming178.com.mylibrary.myview.View.GridBackgroundView;
  * Created by Administrator on 2016/3/22.
  */
 public class LobbyDragonTigerActivity extends BaseActivity {
-    @Bind(R.id.baccarat_grid_parent_ll)
+    @BindView(R2.id.baccarat_grid_parent_ll)
     LinearLayout baccarat_grid_parent_ll;
-    @Bind(R.id.baccarat_content_parent_ll)
+    @BindView(R2.id.baccarat_content_parent_ll)
     LinearLayout baccaratContentParentLl;
-    @Bind(R.id.baccarat_gridlayout1)
+    @BindView(R2.id.baccarat_gridlayout1)
     GridLayout baccarat_head_road1;
-    @Bind(R.id.baccarat_gridlayout2)
+    @BindView(R2.id.baccarat_gridlayout2)
     GridLayout baccarat_big_road1;
-    @Bind(R.id.baccarat_gridlayout3)
+    @BindView(R2.id.baccarat_gridlayout3)
     GridLayout baccarat_bigeyes_road1;
-    @Bind(R.id.baccarat_gridlayout4)
+    @BindView(R2.id.baccarat_gridlayout4)
     FrameLayout fl4;//baccarat_smalleyes_road1
-    @Bind(R.id.baccarat_gridlayout5)
+    @BindView(R2.id.baccarat_gridlayout5)
     FrameLayout fl5;//baccarat_roach_road1
-    @Bind(R.id.baccarat_head_iv)
+    @BindView(R2.id.baccarat_head_iv)
     ImageView baccarat_head_iv;//baccarat_roach_road1
     private float density;
     private TextView shufflingTv;
@@ -155,7 +156,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
         view.setLayoutParams(params);
     }
 
-    @Bind(R.id.layout1)
+    @BindView(R2.id.layout1)
     HorizontalScrollView scrollView1;
 
     @Override
@@ -168,8 +169,8 @@ public class LobbyDragonTigerActivity extends BaseActivity {
     }
 
     public void initUI() {
-        afbApp.getDragonTiger01().setTimer(0);
-        afbApp.getDragonTiger01().setBigRoadOld("");
+        mAppViewModel.getDragonTiger01().setTimer(0);
+        mAppViewModel.getDragonTiger01().setBigRoadOld("");
         dragonTigerTimer01 = 0;
         tv_baccarat_timer01.setText("0");
         dragenTigerGameNumber01 = "";
@@ -194,7 +195,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
 
     @Override
     protected void leftClick() {
-        afbApp.getDragonTiger01().setBigRoadOld("");
+        mAppViewModel.getDragonTiger01().setBigRoadOld("");
         AppTool.activiyJump(mContext, LobbyActivity.class);
         finish();
     }
@@ -227,15 +228,15 @@ public class LobbyDragonTigerActivity extends BaseActivity {
     }
 
     public void updateTimer() {
-        if (afbApp.getDragonTiger01().getGameStatus() == 8) {
+        if (mAppViewModel.getDragonTiger01().getGameStatus() == 8) {
             shufflingTv.setVisibility(View.VISIBLE);
         } else {
             shufflingTv.setVisibility(View.GONE);
         }
-        if (dragonTigerTimer01 == 0 && afbApp.getDragonTiger01().getTimer() > 0) {
-            if (!dragenTigerGameNumber01.equals(afbApp.getDragonTiger01().getShoeNumber() + afbApp.getDragonTiger01().getGameNumber())) {
-                dragenTigerGameNumber01 = afbApp.getDragonTiger01().getShoeNumber() + afbApp.getDragonTiger01().getGameNumber();
-                dragonTigerTimer01 = afbApp.getDragonTiger01().getTimer();
+        if (dragonTigerTimer01 == 0 && mAppViewModel.getDragonTiger01().getTimer() > 0) {
+            if (!dragenTigerGameNumber01.equals(mAppViewModel.getDragonTiger01().getShoeNumber() + mAppViewModel.getDragonTiger01().getGameNumber())) {
+                dragenTigerGameNumber01 = mAppViewModel.getDragonTiger01().getShoeNumber() + mAppViewModel.getDragonTiger01().getGameNumber();
+                dragonTigerTimer01 = mAppViewModel.getDragonTiger01().getTimer();
             }
 
 
@@ -248,9 +249,9 @@ public class LobbyDragonTigerActivity extends BaseActivity {
             dragonTigerTimer01--;
             tv_baccarat_timer01.setText("" + dragonTigerTimer01);
             tv_baccarat_timer01.setTextSize(18);
-            tv_baccarat_shoe_number01.setText("" + afbApp.getDragonTiger01().getShoeNumber() + " - " + afbApp.getDragonTiger01().getGameNumber());
+            tv_baccarat_shoe_number01.setText("" + mAppViewModel.getDragonTiger01().getShoeNumber() + " - " + mAppViewModel.getDragonTiger01().getGameNumber());
         } else {
-//            if (afbApp.getDragonTiger01().getGameStatus() == 2) {
+//            if (mAppViewModel.getDragonTiger01().getGameStatus() == 2) {
 //                tv_baccarat_timer01.setText(getString(R.string.START_DEALING));
 //                tv_baccarat_timer01.setTextSize(12);
 //            }
@@ -268,14 +269,14 @@ public class LobbyDragonTigerActivity extends BaseActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         InitControl();
-        afbApp.getDragonTiger01().setShoeNumberOld(afbApp.getDragonTiger01().getShoeNumber());
+        mAppViewModel.getDragonTiger01().setShoeNumberOld(mAppViewModel.getDragonTiger01().getShoeNumber());
         titleTv.setText(getString(R.string.dragon_tiger).toUpperCase());
     }
 
     public void InitRoad() {
 //        road = getApp().getDragonTiger02().ShowDragonTigerBigRoad("5#5#7#1#5#1#1#1#1#5#5#1#5#1#1#2#1#6#9#7#1#1#5#1#1#5#9#9#1#1#1#1#3#1#1#1#1#5#3#5#5#5#1#5#1#1#7#1#",
 //                mContext,baccarat_big_road2,6,density,1);
-        afbApp.updateDragenTigerRoad(mContext, density, getApp().getDragonTiger01(), baccarat_head_road1, baccarat_big_road1, baccarat_bigeyes_road1, baccarat_smalleyes_road1, baccarat_roach_road1
+        mAppViewModel.updateDragenTigerRoad(mContext, density, mAppViewModel.getDragonTiger01(), baccarat_head_road1, baccarat_big_road1, baccarat_bigeyes_road1, baccarat_smalleyes_road1, baccarat_roach_road1
                 , tv_baccarat_shoe_number01, tv_baccarat_total_number01, tv_baccarat_banker_number01, tv_baccarat_player_number01, tv_baccarat_tie_number01, tv_baccarat_bp_number01, tv_baccarat_pp_number01,
                 false,ll_big_road_parent2,hsv_small_road_1,hsv_small_road_2,hsv_small_road_3);
     }
@@ -394,12 +395,12 @@ public class LobbyDragonTigerActivity extends BaseActivity {
             public void onItemClick(View view, String s, int position) {
                 if ("0 - 0".endsWith(s))
                     return;
-                getApp().getDragonTiger01().setLimitIndex(position + 1);
+                mAppViewModel.getDragonTiger01().setLimitIndex(position + 1);
                 Bundle bundle = new Bundle();
                 bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
                 //   AppTool.activiyJump(AutoNumberActivity.this, NumberGameSingleTableActivity.class, bundle);
-                afbApp.setTableId(5);
-                afbApp.setbLobby(false);
+                mAppViewModel.setTableId(5);
+                mAppViewModel.setbLobby(false);
                 AppTool.activiyJump(mContext, DragonTigerActivity.class, bundle);
 
             }
@@ -421,7 +422,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
         String limit2 = "0 - 0";
         String limit3 = "0 - 0";
         String limit4 = "0 - 0";
-        DragonTiger dragonTiger = getApp().getDragonTiger01();
+        DragonTiger dragonTiger = mAppViewModel.getDragonTiger01();
         if (dragonTiger != null) {
             limit1 = "" + (int) dragonTiger.getDragonTigerLimit1().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit1().getMaxTotalBet();
             limit2 = "" + (int) dragonTiger.getDragonTigerLimit2().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit2().getMaxTotalBet();

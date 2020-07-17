@@ -12,9 +12,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Activity.entity.GoodRoadDataBean;
 import gaming178.com.casinogame.Bean.Baccarat;
@@ -40,9 +41,9 @@ public class PopGoodRoad extends BasePopupWindow {
         return R.layout.pop_good_road;
     }
 
-    @Bind(R.id.ll_good_parent)
+    @BindView(R2.id.ll_good_parent)
     LinearLayout ll_good_parent;
-    @Bind(R.id.tv_wait)
+    @BindView(R2.id.tv_wait)
     TextView tv_wait;
     View viewGoodRoad1;
     View viewGoodRoad2;
@@ -135,43 +136,43 @@ public class PopGoodRoad extends BasePopupWindow {
             @Override
             public void onClick(View v) {
 
-                goBaccarat(1, baseActivity.getApp().getBaccarat01());
+                goBaccarat(1, baseActivity.mAppViewModel.getBaccarat01());
             }
         });
         viewGoodRoad2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBaccarat(2, baseActivity.getApp().getBaccarat02());
+                goBaccarat(2, baseActivity.mAppViewModel.getBaccarat02());
             }
         });
         viewGoodRoad3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBaccarat(3, baseActivity.getApp().getBaccarat03());
+                goBaccarat(3, baseActivity.mAppViewModel.getBaccarat03());
             }
         });
         viewGoodRoad61.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBaccarat(61, baseActivity.getApp().getBaccarat61());
+                goBaccarat(61, baseActivity.mAppViewModel.getBaccarat61());
             }
         });
         viewGoodRoad62.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBaccarat(62, baseActivity.getApp().getBaccarat62());
+                goBaccarat(62, baseActivity.mAppViewModel.getBaccarat62());
             }
         });
         viewGoodRoad63.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBaccarat(63, baseActivity.getApp().getBaccarat63());
+                goBaccarat(63, baseActivity.mAppViewModel.getBaccarat63());
             }
         });
         viewGoodRoad71.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBaccarat(71, baseActivity.getApp().getBaccarat71());
+                goBaccarat(71, baseActivity.mAppViewModel.getBaccarat71());
             }
         });
         for (int i = 0; i < ll_good_parent.getChildCount(); i++) {
@@ -181,11 +182,17 @@ public class PopGoodRoad extends BasePopupWindow {
     }
 
     private void goBaccarat(int tableId, Baccarat baccarat) {
-        if (baseActivity.getApp().getBaccarat(tableId).getStatus() != 1) {
+        if (baseActivity.mAppViewModel.getBaccarat(tableId).getStatus() != 1) {
             Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
             return;
         }
-        baseActivity.getApp().setTableId(tableId);
+        baseActivity.mAppViewModel.setTableId(tableId);
+        for (int i = 1; i <= 4; i++) {
+            if (baccarat.getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                baccarat.setLimitIndex(i);
+                break;
+            }
+        }
         if (baseActivity instanceof BaccaratActivity){
             BaccaratActivity baccaratActivity = (BaccaratActivity) baseActivity;
             baccaratActivity.initBaccarat();
@@ -200,7 +207,7 @@ public class PopGoodRoad extends BasePopupWindow {
             Bundle bundle = new Bundle();
             bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
             bundle.putBoolean("baccaratA", true);
-            baseActivity.getApp().setbLobby(false);
+            baseActivity.mAppViewModel.setbLobby(false);
             AppTool.activiyJump(context, BaccaratActivity.class, bundle);
             baseActivity.finish();
         }
@@ -210,7 +217,7 @@ public class PopGoodRoad extends BasePopupWindow {
         new Thread() {
             @Override
             public void run() {
-                String strRes = baseActivity.getApp().getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A_B, "GameType=11&Tbid=0&Usid=" + baseActivity.getApp().getUser().getName());
+                String strRes = baseActivity.mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A_B, "GameType=11&Tbid=0&Usid=" + baseActivity.mAppViewModel.getUser().getName());
                 if (strRes.startsWith("Results=ok")) {
                     final String[] split = strRes.split("\\^");
                     //Results=ok#^1#1#18#^2#2#0#^3#5#0#^5#2#0#^21#2#0#^31#1#10#^61#5#0#^62#5#0#^63#1#0#^64#5#0#^65#5#0#^66#5#0#^71#2#0#^

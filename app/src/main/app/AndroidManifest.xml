@@ -60,6 +60,9 @@
                     android:scheme="skipdig88" />
             </intent-filter>
         </activity>
+        <activity android:name="gaming178.com.casinogame.load.LoginKtActivity" >
+
+        </activity>
         <activity
             android:name="gaming178.com.casinogame.MainActivity"
             android:exported="true"
@@ -148,6 +151,7 @@
              </intent-filter>-->
 
         </activity>
+
 
 
         <meta-data
