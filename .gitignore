@@ -36,7 +36,6 @@ proguard/
 *.iws
 .idea/
 /.idea/misc.xml
-/build.gradle
 app/libs/
 autolayout/build/
 autolayout/build

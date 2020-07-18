@@ -1380,7 +1380,13 @@ public class LobbyBaccaratActivity extends BaseActivity {
             public void onItemClick(View view, String s, int position) {
                 if ("0 - 0".endsWith(s))
                     return;
-                mAppViewModel.getBaccarat(tableId).setLimitIndex(position + 1);
+                mAppViewModel.getBaccarat(1).setLimitIndex(position + 1);
+                mAppViewModel.getBaccarat(2).setLimitIndex(position + 1);
+                mAppViewModel.getBaccarat(3).setLimitIndex(position + 1);
+                mAppViewModel.getBaccarat(61).setLimitIndex(position + 1);
+                mAppViewModel.getBaccarat(62).setLimitIndex(position + 1);
+                mAppViewModel.getBaccarat(63).setLimitIndex(position + 1);
+                mAppViewModel.getBaccarat(71).setLimitIndex(position + 1);
                 if (WebSiteUrl.isDomain) {
                     mAppViewModel.setTableId(tableId);
                     mAppViewModel.setSerialId(0);

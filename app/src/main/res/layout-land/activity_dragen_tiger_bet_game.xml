@@ -86,12 +86,14 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:layout_centerInParent="true"
                 android:id="@+id/img_dragon_animation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/animation_banker" />
 
             <TextView
+                android:layout_centerInParent="true"
                 android:id="@+id/tv_dragon_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -169,12 +171,14 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:layout_centerInParent="true"
                 android:id="@+id/img_tiger_animation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/animation_player" />
 
             <TextView
+                android:layout_centerInParent="true"
                 android:id="@+id/tv_tiger_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

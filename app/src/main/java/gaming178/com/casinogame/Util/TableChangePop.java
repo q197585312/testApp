@@ -2,10 +2,6 @@ package gaming178.com.casinogame.Util;
 
 import android.content.Context;
 import android.content.res.Configuration;
-
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -49,6 +44,7 @@ public class TableChangePop extends BasePopupWindow {
     private List<TableTimerBean> list;
     private TextView tv_b, tv_r, tv_s, tv_d;
     List<TextView> hereList = new ArrayList<>();
+    private AppModel mAppViewModel;
 
     public TableChangePop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -180,12 +176,12 @@ public class TableChangePop extends BasePopupWindow {
                                         ((ImageView) diceView.findViewById(R.id.iv_dice_3)).setImageResource(dice.getList().get(2).getResDrawable());
                                         sicboTableChangeViewBean.getLinearlayout().addView(diceView);
                                     }
-                                    mAppViewModel.updateGameNumber(mAppViewModel.getSicbo01(), sicboTableChangeViewBean.getTv_sicbo_number01(), sicboTableChangeViewBean.getTv_even01(), sicboTableChangeViewBean.getTv_small01(), sicboTableChangeViewBean.getTv_waidic01(), sicboTableChangeViewBean.getTv_big01(), sicboTableChangeViewBean.getTv_odd01());
+//                                    mAppViewModel.updateGameNumber(mAppViewModel.getSicbo01(), sicboTableChangeViewBean.getTv_sicbo_number01(), sicboTableChangeViewBean.getTv_even01(), sicboTableChangeViewBean.getTv_small01(), sicboTableChangeViewBean.getTv_waidic01(), sicboTableChangeViewBean.getTv_big01(), sicboTableChangeViewBean.getTv_odd01());
                                 }
                             }
                         }
                     });
-                    String strRes = baseActivity.mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A_B, "GameType=11&Tbid=0&Usid=" + baseActivity.mAppViewModel.getUser().getName());
+                    String strRes = baseActivity.mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + baseActivity.mAppViewModel.getUser().getName());
                     if (strRes.startsWith("Results=ok")) {
                         String[] split = strRes.split("\\^");
                         //Results=ok#^1#1#18#^2#2#0#^3#5#0#^5#2#0#^21#2#0#^31#1#10#^61#5#0#^62#5#0#^63#1#0#^64#5#0#^65#5#0#^66#5#0#^71#2#0#^
@@ -309,10 +305,10 @@ public class TableChangePop extends BasePopupWindow {
     BaccaratTableChangeViewBean dragonTigerTableChangeViewBeen;
     RouletteTableChangeViewBean rouletteTableChangeViewBean;
     SicboTableChangeViewBean sicboTableChangeViewBean;
-    AppModel mAppViewModel;
 
-    public void setTablesData(AppModel appModel, ArrayList<GameMenuItem> tables) {
-        this.mAppViewModel = appModel;
+
+    public void setTablesData(AppModel mAppViewModel, ArrayList<GameMenuItem> tables) {
+        this.mAppViewModel = mAppViewModel;
         isNeedRefenshTimer = false;
         list.clear();
         this.tables = tables;
@@ -448,7 +444,7 @@ public class TableChangePop extends BasePopupWindow {
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
                 TextView tv_here = view_you_here.findViewById(R.id.tv_here);
                 hereList.add(tv_here);
-                if (afbApp.getTableId() == item.getDrawableRes()) {
+                if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
 
@@ -490,7 +486,7 @@ public class TableChangePop extends BasePopupWindow {
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
                 TextView tv_here = view_you_here.findViewById(R.id.tv_here);
                 hereList.add(tv_here);
-                if (afbApp.getTableId() == item.getDrawableRes()) {
+                if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
                 GridLayout layout = (GridLayout) aB1.findViewById(R.id.baccarat_gridlayout2);

@@ -1622,7 +1622,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
-                }else if (betTimeCount==4){
+                } else if (betTimeCount == 4) {
                     ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
@@ -1895,7 +1895,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.startFrontMuzicService("TIMER", 1, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else
                 tv_table_timer.setTextColor(getResources().getColor(R.color.white));
-            if (showRoad){
+            if (showRoad) {
                 tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
                 rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
             }
@@ -2288,7 +2288,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
 //        setTableBetPool(lv_person_bet_info,1);
-        mPreview =  findViewById(R.id.surface);
+        mPreview = findViewById(R.id.surface);
         setPlayVideo();
         setLeftPanel();
         /*setTableLimit();*/
@@ -2313,9 +2313,6 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
         rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
         initArcMenu(tvMenu, "RL1", 1);
-        chipListChoice.add(new ChipBean(R.mipmap.sureimg, "", -1));
-        chipListChoice.add(new ChipBean(R.mipmap.noimg, "", -2));
-        chipListChoice.add(new ChipBean(R.mipmap.replayimg, "", -3));
         setChip();
         initUI();
         startUpdateStatusThread();
@@ -2469,6 +2466,15 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     ImageView currentSure;
     ImageView currentCancel;
 
+    @Override
+    public void onSwitchChipFinish() {
+        chooseChip = 0;
+        if (selectedMap != null) {
+            selectedMap.clear();
+        }
+        setChip();
+    }
+
     public void setChip() {
         final AdapterViewContent<ChipBean> chips = new AdapterViewContent<>(mContext, lvBaccaratChips);
         chips.setBaseAdapter(new QuickAdapterImp<ChipBean>() {
@@ -2486,7 +2492,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         llParent.post(new Runnable() {
                             @Override
                             public void run() {
-                                int width = ScreenUtil.dip2px(mContext, 48) * chipListChoice.size();
+                                int width = ScreenUtil.dip2px(mContext, 48) * 10;
                                 int screenWidth = WidgetUtil.getScreenWidth(RouletteActivity.this);
                                 int padding = (screenWidth - width) / 2;
                                 if (padding > 0) {
@@ -2497,15 +2503,33 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                             }
                         });
                     }
+                    int w = 40;
+                    int h = 40;
+                    if (position == 7 || position == 9) {
+                        w = 60;
+                        h = 30;
+                    }
+                    int m = 3;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 40);
+                    layoutParams.width = ScreenUtil.dip2px(mContext, w);
                     layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 3);
-                    layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 3);
+                    if (position == 7) {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                    } else if (position == 8) {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                    } else if (position == 9) {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
+                    } else {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
+                    }
                     llParent.setLayoutParams(layoutParams);
                     LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams1.width = ScreenUtil.dip2px(mContext, 40);
-                    layoutParams1.height = ScreenUtil.dip2px(mContext, 40);
+                    layoutParams1.width = ScreenUtil.dip2px(mContext, w);
+                    layoutParams1.height = ScreenUtil.dip2px(mContext, h);
                     imgChip.setLayoutParams(layoutParams1);
                 }
                 if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
@@ -2515,10 +2539,17 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     imgChip.setLayoutParams(layoutParams);
                     helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                 } else {
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 40);
-                    layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                    imgChip.setLayoutParams(layoutParams);
+                    if (position == 7 || position == 9) {
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 60);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 30);
+                        imgChip.setLayoutParams(layoutParams);
+                    } else {
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 40);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 40);
+                        imgChip.setLayoutParams(layoutParams);
+                    }
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
                 helper.setText(R.id.tv_chip_amount, item.getName());
@@ -2551,11 +2582,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         case -3:
                             repeatBet();
                             break;
+                        case -101:
+                            showChooseChip(view);
+                            break;
                     }
                 }
             }
         });
-        chips.setData(chipListChoice);
+        chips.setData(getCurrentChip(true));
     }
 
 
@@ -2704,9 +2738,6 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 //        startUpdateStatusThread();
         videoHelper.loadVideo();
     }
-
-
-
 
 
     public void clickSplit(View v) {
@@ -6607,9 +6638,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             lvBaccaratChips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
             roulette_content_fgv = (RecyclerView) findViewById(R.id.roulette_content_fgv);
         } else {
-            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
-
-            {
+            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 lvBaccaratChips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
                 roulette_content_fgv = (RecyclerView) findViewById(R.id.roulette_content_fgv);
                 bigGradLayout = (GridLayout) findViewById(R.id.baccarat_gridlayout2);
@@ -6758,5 +6787,14 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
         });
         contentInfo.setData(updateInfoData());
+    }
+
+    @Override
+    public void onInGameChooseLanguage() {
+        fl_roulette_board_bg.setBackgroundResource(0);
+        fl_roulette_board_bg_new.setBackgroundResource(0);
+        fl_roulette_board_bg.setBackgroundResource(R.mipmap.roulette_board);
+        fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.roulette_board_new1);
+        updatePercentage();
     }
 }

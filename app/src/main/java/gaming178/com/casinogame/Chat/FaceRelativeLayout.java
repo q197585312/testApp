@@ -196,6 +196,6 @@ public class FaceRelativeLayout extends LinearLayout implements
 			this.itemBack=back;
 	}
 	public interface  ItemCallBack{
-		void clickItem(ChatEmoji emoji );
+		void clickItem(ChatEmoji emoji);
 	}
 }

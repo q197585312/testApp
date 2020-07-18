@@ -82,7 +82,6 @@ public class LobbyActivity extends BaseActivity {
     AutoScrollTextView hallGameBottomPromptTv;
     private BlockDialog dialog;
     private String announcement = "";
-
     private UpdateAnnouncement updateAnnouncement = null;
     private Thread threadAnnouncement = null;
     private boolean bGetAnnouncement = true;

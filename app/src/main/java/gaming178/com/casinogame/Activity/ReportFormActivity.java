@@ -102,7 +102,7 @@ public class ReportFormActivity extends BaseActivity {
         //mCookieManager.removeSessionCookie();// 移除
         // Cookie是通过我们Volley活着HttpClient获取的
         //  Log.i(WebSiteUrl.Tag,"cookie="+mAppViewModel.getHttpClient().getCookie());
-        if (mAppViewModel != null) {
+
             if (mAppViewModel.getHttpClient() != null) {
                 String cookie = mAppViewModel.getHttpClient().getCookie();
                 if (!TextUtils.isEmpty(cookie)) {
@@ -110,7 +110,6 @@ public class ReportFormActivity extends BaseActivity {
                     CookieSyncManager.getInstance().sync();
                 }
             }
-        }
     }
 
     @Override

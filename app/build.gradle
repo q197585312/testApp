@@ -6,7 +6,6 @@ if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jakewharton.butterknife'
-apply plugin: 'plugin.resTools'
 
 android {
     resourcePrefix "gd_"

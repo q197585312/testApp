@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.StrictMode;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -22,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -43,12 +43,15 @@ import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Activity.ChangePasswordActivity;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
+import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.ReportFormActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
+import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Bean.BaccaratOtherUserBetInfomation;
 import gaming178.com.casinogame.Bean.BaccaratPlayer;
 import gaming178.com.casinogame.Bean.ChipBean;
+import gaming178.com.casinogame.Bean.DragonTiger;
 import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
@@ -61,7 +64,9 @@ import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.FrontMuzicService;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
+import gaming178.com.casinogame.Util.PopChooseChip;
 import gaming178.com.casinogame.Util.PopReferrer;
 import gaming178.com.casinogame.Util.TableChangePop;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -1303,6 +1308,51 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     }
 
+    private ArrayList<String> getSetLimitData(int tableId) {
+        Baccarat baccarat;
+        String limit1 = "0 - 0";
+        String limit2 = "0 - 0";
+        String limit3 = "0 - 0";
+        String limit4 = "0 - 0";
+        if (tableId == 1 || tableId == 2 || tableId == 3 || tableId == 61 || tableId == 62 || tableId == 63 || tableId == 71) {
+            baccarat = mAppViewModel.getBaccarat(tableId);
+            if (baccarat != null) {
+                limit1 = "" + (int) baccarat.getBaccaratLimit1().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit1().getMaxTotalBet();
+                limit2 = "" + (int) baccarat.getBaccaratLimit2().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit2().getMaxTotalBet();
+                limit3 = "" + (int) baccarat.getBaccaratLimit3().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit3().getMaxTotalBet();
+                limit4 = "" + (int) baccarat.getBaccaratLimit4().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit4().getMaxTotalBet();
+            }
+        } else if (tableId == 5) {
+            DragonTiger dragonTiger = mAppViewModel.getDragonTiger01();
+            if (dragonTiger != null) {
+                limit1 = "" + (int) dragonTiger.getDragonTigerLimit1().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit1().getMaxTotalBet();
+                limit2 = "" + (int) dragonTiger.getDragonTigerLimit2().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit2().getMaxTotalBet();
+                limit3 = "" + (int) dragonTiger.getDragonTigerLimit3().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit3().getMaxTotalBet();
+                limit4 = "" + (int) dragonTiger.getDragonTigerLimit4().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit4().getMaxTotalBet();
+            }
+        } else if (tableId == 21) {
+            if (mAppViewModel.getRoulette01() != null) {
+                limit1 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit1().getMaxTotalBet();
+                limit2 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit2().getMaxTotalBet();
+                limit3 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit3().getMaxTotalBet();
+                limit4 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit4().getMaxTotalBet();
+            }
+        } else if (tableId == 31) {
+            if (mAppViewModel.getSicbo01() != null) {
+                limit1 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMaxTotalBet();
+                limit2 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMaxTotalBet();
+                limit3 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMaxTotalBet();
+                limit4 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMaxTotalBet();
+            }
+        }
+        return new ArrayList<>(Arrays.asList(limit1, limit2, limit3, limit4));
+//        centerPop.setData());
+    }
+
+    public void onInGameChooseLanguage() {
+
+    }
+
     public void showSetPop(final View v, int gravity) {
         View center = v;
         if (v == null) {
@@ -1321,6 +1371,99 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             @Override
             protected void initView(View view) {
                 super.initView(view);
+                RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.rg_switch);
+                RadioButton rb_limit = (RadioButton) view.findViewById(R.id.rb_limit);
+                RadioButton rb_language = (RadioButton) view.findViewById(R.id.rb_language);
+                if (!BuildConfig.FLAVOR.isEmpty() &&!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                    rb_limit.setBackgroundResource(R.drawable.selector_music_choose_right);
+                    rb_language.setVisibility(View.GONE);
+                }
+                TextView tv_music_title = (TextView) view.findViewById(R.id.tv_music_title);
+                if (BaseActivity.this instanceof LobbyActivity) {
+                    rg_switch.setVisibility(View.GONE);
+                    tv_music_title.setVisibility(View.VISIBLE);
+                }
+                final LinearLayout ll_music = view.findViewById(R.id.ll_music);
+                final RecyclerView recyclerView = view.findViewById(R.id.base_rv);
+                final RecyclerView rc_lg = view.findViewById(R.id.rc_lg);
+                recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
+                BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(mAppViewModel.getTableId()), R.layout.item_popupwindow_text_select) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, String item) {
+                        holder.setText(R.id.pop_text_tv, item);
+                    }
+
+                };
+                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
+                    @Override
+                    public void onItemClick(View view, String s, int position) {
+                        if ("0 - 0".endsWith(s)) {
+                            return;
+                        }
+                        if (mAppViewModel.getTableId() == 1 || mAppViewModel.getTableId() == 2 || mAppViewModel.getTableId() == 3 || mAppViewModel.getTableId() == 61 || mAppViewModel.getTableId() == 62 || mAppViewModel.getTableId() == 63 || mAppViewModel.getTableId() == 71) {
+                            mAppViewModel.getBaccarat(1).setLimitIndex(position + 1);
+                            mAppViewModel.getBaccarat(2).setLimitIndex(position + 1);
+                            mAppViewModel.getBaccarat(3).setLimitIndex(position + 1);
+                            mAppViewModel.getBaccarat(61).setLimitIndex(position + 1);
+                            mAppViewModel.getBaccarat(62).setLimitIndex(position + 1);
+                            mAppViewModel.getBaccarat(63).setLimitIndex(position + 1);
+                            mAppViewModel.getBaccarat(71).setLimitIndex(position + 1);
+                        } else if (mAppViewModel.getTableId() == 5) {
+                            mAppViewModel.getDragonTiger01().setLimitIndex(position + 1);
+                        } else if (mAppViewModel.getTableId() == 21) {
+                            mAppViewModel.getRoulette01().setLimitIndex(position + 1);
+                        } else if (mAppViewModel.getTableId() == 31) {
+                            mAppViewModel.getSicbo01().setLimitIndex(position + 1);
+                        }
+                        closePopupWindow();
+                    }
+                });
+                recyclerView.setAdapter(baseRecyclerAdapter);
+
+                rc_lg.setLayoutManager(new GridLayoutManager(mContext, 2));
+                BaseRecyclerAdapter<MenuItemInfo<String>> recyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, new LanguageHelper(mContext).getLanguageItems(), R.layout.item_language_selected) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
+                        ImageView ivFlag = holder.getView(R.id.iv_flag_country);
+                        TextView tvContent = holder.getView(R.id.selectable_text_content_tv);
+                        tvContent.setText(item.getText());
+                        ivFlag.setImageResource(item.getRes());
+                        boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
+                        if (itemLanguageSelected) {
+                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
+                        } else {
+                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        }
+                    }
+                };
+                recyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
+                    @Override
+                    public void onItemClick(View view, MenuItemInfo<String> item, int position) {
+                        AppTool.setAppLanguage(BaseActivity.this, item.getType());
+                        closePopupWindow();
+                        onInGameChooseLanguage();
+                    }
+                });
+                rc_lg.setAdapter(recyclerAdapter);
+
+                rg_switch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        if (checkedId == R.id.rb_music) {
+                            ll_music.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                            rc_lg.setVisibility(View.GONE);
+                        } else if (checkedId == R.id.rb_limit) {
+                            ll_music.setVisibility(View.INVISIBLE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            rc_lg.setVisibility(View.GONE);
+                        } else if (checkedId == R.id.rb_language) {
+                            ll_music.setVisibility(View.INVISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                            rc_lg.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
                 RadioGroup rg_music_rg = (RadioGroup) view.findViewById(R.id.rg_music_rg);
                 //         final  ComponentName componentBack = new ComponentName(mContext,
                 //                 BackgroudMuzicService.class);
@@ -1416,16 +1559,25 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
     }
 
+    public void showChooseChip(View v) {
+        PopChooseChip popChooseChip = new PopChooseChip(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+            @Override
+            public void onChooseChipFinish() {
+                onSwitchChipFinish();
+            }
+        };
+        popChooseChip.showPopupCenterWindow();
+    }
+
+    public void onSwitchChipFinish() {
+
+    }
+
     protected void showChangeTable(View v) {
-        String name = usName;
-        String c = currency;
-        if (TextUtils.isEmpty(c)) {
-            c = getString(R.string.BAL);
-        }
         initOldBigRoad();
-        tablePop.setPopTopContent(getString(R.string.ID) + " :" + name.toUpperCase(), c + " :" + mAppViewModel.getUser().getBalance() + "");
+        tablePop.setPopTopContent();
         if (tablePop.getParentCount() > 0) {
-            tablePop.showPopupCenterWindow();
+            tablePop.showPopupGravityWindow(Gravity.RIGHT, 0, 0);
         }
     }
 
@@ -1504,6 +1656,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         finish();
     }
 
+    public void initBaccarat() {
+
+    }
+
     private void initChangeTable(View v, String removeStr) {
         games = new ArrayList<>();
         if (WebSiteUrl.HEADER.equals("http://202.178.114.15/")) {
@@ -1532,10 +1688,30 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
 
         }
-        tablePop = new TableChangePop(mContext, v);
+        int with = ScreenUtil.dip2px(mContext, 150);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            with = with * 2;
+        }
+        tablePop = new TableChangePop(mContext, v, with, ViewGroup.LayoutParams.MATCH_PARENT);
         tablePop.setClickImp(new ItemCLickImp<GameMenuItem>() {
             @Override
             public void itemCLick(View view, GameMenuItem gameMenuItem, int position) {
+                if (mAppViewModel.getTableId() == gameMenuItem.getDrawableRes()) {
+                    Toast.makeText(mContext, getString(R.string.your_here), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                tablePop.closePopupWindow();
+                if (mAppViewModel.getTableId() == 1 || mAppViewModel.getTableId() == 2 || mAppViewModel.getTableId() == 3 ||
+                        mAppViewModel.getTableId() == 71 || mAppViewModel.getTableId() == 61 || mAppViewModel.getTableId() == 62 || mAppViewModel.getTableId() == 63) {
+                    if (gameMenuItem.getDrawableRes() == 1 || gameMenuItem.getDrawableRes() == 2 || gameMenuItem.getDrawableRes() == 3 ||
+                            gameMenuItem.getDrawableRes() == 71 || gameMenuItem.getDrawableRes() == 61 || gameMenuItem.getDrawableRes() == 62 ||
+                            gameMenuItem.getDrawableRes() == 63) {
+                        mAppViewModel.setTableId(gameMenuItem.getDrawableRes());
+                        tableId = gameMenuItem.getDrawableRes();
+                        initBaccarat();
+                        return;
+                    }
+                }
                 String menuStr = gameMenuItem.getTitle();
                 if (menuStr.equals("LB1")) {
                     if (mAppViewModel.getBaccarat(1).getStatus() != 1) {
@@ -1902,6 +2078,32 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         LogUtil.d("Life", getClass().getSimpleName() + ":" + a.getMethodName() + "-" + b.getMethodName());
         return a.getMethodName() + "-" + b.getMethodName();
 
+    }
+
+    public List<ChipBean> getCurrentChip(boolean isNeedAddSure) {
+        List<ChipBean> list = new ArrayList<>();
+        String chipContent = Gd88Utils.getChipContent(this);
+        String[] split = chipContent.split("-");
+        for (int i = 0; i < split.length; i++) {
+            String chipSize = split[i];
+            A:
+            for (int j = 0; j < chipListChoice.size(); j++) {
+                ChipBean chipBean = chipListChoice.get(j);
+                String name = chipBean.getName();
+                if (name.equals(chipSize)) {
+                    list.add(chipBean);
+                    break A;
+                }
+
+            }
+        }
+        list.add(new ChipBean(R.mipmap.chip_choose, "CHOOSE", -101));
+        if (isNeedAddSure) {
+            list.add(new ChipBean(R.mipmap.noimg, "", -2));
+            list.add(new ChipBean(R.mipmap.replayimg, "", -3));
+            list.add(new ChipBean(R.mipmap.sureimg, "", -1));
+        }
+        return list;
     }
 
     public void initBetImg() {

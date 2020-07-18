@@ -82,7 +82,6 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-
         String firstLg;
         if (!BuildConfig.FLAVOR.isEmpty()&&!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             firstLg = "my";
@@ -97,7 +96,7 @@ public class WelcomeActivity extends BaseActivity {
         flWelcome = (FrameLayout) findViewById(R.id.fl_welcome);
         llLogin = (LinearLayout) findViewById(R.id.ll_login);
         bgImg = (ImageView) findViewById(R.id.welcome_img);
-        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.isEmpty()&&BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             bgImg.setImageResource(R.mipmap.gd88_welcome_logo);
         }else {
             bgImg.setImageResource(R.mipmap.title_logo);
@@ -135,29 +134,9 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void initWebsiteUrl() {
-      /*  final String url = "http://www.grjl25.com/getDomainInform.jsp";
-        final String param = "labelid=" + WebSiteUrl.Labelid;
-        QuickCookieThreadHandler handler = new QuickCookieThreadHandler(this) {
-            @Override
-            protected QuickRequestBean getRequestBean() {
-                return new QuickRequestBean(RequestBean.Method.GET, url + "?" + param, new HashMap(), new TypeToken<String>() {
-                }.getType());
-            }
-
-            @Override
-            public void successEnd(String result) {
-                super.successEnd(result);
-                Log.d("AppData", result);
-                WebSiteUrl.setNormal(result);
-//                WebSiteUrl.setNormal("http://113.130.125.213/");
-                hasNewVersion();
-            }
-        };
-        handler.startThread(null);*/
         httpClient = new HttpClient("");
         hasWebsiteChecked = false;
         handler.sendEmptyMessage(ErrorCode.GET_WEBSITE);
-
         hasNewVersion();
 
     }
@@ -173,8 +152,6 @@ public class WelcomeActivity extends BaseActivity {
     String urlHead = "mawar4d";
 
     private void initNewIntent(final String urlHost) {
-
-
         new Thread() {
             @Override
             public void run() {

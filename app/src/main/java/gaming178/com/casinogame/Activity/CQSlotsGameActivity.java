@@ -235,6 +235,7 @@ public class CQSlotsGameActivity extends BaseActivity {
     }
 
     private void getDataMsg() {
+
         setLayout.setVisibility(View.GONE);
         setMoreToolbar(true);
         setToolbarNameAndBalance();

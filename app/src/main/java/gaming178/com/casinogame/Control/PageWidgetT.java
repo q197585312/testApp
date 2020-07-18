@@ -131,7 +131,7 @@ public class PageWidgetT extends ImageView {
     }
 
     private boolean hasFlip = false;
-    private PageWidgetT.SideCenter side = PageWidgetT.SideCenter.None;
+    private SideCenter side = SideCenter.None;
 
     enum SideCenter {
         Vertical, Horizontal, None
@@ -245,13 +245,13 @@ public class PageWidgetT extends ImageView {
             mCornerY = mPicRectF.top;
         else
             mCornerY = mPicRectF.bottom;
-        side = PageWidgetT.SideCenter.None;
+        side = SideCenter.None;
         if (x > picPadingLeft + mPicWidth / 3F && x < picPadingLeft + 2 * mPicWidth / 3F) {
             if (y < picPadingTop + mPicHeight / 3F || y > picPadingTop + 2 * mPicHeight / 3F)
-                side = PageWidgetT.SideCenter.Vertical;
+                side = SideCenter.Vertical;
         } else if (x < picPadingLeft + mPicWidth / 3F || x > picPadingLeft + 2 * mPicWidth / 3F)
             if (y > picPadingTop + mPicHeight / 3F && y < picPadingTop + 2 * mPicHeight / 3F)
-                side = PageWidgetT.SideCenter.Horizontal;
+                side = SideCenter.Horizontal;
 
     }
 
@@ -531,7 +531,7 @@ public class PageWidgetT extends ImageView {
 //		rotation.setInterpolator(new AccelerateInterpolator());
         // 设置动画的监听器
         if (getVisibility() == View.VISIBLE)
-            rotation.setAnimationListener(new PageWidgetT.TurnToNext());
+            rotation.setAnimationListener(new TurnToNext());
         startAnimation(rotation);
     }
 
@@ -607,9 +607,9 @@ public class PageWidgetT extends ImageView {
     private void calcPoints() {
         if (mPicRectF == null)
             return;
-        if (side == PageWidgetT.SideCenter.Horizontal) {
+        if (side == SideCenter.Horizontal) {
             mTouch.y = mCornerY;
-        } else if (side == PageWidgetT.SideCenter.Vertical) {
+        } else if (side == SideCenter.Vertical) {
             mTouch.x = mCornerX;
         }
         if (mCornerX == mPicRectF.left) {

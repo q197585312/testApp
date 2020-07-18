@@ -11,6 +11,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -87,7 +88,7 @@ public class PopReport extends BasePopupWindow {
         //mCookieManager.removeSessionCookie();// 移除
         // Cookie是通过我们Volley活着HttpClient获取的
         //  Log.i(WebSiteUrl.Tag,"cookie="+mAppViewModel.getHttpClient().getCookie());
-        if (activity.mAppViewModel != null) {
+        if (activity.getApp() != null) {
             if (activity.mAppViewModel.getHttpClient() != null) {
                 String cookie = activity.mAppViewModel.getHttpClient().getCookie();
                 if (!TextUtils.isEmpty(cookie)) {

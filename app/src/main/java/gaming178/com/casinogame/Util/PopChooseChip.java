@@ -16,10 +16,11 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Bean.ChipBean;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
@@ -45,7 +46,7 @@ public abstract class PopChooseChip extends BasePopupWindow {
         return R.layout.pop_choose_chip;
     }
 
-    @Bind(R.id.rc_content)
+    @BindView(R2.id.rc_content)
     RecyclerView rcContent;
     BaseActivity baseActivity;
     BaseRecyclerAdapter contentAdapter;
@@ -130,21 +131,19 @@ public abstract class PopChooseChip extends BasePopupWindow {
         }
     }
 
-    @OnClick({R.id.tv_cancel, R.id.tv_sure})
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_cancel:
-                closePopupWindow();
-                break;
-            case R.id.tv_sure:
-                if (selectCount < 6) {
-                    Toast.makeText(context, context.getString(R.string.please_choose_chip), Toast.LENGTH_SHORT).show();
-                } else {
-                    Gd88Utils.saveChipContent(context, chipStr);
-                    onChooseChipFinish();
-                    closePopupWindow();
-                }
-                break;
+    @OnClick(R2.id.tv_cancel)
+    public void onClickCancel(View v) {
+        closePopupWindow();
+    }
+
+    @OnClick(R2.id.tv_sure)
+    public void onClickSure(View v) {
+        if (selectCount < 6) {
+            Toast.makeText(context, context.getString(R.string.please_choose_chip), Toast.LENGTH_SHORT).show();
+        } else {
+            Gd88Utils.saveChipContent(context, chipStr);
+            onChooseChipFinish();
+            closePopupWindow();
         }
     }
 

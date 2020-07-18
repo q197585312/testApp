@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import gaming178.com.baccaratgame.R
 import gaming178.com.baccaratgame.databinding.ActivityLoginJetpackBinding
 import gaming178.com.casinogame.base.BaseKtActivity
-import kotlinx.android.synthetic.main.activity_login.login_password_edt
+import kotlinx.android.synthetic.main.activity_login_gd.login_password_edt
 import kotlinx.android.synthetic.main.activity_login_jetpack.*
 
 

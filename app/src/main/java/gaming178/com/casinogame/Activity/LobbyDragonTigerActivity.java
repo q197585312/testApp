@@ -274,7 +274,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
     }
 
     public void InitRoad() {
-//        road = getApp().getDragonTiger02().ShowDragonTigerBigRoad("5#5#7#1#5#1#1#1#1#5#5#1#5#1#1#2#1#6#9#7#1#1#5#1#1#5#9#9#1#1#1#1#3#1#1#1#1#5#3#5#5#5#1#5#1#1#7#1#",
+//        road = mAppViewModel.getDragonTiger02().ShowDragonTigerBigRoad("5#5#7#1#5#1#1#1#1#5#5#1#5#1#1#2#1#6#9#7#1#1#5#1#1#5#9#9#1#1#1#1#3#1#1#1#1#5#3#5#5#5#1#5#1#1#7#1#",
 //                mContext,baccarat_big_road2,6,density,1);
         mAppViewModel.updateDragenTigerRoad(mContext, density, mAppViewModel.getDragonTiger01(), baccarat_head_road1, baccarat_big_road1, baccarat_bigeyes_road1, baccarat_smalleyes_road1, baccarat_roach_road1
                 , tv_baccarat_shoe_number01, tv_baccarat_total_number01, tv_baccarat_banker_number01, tv_baccarat_player_number01, tv_baccarat_tie_number01, tv_baccarat_bp_number01, tv_baccarat_pp_number01,

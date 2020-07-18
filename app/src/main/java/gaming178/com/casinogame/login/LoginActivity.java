@@ -223,11 +223,12 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_login;
+        return R.layout.activity_login_gd;
     }
 
     public void clickLogin(View v) {
         String usName = tv_name.getText().toString().trim();
+
         mAppViewModel.getUser().setName(usName);
         mAppViewModel.getUser().setRealName(usName);
         mAppViewModel.getUser().setPassword(tv_password.getText().toString().trim());
@@ -428,7 +429,7 @@ public class LoginActivity extends BaseActivity {
                     break;
                 case ErrorCode.DATA_ERROR_LENGTH:
                     dismissLoginBlockDialog();
-//                    getApp().setCookie("");
+//                    mAppViewModel.setCookie("");
                     Toast.makeText(mContext, R.string.login_data_error, Toast.LENGTH_LONG).show();
                     break;
             }
@@ -444,7 +445,7 @@ public class LoginActivity extends BaseActivity {
 
             urlHostInit();
             String strRes;
-//            getApp().setCookie("");
+//            mAppViewModel.setCookie("");
             mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, ""));
 
             if (mAppViewModel.getHttpClient().connect("POST") == false) {

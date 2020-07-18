@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -42,6 +41,7 @@ import com.zhy.autolayout.utils.AutoUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -95,6 +95,7 @@ public class DragonTigerActivity extends BaseActivity {
     public void clickTable(View v) {
         showChangeTable(v);
     }
+
     @BindView(R2.id.handle1)
     View handle1;
     @BindView(R2.id.tv_service_time)
@@ -111,6 +112,8 @@ public class DragonTigerActivity extends BaseActivity {
     Panel bottomPanel1;
     @BindView(R2.id.fl_baccarat_parent)
     View fl_baccarat_parent;
+    @BindView(R2.id.fl_baccarat_b_table)
+    View fl_baccarat_b_table;
     private TextView shufflingTv;
     AdapterView lv_baccarat_chips;
 
@@ -190,6 +193,40 @@ public class DragonTigerActivity extends BaseActivity {
     TextView tv_ask1;
     @BindView(R2.id.tv_ask2)
     TextView tv_ask2;
+    @BindView(R2.id.tv_ask1_name)
+    TextView tv_ask1_name;
+    @BindView(R2.id.tv_ask2_name)
+    TextView tv_ask2_name;
+    @BindView(R2.id.tv_good_road_name)
+    TextView tv_good_road_name;
+
+    @BindView(R2.id.img_bet_bg_dragon)
+    ImageView img_bet_bg_dragon;
+    @BindView(R2.id.img_bet_bg_tiger)
+    ImageView img_bet_bg_tiger;
+    @BindView(R2.id.img_bet_bg_tie)
+    ImageView img_bet_bg_tie;
+    @BindView(R2.id.img_bet_bg_dragon_red)
+    ImageView img_bet_bg_dragon_red;
+    @BindView(R2.id.img_bet_bg_dragon_black)
+    ImageView img_bet_bg_dragon_black;
+    @BindView(R2.id.img_bet_bg_tiger_red)
+    ImageView img_bet_bg_tiger_red;
+    @BindView(R2.id.img_bet_bg_tiger_black)
+    ImageView img_bet_bg_tiger_black;
+    @BindView(R2.id.img_bet_bg_dragon_odd)
+    ImageView img_bet_bg_dragon_odd;
+    @BindView(R2.id.img_bet_bg_dragon_even)
+    ImageView img_bet_bg_dragon_even;
+    @BindView(R2.id.img_bet_bg_tiger_odd)
+    ImageView img_bet_bg_tiger_odd;
+    @BindView(R2.id.img_bet_bg_tiger_even)
+    ImageView img_bet_bg_tiger_even;
+
+    @BindView(R2.id.tv_dragon_result_name)
+    TextView tv_dragon_result_name;
+    @BindView(R2.id.tv_tiger_result_name)
+    TextView tv_tiger_result_name;
 
     List<GoodRoadDataBean> goodRoadDataBeenList = new ArrayList<>();
     List<Integer> otherTableIdList = new ArrayList<>();
@@ -199,7 +236,7 @@ public class DragonTigerActivity extends BaseActivity {
     private TextView tv_table_game_number1;
     private VideoPlayer mPreview;
     private String path;
-    private boolean isFirstBet =true;
+    private boolean isFirstBet = true;
 
     private boolean personInfoShowAble = false;
     static boolean isActive = false;
@@ -294,11 +331,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "Dragon";
-
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_d;
+        } else {
+            bg = R.mipmap.dt_h_d;
+        }
         clickChipBet(number, "Dragon", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon, bg
         );
     }
 
@@ -308,19 +350,31 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "Tiger";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_t;
+        } else {
+            bg = R.mipmap.dt_h_t;
+        }
         clickChipBet(number, "Tiger", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger, bg
         );
     }
 
     public void clickTie(final View f) {
         String number = "Tie";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_tie;
+        } else {
+            bg = R.mipmap.dt_h_tie;
+        }
         clickChipBet(number, "Tie", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tie, bg
         );
 
     }
@@ -336,10 +390,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonOdd";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_o;
+        } else {
+            bg = R.mipmap.dt_h_d_o;
+        }
         clickChipBet(number, "DragonOdd", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_odd, bg
         );
     }
 
@@ -354,10 +414,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonEven";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_r;
+        } else {
+            bg = R.mipmap.dt_h_d_e;
+        }
         clickChipBet(number, "DragonEven", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_even, bg
         );
     }
 
@@ -372,10 +438,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonRed";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_r;
+        } else {
+            bg = R.mipmap.dt_h_d_r;
+        }
         clickChipBet(number, "DragonRed", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_red, bg
         );
     }
 
@@ -390,10 +462,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonBlack";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_r;
+        } else {
+            bg = R.mipmap.dt_h_d_b;
+        }
         clickChipBet(number, "DragonBlack", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_black, bg
         );
     }
 
@@ -408,10 +486,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerOdd";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_b;
+        } else {
+            bg = R.mipmap.dt_h_t_o;
+        }
         clickChipBet(number, "TigerOdd", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_odd, bg
         );
     }
 
@@ -426,10 +510,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerEven";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_e;
+        } else {
+            bg = R.mipmap.dt_h_t_e;
+        }
         clickChipBet(number, "TigerEven", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_even, bg
         );
     }
 
@@ -444,10 +534,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerRed";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_b;
+        } else {
+            bg = R.mipmap.dt_h_t_r;
+        }
         clickChipBet(number, "TigerRed", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_red, bg
         );
     }
 
@@ -462,10 +558,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerBlack";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_b;
+        } else {
+            bg = R.mipmap.dt_h_t_b;
+        }
         clickChipBet(number, "TigerBlack", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_black, bg
         );
     }
 
@@ -676,8 +778,8 @@ public class DragonTigerActivity extends BaseActivity {
                     String strInfo[] = strRes.split("#");
                     if (strRes.startsWith("Results=ok")) {
                         if (strInfo.length >= 10) {
-                            if (isFirstBet){
-                                isFirstBet =false;
+                            if (isFirstBet) {
+                                isFirstBet = false;
                             }
                             mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                             double resMoney = 0;
@@ -798,13 +900,13 @@ public class DragonTigerActivity extends BaseActivity {
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        if (dragonTigerTimer==0&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5){
+                        if (dragonTigerTimer == 0 && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5) {
                             mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setWonMoney(Double.parseDouble(strInfo[2]));
-                        }else {
+                        } else {
                             mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setWonMoney(0);
                         }
                         mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
-                        if (isShowWinLose){
+                        if (isShowWinLose) {
                             handler.sendEmptyMessage(HandlerCode.SHOW_WIN_LOSS);
                         }
                     }
@@ -856,7 +958,7 @@ public class DragonTigerActivity extends BaseActivity {
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
-                }else if (betTimeCount==4){
+                } else if (betTimeCount == 4) {
                     ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
@@ -875,7 +977,7 @@ public class DragonTigerActivity extends BaseActivity {
         } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)//延迟3秒调用路子接口
         {
             showPoker();
-            if (bUpdateRoad){
+            if (bUpdateRoad) {
                 bUpdateRoad = false;
                 //更新路子
 //                updateRoad = new UpdateRoad();
@@ -908,7 +1010,7 @@ public class DragonTigerActivity extends BaseActivity {
        /* if (!gameNumber.equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())) {
             clearAllChips();
         }*/
-        if ("0".equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())){
+        if ("0".equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())) {
             tv_table_game_number.setText(tableName + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + " - 0");
             tv_table_game_number1.setText(tv_table_game_number.getText().toString());
         }
@@ -923,39 +1025,38 @@ public class DragonTigerActivity extends BaseActivity {
     public void updateInterface() {
         if (dragonTigerTimer > 0 && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 2) {
             for (int i = 0; i < apngPlayBeanList.size(); i++) {
-                if (apngPlayBeanList.get(i).getApngImageView().getVisibility()==View.VISIBLE){
+                if (apngPlayBeanList.get(i).getApngImageView().getVisibility() == View.VISIBLE) {
                     apngPlayBeanList.get(i).getApngImageView().stop();
                     apngPlayBeanList.get(i).getApngImageView().setVisibility(View.INVISIBLE);
                     break;
                 }
             }
-            Drawable dragonBackground = iv_dragon.getBackground();
-            Drawable tieBackground = iv_tie.getBackground();
-            Drawable tigerBackground = iv_tiger.getBackground();
-            if (dragonBackground!=null||tieBackground!=null||tigerBackground!=null){
-                iv_dragon.setBackgroundResource(0);
-                iv_dragon_odd.setBackgroundResource(0);
-                iv_dragon_even.setBackgroundResource(0);
-                iv_dragon_red.setBackgroundResource(0);
-                iv_dragon_black.setBackgroundResource(0);
-                iv_tiger.setBackgroundResource(0);
-                iv_tiger_odd.setBackgroundResource(0);
-                iv_tiger_even.setBackgroundResource(0);
-                iv_tiger_red.setBackgroundResource(0);
-                iv_tiger_black.setBackgroundResource(0);
-                iv_tie.setBackgroundResource(0);
+            if ((objectAnimatorDragon.isRunning() || objectAnimatorTiger.isRunning() || objectAnimatorTie.isRunning()) &&
+                    dragonTigerTimer > 0 && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1) {
+                objectAnimatorDragon.cancel();
+                objectAnimatorDragonOdd.cancel();
+                objectAnimatorDragonEven.cancel();
+                objectAnimatorDragonBlack.cancel();
+                objectAnimatorDragonRed.cancel();
+                objectAnimatorTiger.cancel();
+                objectAnimatorTigerRed.cancel();
+                objectAnimatorTigerOdd.cancel();
+                objectAnimatorTigerEven.cancel();
+                objectAnimatorTigerBlack.cancel();
+                objectAnimatorTie.cancel();
+                clearBetBg();
                 animationDragon.stop();
                 animationDragon.selectDrawable(0);
                 animationTiger.stop();
                 animationTiger.selectDrawable(0);
             }
-            if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 final int heightPixels = WidgetUtil.getScreenHeight(this);
-                final int[] location2 = new int[2] ;
+                final int[] location2 = new int[2];
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
-                int[] location3 = new int[2] ;
+                int[] location3 = new int[2];
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location3[1]<heightPixels&&isCanHideResult&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
+                if (location3[1] < heightPixels && isCanHideResult && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1) {
                     isCanHideResult = false;
                     WidgetUtil.chipTranslateAnimation(ll_result, ScreenUtil.dip2px(mContext, -46), 0, new Animator.AnimatorListener() {
                         @Override
@@ -966,9 +1067,9 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideResult = true;
-                            if (location2[1]>=heightPixels&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
-                                isCanShowChip =false;
-                                WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0,ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
+                            if (location2[1] >= heightPixels && isCanShowChip && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1) {
+                                isCanShowChip = false;
+                                WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0, ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
 
@@ -1002,10 +1103,10 @@ public class DragonTigerActivity extends BaseActivity {
 
                         }
                     });
-                }else {
-                    if (location2[1]>=heightPixels&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
-                        isCanShowChip =false;
-                        WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0,ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
+                } else {
+                    if (location2[1] >= heightPixels && isCanShowChip && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1) {
+                        isCanShowChip = false;
+                        WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0, ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
                             @Override
                             public void onAnimationStart(Animator animation) {
 
@@ -1028,11 +1129,11 @@ public class DragonTigerActivity extends BaseActivity {
                         });
                     }
                 }
-            }else {
+            } else {
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
-                int[] location2 = new int[2] ;
+                int[] location2 = new int[2];
                 ll_result.getLocationOnScreen(location2);
-                if (location2[0]==0&&isCanHideResult&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
+                if (location2[0] == 0 && isCanHideResult && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1) {
                     isCanHideResult = false;
                     WidgetUtil.chipPortraitTranslateAnimation(ll_result, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
@@ -1043,11 +1144,11 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideResult = true;
-                            int[] location = new int[2] ;
+                            int[] location = new int[2];
                             lv_baccarat_chips.getLocationOnScreen(location);
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                            if (location[0]>=portraitScreenWidth&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
-                                isCanShowChip =false;
+                            if (location[0] >= portraitScreenWidth && isCanShowChip && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1) {
+                                isCanShowChip = false;
                                 WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
@@ -1082,11 +1183,11 @@ public class DragonTigerActivity extends BaseActivity {
 
                         }
                     });
-                }else {
-                    int[] location = new int[2] ;
+                } else {
+                    int[] location = new int[2];
                     lv_baccarat_chips.getLocationOnScreen(location);
-                    if (location[0]>=portraitScreenWidth&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
-                        isCanShowChip =false;
+                    if (location[0] >= portraitScreenWidth && isCanShowChip && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1) {
+                        isCanShowChip = false;
                         WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                             @Override
                             public void onAnimationStart(Animator animation) {
@@ -1127,15 +1228,15 @@ public class DragonTigerActivity extends BaseActivity {
             //
 
         } else {
-            if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 final int heightPixels = WidgetUtil.getScreenHeight(this);
-                int[] location2 = new int[2] ;
+                int[] location2 = new int[2];
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
-                final int[] location3 = new int[2] ;
+                final int[] location3 = new int[2];
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location2[1]<heightPixels&&isCanHideChip&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
-                    isCanHideChip =false;
-                    WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, ScreenUtil.dip2px(mContext, -52),0, new Animator.AnimatorListener() {
+                if (location2[1] < heightPixels && isCanHideChip && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)) {
+                    isCanHideChip = false;
+                    WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, ScreenUtil.dip2px(mContext, -52), 0, new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
 
@@ -1144,8 +1245,8 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideChip = true;
-                            if (location3[1]>=heightPixels&&isCanShowResult&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
-                                isCanShowResult=false;
+                            if (location3[1] >= heightPixels && isCanShowResult && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)) {
+                                isCanShowResult = false;
                                 WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -46), new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
@@ -1154,12 +1255,12 @@ public class DragonTigerActivity extends BaseActivity {
 
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
-                                        isCanShowResult=true;
+                                        isCanShowResult = true;
                                     }
 
                                     @Override
                                     public void onAnimationCancel(Animator animation) {
-                                        isCanShowResult=true;
+                                        isCanShowResult = true;
                                     }
 
                                     @Override
@@ -1180,9 +1281,9 @@ public class DragonTigerActivity extends BaseActivity {
 
                         }
                     });
-                }else {
-                    if (location3[1]>=heightPixels&&isCanShowResult&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
-                        isCanShowResult=false;
+                } else {
+                    if (location3[1] >= heightPixels && isCanShowResult && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)) {
+                        isCanShowResult = false;
                         WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -46), new Animator.AnimatorListener() {
                             @Override
                             public void onAnimationStart(Animator animation) {
@@ -1191,12 +1292,12 @@ public class DragonTigerActivity extends BaseActivity {
 
                             @Override
                             public void onAnimationEnd(Animator animation) {
-                                isCanShowResult=true;
+                                isCanShowResult = true;
                             }
 
                             @Override
                             public void onAnimationCancel(Animator animation) {
-                                isCanShowResult=true;
+                                isCanShowResult = true;
                             }
 
                             @Override
@@ -1206,12 +1307,12 @@ public class DragonTigerActivity extends BaseActivity {
                         });
                     }
                 }
-            }else {
-                int[] location = new int[2] ;
+            } else {
+                int[] location = new int[2];
                 lv_baccarat_chips.getLocationOnScreen(location);
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
-                if (location[0]==0&&isCanHideChip&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
-                    isCanHideChip =false;
+                if (location[0] == 0 && isCanHideChip && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)) {
+                    isCanHideChip = false;
                     WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
@@ -1222,12 +1323,12 @@ public class DragonTigerActivity extends BaseActivity {
                         public void onAnimationEnd(Animator animation) {
                             isCanHideChip = true;
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                            if (isCanShowResult&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
+                            if (isCanShowResult && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)) {
                                 isCanShowResult = false;
-                                WidgetUtil.chipPortraitTranslateAnimation(ll_result, portraitScreenWidth,0, new Animator.AnimatorListener() {
+                                WidgetUtil.chipPortraitTranslateAnimation(ll_result, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
-                                        if (ll_result!=null){
+                                        if (ll_result != null) {
                                             ll_result.setVisibility(View.VISIBLE);
                                         }
                                     }
@@ -1281,7 +1382,7 @@ public class DragonTigerActivity extends BaseActivity {
         if (!isShowAskRoad) {
             mAppViewModel.updateDragenTigerRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road, baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road
                     , tv_baccarat_shoe_number, tv_baccarat_total_number, tv_baccarat_banker_number, tv_baccarat_player_number, tv_baccarat_tie_number
-                    , tv_baccarat_bp_number, tv_baccarat_pp_number,isBigShow, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3);
+                    , tv_baccarat_bp_number, tv_baccarat_pp_number, isBigShow, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3);
         }
         if (popGoodRoad != null) {
             updateGoodRoadUi();
@@ -1658,7 +1759,7 @@ public class DragonTigerActivity extends BaseActivity {
                     }
                     break;
                 case HandlerCode.SHOW_WIN_LOSS:
-                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
+                    serviceTime.setText(mAppViewModel.covertBalance((int) mAppViewModel.getUser().getBalance()));
                     //提示输赢
                     if (bBetSucess) {
 //                        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() >= 0) {
@@ -1667,21 +1768,21 @@ public class DragonTigerActivity extends BaseActivity {
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.blue_word));
 //                        } else
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()), Color.RED);
-                        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() > 0){
+                        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() > 0) {
                             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
-                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.gold));
+                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
                         }
 
                     }
                     //清除所有的下注的筹码
-                    clearAllChips();
+//                    clearAllChips();
 
                     break;
                 case HandlerCode.SHOW_BET_SUCCESS:
                     dismissBlockDialog();
                     initBetInformation(type);
                     ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney());
-                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
+                    serviceTime.setText(mAppViewModel.covertBalance((int) mAppViewModel.getUser().getBalance()));
                     break;
                 case HandlerCode.SHOW_BET_MONEY:
                     showBetMoney(false);
@@ -1739,20 +1840,27 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     private boolean isNeedGetWidth = true;
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (isNeedGetWidth){
+        if (isNeedGetWidth) {
             isNeedGetWidth = false;
-            ViewGroup.LayoutParams layoutParams1 = img_dragon_animation.getLayoutParams();
-            layoutParams1.width = rl_dragon_parent.getWidth();
-            layoutParams1.height = rl_dragon_parent.getHeight();
-            img_dragon_animation.setLayoutParams(layoutParams1);
-            ViewGroup.LayoutParams layoutParams2 = img_tiger_animation.getLayoutParams();
-            layoutParams2.width = rl_tiger_parent.getWidth();
-            layoutParams2.height = rl_tiger_parent.getHeight();
-            img_tiger_animation.setLayoutParams(layoutParams2);
+            initResultAnimation();
         }
+    }
+
+    private void initResultAnimation() {
+        tv_dragon_result_name.measure(0,0);
+        tv_tiger_result_name.measure(0,0);
+        ViewGroup.LayoutParams layoutParams1 = img_dragon_animation.getLayoutParams();
+        layoutParams1.width = tv_dragon_result_name.getMeasuredWidth();
+        layoutParams1.height = tv_dragon_result_name.getMeasuredHeight();
+        img_dragon_animation.setLayoutParams(layoutParams1);
+        ViewGroup.LayoutParams layoutParams2 = img_tiger_animation.getLayoutParams();
+        layoutParams2.width = tv_tiger_result_name.getMeasuredWidth();
+        layoutParams2.height = tv_tiger_result_name.getMeasuredHeight();
+        img_tiger_animation.setLayoutParams(layoutParams2);
     }
 
     @Override
@@ -1875,23 +1983,24 @@ public class DragonTigerActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        if (savedInstanceState!=null){
+        if (savedInstanceState != null) {
             isFirstBet = savedInstanceState.getBoolean("isFirstBet");
         }
+        objectAnimatorDragon = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon);
+        objectAnimatorDragonBlack = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_black);
+        objectAnimatorDragonEven = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_even);
+        objectAnimatorDragonOdd = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_odd);
+        objectAnimatorDragonRed = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_red);
+        objectAnimatorTie = WidgetUtil.startAlphaAnimation(img_bet_bg_tie);
+        objectAnimatorTiger = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger);
+        objectAnimatorTigerBlack = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_black);
+        objectAnimatorTigerEven = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_even);
+        objectAnimatorTigerOdd = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_odd);
+        objectAnimatorTigerRed = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_red);
         initUI();
         animationDragon = (AnimationDrawable) img_dragon_animation.getBackground();
         animationTiger = (AnimationDrawable) img_tiger_animation.getBackground();
-        apngPlayBeanList.clear();
-        String lg = AppTool.getAppLanguage(mContext);
-        if (lg.equals("zh")||lg.equals("zh_TW")){
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon,"assets://dragon_win_zh.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie,"assets://tie_win_cn.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger,"assets://tiger_win_zh.png"));
-        }else {
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon,"assets://dragon_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie,"assets://tie_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger,"assets://tiger_win_en.png"));
-        }
+        initApngList();
         findViewById(R.id.ll_pp).setVisibility(View.GONE);
         findViewById(R.id.ll_bp).setVisibility(View.GONE);
         toolbar_right_bottom_tv.setVisibility(View.GONE);
@@ -1915,7 +2024,7 @@ public class DragonTigerActivity extends BaseActivity {
         ////////////////////
 //        serviceTime.setVisibility(View.GONE);
 
-        serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
+        serviceTime.setText(mAppViewModel.covertBalance((int) mAppViewModel.getUser().getBalance()));
 
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);
@@ -1945,10 +2054,31 @@ public class DragonTigerActivity extends BaseActivity {
         otherTableIdList.add(62);
         otherTableIdList.add(63);
         otherTableIdList.add(71);
-        tv_ask1.setText(getString(R.string.dragon_dragon_tiger));
+        tv_ask1.setText(getString(R.string.dragon_big));
         tv_ask2.setText(getString(R.string.tiger_dragon_tiger));
         setAskClick();
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().setDragon(0);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().setTiger(0);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().setDragon_tiger_tie(-100);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().setDragon_odd_even(-100);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().setDragon_red_black(-100);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().setTiger_odd_even(-100);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().setTiger_red_black(-100);
         startUpdateStatusThread();
+    }
+
+    private void initApngList() {
+        apngPlayBeanList.clear();
+        String lg = AppTool.getAppLanguage(mContext);
+        if (lg.equals("zh") || lg.equals("zh_TW")) {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_zh.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_cn.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_zh.png"));
+        } else {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_en.png"));
+        }
     }
 
     private void initName() {
@@ -2096,29 +2226,13 @@ public class DragonTigerActivity extends BaseActivity {
         tvTableBetCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listBetDetail.size() > 0)
-                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
-                clearNoBetChip();
-
+                clearAllBet();
             }
         });
         tvTableBetSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)
-                    return;
-                if (mAppViewModel.getUser().getBalance() <= 0) {
-                    ToastUtils.showToast(mContext, getString(R.string.Insufficient));
-                    return;
-                }
-                if (listBetDetail.size() > 0) {
-                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
-                    //执行下注的线程
-                    drangonTigerBet = new DrangonTigerBet(DtBetType.All);
-                    threadDrangonTigerBet = new Thread(drangonTigerBet);
-                    showBlockDialog();
-                    Executors.newSingleThreadExecutor().execute(threadDrangonTigerBet);
-                }
+                betAll();
             }
         });
 
@@ -2139,17 +2253,49 @@ public class DragonTigerActivity extends BaseActivity {
         leftPanel1.setInterpolator(new BounceInterpolator(EasingType.Type.OUT));
     }
 
+    private void clearAllBet() {
+        if (listBetDetail.size() > 0)
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
+        clearNoBetChip();
+    }
+
+    private void betAll() {
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)
+            return;
+        if (mAppViewModel.getUser().getBalance() <= 0) {
+            ToastUtils.showToast(mContext, getString(R.string.Insufficient));
+            return;
+        }
+        if (listBetDetail.size() > 0) {
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
+            //执行下注的线程
+            drangonTigerBet = new DrangonTigerBet(DtBetType.All);
+            threadDrangonTigerBet = new Thread(drangonTigerBet);
+            showBlockDialog();
+            Executors.newSingleThreadExecutor().execute(threadDrangonTigerBet);
+        }
+    }
+
     volatile boolean isCanbet = true;
 
 
     public void parentClick() {
-        if (toolbar_right_bottom_tv.getVisibility()==View.VISIBLE){
+        if (toolbar_right_bottom_tv.getVisibility() == View.VISIBLE) {
             displayAll(false);
-        }else {
+        } else {
             displayAll(true);
         }
         showHideUserInfo();
         closeAll();
+    }
+
+    @Override
+    public void onSwitchChipFinish() {
+        chooseChip = 0;
+        if (selectedMap != null) {
+            selectedMap.clear();
+        }
+        setChip();
     }
 
     public void setChip() {
@@ -2164,12 +2310,13 @@ public class DragonTigerActivity extends BaseActivity {
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
                 ImageView chipImg = helper.retrieveView(R.id.iv_chip_pic);
                 final LinearLayout llParent = helper.retrieveView(R.id.ll_chip_parent);
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     llParent.post(new Runnable() {
                         @Override
                         public void run() {
-                            if (position==0){
-                                int padding =  ScreenUtil.dip2px(mContext, 75);
+                            if (position == 0) {
+                                int screenWidth = WidgetUtil.getScreenWidth(DragonTigerActivity.this);
+                                int padding = (screenWidth - ScreenUtil.dip2px(mContext, 60) * 7) / 2;
                                 FrameLayout.LayoutParams layoutParams1 = (FrameLayout.LayoutParams) lv_baccarat_chips.getLayoutParams();
                                 layoutParams1.leftMargin = padding;
                                 layoutParams1.rightMargin = padding;
@@ -2177,45 +2324,37 @@ public class DragonTigerActivity extends BaseActivity {
                             }
                         }
                     });
-                    int screenWidth = WidgetUtil.getScreenWidth(DragonTigerActivity.this);
-                    int margin = ((screenWidth-ScreenUtil.dip2px(mContext, 75)*2)/9-ScreenUtil.dip2px(mContext, 50))/2;
+                    int margin = ScreenUtil.dip2px(mContext, 5);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width=ScreenUtil.dip2px(mContext, 50);
-                    layoutParams.height=ScreenUtil.dip2px(mContext, 50);
-                    layoutParams.leftMargin=margin;
-                    layoutParams.rightMargin=margin;
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.leftMargin = margin;
+                    layoutParams.rightMargin = margin;
                     llParent.setLayoutParams(layoutParams);
                     chipImg.setImageResource(item.getDrawableRes());
-                }else {
+                } else {
                     int screenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                    int margin = (screenWidth/6-ScreenUtil.dip2px(mContext, 60))/2;
+                    int margin = (screenWidth / 7 - ScreenUtil.dip2px(mContext, 50)) / 2;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width=ScreenUtil.dip2px(mContext, 60);
-                    layoutParams.height=ScreenUtil.dip2px(mContext, 60);
-                    layoutParams.leftMargin=margin;
-                    layoutParams.rightMargin=margin;
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.leftMargin = margin;
+                    layoutParams.rightMargin = margin;
                     llParent.setLayoutParams(layoutParams);
                     chipImg.setImageResource(item.getDrawableRes());
                 }
                 if (currentShufflingStatus == 1) {
                     if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                        layoutParams.width = (int)(layoutParams.width*1.2);
-                        layoutParams.height = (int)(layoutParams.height*1.2);
+                        layoutParams.width = (int) (layoutParams.width * 1.2);
+                        layoutParams.height = (int) (layoutParams.height * 1.2);
                         chipImg.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                     } else {
-                        if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_PORTRAIT){
-                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                            layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                            layoutParams.height =ScreenUtil.dip2px(mContext, 60);
-                            chipImg.setLayoutParams(layoutParams);
-                        }else {
-                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                            layoutParams.width = ScreenUtil.dip2px(mContext, 50);
-                            layoutParams.height =ScreenUtil.dip2px(mContext, 50);
-                            chipImg.setLayoutParams(layoutParams);
-                        }
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                        chipImg.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.ll_chip_parent, 0);
                     }
                 } else {
@@ -2229,14 +2368,18 @@ public class DragonTigerActivity extends BaseActivity {
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
                 @Override
                 public void itemCLick(View view, ChipBean chipBean, int position) {
-                    selectedMap.put(true, position);
-                    chips.notifyDataSetChanged();
-                    chooseChip = chipBean.getValue();
-                    initClickCount();
-                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, mAppViewModel.getFrontVolume());
+                    if (chipBean.getValue() != -101) {
+                        selectedMap.put(true, position);
+                        chips.notifyDataSetChanged();
+                        chooseChip = chipBean.getValue();
+                        initClickCount();
+                        mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, mAppViewModel.getFrontVolume());
+                    } else {
+                        showChooseChip(view);
+                    }
                 }
             });
-            chips.setData(chipListChoice);
+            chips.setData(getCurrentChip(false));
         } else {
             chooseChip = 0;
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
@@ -2245,7 +2388,7 @@ public class DragonTigerActivity extends BaseActivity {
 
                 }
             });
-            chips.setData(chipListCanNotChoice);
+            chips.setData(getCurrentChip(false));
         }
     }
 
@@ -2309,15 +2452,15 @@ public class DragonTigerActivity extends BaseActivity {
                 TextView tvValue = helper.retrieveView(R.id.tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
-                switch (position){
+                switch (position) {
                     case 0:
-                        tvType.setTextColor(ContextCompat.getColor(mContext,R.color.banker_color));
+                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
                         break;
                     case 2:
-                        tvType.setTextColor(ContextCompat.getColor(mContext,R.color.player_color));
+                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
                         break;
                     case 4:
-                        tvType.setTextColor(ContextCompat.getColor(mContext,R.color.tie_color));
+                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.tie_color));
                         break;
                 }
             }
@@ -2335,15 +2478,15 @@ public class DragonTigerActivity extends BaseActivity {
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getDragon() > 0)
             data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getDragon() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger) , "0", "");
+            data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger), "0", "");
         strData.add(data);
-        strData.add(new LiveInfoBean("","",""));
+        strData.add(new LiveInfoBean("", "", ""));
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTiger() > 0)
             data = new LiveInfoBean(getString(R.string.tiger_dragon_tiger), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTiger() + "", "");
         else
             data = new LiveInfoBean(getString(R.string.tiger_dragon_tiger), "0", "");
         strData.add(data);
-        strData.add(new LiveInfoBean("","",""));
+        strData.add(new LiveInfoBean("", "", ""));
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTie() > 0)
             data = new LiveInfoBean(getString(R.string.tie), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTie() + "", "");
         else
@@ -2404,7 +2547,7 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void startPlayVideo() {
-        mPreview =  findViewById(R.id.surface);
+        mPreview = findViewById(R.id.surface);
         videoHelper = new VideoHelper(mContext, mPreview) {
             @Override
             public void doVideoFix() {
@@ -2483,7 +2626,7 @@ public class DragonTigerActivity extends BaseActivity {
         super.showLimit();
         if (lvTableBetLimitRed.getVisibility() == View.VISIBLE) {
             lvTableBetLimitRed.setVisibility(View.GONE);
-        }else {
+        } else {
             lvTableBetLimitRed.setVisibility(View.VISIBLE);
         }
     }
@@ -2493,13 +2636,195 @@ public class DragonTigerActivity extends BaseActivity {
         clearNoBetChip();
     }
 
+    private void clearBetBg() {
+        img_bet_bg_dragon.setBackgroundResource(0);
+        img_bet_bg_dragon_black.setBackgroundResource(0);
+        img_bet_bg_dragon_even.setBackgroundResource(0);
+        img_bet_bg_dragon_odd.setBackgroundResource(0);
+        img_bet_bg_dragon_red.setBackgroundResource(0);
+        img_bet_bg_tie.setBackgroundResource(0);
+        img_bet_bg_tiger.setBackgroundResource(0);
+        img_bet_bg_tiger_black.setBackgroundResource(0);
+        img_bet_bg_tiger_even.setBackgroundResource(0);
+        img_bet_bg_tiger_odd.setBackgroundResource(0);
+        img_bet_bg_tiger_red.setBackgroundResource(0);
+    }
+
+    private void showBetBg() {
+        clearBetBg();
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Dragon") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+            } else {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tiger") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+            } else {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+            } else {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+            } else {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tie") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+            } else {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+            }
+        }
+    }
+
+    private void showRepeatBetBg() {
+        clearBetBg();
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Dragon") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+            } else {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Tiger") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+            } else {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+            } else {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+            } else {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+            }
+        }
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Tie") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+            } else {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+            }
+        }
+    }
+
     public void clearNoBetChip() {
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 5) {
+            showBetBg();
+        }
         clearAllChips();
         showBetMoney(false);
         initBetInformation(DtBetType.All);
     }
 
     public void clearNoBetChip(DtBetType type) {
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 5) {
+            showBetBg();
+        }
         showBetChip(getFrameLayout(type.toString()), false, 0);
         initBetInformation(type);
         showBetMoney(false);
@@ -2575,16 +2900,16 @@ public class DragonTigerActivity extends BaseActivity {
         showBetChip(fl_tie, false, 0);
     }
 
-    private void showApng(int position){
+    private void showApng(int position) {
         for (int i = 0; i < apngPlayBeanList.size(); i++) {
             ApngImageView apngImageView = apngPlayBeanList.get(i).getApngImageView();
             String uri = apngPlayBeanList.get(i).getUri();
-            if (i==position){
+            if (i == position) {
                 File file = FileUtils.processApngFile(uri, mContext);
                 ApngLoader.getInstance().loadApng(file.getAbsolutePath(), apngImageView);
                 apngImageView.setVisibility(View.VISIBLE);
-                apngImageView.positon=i;
-            }else {
+                apngImageView.positon = i;
+            } else {
                 apngImageView.stop();
                 apngImageView.setVisibility(View.INVISIBLE);
             }
@@ -2594,90 +2919,224 @@ public class DragonTigerActivity extends BaseActivity {
     private AnimationDrawable animationDragon;
     private AnimationDrawable animationTiger;
 
+    ObjectAnimator objectAnimatorDragon;
+    ObjectAnimator objectAnimatorDragonOdd;
+    ObjectAnimator objectAnimatorDragonEven;
+    ObjectAnimator objectAnimatorDragonBlack;
+    ObjectAnimator objectAnimatorDragonRed;
+    ObjectAnimator objectAnimatorTiger;
+    ObjectAnimator objectAnimatorTigerRed;
+    ObjectAnimator objectAnimatorTigerOdd;
+    ObjectAnimator objectAnimatorTigerEven;
+    ObjectAnimator objectAnimatorTigerBlack;
+    ObjectAnimator objectAnimatorTie;
+
     public void showResultsOnUI() {
+//        clearBetBg();
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5 && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() != 0)) {
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_dragon.setBackgroundResource(R.mipmap.long_03);
-                }else {
-                    iv_dragon.setBackgroundResource(R.mipmap.long_03_portrait);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon.setBackgroundResource(R.mipmap.long_03);
+//                } else {
+//                    iv_dragon.setBackgroundResource(R.mipmap.long_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+                } else {
+                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+                }
+                if (objectAnimatorDragon.isRunning()) {
+                    objectAnimatorDragon.cancel();
+                    objectAnimatorDragon.start();
+                } else {
+                    objectAnimatorDragon.start();
                 }
                 animationDragon.start();
                 showApng(0);
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 11, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 2) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_tiger.setBackgroundResource(R.mipmap.hu_03);
-                }else {
-                    iv_tiger.setBackgroundResource(R.mipmap.hu_03_portrait);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger.setBackgroundResource(R.mipmap.hu_03);
+//                } else {
+//                    iv_tiger.setBackgroundResource(R.mipmap.hu_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+                } else {
+                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+                }
+                if (objectAnimatorTiger.isRunning()) {
+                    objectAnimatorTiger.cancel();
+                    objectAnimatorTiger.start();
+                } else {
+                    objectAnimatorTiger.start();
                 }
                 showApng(2);
                 animationTiger.start();
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 12, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 3) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_tie.setBackgroundResource(R.mipmap.he_03);
-                }else {
-                    iv_tie.setBackgroundResource(R.mipmap.he_03_portrait);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tie.setBackgroundResource(R.mipmap.he_03);
+//                } else {
+//                    iv_tie.setBackgroundResource(R.mipmap.he_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+                } else {
+                    img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+                }
+                if (objectAnimatorTie.isRunning()) {
+                    objectAnimatorTie.cancel();
+                    objectAnimatorTie.start();
+                } else {
+                    objectAnimatorTie.start();
                 }
                 showApng(1);
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 13, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_odd_even() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03);
-                }else {
-                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03_portrait);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03);
+//                } else {
+//                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+                } else {
+                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
                 }
-            } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2){
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_dragon_even.setBackgroundResource(R.mipmap.zuo4_03);
-                }else {
-                    iv_dragon_even.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                if (objectAnimatorDragonOdd.isRunning()) {
+                    objectAnimatorDragonOdd.cancel();
+                    objectAnimatorDragonOdd.start();
+                } else {
+                    objectAnimatorDragonOdd.start();
+                }
+            } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2) {
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_even.setBackgroundResource(R.mipmap.zuo4_03);
+//                } else {
+//                    iv_dragon_even.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+                } else {
+                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+                }
+                if (objectAnimatorDragonEven.isRunning()) {
+                    objectAnimatorDragonEven.cancel();
+                    objectAnimatorDragonEven.start();
+                } else {
+                    objectAnimatorDragonEven.start();
                 }
             }
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_red_black() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_dragon_red.setBackgroundResource(R.mipmap.zuo1_03);
-                }else {
-                    iv_dragon_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_red.setBackgroundResource(R.mipmap.zuo1_03);
+//                } else {
+//                    iv_dragon_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+                } else {
+                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
                 }
-            } else{
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_dragon_black.setBackgroundResource(R.mipmap.zuo2_03);
-                }else {
-                    iv_dragon_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                if (objectAnimatorDragonRed.isRunning()) {
+                    objectAnimatorDragonRed.cancel();
+                    objectAnimatorDragonRed.start();
+                } else {
+                    objectAnimatorDragonRed.start();
+                }
+            } else {
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_black.setBackgroundResource(R.mipmap.zuo2_03);
+//                } else {
+//                    iv_dragon_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+                } else {
+                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+                }
+                if (objectAnimatorDragonBlack.isRunning()) {
+                    objectAnimatorDragonBlack.cancel();
+                    objectAnimatorDragonBlack.start();
+                } else {
+                    objectAnimatorDragonBlack.start();
                 }
             }
 
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_odd_even() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_tiger_odd.setBackgroundResource(R.mipmap.zuo7_03);
-                }else {
-                    iv_tiger_odd.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_odd.setBackgroundResource(R.mipmap.zuo7_03);
+//                } else {
+//                    iv_tiger_odd.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+                } else {
+                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
                 }
-            } else{
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03);
-                }else {
-                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03_portrait);
+                if (objectAnimatorTigerOdd.isRunning()) {
+                    objectAnimatorTigerOdd.cancel();
+                    objectAnimatorTigerOdd.start();
+                } else {
+                    objectAnimatorTigerOdd.start();
+                }
+            } else {
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03);
+//                } else {
+//                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+                } else {
+                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+                }
+                if (objectAnimatorTigerEven.isRunning()) {
+                    objectAnimatorTigerEven.cancel();
+                    objectAnimatorTigerEven.start();
+                } else {
+                    objectAnimatorTigerEven.start();
                 }
             }
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_red_black() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_tiger_red.setBackgroundResource(R.mipmap.zuo5_03);
-                }else {
-                    iv_tiger_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_red.setBackgroundResource(R.mipmap.zuo5_03);
+//                } else {
+//                    iv_tiger_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+                } else {
+                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
                 }
-            } else{
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-                    iv_tiger_black.setBackgroundResource(R.mipmap.zuo6_03);
-                }else {
-                    iv_tiger_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                if (objectAnimatorTigerRed.isRunning()) {
+                    objectAnimatorTigerRed.cancel();
+                    objectAnimatorTigerRed.start();
+                } else {
+                    objectAnimatorTigerRed.start();
+                }
+            } else {
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_black.setBackgroundResource(R.mipmap.zuo6_03);
+//                } else {
+//                    iv_tiger_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+                } else {
+                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+                }
+                if (objectAnimatorTigerBlack.isRunning()) {
+                    objectAnimatorTigerBlack.cancel();
+                    objectAnimatorTigerBlack.start();
+                } else {
+                    objectAnimatorTigerBlack.start();
                 }
             }
 
@@ -2736,7 +3195,7 @@ public class DragonTigerActivity extends BaseActivity {
         tv_point_tiger.setText(getString(R.string.tiger) + " 0");
         tv_dragon_result.setText("0");
         tv_tiger_result.setText("0");
-        isShowWinLose= false;
+        isShowWinLose = false;
         updateWonMoney = new UpdateWonMoney();
         threadUpdateWonMoney = new Thread(updateWonMoney);
         threadUpdateWonMoney.start();
@@ -2981,13 +3440,20 @@ public class DragonTigerActivity extends BaseActivity {
         }
         if (!bRepeat) {
             BetUiHelper.betStateColor(tvTableBetSure, false);
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 5) {
+                showBetBg();
+            }
+        } else {
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 5) {
+                showRepeatBetBg();
+            }
         }
     }
 
     private void showBetChip(FrameLayout f, boolean isShow, int money) {
         int height = AutoUtils.getPercentHeightSize(60);
-        if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-            height=  AutoUtils.getPercentHeightSize(80);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            height = AutoUtils.getPercentHeightSize(80);
         }
         showBetChip(f, isShow, money, height, Gravity.TOP);
     }
@@ -3008,19 +3474,17 @@ public class DragonTigerActivity extends BaseActivity {
             chipHelper.setOperationButton(0, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DtBetType type = getTypeFrom(f);
-                    singleBet(type);
+                    betAll();
                 }
             }, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DtBetType type = getTypeFrom(f);
-                    clearNoBetChip(type);
+                    clearAllBet();
                 }
             }, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!isFirstBet){
+                    if (!isFirstBet) {
                         DtBetType type = getTypeFrom(f);
                         clearNoBetChip(type);
                         showBetMoney(true);
@@ -3032,8 +3496,21 @@ public class DragonTigerActivity extends BaseActivity {
         //   money= chipHelper.getMoneyCount()+money;
         if (isShow && money > 0) {
             checkOperationButton();
+            Iterator<Map.Entry<FrameLayout, ChipShowHelper>> it = ChipMap.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<FrameLayout, ChipShowHelper> entry = it.next();
+                ChipShowHelper value = entry.getValue();
+                if (value != null) {
+                    value.setOperationButtonDisplay(false);
+                }
+            }
             BetUiHelper.betStateColor(tvTableBetSure, true);
-            chipHelper.showChip(money, 0, y, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), 0, y + AutoUtils.getPercentHeightSize(4), AutoUtils.getPercentHeightSize(32)*2, AutoUtils.getPercentHeightSize(20));
+            if (chooseChip > 0) {
+                chipHelper.setOperationButtonDisplay(true);
+            } else {
+                chipHelper.setOperationButtonDisplay(false);
+            }
+            chipHelper.showChip(money, 0, y, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), 0, y + AutoUtils.getPercentHeightSize(4), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
         } else {
             chipHelper.setOperationButtonDisplay(false);
             chipHelper.clearAllChips();
@@ -3145,7 +3622,7 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void clickChipBet(String number, String type, int chooseChip, int minLimit, int maxLimit,
-                             int alreadyBet, int totalbet, FrameLayout fl_chip) {
+                             int alreadyBet, int totalbet, FrameLayout fl_chip, ImageView img_bet_bg, int bg) {
         if (checkChoose()) return;
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
@@ -3191,6 +3668,7 @@ public class DragonTigerActivity extends BaseActivity {
             //超过了最大的值，要提醒
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         } else {
+            img_bet_bg.setBackgroundResource(bg);
             showBetChip(fl_chip, true, betMoney);
 
         }
@@ -3293,7 +3771,7 @@ public class DragonTigerActivity extends BaseActivity {
                 @Override
                 public void run() {
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) toolbar.getLayoutParams();
-                    layoutParams.leftMargin =ScreenUtil.dip2px(mContext, 12);
+                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 12);
                     toolbar.setLayoutParams(layoutParams);
                 }
             });
@@ -3320,7 +3798,7 @@ public class DragonTigerActivity extends BaseActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("isFirstBet",isFirstBet);
+        outState.putBoolean("isFirstBet", isFirstBet);
     }
 
     @BindView(R2.id.ll_info)
@@ -3355,52 +3833,52 @@ public class DragonTigerActivity extends BaseActivity {
         showHideUserInfo();
     }
 
-    private void showHideUserInfo(){
-        if (ll_info.getLayoutParams().height>0){
-            WidgetUtil.shrinkAnimation(ll_info,ScreenUtil.dip2px(mContext, 165),0);
-        }else {
-            WidgetUtil.shrinkAnimation(ll_info,0,ScreenUtil.dip2px(mContext, 165));
+    private void showHideUserInfo() {
+        if (ll_info.getLayoutParams().height > 0) {
+            WidgetUtil.shrinkAnimation(ll_info, ScreenUtil.dip2px(mContext, 165), 0);
+        } else {
+            WidgetUtil.shrinkAnimation(ll_info, 0, ScreenUtil.dip2px(mContext, 165));
         }
     }
 
-    private List<LiveInfoBean> updateInfoData(){
+    private List<LiveInfoBean> updateInfoData() {
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
         data = new LiveInfoBean(getString(R.string.ID), usName, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney()+"", "");
-        if (Integer.parseInt(data.getValue1())>0){
-            tv_total_bet.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1()))+"");
-            rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1()))+"");
-        }else {
-            tv_total_bet.setText(getString(R.string.BET)+" :0");
-            rightBetTv.setText(getString(R.string.BET)+" :0");
+        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney() + "", "");
+        if (Integer.parseInt(data.getValue1()) > 0) {
+            tv_total_bet.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
+            rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
+        } else {
+            tv_total_bet.setText(getString(R.string.BET) + " :0");
+            rightBetTv.setText(getString(R.string.BET) + " :0");
         }
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()+"", "");
-        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()>0){
-            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.win_color));
-            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.black));
-            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
-        }else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()==0){
-            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.yellow_gold));
-            tv_win_lose_bet.setText(getString(R.string.W_L)+" :0");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.bet_color));
-            rightWinLoseTv.setText(getString(R.string.W_L)+" :0");
-        }else {
-            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.lose_color));
-            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.banker_color));
-            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
+        data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() + "", "");
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() > 0) {
+            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.win_color));
+            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()) + "");
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()) + "");
+        } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() == 0) {
+            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_gold));
+            tv_win_lose_bet.setText(getString(R.string.W_L) + " :0");
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.bet_color));
+            rightWinLoseTv.setText(getString(R.string.W_L) + " :0");
+        } else {
+            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.lose_color));
+            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()) + "");
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()) + "");
         }
         strData.add(data);
         data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, mAppViewModel.getUser().getBalance() + "", "");
-        rightBalanceTv.setText(mAppViewModel.getUser().getBalance()+"");
+        rightBalanceTv.setText(mAppViewModel.getUser().getBalance() + "");
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.LIMIT_POP), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet())
-                +"-"+ mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet()), "");
+                + "-" + mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet()), "");
         strData.add(data);
         strData.add(new LiveInfoBean(getString(R.string.dragon1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet())
                 , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
@@ -3443,16 +3921,16 @@ public class DragonTigerActivity extends BaseActivity {
                 TextView tvValue = helper.retrieveView(R.id.tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
-                if (position>4){
+                if (position > 4) {
                     tvValue.setText(item.getValue1() + "-" + item.getValue2());
-                }else {
-                    if (position==2){
-                        if (item.getValue1().startsWith("-")){
-                            tvValue.setTextColor(ContextCompat.getColor(mContext,R.color.red_background));
-                        } else if (Double.parseDouble(item.getValue1())>0){
-                            tvValue.setTextColor(ContextCompat.getColor(mContext,R.color.blue_bet));
+                } else {
+                    if (position == 2) {
+                        if (item.getValue1().startsWith("-")) {
+                            tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.red_background));
+                        } else if (Double.parseDouble(item.getValue1()) > 0) {
+                            tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.blue_bet));
                         } else {
-                            tvValue.setTextColor(ContextCompat.getColor(mContext,R.color.gold));
+                            tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.gold));
                         }
                     }
                     tvValue.setText(item.getValue1());
@@ -3460,5 +3938,31 @@ public class DragonTigerActivity extends BaseActivity {
             }
         });
         contentInfo.setData(updateInfoData());
+    }
+
+    @Override
+    public void onInGameChooseLanguage() {
+        initApngList();
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
+        fl_baccarat_b_table.setBackgroundResource(0);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.dragon_tiger_bet_bg);
+        } else {
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.dragon_tiger_bg);
+        }
+        tv_ask1.setText(getString(R.string.dragon_big));
+        tv_ask2.setText(getString(R.string.tiger_dragon_tiger));
+        tv_ask1_name.setText(getString(R.string.ask));
+        tv_ask2_name.setText(getString(R.string.ask));
+        tv_good_road_name.setText(getString(R.string.good_road));
+        ((TextView) findViewById(R.id.tv_banker)).setText(getString(R.string.dr));
+        ((TextView) findViewById(R.id.tv_player)).setText(getString(R.string.ti));
+        ((TextView) findViewById(R.id.tv_tie)).setText(getString(R.string.tie));
+        ((TextView) findViewById(R.id.tv_total)).setText(getString(R.string.total_m));
+        ((TextView) findViewById(R.id.tv_dragon_result_name)).setText(getString(R.string.dragon));
+        ((TextView) findViewById(R.id.tv_tiger_result_name)).setText(getString(R.string.tiger));
+        tv_dragon_result_name.setText(getString(R.string.dragon));
+        tv_tiger_result_name.setText(getString(R.string.tiger));
+        initResultAnimation();
     }
 }
