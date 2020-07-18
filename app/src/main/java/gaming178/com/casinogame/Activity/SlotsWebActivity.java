@@ -14,8 +14,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.base.BaseActivity;
 
 /**
@@ -23,11 +24,11 @@ import gaming178.com.casinogame.base.BaseActivity;
  */
 
 public class SlotsWebActivity extends BaseActivity {
-    @Bind(R.id.title)
+    @BindView(R2.id.title)
     View title;
-    @Bind(R.id.web_wv)
+    @BindView(R2.id.web_wv)
     WebView webView;
-    @Bind(R.id.img_exit)
+    @BindView(R2.id.img_exit)
     ImageView img_exit;
     String gameType;
 

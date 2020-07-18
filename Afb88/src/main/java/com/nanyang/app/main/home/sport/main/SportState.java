@@ -64,8 +64,9 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -443,7 +444,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
         List<TableSportInfo<B>> pageList;
-        if (page * pageSize > filterData.size() - 1) {
+       /* if (page * pageSize > filterData.size() - 1) {
             if (page > 0)
                 page = 0;
             else
@@ -454,7 +455,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
-        }
+        }*/
+        pageList=filterData;
         LogUtil.d("current", "page:" + page);
 
         return pageList;
@@ -1197,7 +1199,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Override
     public void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
-        this.swipeToLoadLayout = swipeToLoadLayout;
+        refresh();
+        swipeToLoadLayout.setRefreshing(false);
+      /*  this.swipeToLoadLayout = swipeToLoadLayout;
         if (page == 0) {
             refresh();
         } else {
@@ -1207,12 +1211,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 swipeToLoadLayout.setLoadMoreEnabled(true);
             }
         }
-        swipeToLoadLayout.setRefreshing(false);
+        swipeToLoadLayout.setRefreshing(false);*/
     }
 
     @Override
     public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
-        this.swipeToLoadLayout = swipeToLoadLayout;
+        swipeToLoadLayout.setLoadingMore(false);
+    /*    this.swipeToLoadLayout = swipeToLoadLayout;
         if (filterData != null && (page + 1) * pageSize < filterData.size()) {
             page++;
             showCurrentData();
@@ -1220,7 +1225,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         } else {
             swipeToLoadLayout.setLoadingMore(false);
 //            swipeToLoadLayout.setLoadMoreEnabled(false);
-        }
+        }*/
     }
 
     public BaseRecyclerAdapter<MenuItemInfo<Integer>> getSwitchTypeAdapter() {
@@ -1472,13 +1477,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     static class ViewHolder {
-        @Bind(R.id.tv_head_left)
+        @BindView(R.id.tv_head_left)
         TextView tvHeadLeft;
-        @Bind(R.id.tv_head_right)
+        @BindView(R.id.tv_head_right)
         TextView tvHeadRight;
-        @Bind(R.id.tv_head_3)
+        @BindView(R.id.tv_head_3)
         TextView tvHead3;
-        @Bind(R.id.ll_head_parent)
+        @BindView(R.id.ll_head_parent)
         LinearLayout llHeadParent;
 
         ViewHolder(View view) {
@@ -1503,7 +1508,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private void showAllOdds(final TextView textView) {
 
-        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, textView.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
+        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, textView.getWidth()+ DeviceUtils.dip2px(activity,20), LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;

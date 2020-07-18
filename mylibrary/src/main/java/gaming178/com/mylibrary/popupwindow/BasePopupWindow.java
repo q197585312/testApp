@@ -187,7 +187,6 @@ public abstract class BasePopupWindow {
     public void closePopupWindow() {
         if (popoWindow != null && popoWindow.isShowing()) {
             popoWindow.setAnimationStyle(R.anim.abc_popup_exit);
-            ButterKnife.unbind(view);
             popoWindow.dismiss();
         }
     }

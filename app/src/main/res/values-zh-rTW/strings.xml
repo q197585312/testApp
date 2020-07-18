@@ -143,12 +143,13 @@
     <string name="setting">設置&#160;&#160;</string>
     <string name="logout">退出&#160;&#160;</string>
 
-    <string name="sure">確定?</string>
+    <string name="sure">確定</string>
     <string name="sure_logout">你確定要退出嗎?</string>
     <string name="yes">是</string>
     <string name="no">否</string>
 
     <string name="music_setting">音樂設置</string>
+    <string name="limit_setting">限红設置</string>
     <string name="music1">音樂 1</string>
     <string name="music2">音樂 2</string>
     <string name="music3">音樂 3</string>
@@ -208,19 +209,23 @@
     <string name="BPA" >莊對</string>
     <string name="dr">@string/dragon</string>
     <string name="ti">@string/tiger</string>
-    <string name="ID">用户</string>
+    <string name="ID">用戶</string>
     <string name="BET">下注</string>
-    <string name="W_L">输/赢</string>
-    <string name="LIMIT_POP">限红</string>
-    <string name="ask">问路</string>
-    <string name="GoodRoad_1">长庄</string>
-    <string name="GoodRoad_2">长闲</string>
-    <string name="GoodRoad_3">一闲俩庄</string>
-    <string name="GoodRoad_4">一庄俩闲</string>
-    <string name="GoodRoad_5">大路单跳</string>
-    <string name="GoodRoad_6">大路双挑</string>
+    <string name="W_L">輸/贏</string>
+    <string name="LIMIT_POP">限紅</string>
+    <string name="ask">問路</string>
+    <string name="GoodRoad_1">長莊</string>
+    <string name="GoodRoad_2">長閒</string>
+    <string name="GoodRoad_3">一閒倆莊</string>
+    <string name="GoodRoad_4">一莊倆閒</string>
+    <string name="GoodRoad_5">大路單跳</string>
+    <string name="GoodRoad_6">大路雙挑</string>
     <string name="good_road">好路</string>
     <string name="wait_good_road">等待好路中</string>
-    <string name="three_no_bet">你已有3次没下注</string>
+    <string name="three_no_bet">你已有3次沒下注</string>
     <string name="friendly_message">友善提醒</string>
+    <string name="please_choose_chip">請選擇 6 個籌碼</string>
+    <string name="your_here">你在這</string>
+    <string name="cancel">取消</string>
+    <string name="dragon_big">龍</string>
 </resources>

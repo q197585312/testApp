@@ -20,6 +20,15 @@ public class BaccaratTableChangeViewBean {
     TextView tv_baccarat_pp_number;
     View ll_good_road_parent;
     TextView tv_good_road_name;
+    View view_Parent;
+
+    public View getView_Parent() {
+        return view_Parent;
+    }
+
+    public void setView_Parent(View view_Parent) {
+        this.view_Parent = view_Parent;
+    }
 
     public BaccaratTableChangeViewBean(int tableId, GridLayout layout, TextView tv_baccarat_shoe_number, TextView tv_baccarat_total_number, TextView tv_baccarat_banker_number, TextView tv_baccarat_player_number, TextView tv_baccarat_tie_number, TextView tv_baccarat_bp_number, TextView tv_baccarat_pp_number) {
         this.tableId = tableId;

@@ -1,8 +1,12 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -27,9 +31,11 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api 'com.google.code.gson:gson:2.2.4'
-    api 'com.jakewharton:butterknife:7.0.1'
+//    implementation  rootProject.ext.dependencies["butterknife"]
     api 'com.nhaarman.listviewanimations:library:2.6.0'
     api project(':autolayout')
     api project(':gestrueLibrary')
     api project(':apng')
+    implementation  rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 }

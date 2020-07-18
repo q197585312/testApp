@@ -1,7 +1,6 @@
 package gaming178.com.casinogame.Util;
 
 import android.annotation.TargetApi;
-import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -19,8 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 
 import com.tencent.bugly.crashreport.CrashReport;
-
-import org.jetbrains.annotations.NotNull;
+import com.unkonw.testapp.libs.base.BaseApplication;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -53,7 +51,6 @@ import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Chat.FaceConversionUtil;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.casinogame.base.IViewModelStoreOwner;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.ThreadPoolUtils;
@@ -65,7 +62,7 @@ import gaming178.com.mylibrary.lib.util.LogUtil;
 /**
  * Created by Administrator on 2016/3/29.
  */
-public class AfbApp extends Application implements IViewModelStoreOwner {
+public class AfbApp extends BaseApplication {
     private HttpClient httpClient;
     private String cookie;
     private User user;
@@ -1924,13 +1921,21 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
         return false;
     }
 
-    public void updateDragenTigerBigRoad(Context mContext, DragonTiger baccarat, GridLayout gridLayoutBigRoad, TextView tv_shoe, TextView tv_total, TextView tv_banker, TextView tv_player, TextView tv_tie, TextView tv_bp, TextView tv_pp) {
+    public void updateDragenTigerBigRoad(final Context mContext, DragonTiger baccarat, final GridLayout gridLayoutBigRoad, TextView tv_shoe, TextView tv_total, TextView tv_banker, TextView tv_player, TextView tv_tie, TextView tv_bp, TextView tv_pp) {
 
         if (baccarat.getBigRoad() != null && !baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) && !baccarat.getGameNumber().equals("0")) {
             //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
             baccarat.setBigRoadOld(baccarat.getBigRoad());
             ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, ScreenUtil.getDisplayMetrics(mContext).density, 1, 1);
-            updateDragonTigerGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
+            if (gridLayoutBigRoad != null) {
+                gridLayoutBigRoad.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollTableRoad(gridLayoutBigRoad, mContext);
+                    }
+                });
+            }
+            //            updateDragonTigerGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
 
         }
     }
@@ -2114,25 +2119,22 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
                     listItem.add(roadDetail[i]);
                 }
                 adapter.addAllAndClear(listItem);
-                roulette.getTotal(roulette.getRoad());
-                tv_roulette_number.setText("" + roulette.getGameNumber());
-                tv_red.setText("" + roulette.getRed());
-                tv_black.setText("" + roulette.getBlack());
-                tv_zero.setText("" + roulette.getZero());
-                tv_even.setText("" + roulette.getEven());
-                tv_odd.setText("" + roulette.getOdd());
-                tv_big.setText("" + roulette.getBig());
-                tv_small.setText("" + roulette.getSmall());
+//                roulette.getTotal(roulette.getRoad());
+//                tv_roulette_number.setText("" + roulette.getGameNumber());
+//                tv_red.setText("" + roulette.getRed());
+//                tv_black.setText("" + roulette.getBlack());
+//                tv_zero.setText("" + roulette.getZero());
+//                tv_even.setText("" + roulette.getEven());
+//                tv_odd.setText("" + roulette.getOdd());
+//                tv_big.setText("" + roulette.getBig());
+//                tv_small.setText("" + roulette.getSmall());
             }
 
         }
     }
 
-    public void updateBigRoad(Context mContext, Baccarat baccarat, GridLayout gridLayoutBigRoad,
+    public void updateBigRoad(final Context mContext, Baccarat baccarat, final GridLayout gridLayoutBigRoad,
                               TextView tv_shoe, TextView tv_total, TextView tv_banker, TextView tv_player, TextView tv_tie, TextView tv_bp, TextView tv_pp, View ll_parent, TextView tvName) {
-        Log.d("updateBigRoad", "getBigRoad: " + baccarat.getBigRoad());
-        Log.d("updateBigRoad", "getBigRoadOld: " + baccarat.getBigRoadOld());
-        Log.d("updateBigRoad", "updateBigRoad: " + baccarat.getBigRoad().equals(baccarat.getBigRoadOld()));
         if (baccarat.getBigRoad() != null && !baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) && !baccarat.getGameNumber().equals("0")) {
             baccarat.setBigRoadOld(baccarat.getBigRoad());
             String s = updateGoodRoad(mContext, baccarat.getBigRoad());
@@ -2146,7 +2148,15 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
             baccarat.setBigRoadOld(baccarat.getBigRoad());
 
             ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, ScreenUtil.getDisplayMetrics(mContext).density, 1, 1);
-            updateGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
+            if (gridLayoutBigRoad != null) {
+                gridLayoutBigRoad.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollTableRoad(gridLayoutBigRoad, mContext);
+                    }
+                });
+            }
+            //            updateGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
         }
     }
 
@@ -2257,6 +2267,15 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
         }
     }
 
+    public void scrollTableRoad(GridLayout baccarat_big_road, Context mContext) {
+        int bigRoadParent2width = ScreenUtil.dip2px(mContext, 140);
+        int bigRoadWidth = baccarat_big_road.getWidth();
+        if (bigRoadWidth > bigRoadParent2width) {
+            baccarat_big_road.scrollTo(0, 0);
+            baccarat_big_road.scrollTo(bigRoadWidth - bigRoadParent2width, 0);
+        }
+    }
+
     public void scrollRoad(View baccarat_big_road_Parent, GridLayout baccarat_big_road, View hsv_small_road1, GridLayout gridLayoutBigEyesRoad
             , View hsv_small_road2, GridLayout gridLayoutSmallEyesRoad, View hsv_small_road3, GridLayout gridLayoutRoachRoad) {
         int bigRoadParent2width = baccarat_big_road_Parent.getWidth();
@@ -2264,24 +2283,32 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
         if (bigRoadWidth > bigRoadParent2width) {
             baccarat_big_road.scrollTo(0, 0);
             baccarat_big_road.scrollTo(bigRoadWidth - bigRoadParent2width, 0);
+        } else {
+            baccarat_big_road.scrollTo(0, 0);
         }
         int hsvSmallRoadWidth1 = hsv_small_road1.getWidth();
         int gridLayoutBigEyesRoadWidth = gridLayoutBigEyesRoad.getWidth();
         if (gridLayoutBigEyesRoadWidth > hsvSmallRoadWidth1) {
             gridLayoutBigEyesRoad.scrollTo(0, 0);
             gridLayoutBigEyesRoad.scrollTo(gridLayoutBigEyesRoadWidth - hsvSmallRoadWidth1, 0);
+        } else {
+            gridLayoutBigEyesRoad.scrollTo(0, 0);
         }
         int hsvSmallRoadWidth2 = hsv_small_road2.getWidth();
         int gridLayoutSmallEyesRoadWidth = gridLayoutSmallEyesRoad.getWidth();
         if (gridLayoutSmallEyesRoadWidth > hsvSmallRoadWidth2) {
             gridLayoutSmallEyesRoad.scrollTo(0, 0);
             gridLayoutSmallEyesRoad.scrollTo(gridLayoutSmallEyesRoadWidth - hsvSmallRoadWidth2, 0);
+        } else {
+            gridLayoutSmallEyesRoad.scrollTo(0, 0);
         }
         int hsvSmallRoadWidth3 = hsv_small_road3.getWidth();
         int gridLayoutRoachRoadWidth = gridLayoutRoachRoad.getWidth();
         if (gridLayoutRoachRoadWidth > hsvSmallRoadWidth3) {
             gridLayoutRoachRoad.scrollTo(0, 0);
             gridLayoutRoachRoad.scrollTo(gridLayoutRoachRoadWidth - hsvSmallRoadWidth3, 0);
+        } else {
+            gridLayoutRoachRoad.scrollTo(0, 0);
         }
     }
 
@@ -3047,7 +3074,7 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
     public void startFrontMuzicService(String action, int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)){
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3068,7 +3095,7 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
     public void startBackgroudMuzicService(int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)){
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3099,7 +3126,7 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
     public void changeMuzicVolumeService(ComponentName component, Context ctx, int volume, String action) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)){
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3120,6 +3147,25 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
         if (limitValue >= 10000) {
             iValue = limitValue / 1000;
             resValue = "" + iValue + "k";
+        } else {
+            resValue = "" + limitValue;
+        }
+        return resValue;
+    }
+
+    public String covertBalance(int limitValue) {
+        String resValue = "";
+        int iValue = 0;
+        if (limitValue >= 10000) {
+            iValue = limitValue / 1000;
+            double end = limitValue % 1000;
+            end = end / 1000;
+            String endStr = end + "";
+            if (endStr.length() > 4) {
+                endStr = endStr.substring(0, 4);
+            }
+            end = Double.parseDouble(endStr);
+            resValue = "" + (iValue + end) + "k";
         } else {
             resValue = "" + limitValue;
         }
@@ -3739,16 +3785,4 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
     }
 
     public int homeColor = 0;
-
-    @NotNull
-    @Override
-    public ViewModelStore getViewModelStore() {
-        return mAppViewModelStore;
-    }
-
-    @NotNull
-    @Override
-    public ViewModelProvider.Factory getViewModelFactory() {
-        return mFactory;
-    }
 }

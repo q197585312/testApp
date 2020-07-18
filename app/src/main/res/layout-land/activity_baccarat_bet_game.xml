@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal">
-
         <gaming178.com.casinogame.Util.VideoPlayer
             android:id="@+id/surface"
             android:layout_width="match_parent"
@@ -34,7 +33,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"></View>
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -58,6 +57,7 @@
                     android:background="@drawable/animation_player" />
 
                 <TextView
+                    android:id="@+id/tv_player_result_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_result_name_player"
@@ -67,7 +67,6 @@
                     android:textColor="@color/blue_height"
                     android:textSize="24px"
                     android:textStyle="bold" />
-
             </RelativeLayout>
 
             <TextView
@@ -85,7 +84,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></View>
+                android:layout_weight="1" />
 
             <RelativeLayout
                 android:layout_width="100dp"
@@ -113,7 +112,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></View>
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_banker_result"
@@ -139,6 +138,7 @@
                     android:background="@drawable/animation_banker" />
 
                 <TextView
+                    android:id="@+id/tv_banker_result_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_result_name"
@@ -167,26 +167,16 @@
         <include layout="@layout/toolbar_layout" />
 
         <FrameLayout
-
             android:id="@+id/fl_baccarat_parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--
-              <ImageView
-                  android:id="@+id/iv_baccarat_chat_logo"
-                  android:layout_marginRight="55dp"
-                  android:layout_marginTop="5dp"
-                  android:layout_gravity="right"
-                  android:layout_width="25dp"
-                  android:src="@mipmap/oval_blue_light_chat_white"
-                  android:layout_height="25dp" />-->
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
                 android:orientation="vertical"
                 android:visibility="gone">
-
 
                 <LinearLayout
                     android:id="@+id/ll_chip_parent"
@@ -241,16 +231,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="151px"
                 android:layout_marginRight="190px"
+                android:layout_marginBottom="151px"
                 android:background="@mipmap/image_xue_no"
                 android:drawableLeft="@mipmap/dollar_yellow"
                 android:drawablePadding="3dp"
                 android:gravity="center"
-                android:paddingBottom="2dp"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:paddingTop="2dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="2dp"
                 android:text="0"
                 android:textColor="@color/yellow_gold"
                 android:textSize="12sp"
@@ -261,8 +251,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
-                android:layout_marginBottom="122px"
                 android:layout_marginLeft="165px"
+                android:layout_marginBottom="122px"
                 android:background="@drawable/rectangle_grey6e6e6e_top_corner5_bet_btn"
                 android:gravity="center"
                 android:padding="3dp"
@@ -303,8 +293,8 @@
                 android:layout_width="140px"
                 android:layout_height="150px"
                 android:layout_gravity="right"
-                android:layout_marginRight="5dp"
                 android:layout_marginTop="30px"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/rectangle_grey_corner5_pop"
                 android:padding="5dp"
                 android:scrollbars="none"
@@ -316,8 +306,8 @@
                 android:layout_width="150px"
                 android:layout_height="135px"
                 android:layout_gravity="right"
-                android:layout_marginRight="50dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginRight="50dp"
                 android:background="@drawable/rectangle_grey_corner5_pop"
                 android:dividerHeight="0dp"
                 android:scrollbars="none"
@@ -338,14 +328,24 @@
             <FrameLayout
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginRight="5px"
-                android:layout_gravity="right">
+                android:layout_gravity="right"
+                android:layout_marginRight="5px">
 
                 <gaming178.com.casinogame.Util.CountDownView
                     android:id="@+id/countdown_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
+                <TextView
+                    android:id="@+id/tv_mi_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="0"
+                    android:textColor="@color/red"
+                    android:textSize="22px"
+                    android:textStyle="bold"
+                    app:layout_auto_basewidth="height" />
                 <TextView
                     android:id="@+id/tv_table_timer"
                     android:layout_width="match_parent"
@@ -365,8 +365,8 @@
                 android:layout_width="140px"
                 android:layout_height="200px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="70px"
                 android:layout_marginRight="70px"
+                android:layout_marginBottom="70px"
                 android:background="@drawable/rectangle_grey_corner5_pop"
 
                 android:padding="5dp"
@@ -558,9 +558,9 @@
             android:background="@mipmap/set_icon_trans"
             android:clickable="true"
             android:gravity="center"
-            android:paddingBottom="3dp"
-            android:paddingRight="5dp"
             android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="3dp"
             android:text=""
             android:textColor="#394e04"
             android:textSize="18sp"
@@ -584,8 +584,8 @@
         android:layout_width="30dp"
         android:layout_height="20dp"
         android:layout_gravity="right"
-        android:layout_marginRight="5px"
         android:layout_marginTop="44dp"
+        android:layout_marginRight="5px"
         android:background="@mipmap/table_p"
         android:clickable="true"
         android:gravity="center"
@@ -680,8 +680,8 @@
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="0.5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="0.5dp"
                     android:gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
@@ -691,8 +691,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:layout_marginBottom="0.5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginBottom="0.5dp"
                     android:gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
@@ -727,12 +727,13 @@
         android:id="@+id/tv_table_game_number1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginBottom="0.5dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="0.5dp"
         android:gravity="center_vertical"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="gone" />
+
     <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
         android:id="@+id/leftPanel1"
         android:layout_width="wrap_content"

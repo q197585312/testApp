@@ -103,8 +103,7 @@ public class PersistentCookieStore {
         return ret;
     }
 
-    //https://wsapp.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","PT":"wfPragmatic","accType":"","lang":"","pgLable":"0.8565494885673504","vsn":"4.0.12"}
-    private static String getHost(String url) {
+   private static String getHost(String url) {
         if (!(url.startsWith("http://") || url
                 .startsWith("https://"))) {
             url = "http://" + url;

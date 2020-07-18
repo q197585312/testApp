@@ -6,7 +6,7 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.WritableCallback;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
-import com.nanyang.app.BuildConfig;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.common.MainPresenter;
 import com.unkonw.testapp.libs.base.BaseActivity;
 
@@ -48,7 +48,7 @@ public class WebSocketManager {
 
     public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final BaseActivity context) {
         isRunning = true;
-        AsyncHttpClient.getDefaultInstance().websocket(BuildConfig.HOST_SPORT, null, new AsyncHttpClient.WebSocketConnectCallback() {
+        AsyncHttpClient.getDefaultInstance().websocket(AppConstant.getInstance().WebSocket_HOST, null, new AsyncHttpClient.WebSocketConnectCallback() {
 
             @Override
             public void onCompleted(Exception ex, final WebSocket webSocket) {

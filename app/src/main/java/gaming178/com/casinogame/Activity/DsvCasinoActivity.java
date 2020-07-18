@@ -47,10 +47,10 @@ public class DsvCasinoActivity extends SlotsWebActivity {
             @Override
             public void run() {
                 String dataUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "dnapath.jsp";
-                if (TextUtils.isEmpty(dataUrl) || afbApp.getHttpClient() == null) {
+                if (TextUtils.isEmpty(dataUrl) || mAppViewModel.getHttpClient() == null) {
                     return;
                 }
-                String result = afbApp.getHttpClient().sendPost(dataUrl, "gameplat=mobile");
+                String result = mAppViewModel.getHttpClient().sendPost(dataUrl, "gameplat=mobile");
                 //Results=OK#http://dsv365.com/mobile/login.jsp?token=lhzTYkOVrY0Zi9Jz6GQozYLUhb5hdVq6#
                 if (result.startsWith("Results=OK") || result.startsWith("Results=ok")) {
                     String[] split = result.split("#");

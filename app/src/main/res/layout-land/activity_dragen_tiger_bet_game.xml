@@ -41,10 +41,10 @@
             android:background="@mipmap/set_icon_trans"
             android:clickable="true"
             android:gravity="center"
-            android:paddingBottom="3dp"
             android:paddingLeft="7dp"
-            android:paddingRight="5dp"
             android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="3dp"
             android:text=""
             android:textColor="#394e04"
             android:textSize="14sp"
@@ -52,15 +52,14 @@
             android:visibility="invisible" />
     </FrameLayout>
 
-    <include layout="@layout/shuffling"></include>
 
     <TextView
         android:id="@+id/iv_baccarat_change_table"
         android:layout_width="35dp"
         android:layout_height="25dp"
         android:layout_gravity="right"
-        android:layout_marginRight="5px"
         android:layout_marginTop="44dp"
+        android:layout_marginRight="5px"
         android:background="@mipmap/table_p"
         android:clickable="true"
         android:gravity="center"
@@ -72,9 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="-38dp"
         android:layout_marginLeft="140dp"
         android:layout_marginRight="140dp"
+        android:layout_marginBottom="-38dp"
         android:background="@mipmap/bg_result"
         android:gravity="center"
         android:orientation="horizontal"
@@ -93,6 +92,7 @@
                 android:background="@drawable/animation_banker" />
 
             <TextView
+                android:id="@+id/tv_dragon_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_result_name"
@@ -123,7 +123,7 @@
 
 
         <RelativeLayout
-            android:layout_width="100dp"
+            android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
@@ -175,6 +175,7 @@
                 android:background="@drawable/animation_player" />
 
             <TextView
+                android:id="@+id/tv_tiger_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_result_name_player"
@@ -196,10 +197,10 @@
         android:layout_marginLeft="4dp"
         android:background="@drawable/shape_bet_bg"
         android:gravity="center"
-        android:paddingBottom="0.5dp"
         android:paddingLeft="3dp"
-        android:paddingRight="3dp"
         android:paddingTop="0.5dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="0.5dp"
         android:textColor="@color/yellow_gold"
         android:textSize="13sp"
         android:visibility="gone" />
@@ -212,10 +213,10 @@
         android:layout_marginLeft="4dp"
         android:background="@drawable/shape_bet_bg"
         android:gravity="center"
-        android:paddingBottom="0.5dp"
         android:paddingLeft="3dp"
-        android:paddingRight="3dp"
         android:paddingTop="0.5dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="0.5dp"
         android:textColor="@color/yellow_gold"
         android:textSize="13sp"
         android:visibility="gone" />
@@ -238,14 +239,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
-                android:layout_marginBottom="166px"
                 android:layout_marginLeft="180px"
+                android:layout_marginBottom="166px"
                 android:background="@mipmap/image_xue_no"
                 android:gravity="center"
-                android:paddingBottom="2dp"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:paddingTop="2dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="2dp"
                 android:text="0 - 0"
                 android:textColor="@color/yellow_gold"
                 android:textSize="12sp"
@@ -256,22 +257,174 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="166px"
                 android:layout_marginRight="180px"
+                android:layout_marginBottom="166px"
                 android:background="@mipmap/image_xue_no"
                 android:drawableLeft="@mipmap/dollar_yellow"
                 android:drawablePadding="3dp"
                 android:gravity="center"
-                android:paddingBottom="2dp"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:paddingTop="2dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="2dp"
                 android:text="0"
                 android:textColor="@color/yellow_gold"
                 android:textSize="12sp"
                 android:visibility="gone" />
 
             <FrameLayout
+                android:layout_width="660px"
+                android:layout_height="315px"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="65px">
+
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_dragon"
+                    android:layout_width="128px"
+                    android:layout_height="115px"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginLeft="-98px" />
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tie"
+                    android:layout_width="79px"
+                    android:layout_height="115px"
+                    android:layout_gravity="center_horizontal|bottom" />
+
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tiger"
+                    android:layout_width="128px"
+                    android:layout_height="115px"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginRight="-98px" />
+
+                <FrameLayout
+                    android:layout_width="122px"
+                    android:layout_height="200px"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="14px"
+                    android:layout_marginBottom="60px">
+
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_dragon_red"
+                        android:layout_width="82px"
+                        android:layout_height="54px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="120px"
+                    android:layout_height="200px"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="85px"
+                    android:layout_marginBottom="60px">
+
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_dragon_black"
+                        android:layout_width="80px"
+                        android:layout_height="54px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="126px"
+                    android:layout_height="200px"
+                    android:layout_gravity="bottom">
+
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_dragon_odd"
+                        android:layout_width="86px"
+                        android:layout_height="61px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="124px"
+                    android:layout_height="200px"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="73px">
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_dragon_even"
+                        android:layout_width="84px"
+                        android:layout_height="60px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="121px"
+                    android:layout_height="200px"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="84px"
+                    android:layout_marginBottom="60px">
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_tiger_red"
+                        android:layout_width="81px"
+                        android:layout_height="54px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="123px"
+                    android:layout_height="200px"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="13px"
+                    android:layout_marginBottom="60px">
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_tiger_black"
+                        android:layout_width="83px"
+                        android:layout_height="54px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="126px"
+                    android:layout_height="200px"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="72px">
+
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_tiger_odd"
+                        android:layout_width="86px"
+                        android:layout_height="60px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="126px"
+                    android:layout_height="200px"
+                    android:layout_gravity="right|bottom">
+
+
+                    <ImageView
+                        android:id="@+id/img_bet_bg_tiger_even"
+                        android:layout_width="86px"
+                        android:layout_height="60px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="20px" />
+                </FrameLayout>
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_baccarat_b_table"
                 android:layout_width="620px"
                 android:layout_height="115px"
                 android:layout_gravity="bottom|center_horizontal"
@@ -297,8 +450,8 @@
                     android:layout_height="100px"
                     android:layout_gravity="center_vertical|right"
                     android:layout_marginLeft="70px"
-                    android:layout_marginRight="78px"
                     android:layout_marginTop="100px"
+                    android:layout_marginRight="78px"
                     android:background="@mipmap/tiger_trans" />
 
                 <gaming178.com.casinogame.Util.SkewTexView
@@ -394,8 +547,8 @@
                     android:layout_width="122px"
                     android:layout_height="200px"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="60px"
-                    android:layout_marginLeft="14px">
+                    android:layout_marginLeft="14px"
+                    android:layout_marginBottom="60px">
 
                     <gaming178.com.casinogame.Util.SkewTexView
                         android:id="@+id/red_skew"
@@ -428,8 +581,8 @@
                     android:layout_width="120px"
                     android:layout_height="200px"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="60px"
-                    android:layout_marginLeft="85px">
+                    android:layout_marginLeft="85px"
+                    android:layout_marginBottom="60px">
 
                     <gaming178.com.casinogame.Util.SkewTexView
                         android:layout_width="80px"
@@ -524,8 +677,8 @@
                     android:layout_width="121px"
                     android:layout_height="200px"
                     android:layout_gravity="right|bottom"
-                    android:layout_marginBottom="60px"
-                    android:layout_marginRight="84px">
+                    android:layout_marginRight="84px"
+                    android:layout_marginBottom="60px">
 
                     <gaming178.com.casinogame.Util.SkewTexView
                         android:layout_width="80px"
@@ -556,8 +709,8 @@
                     android:layout_width="123px"
                     android:layout_height="200px"
                     android:layout_gravity="right|bottom"
-                    android:layout_marginBottom="60px"
-                    android:layout_marginRight="13px">
+                    android:layout_marginRight="13px"
+                    android:layout_marginBottom="60px">
 
                     <gaming178.com.casinogame.Util.SkewTexView
                         android:layout_width="80px"
@@ -688,8 +841,8 @@
             <FrameLayout
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginRight="5px"
-                android:layout_gravity="right">
+                android:layout_gravity="right"
+                android:layout_marginRight="5px">
 
                 <gaming178.com.casinogame.Util.CountDownView
                     android:id="@+id/countdown_view"
@@ -771,8 +924,8 @@
                 android:layout_width="140px"
                 android:layout_height="200px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="70px"
                 android:layout_marginRight="70px"
+                android:layout_marginBottom="70px"
                 android:background="@drawable/rectangle_grey_corner5_pop"
 
                 android:padding="5dp"
@@ -849,8 +1002,8 @@
                 android:layout_width="135px"
                 android:layout_height="145px"
                 android:layout_gravity="right"
-                android:layout_marginRight="5dp"
                 android:layout_marginTop="50px"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/rectangle_grey_corner5_pop"
                 android:padding="5dp"
                 android:scrollbars="none"
@@ -928,8 +1081,8 @@
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="0.5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="0.5dp"
                     android:gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
@@ -939,8 +1092,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:layout_marginBottom="0.5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginBottom="0.5dp"
                     android:gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
@@ -1002,4 +1155,6 @@
             layout="@layout/layout_baccarat_content_panel" />
 
     </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+
+    <include layout="@layout/shuffling"></include>
 </FrameLayout>

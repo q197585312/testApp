@@ -32,7 +32,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 import cn.finalteam.toolsfinal.DeviceUtils;
@@ -45,33 +45,33 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
 
-    @Bind(R.id.c_video_bg)
+    @BindView(R.id.c_video_bg)
     CustomVideoView c_video_bg;
-    @Bind(R.id.tv_all_right)
+    @BindView(R.id.tv_all_right)
     TextView tv_all_right;
-    @Bind(R.id.tv_remember_me)
+    @BindView(R.id.tv_remember_me)
     TextView tv_remember_me;
-    @Bind(R.id.edt_login_username)
+    @BindView(R.id.edt_login_username)
     EditText edtLoginUsername;
-    @Bind(R.id.edt_login_password)
+    @BindView(R.id.edt_login_password)
     EditText edtLoginPassword;
-    @Bind(R.id.ll_bottom_btn)
+    @BindView(R.id.ll_bottom_btn)
     View llBottomBtn;
-    @Bind(R.id.btn_login_login)
+    @BindView(R.id.btn_login_login)
     TextView btnLoginLogin;
-    @Bind(R.id.btn_desktop)
+    @BindView(R.id.btn_desktop)
     TextView btn_desktop;
-    //    @Bind(R.id.tv_login_forget)
+    //    @BindView(R.id.tv_login_forget)
 //    TextView tvLoginForget;
     AfbApplication app;
-    @Bind(R.id.cb_login_remember)
+    @BindView(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
-    @Bind(R.id.ll_container)
+    @BindView(R.id.ll_container)
     LinearLayout llContainer;
-    @Bind(R.id.ll_login_remember)
+    @BindView(R.id.ll_login_remember)
     LinearLayout llLoginRemember;
 
-    @Bind(R.id.login_language)
+    @BindView(R.id.login_language)
     TextView loginLanguage;
     private PopChoiceLanguage popLanguage;
     private int[] sc;
@@ -159,56 +159,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 login();
                 break;
             case R.id.login_language:
-              /*  if (popLanguage == null) {
-                    popLanguage = new PopChoiceLanguage(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
-                        @Override
-                        public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                            TextView tv = holder.getView(R.id.item_regist_text_tv);
-                            tv.setText(item.getText());
-                        }
-
-                        @Override
-                        public void onClickItem(MenuItemInfo item, int position) {
-                            loginLanguage.setText(item.getText());
-                            AfbUtils.switchLanguage(item.getType(), mContext);
-                            restart();
-                        }
-                    };
-                    List<MenuItemInfo> languageList = new ArrayList<>();
-                    MenuItemInfo info = new MenuItemInfo();
-                    info.setText(R.string.language_en);
-                    info.setType("en");
-                    languageList.add(info);
-                    MenuItemInfo info1 = new MenuItemInfo();
-                    info1.setText(R.string.language_zh);
-                    info1.setType("zh");
-                    languageList.add(info1);
-                    MenuItemInfo info3 = new MenuItemInfo();
-                    info3.setText(R.string.language_th);
-                    info3.setType("th");
-                    languageList.add(info3);
-                    MenuItemInfo info4 = new MenuItemInfo();
-                    info4.setText(R.string.language_vi);
-                    info4.setType("vi");
-                    languageList.add(info4);
-                    MenuItemInfo info5 = new MenuItemInfo();
-                    info5.setText(R.string.language_ko);
-                    info5.setType("ko");
-                    languageList.add(info5);
-                    MenuItemInfo info6 = new MenuItemInfo();
-                    info6.setText(R.string.language_tr);
-                    info6.setType("tr");
-                    languageList.add(info6);
-
-                    MenuItemInfo info7 = new MenuItemInfo();
-                    info7.setText(R.string.language_my);
-                    info7.setType("my");
-                    languageList.add(info7);
-
-                    popLanguage.setData(languageList);
-                }
-                popLanguage.showPopupDownWindow();
-                break;*/
                 BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, (TextView) view) {
 
                     @Override
@@ -316,7 +266,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         //代码实现跳转
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
-        //https://www.afb1188.com/H50/Pub/wfMainH50.html
         Uri content_url = Uri.parse(BuildConfig.H5_URL);//此处填链接
         intent.setData(content_url);
         startActivity(intent);

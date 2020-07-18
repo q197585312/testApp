@@ -49,8 +49,9 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -60,18 +61,18 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
 
     private static final String TAG = "updateTableDate";
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     protected RecyclerView rvContent;
-    @Bind(R.id.tv_no_games)
+    @BindView(R.id.tv_no_games)
     protected TextView tvNoGames;
 
-    //    @Bind(R.id.tv_mix_parlay_order)
+    //    @BindView(R.id.tv_mix_parlay_order)
 //    protected TextView tvMixParlayOrder;
-//    @Bind(R.id.ll_mix_parlay_order)
+//    @BindView(R.id.ll_mix_parlay_order)
 //    protected LinearLayout llMixParlayOrder;
     protected abstract String getBallDbid();
 
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     protected SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
     public BaseRecyclerAdapter baseRecyclerAdapter;
@@ -294,8 +295,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     }
 
-    public void collection(View tvCollection) {
-        checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
+    public void collection(ImageView tvCollection) {
+        checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_white);
     }
 
     public boolean mix(TextView tvMix) {
@@ -303,11 +304,11 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         return isMix;
     }
 
-    public void checkBg(View tvMix, boolean isCollection, int sport_oval_u_green, int sport_oval_u_black) {
+    public void checkBg(ImageView tvMix, boolean isCollection, int sport_oval_u_green, int sport_oval_u_black) {
         if (isCollection)
-            tvMix.setBackgroundResource(sport_oval_u_green);
+            tvMix.setImageResource(sport_oval_u_green);
         else
-            tvMix.setBackgroundResource(sport_oval_u_black);
+            tvMix.setImageResource(sport_oval_u_black);
     }
 
     private void checkBgTop(TextView tvMix, boolean isMix, int mixRes, int noMixRes) {
@@ -420,7 +421,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onDestroyView() {
         super.onDestroyView();
 //        presenter.getStateHelper().stopUpdateData();
-        ButterKnife.unbind(this);
         isInit = false;
     }
 
@@ -453,7 +453,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public void clickOddsType(final TextView tvOddsType) {
-        createPopupWindow(new BasePopupWindow(mContext, tvOddsType, tvOddsType.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
+        createPopupWindow(new BasePopupWindow(mContext, tvOddsType, tvOddsType.getWidth() + DeviceUtils.dip2px(getActivity(), 20), LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -577,7 +577,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         if (getBaseActivity().fl_top_video.getVisibility() == View.GONE) {
             getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
             getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
-            getBaseActivity().ll_line3.setVisibility(View.VISIBLE);
         }
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().ll_header_sport.setVisibility(View.VISIBLE);

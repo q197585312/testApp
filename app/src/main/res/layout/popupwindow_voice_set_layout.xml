@@ -5,171 +5,250 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_white_corners8"
         android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <TextView
+            android:id="@+id/tv_music_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="5dp"
-            android:textStyle="bold"
             android:text="@string/music_setting"
             android:textColor="@color/black_grey"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/view_set_close"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/rg_switch"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/abc_ic_clear_mtrl_alpha" />
-    </FrameLayout>
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <RadioButton
+                android:id="@+id/rb_music"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_music_choose_left"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/MUSIC"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_limit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_music_choose_mid"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/LIMIT"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_language"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_music_choose_right"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/language"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"></RadioButton>
+        </RadioGroup>
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey_default_bg"/>
+            android:background="@color/grey_default_bg" />
 
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="10dp"
-        android:text="@string/Genre"
-        android:textColor="@color/black_grey" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <RadioGroup
-        android:id="@+id/rg_music_rg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/ll_music"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/rb_set_muzic1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:button="@drawable/oval_white_red_center_check_bnt_selector"
-            android:checked="true"
-            android:text="@string/music1"
-            android:textColor="@color/black_grey" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="10dp"
+                    android:text="@string/Genre"
+                    android:textColor="@color/black_grey" />
 
-        <RadioButton
-            android:id="@+id/rb_set_muzic2"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:button="@drawable/oval_white_red_center_check_bnt_selector"
-            android:text="@string/music2"
-            android:textColor="@color/black_grey" />
+                <RadioGroup
+                    android:id="@+id/rg_music_rg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
-        <RadioButton
-            android:id="@+id/rb_set_muzic3"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:button="@drawable/oval_white_red_center_check_bnt_selector"
-            android:text="@string/music3"
-            android:textColor="@color/black_grey" />
-    </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/rb_set_muzic1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/oval_white_red_center_check_bnt_selector"
+                        android:checked="true"
+                        android:text="@string/music1"
+                        android:textColor="@color/black_grey" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="10dp"
-        android:text="@string/music_background_volume"
-        android:textColor="@color/black_grey" />
+                    <RadioButton
+                        android:id="@+id/rb_set_muzic2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/oval_white_red_center_check_bnt_selector"
+                        android:text="@string/music2"
+                        android:textColor="@color/black_grey" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_set_muzic3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/oval_white_red_center_check_bnt_selector"
+                        android:text="@string/music3"
+                        android:textColor="@color/black_grey" />
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="10dp"
+                    android:text="@string/music_background_volume"
+                    android:textColor="@color/black_grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
 
-        <SeekBar
-            android:id="@+id/sb_background_voice"
-            style="@android:style/Widget.Holo.Light.SeekBar"
+                    <SeekBar
+                        android:id="@+id/sb_background_voice"
+                        style="@android:style/Widget.Holo.Light.SeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:maxHeight="6dp"
+                        android:minHeight="6dp"
+                        android:progressDrawable="@drawable/layer_seek_progress"
+                        android:thumb="@mipmap/slider_oval" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="1dp"
+                    android:text="@string/music_front_volume"
+                    android:textColor="@color/black_grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <SeekBar
+                        android:id="@+id/sb_front_voice"
+                        style="@android:style/Widget.Holo.Light.SeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:maxHeight="6dp"
+                        android:minHeight="6dp"
+                        android:paddingBottom="10dp"
+                        android:progressDrawable="@drawable/layer_seek_progress"
+                        android:thumb="@mipmap/slider_oval" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/base_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rectangle_white_bottom_corner5"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_lg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rectangle_white_bottom_corner5"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/ll_triangle_white_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="6dp"
-            android:maxHeight="6dp"
-            android:progressDrawable="@drawable/layer_seek_progress"
-            android:thumb="@mipmap/slider_oval"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="2" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/triangle_white_bottom" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.75" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="1dp"
-        android:text="@string/music_front_volume"
-        android:textColor="@color/black_grey" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-
-        <SeekBar
-            android:id="@+id/sb_front_voice"
-            style="@android:style/Widget.Holo.Light.SeekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progressDrawable="@drawable/layer_seek_progress"
-            android:minHeight="6dp"
-            android:maxHeight="6dp"
-            android:thumb="@mipmap/slider_oval"
-            android:paddingBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-    </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-
-        android:id="@+id/ll_triangle_white_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="2" />
-
-        <View
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/triangle_white_bottom" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="0.75" />
-
-    </LinearLayout>
 
 </LinearLayout>

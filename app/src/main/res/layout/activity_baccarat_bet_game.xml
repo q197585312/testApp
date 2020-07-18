@@ -127,7 +127,7 @@
                         <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
                             android:id="@+id/lv_baccarat_chips_h"
                             android:layout_width="match_parent"
-                            android:layout_height="62dp"
+                            android:layout_height="52dp"
                             android:divider="@null"
                             android:scrollbars="none" />
 
@@ -135,7 +135,7 @@
                             android:id="@+id/ll_result"
                             android:layout_width="wrap_content"
                             android:layout_height="42px"
-                            android:layout_marginTop="8px"
+                            android:layout_marginTop="4px"
                             android:background="@mipmap/bg_result"
                             android:clickable="false"
                             android:gravity="center"
@@ -156,6 +156,7 @@
                                     android:background="@drawable/animation_player" />
 
                                 <TextView
+                                    android:id="@+id/tv_player_result_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/shape_result_name_player"
@@ -235,6 +236,7 @@
                                     android:background="@drawable/animation_banker" />
 
                                 <TextView
+                                    android:id="@+id/tv_banker_result_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/shape_result_name"
@@ -340,7 +342,17 @@
                     android:id="@+id/countdown_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
+                <TextView
+                    android:id="@+id/tv_mi_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="22px"
+                    android:textStyle="bold"
+                    app:layout_auto_basewidth="height" />
                 <TextView
                     android:id="@+id/tv_table_timer"
                     android:layout_width="match_parent"
@@ -527,7 +539,7 @@
 
     <LinearLayout
         android:id="@+id/iv_baccarat_change_table"
-        android:layout_width="55dp"
+        android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="right"
         android:layout_marginTop="255px"

@@ -42,11 +42,11 @@ import gaming178.com.mylibrary.base.ViewHolder;
  */
 
 public class CQSlotsGameActivity extends BaseActivity {
-    //    @Bind(R.id.ll_parent)
+    //    @BindView(R2.id.ll_parent)
     LinearLayout ll_parent;
-    //    @Bind(R.id.viewpager)
+    //    @BindView(R2.id.viewpager)
     ViewPager viewPager;
-    //    @Bind(R.id.ll_circle)
+    //    @BindView(R2.id.ll_circle)
     LinearLayout ll_circle;
     String lg;
 
@@ -214,7 +214,7 @@ public class CQSlotsGameActivity extends BaseActivity {
                 public void run() {
                     String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "cq9path.jsp";
                     String param = "game_usid=" + gameId;
-                    String result = afbApp.getHttpClient().sendPostCQ(url, param);
+                    String result = mAppViewModel.getHttpClient().sendPostCQ(url, param);
                     //Results=ok#https://iwin2.wxmsg.cn/ifish/AB1/?token=0943a5ba615bfb49df80b78a93e32300#language=en#
                     if (result.startsWith("Results=ok")) {
                         String[] split = result.split("#");
@@ -235,7 +235,6 @@ public class CQSlotsGameActivity extends BaseActivity {
     }
 
     private void getDataMsg() {
-        afbApp = getApp();
         setLayout.setVisibility(View.GONE);
         setMoreToolbar(true);
         setToolbarNameAndBalance();
@@ -244,10 +243,10 @@ public class CQSlotsGameActivity extends BaseActivity {
             @Override
             public void run() {
                 String url = "http://www.grjl25.com/getCQ9Inform.jsp";
-                if (afbApp.getHttpClient() == null || TextUtils.isEmpty(url)) {
+                if (mAppViewModel.getHttpClient() == null || TextUtils.isEmpty(url)) {
                     return;
                 }
-                String result = afbApp.getHttpClient().sendPostCQ(url, "");
+                String result = mAppViewModel.getHttpClient().sendPostCQ(url, "");
                 if (result.equals("netError")) {
                     handler.sendEmptyMessage(2);
                     return;

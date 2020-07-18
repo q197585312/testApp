@@ -1,5 +1,6 @@
 package gaming178.com.casinogame.Activity.entity;
 
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,15 @@ public class SicboTableChangeViewBean {
     TextView tv_waidic01;
     TextView tv_big01;
     TextView tv_odd01;
+    View view_Parent;
+
+    public View getView_Parent() {
+        return view_Parent;
+    }
+
+    public void setView_Parent(View view_Parent) {
+        this.view_Parent = view_Parent;
+    }
 
     public SicboTableChangeViewBean(LinearLayout linearlayout, TextView tv_sicbo_number01, TextView tv_even01, TextView tv_small01, TextView tv_waidic01, TextView tv_big01, TextView tv_odd01) {
         this.linearlayout = linearlayout;

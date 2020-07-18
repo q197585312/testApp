@@ -20,8 +20,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Bean.Roulette;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.HandlerCode;
@@ -36,7 +37,7 @@ import gaming178.com.mylibrary.allinone.util.AppTool;
  */
 public class LobbyRouletteActivity extends BaseActivity {
 
-    @Bind(R.id.base_rv)
+    @BindView(R2.id.base_rv)
     RecyclerView gridView;
 
 
@@ -113,12 +114,12 @@ public class LobbyRouletteActivity extends BaseActivity {
     };
 
     public void initRoad() {
-        updateRoad(afbApp.getRoulette01(), tv_game_number01, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
+        updateRoad(mAppViewModel.getRoulette01(), tv_game_number01, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
 
     }
 
 
-    @Bind(R.id.img_head)
+    @BindView(R2.id.img_head)
     ImageView img_head;
 
     @Override
@@ -144,8 +145,8 @@ public class LobbyRouletteActivity extends BaseActivity {
     }
 
     public void initUI() {
-        afbApp.getRoulette01().setRoadOld("");
-        afbApp.getRoulette01().setTimer(0);
+        mAppViewModel.getRoulette01().setRoadOld("");
+        mAppViewModel.getRoulette01().setTimer(0);
         rouletteTimer01 = 0;
         gameNumber = "";
     }
@@ -171,7 +172,7 @@ public class LobbyRouletteActivity extends BaseActivity {
 
     @Override
     protected void leftClick() {
-        afbApp.getRoulette01().setRoadOld("");
+        mAppViewModel.getRoulette01().setRoadOld("");
         AppTool.activiyJump(mContext, LobbyActivity.class);
         finish();
     }
@@ -204,11 +205,11 @@ public class LobbyRouletteActivity extends BaseActivity {
     }
 
     public void updateTimer() {
-        if (rouletteTimer01 == 0 && afbApp.getRoulette01().getTimer() > 0) {
-            //   Log.i(WebSiteUrl.Tag, "updateTimer="+afbApp.getRoulette01().getTimer());
-            if (!gameNumber.equals(afbApp.getRoulette01().getGameNumber())) {
-                gameNumber = afbApp.getRoulette01().getGameNumber();
-                rouletteTimer01 = afbApp.getRoulette01().getTimer();
+        if (rouletteTimer01 == 0 && mAppViewModel.getRoulette01().getTimer() > 0) {
+            //   Log.i(WebSiteUrl.Tag, "updateTimer="+mAppViewModel.getRoulette01().getTimer());
+            if (!gameNumber.equals(mAppViewModel.getRoulette01().getGameNumber())) {
+                gameNumber = mAppViewModel.getRoulette01().getGameNumber();
+                rouletteTimer01 = mAppViewModel.getRoulette01().getTimer();
             }
         }
 
@@ -228,11 +229,11 @@ public class LobbyRouletteActivity extends BaseActivity {
             if (tv_roulette_timer01 != null) {
                 tv_roulette_timer01.setText("" + rouletteTimer01);
                 tv_roulette_timer01.setTextSize(18);
-                tv_game_number01.setText("" + afbApp.getRoulette01().getGameNumber());
+                tv_game_number01.setText("" + mAppViewModel.getRoulette01().getGameNumber());
             }
 
         } else {
-//            if (afbApp.getRoulette01().getGameStatus() == 2) {
+//            if (mAppViewModel.getRoulette01().getGameStatus() == 2) {
 //                if (tv_roulette_timer01 != null) {
 //                    tv_roulette_timer01.setText(getString(R.string.START_DEALING));
 //                    tv_roulette_timer01.setTextSize(8);
@@ -335,7 +336,7 @@ public class LobbyRouletteActivity extends BaseActivity {
                 }
                 //      Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+roulette.getTableName()+",Luzi roads="+roulette.getRoadOld()+ ",Road="+roulette.getRoad()+",roadDetail="+roadDetail.length);
                 //更新局数
-                updateGameNumber(afbApp.getRoulette01(), tv_game_number01, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
+                updateGameNumber(mAppViewModel.getRoulette01(), tv_game_number01, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
 
             }
 
@@ -385,12 +386,12 @@ public class LobbyRouletteActivity extends BaseActivity {
             public void onItemClick(View view, String s, int position) {
                 if ("0 - 0".endsWith(s))
                     return;
-                getApp().getRoulette01().setLimitIndex(position + 1);
+                mAppViewModel.getRoulette01().setLimitIndex(position + 1);
                 Bundle bundle = new Bundle();
                 bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 21);
                 //   AppTool.activiyJump(AutoNumberActivity.this, NumberGameSingleTableActivity.class, bundle);
-                afbApp.setTableId(21);
-                afbApp.setbLobby(false);
+                mAppViewModel.setTableId(21);
+                mAppViewModel.setbLobby(false);
                 AppTool.activiyJump(mContext, RouletteActivity.class, bundle);
 
             }
@@ -414,11 +415,11 @@ public class LobbyRouletteActivity extends BaseActivity {
         String limit4 = "0 - 0";
 
 
-        if (getApp().getRoulette01() != null) {
-            limit1 = "" + (int) getApp().getRoulette01().getRouletteLimit1().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit1().getMaxTotalBet();
-            limit2 = "" + (int) getApp().getRoulette01().getRouletteLimit2().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit2().getMaxTotalBet();
-            limit3 = "" + (int) getApp().getRoulette01().getRouletteLimit3().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit3().getMaxTotalBet();
-            limit4 = "" + (int) getApp().getRoulette01().getRouletteLimit4().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit4().getMaxTotalBet();
+        if (mAppViewModel.getRoulette01() != null) {
+            limit1 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit1().getMaxTotalBet();
+            limit2 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit2().getMaxTotalBet();
+            limit3 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit3().getMaxTotalBet();
+            limit4 = "" + (int) mAppViewModel.getRoulette01().getRouletteLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getRoulette01().getRouletteLimit4().getMaxTotalBet();
         }
         return new ArrayList<>(Arrays.asList(limit1, limit2, limit3, limit4));
     }

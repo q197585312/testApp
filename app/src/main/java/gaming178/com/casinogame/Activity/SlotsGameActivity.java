@@ -41,11 +41,11 @@ import gaming178.com.mylibrary.base.ViewHolder;
  */
 
 public class SlotsGameActivity extends BaseActivity {
-    //    @Bind(R.id.ll_parent)
+    //    @BindView(R2.id.ll_parent)
     LinearLayout ll_parent;
-    //    @Bind(R.id.viewpager)
+    //    @BindView(R2.id.viewpager)
     ViewPager viewPager;
-    //    @Bind(R.id.ll_circle)
+    //    @BindView(R2.id.ll_circle)
     LinearLayout ll_circle;
 
     @Override
@@ -199,7 +199,6 @@ public class SlotsGameActivity extends BaseActivity {
     }
 
     private void getDataMsg() {
-        afbApp = getApp();
         setLayout.setVisibility(View.GONE);
         setMoreToolbar(true);
         setToolbarNameAndBalance();
@@ -207,10 +206,10 @@ public class SlotsGameActivity extends BaseActivity {
             @Override
             public void run() {
                 String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSlotsInform.jsp";
-                if (TextUtils.isEmpty(url) || afbApp.getHttpClient() == null) {
+                if (TextUtils.isEmpty(url) || mAppViewModel.getHttpClient() == null) {
                     return;
                 }
-                String result = afbApp.getHttpClient().sendPost(url, "");
+                String result = mAppViewModel.getHttpClient().sendPost(url, "");
                 if (result.equals("netError")||result.contains("=no")){
                     handler.sendEmptyMessage(2);
                     return;

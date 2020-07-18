@@ -1,5 +1,6 @@
 package gaming178.com.casinogame.Activity.entity;
 
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -15,6 +16,15 @@ public class RouletteTableChangeViewBean {
     TextView tv_roulette_odd01;
     TextView tv_roulette_big01;
     TextView tv_roulette_small01;
+    View view_Parent;
+
+    public View getView_Parent() {
+        return view_Parent;
+    }
+
+    public void setView_Parent(View view_Parent) {
+        this.view_Parent = view_Parent;
+    }
 
     public RouletteTableChangeViewBean(TextView tv_game_number01, TextView tv_roulette_red01, TextView tv_roulette_black01, TextView tv_roulette_zero01, TextView tv_roulette_even01, TextView tv_roulette_odd01, TextView tv_roulette_big01, TextView tv_roulette_small01) {
         this.tv_game_number01 = tv_game_number01;

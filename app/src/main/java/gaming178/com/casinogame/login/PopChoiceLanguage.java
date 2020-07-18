@@ -43,7 +43,7 @@ public abstract class PopChoiceLanguage<T> extends BasePopupWindow {
         super.initView(view);
         recyclerView = (RecyclerView) view.findViewById(R.id.base_rv);
         tv_title = (TextView) view.findViewById(R.id.tv_title);
-        if (!BuildConfig.FLAVOR.equals("gd88")&&!BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.isEmpty()&&!BuildConfig.FLAVOR.equals("gd88")&&!BuildConfig.FLAVOR.equals("liga365")) {
             if (tv_title != null) {
                 tv_title.setText("Pusat Anggota");
             }

@@ -29,28 +29,237 @@
     </FrameLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="247px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5px"
+        android:layout_marginTop="224px"
+        android:layout_marginRight="5px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="114px"
+            android:layout_marginTop="2px"
+            android:layout_marginRight="1px"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3.5px"
+                android:layout_marginBottom="4px"
+                android:layout_weight="1.40">
+
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_dragon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="0.91">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="1.37">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tiger"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_dragon_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_dragon_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tiger_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4px"
+                android:layout_marginRight="1px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tiger_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_dragon_odd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_dragon_even"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tiger_odd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_tiger_even"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/fl_baccarat_b_table"
         android:layout_width="match_parent"
         android:layout_height="247px"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="5px"
-        android:layout_marginRight="5px"
         android:layout_marginTop="224px"
+        android:layout_marginRight="5px"
         android:background="@mipmap/dragon_tiger_bet_bg"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="114px"
-            android:layout_marginTop="4px"
+            android:layout_marginTop="2px"
+            android:layout_marginRight="1px"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="3.5px"
                 android:layout_marginBottom="4px"
-                android:layout_marginLeft="4px"
-                android:layout_weight="1.4">
+                android:layout_weight="1.40">
 
 
                 <ImageView
@@ -80,7 +289,8 @@
                     android:layout_marginTop="10dp"
                     android:text="1:1"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -91,9 +301,9 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
-                android:layout_marginLeft="4px"
-                android:layout_weight="0.9">
+                android:layout_marginLeft="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="0.91">
 
                 <ImageView
                     android:id="@+id/iv_tie"
@@ -111,7 +321,8 @@
                     android:layout_marginTop="10dp"
                     android:text="1:8"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
                 <gaming178.com.casinogame.Util.SkewTexView
                     android:id="@+id/tv_tie_dragon_tiger"
@@ -135,9 +346,10 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
-                android:layout_marginRight="4px"
-                android:layout_weight="1.4">
+                android:layout_marginLeft="2px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="1.37">
 
                 <ImageView
                     android:id="@+id/iv_tiger"
@@ -167,7 +379,8 @@
                     android:layout_marginTop="10dp"
                     android:text="1:1"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="gone" />
             </FrameLayout>
         </LinearLayout>
 
@@ -185,8 +398,8 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
-                android:layout_marginLeft="4px"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -218,7 +431,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -227,10 +441,10 @@
             <!--android:background="@color/trans_white_dark" />-->
 
             <FrameLayout
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
+                android:layout_marginLeft="4px"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -262,7 +476,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -273,7 +488,8 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
+                android:layout_marginLeft="2dp"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -305,7 +521,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -316,8 +533,9 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
-                android:layout_marginRight="4px"
+                android:layout_marginLeft="4px"
+                android:layout_marginRight="1px"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -349,7 +567,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
 
@@ -370,8 +589,8 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
-                android:layout_marginLeft="4px"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -403,7 +622,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:0.75"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -414,8 +634,8 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
                 android:layout_marginLeft="2px"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -447,7 +667,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:1.05"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -458,7 +679,8 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
+                android:layout_marginLeft="1px"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -490,7 +712,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:0.75"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -501,8 +724,9 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="4px"
-                android:layout_marginRight="4px"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="2px"
                 android:layout_weight="1">
 
                 <ImageView
@@ -535,7 +759,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:1.05"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
         </LinearLayout>
@@ -571,9 +796,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="126px"
+        android:layout_height="146px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="265px"
+        android:layout_marginTop="245px"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -618,9 +843,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="126px"
+        android:layout_height="146px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="331px"
+        android:layout_marginTop="311px"
         android:layout_weight="1">
 
 

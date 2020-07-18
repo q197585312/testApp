@@ -143,12 +143,13 @@
     <string name="setting">设置&#160;&#160;</string>
     <string name="logout">退出&#160;&#160;</string>
 
-    <string name="sure">确定?</string>
+    <string name="sure">确定</string>
     <string name="sure_logout">你确定要退出吗?</string>
     <string name="yes">是</string>
     <string name="no">否</string>
 
     <string name="music_setting">音乐设置</string>
+    <string name="limit_setting">限红设置</string>
     <string name="music1">音乐 1</string>
     <string name="music2">音乐 2</string>
     <string name="music3">音乐 3</string>
@@ -224,4 +225,8 @@
     <string name="wait_good_road">等待好路中</string>
     <string name="three_no_bet">你已有3次没下注</string>
     <string name="friendly_message">友善提醒</string>
+    <string name="please_choose_chip">请选择 6 个筹码</string>
+    <string name="your_here">你在这</string>
+    <string name="cancel">取消</string>
+    <string name="dragon_big">龍</string>
 </resources>
