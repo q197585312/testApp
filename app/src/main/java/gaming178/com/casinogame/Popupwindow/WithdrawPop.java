@@ -92,19 +92,19 @@ public class WithdrawPop extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.popupwindow_withdraw;
+        return R.layout.gd_popupwindow_withdraw;
     }
 
     @Override
     protected void initView(View view) {
         super.initView(view);
-        edtAmount=(EditText)view.findViewById(R.id.edt_pop_withdraw_amount);
-        tvUsername=(TextView)view.findViewById(R.id.tv_pop_withdraw_username);
-        tvChoiceBank=(TextView)view.findViewById(R.id.tv_pop_withdraw_choice_bank);
-        edtBankAccount=(TextView)view.findViewById(R.id.edt_pop_withdraw_bank_account);
-        edtBankNumber=(TextView)view.findViewById(R.id.edt_pop_withdraw_bank_number);
-        edtPassword=(EditText)view.findViewById(R.id.edt_pop_withdraw_password);
-        ivClose=(ImageView)view.findViewById(R.id.iv_pop_withdraw_close);
+        edtAmount=(EditText)view.findViewById(R.id.gd__edt_pop_withdraw_amount);
+        tvUsername=(TextView)view.findViewById(R.id.gd__tv_pop_withdraw_username);
+        tvChoiceBank=(TextView)view.findViewById(R.id.gd__tv_pop_withdraw_choice_bank);
+        edtBankAccount=(TextView)view.findViewById(R.id.gd__edt_pop_withdraw_bank_account);
+        edtBankNumber=(TextView)view.findViewById(R.id.gd__edt_pop_withdraw_bank_number);
+        edtPassword=(EditText)view.findViewById(R.id.gd__edt_pop_withdraw_password);
+        ivClose=(ImageView)view.findViewById(R.id.gd__iv_pop_withdraw_close);
 
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +112,8 @@ public class WithdrawPop extends BasePopupWindow {
                 closePopupWindow();
             }
         });
-        btnConfirm=(Button)view.findViewById(R.id.btn_pop_withdraw_confirm);
-        btnCancel=(Button)view.findViewById(R.id.btn_pop_withdraw_cancel);
+        btnConfirm=(Button)view.findViewById(R.id.gd__btn_pop_withdraw_confirm);
+        btnCancel=(Button)view.findViewById(R.id.gd__btn_pop_withdraw_cancel);
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

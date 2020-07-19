@@ -37,7 +37,7 @@ import gaming178.com.mylibrary.allinone.util.AppTool;
  */
 public class LobbyRouletteActivity extends BaseActivity {
 
-    @BindView(R2.id.base_rv)
+    @BindView(R2.id.gd__base_rv)
     RecyclerView gridView;
 
 
@@ -119,7 +119,7 @@ public class LobbyRouletteActivity extends BaseActivity {
     }
 
 
-    @BindView(R2.id.img_head)
+    @BindView(R2.id.gd__img_head)
     ImageView img_head;
 
     @Override
@@ -153,7 +153,7 @@ public class LobbyRouletteActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_list_content_base;
+        return R.layout.gd_activity_list_content_base;
     }
 
     @Override
@@ -244,24 +244,24 @@ public class LobbyRouletteActivity extends BaseActivity {
     }
 
     public void initControl() {
-        tv_roulette_timer01 = (TextView) findViewById(R.id.roulette_status_tv);
-        tv_game_number01 = (TextView) findViewById(R.id.text_shoe_game_number);
-        tv_roulette_red01 = (TextView) findViewById(R.id.text_red);
-        tv_roulette_black01 = (TextView) findViewById(R.id.text_black);
-        tv_roulette_zero01 = (TextView) findViewById(R.id.text_zero);
-        tv_roulette_even01 = (TextView) findViewById(R.id.text_even);
-        tv_roulette_odd01 = (TextView) findViewById(R.id.text_odd);
-        tv_roulette_big01 = (TextView) findViewById(R.id.text_big);
-        tv_roulette_small01 = (TextView) findViewById(R.id.text_small);
-        girlLayout = (LinearLayout) findViewById(R.id.ll_layout_girl);
-        ll_more_info = (LinearLayout) findViewById(R.id.ll_more_info);
+        tv_roulette_timer01 = (TextView) findViewById(R.id.gd__roulette_status_tv);
+        tv_game_number01 = (TextView) findViewById(R.id.gd__text_shoe_game_number);
+        tv_roulette_red01 = (TextView) findViewById(R.id.gd__text_red);
+        tv_roulette_black01 = (TextView) findViewById(R.id.gd__text_black);
+        tv_roulette_zero01 = (TextView) findViewById(R.id.gd__text_zero);
+        tv_roulette_even01 = (TextView) findViewById(R.id.gd__text_even);
+        tv_roulette_odd01 = (TextView) findViewById(R.id.gd__text_odd);
+        tv_roulette_big01 = (TextView) findViewById(R.id.gd__text_big);
+        tv_roulette_small01 = (TextView) findViewById(R.id.gd__text_small);
+        girlLayout = (LinearLayout) findViewById(R.id.gd__ll_layout_girl);
+        ll_more_info = (LinearLayout) findViewById(R.id.gd__ll_more_info);
 
-        ((TextView) findViewById(R.id.tv_roulette_table_name)).setText("RL1");
+        ((TextView) findViewById(R.id.gd__tv_roulette_table_name)).setText("RL1");
         //    getString(R.string.baccarat).toUpperCase()+"01"
         gridView.setLayoutManager(new GridLayoutManager(mContext, 11));
 
 
-        adapter = new BaseRecyclerAdapter<String>(mContext, new ArrayList<>(Collections.nCopies(22, "10")), R.layout.item_roulette_content) {
+        adapter = new BaseRecyclerAdapter<String>(mContext, new ArrayList<>(Collections.nCopies(22, "10")), R.layout.gd_item_roulette_content) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
                 switch (item) {
@@ -283,16 +283,16 @@ public class LobbyRouletteActivity extends BaseActivity {
                     case "31":
                     case "33":
                     case "35":
-                        holder.setBackgroundRes(R.id.roulette_title_tv, R.drawable.rectangle_black_brown_stroke_yellow);
+                        holder.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_rectangle_black_brown_stroke_yellow);
                         break;
                     case "0":
-                        holder.setBackgroundRes(R.id.roulette_title_tv, R.drawable.rectangle_green_brown_stroke_yellow);
+                        holder.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_rectangle_green_brown_stroke_yellow);
                         break;
                     default:
-                        holder.setBackgroundRes(R.id.roulette_title_tv, R.drawable.rectangle_red_brown_stroke_yellow);
+                        holder.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_rectangle_red_brown_stroke_yellow);
                         break;
                 }
-                holder.setText(R.id.roulette_title_tv, item);
+                holder.setText(R.id.gd__roulette_title_tv, item);
 
             }
         };
@@ -368,16 +368,16 @@ public class LobbyRouletteActivity extends BaseActivity {
     }
 
     public void showLimit(View v, final int tableId) {
-        initLimitPop(v,tableId,findViewById(R.id.ll_parent_limit));
+        initLimitPop(v,tableId,findViewById(R.id.gd__ll_parent_limit));
     }
     public void initLimitPop(View view, final int tableId, final View top_v) {
         String tableNumber = "RL1";
-        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.base_rv);
+        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.gd__base_rv);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.item_popupwindow_text_select) {
+        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.gd_item_popupwindow_text_select) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                holder.setText(R.id.pop_text_tv, item);
+                holder.setText(R.id.gd__pop_text_tv, item);
             }
 
         };
@@ -397,13 +397,13 @@ public class LobbyRouletteActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(baseRecyclerAdapter);
-        top_v.findViewById(R.id.pop_close_iv).setOnClickListener(new View.OnClickListener() {
+        top_v.findViewById(R.id.gd__pop_close_iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 top_v.setVisibility(View.GONE);
             }
         });
-        ((TextView) top_v.findViewById(R.id.tv_table_game_number)).setText(tableNumber);
+        ((TextView) top_v.findViewById(R.id.gd__tv_table_game_number)).setText(tableNumber);
         top_v.setVisibility(View.VISIBLE);
 
     }

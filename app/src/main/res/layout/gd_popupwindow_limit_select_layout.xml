@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gd__ll_parent_limit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical|bottom"
+    android:paddingBottom="2dp"
+    android:paddingTop="28dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:background="@color/trans_black"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gd_rectangle_brown_top_corner5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/gd__tv_table_game_number"
+                style="@style/text_wrap_bold_black14"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                style="@style/text_match_grey18"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/select_limit"
+                android:textSize="16sp"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/gd__pop_close_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/gd_white_close" />
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gd__base_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/gd_rectangle_white_bottom_corner5"
+            android:divider="@null"
+            android:scrollbars="none" />
+    </LinearLayout>
+</LinearLayout>

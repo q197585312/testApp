@@ -19,7 +19,7 @@ public class ModuleRenameLayoutIds {
     private static final String FILE_XML = ".xml";
 
     //要重命名的module的绝对路径
-    public static String renameModulePath = "D:\\testApp";
+    public static String renameModulePath = "D:\\testApp\\app\\";
     public static String workSpaceDir = renameModulePath + "/src/main/";
     //String文件的地址
     public static String renameResPath = workSpaceDir + "res/";

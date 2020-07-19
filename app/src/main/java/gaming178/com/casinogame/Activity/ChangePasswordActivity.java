@@ -29,7 +29,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_change_password;
+        return R.layout.gd_activity_change_password;
     }
 
     @Override
@@ -40,12 +40,12 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
     @Override
     protected void initView() {
         super.initView();
-        tv_username = (TextView) findViewById(R.id.tv_username);
+        tv_username = (TextView) findViewById(R.id.gd__tv_username);
         tv_username.setText("User Name:" + mAppViewModel.getUser().getName());
-        tv_ok = (TextView) findViewById(R.id.tv_ok);
-        edt_old_passwrod = (EditText) findViewById(R.id.edt_old_passwrod);
-        edt_new_passwrod = (EditText) findViewById(R.id.edt_new_passwrod);
-        edt_confirm_passwrod = (EditText) findViewById(R.id.edt_confirm_passwrod);
+        tv_ok = (TextView) findViewById(R.id.gd__tv_ok);
+        edt_old_passwrod = (EditText) findViewById(R.id.gd__edt_old_passwrod);
+        edt_new_passwrod = (EditText) findViewById(R.id.gd__edt_new_passwrod);
+        edt_confirm_passwrod = (EditText) findViewById(R.id.gd__edt_confirm_passwrod);
         tv_ok.setOnClickListener(this);
         titleTv.setVisibility(View.VISIBLE);
         titleTv.setText(getString(R.string.katasandi));
@@ -61,7 +61,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tv_ok) {
+        if (v.getId() == R.id.gd__tv_ok) {
             submit();
         }
     }

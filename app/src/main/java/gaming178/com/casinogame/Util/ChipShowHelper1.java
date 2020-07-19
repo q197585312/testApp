@@ -230,8 +230,8 @@ public class ChipShowHelper1 {
 
         cancelText.setLayoutParams(paramsTextCancel);
         sureText.setLayoutParams(paramsTextSure);
-        sureText.setBackgroundResource(R.mipmap.tick_white_oval);
-        cancelText.setBackgroundResource(R.mipmap.cross_red_oval);
+        sureText.setBackgroundResource(R.mipmap.gd_tick_white_oval);
+        cancelText.setBackgroundResource(R.mipmap.gd_cross_red_oval);
         framelayout.setClipChildren(false);
         framelayout.addView(cancelText);
         framelayout.addView(sureText);
@@ -255,8 +255,8 @@ public class ChipShowHelper1 {
 
         cancelText.setLayoutParams(cancelParams);
         sureText.setLayoutParams(sureParams);
-        sureText.setBackgroundResource(R.mipmap.tick_white_oval);
-        cancelText.setBackgroundResource(R.mipmap.cross_red_oval);
+        sureText.setBackgroundResource(R.mipmap.gd_tick_white_oval);
+        cancelText.setBackgroundResource(R.mipmap.gd_cross_red_oval);
         framelayout.setClipChildren(false);
         framelayout.addView(cancelText);
         framelayout.addView(sureText);

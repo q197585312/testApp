@@ -43,10 +43,10 @@ public abstract class PopChooseChip extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.pop_choose_chip;
+        return R.layout.gd_pop_choose_chip;
     }
 
-    @BindView(R2.id.rc_content)
+    @BindView(R2.id.gd__rc_content)
     RecyclerView rcContent;
     BaseActivity baseActivity;
     BaseRecyclerAdapter contentAdapter;
@@ -71,27 +71,27 @@ public abstract class PopChooseChip extends BasePopupWindow {
             rcContent.setLayoutParams(layoutParams);
         }
         rcContent.setLayoutManager(new GridLayoutManager(context, spanCount));
-        contentAdapter = new BaseRecyclerAdapter<ChipBean>(context, chipListChoice, R.layout.item_choose_chip) {
+        contentAdapter = new BaseRecyclerAdapter<ChipBean>(context, chipListChoice, R.layout.gd_item_choose_chip) {
             @Override
             public void convert(MyRecyclerViewHolder helper, int position, ChipBean item) {
-                ImageView chipImg = helper.getView(R.id.iv_chip_pic);
-                LinearLayout llParent = helper.getView(R.id.ll_chip_parent);
+                ImageView chipImg = helper.getView(R.id.gd__iv_chip_pic);
+                LinearLayout llParent = helper.getView(R.id.gd__ll_chip_parent);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
                 layoutParams.width = ScreenUtil.dip2px(mContext, 60);
                 layoutParams.height = ScreenUtil.dip2px(mContext, 60);
                 layoutParams.bottomMargin = ScreenUtil.dip2px(mContext, 10);
                 llParent.setLayoutParams(layoutParams);
                 chipImg.setImageResource(item.getDrawableRes());
-                helper.setText(R.id.tv_chip_amount, item.getName());
+                helper.setText(R.id.gd__tv_chip_amount, item.getName());
                 Boolean isSelect = selectedMap.get(position);
                 if (isSelect == null) {
                     isSelect = false;
                     selectedMap.put(position, false);
                 }
                 if (isSelect) {
-                    helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
+                    helper.setBackgroundRes(R.id.gd__ll_chip_parent, R.drawable.gd_rectangle_trans_stroke_yellow);
                 } else {
-                    helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                    helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                 }
             }
         };
@@ -131,12 +131,12 @@ public abstract class PopChooseChip extends BasePopupWindow {
         }
     }
 
-    @OnClick(R2.id.tv_cancel)
+    @OnClick(R2.id.gd__tv_cancel)
     public void onClickCancel(View v) {
         closePopupWindow();
     }
 
-    @OnClick(R2.id.tv_sure)
+    @OnClick(R2.id.gd__tv_sure)
     public void onClickSure(View v) {
         if (selectCount < 6) {
             Toast.makeText(context, context.getString(R.string.please_choose_chip), Toast.LENGTH_SHORT).show();

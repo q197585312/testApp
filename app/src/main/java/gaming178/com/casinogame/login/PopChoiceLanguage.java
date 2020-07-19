@@ -28,7 +28,7 @@ public abstract class PopChoiceLanguage<T> extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.popupwindow_language_select;
+        return R.layout.gd_popupwindow_language_select;
     }
 
     public RecyclerView getRecyclerView() {
@@ -41,8 +41,8 @@ public abstract class PopChoiceLanguage<T> extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
-        recyclerView = (RecyclerView) view.findViewById(R.id.base_rv);
-        tv_title = (TextView) view.findViewById(R.id.tv_title);
+        recyclerView = (RecyclerView) view.findViewById(R.id.gd__base_rv);
+        tv_title = (TextView) view.findViewById(R.id.gd__tv_title);
         if (!BuildConfig.FLAVOR.isEmpty()&&!BuildConfig.FLAVOR.equals("gd88")&&!BuildConfig.FLAVOR.equals("liga365")) {
             if (tv_title != null) {
                 tv_title.setText("Pusat Anggota");

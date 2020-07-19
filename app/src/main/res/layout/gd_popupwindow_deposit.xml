@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/rectangle_gray_graystroke_radius5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/gd_rectangle_green_borwn_bottom_corner5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:gravity="center"
+            android:text="@string/deposit"
+            android:textColor="@color/white"
+            android:textSize="17dip"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/gd__iv_pop_deposit_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/gd_abc_ic_clear_mtrl_alpha" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:padding="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="@string/username"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_pop_deposit_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:padding="3dp"
+                    android:text="11"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/Amount"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/gd__edt_pop_deposit_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:inputType="number"
+                    android:maxLength="30"
+                    android:padding="3dp"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+
+                    android:text="@string/choice_bank"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_pop_deposit_choice_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="number|numberDecimal"
+                    android:padding="3dp"
+                    android:singleLine="true"
+                    android:spinnerMode="dropdown"
+                    android:text=""
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/Account_Name"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/gd__edt_pop_deposit_bank_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:padding="3dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/bank_number"
+                    android:textColor="#666666"
+
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/gd__edt_pop_deposit_bank_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:inputType="number"
+                    android:padding="3dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+
+                    android:text="@string/choice_bank"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_pop_deposit_choice_bank2"
+                    android:layout_width="match_parent"
+                    android:layout_height="26sp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="number|numberDecimal"
+                    android:padding="3dp"
+                    android:singleLine="true"
+                    android:spinnerMode="dropdown"
+                    android:text=""
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/Account_Name"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_pop_deposit_bank_account2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:padding="3dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/bank_number"
+                    android:textColor="#666666"
+
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_pop_deposit_bank_number2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:padding="3dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/gd__btn_pop_deposit_confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="40dip"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_yellow_button"
+                    android:gravity="center"
+                    android:text="@string/confirm"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/gd__btn_pop_deposit_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dip"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_yellow_button"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/gd__lv_bank_list1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/rectangle_white_graystroke_radius0"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/gd__lv_bank_list2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="152dp"
+            android:background="@drawable/rectangle_white_graystroke_radius0"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gd_rectangle_green_borwn_bottom_corner5"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Make sure you enter the correct bank information. Every financial transaction can only be made form and to this bank account"
+        android:textSize="10sp" />
+
+</LinearLayout>

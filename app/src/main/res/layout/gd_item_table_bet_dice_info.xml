@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_margin="2dp"
+        android:id="@+id/gd__iv_dice_1"
+        android:src="@mipmap/gd_dice1"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="0dp" />
+    <ImageView
+        android:layout_margin="2dp"
+        android:id="@+id/gd__iv_dice_2"
+        android:src="@mipmap/gd_dice2"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_width="wrap_content" />
+    <ImageView
+        android:layout_margin="2dp"
+        android:id="@+id/gd__iv_dice_3"
+        android:src="@mipmap/gd_dice3"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_width="wrap_content" />
+
+</LinearLayout>

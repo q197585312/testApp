@@ -141,7 +141,7 @@ public class FaceRelativeLayout extends LinearLayout implements
 	 * 初始化控件
 	 */
 	private void Init_View() {
-		gvFace= (GridView) findViewById(R.id.gv_face_choose);
+		gvFace= (GridView) findViewById(R.id.gd__gv_face_choose);
 //		vp_face = (ViewPager) findViewById(R.id.vp_contains);
 //		layout_point = (LinearLayout) findViewById(R.id.iv_image);
 		FaceAdapter adapter = new FaceAdapter(context, emojis);
@@ -166,7 +166,7 @@ public class FaceRelativeLayout extends LinearLayout implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		ChatEmoji emoji =  emojis.get(arg2);
-		if (emoji.getId() == R.drawable.face_del_icon) {
+		if (emoji.getId() == R.drawable.gd_face_del_icon) {
 			int selection = edtMessage.getSelectionStart();
 			String text = edtMessage.getText().toString();
 			if (selection > 0) {

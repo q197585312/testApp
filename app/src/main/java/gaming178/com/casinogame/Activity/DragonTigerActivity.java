@@ -91,141 +91,141 @@ public class DragonTigerActivity extends BaseActivity {
     Map<FrameLayout, ChipShowHelper> ChipMap = new HashMap<>();
 
 
-    @OnClick(R2.id.iv_baccarat_change_table)
+    @OnClick(R2.id.gd__iv_baccarat_change_table)
     public void clickTable(View v) {
         showChangeTable(v);
     }
 
-    @BindView(R2.id.handle1)
+    @BindView(R2.id.gd__handle1)
     View handle1;
-    @BindView(R2.id.tv_service_time)
+    @BindView(R2.id.gd__tv_service_time)
     TextView serviceTime;
-    @BindView(R2.id.tv_menu)
+    @BindView(R2.id.gd__tv_menu)
     TextView tvMenu;
     int chipCount = 0;
     View ll_poker_parent;
-    @BindView(R2.id.tv_bottom_panel_left)
+    @BindView(R2.id.gd__tv_bottom_panel_left)
     TextView tv_point_dragon;
-    @BindView(R2.id.tv_bottom_panel_right)
+    @BindView(R2.id.gd__tv_bottom_panel_right)
     TextView tv_point_tiger;
-    @BindView(R2.id.bottomPanel1)
+    @BindView(R2.id.gd__bottomPanel1)
     Panel bottomPanel1;
-    @BindView(R2.id.fl_baccarat_parent)
+    @BindView(R2.id.gd__fl_baccarat_parent)
     View fl_baccarat_parent;
-    @BindView(R2.id.fl_baccarat_b_table)
+    @BindView(R2.id.gd__fl_baccarat_b_table)
     View fl_baccarat_b_table;
     private TextView shufflingTv;
     AdapterView lv_baccarat_chips;
 
-    @BindView(R2.id.tv_table_bet_replay)
+    @BindView(R2.id.gd__tv_table_bet_replay)
     TextView tvTableBetReplay;
-    @BindView(R2.id.tv_table_bet_sure)
+    @BindView(R2.id.gd__tv_table_bet_sure)
     TextView tvTableBetSure;
-    @BindView(R2.id.tv_table_bet_cancel)
+    @BindView(R2.id.gd__tv_table_bet_cancel)
     TextView tvTableBetCancel;
-    /* @BindView(R2.id.tv_table_bet_pol)
+    /* @BindView(R2.id.gd__tv_table_bet_pol)
      TextView tvTableBetPol;*/
-    @BindView(R2.id.leftPanel1)
+    @BindView(R2.id.gd__leftPanel1)
     Panel leftPanel1;
-    @BindView(R2.id.lv_table_pool)
+    @BindView(R2.id.gd__lv_table_pool)
     ListView lv_table_pool;
-    @BindView(R2.id.lv_person_bet_info)
+    @BindView(R2.id.gd__lv_person_bet_info)
     ListView lv_person_bet_info;
-    @BindView(R2.id.lv_table_bet_limit_red)
+    @BindView(R2.id.gd__lv_table_bet_limit_red)
     ListView lvTableBetLimitRed;
-    @BindView(R2.id.tv_table_timer)
+    @BindView(R2.id.gd__tv_table_timer)
     TextView tv_table_timer;
-    @BindView(R2.id.countdown_view)
+    @BindView(R2.id.gd__countdown_view)
     CountDownView countdown_view;
-    @BindView(R2.id.ll_result)
+    @BindView(R2.id.gd__ll_result)
     LinearLayout ll_result;
-    @BindView(R2.id.tv_dragon_result)
+    @BindView(R2.id.gd__tv_dragon_result)
     TextView tv_dragon_result;
-    @BindView(R2.id.tv_tiger_result)
+    @BindView(R2.id.gd__tv_tiger_result)
     TextView tv_tiger_result;
 
-    @BindView(R2.id.ll_banker_ask)
+    @BindView(R2.id.gd__ll_banker_ask)
     View ll_banker_ask;
-    @BindView(R2.id.ll_player_ask)
+    @BindView(R2.id.gd__ll_player_ask)
     View ll_player_ask;
-    @BindView(R2.id.rl_good_road)
+    @BindView(R2.id.gd__rl_good_road)
     View rl_good_road;
-    @BindView(R2.id.tv_good_road_count)
+    @BindView(R2.id.gd__tv_good_road_count)
     TextView tv_good_road_count;
 
-    @BindView(R2.id.layout1)
+    @BindView(R2.id.gd__layout1)
     HorizontalScrollView layout1;
-    @BindView(R2.id.baccarat_background_gridlayout1)
+    @BindView(R2.id.gd__baccarat_background_gridlayout1)
     GridBackgroundView baccarat_background_gridlayout1;
-    @BindView(R2.id.baccarat_background_gridlayout1_big)
+    @BindView(R2.id.gd__baccarat_background_gridlayout1_big)
     GridBackgroundView baccarat_background_gridlayout1_big;
-    @BindView(R2.id.ll_big_road_parent2)
+    @BindView(R2.id.gd__ll_big_road_parent2)
     LinearLayout ll_big_road_parent2;
-    @BindView(R2.id.ll_small_road_parent)
+    @BindView(R2.id.gd__ll_small_road_parent)
     LinearLayout ll_small_road_parent;
-    @BindView(R2.id.fl_big_road1)
+    @BindView(R2.id.gd__fl_big_road1)
     View fl_big_road1;
 
-    @BindView(R2.id.hsv_small_road_1)
+    @BindView(R2.id.gd__hsv_small_road_1)
     HorizontalScrollView hsv_small_road_1;
     View fl_small_road_parent1;
     GridBackgroundView smallway_item1;
     GridBackgroundView smallway_item1_big;
-    @BindView(R2.id.hsv_small_road_2)
+    @BindView(R2.id.gd__hsv_small_road_2)
     HorizontalScrollView hsv_small_road_2;
     FrameLayout fl_small_road_parent2;
     GridBackgroundView smallway_item2;
     GridBackgroundView smallway_item2_big;
-    @BindView(R2.id.hsv_small_road_3)
+    @BindView(R2.id.gd__hsv_small_road_3)
     HorizontalScrollView hsv_small_road_3;
     View fl_small_road_parent3;
     GridBackgroundView smallway_item3;
     GridBackgroundView smallway_item3_big;
 
-    @BindView(R2.id.layout2)
+    @BindView(R2.id.gd__layout2)
     View layout2;
-    @BindView(R2.id.baccarat_background_gridlayout2)
+    @BindView(R2.id.gd__baccarat_background_gridlayout2)
     GridBackgroundView baccarat_background_gridlayout2;
-    @BindView(R2.id.baccarat_background_gridlayout2_big)
+    @BindView(R2.id.gd__baccarat_background_gridlayout2_big)
     GridBackgroundView baccarat_background_gridlayout2_big;
 
-    @BindView(R2.id.tv_ask1)
+    @BindView(R2.id.gd__tv_ask1)
     TextView tv_ask1;
-    @BindView(R2.id.tv_ask2)
+    @BindView(R2.id.gd__tv_ask2)
     TextView tv_ask2;
-    @BindView(R2.id.tv_ask1_name)
+    @BindView(R2.id.gd__tv_ask1_name)
     TextView tv_ask1_name;
-    @BindView(R2.id.tv_ask2_name)
+    @BindView(R2.id.gd__tv_ask2_name)
     TextView tv_ask2_name;
-    @BindView(R2.id.tv_good_road_name)
+    @BindView(R2.id.gd__tv_good_road_name)
     TextView tv_good_road_name;
 
-    @BindView(R2.id.img_bet_bg_dragon)
+    @BindView(R2.id.gd__img_bet_bg_dragon)
     ImageView img_bet_bg_dragon;
-    @BindView(R2.id.img_bet_bg_tiger)
+    @BindView(R2.id.gd__img_bet_bg_tiger)
     ImageView img_bet_bg_tiger;
-    @BindView(R2.id.img_bet_bg_tie)
+    @BindView(R2.id.gd__img_bet_bg_tie)
     ImageView img_bet_bg_tie;
-    @BindView(R2.id.img_bet_bg_dragon_red)
+    @BindView(R2.id.gd__img_bet_bg_dragon_red)
     ImageView img_bet_bg_dragon_red;
-    @BindView(R2.id.img_bet_bg_dragon_black)
+    @BindView(R2.id.gd__img_bet_bg_dragon_black)
     ImageView img_bet_bg_dragon_black;
-    @BindView(R2.id.img_bet_bg_tiger_red)
+    @BindView(R2.id.gd__img_bet_bg_tiger_red)
     ImageView img_bet_bg_tiger_red;
-    @BindView(R2.id.img_bet_bg_tiger_black)
+    @BindView(R2.id.gd__img_bet_bg_tiger_black)
     ImageView img_bet_bg_tiger_black;
-    @BindView(R2.id.img_bet_bg_dragon_odd)
+    @BindView(R2.id.gd__img_bet_bg_dragon_odd)
     ImageView img_bet_bg_dragon_odd;
-    @BindView(R2.id.img_bet_bg_dragon_even)
+    @BindView(R2.id.gd__img_bet_bg_dragon_even)
     ImageView img_bet_bg_dragon_even;
-    @BindView(R2.id.img_bet_bg_tiger_odd)
+    @BindView(R2.id.gd__img_bet_bg_tiger_odd)
     ImageView img_bet_bg_tiger_odd;
-    @BindView(R2.id.img_bet_bg_tiger_even)
+    @BindView(R2.id.gd__img_bet_bg_tiger_even)
     ImageView img_bet_bg_tiger_even;
 
-    @BindView(R2.id.tv_dragon_result_name)
+    @BindView(R2.id.gd__tv_dragon_result_name)
     TextView tv_dragon_result_name;
-    @BindView(R2.id.tv_tiger_result_name)
+    @BindView(R2.id.gd__tv_tiger_result_name)
     TextView tv_tiger_result_name;
 
     List<GoodRoadDataBean> goodRoadDataBeenList = new ArrayList<>();
@@ -311,9 +311,9 @@ public class DragonTigerActivity extends BaseActivity {
     private boolean isResultEnd = false;
     private boolean isBottomOpen = false;
     private VideoHelper videoHelper;
-    @BindView(R2.id.ll_chip_parent)
+    @BindView(R2.id.gd__ll_chip_parent)
     View ll_chip_parent;
-    @BindView(R2.id.ll_bet_btn_parent)
+    @BindView(R2.id.gd__ll_bet_btn_parent)
     View ll_bet_btn_parent;
     private boolean stateinit;
     private boolean allClose;
@@ -333,9 +333,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "Dragon";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_d;
+            bg = R.mipmap.gd_dt_v_d;
         } else {
-            bg = R.mipmap.dt_h_d;
+            bg = R.mipmap.gd_dt_h_d;
         }
         clickChipBet(number, "Dragon", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
@@ -352,9 +352,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "Tiger";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_t;
+            bg = R.mipmap.gd_dt_v_t;
         } else {
-            bg = R.mipmap.dt_h_t;
+            bg = R.mipmap.gd_dt_h_t;
         }
         clickChipBet(number, "Tiger", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
@@ -367,9 +367,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "Tie";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_tie;
+            bg = R.mipmap.gd_dt_v_tie;
         } else {
-            bg = R.mipmap.dt_h_tie;
+            bg = R.mipmap.gd_dt_h_tie;
         }
         clickChipBet(number, "Tie", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet(),
@@ -392,9 +392,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "DragonOdd";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_o;
+            bg = R.mipmap.gd_dt_v_o;
         } else {
-            bg = R.mipmap.dt_h_d_o;
+            bg = R.mipmap.gd_dt_h_d_o;
         }
         clickChipBet(number, "DragonOdd", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -416,9 +416,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "DragonEven";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_r;
+            bg = R.mipmap.gd_dt_v_r;
         } else {
-            bg = R.mipmap.dt_h_d_e;
+            bg = R.mipmap.gd_dt_h_d_e;
         }
         clickChipBet(number, "DragonEven", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -440,9 +440,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "DragonRed";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_r;
+            bg = R.mipmap.gd_dt_v_r;
         } else {
-            bg = R.mipmap.dt_h_d_r;
+            bg = R.mipmap.gd_dt_h_d_r;
         }
         clickChipBet(number, "DragonRed", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -464,9 +464,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "DragonBlack";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_r;
+            bg = R.mipmap.gd_dt_v_r;
         } else {
-            bg = R.mipmap.dt_h_d_b;
+            bg = R.mipmap.gd_dt_h_d_b;
         }
         clickChipBet(number, "DragonBlack", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -488,9 +488,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "TigerOdd";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_b;
+            bg = R.mipmap.gd_dt_v_b;
         } else {
-            bg = R.mipmap.dt_h_t_o;
+            bg = R.mipmap.gd_dt_h_t_o;
         }
         clickChipBet(number, "TigerOdd", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -512,9 +512,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "TigerEven";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_e;
+            bg = R.mipmap.gd_dt_v_e;
         } else {
-            bg = R.mipmap.dt_h_t_e;
+            bg = R.mipmap.gd_dt_h_t_e;
         }
         clickChipBet(number, "TigerEven", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -536,9 +536,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "TigerRed";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_b;
+            bg = R.mipmap.gd_dt_v_b;
         } else {
-            bg = R.mipmap.dt_h_t_r;
+            bg = R.mipmap.gd_dt_h_t_r;
         }
         clickChipBet(number, "TigerRed", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -560,9 +560,9 @@ public class DragonTigerActivity extends BaseActivity {
         String number = "TigerBlack";
         int bg;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            bg = R.mipmap.dt_v_b;
+            bg = R.mipmap.gd_dt_v_b;
         } else {
-            bg = R.mipmap.dt_h_t_b;
+            bg = R.mipmap.gd_dt_h_t_b;
         }
         clickChipBet(number, "TigerBlack", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
@@ -1608,17 +1608,17 @@ public class DragonTigerActivity extends BaseActivity {
 
     private int getGoodRoadPic(String name) {
         if (name.equals(getString(R.string.GoodRoad_1))) {
-            return R.mipmap.img_road1;
+            return R.mipmap.gd_img_road1;
         } else if (name.equals(getString(R.string.GoodRoad_2))) {
-            return R.mipmap.img_road2;
+            return R.mipmap.gd_img_road2;
         } else if (name.equals(getString(R.string.GoodRoad_3))) {
-            return R.mipmap.img_road3;
+            return R.mipmap.gd_img_road3;
         } else if (name.equals(getString(R.string.GoodRoad_4))) {
-            return R.mipmap.img_road4;
+            return R.mipmap.gd_img_road4;
         } else if (name.equals(getString(R.string.GoodRoad_5))) {
-            return R.mipmap.img_road5;
+            return R.mipmap.gd_img_road5;
         } else if (name.equals(getString(R.string.GoodRoad_6))) {
-            return R.mipmap.img_road6;
+            return R.mipmap.gd_img_road6;
         }
         return 0;
     }
@@ -2001,12 +2001,12 @@ public class DragonTigerActivity extends BaseActivity {
         animationDragon = (AnimationDrawable) img_dragon_animation.getBackground();
         animationTiger = (AnimationDrawable) img_tiger_animation.getBackground();
         initApngList();
-        findViewById(R.id.ll_pp).setVisibility(View.GONE);
-        findViewById(R.id.ll_bp).setVisibility(View.GONE);
+        findViewById(R.id.gd__ll_pp).setVisibility(View.GONE);
+        findViewById(R.id.gd__ll_bp).setVisibility(View.GONE);
         toolbar_right_bottom_tv.setVisibility(View.GONE);
         toolbar_right_top_tv.setVisibility(View.GONE);
         toolbar.setNavigationIcon(null);
-        shufflingTv = (TextView) findViewById(R.id.tv_shuffling);
+        shufflingTv = (TextView) findViewById(R.id.gd__tv_shuffling);
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             shufflingTv.post(new Runnable() {
                 @Override
@@ -2083,104 +2083,104 @@ public class DragonTigerActivity extends BaseActivity {
 
     private void initName() {
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            SkewTexView tv_dragon = (SkewTexView) findViewById(R.id.tv_dragon);
+            SkewTexView tv_dragon = (SkewTexView) findViewById(R.id.gd__tv_dragon);
             tv_dragon.setTextColor(getResources().getColor(R.color.red_title));
-            SkewTexView tv_tie_dragon_tiger = (SkewTexView) findViewById(R.id.tv_tie_dragon_tiger);
+            SkewTexView tv_tie_dragon_tiger = (SkewTexView) findViewById(R.id.gd__tv_tie_dragon_tiger);
             tv_tie_dragon_tiger.setTextColor(getResources().getColor(R.color.green_a6d33f));
-            SkewTexView tv_tiger = (SkewTexView) findViewById(R.id.tv_tiger);
+            SkewTexView tv_tiger = (SkewTexView) findViewById(R.id.gd__tv_tiger);
             tv_tiger.setTextColor(getResources().getColor(R.color.blue));
-            SkewTexView tv_red = (SkewTexView) findViewById(R.id.tv_red);
+            SkewTexView tv_red = (SkewTexView) findViewById(R.id.gd__tv_red);
             tv_red.setTextColor(getResources().getColor(R.color.red_title));
-            SkewTexView tv_black = (SkewTexView) findViewById(R.id.tv_black);
+            SkewTexView tv_black = (SkewTexView) findViewById(R.id.gd__tv_black);
             tv_black.setTextColor(getResources().getColor(R.color.red_title));
-            SkewTexView tv_red1 = (SkewTexView) findViewById(R.id.tv_red1);
+            SkewTexView tv_red1 = (SkewTexView) findViewById(R.id.gd__tv_red1);
             tv_red1.setTextColor(getResources().getColor(R.color.blue));
-            SkewTexView tv_black1 = (SkewTexView) findViewById(R.id.tv_black1);
+            SkewTexView tv_black1 = (SkewTexView) findViewById(R.id.gd__tv_black1);
             tv_black1.setTextColor(getResources().getColor(R.color.blue));
-            SkewTexView tv_odd = (SkewTexView) findViewById(R.id.tv_odd);
+            SkewTexView tv_odd = (SkewTexView) findViewById(R.id.gd__tv_odd);
             tv_odd.setTextColor(getResources().getColor(R.color.red_title));
-            SkewTexView tv_even = (SkewTexView) findViewById(R.id.tv_even);
+            SkewTexView tv_even = (SkewTexView) findViewById(R.id.gd__tv_even);
             tv_even.setTextColor(getResources().getColor(R.color.red_title));
-            SkewTexView tv_odd1 = (SkewTexView) findViewById(R.id.tv_odd1);
+            SkewTexView tv_odd1 = (SkewTexView) findViewById(R.id.gd__tv_odd1);
             tv_odd1.setTextColor(getResources().getColor(R.color.blue));
-            SkewTexView tv_even1 = (SkewTexView) findViewById(R.id.tv_even1);
+            SkewTexView tv_even1 = (SkewTexView) findViewById(R.id.gd__tv_even1);
             tv_even1.setTextColor(getResources().getColor(R.color.blue));
         }
     }
 
     public void initControl() {
-        ll_poker_parent = findViewById(R.id.ll_poker_parent);
+        ll_poker_parent = findViewById(R.id.gd__ll_poker_parent);
         density = ScreenUtil.getDisplayMetrics(mContext).density;
-        baccarat_head_road = (GridLayout) findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road = (GridLayout) findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road = (GridLayout) findViewById(R.id.baccarat_gridlayout3);
-        fl_small_road_parent1 = findViewById(R.id.fl_small_road_parent);
-        smallway_item1 = findViewById(R.id.smallway_item);
-        smallway_item1_big = findViewById(R.id.smallway_item_big);
-        baccarat_smalleyes_road = (GridLayout) findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        fl_small_road_parent2 = findViewById(R.id.baccarat_gridlayout4);
-        smallway_item2 = findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.smallway_item);
-        smallway_item2_big = findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.smallway_item_big);
-        baccarat_roach_road = (GridLayout) findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
-        fl_small_road_parent3 = findViewById(R.id.baccarat_gridlayout5);
-        smallway_item3 = findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.smallway_item);
-        smallway_item3_big = findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.smallway_item_big);
-        tv_baccarat_shoe_number = (TextView) findViewById(R.id.text_shoe_game_number);
-        tv_table_game_number = (TextView) findViewById(R.id.tv_table_game_number);
-        tv_table_game_number1 = (TextView) findViewById(R.id.tv_table_game_number1);
-        tv_baccarat_total_number = (TextView) findViewById(R.id.text_total);
-        tv_baccarat_banker_number = (TextView) findViewById(R.id.text_banker);
-        tv_baccarat_player_number = (TextView) findViewById(R.id.text_player);
-        tv_baccarat_tie_number = (TextView) findViewById(R.id.text_tie);
-        tv_baccarat_bp_number = (TextView) findViewById(R.id.text_bp);
-        tv_baccarat_pp_number = (TextView) findViewById(R.id.text_pp);
+        baccarat_head_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout3);
+        fl_small_road_parent1 = findViewById(R.id.gd__fl_small_road_parent);
+        smallway_item1 = findViewById(R.id.gd__smallway_item);
+        smallway_item1_big = findViewById(R.id.gd__smallway_item_big);
+        baccarat_smalleyes_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        fl_small_road_parent2 = findViewById(R.id.gd__baccarat_gridlayout4);
+        smallway_item2 = findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__smallway_item);
+        smallway_item2_big = findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__smallway_item_big);
+        baccarat_roach_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
+        fl_small_road_parent3 = findViewById(R.id.gd__baccarat_gridlayout5);
+        smallway_item3 = findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__smallway_item);
+        smallway_item3_big = findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__smallway_item_big);
+        tv_baccarat_shoe_number = (TextView) findViewById(R.id.gd__text_shoe_game_number);
+        tv_table_game_number = (TextView) findViewById(R.id.gd__tv_table_game_number);
+        tv_table_game_number1 = (TextView) findViewById(R.id.gd__tv_table_game_number1);
+        tv_baccarat_total_number = (TextView) findViewById(R.id.gd__text_total);
+        tv_baccarat_banker_number = (TextView) findViewById(R.id.gd__text_banker);
+        tv_baccarat_player_number = (TextView) findViewById(R.id.gd__text_player);
+        tv_baccarat_tie_number = (TextView) findViewById(R.id.gd__text_tie);
+        tv_baccarat_bp_number = (TextView) findViewById(R.id.gd__text_bp);
+        tv_baccarat_pp_number = (TextView) findViewById(R.id.gd__text_pp);
 
 
-        iv_poker_player1 = (ImageView) findViewById(R.id.iv_poker_player1);
-        iv_poker_banker1 = (ImageView) findViewById(R.id.iv_poker_banker1);
+        iv_poker_player1 = (ImageView) findViewById(R.id.gd__iv_poker_player1);
+        iv_poker_banker1 = (ImageView) findViewById(R.id.gd__iv_poker_banker1);
 
-        btn_limit = (TextView) findViewById(R.id.btn_limit);
+        btn_limit = (TextView) findViewById(R.id.gd__btn_limit);
         llCenter.setVisibility(View.VISIBLE);
 
-        ((TextView) findViewById(R.id.tv_banker)).setText(getString(R.string.dr));
-        ((TextView) findViewById(R.id.tv_player)).setText(getString(R.string.ti));
-        ((TextView) findViewById(R.id.tv_tie)).setText(getString(R.string.tie));
-        ((TextView) findViewById(R.id.tv_banker_pair)).setVisibility(View.GONE);
-        ((TextView) findViewById(R.id.tv_player_pair)).setVisibility(View.GONE);
-        ((TextView) findViewById(R.id.text_bp)).setVisibility(View.GONE);
-        ((TextView) findViewById(R.id.text_pp)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dr));
+        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.ti));
+        ((TextView) findViewById(R.id.gd__tv_tie)).setText(getString(R.string.tie));
+        ((TextView) findViewById(R.id.gd__tv_banker_pair)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.gd__tv_player_pair)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.gd__text_bp)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.gd__text_pp)).setVisibility(View.GONE);
 
-        fl_dragon = (FrameLayout) findViewById(R.id.fl_dragon);
-        fl_tiger = (FrameLayout) findViewById(R.id.fl_tiger);
-        fl_tie = (FrameLayout) findViewById(R.id.fl_tie);
-        fl_dragon_odd = (FrameLayout) findViewById(R.id.fl_dragon_odd);
-        fl_dragon_even = (FrameLayout) findViewById(R.id.fl_dragon_even);
-        fl_dragon_red = (FrameLayout) findViewById(R.id.fl_dragon_red);
-        fl_dragon_black = (FrameLayout) findViewById(R.id.fl_dragon_black);
-        fl_tiger_odd = (FrameLayout) findViewById(R.id.fl_tiger_odd);
-        fl_tiger_even = (FrameLayout) findViewById(R.id.fl_tiger_even);
-        fl_tiger_red = (FrameLayout) findViewById(R.id.fl_tiger_red);
-        fl_tiger_black = (FrameLayout) findViewById(R.id.fl_tiger_black);
+        fl_dragon = (FrameLayout) findViewById(R.id.gd__fl_dragon);
+        fl_tiger = (FrameLayout) findViewById(R.id.gd__fl_tiger);
+        fl_tie = (FrameLayout) findViewById(R.id.gd__fl_tie);
+        fl_dragon_odd = (FrameLayout) findViewById(R.id.gd__fl_dragon_odd);
+        fl_dragon_even = (FrameLayout) findViewById(R.id.gd__fl_dragon_even);
+        fl_dragon_red = (FrameLayout) findViewById(R.id.gd__fl_dragon_red);
+        fl_dragon_black = (FrameLayout) findViewById(R.id.gd__fl_dragon_black);
+        fl_tiger_odd = (FrameLayout) findViewById(R.id.gd__fl_tiger_odd);
+        fl_tiger_even = (FrameLayout) findViewById(R.id.gd__fl_tiger_even);
+        fl_tiger_red = (FrameLayout) findViewById(R.id.gd__fl_tiger_red);
+        fl_tiger_black = (FrameLayout) findViewById(R.id.gd__fl_tiger_black);
 
-        iv_dragon = (ImageView) findViewById(R.id.iv_dragon);
-        iv_tiger = (ImageView) findViewById(R.id.iv_tiger);
-        iv_tie = (ImageView) findViewById(R.id.iv_tie);
-        iv_dragon_odd = (ImageView) findViewById(R.id.iv_dragon_odd);
-        iv_dragon_even = (ImageView) findViewById(R.id.iv_dragon_even);
-        iv_dragon_red = (ImageView) findViewById(R.id.iv_dragon_red);
-        iv_dragon_black = (ImageView) findViewById(R.id.iv_dragon_black);
-        iv_tiger_odd = (ImageView) findViewById(R.id.iv_tiger_odd);
-        iv_tiger_even = (ImageView) findViewById(R.id.iv_tiger_even);
-        iv_tiger_red = (ImageView) findViewById(R.id.iv_tiger_red);
-        iv_tiger_black = (ImageView) findViewById(R.id.iv_tiger_black);
+        iv_dragon = (ImageView) findViewById(R.id.gd__iv_dragon);
+        iv_tiger = (ImageView) findViewById(R.id.gd__iv_tiger);
+        iv_tie = (ImageView) findViewById(R.id.gd__iv_tie);
+        iv_dragon_odd = (ImageView) findViewById(R.id.gd__iv_dragon_odd);
+        iv_dragon_even = (ImageView) findViewById(R.id.gd__iv_dragon_even);
+        iv_dragon_red = (ImageView) findViewById(R.id.gd__iv_dragon_red);
+        iv_dragon_black = (ImageView) findViewById(R.id.gd__iv_dragon_black);
+        iv_tiger_odd = (ImageView) findViewById(R.id.gd__iv_tiger_odd);
+        iv_tiger_even = (ImageView) findViewById(R.id.gd__iv_tiger_even);
+        iv_tiger_red = (ImageView) findViewById(R.id.gd__iv_tiger_red);
+        iv_tiger_black = (ImageView) findViewById(R.id.gd__iv_tiger_black);
 
-        tv_point_dragon = (TextView) bottomPanel1.findViewById(R.id.tv_bottom_panel_left);
-        tv_point_tiger = (TextView) bottomPanel1.findViewById(R.id.tv_bottom_panel_right);
+        tv_point_dragon = (TextView) bottomPanel1.findViewById(R.id.gd__tv_bottom_panel_left);
+        tv_point_tiger = (TextView) bottomPanel1.findViewById(R.id.gd__tv_bottom_panel_right);
 //        tv_point_dragon.setTextColor(getResources().getColor(R.color.red));
 //        tv_point_tiger.setTextColor(getResources().getColor(R.color.blue));
 
-        ((TextView) findViewById(R.id.tv_banker_road)).setText("D");
-        ((TextView) findViewById(R.id.tv_player_road)).setText("T");
+        ((TextView) findViewById(R.id.gd__tv_banker_road)).setText("D");
+        ((TextView) findViewById(R.id.gd__tv_player_road)).setText("T");
 
         initOrientation();
     }
@@ -2303,13 +2303,13 @@ public class DragonTigerActivity extends BaseActivity {
         chips.setBaseAdapter(new QuickAdapterImp<ChipBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_image_chip;
+                return R.layout.gd_item_image_chip;
             }
 
             @Override
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
-                ImageView chipImg = helper.retrieveView(R.id.iv_chip_pic);
-                final LinearLayout llParent = helper.retrieveView(R.id.ll_chip_parent);
+                ImageView chipImg = helper.retrieveView(R.id.gd__iv_chip_pic);
+                final LinearLayout llParent = helper.retrieveView(R.id.gd__ll_chip_parent);
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     llParent.post(new Runnable() {
                         @Override
@@ -2349,19 +2349,19 @@ public class DragonTigerActivity extends BaseActivity {
                         layoutParams.width = (int) (layoutParams.width * 1.2);
                         layoutParams.height = (int) (layoutParams.height * 1.2);
                         chipImg.setLayoutParams(layoutParams);
-                        helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
+                        helper.setBackgroundRes(R.id.gd__ll_chip_parent, R.drawable.gd_rectangle_trans_stroke_yellow);
                     } else {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
                         layoutParams.width = ScreenUtil.dip2px(mContext, 50);
                         layoutParams.height = ScreenUtil.dip2px(mContext, 50);
                         chipImg.setLayoutParams(layoutParams);
-                        helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                        helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                     }
                 } else {
                     selectedMap = new HashMap<>();
-                    helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                    helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                 }
-                helper.setText(R.id.tv_chip_amount, item.getName());
+                helper.setText(R.id.gd__tv_chip_amount, item.getName());
             }
         });
         if (currentShufflingStatus == 1) {
@@ -2397,16 +2397,16 @@ public class DragonTigerActivity extends BaseActivity {
         contentList.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_live_info3;
+                return R.layout.gd_item_live_info3;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_type);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_type);
                 tvType.setText(item.getType());
-                helper.setText(R.id.tv_value, item.getValue1() + "  -  " + item.getValue2());
-                helper.setTextColor(R.id.tv_value, getResources().getColor(R.color.yellow_gold));
-                helper.setVisibility(R.id.tv_value2, View.GONE);
+                helper.setText(R.id.gd__tv_value, item.getValue1() + "  -  " + item.getValue2());
+                helper.setTextColor(R.id.gd__tv_value, getResources().getColor(R.color.yellow_gold));
+                helper.setVisibility(R.id.gd__tv_value2, View.GONE);
 
             }
         });
@@ -2443,13 +2443,13 @@ public class DragonTigerActivity extends BaseActivity {
         contentPool.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info;
+                return R.layout.gd_item_user_info;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
                 switch (position) {
@@ -2527,12 +2527,12 @@ public class DragonTigerActivity extends BaseActivity {
         contentBetPool.setBaseAdapter(new QuickAdapterImp<String>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_limit_red_text;
+                return R.layout.gd_item_limit_red_text;
             }
 
             @Override
             public void convert(ViewHolder helper, String item, int position) {
-                TextView tv = helper.retrieveView(R.id.text_tv1);
+                TextView tv = helper.retrieveView(R.id.gd__text_tv1);
                 tv.setTextSize(poolSize);
                 tv.setText(item);
                 tv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
@@ -2543,17 +2543,17 @@ public class DragonTigerActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_dragen_tiger_bet_game;
+        return R.layout.gd_activity_dragen_tiger_bet_game;
     }
 
     public void startPlayVideo() {
-        mPreview = findViewById(R.id.surface);
+        mPreview = findViewById(R.id.gd__surface);
         videoHelper = new VideoHelper(mContext, mPreview) {
             @Override
             public void doVideoFix() {
                 super.doVideoFix();
-                if (findViewById(R.id.fl_baccarat_bg) != null)
-                    findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
+                if (findViewById(R.id.gd__fl_baccarat_bg) != null)
+                    findViewById(R.id.gd__fl_baccarat_bg).setVisibility(View.GONE);
             }
         };
         path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getVideoUrlIndex() + "/L05";
@@ -2598,8 +2598,8 @@ public class DragonTigerActivity extends BaseActivity {
         } else {
             lv_person_bet_info.setVisibility(View.GONE);
         }
-      /*  View view = LayoutInflater.from(mContext).inflate(R.layout.popupwindow_list_bet_people, null);
-        ListView lv = (ListView) view.findViewById(R.id.lv_people_bet_info);
+      /*  View view = LayoutInflater.from(mContext).inflate(R.layout.gd_popupwindow_list_bet_people, null);
+        ListView lv = (ListView) view.findViewById(R.id.gd__lv_people_bet_info);
         setListDataTest(lv,null);
 
         final PopupWindow popupWindow = new PopupWindow(view, 400, 500);
@@ -2654,79 +2654,79 @@ public class DragonTigerActivity extends BaseActivity {
         clearBetBg();
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Dragon") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.gd_dt_v_d);
             } else {
-                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.gd_dt_h_d);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tiger") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.gd_dt_v_t);
             } else {
-                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.gd_dt_h_t);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonEven") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.gd_dt_v_r);
             } else {
-                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.gd_dt_h_d_e);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonOdd") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.gd_dt_v_o);
             } else {
-                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.gd_dt_h_d_o);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonBlack") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.gd_dt_v_r);
             } else {
-                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.gd_dt_h_d_b);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonRed") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.gd_dt_v_r);
             } else {
-                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.gd_dt_h_d_r);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerEven") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.gd_dt_v_e);
             } else {
-                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.gd_dt_h_t_e);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerOdd") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.gd_dt_v_b);
             } else {
-                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.gd_dt_h_t_o);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerBlack") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.gd_dt_v_b);
             } else {
-                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.gd_dt_h_t_b);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerRed") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.gd_dt_v_b);
             } else {
-                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.gd_dt_h_t_r);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tie") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.gd_dt_v_tie);
             } else {
-                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.gd_dt_h_tie);
             }
         }
     }
@@ -2735,79 +2735,79 @@ public class DragonTigerActivity extends BaseActivity {
         clearBetBg();
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Dragon") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.gd_dt_v_d);
             } else {
-                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.gd_dt_h_d);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Tiger") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.gd_dt_v_t);
             } else {
-                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.gd_dt_h_t);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonEven") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.gd_dt_v_r);
             } else {
-                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.gd_dt_h_d_e);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonOdd") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.gd_dt_v_o);
             } else {
-                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.gd_dt_h_d_o);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonBlack") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.gd_dt_v_r);
             } else {
-                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.gd_dt_h_d_b);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonRed") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.gd_dt_v_r);
             } else {
-                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.gd_dt_h_d_r);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerEven") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.gd_dt_v_e);
             } else {
-                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.gd_dt_h_t_e);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerOdd") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.gd_dt_v_b);
             } else {
-                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.gd_dt_h_t_o);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerBlack") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.gd_dt_v_b);
             } else {
-                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.gd_dt_h_t_b);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerRed") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.gd_dt_v_b);
             } else {
-                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.gd_dt_h_t_r);
             }
         }
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Tie") > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.gd_dt_v_tie);
             } else {
-                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.gd_dt_h_tie);
             }
         }
     }
@@ -2936,14 +2936,14 @@ public class DragonTigerActivity extends BaseActivity {
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5 && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() != 0)) {
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 1) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_dragon.setBackgroundResource(R.mipmap.long_03);
+//                    iv_dragon.setBackgroundResource(R.mipmap.gd_long_03);
 //                } else {
-//                    iv_dragon.setBackgroundResource(R.mipmap.long_03_portrait);
+//                    iv_dragon.setBackgroundResource(R.mipmap.gd_long_03_portrait);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.gd_dt_v_d);
                 } else {
-                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.gd_dt_h_d);
                 }
                 if (objectAnimatorDragon.isRunning()) {
                     objectAnimatorDragon.cancel();
@@ -2956,14 +2956,14 @@ public class DragonTigerActivity extends BaseActivity {
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 11, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 2) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_tiger.setBackgroundResource(R.mipmap.hu_03);
+//                    iv_tiger.setBackgroundResource(R.mipmap.gd_hu_03);
 //                } else {
-//                    iv_tiger.setBackgroundResource(R.mipmap.hu_03_portrait);
+//                    iv_tiger.setBackgroundResource(R.mipmap.gd_hu_03_portrait);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.gd_dt_v_t);
                 } else {
-                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.gd_dt_h_t);
                 }
                 if (objectAnimatorTiger.isRunning()) {
                     objectAnimatorTiger.cancel();
@@ -2976,14 +2976,14 @@ public class DragonTigerActivity extends BaseActivity {
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 12, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 3) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_tie.setBackgroundResource(R.mipmap.he_03);
+//                    iv_tie.setBackgroundResource(R.mipmap.gd_he_03);
 //                } else {
-//                    iv_tie.setBackgroundResource(R.mipmap.he_03_portrait);
+//                    iv_tie.setBackgroundResource(R.mipmap.gd_he_03_portrait);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+                    img_bet_bg_tie.setBackgroundResource(R.mipmap.gd_dt_v_tie);
                 } else {
-                    img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+                    img_bet_bg_tie.setBackgroundResource(R.mipmap.gd_dt_h_tie);
                 }
                 if (objectAnimatorTie.isRunning()) {
                     objectAnimatorTie.cancel();
@@ -2997,14 +2997,14 @@ public class DragonTigerActivity extends BaseActivity {
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_odd_even() == 1) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03);
+//                    iv_dragon_odd.setBackgroundResource(R.mipmap.gd_zuo3_03);
 //                } else {
-//                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03_portrait);
+//                    iv_dragon_odd.setBackgroundResource(R.mipmap.gd_zuo3_03_portrait);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.gd_dt_v_o);
                 } else {
-                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.gd_dt_h_d_o);
                 }
                 if (objectAnimatorDragonOdd.isRunning()) {
                     objectAnimatorDragonOdd.cancel();
@@ -3014,14 +3014,14 @@ public class DragonTigerActivity extends BaseActivity {
                 }
             } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_dragon_even.setBackgroundResource(R.mipmap.zuo4_03);
+//                    iv_dragon_even.setBackgroundResource(R.mipmap.gd_zuo4_03);
 //                } else {
-//                    iv_dragon_even.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                    iv_dragon_even.setBackgroundResource(R.mipmap.gd_normal_dragon_tiger);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.gd_dt_v_r);
                 } else {
-                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.gd_dt_h_d_e);
                 }
                 if (objectAnimatorDragonEven.isRunning()) {
                     objectAnimatorDragonEven.cancel();
@@ -3033,14 +3033,14 @@ public class DragonTigerActivity extends BaseActivity {
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_red_black() == 1) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_dragon_red.setBackgroundResource(R.mipmap.zuo1_03);
+//                    iv_dragon_red.setBackgroundResource(R.mipmap.gd_zuo1_03);
 //                } else {
-//                    iv_dragon_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                    iv_dragon_red.setBackgroundResource(R.mipmap.gd_normal_dragon_tiger);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.gd_dt_v_r);
                 } else {
-                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.gd_dt_h_d_r);
                 }
                 if (objectAnimatorDragonRed.isRunning()) {
                     objectAnimatorDragonRed.cancel();
@@ -3050,14 +3050,14 @@ public class DragonTigerActivity extends BaseActivity {
                 }
             } else {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_dragon_black.setBackgroundResource(R.mipmap.zuo2_03);
+//                    iv_dragon_black.setBackgroundResource(R.mipmap.gd_zuo2_03);
 //                } else {
-//                    iv_dragon_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                    iv_dragon_black.setBackgroundResource(R.mipmap.gd_normal_dragon_tiger);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.gd_dt_v_r);
                 } else {
-                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.gd_dt_h_d_b);
                 }
                 if (objectAnimatorDragonBlack.isRunning()) {
                     objectAnimatorDragonBlack.cancel();
@@ -3070,14 +3070,14 @@ public class DragonTigerActivity extends BaseActivity {
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_odd_even() == 1) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_tiger_odd.setBackgroundResource(R.mipmap.zuo7_03);
+//                    iv_tiger_odd.setBackgroundResource(R.mipmap.gd_zuo7_03);
 //                } else {
-//                    iv_tiger_odd.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                    iv_tiger_odd.setBackgroundResource(R.mipmap.gd_normal_dragon_tiger);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.gd_dt_v_b);
                 } else {
-                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.gd_dt_h_t_o);
                 }
                 if (objectAnimatorTigerOdd.isRunning()) {
                     objectAnimatorTigerOdd.cancel();
@@ -3087,14 +3087,14 @@ public class DragonTigerActivity extends BaseActivity {
                 }
             } else {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03);
+//                    iv_tiger_even.setBackgroundResource(R.mipmap.gd_zuo8_03);
 //                } else {
-//                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03_portrait);
+//                    iv_tiger_even.setBackgroundResource(R.mipmap.gd_zuo8_03_portrait);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.gd_dt_v_e);
                 } else {
-                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.gd_dt_h_t_e);
                 }
                 if (objectAnimatorTigerEven.isRunning()) {
                     objectAnimatorTigerEven.cancel();
@@ -3106,14 +3106,14 @@ public class DragonTigerActivity extends BaseActivity {
 
             if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_red_black() == 1) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_tiger_red.setBackgroundResource(R.mipmap.zuo5_03);
+//                    iv_tiger_red.setBackgroundResource(R.mipmap.gd_zuo5_03);
 //                } else {
-//                    iv_tiger_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                    iv_tiger_red.setBackgroundResource(R.mipmap.gd_normal_dragon_tiger);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.gd_dt_v_b);
                 } else {
-                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.gd_dt_h_t_r);
                 }
                 if (objectAnimatorTigerRed.isRunning()) {
                     objectAnimatorTigerRed.cancel();
@@ -3123,14 +3123,14 @@ public class DragonTigerActivity extends BaseActivity {
                 }
             } else {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                    iv_tiger_black.setBackgroundResource(R.mipmap.zuo6_03);
+//                    iv_tiger_black.setBackgroundResource(R.mipmap.gd_zuo6_03);
 //                } else {
-//                    iv_tiger_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                    iv_tiger_black.setBackgroundResource(R.mipmap.gd_normal_dragon_tiger);
 //                }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.gd_dt_v_b);
                 } else {
-                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.gd_dt_h_t_b);
                 }
                 if (objectAnimatorTigerBlack.isRunning()) {
                     objectAnimatorTigerBlack.cancel();
@@ -3205,160 +3205,160 @@ public class DragonTigerActivity extends BaseActivity {
         int poker_res = 0;
         switch (poker) {
             case 1:
-                poker_res = R.mipmap.pk_1;
+                poker_res = R.mipmap.gd_pk_1;
                 break;
             case 2:
-                poker_res = R.mipmap.pk_2;
+                poker_res = R.mipmap.gd_pk_2;
                 break;
             case 3:
-                poker_res = R.mipmap.pk_3;
+                poker_res = R.mipmap.gd_pk_3;
                 break;
             case 4:
-                poker_res = R.mipmap.pk_4;
+                poker_res = R.mipmap.gd_pk_4;
                 break;
             case 5:
-                poker_res = R.mipmap.pk_5;
+                poker_res = R.mipmap.gd_pk_5;
                 break;
             case 6:
-                poker_res = R.mipmap.pk_6;
+                poker_res = R.mipmap.gd_pk_6;
                 break;
             case 7:
-                poker_res = R.mipmap.pk_7;
+                poker_res = R.mipmap.gd_pk_7;
                 break;
             case 8:
-                poker_res = R.mipmap.pk_8;
+                poker_res = R.mipmap.gd_pk_8;
                 break;
             case 9:
-                poker_res = R.mipmap.pk_9;
+                poker_res = R.mipmap.gd_pk_9;
                 break;
             case 10:
-                poker_res = R.mipmap.pk_10;
+                poker_res = R.mipmap.gd_pk_10;
                 break;
             case 11:
-                poker_res = R.mipmap.pk_11;
+                poker_res = R.mipmap.gd_pk_11;
                 break;
             case 12:
-                poker_res = R.mipmap.pk_12;
+                poker_res = R.mipmap.gd_pk_12;
                 break;
             case 13:
-                poker_res = R.mipmap.pk_13;
+                poker_res = R.mipmap.gd_pk_13;
                 break;
             case 14:
-                poker_res = R.mipmap.pk_14;
+                poker_res = R.mipmap.gd_pk_14;
                 break;
             case 15:
-                poker_res = R.mipmap.pk_15;
+                poker_res = R.mipmap.gd_pk_15;
                 break;
             case 16:
-                poker_res = R.mipmap.pk_16;
+                poker_res = R.mipmap.gd_pk_16;
                 break;
             case 17:
-                poker_res = R.mipmap.pk_17;
+                poker_res = R.mipmap.gd_pk_17;
                 break;
             case 18:
-                poker_res = R.mipmap.pk_18;
+                poker_res = R.mipmap.gd_pk_18;
                 break;
             case 19:
-                poker_res = R.mipmap.pk_19;
+                poker_res = R.mipmap.gd_pk_19;
                 break;
             case 20:
-                poker_res = R.mipmap.pk_20;
+                poker_res = R.mipmap.gd_pk_20;
                 break;
             case 21:
-                poker_res = R.mipmap.pk_21;
+                poker_res = R.mipmap.gd_pk_21;
                 break;
             case 22:
-                poker_res = R.mipmap.pk_22;
+                poker_res = R.mipmap.gd_pk_22;
                 break;
             case 23:
-                poker_res = R.mipmap.pk_23;
+                poker_res = R.mipmap.gd_pk_23;
                 break;
             case 24:
-                poker_res = R.mipmap.pk_24;
+                poker_res = R.mipmap.gd_pk_24;
                 break;
             case 25:
-                poker_res = R.mipmap.pk_25;
+                poker_res = R.mipmap.gd_pk_25;
                 break;
             case 26:
-                poker_res = R.mipmap.pk_26;
+                poker_res = R.mipmap.gd_pk_26;
                 break;
             case 27:
-                poker_res = R.mipmap.pk_27;
+                poker_res = R.mipmap.gd_pk_27;
                 break;
             case 28:
-                poker_res = R.mipmap.pk_28;
+                poker_res = R.mipmap.gd_pk_28;
                 break;
             case 29:
-                poker_res = R.mipmap.pk_29;
+                poker_res = R.mipmap.gd_pk_29;
                 break;
             case 30:
-                poker_res = R.mipmap.pk_30;
+                poker_res = R.mipmap.gd_pk_30;
                 break;
             case 31:
-                poker_res = R.mipmap.pk_31;
+                poker_res = R.mipmap.gd_pk_31;
                 break;
             case 32:
-                poker_res = R.mipmap.pk_32;
+                poker_res = R.mipmap.gd_pk_32;
                 break;
             case 33:
-                poker_res = R.mipmap.pk_33;
+                poker_res = R.mipmap.gd_pk_33;
                 break;
             case 34:
-                poker_res = R.mipmap.pk_34;
+                poker_res = R.mipmap.gd_pk_34;
                 break;
             case 35:
-                poker_res = R.mipmap.pk_35;
+                poker_res = R.mipmap.gd_pk_35;
                 break;
             case 36:
-                poker_res = R.mipmap.pk_36;
+                poker_res = R.mipmap.gd_pk_36;
                 break;
             case 37:
-                poker_res = R.mipmap.pk_37;
+                poker_res = R.mipmap.gd_pk_37;
                 break;
             case 38:
-                poker_res = R.mipmap.pk_38;
+                poker_res = R.mipmap.gd_pk_38;
                 break;
             case 39:
-                poker_res = R.mipmap.pk_39;
+                poker_res = R.mipmap.gd_pk_39;
                 break;
             case 40:
-                poker_res = R.mipmap.pk_40;
+                poker_res = R.mipmap.gd_pk_40;
                 break;
             case 41:
-                poker_res = R.mipmap.pk_41;
+                poker_res = R.mipmap.gd_pk_41;
                 break;
             case 42:
-                poker_res = R.mipmap.pk_42;
+                poker_res = R.mipmap.gd_pk_42;
                 break;
             case 43:
-                poker_res = R.mipmap.pk_43;
+                poker_res = R.mipmap.gd_pk_43;
                 break;
             case 44:
-                poker_res = R.mipmap.pk_44;
+                poker_res = R.mipmap.gd_pk_44;
                 break;
             case 45:
-                poker_res = R.mipmap.pk_45;
+                poker_res = R.mipmap.gd_pk_45;
                 break;
             case 46:
-                poker_res = R.mipmap.pk_46;
+                poker_res = R.mipmap.gd_pk_46;
                 break;
             case 47:
-                poker_res = R.mipmap.pk_47;
+                poker_res = R.mipmap.gd_pk_47;
                 break;
             case 48:
-                poker_res = R.mipmap.pk_48;
+                poker_res = R.mipmap.gd_pk_48;
                 break;
             case 49:
-                poker_res = R.mipmap.pk_49;
+                poker_res = R.mipmap.gd_pk_49;
                 break;
             case 50:
-                poker_res = R.mipmap.pk_50;
+                poker_res = R.mipmap.gd_pk_50;
                 break;
             case 51:
-                poker_res = R.mipmap.pk_51;
+                poker_res = R.mipmap.gd_pk_51;
                 break;
             case 52:
-                poker_res = R.mipmap.pk_52;
+                poker_res = R.mipmap.gd_pk_52;
                 break;
         }
         return poker_res;
@@ -3701,7 +3701,7 @@ public class DragonTigerActivity extends BaseActivity {
         } else {
             toolbar_right_bottom_tv.setVisibility(View.VISIBLE);
             toolbar_right_top_tv.setVisibility(View.VISIBLE);
-            toolbar.setNavigationIcon(R.mipmap.back_black);
+            toolbar.setNavigationIcon(R.mipmap.gd_back_black);
         }
         if (b) {
             stateinit = true;
@@ -3775,8 +3775,8 @@ public class DragonTigerActivity extends BaseActivity {
                     toolbar.setLayoutParams(layoutParams);
                 }
             });
-//            lv_baccarat_chips = (AdapterView) findViewById(R.id.lv_baccarat_chips);
-            lv_baccarat_chips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
+//            lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips);
+            lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
             xSkizeB1 = 0.14f;
             xSkizeP1 = 0.14f;
             playerX = AutoUtils.getPercentHeightSize(800);
@@ -3785,7 +3785,7 @@ public class DragonTigerActivity extends BaseActivity {
 
         } else {
 
-            lv_baccarat_chips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
+            lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
             leftPanel1.setOpen(true, true);
             xSkizeB1 = 0f;
             xSkizeP1 = 0f;
@@ -3801,31 +3801,31 @@ public class DragonTigerActivity extends BaseActivity {
         outState.putBoolean("isFirstBet", isFirstBet);
     }
 
-    @BindView(R2.id.ll_info)
+    @BindView(R2.id.gd__ll_info)
     LinearLayout ll_info;
-    @BindView(R2.id.lv_user_info)
+    @BindView(R2.id.gd__lv_user_info)
     ListView lv_user_info;
-    @BindView(R2.id.lv_pool)
+    @BindView(R2.id.gd__lv_pool)
     ListView lv_pool;
-    @BindView(R2.id.tv_time)
+    @BindView(R2.id.gd__tv_time)
     TextView tv_time;
-    @BindView(R2.id.tv_total_bet)
+    @BindView(R2.id.gd__tv_total_bet)
     TextView tv_total_bet;
-    @BindView(R2.id.tv_win_lose_bet)
+    @BindView(R2.id.gd__tv_win_lose_bet)
     TextView tv_win_lose_bet;
-    @BindView(R2.id.rl_dragon_parent)
+    @BindView(R2.id.gd__rl_dragon_parent)
     RelativeLayout rl_dragon_parent;
-    @BindView(R2.id.img_dragon_animation)
+    @BindView(R2.id.gd__img_dragon_animation)
     ImageView img_dragon_animation;
-    @BindView(R2.id.rl_tiger_parent)
+    @BindView(R2.id.gd__rl_tiger_parent)
     RelativeLayout rl_tiger_parent;
-    @BindView(R2.id.img_tiger_animation)
+    @BindView(R2.id.gd__img_tiger_animation)
     ImageView img_tiger_animation;
-    @BindView(R2.id.img_apng_dragon)
+    @BindView(R2.id.gd__img_apng_dragon)
     ApngImageView img_apng_dragon;
-    @BindView(R2.id.img_apng_tie)
+    @BindView(R2.id.gd__img_apng_tie)
     ApngImageView img_apng_tie;
-    @BindView(R2.id.img_apng_tiger)
+    @BindView(R2.id.gd__img_apng_tiger)
     ApngImageView img_apng_tiger;
 
     @Override
@@ -3912,13 +3912,13 @@ public class DragonTigerActivity extends BaseActivity {
 
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info1;
+                return R.layout.gd_item_user_info1;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
                 if (position > 4) {
@@ -3946,21 +3946,21 @@ public class DragonTigerActivity extends BaseActivity {
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
         fl_baccarat_b_table.setBackgroundResource(0);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            fl_baccarat_b_table.setBackgroundResource(R.mipmap.dragon_tiger_bet_bg);
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.gd_dragon_tiger_bet_bg);
         } else {
-            fl_baccarat_b_table.setBackgroundResource(R.mipmap.dragon_tiger_bg);
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.gd_dragon_tiger_bg);
         }
         tv_ask1.setText(getString(R.string.dragon_big));
         tv_ask2.setText(getString(R.string.tiger_dragon_tiger));
         tv_ask1_name.setText(getString(R.string.ask));
         tv_ask2_name.setText(getString(R.string.ask));
         tv_good_road_name.setText(getString(R.string.good_road));
-        ((TextView) findViewById(R.id.tv_banker)).setText(getString(R.string.dr));
-        ((TextView) findViewById(R.id.tv_player)).setText(getString(R.string.ti));
-        ((TextView) findViewById(R.id.tv_tie)).setText(getString(R.string.tie));
-        ((TextView) findViewById(R.id.tv_total)).setText(getString(R.string.total_m));
-        ((TextView) findViewById(R.id.tv_dragon_result_name)).setText(getString(R.string.dragon));
-        ((TextView) findViewById(R.id.tv_tiger_result_name)).setText(getString(R.string.tiger));
+        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dr));
+        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.ti));
+        ((TextView) findViewById(R.id.gd__tv_tie)).setText(getString(R.string.tie));
+        ((TextView) findViewById(R.id.gd__tv_total)).setText(getString(R.string.total_m));
+        ((TextView) findViewById(R.id.gd__tv_dragon_result_name)).setText(getString(R.string.dragon));
+        ((TextView) findViewById(R.id.gd__tv_tiger_result_name)).setText(getString(R.string.tiger));
         tv_dragon_result_name.setText(getString(R.string.dragon));
         tv_tiger_result_name.setText(getString(R.string.tiger));
         initResultAnimation();

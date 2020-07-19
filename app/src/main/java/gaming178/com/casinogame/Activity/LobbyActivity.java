@@ -54,31 +54,31 @@ import gaming178.com.mylibrary.allinone.util.UpdateManager;
  * Created by Administrator on 2016/3/22.
  */
 public class LobbyActivity extends BaseActivity {
-    @BindView(R2.id.img_head)
+    @BindView(R2.id.gd__img_head)
     ImageView imageView;
-    @BindView(R2.id.tv_home_user_name)
+    @BindView(R2.id.gd__tv_home_user_name)
     TextView tv_home_user_name;
-    @BindView(R2.id.tv_home_balance)
+    @BindView(R2.id.gd__tv_home_balance)
     TextView tv_home_balance;
 
-    @BindView(R2.id.iv_set)
+    @BindView(R2.id.gd__iv_set)
     ImageView iv_set;
-    @BindView(R2.id.iv_report)
+    @BindView(R2.id.gd__iv_report)
     ImageView iv_report;
 
-    @BindView(R2.id.iv_language)
+    @BindView(R2.id.gd__iv_language)
     ImageView iv_language;
 
-    @BindView(R2.id.view_center)
+    @BindView(R2.id.gd__view_center)
     View img_home;
-    @BindView(R2.id.iv_logout)
+    @BindView(R2.id.gd__iv_logout)
     ImageView iv_logout;
 
 
-    @BindView(R2.id.gridview_content_gv)
+    @BindView(R2.id.gd__gridview_content_gv)
     RecyclerView gridviewContentGv;
     BaseRecyclerAdapter<HallGameItemBean> adapterViewContent;
-    @BindView(R2.id.hall_game_bottom_prompt_tv)
+    @BindView(R2.id.gd__hall_game_bottom_prompt_tv)
     AutoScrollTextView hallGameBottomPromptTv;
     private BlockDialog dialog;
     private String announcement = "";
@@ -249,12 +249,12 @@ public class LobbyActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hallGameBottomPromptTv.setSelected(true);
         gridviewContentGv.setLayoutManager(new GridLayoutManager(mContext, 3));
-        adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.item_hall_game) {
+        adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
                 Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
-                holder.setImageBitmap(R.id.hall_game_pic_iv, bitmap);
-                holder.setText(R.id.hall_game_title_tv, item.getTitle());
+                holder.setImageBitmap(R.id.gd__hall_game_pic_iv, bitmap);
+                holder.setText(R.id.gd__hall_game_title_tv, item.getTitle());
             }
         };
         gridviewContentGv.setAdapter(adapterViewContent);
@@ -537,30 +537,30 @@ public class LobbyActivity extends BaseActivity {
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
             if (WebSiteUrl.GameType == 0) {
                 if (WebSiteUrl.HEADER.equals("http://202.178.114.15/")) {
-                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.ba1, getString(R.string.baccarat)))));
+                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
                 } else {
-                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.ba1, getString(R.string.baccarat)),
-                            new HallGameItemBean(R.mipmap.longhu, getString(R.string.dragon_tiger)),
-                            new HallGameItemBean(R.mipmap.lunpan, getString(R.string.roulette)),
-                            new HallGameItemBean(R.mipmap.toubao, getString(R.string.sicbo))
+                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)),
+                            new HallGameItemBean(R.mipmap.gd_longhu, getString(R.string.dragon_tiger)),
+                            new HallGameItemBean(R.mipmap.gd_lunpan, getString(R.string.roulette)),
+                            new HallGameItemBean(R.mipmap.gd_toubao, getString(R.string.sicbo))
                     )));
                 }
             } else {
-                adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.ba1, getString(R.string.baccarat)))));
+                adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
             }
         } else {
-            ArrayList<HallGameItemBean> hallGameItemBeenS = new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.ba1, getString(R.string.baccarat)),
-                    new HallGameItemBean(R.mipmap.longhu, getString(R.string.dragon_tiger)),
-                    new HallGameItemBean(R.mipmap.lunpan, getString(R.string.roulette)),
-                    new HallGameItemBean(R.mipmap.toubao, getString(R.string.sicbo)),
-                    new HallGameItemBean(R.mipmap.slots, getString(R.string.slots)),
-                    new HallGameItemBean(R.mipmap.cq_slots, getString(R.string.cq))
+            ArrayList<HallGameItemBean> hallGameItemBeenS = new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)),
+                    new HallGameItemBean(R.mipmap.gd_longhu, getString(R.string.dragon_tiger)),
+                    new HallGameItemBean(R.mipmap.gd_lunpan, getString(R.string.roulette)),
+                    new HallGameItemBean(R.mipmap.gd_toubao, getString(R.string.sicbo)),
+                    new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots)),
+                    new HallGameItemBean(R.mipmap.gd_cq_slots, getString(R.string.cq))
             ));
             if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.cock_fighting, getString(R.string.cock_fighting)));
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, getString(R.string.cock_fighting)));
             }
             if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.sport_afb1188, getString(R.string.afb1188)));
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, getString(R.string.afb1188)));
             }
             adapterViewContent.addAllAndClear(hallGameItemBeenS);
         }
@@ -568,7 +568,7 @@ public class LobbyActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_main_tab;
+        return R.layout.gd_activity_main_tab;
     }
 
     @Override

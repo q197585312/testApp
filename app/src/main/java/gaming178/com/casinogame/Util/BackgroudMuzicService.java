@@ -16,7 +16,7 @@ public class BackgroudMuzicService extends Service {
 	public static final String PLAY_CHANGE_VOLUME = "PLAY_CHANGE_VOLUME";
 	private MediaPlayer mMediaPlayer = null;
 
-	private int[] muzicBackgroudArray = {0, R.raw.bgm1,R.raw.bgm2,R.raw.bgm3};
+	private int[] muzicBackgroudArray = {0, R.raw.gd_bgm1,R.raw.gd_bgm2,R.raw.gd_bgm3};
 
 	private int playIndex = 0;
 	private int volume = -1;

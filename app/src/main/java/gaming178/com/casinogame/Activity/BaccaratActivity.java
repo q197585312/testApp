@@ -131,278 +131,278 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     List<GoodRoadDataBean> goodRoadDataBeenList = new ArrayList<>();
 
 
-    @OnClick(R2.id.iv_baccarat_change_table)
+    @OnClick(R2.id.gd__iv_baccarat_change_table)
     public void clickTable(View v) {
         showChangeTable(v);
     }
 
 
     /*
-        @BindView(R2.id.iv_baccarat_road_handle)
+        @BindView(R2.id.gd__iv_baccarat_road_handle)
         ImageView iv;*/
-    @BindView(R2.id.layout1)
+    @BindView(R2.id.gd__layout1)
     HorizontalScrollView layout1;
-    @BindView(R2.id.baccarat_background_gridlayout1)
+    @BindView(R2.id.gd__baccarat_background_gridlayout1)
     GridBackgroundView baccarat_background_gridlayout1;
-    @BindView(R2.id.baccarat_background_gridlayout1_big)
+    @BindView(R2.id.gd__baccarat_background_gridlayout1_big)
     GridBackgroundView baccarat_background_gridlayout1_big;
-    @BindView(R2.id.ll_big_road_parent2)
+    @BindView(R2.id.gd__ll_big_road_parent2)
     LinearLayout ll_big_road_parent2;
-    @BindView(R2.id.ll_small_road_parent)
+    @BindView(R2.id.gd__ll_small_road_parent)
     LinearLayout ll_small_road_parent;
-    @BindView(R2.id.fl_big_road1)
+    @BindView(R2.id.gd__fl_big_road1)
     View fl_big_road1;
 
-    @BindView(R2.id.hsv_small_road_1)
+    @BindView(R2.id.gd__hsv_small_road_1)
     HorizontalScrollView hsv_small_road_1;
     View fl_small_road_parent1;
     GridBackgroundView smallway_item1;
     GridBackgroundView smallway_item1_big;
-    @BindView(R2.id.hsv_small_road_2)
+    @BindView(R2.id.gd__hsv_small_road_2)
     HorizontalScrollView hsv_small_road_2;
     FrameLayout fl_small_road_parent2;
     GridBackgroundView smallway_item2;
     GridBackgroundView smallway_item2_big;
-    @BindView(R2.id.hsv_small_road_3)
+    @BindView(R2.id.gd__hsv_small_road_3)
     HorizontalScrollView hsv_small_road_3;
     View fl_small_road_parent3;
     GridBackgroundView smallway_item3;
     GridBackgroundView smallway_item3_big;
 
-    @BindView(R2.id.layout2)
+    @BindView(R2.id.gd__layout2)
     View layout2;
-    @BindView(R2.id.baccarat_background_gridlayout2)
+    @BindView(R2.id.gd__baccarat_background_gridlayout2)
     GridBackgroundView baccarat_background_gridlayout2;
-    @BindView(R2.id.baccarat_background_gridlayout2_big)
+    @BindView(R2.id.gd__baccarat_background_gridlayout2_big)
     GridBackgroundView baccarat_background_gridlayout2_big;
 
-    @BindView(R2.id.ll_baccarat_parent)
+    @BindView(R2.id.gd__ll_baccarat_parent)
     View ll_baccarat_parent;
-    @BindView(R2.id.ll_banker_ask)
+    @BindView(R2.id.gd__ll_banker_ask)
     View ll_banker_ask;
-    @BindView(R2.id.ll_player_ask)
+    @BindView(R2.id.gd__ll_player_ask)
     View ll_player_ask;
-    @BindView(R2.id.rl_good_road)
+    @BindView(R2.id.gd__rl_good_road)
     View rl_good_road;
-    @BindView(R2.id.tv_good_road_count)
+    @BindView(R2.id.gd__tv_good_road_count)
     TextView tv_good_road_count;
-    @BindView(R2.id.btn_limit)
+    @BindView(R2.id.gd__btn_limit)
     TextView btn_limit;
-    @BindView(R2.id.ll_bet_btn_parent)
+    @BindView(R2.id.gd__ll_bet_btn_parent)
     LinearLayout ll_bet_btn_parent;
 
-    @BindView(R2.id.fl_bet1_bg)
+    @BindView(R2.id.gd__fl_bet1_bg)
     FrameLayout fl_bet1_bg;
 
-    @BindView(R2.id.fl_baccarat_a_table)
+    @BindView(R2.id.gd__fl_baccarat_a_table)
     View fl_baccarat_a_table;
 
-    @BindView(R2.id.tv_ask1)
+    @BindView(R2.id.gd__tv_ask1)
     TextView tv_ask1;
-    @BindView(R2.id.tv_ask2)
+    @BindView(R2.id.gd__tv_ask2)
     TextView tv_ask2;
-    @BindView(R2.id.tv_ask1_name)
+    @BindView(R2.id.gd__tv_ask1_name)
     TextView tv_ask1_name;
-    @BindView(R2.id.tv_ask2_name)
+    @BindView(R2.id.gd__tv_ask2_name)
     TextView tv_ask2_name;
-    @BindView(R2.id.tv_good_road_name)
+    @BindView(R2.id.gd__tv_good_road_name)
     TextView tv_good_road_name;
 
-    @BindView(R2.id.iv_baccarat_chat_logo)
+    @BindView(R2.id.gd__iv_baccarat_chat_logo)
     TextView iv_baccarat_chat_logo;
-    @BindView(R2.id.fl_baccarat_chat)
+    @BindView(R2.id.gd__fl_baccarat_chat)
     FrameLayout fl_baccarat_chat;
-    @BindView(R2.id.bottomPanel1)
+    @BindView(R2.id.gd__bottomPanel1)
     Panel bottomPanel1;
-    @BindView(R2.id.fl_baccarat_parent)
+    @BindView(R2.id.gd__fl_baccarat_parent)
     View fl_baccarat_parent;
 
-    @BindView(R2.id.iv_baccarat_table_banker)
+    @BindView(R2.id.gd__iv_baccarat_table_banker)
     ImageView iv_baccarat_table_banker;
-    @BindView(R2.id.iv_baccarat_table_player)
+    @BindView(R2.id.gd__iv_baccarat_table_player)
     ImageView iv_baccarat_table_player;
-    @BindView(R2.id.iv_baccarat_table_tie)
+    @BindView(R2.id.gd__iv_baccarat_table_tie)
     ImageView iv_baccarat_table_tie;
-    @BindView(R2.id.iv_baccarat_table_banker_pair)
+    @BindView(R2.id.gd__iv_baccarat_table_banker_pair)
     ImageView iv_baccarat_table_banker_pair;
-    @BindView(R2.id.iv_baccarat_table_player_pair)
+    @BindView(R2.id.gd__iv_baccarat_table_player_pair)
     ImageView iv_baccarat_table_player_pair;
-    @BindView(R2.id.fl_banker_pw_parent)
+    @BindView(R2.id.gd__fl_banker_pw_parent)
     FrameLayout fl_banker_pw_parent;
-    @BindView(R2.id.fl_player_pw_parent)
+    @BindView(R2.id.gd__fl_player_pw_parent)
     FrameLayout fl_player_pw_parent;
-    @BindView(R2.id.v_background_player)
+    @BindView(R2.id.gd__v_background_player)
     View v_background_player;
     @Nullable
-    @BindView(R2.id.img_left_player_rotate)
+    @BindView(R2.id.gd__img_left_player_rotate)
     ImageView img_left_player_rotate;
     @Nullable
-    @BindView(R2.id.img_right_player_rotate)
+    @BindView(R2.id.gd__img_right_player_rotate)
     ImageView img_right_player_rotate;
     @Nullable
-    @BindView(R2.id.img_center_player_rotate)
+    @BindView(R2.id.gd__img_center_player_rotate)
     ImageView img_center_player_rotate;
     @Nullable
-    @BindView(R2.id.img_left_banker_rotate)
+    @BindView(R2.id.gd__img_left_banker_rotate)
     ImageView img_left_banker_rotate;
     @Nullable
-    @BindView(R2.id.img_right_banker_rotate)
+    @BindView(R2.id.gd__img_right_banker_rotate)
     ImageView img_right_banker_rotate;
     @Nullable
-    @BindView(R2.id.img_center_banker_rotate)
+    @BindView(R2.id.gd__img_center_banker_rotate)
     ImageView img_center_banker_rotate;
-    @BindView(R2.id.v_background_banker)
+    @BindView(R2.id.gd__v_background_banker)
     View v_background_banker;
 
-    @BindView(R2.id.iv_poker_center_banker1)
+    @BindView(R2.id.gd__iv_poker_center_banker1)
     ImageView iv_poker_center_banker1;
-    @BindView(R2.id.iv_poker_center_banker2)
+    @BindView(R2.id.gd__iv_poker_center_banker2)
     ImageView iv_poker_center_banker2;
-    @BindView(R2.id.iv_poker_center_banker3)
+    @BindView(R2.id.gd__iv_poker_center_banker3)
     ImageView iv_poker_center_banker3;
-    @BindView(R2.id.iv_poker_center_player1)
+    @BindView(R2.id.gd__iv_poker_center_player1)
     ImageView iv_poker_center_player1;
-    @BindView(R2.id.iv_poker_center_player2)
+    @BindView(R2.id.gd__iv_poker_center_player2)
     ImageView iv_poker_center_player2;
-    @BindView(R2.id.iv_poker_center_player3)
+    @BindView(R2.id.gd__iv_poker_center_player3)
     ImageView iv_poker_center_player3;
 
-    @BindView(R2.id.fl_baccarat_table_player)
+    @BindView(R2.id.gd__fl_baccarat_table_player)
     FrameLayout fl_baccarat_table_player;
-    @BindView(R2.id.fl_baccarat_table_banker)
+    @BindView(R2.id.gd__fl_baccarat_table_banker)
     FrameLayout fl_baccarat_table_banker;
-    @BindView(R2.id.fl_baccarat_table_player_bg)
+    @BindView(R2.id.gd__fl_baccarat_table_player_bg)
     FrameLayout fl_baccarat_table_player_bg;
-    @BindView(R2.id.fl_baccarat_table_banker_bg)
+    @BindView(R2.id.gd__fl_baccarat_table_banker_bg)
     FrameLayout fl_baccarat_table_banker_bg;
 
-    @BindView(R2.id.fl_poker_parent)
+    @BindView(R2.id.gd__fl_poker_parent)
     View fl_poker_parent;
 
 
-    @BindView(R2.id.tv_player_bet_money)
+    @BindView(R2.id.gd__tv_player_bet_money)
     TextView tv_player_bet_money;
-    @BindView(R2.id.tv_banker_bet_money)
+    @BindView(R2.id.gd__tv_banker_bet_money)
     TextView tv_banker_bet_money;
-    @BindView(R2.id.tv_tie_bet_money)
+    @BindView(R2.id.gd__tv_tie_bet_money)
     TextView tv_tie_bet_money;
-    @BindView(R2.id.tv_banker_pair_bet_money)
+    @BindView(R2.id.gd__tv_banker_pair_bet_money)
     TextView tv_banker_pair_bet_money;
-    @BindView(R2.id.tv_player_pair_bet_money)
+    @BindView(R2.id.gd__tv_player_pair_bet_money)
     TextView tv_player_pair_bet_money;
 
-    @BindView(R2.id.tv_player_bet_count)
+    @BindView(R2.id.gd__tv_player_bet_count)
     TextView tv_player_bet_count;
-    @BindView(R2.id.tv_banker_pair_bet_count)
+    @BindView(R2.id.gd__tv_banker_pair_bet_count)
     TextView tv_banker_pair_bet_count;
-    @BindView(R2.id.tv_player_pair_bet_count)
+    @BindView(R2.id.gd__tv_player_pair_bet_count)
     TextView tv_player_pair_bet_count;
-    @BindView(R2.id.tv_banker_bet_count)
+    @BindView(R2.id.gd__tv_banker_bet_count)
     TextView tv_banker_bet_count;
-    @BindView(R2.id.tv_tie_bet_count)
+    @BindView(R2.id.gd__tv_tie_bet_count)
     TextView tv_tie_bet_count;
-    @BindView(R2.id.fl_poker_result)
+    @BindView(R2.id.gd__fl_poker_result)
     FrameLayout fl_poker_result;
 
-    @BindView(R2.id.tv_poker_center_left)
+    @BindView(R2.id.gd__tv_poker_center_left)
     TextView tv_poker_center_left;
 
-    @BindView(R2.id.tv_poker_center_right)
+    @BindView(R2.id.gd__tv_poker_center_right)
     TextView tv_poker_center_right;
 
-    @BindView(R2.id.tv_table_bet_replay)
+    @BindView(R2.id.gd__tv_table_bet_replay)
     TextView tvTableBetReplay;
-    @BindView(R2.id.tv_table_bet_sure)
+    @BindView(R2.id.gd__tv_table_bet_sure)
     TextView tvTableBetSure;
-    @BindView(R2.id.tv_table_bet_cancel)
+    @BindView(R2.id.gd__tv_table_bet_cancel)
     TextView tvTableBetCancel;
-    /* @BindView(R2.id.tv_table_bet_pol)
+    /* @BindView(R2.id.gd__tv_table_bet_pol)
      TextView tvTableBetPol;*/
-    @BindView(R2.id.leftPanel1)
+    @BindView(R2.id.gd__leftPanel1)
     Panel leftPanel1;
-    @BindView(R2.id.handle1)
+    @BindView(R2.id.gd__handle1)
     View handle1;
-    @BindView(R2.id.lv_table_pool)
+    @BindView(R2.id.gd__lv_table_pool)
     ListView lv_table_pool;
-    @BindView(R2.id.lv_person_bet_info)
+    @BindView(R2.id.gd__lv_person_bet_info)
     ListView lv_person_bet_info;
-    @BindView(R2.id.lv_table_bet_limit_red)
+    @BindView(R2.id.gd__lv_table_bet_limit_red)
     ListView lvTableBetLimitRed;
-    /*  @BindView(R2.id.ll_chip_parent)
+    /*  @BindView(R2.id.gd__ll_chip_parent)
       LinearLayout ll_chip_parent;*/
-    @BindView(R2.id.tv_table_timer)
+    @BindView(R2.id.gd__tv_table_timer)
     TextView tv_table_timer;
-    @BindView(R2.id.tv_mi_timer)
+    @BindView(R2.id.gd__tv_mi_timer)
     TextView tv_mi_timer;
-    @BindView(R2.id.countdown_view)
+    @BindView(R2.id.gd__countdown_view)
     CountDownView countdown_view;
-    @BindView(R2.id.tv_menu)
+    @BindView(R2.id.gd__tv_menu)
     TextView tvMenu;
 
-    @BindView(R2.id.fl_poker_bottom_parent)
+    @BindView(R2.id.gd__fl_poker_bottom_parent)
     View fl_poker_bottom_parent;
-    @BindView(R2.id.rb_chat_usual)
+    @BindView(R2.id.gd__rb_chat_usual)
     RadioButton rbChatUsual;
-    @BindView(R2.id.rb_chat_emoticons)
+    @BindView(R2.id.gd__rb_chat_emoticons)
     RadioButton rbChatEmoticons;
-    @BindView(R2.id.rb_chat_content)
+    @BindView(R2.id.gd__rb_chat_content)
     RadioButton rbChatContent;
-    @BindView(R2.id.rg_chat_parent)
+    @BindView(R2.id.gd__rg_chat_parent)
     RadioGroup rgChatParent;
-    @BindView(R2.id.lv_chat_usual)
+    @BindView(R2.id.gd__lv_chat_usual)
     ListView lvChatUsual;
-    @BindView(R2.id.fl_chat_emoticons)
+    @BindView(R2.id.gd__fl_chat_emoticons)
     FrameLayout gvChatEmoticons;
-    @BindView(R2.id.lv_chat_content)
+    @BindView(R2.id.gd__lv_chat_content)
     ListView lvChatContent;
-    @BindView(R2.id.edt_chat_content)
+    @BindView(R2.id.gd__edt_chat_content)
     EditText edtChatContent;
-    @BindView(R2.id.btn_chat_send)
+    @BindView(R2.id.gd__btn_chat_send)
     TextView btnChatSend;
-    @BindView(R2.id.ll_chat_content)
+    @BindView(R2.id.gd__ll_chat_content)
     LinearLayout llChatContent;
-    @BindView(R2.id.FaceRelativeLayout)
+    @BindView(R2.id.gd__FaceRelativeLayout)
     FaceRelativeLayout faceLayout;
-    @BindView(R2.id.tv_table_game_number)
+    @BindView(R2.id.gd__tv_table_game_number)
     TextView tv_table_game_number;
-    @BindView(R2.id.tv_table_game_number1)
+    @BindView(R2.id.gd__tv_table_game_number1)
     TextView tv_table_game_number1;
-    @BindView(R2.id.tv_service_time)
+    @BindView(R2.id.gd__tv_service_time)
     TextView serviceTime;
-    @BindView(R2.id.ll_result)
+    @BindView(R2.id.gd__ll_result)
     LinearLayout ll_result;
-    @BindView(R2.id.tv_player_result)
+    @BindView(R2.id.gd__tv_player_result)
     TextView tv_player_result;
-    @BindView(R2.id.tv_banker_result)
+    @BindView(R2.id.gd__tv_banker_result)
     TextView tv_banker_result;
-    @BindView(R2.id.img_apng_player)
+    @BindView(R2.id.gd__img_apng_player)
     ApngImageView img_apng_player;
-    @BindView(R2.id.img_apng_tie)
+    @BindView(R2.id.gd__img_apng_tie)
     ApngImageView img_apng_tie;
-    @BindView(R2.id.img_apng_banker)
+    @BindView(R2.id.gd__img_apng_banker)
     ApngImageView img_apng_banker;
-    @BindView(R2.id.img_player_animation)
+    @BindView(R2.id.gd__img_player_animation)
     ImageView img_player_animation;
-    @BindView(R2.id.img_banker_animation)
+    @BindView(R2.id.gd__img_banker_animation)
     ImageView img_banker_animation;
-    @BindView(R2.id.rl_player_parent)
+    @BindView(R2.id.gd__rl_player_parent)
     RelativeLayout rl_player_parent;
-    @BindView(R2.id.rl_banker_parent)
+    @BindView(R2.id.gd__rl_banker_parent)
     RelativeLayout rl_banker_parent;
-    @BindView(R2.id.tv_player_result_name)
+    @BindView(R2.id.gd__tv_player_result_name)
     TextView tv_player_result_name;
-    @BindView(R2.id.tv_banker_result_name)
+    @BindView(R2.id.gd__tv_banker_result_name)
     TextView tv_banker_result_name;
 
-    @BindView(R2.id.img_bet_bg_pp)
+    @BindView(R2.id.gd__img_bet_bg_pp)
     ImageView img_bet_bg_pp;
-    @BindView(R2.id.img_bet_bg_bp)
+    @BindView(R2.id.gd__img_bet_bg_bp)
     ImageView img_bet_bg_bp;
-    @BindView(R2.id.img_bet_bg_p)
+    @BindView(R2.id.gd__img_bet_bg_p)
     ImageView img_bet_bg_p;
-    @BindView(R2.id.img_bet_bg_t)
+    @BindView(R2.id.gd__img_bet_bg_t)
     ImageView img_bet_bg_t;
-    @BindView(R2.id.img_bet_bg_b)
+    @BindView(R2.id.gd__img_bet_bg_b)
     ImageView img_bet_bg_b;
 
     private AnimationDrawable animationPlayer;
@@ -1068,7 +1068,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             }
             toolbar.setNavigationIcon(null);
         } else {
-            toolbar.setNavigationIcon(R.mipmap.back_black);
+            toolbar.setNavigationIcon(R.mipmap.gd_back_black);
         }
         showHideUserInfo();
         allClose = b;
@@ -1682,17 +1682,17 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     private int getGoodRoadPic(String name) {
         if (name.equals(getString(R.string.GoodRoad_1))) {
-            return R.mipmap.img_road1;
+            return R.mipmap.gd_img_road1;
         } else if (name.equals(getString(R.string.GoodRoad_2))) {
-            return R.mipmap.img_road2;
+            return R.mipmap.gd_img_road2;
         } else if (name.equals(getString(R.string.GoodRoad_3))) {
-            return R.mipmap.img_road3;
+            return R.mipmap.gd_img_road3;
         } else if (name.equals(getString(R.string.GoodRoad_4))) {
-            return R.mipmap.img_road4;
+            return R.mipmap.gd_img_road4;
         } else if (name.equals(getString(R.string.GoodRoad_5))) {
-            return R.mipmap.img_road5;
+            return R.mipmap.gd_img_road5;
         } else if (name.equals(getString(R.string.GoodRoad_6))) {
-            return R.mipmap.img_road6;
+            return R.mipmap.gd_img_road6;
         }
         return 0;
     }
@@ -2143,51 +2143,51 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         switch (index) {
             case "1":
                 if (userNname.equals(name)) {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_me1);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_me1);
                 } else {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_other1);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_other1);
                 }
                 break;
             case "2":
                 if (userNname.equals(name)) {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_me2);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_me2);
                 } else {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_other2);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_other2);
                 }
                 break;
             case "3":
                 if (userNname.equals(name)) {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_me3);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_me3);
                 } else {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_other3);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_other3);
                 }
                 break;
             case "5":
                 if (userNname.equals(name)) {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_me5);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_me5);
                 } else {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_other5);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_other5);
                 }
                 break;
             case "6":
                 if (userNname.equals(name)) {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_me6);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_me6);
                 } else {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_other6);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_other6);
                 }
                 break;
             case "7":
                 if (userNname.equals(name)) {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_me7);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_me7);
                 } else {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_other7);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_other7);
                 }
                 break;
             case "8":
                 if (userNname.equals(name)) {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_me8);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_me8);
                 } else {
-                    fl.setBackgroundResource(R.mipmap.baccarat_name_bg_other8);
+                    fl.setBackgroundResource(R.mipmap.gd_baccarat_name_bg_other8);
                 }
                 break;
         }
@@ -2434,7 +2434,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (betTypeList == null) {
             betTypeList = new ArrayList<>();
         }
-        shufflingTv = (TextView) findViewById(R.id.tv_shuffling);
+        shufflingTv = (TextView) findViewById(R.id.gd__tv_shuffling);
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             shufflingTv.post(new Runnable() {
                 @Override
@@ -2462,9 +2462,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
 
         fl_bet1_bg.setVisibility(View.VISIBLE);
-        fl_baccarat_table_tie = (FrameLayout) fl_bet1_bg.findViewById(R.id.fl_baccarat_table_tie);
-        fl_baccarat_table_player_pair = (FrameLayout) fl_bet1_bg.findViewById(R.id.fl_baccarat_table_player_pair);
-        fl_baccarat_table_banker_pair = (FrameLayout) fl_bet1_bg.findViewById(R.id.fl_baccarat_table_banker_pair);
+        fl_baccarat_table_tie = (FrameLayout) fl_bet1_bg.findViewById(R.id.gd__fl_baccarat_table_tie);
+        fl_baccarat_table_player_pair = (FrameLayout) fl_bet1_bg.findViewById(R.id.gd__fl_baccarat_table_player_pair);
+        fl_baccarat_table_banker_pair = (FrameLayout) fl_bet1_bg.findViewById(R.id.gd__fl_baccarat_table_banker_pair);
 //            R.layout.include_baccarat_bet2_table
 
 
@@ -2729,7 +2729,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             moneyTv.setTextSize(6);
             moneyTv.setGravity(Gravity.CENTER);
             moneyTv.setTextColor(Color.WHITE);
-            moneyTv.setBackgroundResource(R.drawable.rectangle_trans_chip_tips);
+            moneyTv.setBackgroundResource(R.drawable.gd_rectangle_trans_chip_tips);
             fl.addView(moneyTv);
         }
     }
@@ -2781,8 +2781,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         super.initOrientation();
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            lv_baccarat_chips = (AdapterView) findViewById(R.id.lv_baccarat_chips);
-            lv_baccarat_chips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
+//            lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips);
+            lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
             toolbar.post(new Runnable() {
                 @Override
                 public void run() {
@@ -2794,7 +2794,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             {
 
-                lv_baccarat_chips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
+                lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
                 leftPanel1.setOpen(true, true);
 
             }
@@ -2842,53 +2842,53 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
 
         density = ScreenUtil.getDisplayMetrics(mContext).density;
-        baccarat_head_road = (GridLayout) findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road = (GridLayout) findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road = (GridLayout) findViewById(R.id.baccarat_gridlayout3);
-        fl_small_road_parent1 = findViewById(R.id.fl_small_road_parent);
-        smallway_item1 = findViewById(R.id.smallway_item);
-        smallway_item1_big = findViewById(R.id.smallway_item_big);
-        baccarat_smalleyes_road = findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        fl_small_road_parent2 = findViewById(R.id.baccarat_gridlayout4);
-        smallway_item2 = findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.smallway_item);
-        smallway_item2_big = findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.smallway_item_big);
-        baccarat_roach_road = (GridLayout) findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
-        fl_small_road_parent3 = findViewById(R.id.baccarat_gridlayout5);
-        smallway_item3 = findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.smallway_item);
-        smallway_item3_big = findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.smallway_item_big);
-        tv_baccarat_shoe_number = (TextView) findViewById(R.id.text_shoe_game_number);
+        baccarat_head_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout3);
+        fl_small_road_parent1 = findViewById(R.id.gd__fl_small_road_parent);
+        smallway_item1 = findViewById(R.id.gd__smallway_item);
+        smallway_item1_big = findViewById(R.id.gd__smallway_item_big);
+        baccarat_smalleyes_road = findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        fl_small_road_parent2 = findViewById(R.id.gd__baccarat_gridlayout4);
+        smallway_item2 = findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__smallway_item);
+        smallway_item2_big = findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__smallway_item_big);
+        baccarat_roach_road = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
+        fl_small_road_parent3 = findViewById(R.id.gd__baccarat_gridlayout5);
+        smallway_item3 = findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__smallway_item);
+        smallway_item3_big = findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__smallway_item_big);
+        tv_baccarat_shoe_number = (TextView) findViewById(R.id.gd__text_shoe_game_number);
 
-        tv_baccarat_total_number = (TextView) findViewById(R.id.text_total);
-        tv_baccarat_banker_number = (TextView) findViewById(R.id.text_banker);
-        tv_baccarat_player_number = (TextView) findViewById(R.id.text_player);
-        tv_baccarat_tie_number = (TextView) findViewById(R.id.text_tie);
-        tv_baccarat_bp_number = (TextView) findViewById(R.id.text_bp);
-        tv_baccarat_pp_number = (TextView) findViewById(R.id.text_pp);
+        tv_baccarat_total_number = (TextView) findViewById(R.id.gd__text_total);
+        tv_baccarat_banker_number = (TextView) findViewById(R.id.gd__text_banker);
+        tv_baccarat_player_number = (TextView) findViewById(R.id.gd__text_player);
+        tv_baccarat_tie_number = (TextView) findViewById(R.id.gd__text_tie);
+        tv_baccarat_bp_number = (TextView) findViewById(R.id.gd__text_bp);
+        tv_baccarat_pp_number = (TextView) findViewById(R.id.gd__text_pp);
 
-        iv_poker_player1 = (ImageView) findViewById(R.id.iv_poker_player1_a1);
-        iv_poker_player2 = (ImageView) findViewById(R.id.iv_poker_player2_a1);
-        iv_poker_player3 = (ImageView) findViewById(R.id.iv_poker_player3_a1);
-        iv_poker_banker1 = (ImageView) findViewById(R.id.iv_poker_banker1_a1);
-        iv_poker_banker2 = (ImageView) findViewById(R.id.iv_poker_banker2_a1);
-        iv_poker_banker3 = (ImageView) findViewById(R.id.iv_poker_banker3_a1);
+        iv_poker_player1 = (ImageView) findViewById(R.id.gd__iv_poker_player1_a1);
+        iv_poker_player2 = (ImageView) findViewById(R.id.gd__iv_poker_player2_a1);
+        iv_poker_player3 = (ImageView) findViewById(R.id.gd__iv_poker_player3_a1);
+        iv_poker_banker1 = (ImageView) findViewById(R.id.gd__iv_poker_banker1_a1);
+        iv_poker_banker2 = (ImageView) findViewById(R.id.gd__iv_poker_banker2_a1);
+        iv_poker_banker3 = (ImageView) findViewById(R.id.gd__iv_poker_banker3_a1);
 
-        ll_poker_pw = ((LinearLayout) findViewById(R.id.ll_poker_pw));
-        ll_poker_parent = ((FrameLayout) findViewById(R.id.ll_poker_parent_a));
+        ll_poker_pw = ((LinearLayout) findViewById(R.id.gd__ll_poker_pw));
+        ll_poker_parent = ((FrameLayout) findViewById(R.id.gd__ll_poker_parent_a));
 
 
         llCenter.setVisibility(View.VISIBLE);
 
-        tv_point_player = (TextView) findViewById(R.id.tv_bottom_panel_left_a);
-        tv_point_banker = (TextView) findViewById(R.id.tv_bottom_panel_right_a);
+        tv_point_player = (TextView) findViewById(R.id.gd__tv_bottom_panel_left_a);
+        tv_point_banker = (TextView) findViewById(R.id.gd__tv_bottom_panel_right_a);
 
-        pw_poker_banker1 = (PageWidgetT) findViewById(R.id.page_widget_poker_banker1);
-        pw_poker_banker2 = (PageWidgetT) findViewById(R.id.page_widget_poker_banker2);
-        pw_poker_banker3 = (PageWidgetT) findViewById(R.id.page_widget_poker_banker3);
+        pw_poker_banker1 = (PageWidgetT) findViewById(R.id.gd__page_widget_poker_banker1);
+        pw_poker_banker2 = (PageWidgetT) findViewById(R.id.gd__page_widget_poker_banker2);
+        pw_poker_banker3 = (PageWidgetT) findViewById(R.id.gd__page_widget_poker_banker3);
 
-        pw_poker_player1 = (PageWidgetT) findViewById(R.id.page_widget_poker_player1);
-        pw_poker_player2 = (PageWidgetT) findViewById(R.id.page_widget_poker_player2);
-        pw_poker_player3 = (PageWidgetT) findViewById(R.id.page_widget_poker_player3);
-        tv_poker_timer = (TextView) findViewById(R.id.tv_poker_timer);
+        pw_poker_player1 = (PageWidgetT) findViewById(R.id.gd__page_widget_poker_player1);
+        pw_poker_player2 = (PageWidgetT) findViewById(R.id.gd__page_widget_poker_player2);
+        pw_poker_player3 = (PageWidgetT) findViewById(R.id.gd__page_widget_poker_player3);
+        tv_poker_timer = (TextView) findViewById(R.id.gd__tv_poker_timer);
 
 
 //        LinearLayout.LayoutParams lp= (LinearLayout.LayoutParams) serviceTime.getLayoutParams();
@@ -2913,12 +2913,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             xSkizeB3 = 0.17f;
             animationHeight = -400;
         }
-//            iv_poker_player1.setLayoutParams(findViewById(R.id.iv_poker_player1_a1).getLayoutParams());
-//            iv_poker_player2.setLayoutParams(findViewById(R.id.iv_poker_player2_a1).getLayoutParams());
-//            iv_poker_player3.setLayoutParams(findViewById(R.id.iv_poker_player3_a1).getLayoutParams());
-//            iv_poker_banker1.setLayoutParams(findViewById(R.id.iv_poker_banker1_a1).getLayoutParams());
-//            iv_poker_banker2.setLayoutParams(findViewById(R.id.iv_poker_banker2_a1).getLayoutParams());
-//            iv_poker_banker3.setLayoutParams(findViewById(R.id.iv_poker_banker3_a1).getLayoutParams());
+//            iv_poker_player1.setLayoutParams(findViewById(R.id.gd__iv_poker_player1_a1).getLayoutParams());
+//            iv_poker_player2.setLayoutParams(findViewById(R.id.gd__iv_poker_player2_a1).getLayoutParams());
+//            iv_poker_player3.setLayoutParams(findViewById(R.id.gd__iv_poker_player3_a1).getLayoutParams());
+//            iv_poker_banker1.setLayoutParams(findViewById(R.id.gd__iv_poker_banker1_a1).getLayoutParams());
+//            iv_poker_banker2.setLayoutParams(findViewById(R.id.gd__iv_poker_banker2_a1).getLayoutParams());
+//            iv_poker_banker3.setLayoutParams(findViewById(R.id.gd__iv_poker_banker3_a1).getLayoutParams());
 
 
     }
@@ -3173,13 +3173,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chips.setBaseAdapter(new QuickAdapterImp<ChipBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_image_chip;
+                return R.layout.gd_item_image_chip;
             }
 
             @Override
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
-                ImageView chipImg = helper.retrieveView(R.id.iv_chip_pic);
-                final LinearLayout llParent = helper.retrieveView(R.id.ll_chip_parent);
+                ImageView chipImg = helper.retrieveView(R.id.gd__iv_chip_pic);
+                final LinearLayout llParent = helper.retrieveView(R.id.gd__ll_chip_parent);
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     llParent.post(new Runnable() {
                         @Override
@@ -3213,24 +3213,24 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     llParent.setLayoutParams(layoutParams);
                     chipImg.setImageResource(item.getDrawableRes());
                 }
-                helper.setText(R.id.tv_chip_amount, item.getName());
+                helper.setText(R.id.gd__tv_chip_amount, item.getName());
                 if (currentShufflingStatus == 1) {
                     if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
                         layoutParams.width = (int) (layoutParams.width * 1.2);
                         layoutParams.height = (int) (layoutParams.height * 1.2);
                         chipImg.setLayoutParams(layoutParams);
-                        helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
+                        helper.setBackgroundRes(R.id.gd__ll_chip_parent, R.drawable.gd_rectangle_trans_stroke_yellow);
                     } else {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
                         layoutParams.width = ScreenUtil.dip2px(mContext, 50);
                         layoutParams.height = ScreenUtil.dip2px(mContext, 50);
                         chipImg.setLayoutParams(layoutParams);
-                        helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                        helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                     }
                 } else {
                     selectedMap = new HashMap<>();
-                    helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                    helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                 }
             }
         });
@@ -3390,12 +3390,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         contentList.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_live_info;
+                return R.layout.gd_item_live_info;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_type);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_type);
                 tvType.setText(item.getType());
                 switch (position) {
                     case 0:
@@ -3414,9 +3414,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         tvType.setTextColor(ContextCompat.getColor(mContext, R.color.blue_300));
                         break;
                 }
-                helper.setText(R.id.tv_value, item.getValue1() + "  -  " + item.getValue2());
-                helper.setTextColor(R.id.tv_value, getResources().getColor(R.color.yellow_gold));
-                helper.setVisibility(R.id.tv_value2, View.GONE);
+                helper.setText(R.id.gd__tv_value, item.getValue1() + "  -  " + item.getValue2());
+                helper.setTextColor(R.id.gd__tv_value, getResources().getColor(R.color.yellow_gold));
+                helper.setVisibility(R.id.gd__tv_value2, View.GONE);
 
             }
         });
@@ -3467,13 +3467,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info;
+                return R.layout.gd_item_user_info;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
                 switch (position) {
@@ -3568,12 +3568,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         contentBetPool.setBaseAdapter(new QuickAdapterImp<String>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_limit_red_text;
+                return R.layout.gd_item_limit_red_text;
             }
 
             @Override
             public void convert(ViewHolder helper, String item, int position) {
-                TextView tv = helper.retrieveView(R.id.text_tv1);
+                TextView tv = helper.retrieveView(R.id.gd__text_tv1);
                 tv.setTextSize(10);
                 tv.setText(item);
                 tv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
@@ -3585,18 +3585,18 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     @Override
     protected int getLayoutRes() {
 
-        return R.layout.activity_baccarat_bet_game;
+        return R.layout.gd_activity_baccarat_bet_game;
     }
 
     public void startPlayVideo() {
         if (mPreview == null) {
-            mPreview = findViewById(R.id.surface);
+            mPreview = findViewById(R.id.gd__surface);
             videoHelper = new VideoHelper(mContext, mPreview) {
                 @Override
                 public void doVideoFix() {
                     super.doVideoFix();
-                    if (findViewById(R.id.fl_baccarat_bg) != null)
-                        findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
+                    if (findViewById(R.id.gd__fl_baccarat_bg) != null)
+                        findViewById(R.id.gd__fl_baccarat_bg).setVisibility(View.GONE);
                 }
             };
         }
@@ -3686,16 +3686,16 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     PopupWindow userBetPop;
 
     public void showUpPop() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_baccarat_b_bet, null);
-        TextView tv_player_money = (TextView) view.findViewById(R.id.tv_player_money);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.gd_layout_baccarat_b_bet, null);
+        TextView tv_player_money = (TextView) view.findViewById(R.id.gd__tv_player_money);
         tv_player_money.setText(playerBetMsg);
-        TextView tv_player_pair_money = (TextView) view.findViewById(R.id.tv_player_pair_money);
+        TextView tv_player_pair_money = (TextView) view.findViewById(R.id.gd__tv_player_pair_money);
         tv_player_pair_money.setText(ppBetMsg);
-        TextView tv_tie_money = (TextView) view.findViewById(R.id.tv_tie_money);
+        TextView tv_tie_money = (TextView) view.findViewById(R.id.gd__tv_tie_money);
         tv_tie_money.setText(tieBetMsg);
-        TextView tv_banker_pair_money = (TextView) view.findViewById(R.id.tv_banker_pair_money);
+        TextView tv_banker_pair_money = (TextView) view.findViewById(R.id.gd__tv_banker_pair_money);
         tv_banker_pair_money.setText(bpBetMsg);
-        TextView tv_banker_money = (TextView) view.findViewById(R.id.tv_banker_money);
+        TextView tv_banker_money = (TextView) view.findViewById(R.id.gd__tv_banker_money);
         tv_banker_money.setText(bankerBetMsg);
         userBetPop = new PopupWindow(view, 300, 400);
 // 允许点击外部消失
@@ -3779,19 +3779,19 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     betTypeList.add(getPlayerBetTypeBean(bean));
                 }
             }
-            View view = LayoutInflater.from(mContext).inflate(R.layout.popupwindow_list_bet_people, null);
-            ListView listView = (ListView) view.findViewById(R.id.lv_people_bet_info);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.gd_popupwindow_list_bet_people, null);
+            ListView listView = (ListView) view.findViewById(R.id.gd__lv_people_bet_info);
             AdapterViewContent<BaccaratPlayerBetTypeBean> adapterViewContent = new AdapterViewContent<BaccaratPlayerBetTypeBean>(mContext, listView);
             adapterViewContent.setBaseAdapter(new QuickAdapterImp<BaccaratPlayerBetTypeBean>() {
                 @Override
                 public int getBaseItemResource() {
-                    return R.layout.item_baccarat_player_bet;
+                    return R.layout.gd_item_baccarat_player_bet;
                 }
 
                 @Override
                 public void convert(ViewHolder helper, BaccaratPlayerBetTypeBean item, int position) {
-                    helper.setText(R.id.tv_player_name, item.getName());
-                    helper.setText(R.id.tv_player_money, item.getMoney() + "");
+                    helper.setText(R.id.gd__tv_player_name, item.getName());
+                    helper.setText(R.id.gd__tv_player_money, item.getMoney() + "");
                 }
             });
             adapterViewContent.setData(betTypeList);
@@ -3965,9 +3965,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "P");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_v_p);
             } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_h_p);
             }
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             chipHelperCurrent.showChip(betMoney, chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
@@ -4025,9 +4025,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "B");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_v_b);
             } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_h_b);
             }
             chipHelperCurrent.showChip(betMoney, -chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -4090,9 +4090,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "T");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_v_t);
             } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_h_t);
             }
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -4121,9 +4121,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "PP");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_v_pp);
             } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_h_pp);
             }
             chipHelperCurrent.showChip(betMoney, chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerPairBet = betMoney;
@@ -4152,9 +4152,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "BB");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_v_bp);
             } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_h_bp);
             }
             chipHelperCurrent.showChip(betMoney, -chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -4276,9 +4276,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 1) {
 //            iv_baccarat_table_banker.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_v_b);
             } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_h_b);
             }
             if (objectAnimatorB.isRunning()) {
                 objectAnimatorB.cancel();
@@ -4292,9 +4292,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 2) {
             showApng(0);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_v_p);
             } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_h_p);
             }
             animationPlayer.start();
 //            iv_baccarat_table_player.setVisibility(View.VISIBLE);
@@ -4309,9 +4309,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             showApng(1);
 //            iv_baccarat_table_tie.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_v_t);
             } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_h_t);
             }
             if (objectAnimatorT.isRunning()) {
                 objectAnimatorT.cancel();
@@ -4324,9 +4324,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBankerPair() == 1) {
 //            iv_baccarat_table_banker_pair.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_v_bp);
             } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_h_bp);
             }
             if (objectAnimatorBP.isRunning()) {
                 objectAnimatorBP.cancel();
@@ -4338,9 +4338,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getPlayerPair() == 1) {
 //            iv_baccarat_table_player_pair.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_v_pp);
             } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_h_pp);
             }
             if (objectAnimatorPP.isRunning()) {
                 objectAnimatorPP.cancel();
@@ -4555,12 +4555,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         ll_poker_pw.setVisibility(View.VISIBLE);
         if (gamePokerMap.get(gameIdNumber) == null) {
 
-            pw_poker_banker1.setImageCurRes(R.mipmap.poker_bg);
-            pw_poker_banker2.setImageCurRes(R.mipmap.poker_bg);
-            pw_poker_banker3.setImageCurRes(R.mipmap.poker_bg);
-            pw_poker_player1.setImageCurRes(R.mipmap.poker_bg);
-            pw_poker_player2.setImageCurRes(R.mipmap.poker_bg);
-            pw_poker_player3.setImageCurRes(R.mipmap.poker_bg);
+            pw_poker_banker1.setImageCurRes(R.mipmap.gd_poker_bg);
+            pw_poker_banker2.setImageCurRes(R.mipmap.gd_poker_bg);
+            pw_poker_banker3.setImageCurRes(R.mipmap.gd_poker_bg);
+            pw_poker_player1.setImageCurRes(R.mipmap.gd_poker_bg);
+            pw_poker_player2.setImageCurRes(R.mipmap.gd_poker_bg);
+            pw_poker_player3.setImageCurRes(R.mipmap.gd_poker_bg);
 
             pw_poker_banker1.coverPic();
             pw_poker_banker1.setVisibility(View.GONE);
@@ -4603,7 +4603,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 pw_poker_banker1.setImageNextRes(getPokerResource(getBanker1()));
 
                 iv_poker_center_banker1.setVisibility(View.VISIBLE);
-                iv_poker_center_banker1.setImageResource(R.mipmap.poker_bg);
+                iv_poker_center_banker1.setImageResource(R.mipmap.gd_poker_bg);
 
                 pw_poker_banker1.setFlipCallBack(new flipCallBack() {
                     @Override
@@ -4625,7 +4625,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     }
                 });
                 iv_poker_center_banker2.setVisibility(View.VISIBLE);
-                iv_poker_center_banker2.setImageResource(R.mipmap.poker_bg);
+                iv_poker_center_banker2.setImageResource(R.mipmap.gd_poker_bg);
                 pw_poker_banker2.setImageNextRes(getPokerResource(getBanker2()));
                 pw_poker_banker2.setFlipCallBack(new flipCallBack() {
                     @Override
@@ -4647,7 +4647,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     }
                 });
                 iv_poker_center_player1.setVisibility(View.VISIBLE);
-                iv_poker_center_player1.setImageResource(R.mipmap.poker_bg);
+                iv_poker_center_player1.setImageResource(R.mipmap.gd_poker_bg);
 
                 pw_poker_player1.setImageNextRes(getPokerResource(getPlayer1()));
                 pw_poker_player1.setFlipCallBack(new flipCallBack() {
@@ -4671,7 +4671,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 });
 
                 iv_poker_center_player2.setVisibility(View.VISIBLE);
-                iv_poker_center_player2.setImageResource(R.mipmap.poker_bg);
+                iv_poker_center_player2.setImageResource(R.mipmap.gd_poker_bg);
                 pw_poker_player2.setImageNextRes(getPokerResource(getPlayer2()));
                 pw_poker_player2.setFlipCallBack(new flipCallBack() {
                     @Override
@@ -4739,15 +4739,15 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
                         img_center_player_rotate.setVisibility(View.VISIBLE);
 
-                        pw_poker_player3.setImageRes(R.mipmap.poker_bg, getPokerResource(getPlayer3()));
+                        pw_poker_player3.setImageRes(R.mipmap.gd_poker_bg, getPokerResource(getPlayer3()));
 
                         pw_poker_banker3.setVisibility(View.VISIBLE);
 
                         img_center_banker_rotate.setVisibility(View.VISIBLE);
 
-                        pw_poker_banker3.setImageRes(R.mipmap.poker_bg, getPokerResource(getBanker3()));
+                        pw_poker_banker3.setImageRes(R.mipmap.gd_poker_bg, getPokerResource(getBanker3()));
                         iv_poker_center_banker3.setVisibility(View.VISIBLE);
-                        iv_poker_center_banker3.setImageResource(R.mipmap.poker_bg);
+                        iv_poker_center_banker3.setImageResource(R.mipmap.gd_poker_bg);
                         BitmapDrawable draw = (BitmapDrawable) iv_poker_center_banker3.getDrawable();
                         iv_poker_center_banker3.setImageBitmap(BitmapTool.toturn(draw.getBitmap(), 90));
                         pw_poker_banker3.setFlipCallBack(new flipCallBack() {
@@ -4768,7 +4768,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         });
 
                         iv_poker_center_player3.setVisibility(View.VISIBLE);
-                        iv_poker_center_player3.setImageResource(R.mipmap.poker_bg);
+                        iv_poker_center_player3.setImageResource(R.mipmap.gd_poker_bg);
                         BitmapDrawable draw3 = (BitmapDrawable) iv_poker_center_player3.getDrawable();
                         iv_poker_center_player3.setImageBitmap(BitmapTool.toturn(draw3.getBitmap(), 90));
                         pw_poker_player3.setFlipCallBack(new flipCallBack() {
@@ -4821,10 +4821,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     setAppImage();
                     pw_poker_banker3.setVisibility(View.VISIBLE);
                     img_center_banker_rotate.setVisibility(View.VISIBLE);
-                    pw_poker_banker3.setImageRes(R.mipmap.poker_bg, getPokerResource(getBanker3()));
+                    pw_poker_banker3.setImageRes(R.mipmap.gd_poker_bg, getPokerResource(getBanker3()));
 
                     iv_poker_center_banker3.setVisibility(View.VISIBLE);
-                    iv_poker_center_banker3.setImageResource(R.mipmap.poker_bg);
+                    iv_poker_center_banker3.setImageResource(R.mipmap.gd_poker_bg);
                     BitmapDrawable draw3 = (BitmapDrawable) iv_poker_center_banker3.getDrawable();
                     iv_poker_center_banker3.setImageBitmap(BitmapTool.toturn(draw3.getBitmap(), 90));
 
@@ -4874,10 +4874,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
                     img_center_player_rotate.setVisibility(View.VISIBLE);
 
-                    pw_poker_player3.setImageRes(R.mipmap.poker_bg, getPokerResource(getPlayer3()));
+                    pw_poker_player3.setImageRes(R.mipmap.gd_poker_bg, getPokerResource(getPlayer3()));
 
                     iv_poker_center_player3.setVisibility(View.VISIBLE);
-                    iv_poker_center_player3.setImageResource(R.mipmap.poker_bg);
+                    iv_poker_center_player3.setImageResource(R.mipmap.gd_poker_bg);
                     BitmapDrawable draw3 = (BitmapDrawable) iv_poker_center_player3.getDrawable();
                     iv_poker_center_player3.setImageBitmap(BitmapTool.toturn(draw3.getBitmap(), 90));
                     pw_poker_player3.setFlipCallBack(new flipCallBack() {
@@ -5101,160 +5101,160 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int poker_res = 0;
         switch (poker) {
             case 1:
-                poker_res = R.mipmap.pk_1;
+                poker_res = R.mipmap.gd_pk_1;
                 break;
             case 2:
-                poker_res = R.mipmap.pk_2;
+                poker_res = R.mipmap.gd_pk_2;
                 break;
             case 3:
-                poker_res = R.mipmap.pk_3;
+                poker_res = R.mipmap.gd_pk_3;
                 break;
             case 4:
-                poker_res = R.mipmap.pk_4;
+                poker_res = R.mipmap.gd_pk_4;
                 break;
             case 5:
-                poker_res = R.mipmap.pk_5;
+                poker_res = R.mipmap.gd_pk_5;
                 break;
             case 6:
-                poker_res = R.mipmap.pk_6;
+                poker_res = R.mipmap.gd_pk_6;
                 break;
             case 7:
-                poker_res = R.mipmap.pk_7;
+                poker_res = R.mipmap.gd_pk_7;
                 break;
             case 8:
-                poker_res = R.mipmap.pk_8;
+                poker_res = R.mipmap.gd_pk_8;
                 break;
             case 9:
-                poker_res = R.mipmap.pk_9;
+                poker_res = R.mipmap.gd_pk_9;
                 break;
             case 10:
-                poker_res = R.mipmap.pk_10;
+                poker_res = R.mipmap.gd_pk_10;
                 break;
             case 11:
-                poker_res = R.mipmap.pk_11;
+                poker_res = R.mipmap.gd_pk_11;
                 break;
             case 12:
-                poker_res = R.mipmap.pk_12;
+                poker_res = R.mipmap.gd_pk_12;
                 break;
             case 13:
-                poker_res = R.mipmap.pk_13;
+                poker_res = R.mipmap.gd_pk_13;
                 break;
             case 14:
-                poker_res = R.mipmap.pk_14;
+                poker_res = R.mipmap.gd_pk_14;
                 break;
             case 15:
-                poker_res = R.mipmap.pk_15;
+                poker_res = R.mipmap.gd_pk_15;
                 break;
             case 16:
-                poker_res = R.mipmap.pk_16;
+                poker_res = R.mipmap.gd_pk_16;
                 break;
             case 17:
-                poker_res = R.mipmap.pk_17;
+                poker_res = R.mipmap.gd_pk_17;
                 break;
             case 18:
-                poker_res = R.mipmap.pk_18;
+                poker_res = R.mipmap.gd_pk_18;
                 break;
             case 19:
-                poker_res = R.mipmap.pk_19;
+                poker_res = R.mipmap.gd_pk_19;
                 break;
             case 20:
-                poker_res = R.mipmap.pk_20;
+                poker_res = R.mipmap.gd_pk_20;
                 break;
             case 21:
-                poker_res = R.mipmap.pk_21;
+                poker_res = R.mipmap.gd_pk_21;
                 break;
             case 22:
-                poker_res = R.mipmap.pk_22;
+                poker_res = R.mipmap.gd_pk_22;
                 break;
             case 23:
-                poker_res = R.mipmap.pk_23;
+                poker_res = R.mipmap.gd_pk_23;
                 break;
             case 24:
-                poker_res = R.mipmap.pk_24;
+                poker_res = R.mipmap.gd_pk_24;
                 break;
             case 25:
-                poker_res = R.mipmap.pk_25;
+                poker_res = R.mipmap.gd_pk_25;
                 break;
             case 26:
-                poker_res = R.mipmap.pk_26;
+                poker_res = R.mipmap.gd_pk_26;
                 break;
             case 27:
-                poker_res = R.mipmap.pk_27;
+                poker_res = R.mipmap.gd_pk_27;
                 break;
             case 28:
-                poker_res = R.mipmap.pk_28;
+                poker_res = R.mipmap.gd_pk_28;
                 break;
             case 29:
-                poker_res = R.mipmap.pk_29;
+                poker_res = R.mipmap.gd_pk_29;
                 break;
             case 30:
-                poker_res = R.mipmap.pk_30;
+                poker_res = R.mipmap.gd_pk_30;
                 break;
             case 31:
-                poker_res = R.mipmap.pk_31;
+                poker_res = R.mipmap.gd_pk_31;
                 break;
             case 32:
-                poker_res = R.mipmap.pk_32;
+                poker_res = R.mipmap.gd_pk_32;
                 break;
             case 33:
-                poker_res = R.mipmap.pk_33;
+                poker_res = R.mipmap.gd_pk_33;
                 break;
             case 34:
-                poker_res = R.mipmap.pk_34;
+                poker_res = R.mipmap.gd_pk_34;
                 break;
             case 35:
-                poker_res = R.mipmap.pk_35;
+                poker_res = R.mipmap.gd_pk_35;
                 break;
             case 36:
-                poker_res = R.mipmap.pk_36;
+                poker_res = R.mipmap.gd_pk_36;
                 break;
             case 37:
-                poker_res = R.mipmap.pk_37;
+                poker_res = R.mipmap.gd_pk_37;
                 break;
             case 38:
-                poker_res = R.mipmap.pk_38;
+                poker_res = R.mipmap.gd_pk_38;
                 break;
             case 39:
-                poker_res = R.mipmap.pk_39;
+                poker_res = R.mipmap.gd_pk_39;
                 break;
             case 40:
-                poker_res = R.mipmap.pk_40;
+                poker_res = R.mipmap.gd_pk_40;
                 break;
             case 41:
-                poker_res = R.mipmap.pk_41;
+                poker_res = R.mipmap.gd_pk_41;
                 break;
             case 42:
-                poker_res = R.mipmap.pk_42;
+                poker_res = R.mipmap.gd_pk_42;
                 break;
             case 43:
-                poker_res = R.mipmap.pk_43;
+                poker_res = R.mipmap.gd_pk_43;
                 break;
             case 44:
-                poker_res = R.mipmap.pk_44;
+                poker_res = R.mipmap.gd_pk_44;
                 break;
             case 45:
-                poker_res = R.mipmap.pk_45;
+                poker_res = R.mipmap.gd_pk_45;
                 break;
             case 46:
-                poker_res = R.mipmap.pk_46;
+                poker_res = R.mipmap.gd_pk_46;
                 break;
             case 47:
-                poker_res = R.mipmap.pk_47;
+                poker_res = R.mipmap.gd_pk_47;
                 break;
             case 48:
-                poker_res = R.mipmap.pk_48;
+                poker_res = R.mipmap.gd_pk_48;
                 break;
             case 49:
-                poker_res = R.mipmap.pk_49;
+                poker_res = R.mipmap.gd_pk_49;
                 break;
             case 50:
-                poker_res = R.mipmap.pk_50;
+                poker_res = R.mipmap.gd_pk_50;
                 break;
             case 51:
-                poker_res = R.mipmap.pk_51;
+                poker_res = R.mipmap.gd_pk_51;
                 break;
             case 52:
-                poker_res = R.mipmap.pk_52;
+                poker_res = R.mipmap.gd_pk_52;
                 break;
         }
         return poker_res;
@@ -5301,7 +5301,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         faceLayout.setItemCallBack(new FaceRelativeLayout.ItemCallBack() {
             @Override
             public void clickItem(ChatEmoji emoji) {
-                rgChatParent.check(R.id.rb_chat_content);
+                rgChatParent.check(R.id.gd__rb_chat_content);
             }
         });
         rgChatParent.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -5310,11 +5310,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 lvChatUsual.setVisibility(View.GONE);
                 gvChatEmoticons.setVisibility(View.GONE);
                 llChatContent.setVisibility(View.GONE);
-                if (checkedId == R.id.rb_chat_content) {
+                if (checkedId == R.id.gd__rb_chat_content) {
                     llChatContent.setVisibility(View.VISIBLE);
-                } else if (checkedId == R.id.rb_chat_emoticons) {
+                } else if (checkedId == R.id.gd__rb_chat_emoticons) {
                     gvChatEmoticons.setVisibility(View.VISIBLE);
-                } else if (checkedId == R.id.rb_chat_usual) {
+                } else if (checkedId == R.id.gd__rb_chat_usual) {
                     lvChatUsual.setVisibility(View.VISIBLE);
                 }
             }
@@ -5338,15 +5338,15 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public void convert(ViewHolder helper, String item, int position) {
-                helper.setText(R.id.text_tv1, item);
-                helper.setTextColorRes(R.id.text_tv1, R.color.white);
+                helper.setText(R.id.gd__text_tv1, item);
+                helper.setTextColorRes(R.id.gd__text_tv1, R.color.white);
             }
         });
         usualContent.setItemClick(new ItemCLickImp<String>() {
             @Override
             public void itemCLick(View view, String s, int position) {
                 sendUsualMsg(s);
-                rgChatParent.check(R.id.rb_chat_content);
+                rgChatParent.check(R.id.gd__rb_chat_content);
             }
         });
         usualContent.setData(new ArrayList<>(Arrays.asList(getString(R.string.nice_to_meet), getString(R.string.sure_to_win)
@@ -5355,14 +5355,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chatContent.setBaseAdapter(new QuickAdapterImp<String>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_chat;
+                return R.layout.gd_item_chat;
             }
 
             @Override
             public void convert(ViewHolder helper, String item, int position) {
                 SpannableString spannableString = FaceConversionUtil.getInstace()
                         .getExpressionString(mContext, item);
-                TextView tv = helper.retrieveView(R.id.text_tv1);
+                TextView tv = helper.retrieveView(R.id.gd__text_tv1);
                 tv.setText(spannableString);
             }
         });
@@ -5394,47 +5394,47 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     };
 
     static class ViewBindHolder {
-        @BindView(R2.id.iv_baccarat_table_player)
+        @BindView(R2.id.gd__iv_baccarat_table_player)
         ImageView ivBaccaratTablePlayer;
-        @BindView(R2.id.tv_player_bet_money)
+        @BindView(R2.id.gd__tv_player_bet_money)
         TextView tvPlayerBetMoney;
-        @BindView(R2.id.tv_player_bet_count)
+        @BindView(R2.id.gd__tv_player_bet_count)
         TextView tvPlayerBetCount;
-        @BindView(R2.id.fl_baccarat_table_player)
+        @BindView(R2.id.gd__fl_baccarat_table_player)
         FrameLayout flBaccaratTablePlayer;
-        @BindView(R2.id.fl_baccarat_table_player_bg)
+        @BindView(R2.id.gd__fl_baccarat_table_player_bg)
         FrameLayout flBaccaratTablePlayer_bg;
-        @BindView(R2.id.iv_baccarat_table_banker)
+        @BindView(R2.id.gd__iv_baccarat_table_banker)
         ImageView ivBaccaratTableBanker;
-        @BindView(R2.id.tv_banker_bet_money)
+        @BindView(R2.id.gd__tv_banker_bet_money)
         TextView tvBankerBetMoney;
-        @BindView(R2.id.tv_banker_bet_count)
+        @BindView(R2.id.gd__tv_banker_bet_count)
         TextView tvBankerBetCount;
-        @BindView(R2.id.fl_baccarat_table_banker)
+        @BindView(R2.id.gd__fl_baccarat_table_banker)
         FrameLayout flBaccaratTableBanker;
-        @BindView(R2.id.fl_baccarat_table_banker_bg)
+        @BindView(R2.id.gd__fl_baccarat_table_banker_bg)
         FrameLayout flBaccaratTableBanker_bg;
-        @BindView(R2.id.iv_baccarat_table_tie)
+        @BindView(R2.id.gd__iv_baccarat_table_tie)
         ImageView ivBaccaratTableTie;
-        @BindView(R2.id.tv_tie_bet_money)
+        @BindView(R2.id.gd__tv_tie_bet_money)
         TextView tvTieBetMoney;
-        @BindView(R2.id.tv_tie_bet_count)
+        @BindView(R2.id.gd__tv_tie_bet_count)
         TextView tvTieBetCount;
-        @BindView(R2.id.iv_baccarat_table_player_pair)
+        @BindView(R2.id.gd__iv_baccarat_table_player_pair)
         ImageView ivBaccaratTablePlayerPair;
-        @BindView(R2.id.tv_player_pair_bet_money)
+        @BindView(R2.id.gd__tv_player_pair_bet_money)
         TextView tvPlayerPairBetMoney;
-        @BindView(R2.id.tv_player_pair_bet_count)
+        @BindView(R2.id.gd__tv_player_pair_bet_count)
         TextView tvPlayerPairBetCount;
-        @BindView(R2.id.iv_baccarat_table_banker_pair)
+        @BindView(R2.id.gd__iv_baccarat_table_banker_pair)
         ImageView ivBaccaratTableBankerPair;
-        @BindView(R2.id.tv_banker_pair_bet_money)
+        @BindView(R2.id.gd__tv_banker_pair_bet_money)
         TextView tvBankerPairBetMoney;
-        @BindView(R2.id.tv_banker_pair_bet_count)
+        @BindView(R2.id.gd__tv_banker_pair_bet_count)
         TextView tvBankerPairBetCount;
-//        @BindView(R2.id.tv_banker_pair_bet_count)
+//        @BindView(R2.id.gd__tv_banker_pair_bet_count)
 //        TextView tvbankerpairbetcount;
-//        @BindView(R2.id.tv_player_pair_bet_count)
+//        @BindView(R2.id.gd__tv_player_pair_bet_count)
 //        TextView tvplayerpairbetcount;
 
 
@@ -5532,37 +5532,37 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         clearBetBg();
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_v_p);
             } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_h_p);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_v_b);
             } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_h_b);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_v_t);
             } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_h_t);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_v_pp);
             } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_h_pp);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_v_bp);
             } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_h_bp);
             }
         }
     }
@@ -5571,37 +5571,37 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         clearBetBg();
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_v_p);
             } else {
-                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
+                img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_h_p);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_v_b);
             } else {
-                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
+                img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_h_b);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_v_t);
             } else {
-                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
+                img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_h_t);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_v_pp);
             } else {
-                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.gd_bet_h_pp);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_v_bp);
             } else {
-                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_h_bp);
             }
         }
     }
@@ -5622,17 +5622,17 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
     }
 
-    @BindView(R2.id.ll_info)
+    @BindView(R2.id.gd__ll_info)
     LinearLayout ll_info;
-    @BindView(R2.id.lv_user_info)
+    @BindView(R2.id.gd__lv_user_info)
     ListView lv_user_info;
-    @BindView(R2.id.lv_pool)
+    @BindView(R2.id.gd__lv_pool)
     ListView lv_pool;
-    @BindView(R2.id.tv_time)
+    @BindView(R2.id.gd__tv_time)
     TextView tv_time;
-    @BindView(R2.id.tv_total_bet)
+    @BindView(R2.id.gd__tv_total_bet)
     TextView tv_total_bet;
-    @BindView(R2.id.tv_win_lose_bet)
+    @BindView(R2.id.gd__tv_win_lose_bet)
     TextView tv_win_lose_bet;
 
     @Override
@@ -5712,13 +5712,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info1;
+                return R.layout.gd_item_user_info1;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.gold));
                 if (position > 4) {
@@ -5746,21 +5746,21 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoadOld("");
         fl_baccarat_a_table.setBackgroundResource(0);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            fl_baccarat_a_table.setBackgroundResource(R.mipmap.baccarat_bg_h);
+            fl_baccarat_a_table.setBackgroundResource(R.mipmap.gd_baccarat_bg_h);
         } else {
-            fl_baccarat_a_table.setBackgroundResource(R.mipmap.bet_a_bg_trans);
+            fl_baccarat_a_table.setBackgroundResource(R.mipmap.gd_bet_a_bg_trans);
         }
         tv_ask1.setText(getString(R.string.banker1));
         tv_ask2.setText(getString(R.string.player1));
         tv_ask1_name.setText(getString(R.string.ask));
         tv_ask2_name.setText(getString(R.string.ask));
         tv_good_road_name.setText(getString(R.string.good_road));
-        ((TextView) findViewById(R.id.tv_banker)).setText(getString(R.string.banker_m));
-        ((TextView) findViewById(R.id.tv_player)).setText(getString(R.string.player_m));
-        ((TextView) findViewById(R.id.tv_tie)).setText(getString(R.string.tie1));
-        ((TextView) findViewById(R.id.tv_banker_pair)).setText(getString(R.string.BP));
-        ((TextView) findViewById(R.id.tv_player_pair)).setText(getString(R.string.PP));
-        ((TextView) findViewById(R.id.tv_total)).setText(getString(R.string.total_m));
+        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.banker_m));
+        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.player_m));
+        ((TextView) findViewById(R.id.gd__tv_tie)).setText(getString(R.string.tie1));
+        ((TextView) findViewById(R.id.gd__tv_banker_pair)).setText(getString(R.string.BP));
+        ((TextView) findViewById(R.id.gd__tv_player_pair)).setText(getString(R.string.PP));
+        ((TextView) findViewById(R.id.gd__tv_total)).setText(getString(R.string.total_m));
         tv_player_result_name.setText(getString(R.string.player_home));
         tv_banker_result_name.setText(getString(R.string.banker_home));
         initResultAnimation();

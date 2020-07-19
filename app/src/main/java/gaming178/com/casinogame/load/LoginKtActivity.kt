@@ -8,14 +8,14 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.Observer
 import gaming178.com.baccaratgame.R
-import gaming178.com.baccaratgame.databinding.ActivityLoginJetpackBinding
+import gaming178.com.baccaratgame.databinding.GdActivityLoginJetpackBinding
+
 import gaming178.com.casinogame.base.BaseKtActivity
-import kotlinx.android.synthetic.main.activity_login_gd.login_password_edt
-import kotlinx.android.synthetic.main.activity_login_jetpack.*
+import kotlinx.android.synthetic.main.gd_activity_login_jetpack.*
 
 
 public class
-LoginKtActivity : BaseKtActivity<LoginModel, ActivityLoginJetpackBinding>() {
+LoginKtActivity : BaseKtActivity<LoginModel, GdActivityLoginJetpackBinding>() {
     var onKey = View.OnKeyListener { v, keyCode, event ->
         // TODO Auto-generated method stub
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -47,8 +47,8 @@ LoginKtActivity : BaseKtActivity<LoginModel, ActivityLoginJetpackBinding>() {
             })
         }
 
-        viewModel.beyondKeyboardLayout(ll_content, login_btn)
-        login_password_edt.setOnKeyListener(onKey)
+        viewModel.beyondKeyboardLayout(gd__ll_content, gd__login_btn)
+        gd__login_password_edt.setOnKeyListener(onKey)
     }
 
 
@@ -62,7 +62,7 @@ LoginKtActivity : BaseKtActivity<LoginModel, ActivityLoginJetpackBinding>() {
     }
 
     override fun layoutId(): Int {
-        return R.layout.activity_login_jetpack
+        return R.layout.gd_activity_login_jetpack
     }
 
     override fun initView(savedInstanceState: Bundle?) {

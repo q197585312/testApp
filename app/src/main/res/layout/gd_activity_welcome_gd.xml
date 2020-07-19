@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/gd__fl_welcome"
+        style="@style/style_match_match"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/gd__welcome_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/gd__ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green500"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <FrameLayout
+            style="@style/style_match_wrap"
+            android:padding="10dp">
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/gd__login_china_rb"
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_flag_china_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center" />
+
+                <RadioButton
+                    android:id="@+id/gd__login_english_rb"
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/gd_flag_british_selector"
+                    android:button="@null"
+                    android:gravity="center" />
+            </RadioGroup>
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/gd_title_logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rectangle_white_graystroke_radius0"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <EditText
+                android:id="@+id/gd__login_username_edt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rectangle_grey_corners5"
+                android:gravity="center_vertical"
+                android:hint="@string/input_username"
+                android:maxLength="11"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black_grey"
+                android:textCursorDrawable="@null"
+                android:textSize="17dip" />
+
+
+            <EditText
+                android:id="@+id/gd__login_password_edt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rectangle_grey_corners5"
+                android:gravity="center_vertical"
+                android:hint="@string/input_password"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black_grey"
+                android:textSize="17dip" />
+
+            <Button
+                android:id="@+id/gd__login_login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_geen_corner5"
+                android:gravity="center"
+                android:onClick="clickLogin"
+                android:padding="10dp"
+                android:paddingRight="3dp"
+                android:text="@string/login"
+                android:textColor="@android:color/white"
+                android:textSize="15dip" />
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_default_bg"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                style="@style/style_match_wrap"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/text_match_black14"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="@string/afb88_right"
+                    android:textColor="@color/gray_dark" />
+
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

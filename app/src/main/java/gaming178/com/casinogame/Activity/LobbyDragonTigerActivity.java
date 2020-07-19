@@ -42,21 +42,21 @@ import gaming178.com.mylibrary.myview.View.GridBackgroundView;
  * Created by Administrator on 2016/3/22.
  */
 public class LobbyDragonTigerActivity extends BaseActivity {
-    @BindView(R2.id.baccarat_grid_parent_ll)
+    @BindView(R2.id.gd__baccarat_grid_parent_ll)
     LinearLayout baccarat_grid_parent_ll;
-    @BindView(R2.id.baccarat_content_parent_ll)
+    @BindView(R2.id.gd__baccarat_content_parent_ll)
     LinearLayout baccaratContentParentLl;
-    @BindView(R2.id.baccarat_gridlayout1)
+    @BindView(R2.id.gd__baccarat_gridlayout1)
     GridLayout baccarat_head_road1;
-    @BindView(R2.id.baccarat_gridlayout2)
+    @BindView(R2.id.gd__baccarat_gridlayout2)
     GridLayout baccarat_big_road1;
-    @BindView(R2.id.baccarat_gridlayout3)
+    @BindView(R2.id.gd__baccarat_gridlayout3)
     GridLayout baccarat_bigeyes_road1;
-    @BindView(R2.id.baccarat_gridlayout4)
+    @BindView(R2.id.gd__baccarat_gridlayout4)
     FrameLayout fl4;//baccarat_smalleyes_road1
-    @BindView(R2.id.baccarat_gridlayout5)
+    @BindView(R2.id.gd__baccarat_gridlayout5)
     FrameLayout fl5;//baccarat_roach_road1
-    @BindView(R2.id.baccarat_head_iv)
+    @BindView(R2.id.gd__baccarat_head_iv)
     ImageView baccarat_head_iv;//baccarat_roach_road1
     private float density;
     private TextView shufflingTv;
@@ -156,7 +156,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
         view.setLayoutParams(params);
     }
 
-    @BindView(R2.id.layout1)
+    @BindView(R2.id.gd__layout1)
     HorizontalScrollView scrollView1;
 
     @Override
@@ -265,7 +265,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
         setMoreToolbar(true);
         backTv.setVisibility(View.GONE);
         setLayout.setVisibility(View.GONE);
-        shufflingTv = (TextView) findViewById(R.id.tv_shuffling);
+        shufflingTv = (TextView) findViewById(R.id.gd__tv_shuffling);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         InitControl();
@@ -286,50 +286,50 @@ public class LobbyDragonTigerActivity extends BaseActivity {
         density = ScreenUtil.getDisplayMetrics(mContext).density;
 
 
-        baccarat_smalleyes_road1 = (GridLayout) fl4.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road1 = (GridLayout) fl5.findViewById(R.id.baccarat_gridlayout3);
+        baccarat_smalleyes_road1 = (GridLayout) fl4.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road1 = (GridLayout) fl5.findViewById(R.id.gd__baccarat_gridlayout3);
 
 
-        tv_baccarat_timer01 = (TextView) findViewById(R.id.baccarat_status_tv);
-        tv_baccarat_table_name = (TextView) findViewById(R.id.tv_baccarat_table_name);
+        tv_baccarat_timer01 = (TextView) findViewById(R.id.gd__baccarat_status_tv);
+        tv_baccarat_table_name = (TextView) findViewById(R.id.gd__tv_baccarat_table_name);
 
-        tv_baccarat_shoe_number01 = (TextView) findViewById(R.id.text_shoe_game_number);
-
-
-        tv_baccarat_total_number01 = (TextView) findViewById(R.id.text_total);
+        tv_baccarat_shoe_number01 = (TextView) findViewById(R.id.gd__text_shoe_game_number);
 
 
-        tv_baccarat_banker_number01 = (TextView) findViewById(R.id.text_banker);
+        tv_baccarat_total_number01 = (TextView) findViewById(R.id.gd__text_total);
 
 
-        tv_baccarat_player_number01 = (TextView) findViewById(R.id.text_player);
-
-        tv_baccarat_tie_number01 = (TextView) findViewById(R.id.text_tie);
+        tv_baccarat_banker_number01 = (TextView) findViewById(R.id.gd__text_banker);
 
 
-        tv_baccarat_bp_number01 = (TextView) findViewById(R.id.text_bp);
+        tv_baccarat_player_number01 = (TextView) findViewById(R.id.gd__text_player);
 
-        tv_baccarat_pp_number01 = (TextView) findViewById(R.id.text_pp);
+        tv_baccarat_tie_number01 = (TextView) findViewById(R.id.gd__text_tie);
+
+
+        tv_baccarat_bp_number01 = (TextView) findViewById(R.id.gd__text_bp);
+
+        tv_baccarat_pp_number01 = (TextView) findViewById(R.id.gd__text_pp);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            ll_big_road_parent2 = findViewById(R.id.ll_big_road_parent2);
-            hsv_small_road_1 = findViewById(R.id.hsv_small_road_1);
-            hsv_small_road_2 = findViewById(R.id.hsv_small_road_2);
-            hsv_small_road_3 = findViewById(R.id.hsv_small_road_3);
+            ll_big_road_parent2 = findViewById(R.id.gd__ll_big_road_parent2);
+            hsv_small_road_1 = findViewById(R.id.gd__hsv_small_road_1);
+            hsv_small_road_2 = findViewById(R.id.gd__hsv_small_road_2);
+            hsv_small_road_3 = findViewById(R.id.gd__hsv_small_road_3);
         } else {
-            ll_big_road_parent2 = findViewById(R.id.ll_big_road_parent2_landscape);
-            hsv_small_road_1 = findViewById(R.id.hsv_small_road_1_landscape);
-            hsv_small_road_2 = findViewById(R.id.hsv_small_road_2_landscape);
-            hsv_small_road_3 = findViewById(R.id.hsv_small_road_3_landscape);
+            ll_big_road_parent2 = findViewById(R.id.gd__ll_big_road_parent2_landscape);
+            hsv_small_road_1 = findViewById(R.id.gd__hsv_small_road_1_landscape);
+            hsv_small_road_2 = findViewById(R.id.gd__hsv_small_road_2_landscape);
+            hsv_small_road_3 = findViewById(R.id.gd__hsv_small_road_3_landscape);
         }
 
         setToolbarNameAndBalance();
-        baccarat_background_head_road1 = (GridBackgroundView) findViewById(R.id.baccarat_background_gridlayout1);
-        smallway1 = (GridBackgroundView) findViewById(R.id.smallway_item);
-        smallway2 = findViewById(R.id.baccarat_gridlayout4);
-        smallway3 = findViewById(R.id.baccarat_gridlayout5);
-        bigway1 = findViewById(R.id.big_way);
-        findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        baccarat_background_head_road1 = (GridBackgroundView) findViewById(R.id.gd__baccarat_background_gridlayout1);
+        smallway1 = (GridBackgroundView) findViewById(R.id.gd__smallway_item);
+        smallway2 = findViewById(R.id.gd__baccarat_gridlayout4);
+        smallway3 = findViewById(R.id.gd__baccarat_gridlayout5);
+        bigway1 = findViewById(R.id.gd__big_way);
+        findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clickGrid(v, 5);
@@ -366,27 +366,27 @@ public class LobbyDragonTigerActivity extends BaseActivity {
             }
         });
         tv_baccarat_table_name.setText("DT1");
-        ((TextView) findViewById(R.id.tv_banker)).setText(getString(R.string.dr));
-        ((TextView) findViewById(R.id.tv_player)).setText(getString(R.string.ti));
-        ((TextView) findViewById(R.id.tv_tie)).setText(getString(R.string.tie));
-        ((LinearLayout) findViewById(R.id.ll_bp)).setVisibility(View.GONE);
-        ((LinearLayout) findViewById(R.id.ll_pp)).setVisibility(View.GONE);
- /*       ((TextView) findViewById(R.id.tv_banker_road)).setText("D");
-        ((TextView) findViewById(R.id.tv_player_road)).setText("T");*/
+        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dr));
+        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.ti));
+        ((TextView) findViewById(R.id.gd__tv_tie)).setText(getString(R.string.tie));
+        ((LinearLayout) findViewById(R.id.gd__ll_bp)).setVisibility(View.GONE);
+        ((LinearLayout) findViewById(R.id.gd__ll_pp)).setVisibility(View.GONE);
+ /*       ((TextView) findViewById(R.id.gd__tv_banker_road)).setText("D");
+        ((TextView) findViewById(R.id.gd__tv_player_road)).setText("T");*/
     }
 
     public void clickGrid(View v, final int tableId) {
-        initLimitPop(v, tableId, findViewById(R.id.ll_parent_limit));
+        initLimitPop(v, tableId, findViewById(R.id.gd__ll_parent_limit));
     }
 
     public void initLimitPop(View view, final int tableId, final View top_v) {
         String tableNumber = "DT1";
-        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.base_rv);
+        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.gd__base_rv);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.item_popupwindow_text_select) {
+        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.gd_item_popupwindow_text_select) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                holder.setText(R.id.pop_text_tv, item);
+                holder.setText(R.id.gd__pop_text_tv, item);
             }
 
         };
@@ -406,13 +406,13 @@ public class LobbyDragonTigerActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(baseRecyclerAdapter);
-        top_v.findViewById(R.id.pop_close_iv).setOnClickListener(new View.OnClickListener() {
+        top_v.findViewById(R.id.gd__pop_close_iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 top_v.setVisibility(View.GONE);
             }
         });
-        ((TextView) top_v.findViewById(R.id.tv_table_game_number)).setText(tableNumber);
+        ((TextView) top_v.findViewById(R.id.gd__tv_table_game_number)).setText(tableNumber);
         top_v.setVisibility(View.VISIBLE);
 
     }
@@ -435,7 +435,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_baccarat_game;
+        return R.layout.gd_activity_baccarat_game;
     }
 
 

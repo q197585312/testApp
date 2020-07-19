@@ -29,11 +29,11 @@ import butterknife.ButterKnife;
  */
 
 public class TestActivity extends BaseActivity {
-    //    @BindView(R2.id.btn_test)
+    //    @BindView(R2.id.gd__btn_test)
     Button btnTest;
-    //        @BindView(R2.id.ll_parent)
+    //        @BindView(R2.id.gd__ll_parent)
     LinearLayout llParent;
-    //    @BindView(R2.id.btn_test2)
+    //    @BindView(R2.id.gd__btn_test2)
     Button btnTest2;
 
     private GestureManager manager;

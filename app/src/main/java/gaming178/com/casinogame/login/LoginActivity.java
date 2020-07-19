@@ -78,12 +78,12 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void initControl() {
-        tv_name = (EditText) this.findViewById(R.id.login_username_edt);
-        tv_password = (EditText) this.findViewById(R.id.login_password_edt);
-        ll_language = findViewById(R.id.ll_choose_language);
-        view_bottom_center = findViewById(R.id.view_bottom_center);
-        tv_register = (TextView) findViewById(R.id.tv_register);
-        iv_language_flag = (ImageView) findViewById(R.id.iv_language_flag);
+        tv_name = (EditText) this.findViewById(R.id.gd__login_username_edt);
+        tv_password = (EditText) this.findViewById(R.id.gd__login_password_edt);
+        ll_language = findViewById(R.id.gd__ll_choose_language);
+        view_bottom_center = findViewById(R.id.gd__view_bottom_center);
+        tv_register = (TextView) findViewById(R.id.gd__tv_register);
+        iv_language_flag = (ImageView) findViewById(R.id.gd__iv_language_flag);
         if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             tv_register.setVisibility(View.GONE);
             ll_language.setVisibility(View.VISIBLE);
@@ -95,7 +95,7 @@ public class LoginActivity extends BaseActivity {
             initSiteMap();
         }
 
-        btn_login = (Button) findViewById(R.id.login_login_btn);
+        btn_login = (Button) findViewById(R.id.gd__login_login_btn);
         //    tv_name.setText("T0000000301");
         //   tv_password.setText("111111");
         dialog = new BlockDialog(mContext, getString(R.string.logining));
@@ -120,7 +120,7 @@ public class LoginActivity extends BaseActivity {
             UserLoginBean objectData = (UserLoginBean) objectData1;
             tv_name.setText(objectData.getUsername());
             tv_password.setText(objectData.getPassword());
-            EditText viewById = (EditText) findViewById(R.id.login_site_edt);
+            EditText viewById = (EditText) findViewById(R.id.gd__login_site_edt);
             if (viewById != null)
                 viewById.setText(objectData.getSite());
         }
@@ -223,7 +223,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_login_gd;
+        return R.layout.gd_activity_login_gd;
     }
 
     public void clickLogin(View v) {
@@ -253,7 +253,7 @@ public class LoginActivity extends BaseActivity {
         }
         mAppViewModel.setbInitLimit(false);
         if (BuildConfig.FLAVOR.equals("liga365")) {
-            EditText edt_site = (EditText) findViewById(R.id.login_site_edt);
+            EditText edt_site = (EditText) findViewById(R.id.gd__login_site_edt);
             UserLoginBean userBean = new UserLoginBean(edt_site.getText().toString().trim(), usName, tv_password.getText().toString().trim());
             if (userBean.getSite().length() == 0) {
 //            showToast("Please input user name");
@@ -404,7 +404,7 @@ public class LoginActivity extends BaseActivity {
                     dismissLoginBlockDialog();
                     String usName = tv_name.getText().toString().trim();
                     String password = tv_password.getText().toString().trim();
-                    EditText siteEdt =  findViewById(R.id.login_site_edt);
+                    EditText siteEdt =  findViewById(R.id.gd__login_site_edt);
                     String site = "";
                     if (siteEdt != null) {
                         site = siteEdt.getText().toString().trim();
@@ -526,7 +526,7 @@ public class LoginActivity extends BaseActivity {
 
     public void inputMove() {
 
-        llContainer = findViewById(R.id.ll_container);
+        llContainer = findViewById(R.id.gd__ll_container);
         beyondKeyboardLayout();
     }
 

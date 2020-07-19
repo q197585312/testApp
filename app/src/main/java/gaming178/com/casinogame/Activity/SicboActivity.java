@@ -83,281 +83,281 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     private TextView tv_table_game_number;
     String limitPop;
 
-    @OnClick(R2.id.iv_baccarat_change_table)
+    @OnClick(R2.id.gd__iv_baccarat_change_table)
     public void clickTable(View v) {
         showChangeTable(v);
     }
 
-    @BindView(R2.id.tv_service_time)
+    @BindView(R2.id.gd__tv_service_time)
     TextView serviceTime;
-    @BindView(R2.id.lv_percentage)
+    @BindView(R2.id.gd__lv_percentage)
     ListView lv_percentage;
     @Nullable
-    @BindView(R2.id.ll_chip)
+    @BindView(R2.id.gd__ll_chip)
     LinearLayout ll_chip;
-    @BindView(R2.id.handle1)
+    @BindView(R2.id.gd__handle1)
     View handle1;
-    @BindView(R2.id.ll_bet_btn_parent)
+    @BindView(R2.id.gd__ll_bet_btn_parent)
     View ll_bet_btn_parent;
-    @BindView(R2.id.sibao_bet_bg)
+    @BindView(R2.id.gd__sibao_bet_bg)
     View sibao_bet_bg;
-    @BindView(R2.id.tv_menu)
+    @BindView(R2.id.gd__tv_menu)
     TextView tvMenu;
-    /* @BindView(R2.id.tv_table_pool)
+    /* @BindView(R2.id.gd__tv_table_pool)
      TextView tv_table_pool;*/
 
-    @BindView(R2.id.bottonPanel1)
+    @BindView(R2.id.gd__bottonPanel1)
     Panel bottonPanel1;
-    @BindView(R2.id.fl_baccarat_bg)
+    @BindView(R2.id.gd__fl_baccarat_bg)
     FrameLayout fl_baccarat_bg;
-    @BindView(R2.id.fl_baccarat_parent)
+    @BindView(R2.id.gd__fl_baccarat_parent)
     FrameLayout fl_baccarat_parent;
 
-    @BindView(R2.id.tv_table_bet_replay)
+    @BindView(R2.id.gd__tv_table_bet_replay)
     TextView tvTableBetReplay;
-    @BindView(R2.id.tv_table_bet_sure)
+    @BindView(R2.id.gd__tv_table_bet_sure)
     TextView tvTableBetSure;
-    @BindView(R2.id.tv_table_bet_cancel)
+    @BindView(R2.id.gd__tv_table_bet_cancel)
     TextView tvTableBetCancel;
 
-    @BindView(R2.id.leftPanel1)
+    @BindView(R2.id.gd__leftPanel1)
     Panel leftPanel1;
-    @BindView(R2.id.fl_sicbo_result)
+    @BindView(R2.id.gd__fl_sicbo_result)
     FrameLayout fl_sicbo_result;
 
 
-    @BindView(R2.id.lv_table_bet_limit_red)
+    @BindView(R2.id.gd__lv_table_bet_limit_red)
     ListView lvTableBetLimitRed;
-    @BindView(R2.id.tv_table_timer)
+    @BindView(R2.id.gd__tv_table_timer)
     TextView tv_table_timer;
-    @BindView(R2.id.countdown_view)
+    @BindView(R2.id.gd__countdown_view)
     CountDownView countdown_view;
-    @BindView(R2.id.btn_table_limit_red_title)
+    @BindView(R2.id.gd__btn_table_limit_red_title)
     TextView btnTableLimit;
 
 
-    @BindView(R2.id.lv_table_pool)
+    @BindView(R2.id.gd__lv_table_pool)
     ListView lv_table_pool;
 
 
-    @BindView(R2.id.fl_sicbo_big_f1)
+    @BindView(R2.id.gd__fl_sicbo_big_f1)
     FrameLayout flSicboBigF1;
-    @BindView(R2.id.fl_sicbo_even_f1)
+    @BindView(R2.id.gd__fl_sicbo_even_f1)
     FrameLayout flSicboEvenF1;
-    @BindView(R2.id.fl_sicbo_dices6_f1)
+    @BindView(R2.id.gd__fl_sicbo_dices6_f1)
     FrameLayout flSicboDices6F1;
-    @BindView(R2.id.fl_sicbo_dices5_f1)
+    @BindView(R2.id.gd__fl_sicbo_dices5_f1)
     FrameLayout flSicboDices5F1;
-    @BindView(R2.id.fl_sicbo_dices4_f1)
+    @BindView(R2.id.gd__fl_sicbo_dices4_f1)
     FrameLayout flSicboDices4F1;
-    @BindView(R2.id.fl_sicbo_dices3_f1)
+    @BindView(R2.id.gd__fl_sicbo_dices3_f1)
     FrameLayout flSicboDices3F1;
-    @BindView(R2.id.fl_sicbo_dices2_f1)
+    @BindView(R2.id.gd__fl_sicbo_dices2_f1)
     FrameLayout flSicboDices2F1;
-    @BindView(R2.id.fl_sicbo_dices1_f1)
+    @BindView(R2.id.gd__fl_sicbo_dices1_f1)
     FrameLayout flSicboDices1F1;
-    @BindView(R2.id.fl_sicbo_odd_f1)
+    @BindView(R2.id.gd__fl_sicbo_odd_f1)
     FrameLayout flSicboOddF1;
-    @BindView(R2.id.fl_sicbo_small_f1)
+    @BindView(R2.id.gd__fl_sicbo_small_f1)
     FrameLayout flSicboSmallF1;
-    @BindView(R2.id.iv_sicbo_big_bg)
+    @BindView(R2.id.gd__iv_sicbo_big_bg)
     ImageView ivSicboBigBg;
 
-    @BindView(R2.id.iv_sicbo_even_bg)
+    @BindView(R2.id.gd__iv_sicbo_even_bg)
     ImageView ivSicboEvenBg;
 
-    @BindView(R2.id.iv_sicbo_dices6_bg)
+    @BindView(R2.id.gd__iv_sicbo_dices6_bg)
     ImageView ivSicboDices6Bg;
 
-    @BindView(R2.id.iv_sicbo_dices5_bg)
+    @BindView(R2.id.gd__iv_sicbo_dices5_bg)
     ImageView ivSicboDices5Bg;
 
-    @BindView(R2.id.iv_sicbo_dices4_bg)
+    @BindView(R2.id.gd__iv_sicbo_dices4_bg)
     ImageView ivSicboDices4Bg;
 
-    @BindView(R2.id.iv_sicbo_dices3_bg)
+    @BindView(R2.id.gd__iv_sicbo_dices3_bg)
     ImageView ivSicboDices3Bg;
 
-    @BindView(R2.id.iv_sicbo_dices2_bg)
+    @BindView(R2.id.gd__iv_sicbo_dices2_bg)
     ImageView ivSicboDices2Bg;
 
-    @BindView(R2.id.iv_sicbo_dices1_bg)
+    @BindView(R2.id.gd__iv_sicbo_dices1_bg)
     ImageView ivSicboDices1Bg;
-    @BindView(R2.id.iv_sicbo_odd_bg)
+    @BindView(R2.id.gd__iv_sicbo_odd_bg)
     ImageView ivSicboOddBg;
 
-    @BindView(R2.id.iv_sicbo_small_bg)
+    @BindView(R2.id.gd__iv_sicbo_small_bg)
     ImageView ivSicboSmallBg;
 
-    @BindView(R2.id.iv_sicbo_pairs6_bg)
+    @BindView(R2.id.gd__iv_sicbo_pairs6_bg)
     ImageView ivSicboPairs6Bg;
-    @BindView(R2.id.fl_sicbo_pairs6)
+    @BindView(R2.id.gd__fl_sicbo_pairs6)
     FrameLayout flSicboPairs6;
-    @BindView(R2.id.iv_sicbo_pairs5_bg)
+    @BindView(R2.id.gd__iv_sicbo_pairs5_bg)
     ImageView ivSicboPairs5Bg;
-    @BindView(R2.id.fl_sicbo_pairs5)
+    @BindView(R2.id.gd__fl_sicbo_pairs5)
     FrameLayout flSicboPairs5;
-    @BindView(R2.id.iv_sicbo_pairs4_bg)
+    @BindView(R2.id.gd__iv_sicbo_pairs4_bg)
     ImageView ivSicboPairs4Bg;
-    @BindView(R2.id.fl_sicbo_pairs4)
+    @BindView(R2.id.gd__fl_sicbo_pairs4)
     FrameLayout flSicboPairs4;
-    @BindView(R2.id.iv_sicbo_three_forces_bg)
+    @BindView(R2.id.gd__iv_sicbo_three_forces_bg)
     ImageView ivSicboThreeForcesBg;
-    @BindView(R2.id.fl_sicbo_all_dice)
+    @BindView(R2.id.gd__fl_sicbo_all_dice)
     FrameLayout flSicboAlldice;
-    @BindView(R2.id.iv_sicbo_pairs3_bg)
+    @BindView(R2.id.gd__iv_sicbo_pairs3_bg)
     ImageView ivSicboPairs3Bg;
-    @BindView(R2.id.fl_sicbo_pairs3)
+    @BindView(R2.id.gd__fl_sicbo_pairs3)
     FrameLayout flSicboPairs3;
-    @BindView(R2.id.iv_sicbo_pairs2_bg)
+    @BindView(R2.id.gd__iv_sicbo_pairs2_bg)
     ImageView ivSicboPairs2Bg;
-    @BindView(R2.id.fl_sicbo_pairs2)
+    @BindView(R2.id.gd__fl_sicbo_pairs2)
     FrameLayout flSicboPairs2;
-    @BindView(R2.id.iv_sicbo_pairs1_bg)
+    @BindView(R2.id.gd__iv_sicbo_pairs1_bg)
     ImageView ivSicboPairs1Bg;
-    @BindView(R2.id.fl_sicbo_pairs1)
+    @BindView(R2.id.gd__fl_sicbo_pairs1)
     FrameLayout flSicboPairs1;
-    @BindView(R2.id.iv_sicbo_points17_bg)
+    @BindView(R2.id.gd__iv_sicbo_points17_bg)
     ImageView ivSicboPoints17Bg;
-    @BindView(R2.id.fl_sicbo_points17)
+    @BindView(R2.id.gd__fl_sicbo_points17)
     FrameLayout flSicboPoints17;
-    @BindView(R2.id.iv_sicbo_points16_bg)
+    @BindView(R2.id.gd__iv_sicbo_points16_bg)
     ImageView ivSicboPoints16Bg;
-    @BindView(R2.id.fl_sicbo_points16)
+    @BindView(R2.id.gd__fl_sicbo_points16)
     FrameLayout flSicboPoints16;
-    @BindView(R2.id.iv_sicbo_points15_bg)
+    @BindView(R2.id.gd__iv_sicbo_points15_bg)
     ImageView ivSicboPoints15Bg;
-    @BindView(R2.id.fl_sicbo_points15)
+    @BindView(R2.id.gd__fl_sicbo_points15)
     FrameLayout flSicboPoints15;
-    @BindView(R2.id.iv_sicbo_points14_bg)
+    @BindView(R2.id.gd__iv_sicbo_points14_bg)
     ImageView ivSicboPoints14Bg;
-    @BindView(R2.id.fl_sicbo_points14)
+    @BindView(R2.id.gd__fl_sicbo_points14)
     FrameLayout flSicboPoints14;
-    @BindView(R2.id.iv_sicbo_points13_bg)
+    @BindView(R2.id.gd__iv_sicbo_points13_bg)
     ImageView ivSicboPoints13Bg;
-    @BindView(R2.id.fl_sicbo_points13)
+    @BindView(R2.id.gd__fl_sicbo_points13)
     FrameLayout flSicboPoints13;
-    @BindView(R2.id.iv_sicbo_points12_bg)
+    @BindView(R2.id.gd__iv_sicbo_points12_bg)
     ImageView ivSicboPoints12Bg;
-    @BindView(R2.id.fl_sicbo_points12)
+    @BindView(R2.id.gd__fl_sicbo_points12)
     FrameLayout flSicboPoints12;
-    @BindView(R2.id.iv_sicbo_points11_bg)
+    @BindView(R2.id.gd__iv_sicbo_points11_bg)
     ImageView ivSicboPoints11Bg;
-    @BindView(R2.id.fl_sicbo_points11)
+    @BindView(R2.id.gd__fl_sicbo_points11)
     FrameLayout flSicboPoints11;
-    @BindView(R2.id.iv_sicbo_points10_bg)
+    @BindView(R2.id.gd__iv_sicbo_points10_bg)
     ImageView ivSicboPoints10Bg;
-    @BindView(R2.id.fl_sicbo_points10)
+    @BindView(R2.id.gd__fl_sicbo_points10)
     FrameLayout flSicboPoints10;
-    @BindView(R2.id.iv_sicbo_points9_bg)
+    @BindView(R2.id.gd__iv_sicbo_points9_bg)
     ImageView ivSicboPoints9Bg;
-    @BindView(R2.id.fl_sicbo_points9)
+    @BindView(R2.id.gd__fl_sicbo_points9)
     FrameLayout flSicboPoints9;
-    @BindView(R2.id.iv_sicbo_points8_bg)
+    @BindView(R2.id.gd__iv_sicbo_points8_bg)
     ImageView ivSicboPoints8Bg;
-    @BindView(R2.id.fl_sicbo_points8)
+    @BindView(R2.id.gd__fl_sicbo_points8)
     FrameLayout flSicboPoints8;
-    @BindView(R2.id.iv_sicbo_points7_bg)
+    @BindView(R2.id.gd__iv_sicbo_points7_bg)
     ImageView ivSicboPoints7Bg;
-    @BindView(R2.id.fl_sicbo_points7)
+    @BindView(R2.id.gd__fl_sicbo_points7)
     FrameLayout flSicboPoints7;
-    @BindView(R2.id.iv_sicbo_points6_bg)
+    @BindView(R2.id.gd__iv_sicbo_points6_bg)
     ImageView ivSicboPoints6Bg;
-    @BindView(R2.id.fl_sicbo_points6)
+    @BindView(R2.id.gd__fl_sicbo_points6)
     FrameLayout flSicboPoints6;
-    @BindView(R2.id.iv_sicbo_points5_bg)
+    @BindView(R2.id.gd__iv_sicbo_points5_bg)
     ImageView ivSicboPoints5Bg;
-    @BindView(R2.id.fl_sicbo_points5)
+    @BindView(R2.id.gd__fl_sicbo_points5)
     FrameLayout flSicboPoints5;
-    @BindView(R2.id.iv_sicbo_points4_bg)
+    @BindView(R2.id.gd__iv_sicbo_points4_bg)
     ImageView ivSicboPoints4Bg;
-    @BindView(R2.id.fl_sicbo_points4)
+    @BindView(R2.id.gd__fl_sicbo_points4)
     FrameLayout flSicboPoints4;
-    @BindView(R2.id.iv_sicbo_combination56_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination56_bg)
     ImageView ivSicboCombination56Bg;
-    @BindView(R2.id.fl_sicbo_combination56)
+    @BindView(R2.id.gd__fl_sicbo_combination56)
     FrameLayout flSicboCombination56;
-    @BindView(R2.id.iv_sicbo_combination46_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination46_bg)
     ImageView ivSicboCombination46Bg;
 
-    @BindView(R2.id.iv_sicbo_combination45_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination45_bg)
     ImageView ivSicboCombination45Bg;
-    @BindView(R2.id.fl_sicbo_combination46)
+    @BindView(R2.id.gd__fl_sicbo_combination46)
     FrameLayout flSicboCombination46;
-    @BindView(R2.id.fl_sicbo_combination45)
+    @BindView(R2.id.gd__fl_sicbo_combination45)
     FrameLayout flSicboCombination45;
 
-    @BindView(R2.id.iv_sicbo_combination36_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination36_bg)
     ImageView ivSicboCombination36Bg;
-    @BindView(R2.id.fl_sicbo_combination36)
+    @BindView(R2.id.gd__fl_sicbo_combination36)
     FrameLayout flSicboCombination36;
-    @BindView(R2.id.iv_sicbo_combination35_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination35_bg)
     ImageView ivSicboCombination35Bg;
-    @BindView(R2.id.fl_sicbo_combination35)
+    @BindView(R2.id.gd__fl_sicbo_combination35)
     FrameLayout flSicboCombination35;
-    @BindView(R2.id.iv_sicbo_combination34_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination34_bg)
     ImageView ivSicboCombination34Bg;
-    @BindView(R2.id.fl_sicbo_combination34)
+    @BindView(R2.id.gd__fl_sicbo_combination34)
     FrameLayout flSicboCombination34;
-    @BindView(R2.id.iv_sicbo_combination26_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination26_bg)
     ImageView ivSicboCombination26Bg;
-    @BindView(R2.id.fl_sicbo_combination26)
+    @BindView(R2.id.gd__fl_sicbo_combination26)
     FrameLayout flSicboCombination26;
-    @BindView(R2.id.iv_sicbo_combination25_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination25_bg)
     ImageView ivSicboCombination25Bg;
-    @BindView(R2.id.fl_sicbo_combination25)
+    @BindView(R2.id.gd__fl_sicbo_combination25)
     FrameLayout flSicboCombination25;
-    @BindView(R2.id.iv_sicbo_combination24_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination24_bg)
     ImageView ivSicboCombination24Bg;
-    @BindView(R2.id.fl_sicbo_combination24)
+    @BindView(R2.id.gd__fl_sicbo_combination24)
     FrameLayout flSicboCombination24;
-    @BindView(R2.id.iv_sicbo_combination23_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination23_bg)
     ImageView ivSicboCombination23Bg;
-    @BindView(R2.id.fl_sicbo_combination23)
+    @BindView(R2.id.gd__fl_sicbo_combination23)
     FrameLayout flSicboCombination23;
-    @BindView(R2.id.iv_sicbo_combination16_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination16_bg)
     ImageView ivSicboCombination16Bg;
-    @BindView(R2.id.fl_sicbo_combination16)
+    @BindView(R2.id.gd__fl_sicbo_combination16)
     FrameLayout flSicboCombination16;
-    @BindView(R2.id.iv_sicbo_combination15_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination15_bg)
     ImageView ivSicboCombination15Bg;
-    @BindView(R2.id.fl_sicbo_combination15)
+    @BindView(R2.id.gd__fl_sicbo_combination15)
     FrameLayout flSicboCombination15;
-    @BindView(R2.id.iv_sicbo_combination14_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination14_bg)
     ImageView ivSicboCombination14Bg;
-    @BindView(R2.id.fl_sicbo_combination14)
+    @BindView(R2.id.gd__fl_sicbo_combination14)
     FrameLayout flSicboCombination14;
-    @BindView(R2.id.iv_sicbo_combination13_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination13_bg)
     ImageView ivSicboCombination13Bg;
-    @BindView(R2.id.fl_sicbo_combination13)
+    @BindView(R2.id.gd__fl_sicbo_combination13)
     FrameLayout flSicboCombination13;
-    @BindView(R2.id.iv_sicbo_combination12_bg)
+    @BindView(R2.id.gd__iv_sicbo_combination12_bg)
     ImageView ivSicboCombination12Bg;
-    @BindView(R2.id.fl_sicbo_combination12)
+    @BindView(R2.id.gd__fl_sicbo_combination12)
     FrameLayout flSicboCombination12;
-    @BindView(R2.id.iv_sicbo_single6_bg)
+    @BindView(R2.id.gd__iv_sicbo_single6_bg)
     ImageView ivSicboSingle6Bg;
-    @BindView(R2.id.fl_sicbo_single6)
+    @BindView(R2.id.gd__fl_sicbo_single6)
     FrameLayout flSicboSingle6;
-    @BindView(R2.id.iv_sicbo_single5_bg)
+    @BindView(R2.id.gd__iv_sicbo_single5_bg)
     ImageView ivSicboSingle5Bg;
-    @BindView(R2.id.fl_sicbo_single5)
+    @BindView(R2.id.gd__fl_sicbo_single5)
     FrameLayout flSicboSingle5;
-    @BindView(R2.id.iv_sicbo_single4_bg)
+    @BindView(R2.id.gd__iv_sicbo_single4_bg)
     ImageView ivSicboSingle4Bg;
-    @BindView(R2.id.fl_sicbo_single4)
+    @BindView(R2.id.gd__fl_sicbo_single4)
     FrameLayout flSicboSingle4;
-    @BindView(R2.id.iv_sicbo_single3_bg)
+    @BindView(R2.id.gd__iv_sicbo_single3_bg)
     ImageView ivSicboSingle3Bg;
-    @BindView(R2.id.fl_sicbo_single3)
+    @BindView(R2.id.gd__fl_sicbo_single3)
     FrameLayout flSicboSingle3;
-    @BindView(R2.id.iv_sicbo_single2_bg)
+    @BindView(R2.id.gd__iv_sicbo_single2_bg)
     ImageView ivSicboSingle2Bg;
-    @BindView(R2.id.fl_sicbo_single2)
+    @BindView(R2.id.gd__fl_sicbo_single2)
     FrameLayout flSicboSingle2;
-    @BindView(R2.id.iv_sicbo_single1_bg)
+    @BindView(R2.id.gd__iv_sicbo_single1_bg)
     ImageView ivSicboSingle1Bg;
-    @BindView(R2.id.fl_sicbo_single1)
+    @BindView(R2.id.gd__fl_sicbo_single1)
     FrameLayout flSicboSingle1;
     FrameLayout flSicbaoGg;
 
@@ -1538,11 +1538,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
                     break;
                 case HandlerCode.SHOW_BET_SUCCESS:
-                    int sure = R.mipmap.sureimg;
+                    int sure = R.mipmap.gd_sureimg;
                     if (currentSure != null && sure != 0) {
                         currentSure.setBackgroundResource(sure);
                     }
-                    int no = R.mipmap.noimg;
+                    int no = R.mipmap.gd_noimg;
                     if (currentCancel != null && no != 0) {
                         currentCancel.setBackgroundResource(no);
                     }
@@ -1725,7 +1725,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
         limitPop = getIntent().getStringExtra("limit");
         toolbar.setNavigationIcon(null);
-        imgBack.setBackgroundResource(R.mipmap.back_black);
+        imgBack.setBackgroundResource(R.mipmap.gd_back_black);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1740,7 +1740,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         toolbar.setBackgroundResource(R.color.transparent);
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
-        mPreview = findViewById(R.id.surface);
+        mPreview = findViewById(R.id.gd__surface);
         setPlayVideo();
         setTableLimit();
         initDiceList();
@@ -1774,174 +1774,174 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
         serviceTime.setTextSize(15);
         density = ScreenUtil.getDisplayMetrics(mContext).density;
-        tv_sicbo_number01 = (TextView) findViewById(R.id.text_shoe_game_number);
-        tv_table_game_number = (TextView) findViewById(R.id.tv_table_game_number);
-        tv_even01 = (TextView) findViewById(R.id.text_even);
-        tv_odd01 = (TextView) findViewById(R.id.text_odd);
-        tv_big01 = (TextView) findViewById(R.id.text_big);
-        tv_small01 = (TextView) findViewById(R.id.text_small);
-        tv_waidic01 = (TextView) findViewById(R.id.text_waidic);
-        btn_results = (TextView) findViewById(R.id.btn_results);
-        HorizontalScrollView hv_bigsmall = (HorizontalScrollView) findViewById(R.id.hv_bigsmall);
-        HorizontalScrollView hv_evenodd = (HorizontalScrollView) findViewById(R.id.hv_evenodd);
+        tv_sicbo_number01 = (TextView) findViewById(R.id.gd__text_shoe_game_number);
+        tv_table_game_number = (TextView) findViewById(R.id.gd__tv_table_game_number);
+        tv_even01 = (TextView) findViewById(R.id.gd__text_even);
+        tv_odd01 = (TextView) findViewById(R.id.gd__text_odd);
+        tv_big01 = (TextView) findViewById(R.id.gd__text_big);
+        tv_small01 = (TextView) findViewById(R.id.gd__text_small);
+        tv_waidic01 = (TextView) findViewById(R.id.gd__text_waidic);
+        btn_results = (TextView) findViewById(R.id.gd__btn_results);
+        HorizontalScrollView hv_bigsmall = (HorizontalScrollView) findViewById(R.id.gd__hv_bigsmall);
+        HorizontalScrollView hv_evenodd = (HorizontalScrollView) findViewById(R.id.gd__hv_evenodd);
 
-        sicbo_bigsmall_road = (GridLayout) hv_bigsmall.findViewById(R.id.sicbo_gridlayout1);
-        sicbo_evenodd_road = (GridLayout) hv_evenodd.findViewById(R.id.sicbo_gridlayout1);
+        sicbo_bigsmall_road = (GridLayout) hv_bigsmall.findViewById(R.id.gd__sicbo_gridlayout1);
+        sicbo_evenodd_road = (GridLayout) hv_evenodd.findViewById(R.id.gd__sicbo_gridlayout1);
         animationDrawableList.clear();
-//        ivSicboBigBg.setBackgroundResource(R.drawable.table_sicbo_big_trans_black_selector);
+//        ivSicboBigBg.setBackgroundResource(R.drawable.gd_table_sicbo_big_trans_black_selector);
         animationDrawableBig = (AnimationDrawable) ivSicboBigBg.getBackground();
         animationDrawableList.add(animationDrawableBig);
-//        ivSicboSmallBg.setBackgroundResource(R.drawable.table_sicbo_small_trans_black_selector);
+//        ivSicboSmallBg.setBackgroundResource(R.drawable.gd_table_sicbo_small_trans_black_selector);
         animationDrawableSmall = (AnimationDrawable) ivSicboSmallBg.getBackground();
         animationDrawableList.add(animationDrawableSmall);
-//        ivSicboOddBg.setBackgroundResource(R.drawable.table_sicbo_odd_trans_black_selector);
+//        ivSicboOddBg.setBackgroundResource(R.drawable.gd_table_sicbo_odd_trans_black_selector);
         animationDrawableOdd = (AnimationDrawable) ivSicboOddBg.getBackground();
         animationDrawableList.add(animationDrawableOdd);
-//        ivSicboEvenBg.setBackgroundResource(R.drawable.table_sicbo_even_trans_black_selector);
+//        ivSicboEvenBg.setBackgroundResource(R.drawable.gd_table_sicbo_even_trans_black_selector);
         animationDrawableEven = (AnimationDrawable) ivSicboEvenBg.getBackground();
         animationDrawableList.add(animationDrawableEven);
-//        ivSicboThreeForcesBg.setBackgroundResource(R.drawable.table_sicbo_t_trans_black_selector);
+//        ivSicboThreeForcesBg.setBackgroundResource(R.drawable.gd_table_sicbo_t_trans_black_selector);
         animationDrawableAllDices = (AnimationDrawable) ivSicboThreeForcesBg.getBackground();
         animationDrawableList.add(animationDrawableAllDices);
-//        ivSicboPairs1Bg.setBackgroundResource(R.drawable.table_sicbo_pair1_trans_black_selector);
+//        ivSicboPairs1Bg.setBackgroundResource(R.drawable.gd_table_sicbo_pair1_trans_black_selector);
         animationDrawablePair1 = (AnimationDrawable) ivSicboPairs1Bg.getBackground();
         animationDrawableList.add(animationDrawablePair1);
-//        ivSicboPairs2Bg.setBackgroundResource(R.drawable.table_sicbo_pair2_trans_black_selector);
+//        ivSicboPairs2Bg.setBackgroundResource(R.drawable.gd_table_sicbo_pair2_trans_black_selector);
         animationDrawablePair2 = (AnimationDrawable) ivSicboPairs2Bg.getBackground();
         animationDrawableList.add(animationDrawablePair2);
-//        ivSicboPairs3Bg.setBackgroundResource(R.drawable.table_sicbo_pair3_trans_black_selector);
+//        ivSicboPairs3Bg.setBackgroundResource(R.drawable.gd_table_sicbo_pair3_trans_black_selector);
         animationDrawablePair3 = (AnimationDrawable) ivSicboPairs3Bg.getBackground();
         animationDrawableList.add(animationDrawablePair3);
-//        ivSicboPairs4Bg.setBackgroundResource(R.drawable.table_sicbo_pair4_trans_black_selector);
+//        ivSicboPairs4Bg.setBackgroundResource(R.drawable.gd_table_sicbo_pair4_trans_black_selector);
         animationDrawablePair4 = (AnimationDrawable) ivSicboPairs4Bg.getBackground();
         animationDrawableList.add(animationDrawablePair4);
-//        ivSicboPairs5Bg.setBackgroundResource(R.drawable.table_sicbo_pair5_trans_black_selector);
+//        ivSicboPairs5Bg.setBackgroundResource(R.drawable.gd_table_sicbo_pair5_trans_black_selector);
         animationDrawablePair5 = (AnimationDrawable) ivSicboPairs5Bg.getBackground();
         animationDrawableList.add(animationDrawablePair5);
-//        ivSicboPairs6Bg.setBackgroundResource(R.drawable.table_sicbo_pair6_trans_black_selector);
+//        ivSicboPairs6Bg.setBackgroundResource(R.drawable.gd_table_sicbo_pair6_trans_black_selector);
         animationDrawablePair6 = (AnimationDrawable) ivSicboPairs6Bg.getBackground();
         animationDrawableList.add(animationDrawablePair6);
-//        ivSicboDices1Bg.setBackgroundResource(R.drawable.table_sicbo_t1_trans_black_selector);
+//        ivSicboDices1Bg.setBackgroundResource(R.drawable.gd_table_sicbo_t1_trans_black_selector);
         animationDrawableWaidice1 = (AnimationDrawable) ivSicboDices1Bg.getBackground();
         animationDrawableList.add(animationDrawableWaidice1);
-//        ivSicboDices2Bg.setBackgroundResource(R.drawable.table_sicbo_t2_trans_black_selector);
+//        ivSicboDices2Bg.setBackgroundResource(R.drawable.gd_table_sicbo_t2_trans_black_selector);
         animationDrawableWaidice2 = (AnimationDrawable) ivSicboDices2Bg.getBackground();
         animationDrawableList.add(animationDrawableWaidice2);
-//        ivSicboDices3Bg.setBackgroundResource(R.drawable.table_sicbo_t3_trans_black_selector);
+//        ivSicboDices3Bg.setBackgroundResource(R.drawable.gd_table_sicbo_t3_trans_black_selector);
         animationDrawableWaidice3 = (AnimationDrawable) ivSicboDices3Bg.getBackground();
         animationDrawableList.add(animationDrawableWaidice3);
-//        ivSicboDices4Bg.setBackgroundResource(R.drawable.table_sicbo_t4_trans_black_selector);
+//        ivSicboDices4Bg.setBackgroundResource(R.drawable.gd_table_sicbo_t4_trans_black_selector);
         animationDrawableWaidice4 = (AnimationDrawable) ivSicboDices4Bg.getBackground();
         animationDrawableList.add(animationDrawableWaidice4);
-//        ivSicboDices5Bg.setBackgroundResource(R.drawable.table_sicbo_t5_trans_black_selector);
+//        ivSicboDices5Bg.setBackgroundResource(R.drawable.gd_table_sicbo_t5_trans_black_selector);
         animationDrawableWaidice5 = (AnimationDrawable) ivSicboDices5Bg.getBackground();
         animationDrawableList.add(animationDrawableWaidice5);
-//        ivSicboDices6Bg.setBackgroundResource(R.drawable.table_sicbo_t6_trans_black_selector);
+//        ivSicboDices6Bg.setBackgroundResource(R.drawable.gd_table_sicbo_t6_trans_black_selector);
         animationDrawableWaidice6 = (AnimationDrawable) ivSicboDices6Bg.getBackground();
         animationDrawableList.add(animationDrawableWaidice6);
-//        ivSicboSingle1Bg.setBackgroundResource(R.drawable.table_sicbo_s1_trans_black_selector);
+//        ivSicboSingle1Bg.setBackgroundResource(R.drawable.gd_table_sicbo_s1_trans_black_selector);
         animationDrawableThree1 = (AnimationDrawable) ivSicboSingle1Bg.getBackground();
         animationDrawableList.add(animationDrawableThree1);
-//        ivSicboSingle2Bg.setBackgroundResource(R.drawable.table_sicbo_s2_trans_black_selector);
+//        ivSicboSingle2Bg.setBackgroundResource(R.drawable.gd_table_sicbo_s2_trans_black_selector);
         animationDrawableThree2 = (AnimationDrawable) ivSicboSingle2Bg.getBackground();
         animationDrawableList.add(animationDrawableThree2);
-//        ivSicboSingle3Bg.setBackgroundResource(R.drawable.table_sicbo_s3_trans_black_selector);
+//        ivSicboSingle3Bg.setBackgroundResource(R.drawable.gd_table_sicbo_s3_trans_black_selector);
         animationDrawableThree3 = (AnimationDrawable) ivSicboSingle3Bg.getBackground();
         animationDrawableList.add(animationDrawableThree3);
-//        ivSicboSingle4Bg.setBackgroundResource(R.drawable.table_sicbo_s4_trans_black_selector);
+//        ivSicboSingle4Bg.setBackgroundResource(R.drawable.gd_table_sicbo_s4_trans_black_selector);
         animationDrawableThree4 = (AnimationDrawable) ivSicboSingle4Bg.getBackground();
         animationDrawableList.add(animationDrawableThree4);
-//        ivSicboSingle5Bg.setBackgroundResource(R.drawable.table_sicbo_s5_trans_black_selector);
+//        ivSicboSingle5Bg.setBackgroundResource(R.drawable.gd_table_sicbo_s5_trans_black_selector);
         animationDrawableThree5 = (AnimationDrawable) ivSicboSingle5Bg.getBackground();
         animationDrawableList.add(animationDrawableThree5);
-//        ivSicboSingle6Bg.setBackgroundResource(R.drawable.table_sicbo_s6_trans_black_selector);
+//        ivSicboSingle6Bg.setBackgroundResource(R.drawable.gd_table_sicbo_s6_trans_black_selector);
         animationDrawableThree6 = (AnimationDrawable) ivSicboSingle6Bg.getBackground();
         animationDrawableList.add(animationDrawableThree6);
-//        ivSicboPoints4Bg.setBackgroundResource(R.drawable.table_sicbo_p4_trans_black_selector);
+//        ivSicboPoints4Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p4_trans_black_selector);
         animationDrawablePoint4 = (AnimationDrawable) ivSicboPoints4Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint4);
-//        ivSicboPoints5Bg.setBackgroundResource(R.drawable.table_sicbo_p5_trans_black_selector);
+//        ivSicboPoints5Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p5_trans_black_selector);
         animationDrawablePoint5 = (AnimationDrawable) ivSicboPoints5Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint5);
-//        ivSicboPoints6Bg.setBackgroundResource(R.drawable.table_sicbo_p6_trans_black_selector);
+//        ivSicboPoints6Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p6_trans_black_selector);
         animationDrawablePoint6 = (AnimationDrawable) ivSicboPoints6Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint6);
-//        ivSicboPoints7Bg.setBackgroundResource(R.drawable.table_sicbo_p7_trans_black_selector);
+//        ivSicboPoints7Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p7_trans_black_selector);
         animationDrawablePoint7 = (AnimationDrawable) ivSicboPoints7Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint7);
-//        ivSicboPoints8Bg.setBackgroundResource(R.drawable.table_sicbo_p8_trans_black_selector);
+//        ivSicboPoints8Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p8_trans_black_selector);
         animationDrawablePoint8 = (AnimationDrawable) ivSicboPoints8Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint8);
-//        ivSicboPoints9Bg.setBackgroundResource(R.drawable.table_sicbo_p9_trans_black_selector);
+//        ivSicboPoints9Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p9_trans_black_selector);
         animationDrawablePoint9 = (AnimationDrawable) ivSicboPoints9Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint9);
-//        ivSicboPoints10Bg.setBackgroundResource(R.drawable.table_sicbo_p10_trans_black_selector);
+//        ivSicboPoints10Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p10_trans_black_selector);
         animationDrawablePoint10 = (AnimationDrawable) ivSicboPoints10Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint10);
-//        ivSicboPoints11Bg.setBackgroundResource(R.drawable.table_sicbo_p11_trans_black_selector);
+//        ivSicboPoints11Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p11_trans_black_selector);
         animationDrawablePoint11 = (AnimationDrawable) ivSicboPoints11Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint11);
-//        ivSicboPoints12Bg.setBackgroundResource(R.drawable.table_sicbo_p12_trans_black_selector);
+//        ivSicboPoints12Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p12_trans_black_selector);
         animationDrawablePoint12 = (AnimationDrawable) ivSicboPoints12Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint12);
-//        ivSicboPoints13Bg.setBackgroundResource(R.drawable.table_sicbo_p13_trans_black_selector);
+//        ivSicboPoints13Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p13_trans_black_selector);
         animationDrawablePoint13 = (AnimationDrawable) ivSicboPoints13Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint13);
-//        ivSicboPoints14Bg.setBackgroundResource(R.drawable.table_sicbo_p14_trans_black_selector);
+//        ivSicboPoints14Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p14_trans_black_selector);
         animationDrawablePoint14 = (AnimationDrawable) ivSicboPoints14Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint14);
-//        ivSicboPoints15Bg.setBackgroundResource(R.drawable.table_sicbo_p15_trans_black_selector);
+//        ivSicboPoints15Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p15_trans_black_selector);
         animationDrawablePoint15 = (AnimationDrawable) ivSicboPoints15Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint15);
-//        ivSicboPoints16Bg.setBackgroundResource(R.drawable.table_sicbo_p16_trans_black_selector);
+//        ivSicboPoints16Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p16_trans_black_selector);
         animationDrawablePoint16 = (AnimationDrawable) ivSicboPoints16Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint16);
-//        ivSicboPoints17Bg.setBackgroundResource(R.drawable.table_sicbo_p17_trans_black_selector);
+//        ivSicboPoints17Bg.setBackgroundResource(R.drawable.gd_table_sicbo_p17_trans_black_selector);
         animationDrawablePoint17 = (AnimationDrawable) ivSicboPoints17Bg.getBackground();
         animationDrawableList.add(animationDrawablePoint17);
-//        ivSicboCombination12Bg.setBackgroundResource(R.drawable.table_sicbo_c12_trans_black_selector);
+//        ivSicboCombination12Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c12_trans_black_selector);
         animationDrawableNineway12 = (AnimationDrawable) ivSicboCombination12Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway12);
-//        ivSicboCombination13Bg.setBackgroundResource(R.drawable.table_sicbo_c13_trans_black_selector);
+//        ivSicboCombination13Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c13_trans_black_selector);
         animationDrawableNineway13 = (AnimationDrawable) ivSicboCombination13Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway13);
-//        ivSicboCombination14Bg.setBackgroundResource(R.drawable.table_sicbo_c14_trans_black_selector);
+//        ivSicboCombination14Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c14_trans_black_selector);
         animationDrawableNineway14 = (AnimationDrawable) ivSicboCombination14Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway14);
-//        ivSicboCombination15Bg.setBackgroundResource(R.drawable.table_sicbo_c15_trans_black_selector);
+//        ivSicboCombination15Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c15_trans_black_selector);
         animationDrawableNineway15 = (AnimationDrawable) ivSicboCombination15Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway15);
-//        ivSicboCombination16Bg.setBackgroundResource(R.drawable.table_sicbo_c16_trans_black_selector);
+//        ivSicboCombination16Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c16_trans_black_selector);
         animationDrawableNineway16 = (AnimationDrawable) ivSicboCombination16Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway16);
-//        ivSicboCombination23Bg.setBackgroundResource(R.drawable.table_sicbo_c23_trans_black_selector);
+//        ivSicboCombination23Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c23_trans_black_selector);
         animationDrawableNineway23 = (AnimationDrawable) ivSicboCombination23Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway23);
-//        ivSicboCombination24Bg.setBackgroundResource(R.drawable.table_sicbo_c24_trans_black_selector);
+//        ivSicboCombination24Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c24_trans_black_selector);
         animationDrawableNineway24 = (AnimationDrawable) ivSicboCombination24Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway24);
-//        ivSicboCombination25Bg.setBackgroundResource(R.drawable.table_sicbo_c25_trans_black_selector);
+//        ivSicboCombination25Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c25_trans_black_selector);
         animationDrawableNineway25 = (AnimationDrawable) ivSicboCombination25Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway25);
-//        ivSicboCombination26Bg.setBackgroundResource(R.drawable.table_sicbo_c26_trans_black_selector);
+//        ivSicboCombination26Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c26_trans_black_selector);
         animationDrawableNineway26 = (AnimationDrawable) ivSicboCombination26Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway26);
-//        ivSicboCombination34Bg.setBackgroundResource(R.drawable.table_sicbo_c34_trans_black_selector);
+//        ivSicboCombination34Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c34_trans_black_selector);
         animationDrawableNineway34 = (AnimationDrawable) ivSicboCombination34Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway34);
-//        ivSicboCombination35Bg.setBackgroundResource(R.drawable.table_sicbo_c34_trans_black_selector);
+//        ivSicboCombination35Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c34_trans_black_selector);
         animationDrawableNineway35 = (AnimationDrawable) ivSicboCombination35Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway35);
-//        ivSicboCombination36Bg.setBackgroundResource(R.drawable.table_sicbo_c36_trans_black_selector);
+//        ivSicboCombination36Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c36_trans_black_selector);
         animationDrawableNineway36 = (AnimationDrawable) ivSicboCombination36Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway36);
-//        ivSicboCombination45Bg.setBackgroundResource(R.drawable.table_sicbo_c45_trans_black_selector);
+//        ivSicboCombination45Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c45_trans_black_selector);
         animationDrawableNineway45 = (AnimationDrawable) ivSicboCombination45Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway45);
-//        ivSicboCombination46Bg.setBackgroundResource(R.drawable.table_sicbo_c46_trans_black_selector);
+//        ivSicboCombination46Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c46_trans_black_selector);
         animationDrawableNineway46 = (AnimationDrawable) ivSicboCombination46Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway46);
-//        ivSicboCombination56Bg.setBackgroundResource(R.drawable.table_sicbo_c56_trans_black_selector);
+//        ivSicboCombination56Bg.setBackgroundResource(R.drawable.gd_table_sicbo_c56_trans_black_selector);
         animationDrawableNineway56 = (AnimationDrawable) ivSicboCombination56Bg.getBackground();
         animationDrawableList.add(animationDrawableNineway56);
         llCenter.setVisibility(View.VISIBLE);
@@ -1954,17 +1954,17 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         contentResults.setBaseAdapter(new QuickAdapterImp<DiceContentBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_bet_dice_info;
+                return R.layout.gd_item_bet_dice_info;
             }
 
             @Override
             public void convert(ViewHolder helper, DiceContentBean item, int position) {
-                helper.setImageResource(R.id.iv_dice_1, item.getList().get(0).getResDrawable());
-                helper.setImageResource(R.id.iv_dice_2, item.getList().get(1).getResDrawable());
-                helper.setImageResource(R.id.iv_dice_3, item.getList().get(2).getResDrawable());
-                helper.setText(R.id.iv_dice_tv, "" + item.getPoint());
-                TextView iv_dice_bs_tv = helper.retrieveView(R.id.iv_dice_bs_tv);
-                TextView iv_dice_oe_tv = helper.retrieveView(R.id.iv_dice_oe_tv);
+                helper.setImageResource(R.id.gd__iv_dice_1, item.getList().get(0).getResDrawable());
+                helper.setImageResource(R.id.gd__iv_dice_2, item.getList().get(1).getResDrawable());
+                helper.setImageResource(R.id.gd__iv_dice_3, item.getList().get(2).getResDrawable());
+                helper.setText(R.id.gd__iv_dice_tv, "" + item.getPoint());
+                TextView iv_dice_bs_tv = helper.retrieveView(R.id.gd__iv_dice_bs_tv);
+                TextView iv_dice_oe_tv = helper.retrieveView(R.id.gd__iv_dice_oe_tv);
                 if (item.getPoint() > 10) {
                     iv_dice_bs_tv.setBackgroundResource(R.drawable.rectangle_sicbo_blue);
                     iv_dice_bs_tv.setText(getString(R.string.B));
@@ -1990,22 +1990,22 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         int resMipmap = 0;
         switch (res) {
             case 1:
-                resMipmap = R.mipmap.dice1;
+                resMipmap = R.mipmap.gd_dice1;
                 break;
             case 2:
-                resMipmap = R.mipmap.dice2;
+                resMipmap = R.mipmap.gd_dice2;
                 break;
             case 3:
-                resMipmap = R.mipmap.dice3;
+                resMipmap = R.mipmap.gd_dice3;
                 break;
             case 4:
-                resMipmap = R.mipmap.dice4;
+                resMipmap = R.mipmap.gd_dice4;
                 break;
             case 5:
-                resMipmap = R.mipmap.dice5;
+                resMipmap = R.mipmap.gd_dice5;
                 break;
             case 6:
-                resMipmap = R.mipmap.dice6;
+                resMipmap = R.mipmap.gd_dice6;
                 break;
         }
         return resMipmap;
@@ -2115,13 +2115,13 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         chips.setBaseAdapter(new QuickAdapterImp<ChipBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_image_chip;
+                return R.layout.gd_item_image_chip;
             }
 
             @Override
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
-                final LinearLayout llParent = helper.retrieveView(R.id.ll_chip_parent);
-                ImageView imgChip = helper.retrieveView(R.id.iv_chip_pic);
+                final LinearLayout llParent = helper.retrieveView(R.id.gd__ll_chip_parent);
+                ImageView imgChip = helper.retrieveView(R.id.gd__iv_chip_pic);
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     if (position == 0) {
                         llParent.post(new Runnable() {
@@ -2171,7 +2171,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     layoutParams.width = (int) (layoutParams.width * 1.2);
                     layoutParams.height = (int) (layoutParams.height * 1.2);
                     imgChip.setLayoutParams(layoutParams);
-                    helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
+                    helper.setBackgroundRes(R.id.gd__ll_chip_parent, R.drawable.gd_rectangle_trans_stroke_yellow);
                 } else {
                     if (position == 7 || position == 9) {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
@@ -2179,18 +2179,18 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                         layoutParams.height = ScreenUtil.dip2px(mContext, 30);
                         imgChip.setLayoutParams(layoutParams);
                         imgChip.setLayoutParams(layoutParams);
-                        helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                        helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                     } else {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
                         layoutParams.width = ScreenUtil.dip2px(mContext, 39);
                         layoutParams.height = ScreenUtil.dip2px(mContext, 39);
                         imgChip.setLayoutParams(layoutParams);
                         imgChip.setLayoutParams(layoutParams);
-                        helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                        helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                     }
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
-                helper.setText(R.id.tv_chip_amount, item.getName());
+                helper.setText(R.id.gd__tv_chip_amount, item.getName());
                 if (item.getValue() == -1) {
                     currentSure = imgChip;
                 } else if (item.getValue() == -2) {
@@ -2233,19 +2233,19 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         contentList.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_live_info3;
+                return R.layout.gd_item_live_info3;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_type);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
-                TextView tvValue2 = helper.retrieveView(R.id.tv_value2);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_type);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
+                TextView tvValue2 = helper.retrieveView(R.id.gd__tv_value2);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
                 tvValue2.setText(item.getValue2());
                 tvType.setTextColor(getResources().getColor(R.color.white));
-                helper.setText(R.id.tv_value, item.getValue1() + "  -  " + item.getValue2());
+                helper.setText(R.id.gd__tv_value, item.getValue1() + "  -  " + item.getValue2());
                 tvValue.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
                 tvValue2.setVisibility(View.GONE);
 //                tvValue2.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
@@ -2286,13 +2286,13 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         contentPool.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info_roulette;
+                return R.layout.gd_item_user_info_roulette;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
                 tvType.setTextColor(ContextCompat.getColor(mContext, R.color.white));
@@ -2371,7 +2371,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_sicbo_bet_game;
+        return R.layout.gd_activity_sicbo_bet_game;
     }
 
 
@@ -2397,8 +2397,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         } else {
             lv_table_pool.setVisibility(View.GONE);
         }
-        /*View view = LayoutInflater.from(mContext).inflate(R.layout.popupwindow_list_bet_people, null);
-        ListView lv = (ListView) view.findViewById(R.id.lv_people_bet_info);
+        /*View view = LayoutInflater.from(mContext).inflate(R.layout.gd_popupwindow_list_bet_people, null);
+        ListView lv = (ListView) view.findViewById(R.id.gd__lv_people_bet_info);
         setListDataTest(lv,null);
 
         final PopupWindow popupWindow = new PopupWindow(view, 400, 500);
@@ -2611,11 +2611,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
     public void clearAllChips() {
         try {
-            int sure = R.mipmap.sureimg;
+            int sure = R.mipmap.gd_sureimg;
             if (currentSure != null && sure != 0) {
                 currentSure.setBackgroundResource(sure);
             }
-            int no = R.mipmap.noimg;
+            int no = R.mipmap.gd_noimg;
             if (currentCancel != null && no != 0) {
                 currentCancel.setBackgroundResource(no);
             }
@@ -2724,11 +2724,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             ChipMap.put(f, chipHelper);
         }
         if (isShow && money > 0) {
-            int sure = R.mipmap.sureimg_light;
+            int sure = R.mipmap.gd_sureimg_light;
             if (currentSure != null && sure != 0) {
                 currentSure.setBackgroundResource(sure);
             }
-            int no = R.mipmap.noimg_light;
+            int no = R.mipmap.gd_noimg_light;
             if (currentCancel != null && no != 0) {
                 currentCancel.setBackgroundResource(no);
             }
@@ -3170,11 +3170,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     }
 
     private void clearBetChip(SbBetType type) {
-        int sure = R.mipmap.sureimg;
+        int sure = R.mipmap.gd_sureimg;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg;
+        int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -3586,9 +3586,9 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (checkChoose())
             return;
         //   ImageView img = (ImageView) iv;
-        //    clickFrameLayout(flSicboBigF1,img, R.drawable.table_sicbo_big_trans_black_selector);
+        //    clickFrameLayout(flSicboBigF1,img, R.drawable.gd_table_sicbo_big_trans_black_selector);
 //        ImageView img = (ImageView) iv;
-//        img.setBackgroundResource(R.drawable.table_sicbo_t_trans_black_selector);
+//        img.setBackgroundResource(R.drawable.gd_table_sicbo_t_trans_black_selector);
 //        AnimationDrawable animationDrawable = (AnimationDrawable) img.getBackground();
 //        if (animationDrawable.isRunning())
 //            animationDrawable.stop();
@@ -3625,7 +3625,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (checkChoose())
             return;
 //      ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboEvenF1,img, R.drawable.table_sicbo_even_trans_black_selector);
+//        clickFrameLayout(flSicboEvenF1,img, R.drawable.gd_table_sicbo_even_trans_black_selector);
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
         if (oddBet > 0 || mAppViewModel.getSicbo01().getSicboBetInformation().getOdd() > 0) {
@@ -3651,7 +3651,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (checkChoose())
             return;
 //      ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboOddF1,img, R.drawable.table_sicbo_odd_trans_black_selector);
+//        clickFrameLayout(flSicboOddF1,img, R.drawable.gd_table_sicbo_odd_trans_black_selector);
 
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
@@ -3679,7 +3679,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (checkChoose())
             return;
 //      ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboSmallF1,img, R.drawable.table_sicbo_small_trans_black_selector);
+//        clickFrameLayout(flSicboSmallF1,img, R.drawable.gd_table_sicbo_small_trans_black_selector);
 
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
@@ -3706,7 +3706,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (checkChoose())
             return;
 //      ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboDices6F1,img, R.drawable.table_sicbo_t6_trans_black_selector);
+//        clickFrameLayout(flSicboDices6F1,img, R.drawable.gd_table_sicbo_t6_trans_black_selector);
 
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
@@ -3859,7 +3859,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
 //        ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboPairs1, img, R.drawable.table_sicbo_pair1_trans_black_selector);
+//        clickFrameLayout(flSicboPairs1, img, R.drawable.gd_table_sicbo_pair1_trans_black_selector);
         clickPairsCount1++;
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinPairBet(),
                 mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxPairBet(), clickPairsCount1,
@@ -3984,7 +3984,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (checkChoose())
             return;
 //      ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboPoints17, img, R.drawable.table_sicbo_p17_trans_black_selector);
+//        clickFrameLayout(flSicboPoints17, img, R.drawable.gd_table_sicbo_p17_trans_black_selector);
 
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
@@ -4283,7 +4283,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
 //        ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboCombination56, img, R.drawable.table_sicbo_c56_trans_black_selector);
+//        clickFrameLayout(flSicboCombination56, img, R.drawable.gd_table_sicbo_c56_trans_black_selector);
         clickNinewayCount56++;
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinNinewaycardBet(),
                 mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxNinewaycardBet(), clickNinewayCount56,
@@ -4604,7 +4604,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
 //        ImageView img = (ImageView) iv;
-//        clickFrameLayout(flSicboSingle1, img, R.drawable.table_sicbo_s1_trans_black_selector);
+//        clickFrameLayout(flSicboSingle1, img, R.drawable.gd_table_sicbo_s1_trans_black_selector);
         clickThreeCount1++;
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinThreeforcesBet(),
                 mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxThreeforcesBet(), clickThreeCount1,
@@ -4811,11 +4811,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
 
             int id = v.getId();
-            if (id == R.id.tv_table_bet_replay) {
+            if (id == R.id.gd__tv_table_bet_replay) {
                 repeatBet();
-            } else if (id == R.id.tv_table_bet_sure) {
+            } else if (id == R.id.gd__tv_table_bet_sure) {
                 bet();
-            } else if (id == R.id.tv_table_bet_cancel) {
+            } else if (id == R.id.gd__tv_table_bet_cancel) {
                 cancelBet();
             }
         }
@@ -4835,11 +4835,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
         }
         clearBetChip(SbBetType.All);
-        int sure = R.mipmap.sureimg;
+        int sure = R.mipmap.gd_sureimg;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg;
+        int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -5093,11 +5093,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     || ninewayBet12 > 0 || ninewayBet13 > 0 || ninewayBet14 > 0 || ninewayBet15 > 0 || ninewayBet16 > 0 || ninewayBet23 > 0 || ninewayBet24 > 0 || ninewayBet25 > 0
                     || ninewayBet26 > 0 || ninewayBet34 > 0 || ninewayBet35 > 0 || ninewayBet36 > 0 || ninewayBet45 > 0 || ninewayBet46 > 0 || ninewayBet56 > 0 || threeBet1 > 0
                     || threeBet2 > 0 || threeBet3 > 0 || threeBet4 > 0 || threeBet5 > 0 || threeBet6 > 0) {
-                int sure = R.mipmap.sureimg_light;
+                int sure = R.mipmap.gd_sureimg_light;
                 if (currentSure != null && sure != 0) {
                     currentSure.setBackgroundResource(sure);
                 }
-                int no = R.mipmap.noimg_light;
+                int no = R.mipmap.gd_noimg_light;
                 if (currentCancel != null && no != 0) {
                     currentCancel.setBackgroundResource(no);
                 }
@@ -5472,12 +5472,12 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     }
 
     public void initPopResultsWindows() {
-        ImageView iv1 = (ImageView) fl_sicbo_result.findViewById(R.id.iv_dice_1);
-        ImageView iv2 = (ImageView) fl_sicbo_result.findViewById(R.id.iv_dice_2);
-        ImageView iv3 = (ImageView) fl_sicbo_result.findViewById(R.id.iv_dice_3);
-        TextView tv = (TextView) fl_sicbo_result.findViewById(R.id.iv_dice_tv);
-        TextView tv_big_small = (TextView) fl_sicbo_result.findViewById(R.id.tv_big_small);
-        TextView tv_odd_even = (TextView) fl_sicbo_result.findViewById(R.id.tv_odd_even);
+        ImageView iv1 = (ImageView) fl_sicbo_result.findViewById(R.id.gd__iv_dice_1);
+        ImageView iv2 = (ImageView) fl_sicbo_result.findViewById(R.id.gd__iv_dice_2);
+        ImageView iv3 = (ImageView) fl_sicbo_result.findViewById(R.id.gd__iv_dice_3);
+        TextView tv = (TextView) fl_sicbo_result.findViewById(R.id.gd__iv_dice_tv);
+        TextView tv_big_small = (TextView) fl_sicbo_result.findViewById(R.id.gd__tv_big_small);
+        TextView tv_odd_even = (TextView) fl_sicbo_result.findViewById(R.id.gd__tv_odd_even);
         if (mAppViewModel.getSicbo01().getResult() != null && !"".equals(mAppViewModel.getSicbo01().getResult()) && !"0".equals(mAppViewModel.getSicbo01().getResult())
                 && mAppViewModel.getSicbo01().getResult().length() == 3 && mAppViewModel.getSicbo01().getGameStatus() == 5) {
 
@@ -5603,7 +5603,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     protected void initOrientation() {
         super.initOrientation();
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
-        lv_baccarat_chips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
+        lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             lv_table_results = (AdapterView) findViewById(R.id.lv_table_results);
 //            toolbar.post(new Runnable() {
@@ -5616,7 +5616,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 //            });
         } else {
             if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                lv_table_results = (AdapterView) findViewById(R.id.lv_table_results_h);
+                lv_table_results = (AdapterView) findViewById(R.id.gd__lv_table_results_h);
                 leftPanel1.setOpen(true, true);
                 bottonPanel1.setOpen(true, true);
 
@@ -5625,13 +5625,13 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         }
     }
 
-    @BindView(R2.id.ll_info)
+    @BindView(R2.id.gd__ll_info)
     LinearLayout ll_info;
-    @BindView(R2.id.lv_user_info)
+    @BindView(R2.id.gd__lv_user_info)
     ListView lv_user_info;
-    @BindView(R2.id.lv_pool)
+    @BindView(R2.id.gd__lv_pool)
     ListView lv_pool;
-    @BindView(R2.id.tv_time)
+    @BindView(R2.id.gd__tv_time)
     TextView tv_time;
 
     @Override
@@ -5766,12 +5766,12 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_percentage;
+                return R.layout.gd_item_percentage;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                LinearLayout ll_parent = helper.retrieveView(R.id.ll_parent);
+                LinearLayout ll_parent = helper.retrieveView(R.id.gd__ll_parent);
                 if (position == 0 || position == 2) {
                     ll_parent.setBackgroundResource(R.drawable.rectangle_sicbo_blue);
                 } else if (position == 1 || position == 3) {
@@ -5779,8 +5779,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 } else {
                     ll_parent.setBackgroundResource(R.drawable.rectangle_sicbo_black);
                 }
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
             }
@@ -5795,13 +5795,13 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info1_roulette;
+                return R.layout.gd_item_user_info1_roulette;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.gold));
                 if (position > 4) {
@@ -5826,7 +5826,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     @Override
     public void onInGameChooseLanguage() {
         sibao_bet_bg.setBackgroundResource(0);
-        sibao_bet_bg.setBackgroundResource(R.mipmap.sicbo_bet_bg);
+        sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg);
         contentPercentage.setData(updatePercentageData());
         contentPercentage.notifyDataSetChanged();
         contentResults.setData(getResultsData());

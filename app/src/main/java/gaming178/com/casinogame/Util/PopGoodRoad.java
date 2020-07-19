@@ -38,12 +38,12 @@ public class PopGoodRoad extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.pop_good_road;
+        return R.layout.gd_pop_good_road;
     }
 
-    @BindView(R2.id.ll_good_parent)
+    @BindView(R2.id.gd__ll_good_parent)
     LinearLayout ll_good_parent;
-    @BindView(R2.id.tv_wait)
+    @BindView(R2.id.gd__tv_wait)
     TextView tv_wait;
     View viewGoodRoad1;
     View viewGoodRoad2;
@@ -90,41 +90,41 @@ public class PopGoodRoad extends BasePopupWindow {
     protected void initView(View view) {
         super.initView(view);
         ButterKnife.bind(this, view);
-        viewGoodRoad1 = LayoutInflater.from(context).inflate(R.layout.item_good_road, null);
-        viewGoodRoad2 = LayoutInflater.from(context).inflate(R.layout.item_good_road, null);
-        viewGoodRoad3 = LayoutInflater.from(context).inflate(R.layout.item_good_road, null);
-        viewGoodRoad61 = LayoutInflater.from(context).inflate(R.layout.item_good_road, null);
-        viewGoodRoad62 = LayoutInflater.from(context).inflate(R.layout.item_good_road, null);
-        viewGoodRoad63 = LayoutInflater.from(context).inflate(R.layout.item_good_road, null);
-        viewGoodRoad71 = LayoutInflater.from(context).inflate(R.layout.item_good_road, null);
-        tv_timer1 = viewGoodRoad1.findViewById(R.id.tv_timer);
-        tv_timer2 = viewGoodRoad2.findViewById(R.id.tv_timer);
-        tv_timer3 = viewGoodRoad3.findViewById(R.id.tv_timer);
-        tv_timer61 = viewGoodRoad61.findViewById(R.id.tv_timer);
-        tv_timer62 = viewGoodRoad62.findViewById(R.id.tv_timer);
-        tv_timer63 = viewGoodRoad63.findViewById(R.id.tv_timer);
-        tv_timer71 = viewGoodRoad71.findViewById(R.id.tv_timer);
-        tv_table_name1 = viewGoodRoad1.findViewById(R.id.tv_table_name);
-        tv_table_name2 = viewGoodRoad2.findViewById(R.id.tv_table_name);
-        tv_table_name3 = viewGoodRoad3.findViewById(R.id.tv_table_name);
-        tv_table_name61 = viewGoodRoad61.findViewById(R.id.tv_table_name);
-        tv_table_name62 = viewGoodRoad62.findViewById(R.id.tv_table_name);
-        tv_table_name63 = viewGoodRoad63.findViewById(R.id.tv_table_name);
-        tv_table_name71 = viewGoodRoad71.findViewById(R.id.tv_table_name);
-        img_good_road1 = viewGoodRoad1.findViewById(R.id.img_good_road);
-        img_good_road2 = viewGoodRoad2.findViewById(R.id.img_good_road);
-        img_good_road3 = viewGoodRoad3.findViewById(R.id.img_good_road);
-        img_good_road61 = viewGoodRoad61.findViewById(R.id.img_good_road);
-        img_good_road62 = viewGoodRoad62.findViewById(R.id.img_good_road);
-        img_good_road63 = viewGoodRoad63.findViewById(R.id.img_good_road);
-        img_good_road71 = viewGoodRoad71.findViewById(R.id.img_good_road);
-        countdown_view1 = viewGoodRoad1.findViewById(R.id.countdown_view);
-        countdown_view2 = viewGoodRoad2.findViewById(R.id.countdown_view);
-        countdown_view3 = viewGoodRoad3.findViewById(R.id.countdown_view);
-        countdown_view61 = viewGoodRoad61.findViewById(R.id.countdown_view);
-        countdown_view62 = viewGoodRoad62.findViewById(R.id.countdown_view);
-        countdown_view63 = viewGoodRoad63.findViewById(R.id.countdown_view);
-        countdown_view71 = viewGoodRoad71.findViewById(R.id.countdown_view);
+        viewGoodRoad1 = LayoutInflater.from(context).inflate(R.layout.gd_item_good_road, null);
+        viewGoodRoad2 = LayoutInflater.from(context).inflate(R.layout.gd_item_good_road, null);
+        viewGoodRoad3 = LayoutInflater.from(context).inflate(R.layout.gd_item_good_road, null);
+        viewGoodRoad61 = LayoutInflater.from(context).inflate(R.layout.gd_item_good_road, null);
+        viewGoodRoad62 = LayoutInflater.from(context).inflate(R.layout.gd_item_good_road, null);
+        viewGoodRoad63 = LayoutInflater.from(context).inflate(R.layout.gd_item_good_road, null);
+        viewGoodRoad71 = LayoutInflater.from(context).inflate(R.layout.gd_item_good_road, null);
+        tv_timer1 = viewGoodRoad1.findViewById(R.id.gd__tv_timer);
+        tv_timer2 = viewGoodRoad2.findViewById(R.id.gd__tv_timer);
+        tv_timer3 = viewGoodRoad3.findViewById(R.id.gd__tv_timer);
+        tv_timer61 = viewGoodRoad61.findViewById(R.id.gd__tv_timer);
+        tv_timer62 = viewGoodRoad62.findViewById(R.id.gd__tv_timer);
+        tv_timer63 = viewGoodRoad63.findViewById(R.id.gd__tv_timer);
+        tv_timer71 = viewGoodRoad71.findViewById(R.id.gd__tv_timer);
+        tv_table_name1 = viewGoodRoad1.findViewById(R.id.gd__tv_table_name);
+        tv_table_name2 = viewGoodRoad2.findViewById(R.id.gd__tv_table_name);
+        tv_table_name3 = viewGoodRoad3.findViewById(R.id.gd__tv_table_name);
+        tv_table_name61 = viewGoodRoad61.findViewById(R.id.gd__tv_table_name);
+        tv_table_name62 = viewGoodRoad62.findViewById(R.id.gd__tv_table_name);
+        tv_table_name63 = viewGoodRoad63.findViewById(R.id.gd__tv_table_name);
+        tv_table_name71 = viewGoodRoad71.findViewById(R.id.gd__tv_table_name);
+        img_good_road1 = viewGoodRoad1.findViewById(R.id.gd__img_good_road);
+        img_good_road2 = viewGoodRoad2.findViewById(R.id.gd__img_good_road);
+        img_good_road3 = viewGoodRoad3.findViewById(R.id.gd__img_good_road);
+        img_good_road61 = viewGoodRoad61.findViewById(R.id.gd__img_good_road);
+        img_good_road62 = viewGoodRoad62.findViewById(R.id.gd__img_good_road);
+        img_good_road63 = viewGoodRoad63.findViewById(R.id.gd__img_good_road);
+        img_good_road71 = viewGoodRoad71.findViewById(R.id.gd__img_good_road);
+        countdown_view1 = viewGoodRoad1.findViewById(R.id.gd__countdown_view);
+        countdown_view2 = viewGoodRoad2.findViewById(R.id.gd__countdown_view);
+        countdown_view3 = viewGoodRoad3.findViewById(R.id.gd__countdown_view);
+        countdown_view61 = viewGoodRoad61.findViewById(R.id.gd__countdown_view);
+        countdown_view62 = viewGoodRoad62.findViewById(R.id.gd__countdown_view);
+        countdown_view63 = viewGoodRoad63.findViewById(R.id.gd__countdown_view);
+        countdown_view71 = viewGoodRoad71.findViewById(R.id.gd__countdown_view);
         ll_good_parent.addView(viewGoodRoad1);
         ll_good_parent.addView(viewGoodRoad2);
         ll_good_parent.addView(viewGoodRoad3);

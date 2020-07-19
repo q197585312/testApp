@@ -15,8 +15,8 @@ public class HomeGuideActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView( R.layout.activity_guide);
-        findViewById(R.id.fl_guide_parent).setOnClickListener(new View.OnClickListener() {
+        setContentView( R.layout.gd_activity_guide);
+        findViewById(R.id.gd__fl_guide_parent).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v)

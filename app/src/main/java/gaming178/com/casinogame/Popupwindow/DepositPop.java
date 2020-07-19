@@ -128,8 +128,8 @@ public class DepositPop extends BasePopupWindow {
 
             @Override
             public void convert(ViewHolder helper, BankInfo item, int position) {
-                helper.setText(R.id.text_tv1, item.getBankName());
-                helper.setTextSize(R.id.text_tv1, 12);
+                helper.setText(R.id.gd__text_tv1, item.getBankName());
+                helper.setTextSize(R.id.gd__text_tv1, 12);
             }
         };
         content1.setBaseAdapter(adapterImp);
@@ -150,9 +150,9 @@ public class DepositPop extends BasePopupWindow {
 
             @Override
             public void convert(ViewHolder helper, BankInfo item, int position) {
-                helper.setText(R.id.text_tv1, item.getBankName());
-                helper.setTextSize(R.id.text_tv1, 12);
-                helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context,R.color.gray_dark));
+                helper.setText(R.id.gd__text_tv1, item.getBankName());
+                helper.setTextSize(R.id.gd__text_tv1, 12);
+                helper.setTextColor(R.id.gd__text_tv1, ContextCompat.getColor(context,R.color.gray_dark));
             }
         });
         content2.setItemClick(new ItemCLickImp<BankInfo>() {
@@ -190,25 +190,25 @@ public class DepositPop extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.popupwindow_deposit;
+        return R.layout.gd_popupwindow_deposit;
     }
 
     @Override
     protected void initView(View view) {
         super.initView(view);
-        edtAmount = (EditText) view.findViewById(R.id.edt_pop_deposit_amount);
-        tvUsername = (TextView) view.findViewById(R.id.tv_pop_deposit_username);
-        tvChoiceBank = (TextView) view.findViewById(R.id.tv_pop_deposit_choice_bank);
-        edtBankAccount = (EditText) view.findViewById(R.id.edt_pop_deposit_bank_account);
-        edtBankNumber = (TextView) view.findViewById(R.id.edt_pop_deposit_bank_number);
-        tvChoiceBank2 = (TextView) view.findViewById(R.id.tv_pop_deposit_choice_bank2);
-        tvBankAccount2 = (TextView) view.findViewById(R.id.tv_pop_deposit_bank_account2);
-        tvBankNumber2 = (TextView) view.findViewById(R.id.tv_pop_deposit_bank_number2);
-        btnConfirm = (Button) view.findViewById(R.id.btn_pop_deposit_confirm);
-        btnCancel = (Button) view.findViewById(R.id.btn_pop_deposit_cancel);
-        lstbank1 = (ListView) view.findViewById(R.id.lv_bank_list1);
-        lstbank2 = (ListView) view.findViewById(R.id.lv_bank_list2);
-        ivClose = (ImageView) view.findViewById(R.id.iv_pop_deposit_close);
+        edtAmount = (EditText) view.findViewById(R.id.gd__edt_pop_deposit_amount);
+        tvUsername = (TextView) view.findViewById(R.id.gd__tv_pop_deposit_username);
+        tvChoiceBank = (TextView) view.findViewById(R.id.gd__tv_pop_deposit_choice_bank);
+        edtBankAccount = (EditText) view.findViewById(R.id.gd__edt_pop_deposit_bank_account);
+        edtBankNumber = (TextView) view.findViewById(R.id.gd__edt_pop_deposit_bank_number);
+        tvChoiceBank2 = (TextView) view.findViewById(R.id.gd__tv_pop_deposit_choice_bank2);
+        tvBankAccount2 = (TextView) view.findViewById(R.id.gd__tv_pop_deposit_bank_account2);
+        tvBankNumber2 = (TextView) view.findViewById(R.id.gd__tv_pop_deposit_bank_number2);
+        btnConfirm = (Button) view.findViewById(R.id.gd__btn_pop_deposit_confirm);
+        btnCancel = (Button) view.findViewById(R.id.gd__btn_pop_deposit_cancel);
+        lstbank1 = (ListView) view.findViewById(R.id.gd__lv_bank_list1);
+        lstbank2 = (ListView) view.findViewById(R.id.gd__lv_bank_list2);
+        ivClose = (ImageView) view.findViewById(R.id.gd__iv_pop_deposit_close);
 
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override

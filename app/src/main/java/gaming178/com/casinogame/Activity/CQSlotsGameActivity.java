@@ -42,11 +42,11 @@ import gaming178.com.mylibrary.base.ViewHolder;
  */
 
 public class CQSlotsGameActivity extends BaseActivity {
-    //    @BindView(R2.id.ll_parent)
+    //    @BindView(R2.id.gd__ll_parent)
     LinearLayout ll_parent;
-    //    @BindView(R2.id.viewpager)
+    //    @BindView(R2.id.gd__viewpager)
     ViewPager viewPager;
-    //    @BindView(R2.id.ll_circle)
+    //    @BindView(R2.id.gd__ll_circle)
     LinearLayout ll_circle;
     String lg;
 
@@ -59,7 +59,7 @@ public class CQSlotsGameActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_slots;
+        return R.layout.gd_activity_slots;
     }
 
     @Override
@@ -133,10 +133,10 @@ public class CQSlotsGameActivity extends BaseActivity {
             textView.setGravity(Gravity.CENTER);
             textView.setLayoutParams(params);
             if (i == 0) {
-                textView.setBackgroundResource(R.drawable.shape_circle_select);
+                textView.setBackgroundResource(R.drawable.gd_shape_circle_select);
                 viewPager.setCurrentItem(0, false);
             } else {
-                textView.setBackgroundResource(R.drawable.shape_circle_no_select);
+                textView.setBackgroundResource(R.drawable.gd_shape_circle_no_select);
             }
             textView.setTag(i);
             textView.setOnClickListener(new View.OnClickListener() {
@@ -159,9 +159,9 @@ public class CQSlotsGameActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 for (int i = 0; i < tvList.size(); i++) {
                     if (position == i) {
-                        tvList.get(i).setBackgroundResource(R.drawable.shape_circle_select);
+                        tvList.get(i).setBackgroundResource(R.drawable.gd_shape_circle_select);
                     } else {
-                        tvList.get(i).setBackgroundResource(R.drawable.shape_circle_no_select);
+                        tvList.get(i).setBackgroundResource(R.drawable.gd_shape_circle_no_select);
                     }
                 }
             }
@@ -180,17 +180,17 @@ public class CQSlotsGameActivity extends BaseActivity {
         adapterViewContent.setBaseAdapter(new QuickAdapterImp<CQSlotsGameInfoBean.DataBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_slots_game;
+                return R.layout.gd_item_slots_game;
             }
 
             @Override
             public void convert(ViewHolder helper, CQSlotsGameInfoBean.DataBean item, int position) {
-                ImageView img = helper.retrieveView(R.id.hall_game_pic_iv);
+                ImageView img = helper.retrieveView(R.id.gd__hall_game_pic_iv);
                 Glide.with(mContext).load(item.getImgAddress()).centerCrop().transform(new GlideRoundTransform(mContext, 4)).into(img);
                 if (!TextUtils.isEmpty(lg) && lg.equals("zh")) {
-                    helper.setText(R.id.hall_game_title_tv, item.getCN_name());
+                    helper.setText(R.id.gd__hall_game_title_tv, item.getCN_name());
                 } else {
-                    helper.setText(R.id.hall_game_title_tv, item.getEN_name());
+                    helper.setText(R.id.gd__hall_game_title_tv, item.getEN_name());
                 }
             }
         });
@@ -263,9 +263,9 @@ public class CQSlotsGameActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        ll_parent = (LinearLayout) findViewById(R.id.ll_parent);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        ll_circle = (LinearLayout) findViewById(R.id.ll_circle);
+        ll_parent = (LinearLayout) findViewById(R.id.gd__ll_parent);
+        viewPager = (ViewPager) findViewById(R.id.gd__viewpager);
+        ll_circle = (LinearLayout) findViewById(R.id.gd__ll_circle);
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             pageSize = 6;
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {

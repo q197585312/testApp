@@ -709,52 +709,52 @@ public class AfbApp extends BaseApplication {
                 }
                 switch (res) {
                     case 1:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, 10, banker);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, 10, banker);
                         break;
                     case 2:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, 10, banker);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, Gravity.LEFT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, 10, banker);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, Gravity.LEFT);
                         break;
                     case 3:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, 10, banker);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, 10, banker);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                         break;
                     case 4:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, 10, banker);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, Gravity.LEFT);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, 10, banker);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, Gravity.LEFT);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                         break;
                     case 5:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, 10, player);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, 10, player);
                         break;
                     case 6:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, 10, player);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, Gravity.LEFT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, 10, player);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, Gravity.LEFT);
                         break;
                     case 7:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, 10, player);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, 10, player);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                         break;
                     case 8:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, 10, player);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, Gravity.LEFT);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, 10, player);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, Gravity.LEFT);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                         break;
                     case 9:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_green_solid, 10, tie);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_green_solid, 10, tie);
                         break;
                     case 10:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_green_solid, 10, tie);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, Gravity.LEFT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_green_solid, 10, tie);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, Gravity.LEFT);
                         break;
                     case 11:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_green_solid, 10, tie);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_green_solid, 10, tie);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                         break;
                     case 12:
-                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.oval_green_solid, 10, tie);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_red_solid, Gravity.LEFT);
-                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                        setTextMarginsBackground(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_green_solid, 10, tie);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_red_solid, Gravity.LEFT);
+                        setMarginsPointMarker(ctx, viewGroup, density, headMargin, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                         break;
                 }
 
@@ -795,36 +795,36 @@ public class AfbApp extends BaseApplication {
 
         switch (res) {
             case 1:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_red_solid_not, textSiae, "");
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid_not, textSiae, "");
                 break;
             case 2:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_red_solid_not, textSiae, "");
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_red_solid, Gravity.LEFT);
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid_not, textSiae, "");
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid, Gravity.LEFT);
                 break;
             case 3:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_red_solid_not, textSiae, "");
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid_not, textSiae, "");
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                 break;
             case 4:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_red_solid_not, textSiae, "");
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_red_solid, Gravity.LEFT);
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid_not, textSiae, "");
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid, Gravity.LEFT);
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                 break;
             case 5:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid_not, textSiae, "");
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid_not, textSiae, "");
                 break;
             case 6:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid_not, textSiae, "");
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_red_solid, Gravity.LEFT);
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid_not, textSiae, "");
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid, Gravity.LEFT);
                 break;
             case 7:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid_not, textSiae, "");
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid_not, textSiae, "");
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                 break;
             case 8:
-                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid_not, textSiae, "");
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_red_solid, Gravity.LEFT);
-                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid, Gravity.RIGHT);
+                setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid_not, textSiae, "");
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid, Gravity.LEFT);
+                setMarginsPointMarker(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid, Gravity.RIGHT);
                 break;
 
         }
@@ -879,10 +879,10 @@ public class AfbApp extends BaseApplication {
         }
         switch (res) {
             case 1:
-                setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_red_solid_not, textSiae, "");
+                setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid_not, textSiae, "");
                 break;
             case 5:
-                setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid_not, textSiae, "");
+                setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid_not, textSiae, "");
                 break;
 
 
@@ -919,10 +919,10 @@ public class AfbApp extends BaseApplication {
             }
             switch (res) {
                 case 1:
-                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_red_bg, textSiae, "");
+                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_bg, textSiae, "");
                     break;
                 case 5:
-                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_blue_bg, textSiae, "");
+                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_bg, textSiae, "");
                     break;
 
 
@@ -960,11 +960,11 @@ public class AfbApp extends BaseApplication {
         switch (res) {
             case 1:
                 if (waidic == 1) {
-                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_green_solid_not, textSiae, "" + point);
+                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_green_solid_not, textSiae, "" + point);
                     TextView textView = (TextView) viewGroup.getChildAt(0);
                     textView.setTextColor(ctx.getResources().getColor(R.color.green500));
                 } else {
-                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_red_solid_not, textSiae, "" + point);
+                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid_not, textSiae, "" + point);
                     TextView textView = (TextView) viewGroup.getChildAt(0);
                     textView.setTextColor(ctx.getResources().getColor(R.color.red));
                 }
@@ -973,11 +973,11 @@ public class AfbApp extends BaseApplication {
 
             case 5:
                 if (waidic == 1) {
-                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_green_solid_not, textSiae, "" + point);
+                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_green_solid_not, textSiae, "" + point);
                     TextView textView = (TextView) viewGroup.getChildAt(0);
                     textView.setTextColor(ctx.getResources().getColor(R.color.green500));
                 } else {
-                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid_not, textSiae, "" + point);
+                    setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid_not, textSiae, "" + point);
                     TextView textViewSmall = (TextView) viewGroup.getChildAt(0);
                     textViewSmall.setTextColor(ctx.getResources().getColor(R.color.blue));
                 }
@@ -1021,17 +1021,17 @@ public class AfbApp extends BaseApplication {
         switch (res) {
             case 1:
                 if (waidic == 1) {
-                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_green_solid, textSiae, waiDic);
+                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_green_solid, textSiae, waiDic);
                 } else
-                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_red_solid, textSiae, evenOdd);
+                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid, textSiae, evenOdd);
 
                 break;
 
             case 5:
                 if (waidic == 1) {
-                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_green_solid, textSiae, waiDic);
+                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_green_solid, textSiae, waiDic);
                 } else
-                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.oval_blue_solid, textSiae, evenOdd);
+                    setTextMarginsBackground(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid, textSiae, evenOdd);
 
                 break;
 

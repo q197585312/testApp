@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gd__fl_baccarat_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_table_color">
+
+    <FrameLayout
+        android:id="@+id/gd__fl_baccarat_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/gd_rectangle_green_hall_bg"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <FrameLayout
+                android:id="@+id/gd__fl_vedio_parent"
+                android:layout_width="480px"
+                android:layout_height="300px"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <gaming178.com.casinogame.Util.VideoPlayer
+                    android:id="@+id/gd__surface"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/gd__tv_hint"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__bottonPanel1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1">
+
+            <include layout="@layout/gd_layout_roulette_board_content_panel2" />
+
+        </FrameLayout>
+
+        <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
+            android:id="@+id/gd__lv_baccarat_chips_h"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:divider="@null"
+            android:scrollbars="none">
+
+        </gaming178.com.mylibrary.myview.mylistview.HorizontalListView>
+
+        <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
+            android:id="@+id/gd__leftPanel1"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom"
+            app:closedHandle="@mipmap/gd_handle_road_close"
+            app:content="@+id/gd__content"
+            app:handle="@+id/gd__handle1"
+            app:openedHandle="@mipmap/gd_handle_road_open"
+            app:position="left">
+
+            <ImageView
+                android:id="@+id/gd__handle1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical" />
+
+            <include
+                android:id="@+id/gd__content"
+                layout="@layout/gd_layout_roulette_left_content_panel" />
+        </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="2dp">
+
+        <gaming178.com.casinogame.Util.CountDownView
+            android:id="@+id/gd__countdown_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/gd__tv_table_timer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="22px"
+            android:textStyle="bold"
+            app:layout_auto_basewidth="height" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="300px"
+        android:orientation="horizontal">
+
+        <TextView
+
+            style="@style/text_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="RL1:"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/gd__text_shoe_game_number"
+            style="@style/text_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="0 - 0"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/gd__btn_table_pool_title"
+        android:layout_width="160px"
+        android:layout_height="20dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/gd_rectangle_grey6e6e6e_top_corner5_bet_btn"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="Limit"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/gd__lv_limit"
+        android:layout_width="160px"
+        android:layout_height="130px"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/rectangle_trans"
+        android:padding="5dp"
+        android:scrollbars="none"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/gd__iv_baccarat_change_table"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="298px"
+        android:clickable="true"
+        android:drawableLeft="@drawable/gd_ic_reorder_white_18dp"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="@string/TABLE"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/gd__tv_service_time"
+        style="@style/text_shadow"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300px"
+        android:textColor="@color/white" />
+
+
+    <!-- <com.capricorn.ArcMenu
+        android:id="@+id/gd__arc_menu"
+        android:layout_marginLeft="180px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fromDegrees="0.0"
+
+        app:toDegrees="180.0"
+        app:childSize="40dp"/>-->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginLeft="186px"
+        android:paddingLeft="58dp">
+
+        <TextView
+            android:id="@+id/gd__tv_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center_vertical"
+            android:background="@mipmap/gd_set_icon_trans"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="#394e04"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_layout" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <!--<ListView-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_marginLeft="1dp"-->
+            <!--android:background="@drawable/rectangle_trans"-->
+            <!--android:scrollbars="none"-->
+            <!--android:id="@+id/gd__lv_pool"-->
+            <!--android:layout_width="140px"-->
+            <!--android:layout_height="152px"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:layout_marginTop="30px" />-->
+            <ListView
+                android:id="@+id/gd__lv_table_bet_info"
+                android:layout_width="140px"
+                android:layout_height="200px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="5px"
+                android:layout_marginLeft="120px"
+                android:background="@drawable/gd_rectangle_grey_corner5_pop"
+                android:padding="5dp"
+                android:scrollbars="none"
+                android:textColor="@color/yellow_brown_white_word"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/gd__iv_roulette_road_handle"
+                android:layout_width="30px"
+                android:layout_height="150px"
+                android:layout_marginLeft="140px"
+                android:layout_marginTop="30px"
+                android:clickable="true"
+                android:onClick="clickLeftPanel"
+                android:scaleType="fitXY"
+                android:src="@mipmap/gd_handle_road_open"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/gd__btn_table_limit_red_title"
+                android:layout_width="140px"
+                android:layout_height="30px"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/gd_rectangle_grey6e6e6e_top_corner5_bet_btn"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="clickLiveList"
+                android:text="@string/POOL"
+                android:textColor="@color/white"
+                android:textSize="16px"
+
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:id="@+id/gd__ll_bet_btn_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/gd__tv_table_bet_sure"
+                    android:layout_width="68dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/gd_rectangle_grey_dark_yellow_corner_bet_btn_selector"
+                    android:clickable="true"
+                    android:drawableLeft="@mipmap/gd_oval_white_hook"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="@string/OK"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_table_bet_replay"
+                    android:layout_width="68dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/gd_rectangle_grey_dark_yellow_corner_bet_btn_selector"
+                    android:clickable="true"
+                    android:drawableLeft="@mipmap/gd_replay_arrow_white"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="@string/Repeat"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_table_bet_cancel"
+                    android:layout_width="68dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/gd_rectangle_grey_dark_yellow_corner_bet_btn_selector"
+                    android:clickable="true"
+                    android:drawableLeft="@mipmap/gd_oval_white_fork"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="@string/Cancel"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+                android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gd__ll_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/gd__ll_chip_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="@color/trans_black"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="30px"
+                        android:src="@mipmap/gd_arrow_up_grey_light" />
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="30px"
+                        android:src="@mipmap/gd_arrow_down_grey_light" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gd__ll_info"
+        android:layout_width="240dp"
+        android:layout_height="0dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/gd_bg_slide"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="26dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"></View>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#113532"></View>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"></View>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#113532"></View>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/gd__tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_table_game_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="0.5dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/gd__lv_user_info"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
+
+                <ListView
+                    android:id="@+id/gd__lv_pool"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gd__tv_black_percentage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_shape_roulette_black_bg"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gd__tv_red_percentage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_shape_roulette_red_bg"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gd__tv_odd_percentage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_shape_roulette_black_bg"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gd__tv_even_percentage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_shape_roulette_red_bg"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gd__rc_road"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_shape_hot_ice"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/gd_hot" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/gd__rc_hot"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gd_shape_hot_ice"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/gd_ice" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/gd__rc_ice"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:src="@mipmap/gd_roulette_right"></ImageView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/gd__fl_vedio_location_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></FrameLayout>
+    <FrameLayout
+        android:id="@+id/gd__fl_surface_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></FrameLayout>
+    <FrameLayout
+        android:id="@+id/gd__fl_roulette_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:visibility="gone">
+
+        <include layout="@layout/gd_layout_pop_center_roulette"></include>
+    </FrameLayout>
+
+</FrameLayout>

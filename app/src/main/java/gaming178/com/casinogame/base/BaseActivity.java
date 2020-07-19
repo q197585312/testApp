@@ -911,7 +911,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         componentBack = new ComponentName(this,
                 BackgroudMuzicService.class);
         if (toolbar != null) {
-            toolbar.setNavigationIcon(R.mipmap.arrow_left_back);
+            toolbar.setNavigationIcon(R.mipmap.gd_arrow_left_back);
 //            backTv.setText(getResources().getString(R.string.back));
             if (backTv != null)
                 backTv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
@@ -929,7 +929,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
 
         if (titleTv != null)
-//            titleTv.setBackgroundResource(R.mipmap.app_logo);
+//            titleTv.setBackgroundResource(R.mipmap.gd_app_logo);
             if (rightTv != null) {
 
                 rightTv.setGravity(Gravity.RIGHT);
@@ -965,9 +965,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
             @Override
             protected void convertItem(ViewHolder helper, String item, int position) {
-                helper.setText(R.id.text_tv1, item);
-                helper.setTextColorRes(R.id.text_tv1, R.color.white);
-                helper.setBackgroundRes(R.id.text_tv1, R.drawable.rectangle_green_corner2);
+                helper.setText(R.id.gd__text_tv1, item);
+                helper.setTextColorRes(R.id.gd__text_tv1, R.color.white);
+                helper.setBackgroundRes(R.id.gd__text_tv1, R.drawable.gd_rectangle_green_corner2);
             }
 
             @Override
@@ -977,7 +977,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
             @Override
             protected int getListViewId() {
-                return R.id.gridview_content_gv;
+                return R.id.gd__gridview_content_gv;
             }
 
             @Override
@@ -990,7 +990,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 super.initView(view);
                 GridView gv = (GridView) getAbListViewRes(view);
                 gv.setNumColumns(3);
-                gv.setBackgroundResource(R.drawable.rectangle_trans_black_corner5);
+                gv.setBackgroundResource(R.drawable.gd_rectangle_trans_black_corner5);
 
             }
         };
@@ -1001,13 +1001,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         BasePopupWindow popupWindow = new BasePopupWindow(mContext, v, ScreenUtil.dip2px(mContext, 320), ScreenUtil.dip2px(mContext, 320)) {
             @Override
             protected int getContentViewLayoutRes() {
-                return R.layout.popupwindow_all_game;
+                return R.layout.gd_popupwindow_all_game;
             }
 
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
+                RecyclerView rv = (RecyclerView) view.findViewById(R.id.gd__rv_list);
                 int homeColor = mAppViewModel.getHomeColor();
                 if (homeColor != 0) {
                     rv.setBackgroundColor(homeColor);
@@ -1064,15 +1064,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     protected void handleOrientation(int mCurrentOrientation) {
-        if (findViewById(R.id.ll_layout_girl) != null && findViewById(R.id.ll_more_info) != null)
+        if (findViewById(R.id.gd__ll_layout_girl) != null && findViewById(R.id.gd__ll_more_info) != null)
             if (mCurrentOrientation == Configuration.ORIENTATION_PORTRAIT) {
-                findViewById(R.id.ll_layout_girl).setVisibility(View.GONE);
-                findViewById(R.id.ll_more_info).setVisibility(View.GONE);
+                findViewById(R.id.gd__ll_layout_girl).setVisibility(View.GONE);
+                findViewById(R.id.gd__ll_more_info).setVisibility(View.GONE);
                 poolSize = 12;
             } else {
                 poolSize = 18;
-                findViewById(R.id.ll_layout_girl).setVisibility(View.VISIBLE);
-                findViewById(R.id.ll_more_info).setVisibility(View.VISIBLE);
+                findViewById(R.id.gd__ll_layout_girl).setVisibility(View.VISIBLE);
+                findViewById(R.id.gd__ll_more_info).setVisibility(View.VISIBLE);
             }
     }
 
@@ -1212,13 +1212,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20), ScreenUtil.dip2px(mContext, 200)) {
                 @Override
                 protected int onSetRcItemLayout() {
-                    return R.layout.item_language_selected;
+                    return R.layout.gd_item_language_selected;
                 }
 
                 @Override
                 public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
-                    ImageView ivFlag = holder.getView(R.id.iv_flag_country);
-                    TextView tvContent = holder.getView(R.id.selectable_text_content_tv);
+                    ImageView ivFlag = holder.getView(R.id.gd__iv_flag_country);
+                    TextView tvContent = holder.getView(R.id.gd__selectable_text_content_tv);
                     tvContent.setText(item.getText());
                     ivFlag.setImageResource(item.getRes());
                     boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
@@ -1284,7 +1284,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 @Override
                 protected void initView(View view) {
                     super.initView(view);
-                    View viewById = view.findViewById(R.id.view_weight1);
+                    View viewById = view.findViewById(R.id.gd__view_weight1);
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) viewById.getLayoutParams();
                     params.weight = weight;
                     viewById.setLayoutParams(params);
@@ -1298,7 +1298,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
                 @Override
                 protected int getContentViewLayoutRes() {
-                    return R.layout.popupwindow_language_select;
+                    return R.layout.gd_popupwindow_language_select;
                 }
             };
             popLanguage.setData(new LanguageHelper(mContext).getLanguageItems());
@@ -1365,32 +1365,32 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         BasePopupWindow pop = new BasePopupWindow(mContext, center, width, ScreenUtil.dip2px(mContext, 200)) {
             @Override
             protected int getContentViewLayoutRes() {
-                return R.layout.popupwindow_voice_set_layout;
+                return R.layout.gd_popupwindow_voice_set_layout;
             }
 
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.rg_switch);
-                RadioButton rb_limit = (RadioButton) view.findViewById(R.id.rb_limit);
-                RadioButton rb_language = (RadioButton) view.findViewById(R.id.rb_language);
+                RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.gd__rg_switch);
+                RadioButton rb_limit = (RadioButton) view.findViewById(R.id.gd__rb_limit);
+                RadioButton rb_language = (RadioButton) view.findViewById(R.id.gd__rb_language);
                 if (!BuildConfig.FLAVOR.isEmpty() &&!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                    rb_limit.setBackgroundResource(R.drawable.selector_music_choose_right);
+                    rb_limit.setBackgroundResource(R.drawable.gd_selector_music_choose_right);
                     rb_language.setVisibility(View.GONE);
                 }
-                TextView tv_music_title = (TextView) view.findViewById(R.id.tv_music_title);
+                TextView tv_music_title = (TextView) view.findViewById(R.id.gd__tv_music_title);
                 if (BaseActivity.this instanceof LobbyActivity) {
                     rg_switch.setVisibility(View.GONE);
                     tv_music_title.setVisibility(View.VISIBLE);
                 }
-                final LinearLayout ll_music = view.findViewById(R.id.ll_music);
-                final RecyclerView recyclerView = view.findViewById(R.id.base_rv);
-                final RecyclerView rc_lg = view.findViewById(R.id.rc_lg);
+                final LinearLayout ll_music = view.findViewById(R.id.gd__ll_music);
+                final RecyclerView recyclerView = view.findViewById(R.id.gd__base_rv);
+                final RecyclerView rc_lg = view.findViewById(R.id.gd__rc_lg);
                 recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-                BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(mAppViewModel.getTableId()), R.layout.item_popupwindow_text_select) {
+                BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(mAppViewModel.getTableId()), R.layout.gd_item_popupwindow_text_select) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                        holder.setText(R.id.pop_text_tv, item);
+                        holder.setText(R.id.gd__pop_text_tv, item);
                     }
 
                 };
@@ -1421,11 +1421,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 recyclerView.setAdapter(baseRecyclerAdapter);
 
                 rc_lg.setLayoutManager(new GridLayoutManager(mContext, 2));
-                BaseRecyclerAdapter<MenuItemInfo<String>> recyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, new LanguageHelper(mContext).getLanguageItems(), R.layout.item_language_selected) {
+                BaseRecyclerAdapter<MenuItemInfo<String>> recyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, new LanguageHelper(mContext).getLanguageItems(), R.layout.gd_item_language_selected) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
-                        ImageView ivFlag = holder.getView(R.id.iv_flag_country);
-                        TextView tvContent = holder.getView(R.id.selectable_text_content_tv);
+                        ImageView ivFlag = holder.getView(R.id.gd__iv_flag_country);
+                        TextView tvContent = holder.getView(R.id.gd__selectable_text_content_tv);
                         tvContent.setText(item.getText());
                         ivFlag.setImageResource(item.getRes());
                         boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
@@ -1449,50 +1449,50 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 rg_switch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        if (checkedId == R.id.rb_music) {
+                        if (checkedId == R.id.gd__rb_music) {
                             ll_music.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             rc_lg.setVisibility(View.GONE);
-                        } else if (checkedId == R.id.rb_limit) {
+                        } else if (checkedId == R.id.gd__rb_limit) {
                             ll_music.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
                             rc_lg.setVisibility(View.GONE);
-                        } else if (checkedId == R.id.rb_language) {
+                        } else if (checkedId == R.id.gd__rb_language) {
                             ll_music.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             rc_lg.setVisibility(View.VISIBLE);
                         }
                     }
                 });
-                RadioGroup rg_music_rg = (RadioGroup) view.findViewById(R.id.rg_music_rg);
+                RadioGroup rg_music_rg = (RadioGroup) view.findViewById(R.id.gd__rg_music_rg);
                 //         final  ComponentName componentBack = new ComponentName(mContext,
                 //                 BackgroudMuzicService.class);
                 switch (mAppViewModel.getMuzicIndex()) {
                     case 1:
-                        rg_music_rg.check(R.id.rb_set_muzic1);
+                        rg_music_rg.check(R.id.gd__rb_set_muzic1);
                         break;
                     case 2:
-                        rg_music_rg.check(R.id.rb_set_muzic2);
+                        rg_music_rg.check(R.id.gd__rb_set_muzic2);
                         break;
                     case 3:
-                        rg_music_rg.check(R.id.rb_set_muzic3);
+                        rg_music_rg.check(R.id.gd__rb_set_muzic3);
                         break;
                 }
 
                 rg_music_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        if (checkedId == R.id.rb_set_muzic1) {
+                        if (checkedId == R.id.gd__rb_set_muzic1) {
                             mAppViewModel.setMuzicIndex(1);
                             //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 1");
                             if (mAppViewModel.isbLobby() == false)
                                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        } else if (checkedId == R.id.rb_set_muzic2) {
+                        } else if (checkedId == R.id.gd__rb_set_muzic2) {
                             mAppViewModel.setMuzicIndex(2);
                             //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 2");
                             if (mAppViewModel.isbLobby() == false)
                                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        } else if (checkedId == R.id.rb_set_muzic3) {
+                        } else if (checkedId == R.id.gd__rb_set_muzic3) {
                             mAppViewModel.setMuzicIndex(3);
                             //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 3");
                             if (mAppViewModel.isbLobby() == false)
@@ -1500,8 +1500,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                     }
                 });
-                SeekBar sb_front_voice = (SeekBar) view.findViewById(R.id.sb_front_voice);
-                SeekBar sb_background_voice = (SeekBar) view.findViewById(R.id.sb_background_voice);
+                SeekBar sb_front_voice = (SeekBar) view.findViewById(R.id.gd__sb_front_voice);
+                SeekBar sb_background_voice = (SeekBar) view.findViewById(R.id.gd__sb_background_voice);
                 sb_front_voice.setProgress(mAppViewModel.getFrontVolume());
                 sb_background_voice.setProgress(mAppViewModel.getBackgroudVolume());
                 sb_front_voice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -1547,7 +1547,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
         };
         darkenBackground(0.5f);
-        View viewById = pop.getView().findViewById(R.id.ll_triangle_white_bottom);
+        View viewById = pop.getView().findViewById(R.id.gd__ll_triangle_white_bottom);
         if (gravity == Gravity.CENTER) {
             if (viewById != null)
                 viewById.setVisibility(View.GONE);
@@ -1588,12 +1588,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         popSet = new PopChoiceLanguage<GameMenuItem>(mContext, v, ScreenUtil.dip2px(mContext, 100), ScreenUtil.dip2px(mContext, 120)) {
             @Override
             protected int onSetRcItemLayout() {
-                return R.layout.item_limit_red_text;
+                return R.layout.gd_item_limit_red_text;
             }
 
             @Override
             public void onConvert(MyRecyclerViewHolder helper, int position, GameMenuItem item) {
-                TextView tv = helper.getTextView(R.id.text_tv1);
+                TextView tv = helper.getTextView(R.id.gd__text_tv1);
                 tv.setCompoundDrawablesWithIntrinsicBounds(item.getDrawableRes(), 0, 0, 0);
                 tv.setText(item.getTitle());
                 tv.setTextColor(getResources().getColor(R.color.black_grey));
@@ -1606,7 +1606,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     showPool();
                 } else if (item.getTitle().equals(getString(R.string.MUSIC))) {
                     showSetPop(null, Gravity.CENTER);
-                } else if (item.getDrawableRes() == R.mipmap.set_limit_green) {
+                } else if (item.getDrawableRes() == R.mipmap.gd_set_limit_green) {
                     showLimit();
                 }
 
@@ -1626,14 +1626,14 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
             @Override
             protected int getContentViewLayoutRes() {
-                return R.layout.popupwindow_top_set_menu;
+                return R.layout.gd_popupwindow_top_set_menu;
             }
         };
         darkenBackground(0.5f);
         popSet.setData(new ArrayList<GameMenuItem>(Arrays.asList(
-                new GameMenuItem(R.mipmap.set_music_green, getString(R.string.MUSIC), ""),
-                new GameMenuItem(R.mipmap.set_dollar_green, getString(R.string.POOL), ""),
-                new GameMenuItem(R.mipmap.set_limit_green, getString(R.string.LIMIT), "")
+                new GameMenuItem(R.mipmap.gd_set_music_green, getString(R.string.MUSIC), ""),
+                new GameMenuItem(R.mipmap.gd_set_dollar_green, getString(R.string.POOL), ""),
+                new GameMenuItem(R.mipmap.gd_set_limit_green, getString(R.string.LIMIT), "")
 
         )));
 
@@ -2097,11 +2097,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
             }
         }
-        list.add(new ChipBean(R.mipmap.chip_choose, "CHOOSE", -101));
+        list.add(new ChipBean(R.mipmap.gd_chip_choose, "CHOOSE", -101));
         if (isNeedAddSure) {
-            list.add(new ChipBean(R.mipmap.noimg, "", -2));
-            list.add(new ChipBean(R.mipmap.replayimg, "", -3));
-            list.add(new ChipBean(R.mipmap.sureimg, "", -1));
+            list.add(new ChipBean(R.mipmap.gd_noimg, "", -2));
+            list.add(new ChipBean(R.mipmap.gd_replayimg, "", -3));
+            list.add(new ChipBean(R.mipmap.gd_sureimg, "", -1));
         }
         return list;
     }
@@ -2109,43 +2109,43 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     public void initBetImg() {
         chipList = new ArrayList<>();
         chipListChoice = new ArrayList<>();
-        chipListChoice.add(new ChipBean(R.mipmap.chip1, "1", 1));
-        chipListChoice.add(new ChipBean(R.mipmap.chip10, "10", 10));
-        chipListChoice.add(new ChipBean(R.mipmap.chip50, "50", 50));
-        chipListChoice.add(new ChipBean(R.mipmap.chip100, "100", 100));
-        chipListChoice.add(new ChipBean(R.mipmap.chip500, "500", 500));
-        chipListChoice.add(new ChipBean(R.mipmap.chip1k, "1000", 1000));
-        chipListChoice.add(new ChipBean(R.mipmap.chip5k, "5000", 5000));
-        chipListChoice.add(new ChipBean(R.mipmap.chip10k, "10k", 10000));
-        chipListChoice.add(new ChipBean(R.mipmap.chip50k, "50k", 50000));
-        chipListChoice.add(new ChipBean(R.mipmap.chip100k, "100k", 100000));
-        chipListChoice.add(new ChipBean(R.mipmap.chip500k, "500k", 500000));
-        chipListChoice.add(new ChipBean(R.mipmap.chip_max, "MAX", 1000000));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip1, "1", 1));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip10, "10", 10));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip50, "50", 50));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip100, "100", 100));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip500, "500", 500));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip1k, "1000", 1000));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip5k, "5000", 5000));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip10k, "10k", 10000));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip50k, "50k", 50000));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip100k, "100k", 100000));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip500k, "500k", 500000));
+        chipListChoice.add(new ChipBean(R.mipmap.gd_chip_max, "MAX", 1000000));
         chipListCanNotChoice = new ArrayList<>();
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip1_false, "1", 1));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip10_false, "10", 10));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip50_false, "50", 50));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip100_false, "100", 100));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip500_false, "500", 500));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip1k_false, "1000", 1000));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip5k_false, "5000", 5000));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip10k_false, "10k", 10000));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip50k_false, "50k", 50000));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip100k_false, "100k", 100000));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip500k_false, "500k", 500000));
-        chipListCanNotChoice.add(new ChipBean(R.mipmap.chip_max_false, "MAX", 1000000));
-        chipList.add(new ChipBean(R.mipmap.chip1_show, "1", 1));
-        chipList.add(new ChipBean(R.mipmap.chip10_show, "10", 10));
-        chipList.add(new ChipBean(R.mipmap.chip50_show, "50", 50));
-        chipList.add(new ChipBean(R.mipmap.chip100_show, "100", 100));
-        chipList.add(new ChipBean(R.mipmap.chip500_show, "500", 500));
-        chipList.add(new ChipBean(R.mipmap.chip1k_show, "1000", 1000));
-        chipList.add(new ChipBean(R.mipmap.chip5k_show, "5000", 5000));
-        chipList.add(new ChipBean(R.mipmap.chip10k_show, "10k", 10000));
-        chipList.add(new ChipBean(R.mipmap.chip50k_show, "50k", 50000));
-        chipList.add(new ChipBean(R.mipmap.chip100k_show, "100k", 100000));
-        chipList.add(new ChipBean(R.mipmap.chip500k_show, "500k", 500000));
-        chipList.add(new ChipBean(R.mipmap.chip_max_show, "MAX", 1000000));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip1_false, "1", 1));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip10_false, "10", 10));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip50_false, "50", 50));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip100_false, "100", 100));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip500_false, "500", 500));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip1k_false, "1000", 1000));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip5k_false, "5000", 5000));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip10k_false, "10k", 10000));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip50k_false, "50k", 50000));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip100k_false, "100k", 100000));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip500k_false, "500k", 500000));
+        chipListCanNotChoice.add(new ChipBean(R.mipmap.gd_chip_max_false, "MAX", 1000000));
+        chipList.add(new ChipBean(R.mipmap.gd_chip1_show, "1", 1));
+        chipList.add(new ChipBean(R.mipmap.gd_chip10_show, "10", 10));
+        chipList.add(new ChipBean(R.mipmap.gd_chip50_show, "50", 50));
+        chipList.add(new ChipBean(R.mipmap.gd_chip100_show, "100", 100));
+        chipList.add(new ChipBean(R.mipmap.gd_chip500_show, "500", 500));
+        chipList.add(new ChipBean(R.mipmap.gd_chip1k_show, "1000", 1000));
+        chipList.add(new ChipBean(R.mipmap.gd_chip5k_show, "5000", 5000));
+        chipList.add(new ChipBean(R.mipmap.gd_chip10k_show, "10k", 10000));
+        chipList.add(new ChipBean(R.mipmap.gd_chip50k_show, "50k", 50000));
+        chipList.add(new ChipBean(R.mipmap.gd_chip100k_show, "100k", 100000));
+        chipList.add(new ChipBean(R.mipmap.gd_chip500k_show, "500k", 500000));
+        chipList.add(new ChipBean(R.mipmap.gd_chip_max_show, "MAX", 1000000));
     }
 
     public ArrayList<ChipBean> chipList;
@@ -2183,7 +2183,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         toolbar_right_top_tv.setText(mAppViewModel.getUser().getName());
         toolbar_right_top_tv.setTextColor(Color.parseColor("#ffffff"));
         toolbar_right_bottom_tv.setText(mAppViewModel.getUser().getBalance() + "");
-        toolbar_right_bottom_tv.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.dollar_yellow, 0, 0, 0);
+        toolbar_right_bottom_tv.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.gd_dollar_yellow, 0, 0, 0);
         toolbar_right_bottom_tv.setTextColor(getResources().getColor(R.color.yellow_gold));
     }
 
@@ -2234,10 +2234,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             rightReportTv.setLayoutParams(reportParams);
         }
         rightReportTv.setVisibility(View.VISIBLE);
-        rightReportTv.setBackgroundResource(R.mipmap.report_top);
-        rightTv.setBackgroundResource(R.mipmap.pool_top);
-        rightMusicTv.setBackgroundResource(R.mipmap.set_music_green);
-        rightTableTv.setBackgroundResource(R.mipmap.table_top);
+        rightReportTv.setBackgroundResource(R.mipmap.gd_report_top);
+        rightTv.setBackgroundResource(R.mipmap.gd_pool_top);
+        rightMusicTv.setBackgroundResource(R.mipmap.gd_set_music_green);
+        rightTableTv.setBackgroundResource(R.mipmap.gd_table_top);
         rightReportTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

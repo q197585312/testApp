@@ -24,17 +24,17 @@ import gaming178.com.casinogame.base.BaseActivity;
  */
 
 public class SlotsWebActivity extends BaseActivity {
-    @BindView(R2.id.title)
+    @BindView(R2.id.gd__title)
     View title;
-    @BindView(R2.id.web_wv)
+    @BindView(R2.id.gd__web_wv)
     WebView webView;
-    @BindView(R2.id.img_exit)
+    @BindView(R2.id.gd__img_exit)
     ImageView img_exit;
     String gameType;
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_web;
+        return R.layout.gd_activity_web;
     }
 
     @Override

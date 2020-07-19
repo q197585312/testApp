@@ -31,7 +31,7 @@ import gaming178.com.mylibrary.base.ViewHolder;
  * Created by Administrator on 2016/4/1.
  */
 public class SelectSeatActivity extends BaseActivity {
-    @BindView(R2.id.gridview_content_gv)
+    @BindView(R2.id.gd__gridview_content_gv)
     GridView gridviewContentGv;
     private AdapterViewContent<TableStatusBean> adapterViewContent;
     private int tableId=0;
@@ -178,107 +178,107 @@ public class SelectSeatActivity extends BaseActivity {
         adapterViewContent.setBaseAdapter(new QuickAdapterImp<TableStatusBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_table_select;
+                return R.layout.gd_item_table_select;
             }
             @Override
             public void convert(final ViewHolder helper, final TableStatusBean item, int position) {
-                helper.setText(R.id.table_seat_vip,item.getVip());
-                helper.setVisibility(R.id.table_seat_tv1,View.GONE);
-                helper.setVisibility(R.id.table_seat_tv2,View.GONE);
-                helper.setVisibility(R.id.table_seat_tv3,View.GONE);
-                helper.setVisibility(R.id.table_seat_tv5,View.GONE);
-                helper.setVisibility(R.id.table_seat_tv6,View.GONE);
-                helper.setVisibility(R.id.table_seat_tv7,View.GONE);
-                helper.setVisibility(R.id.table_seat_tv8,View.GONE);
+                helper.setText(R.id.gd__table_seat_vip,item.getVip());
+                helper.setVisibility(R.id.gd__table_seat_tv1,View.GONE);
+                helper.setVisibility(R.id.gd__table_seat_tv2,View.GONE);
+                helper.setVisibility(R.id.gd__table_seat_tv3,View.GONE);
+                helper.setVisibility(R.id.gd__table_seat_tv5,View.GONE);
+                helper.setVisibility(R.id.gd__table_seat_tv6,View.GONE);
+                helper.setVisibility(R.id.gd__table_seat_tv7,View.GONE);
+                helper.setVisibility(R.id.gd__table_seat_tv8,View.GONE);
 
                 for (int i =0 ;i<item.getSeatBeans().size();i++){
                     SeatBean seatBean = item.getSeatBeans().get(i);
                     switch (seatBean.getAreaId())
                     {
                         case 1:
-                            helper.setText(R.id.table_seat_tv1,seatBean.getName());
-                            helper.setVisibility(R.id.table_seat_tv1,View.VISIBLE);
+                            helper.setText(R.id.gd__table_seat_tv1,seatBean.getName());
+                            helper.setVisibility(R.id.gd__table_seat_tv1,View.VISIBLE);
                             break;
                         case 2:
-                            helper.setText(R.id.table_seat_tv2,seatBean.getName());
-                            helper.setVisibility(R.id.table_seat_tv2,View.VISIBLE);
+                            helper.setText(R.id.gd__table_seat_tv2,seatBean.getName());
+                            helper.setVisibility(R.id.gd__table_seat_tv2,View.VISIBLE);
                             break;
                         case 3:
-                            helper.setText(R.id.table_seat_tv3,seatBean.getName());
-                            helper.setVisibility(R.id.table_seat_tv3,View.VISIBLE);
+                            helper.setText(R.id.gd__table_seat_tv3,seatBean.getName());
+                            helper.setVisibility(R.id.gd__table_seat_tv3,View.VISIBLE);
                             break;
                         case 5:
-                            helper.setText(R.id.table_seat_tv5,seatBean.getName());
-                            helper.setVisibility(R.id.table_seat_tv5,View.VISIBLE);
+                            helper.setText(R.id.gd__table_seat_tv5,seatBean.getName());
+                            helper.setVisibility(R.id.gd__table_seat_tv5,View.VISIBLE);
                             break;
                         case 6:
-                            helper.setText(R.id.table_seat_tv6,seatBean.getName());
-                            helper.setVisibility(R.id.table_seat_tv6,View.VISIBLE);
+                            helper.setText(R.id.gd__table_seat_tv6,seatBean.getName());
+                            helper.setVisibility(R.id.gd__table_seat_tv6,View.VISIBLE);
                             break;
                         case 7:
-                            helper.setText(R.id.table_seat_tv7,seatBean.getName());
-                            helper.setVisibility(R.id.table_seat_tv7,View.VISIBLE);
+                            helper.setText(R.id.gd__table_seat_tv7,seatBean.getName());
+                            helper.setVisibility(R.id.gd__table_seat_tv7,View.VISIBLE);
                             break;
                         case 8:
-                            helper.setText(R.id.table_seat_tv8,seatBean.getName());
-                            helper.setVisibility(R.id.table_seat_tv8,View.VISIBLE);
+                            helper.setText(R.id.gd__table_seat_tv8,seatBean.getName());
+                            helper.setVisibility(R.id.gd__table_seat_tv8,View.VISIBLE);
                             break;
                     }
                 }
-                helper.setClickLisenter(R.id.table_fl_1, new View.OnClickListener() {
+                helper.setClickLisenter(R.id.gd__table_fl_1, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        chooseUserSeat(item.getAreaId(),1,helper.getView(),R.id.table_seat_tv1);
+                        chooseUserSeat(item.getAreaId(),1,helper.getView(),R.id.gd__table_seat_tv1);
                         areaId1 = item.getAreaId();
                         serialId1 = 1;
                     }
                 });
-                helper.setClickLisenter(R.id.table_fl_2, new View.OnClickListener() {
+                helper.setClickLisenter(R.id.gd__table_fl_2, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        chooseUserSeat(item.getAreaId(),2,helper.getView(),R.id.table_seat_tv2);
+                        chooseUserSeat(item.getAreaId(),2,helper.getView(),R.id.gd__table_seat_tv2);
                         areaId1 = item.getAreaId();
                         serialId1 = 2;
                     }
                 });
-                helper.setClickLisenter(R.id.table_fl_3, new View.OnClickListener() {
+                helper.setClickLisenter(R.id.gd__table_fl_3, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        chooseUserSeat(item.getAreaId(),3,helper.getView(),R.id.table_seat_tv3);
+                        chooseUserSeat(item.getAreaId(),3,helper.getView(),R.id.gd__table_seat_tv3);
                         areaId1 = item.getAreaId();
                         serialId1 = 3;
                     }
                 });
-                helper.setClickLisenter(R.id.table_fl_5, new View.OnClickListener() {
+                helper.setClickLisenter(R.id.gd__table_fl_5, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        chooseUserSeat(item.getAreaId(),5,helper.getView(),R.id.table_seat_tv5);
+                        chooseUserSeat(item.getAreaId(),5,helper.getView(),R.id.gd__table_seat_tv5);
                         areaId1 = item.getAreaId();
                         serialId1 = 5;
                     }
                 });
-                helper.setClickLisenter(R.id.table_fl_6, new View.OnClickListener() {
+                helper.setClickLisenter(R.id.gd__table_fl_6, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        chooseUserSeat(item.getAreaId(),6,helper.getView(),R.id.table_seat_tv6);
+                        chooseUserSeat(item.getAreaId(),6,helper.getView(),R.id.gd__table_seat_tv6);
                         areaId1 = item.getAreaId();
                         serialId1 = 6;
                     }
                 });
-                helper.setClickLisenter(R.id.table_fl_7, new View.OnClickListener() {
+                helper.setClickLisenter(R.id.gd__table_fl_7, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                          chooseUserSeat(item.getAreaId(),7,helper.getView(),R.id.table_seat_tv7);
+                          chooseUserSeat(item.getAreaId(),7,helper.getView(),R.id.gd__table_seat_tv7);
                         areaId1 = item.getAreaId();
                         serialId1 = 7;
                     }
                 });
-                helper.setClickLisenter(R.id.table_fl_8, new View.OnClickListener() {
+                helper.setClickLisenter(R.id.gd__table_fl_8, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                          chooseUserSeat(item.getAreaId(),8,helper.getView(),R.id.table_seat_tv8);
+                          chooseUserSeat(item.getAreaId(),8,helper.getView(),R.id.gd__table_seat_tv8);
                         areaId1 = item.getAreaId();
                         serialId1 = 8;
                     }
@@ -313,7 +313,7 @@ public class SelectSeatActivity extends BaseActivity {
 //                Bundle bundle=new Bundle();
 //                bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA,""+tableId);
 //                AppTool.activiyJump(mContext,BaccaratActivity.class,bundle);
-//                chooseUserSeat(tableStatusBean.getAreaId(),0,view,R.id.table_seat_tv7);
+//                chooseUserSeat(tableStatusBean.getAreaId(),0,view,R.id.gd__table_seat_tv7);
 //                AppTool.activiyJump(mContext,BaccaratActivity.class);
 //            }
 //        });
@@ -334,7 +334,7 @@ public class SelectSeatActivity extends BaseActivity {
     }
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_select_table;
+        return R.layout.gd_activity_select_table;
     }
 
     @Override

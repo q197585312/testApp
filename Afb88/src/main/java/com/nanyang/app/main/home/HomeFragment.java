@@ -226,10 +226,8 @@ public class HomeFragment extends BaseSwitchFragment {
         while (iterator.hasNext()) {
             AllBannerImagesBean.MainBannersBean next = iterator.next();
             if (hasData("M_RAm", next) || hasData("M_TAm", next) || hasData("M_EAm", next)) {
-                LogUtil.d("addData", "hasData::::next.getDbid()" + next.getDbid() + "," + "next.getImg()" + next.getImg());
                 hasData.add(next);
             } else {
-                LogUtil.d("addData", "nodata::::next.getDbid()" + next.getDbid() + "," + "next.getImg()" + next.getImg());
                 noData.add(next);
             }
         }
@@ -245,6 +243,7 @@ public class HomeFragment extends BaseSwitchFragment {
         if (jsonObjectNum == null)
             return false;
         String string = jsonObjectNum.optString(m_rAm + next.getDbid());
+
         return !StringUtils.isNull(string) && !string.equals("0");
 
     }

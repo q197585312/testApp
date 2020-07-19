@@ -29,7 +29,7 @@ public class PopReferrer extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.pop_referrer;
+        return R.layout.gd_pop_referrer;
     }
 
     Handler handler = new Handler() {
@@ -46,9 +46,9 @@ public class PopReferrer extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
-        tvContent = (TextView) view.findViewById(R.id.tv_content);
-        tv_open = (TextView) view.findViewById(R.id.tv_open);
-        tv_copy = (TextView) view.findViewById(R.id.tv_copy);
+        tvContent = (TextView) view.findViewById(R.id.gd__tv_content);
+        tv_open = (TextView) view.findViewById(R.id.gd__tv_open);
+        tv_copy = (TextView) view.findViewById(R.id.gd__tv_copy);
         tv_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

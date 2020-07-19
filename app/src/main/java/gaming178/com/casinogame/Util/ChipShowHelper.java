@@ -160,7 +160,7 @@ public class ChipShowHelper {
 //        paramsText.leftMargin = x;
         paramsText.gravity = chipGravity;
 //        textView.setBackgroundResource(R.drawable.rectangle_blue_table_corners5);
-        textView.setBackgroundResource(R.mipmap.show_chip_bg);
+        textView.setBackgroundResource(R.mipmap.gd_show_chip_bg);
         textView.setTextColor(context.getResources().getColor(R.color.white));
         textView.setTextSize(moneyTipsTextSize);
         textView.setTypeface(Typeface.SERIF);
@@ -255,9 +255,9 @@ public class ChipShowHelper {
         cancelText.setLayoutParams(paramsTextCancel);
         repeatText.setLayoutParams(paramsTextRepeat);
         sureText.setLayoutParams(paramsTextSure);
-        sureText.setBackgroundResource(R.mipmap.sureimg);
-        repeatText.setBackgroundResource(R.mipmap.replayimg);
-        cancelText.setBackgroundResource(R.mipmap.noimg);
+        sureText.setBackgroundResource(R.mipmap.gd_sureimg);
+        repeatText.setBackgroundResource(R.mipmap.gd_replayimg);
+        cancelText.setBackgroundResource(R.mipmap.gd_noimg);
         framelayout.setClipChildren(false);
         framelayout.addView(cancelText);
         framelayout.addView(repeatText);

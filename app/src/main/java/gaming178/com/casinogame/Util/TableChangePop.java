@@ -67,7 +67,7 @@ public class TableChangePop extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.layout_framelayout_table;
+        return R.layout.gd_layout_framelayout_table;
     }
 
     @Override
@@ -75,17 +75,17 @@ public class TableChangePop extends BasePopupWindow {
         super.initView(view);
         baccaratTableChangeViewBeenList = new ArrayList<>();
         list = new ArrayList<>();
-        parent = (LinearLayout) view.findViewById(R.id.ll_change_table_parent);
+        parent = (LinearLayout) view.findViewById(R.id.gd__ll_change_table_parent);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closePopupWindow();
             }
         });
-        tv_b = view.findViewById(R.id.tv_b);
-        tv_r = view.findViewById(R.id.tv_r);
-        tv_s = view.findViewById(R.id.tv_s);
-        tv_d = view.findViewById(R.id.tv_d);
+        tv_b = view.findViewById(R.id.gd__tv_b);
+        tv_r = view.findViewById(R.id.gd__tv_r);
+        tv_s = view.findViewById(R.id.gd__tv_s);
+        tv_d = view.findViewById(R.id.gd__tv_d);
         tv_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,10 +170,10 @@ public class TableChangePop extends BasePopupWindow {
                                     mAppViewModel.getSicbo01().setRoadOld(mAppViewModel.getSicbo01().getRoad());
                                     sicboTableChangeViewBean.getLinearlayout().removeAllViewsInLayout();
                                     for (DiceContentBean dice : getSicboResultsData(mAppViewModel)) {
-                                        View diceView = LayoutInflater.from(context).inflate(R.layout.item_table_bet_dice_info, null);
-                                        ((ImageView) diceView.findViewById(R.id.iv_dice_1)).setImageResource(dice.getList().get(0).getResDrawable());
-                                        ((ImageView) diceView.findViewById(R.id.iv_dice_2)).setImageResource(dice.getList().get(1).getResDrawable());
-                                        ((ImageView) diceView.findViewById(R.id.iv_dice_3)).setImageResource(dice.getList().get(2).getResDrawable());
+                                        View diceView = LayoutInflater.from(context).inflate(R.layout.gd_item_table_bet_dice_info, null);
+                                        ((ImageView) diceView.findViewById(R.id.gd__iv_dice_1)).setImageResource(dice.getList().get(0).getResDrawable());
+                                        ((ImageView) diceView.findViewById(R.id.gd__iv_dice_2)).setImageResource(dice.getList().get(1).getResDrawable());
+                                        ((ImageView) diceView.findViewById(R.id.gd__iv_dice_3)).setImageResource(dice.getList().get(2).getResDrawable());
                                         sicboTableChangeViewBean.getLinearlayout().addView(diceView);
                                     }
 //                                    mAppViewModel.updateGameNumber(mAppViewModel.getSicbo01(), sicboTableChangeViewBean.getTv_sicbo_number01(), sicboTableChangeViewBean.getTv_even01(), sicboTableChangeViewBean.getTv_small01(), sicboTableChangeViewBean.getTv_waidic01(), sicboTableChangeViewBean.getTv_big01(), sicboTableChangeViewBean.getTv_odd01());
@@ -237,22 +237,22 @@ public class TableChangePop extends BasePopupWindow {
         int resMipmap = 0;
         switch (res) {
             case 1:
-                resMipmap = R.mipmap.dice1;
+                resMipmap = R.mipmap.gd_dice1;
                 break;
             case 2:
-                resMipmap = R.mipmap.dice2;
+                resMipmap = R.mipmap.gd_dice2;
                 break;
             case 3:
-                resMipmap = R.mipmap.dice3;
+                resMipmap = R.mipmap.gd_dice3;
                 break;
             case 4:
-                resMipmap = R.mipmap.dice4;
+                resMipmap = R.mipmap.gd_dice4;
                 break;
             case 5:
-                resMipmap = R.mipmap.dice5;
+                resMipmap = R.mipmap.gd_dice5;
                 break;
             case 6:
-                resMipmap = R.mipmap.dice6;
+                resMipmap = R.mipmap.gd_dice6;
                 break;
         }
         return resMipmap;
@@ -323,34 +323,34 @@ public class TableChangePop extends BasePopupWindow {
 
             if (item.getDrawableRes() < 4 || item.getDrawableRes() > 60) {
 
-                aB1 = LayoutInflater.from(context).inflate(R.layout.layout_scrollview_h_table_brccarat, null);
+                aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_brccarat, null);
 
-                textView = (TextView) aB1.findViewById(R.id.tv_table_title);
-                GridLayout layout = (GridLayout) aB1.findViewById(R.id.baccarat_gridlayout2);
+                textView = (TextView) aB1.findViewById(R.id.gd__tv_table_title);
+                GridLayout layout = (GridLayout) aB1.findViewById(R.id.gd__baccarat_gridlayout2);
 
-                TextView tv_timer = (TextView) aB1.findViewById(R.id.tv_timer);
+                TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
                 if (list.size() < 9) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
-                TextView tv_baccarat_shoe_number = (TextView) aB1.findViewById(R.id.text_shoe_game_number);
+                TextView tv_baccarat_shoe_number = (TextView) aB1.findViewById(R.id.gd__text_shoe_game_number);
 
-                TextView tv_baccarat_total_number = (TextView) aB1.findViewById(R.id.text_total);
-                TextView tv_total_name = (TextView) aB1.findViewById(R.id.tv_total_name);
+                TextView tv_baccarat_total_number = (TextView) aB1.findViewById(R.id.gd__text_total);
+                TextView tv_total_name = (TextView) aB1.findViewById(R.id.gd__tv_total_name);
                 tv_total_name.setVisibility(View.GONE);
                 tv_baccarat_total_number.setVisibility(View.GONE);
-                TextView tv_baccarat_banker_number = (TextView) aB1.findViewById(R.id.text_banker);
-                TextView tv_baccarat_player_number = (TextView) aB1.findViewById(R.id.text_player);
-                TextView tv_baccarat_tie_number = (TextView) aB1.findViewById(R.id.text_tie);
-                TextView tv_baccarat_bp_number = (TextView) aB1.findViewById(R.id.text_bp);
-                TextView tv_baccarat_pp_number = (TextView) aB1.findViewById(R.id.text_pp);
-                View ll_good_road_parent = aB1.findViewById(R.id.ll_good_road_parent);
-                View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                TextView tv_baccarat_banker_number = (TextView) aB1.findViewById(R.id.gd__text_banker);
+                TextView tv_baccarat_player_number = (TextView) aB1.findViewById(R.id.gd__text_player);
+                TextView tv_baccarat_tie_number = (TextView) aB1.findViewById(R.id.gd__text_tie);
+                TextView tv_baccarat_bp_number = (TextView) aB1.findViewById(R.id.gd__text_bp);
+                TextView tv_baccarat_pp_number = (TextView) aB1.findViewById(R.id.gd__text_pp);
+                View ll_good_road_parent = aB1.findViewById(R.id.gd__ll_good_road_parent);
+                View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
-                TextView tv_good_road_name = (TextView) ll_good_road_parent.findViewById(R.id.tv_good_road_name);
+                TextView tv_good_road_name = (TextView) ll_good_road_parent.findViewById(R.id.gd__tv_good_road_name);
                 BaccaratTableChangeViewBean bean = new BaccaratTableChangeViewBean(item.getDrawableRes(), layout,
                         tv_baccarat_shoe_number, tv_baccarat_total_number, tv_baccarat_banker_number, tv_baccarat_player_number, tv_baccarat_tie_number
                         , tv_baccarat_bp_number, tv_baccarat_pp_number);
@@ -359,30 +359,30 @@ public class TableChangePop extends BasePopupWindow {
                 bean.setView_Parent(aB1);
                 baccaratTableChangeViewBeenList.add(bean);
             } else if (item.getDrawableRes() == 21) {
-                aB1 = LayoutInflater.from(context).inflate(R.layout.layout_scrollview_h_table_roultette, null);
-                TextView tv_timer = (TextView) aB1.findViewById(R.id.tv_timer);
+                aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_roultette, null);
+                TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
                 if (list.size() < 9) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
-                RecyclerView layout = (RecyclerView) aB1.findViewById(R.id.gridView1);
-                textView = (TextView) aB1.findViewById(R.id.tv_table_title);
-                TextView tv_game_number01 = (TextView) aB1.findViewById(R.id.text_shoe_game_number);
-                TextView tv_roulette_red01 = (TextView) aB1.findViewById(R.id.text_red);
-                TextView tv_roulette_black01 = (TextView) aB1.findViewById(R.id.text_black);
-                TextView tv_roulette_zero01 = (TextView) aB1.findViewById(R.id.text_zero);
-                TextView tv_roulette_even01 = (TextView) aB1.findViewById(R.id.text_even);
-                TextView tv_roulette_odd01 = (TextView) aB1.findViewById(R.id.text_odd);
-                TextView tv_roulette_big01 = (TextView) aB1.findViewById(R.id.text_big);
-                TextView tv_roulette_small01 = (TextView) aB1.findViewById(R.id.text_small);
-                View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                RecyclerView layout = (RecyclerView) aB1.findViewById(R.id.gd__gridView1);
+                textView = (TextView) aB1.findViewById(R.id.gd__tv_table_title);
+                TextView tv_game_number01 = (TextView) aB1.findViewById(R.id.gd__text_shoe_game_number);
+                TextView tv_roulette_red01 = (TextView) aB1.findViewById(R.id.gd__text_red);
+                TextView tv_roulette_black01 = (TextView) aB1.findViewById(R.id.gd__text_black);
+                TextView tv_roulette_zero01 = (TextView) aB1.findViewById(R.id.gd__text_zero);
+                TextView tv_roulette_even01 = (TextView) aB1.findViewById(R.id.gd__text_even);
+                TextView tv_roulette_odd01 = (TextView) aB1.findViewById(R.id.gd__text_odd);
+                TextView tv_roulette_big01 = (TextView) aB1.findViewById(R.id.gd__text_big);
+                TextView tv_roulette_small01 = (TextView) aB1.findViewById(R.id.gd__text_small);
+                View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
                 setValue(layout);
 
-                adapter = new BaseRecyclerAdapter<String>(context, new ArrayList<String>(), R.layout.item_change_table_roulette_content) {
+                adapter = new BaseRecyclerAdapter<String>(context, new ArrayList<String>(), R.layout.gd_item_change_table_roulette_content) {
                     @Override
                     public void convert(MyRecyclerViewHolder helper, int position, String item) {
                         switch (item) {
@@ -404,16 +404,16 @@ public class TableChangePop extends BasePopupWindow {
                             case "31":
                             case "33":
                             case "35":
-                                helper.setBackgroundRes(R.id.roulette_title_tv, R.drawable.rectangle_black_brown_stroke_yellow);
+                                helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_rectangle_black_brown_stroke_yellow);
                                 break;
                             case "0":
-                                helper.setBackgroundRes(R.id.roulette_title_tv, R.drawable.rectangle_green_brown_stroke_yellow);
+                                helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_rectangle_green_brown_stroke_yellow);
                                 break;
                             default:
-                                helper.setBackgroundRes(R.id.roulette_title_tv, R.drawable.rectangle_red_brown_stroke_yellow);
+                                helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_rectangle_red_brown_stroke_yellow);
                                 break;
                         }
-                        helper.setText(R.id.roulette_title_tv, item);
+                        helper.setText(R.id.gd__roulette_title_tv, item);
 
                     }
                 };
@@ -428,73 +428,73 @@ public class TableChangePop extends BasePopupWindow {
                 rouletteTableChangeViewBean = new RouletteTableChangeViewBean(tv_game_number01, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
                 rouletteTableChangeViewBean.setView_Parent(aB1);
             } else if (item.getDrawableRes() == 31) {
-                aB1 = LayoutInflater.from(context).inflate(R.layout.layout_scrollview_h_table_scibao, null);
-                TextView tv_timer = (TextView) aB1.findViewById(R.id.tv_timer);
+                aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_scibao, null);
+                TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
                 if (list.size() < 9) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
-                textView = (TextView) aB1.findViewById(R.id.tv_table_title);
-                TextView tv_sicbo_number01 = (TextView) aB1.findViewById(R.id.text_shoe_game_number);
-                TextView tv_even01 = (TextView) aB1.findViewById(R.id.text_even);
-                TextView tv_odd01 = (TextView) aB1.findViewById(R.id.text_odd);
-                TextView tv_big01 = (TextView) aB1.findViewById(R.id.text_big);
-                TextView tv_small01 = (TextView) aB1.findViewById(R.id.text_small);
-                TextView tv_waidic01 = (TextView) aB1.findViewById(R.id.text_waidic);
-                LinearLayout linearlayout = (LinearLayout) aB1.findViewById(R.id.layout2);
-                View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                textView = (TextView) aB1.findViewById(R.id.gd__tv_table_title);
+                TextView tv_sicbo_number01 = (TextView) aB1.findViewById(R.id.gd__text_shoe_game_number);
+                TextView tv_even01 = (TextView) aB1.findViewById(R.id.gd__text_even);
+                TextView tv_odd01 = (TextView) aB1.findViewById(R.id.gd__text_odd);
+                TextView tv_big01 = (TextView) aB1.findViewById(R.id.gd__text_big);
+                TextView tv_small01 = (TextView) aB1.findViewById(R.id.gd__text_small);
+                TextView tv_waidic01 = (TextView) aB1.findViewById(R.id.gd__text_waidic);
+                LinearLayout linearlayout = (LinearLayout) aB1.findViewById(R.id.gd__layout2);
+                View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
 
                 for (DiceContentBean dice : getSicboResultsData(mAppViewModel)) {
-                    View diceView = LayoutInflater.from(context).inflate(R.layout.item_table_bet_dice_info, null);
-                    ((ImageView) diceView.findViewById(R.id.iv_dice_1)).setImageResource(dice.getList().get(0).getResDrawable());
-                    ((ImageView) diceView.findViewById(R.id.iv_dice_2)).setImageResource(dice.getList().get(1).getResDrawable());
-                    ((ImageView) diceView.findViewById(R.id.iv_dice_3)).setImageResource(dice.getList().get(2).getResDrawable());
+                    View diceView = LayoutInflater.from(context).inflate(R.layout.gd_item_table_bet_dice_info, null);
+                    ((ImageView) diceView.findViewById(R.id.gd__iv_dice_1)).setImageResource(dice.getList().get(0).getResDrawable());
+                    ((ImageView) diceView.findViewById(R.id.gd__iv_dice_2)).setImageResource(dice.getList().get(1).getResDrawable());
+                    ((ImageView) diceView.findViewById(R.id.gd__iv_dice_3)).setImageResource(dice.getList().get(2).getResDrawable());
                     linearlayout.addView(diceView);
                 }
                 sicboTableChangeViewBean = new SicboTableChangeViewBean(linearlayout, tv_sicbo_number01, tv_even01, tv_small01, tv_waidic01, tv_big01, tv_odd01);
                 sicboTableChangeViewBean.setView_Parent(aB1);
             } else if (item.getDrawableRes() == 5) {
-                aB1 = LayoutInflater.from(context).inflate(R.layout.layout_scrollview_h_table_brccarat, null);
-                TextView tv_timer = (TextView) aB1.findViewById(R.id.tv_timer);
+                aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_brccarat, null);
+                TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
                 if (list.size() < 9) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
-                textView = (TextView) aB1.findViewById(R.id.tv_table_title);
-                TextView tv_shoe = (TextView) aB1.findViewById(R.id.text_shoe_game_number);
+                textView = (TextView) aB1.findViewById(R.id.gd__tv_table_title);
+                TextView tv_shoe = (TextView) aB1.findViewById(R.id.gd__text_shoe_game_number);
 
-                TextView tv_total_name = (TextView) aB1.findViewById(R.id.tv_total_name);
-                TextView tv_total = (TextView) aB1.findViewById(R.id.text_total);
+                TextView tv_total_name = (TextView) aB1.findViewById(R.id.gd__tv_total_name);
+                TextView tv_total = (TextView) aB1.findViewById(R.id.gd__text_total);
                 tv_total_name.setVisibility(View.GONE);
                 tv_total.setVisibility(View.GONE);
-                TextView text_banker = (TextView) aB1.findViewById(R.id.text_banker);
-                TextView text_player = (TextView) aB1.findViewById(R.id.text_player);
-                TextView tv_banker = (TextView) aB1.findViewById(R.id.tv_banker);
+                TextView text_banker = (TextView) aB1.findViewById(R.id.gd__text_banker);
+                TextView text_player = (TextView) aB1.findViewById(R.id.gd__text_player);
+                TextView tv_banker = (TextView) aB1.findViewById(R.id.gd__tv_banker);
                 tv_banker.setText(context.getString(R.string.dr));
-                TextView tv_player = (TextView) aB1.findViewById(R.id.tv_player);
+                TextView tv_player = (TextView) aB1.findViewById(R.id.gd__tv_player);
                 tv_player.setText(context.getString(R.string.ti));
-                TextView tv_tie = (TextView) aB1.findViewById(R.id.text_tie);
-                TextView tv_bp = (TextView) aB1.findViewById(R.id.text_bp);
-                TextView tv_pp = (TextView) aB1.findViewById(R.id.text_pp);
-                LinearLayout ll_pp = (LinearLayout) aB1.findViewById(R.id.ll_pp);
+                TextView tv_tie = (TextView) aB1.findViewById(R.id.gd__text_tie);
+                TextView tv_bp = (TextView) aB1.findViewById(R.id.gd__text_bp);
+                TextView tv_pp = (TextView) aB1.findViewById(R.id.gd__text_pp);
+                LinearLayout ll_pp = (LinearLayout) aB1.findViewById(R.id.gd__ll_pp);
                 ll_pp.setVisibility(View.GONE);
-                LinearLayout ll_bp = (LinearLayout) aB1.findViewById(R.id.ll_bp);
+                LinearLayout ll_bp = (LinearLayout) aB1.findViewById(R.id.gd__ll_bp);
                 ll_bp.setVisibility(View.GONE);
-                View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
+                View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
+                TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
-                GridLayout layout = (GridLayout) aB1.findViewById(R.id.baccarat_gridlayout2);
+                GridLayout layout = (GridLayout) aB1.findViewById(R.id.gd__baccarat_gridlayout2);
                 dragonTigerTableChangeViewBeen = new BaccaratTableChangeViewBean(item.getDrawableRes(), layout, tv_shoe, tv_total, text_banker, text_player, tv_tie, tv_bp, tv_pp);
                 dragonTigerTableChangeViewBeen.setView_Parent(aB1);
             }
             textView.setText(item.getTitle());
-            View v = aB1.findViewById(R.id.layout2);
+            View v = aB1.findViewById(R.id.gd__layout2);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -511,7 +511,7 @@ public class TableChangePop extends BasePopupWindow {
             layoutParams.weight = 1;
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 if (i % 2 == 0) {
-                    parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.include_linearlayout, null);
+                    parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
                 }
                 parentLine.addView(aB1, layoutParams);
 //                if (i == tables.size() - 1) {
@@ -521,7 +521,7 @@ public class TableChangePop extends BasePopupWindow {
                     parent.addView(parentLine);
                 }
             } else {
-                parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.include_linearlayout, null);
+                parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
                 parentLine.addView(aB1, layoutParams);
                 parent.addView(parentLine);
             }

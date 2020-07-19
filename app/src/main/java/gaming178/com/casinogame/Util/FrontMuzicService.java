@@ -36,15 +36,15 @@ public class FrontMuzicService extends Service {
 
     public void initSound() {
         AppTool.setAppLanguage(getApplicationContext(), AppTool.getAppLanguage(getApplicationContext()));
-        muzicFrontArray = new int[]{0, R.raw.countdown, R.raw.v_bettime, R.raw.nomorebets_en
-                , R.raw.banker_win, R.raw.player_win, R.raw.tie_win, R.raw.win, R.raw.selectchip
-                , R.raw.chipin, R.raw.ok, R.raw.sfx_dragon_wins, R.raw.sfx_tiger_wins, R.raw.sfx_tie, R.raw.sfx_no_more_bets
-                , R.raw.sfx_congratulations_you_win, R.raw.sfx_place_your_bets, R.raw.sfx_num0, R.raw.sfx_num1, R.raw.sfx_num2
-                , R.raw.sfx_num3, R.raw.sfx_num4, R.raw.sfx_num5, R.raw.sfx_num6, R.raw.sfx_num7, R.raw.sfx_num8, R.raw.sfx_num9
-                , R.raw.sfx_num10, R.raw.sfx_num11, R.raw.sfx_num12, R.raw.sfx_num13, R.raw.sfx_num14, R.raw.sfx_num15, R.raw.sfx_num16
-                , R.raw.sfx_num17, R.raw.sfx_num18, R.raw.sfx_num19, R.raw.sfx_num20, R.raw.sfx_num21, R.raw.sfx_num22, R.raw.sfx_num23
-                , R.raw.sfx_num24, R.raw.sfx_num25, R.raw.sfx_num25, R.raw.sfx_num27, R.raw.sfx_num28, R.raw.sfx_num29, R.raw.sfx_num30
-                , R.raw.sfx_num31, R.raw.sfx_num32, R.raw.sfx_num33, R.raw.sfx_num34, R.raw.sfx_num35, R.raw.sfx_num36};
+        muzicFrontArray = new int[]{0, R.raw.gd_countdown, R.raw.gd_v_bettime, R.raw.gd_nomorebets_en
+                , R.raw.gd_banker_win, R.raw.gd_player_win, R.raw.gd_tie_win, R.raw.gd_win, R.raw.gd_selectchip
+                , R.raw.gd_chipin, R.raw.gd_ok, R.raw.gd_sfx_dragon_wins, R.raw.gd_sfx_tiger_wins, R.raw.gd_sfx_tie, R.raw.gd_sfx_no_more_bets
+                , R.raw.gd_sfx_congratulations_you_win, R.raw.gd_sfx_place_your_bets, R.raw.gd_sfx_num0, R.raw.gd_sfx_num1, R.raw.gd_sfx_num2
+                , R.raw.gd_sfx_num3, R.raw.gd_sfx_num4, R.raw.gd_sfx_num5, R.raw.gd_sfx_num6, R.raw.gd_sfx_num7, R.raw.gd_sfx_num8, R.raw.gd_sfx_num9
+                , R.raw.gd_sfx_num10, R.raw.gd_sfx_num11, R.raw.gd_sfx_num12, R.raw.gd_sfx_num13, R.raw.gd_sfx_num14, R.raw.gd_sfx_num15, R.raw.gd_sfx_num16
+                , R.raw.gd_sfx_num17, R.raw.gd_sfx_num18, R.raw.gd_sfx_num19, R.raw.gd_sfx_num20, R.raw.gd_sfx_num21, R.raw.gd_sfx_num22, R.raw.gd_sfx_num23
+                , R.raw.gd_sfx_num24, R.raw.gd_sfx_num25, R.raw.gd_sfx_num25, R.raw.gd_sfx_num27, R.raw.gd_sfx_num28, R.raw.gd_sfx_num29, R.raw.gd_sfx_num30
+                , R.raw.gd_sfx_num31, R.raw.gd_sfx_num32, R.raw.gd_sfx_num33, R.raw.gd_sfx_num34, R.raw.gd_sfx_num35, R.raw.gd_sfx_num36};
     }
 
     @Override
@@ -81,9 +81,9 @@ public class FrontMuzicService extends Service {
         {
 
         } else if (action.equals(GET_POKER)) {
-            playBackgroudMuzic(R.raw.fapai);
+            playBackgroudMuzic(R.raw.gd_fapai);
         } else if (action.equals(PLAY_TIMER)) {
-            playBackgroudMuzic(R.raw.m10_count);
+            playBackgroudMuzic(R.raw.gd_m10_count);
         } else {
             int muzic_index = intent.getIntExtra("muzic_index", 0);
             //	Log.i(WebSiteUrl.Tag, "front muzic index="+muzic_index);

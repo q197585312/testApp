@@ -59,7 +59,7 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ll_layout_girl) {
+        if (v.getId() == R.id.gd__ll_layout_girl) {
             clickGrid(v, 31);
         }
     }
@@ -225,29 +225,29 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_sicbo_game;
+        return R.layout.gd_activity_sicbo_game;
     }
 
     ImageView img_head;
 
     public void InitControl() {
         density = ScreenUtil.getDisplayMetrics(mContext).density;
-        girlLayout = (LinearLayout) findViewById(R.id.ll_layout_girl);
-        ll_more_info = (LinearLayout) findViewById(R.id.ll_more_info);
-        img_head = (ImageView) findViewById(R.id.img_head);
+        girlLayout = (LinearLayout) findViewById(R.id.gd__ll_layout_girl);
+        ll_more_info = (LinearLayout) findViewById(R.id.gd__ll_more_info);
+        img_head = (ImageView) findViewById(R.id.gd__img_head);
         girlLayout.setOnClickListener(this);
-        tv_sicbo_timer01 = (TextView) findViewById(R.id.sicbo_status_tv);
-        tv_sicbo_number01 = (TextView) findViewById(R.id.text_shoe_game_number);
-        tv_even01 = (TextView) findViewById(R.id.text_even);
-        tv_odd01 = (TextView) findViewById(R.id.text_odd);
-        tv_big01 = (TextView) findViewById(R.id.text_big);
-        tv_small01 = (TextView) findViewById(R.id.text_small);
-        tv_waidic01 = (TextView) findViewById(R.id.text_waidic);
-        HorizontalScrollView hv_bigsmall = (HorizontalScrollView) findViewById(R.id.hv_bigsmall);
-        HorizontalScrollView hv_evenodd = (HorizontalScrollView) findViewById(R.id.hv_evenodd);
+        tv_sicbo_timer01 = (TextView) findViewById(R.id.gd__sicbo_status_tv);
+        tv_sicbo_number01 = (TextView) findViewById(R.id.gd__text_shoe_game_number);
+        tv_even01 = (TextView) findViewById(R.id.gd__text_even);
+        tv_odd01 = (TextView) findViewById(R.id.gd__text_odd);
+        tv_big01 = (TextView) findViewById(R.id.gd__text_big);
+        tv_small01 = (TextView) findViewById(R.id.gd__text_small);
+        tv_waidic01 = (TextView) findViewById(R.id.gd__text_waidic);
+        HorizontalScrollView hv_bigsmall = (HorizontalScrollView) findViewById(R.id.gd__hv_bigsmall);
+        HorizontalScrollView hv_evenodd = (HorizontalScrollView) findViewById(R.id.gd__hv_evenodd);
 
-        sicbo_bigsmall_road = (GridLayout) hv_bigsmall.findViewById(R.id.sicbo_gridlayout1);
-        sicbo_evenodd_road = (GridLayout) hv_evenodd.findViewById(R.id.sicbo_gridlayout1);
+        sicbo_bigsmall_road = (GridLayout) hv_bigsmall.findViewById(R.id.gd__sicbo_gridlayout1);
+        sicbo_evenodd_road = (GridLayout) hv_evenodd.findViewById(R.id.gd__sicbo_gridlayout1);
 
         sicbo_bigsmall_road.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,24 +261,24 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
                 clickGrid(v, 31);
             }
         });
-        ((TextView) findViewById(R.id.tv_sicbo_table_name)).setText("SB1");
+        ((TextView) findViewById(R.id.gd__tv_sicbo_table_name)).setText("SB1");
 
     }
 
 
     public void clickGrid(View v, final int tableId) {
-        initLimitPop(v, tableId, findViewById(R.id.ll_parent_limit));
+        initLimitPop(v, tableId, findViewById(R.id.gd__ll_parent_limit));
 
     }
 
     public void initLimitPop(View view, final int tableId, final View top_v) {
         String tableNumber = "SB1";
-        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.base_rv);
+        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.gd__base_rv);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.item_popupwindow_text_select_sicbo) {
+        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.gd_item_popupwindow_text_select_sicbo) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                holder.setText(R.id.pop_text_tv, item);
+                holder.setText(R.id.gd__pop_text_tv, item);
             }
 
         };
@@ -299,13 +299,13 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
             }
         });
         recyclerView.setAdapter(baseRecyclerAdapter);
-        top_v.findViewById(R.id.pop_close_iv).setOnClickListener(new View.OnClickListener() {
+        top_v.findViewById(R.id.gd__pop_close_iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 top_v.setVisibility(View.GONE);
             }
         });
-        ((TextView) top_v.findViewById(R.id.tv_table_game_number)).setText(tableNumber);
+        ((TextView) top_v.findViewById(R.id.gd__tv_table_game_number)).setText(tableNumber);
         top_v.setVisibility(View.VISIBLE);
 
     }

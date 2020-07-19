@@ -44,23 +44,23 @@ import gaming178.com.mylibrary.myview.View.GridBackgroundView;
  */
 public class LobbyBaccaratActivity extends BaseActivity {
 
-    @BindView(R2.id.baccarat_content_parent_ll)
+    @BindView(R2.id.gd__baccarat_content_parent_ll)
     LinearLayout baccaratContentParentLl;
-    @BindView(R2.id.baccarat_gridlayout1)
+    @BindView(R2.id.gd__baccarat_gridlayout1)
     GridLayout baccarat_head_road1;
-    @BindView(R2.id.ll_good_road_parent)
+    @BindView(R2.id.gd__ll_good_road_parent)
     View ll_good_road_parent1;
-    @BindView(R2.id.tv_good_road_name)
+    @BindView(R2.id.gd__tv_good_road_name)
     TextView tv_good_road_name1;
-    //    @BindView(R2.id.baccarat_background_gridlayout1)
+    //    @BindView(R2.id.gd__baccarat_background_gridlayout1)
 //    GridBackgroundView baccarat_background_head_road1;
-    @BindView(R2.id.baccarat_gridlayout2)
+    @BindView(R2.id.gd__baccarat_gridlayout2)
     GridLayout baccarat_big_road1;
-    @BindView(R2.id.baccarat_gridlayout3)
+    @BindView(R2.id.gd__baccarat_gridlayout3)
     GridLayout baccarat_bigeyes_road1;
-    @BindView(R2.id.baccarat_gridlayout4)
+    @BindView(R2.id.gd__baccarat_gridlayout4)
     FrameLayout fl4;//baccarat_smalleyes_road1
-    @BindView(R2.id.baccarat_gridlayout5)
+    @BindView(R2.id.gd__baccarat_gridlayout5)
     FrameLayout fl5;//baccarat_roach_road1
     private float density;
     private GridLayout baccarat_head_road2;
@@ -693,42 +693,42 @@ public class LobbyBaccaratActivity extends BaseActivity {
     }
 
     private void addLayout4(LinearLayout baccaratContentParentLl) {
-        layout71 = LayoutInflater.from(mContext).inflate(R.layout.item_baccarat_content1, null);
-        shuffling7 = (TextView) layout71.findViewById(R.id.tv_shuffling);
-        scrollView7 = (HorizontalScrollView) layout71.findViewById(R.id.layout1);
+        layout71 = LayoutInflater.from(mContext).inflate(R.layout.gd_item_baccarat_content1, null);
+        shuffling7 = (TextView) layout71.findViewById(R.id.gd__tv_shuffling);
+        scrollView7 = (HorizontalScrollView) layout71.findViewById(R.id.gd__layout1);
         baccaratContentParentLl.addView(layout71);
-        baccarat_head_iv71 = (ImageView) layout71.findViewById(R.id.baccarat_head_iv);
+        baccarat_head_iv71 = (ImageView) layout71.findViewById(R.id.gd__baccarat_head_iv);
         Glide.with(mContext).load(WebSiteUrl.DownLoadPicture + "baccarat_girl4.png").skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).into(baccarat_head_iv71);
-        ll_good_road_parent71 = layout71.findViewById(R.id.ll_good_road_parent);
-        tv_good_road_name71 = layout71.findViewById(R.id.tv_good_road_name);
-        baccarat_head_road71 = (GridLayout) layout71.findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road71 = (GridLayout) layout71.findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road71 = (GridLayout) layout71.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_smalleyes_road71 = (GridLayout) layout71.findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road71 = (GridLayout) layout71.findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
-        tv_baccarat_shoe_number71 = (TextView) layout71.findViewById(R.id.text_shoe_game_number);
-        tv_baccarat_timer71 = (TextView) layout71.findViewById(R.id.baccarat_status_tv);
-        tv_baccarat_total_number71 = (TextView) layout71.findViewById(R.id.text_total);
-        tv_baccarat_banker_number71 = (TextView) layout71.findViewById(R.id.text_banker);
+        ll_good_road_parent71 = layout71.findViewById(R.id.gd__ll_good_road_parent);
+        tv_good_road_name71 = layout71.findViewById(R.id.gd__tv_good_road_name);
+        baccarat_head_road71 = (GridLayout) layout71.findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road71 = (GridLayout) layout71.findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road71 = (GridLayout) layout71.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_smalleyes_road71 = (GridLayout) layout71.findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road71 = (GridLayout) layout71.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
+        tv_baccarat_shoe_number71 = (TextView) layout71.findViewById(R.id.gd__text_shoe_game_number);
+        tv_baccarat_timer71 = (TextView) layout71.findViewById(R.id.gd__baccarat_status_tv);
+        tv_baccarat_total_number71 = (TextView) layout71.findViewById(R.id.gd__text_total);
+        tv_baccarat_banker_number71 = (TextView) layout71.findViewById(R.id.gd__text_banker);
 
-        tv_baccarat_player_number71 = (TextView) layout71.findViewById(R.id.text_player);
-        tv_baccarat_tie_number71 = (TextView) layout71.findViewById(R.id.text_tie);
+        tv_baccarat_player_number71 = (TextView) layout71.findViewById(R.id.gd__text_player);
+        tv_baccarat_tie_number71 = (TextView) layout71.findViewById(R.id.gd__text_tie);
 
-        tv_baccarat_table_name71 = (TextView) layout71.findViewById(R.id.tv_baccarat_table_name);
-        tv_baccarat_bp_number71 = (TextView) layout71.findViewById(R.id.text_bp);
-        tv_baccarat_pp_number71 = (TextView) layout71.findViewById(R.id.text_pp);
+        tv_baccarat_table_name71 = (TextView) layout71.findViewById(R.id.gd__tv_baccarat_table_name);
+        tv_baccarat_bp_number71 = (TextView) layout71.findViewById(R.id.gd__text_bp);
+        tv_baccarat_pp_number71 = (TextView) layout71.findViewById(R.id.gd__text_pp);
         tv_baccarat_table_name71.setText("BM1");
-        layout71.findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
     }
 
 
-    @BindView(R2.id.layout1)
+    @BindView(R2.id.gd__layout1)
     HorizontalScrollView scrollView1;
     HorizontalScrollView scrollView2;
     HorizontalScrollView scrollView3;
@@ -770,206 +770,206 @@ public class LobbyBaccaratActivity extends BaseActivity {
     public void InitControl() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         density = ScreenUtil.getDisplayMetrics(mContext).density;
-        shuffling1 = (TextView) findViewById(R.id.tv_shuffling);
-        layout2 = LayoutInflater.from(mContext).inflate(R.layout.item_baccarat_content1, null);
-        layout3 = LayoutInflater.from(mContext).inflate(R.layout.item_baccarat_content1, null);
-        layout61 = LayoutInflater.from(mContext).inflate(R.layout.item_baccarat_content1, null);
-        layout62 = LayoutInflater.from(mContext).inflate(R.layout.item_baccarat_content1, null);
-        layout63 = LayoutInflater.from(mContext).inflate(R.layout.item_baccarat_content1, null);
+        shuffling1 = (TextView) findViewById(R.id.gd__tv_shuffling);
+        layout2 = LayoutInflater.from(mContext).inflate(R.layout.gd_item_baccarat_content1, null);
+        layout3 = LayoutInflater.from(mContext).inflate(R.layout.gd_item_baccarat_content1, null);
+        layout61 = LayoutInflater.from(mContext).inflate(R.layout.gd_item_baccarat_content1, null);
+        layout62 = LayoutInflater.from(mContext).inflate(R.layout.gd_item_baccarat_content1, null);
+        layout63 = LayoutInflater.from(mContext).inflate(R.layout.gd_item_baccarat_content1, null);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            ll_big_road_parent2_1 = findViewById(R.id.ll_big_road_parent2);
-            ll_big_road_parent2_2 = layout2.findViewById(R.id.ll_big_road_parent2);
-            ll_big_road_parent2_3 = layout3.findViewById(R.id.ll_big_road_parent2);
-            ll_big_road_parent2_61 = layout61.findViewById(R.id.ll_big_road_parent2);
-            ll_big_road_parent2_62 = layout62.findViewById(R.id.ll_big_road_parent2);
-            ll_big_road_parent2_63 = layout63.findViewById(R.id.ll_big_road_parent2);
+            ll_big_road_parent2_1 = findViewById(R.id.gd__ll_big_road_parent2);
+            ll_big_road_parent2_2 = layout2.findViewById(R.id.gd__ll_big_road_parent2);
+            ll_big_road_parent2_3 = layout3.findViewById(R.id.gd__ll_big_road_parent2);
+            ll_big_road_parent2_61 = layout61.findViewById(R.id.gd__ll_big_road_parent2);
+            ll_big_road_parent2_62 = layout62.findViewById(R.id.gd__ll_big_road_parent2);
+            ll_big_road_parent2_63 = layout63.findViewById(R.id.gd__ll_big_road_parent2);
 
-            hsv_small_road_1_1 = findViewById(R.id.hsv_small_road_1);
-            hsv_small_road_1_2 = layout2.findViewById(R.id.hsv_small_road_1);
-            hsv_small_road_1_3 = layout3.findViewById(R.id.hsv_small_road_1);
-            hsv_small_road_1_61 = layout61.findViewById(R.id.hsv_small_road_1);
-            hsv_small_road_1_62 = layout62.findViewById(R.id.hsv_small_road_1);
-            hsv_small_road_1_63 = layout63.findViewById(R.id.hsv_small_road_1);
+            hsv_small_road_1_1 = findViewById(R.id.gd__hsv_small_road_1);
+            hsv_small_road_1_2 = layout2.findViewById(R.id.gd__hsv_small_road_1);
+            hsv_small_road_1_3 = layout3.findViewById(R.id.gd__hsv_small_road_1);
+            hsv_small_road_1_61 = layout61.findViewById(R.id.gd__hsv_small_road_1);
+            hsv_small_road_1_62 = layout62.findViewById(R.id.gd__hsv_small_road_1);
+            hsv_small_road_1_63 = layout63.findViewById(R.id.gd__hsv_small_road_1);
 
-            hsv_small_road_2_1 = findViewById(R.id.hsv_small_road_2);
-            hsv_small_road_2_2 = layout2.findViewById(R.id.hsv_small_road_2);
-            hsv_small_road_2_3 = layout3.findViewById(R.id.hsv_small_road_2);
-            hsv_small_road_2_61 = layout61.findViewById(R.id.hsv_small_road_2);
-            hsv_small_road_2_62 = layout62.findViewById(R.id.hsv_small_road_2);
-            hsv_small_road_2_63 = layout63.findViewById(R.id.hsv_small_road_2);
+            hsv_small_road_2_1 = findViewById(R.id.gd__hsv_small_road_2);
+            hsv_small_road_2_2 = layout2.findViewById(R.id.gd__hsv_small_road_2);
+            hsv_small_road_2_3 = layout3.findViewById(R.id.gd__hsv_small_road_2);
+            hsv_small_road_2_61 = layout61.findViewById(R.id.gd__hsv_small_road_2);
+            hsv_small_road_2_62 = layout62.findViewById(R.id.gd__hsv_small_road_2);
+            hsv_small_road_2_63 = layout63.findViewById(R.id.gd__hsv_small_road_2);
 
-            hsv_small_road_3_1 = findViewById(R.id.hsv_small_road_3);
-            hsv_small_road_3_2 = layout2.findViewById(R.id.hsv_small_road_3);
-            hsv_small_road_3_3 = layout3.findViewById(R.id.hsv_small_road_3);
-            hsv_small_road_3_61 = layout61.findViewById(R.id.hsv_small_road_3);
-            hsv_small_road_3_62 = layout62.findViewById(R.id.hsv_small_road_3);
-            hsv_small_road_3_63 = layout63.findViewById(R.id.hsv_small_road_3);
+            hsv_small_road_3_1 = findViewById(R.id.gd__hsv_small_road_3);
+            hsv_small_road_3_2 = layout2.findViewById(R.id.gd__hsv_small_road_3);
+            hsv_small_road_3_3 = layout3.findViewById(R.id.gd__hsv_small_road_3);
+            hsv_small_road_3_61 = layout61.findViewById(R.id.gd__hsv_small_road_3);
+            hsv_small_road_3_62 = layout62.findViewById(R.id.gd__hsv_small_road_3);
+            hsv_small_road_3_63 = layout63.findViewById(R.id.gd__hsv_small_road_3);
         } else {
-            ll_big_road_parent2_1 = findViewById(R.id.ll_big_road_parent2_landscape);
-            ll_big_road_parent2_2 = layout2.findViewById(R.id.ll_big_road_parent2_landscape);
-            ll_big_road_parent2_3 = layout3.findViewById(R.id.ll_big_road_parent2_landscape);
-            ll_big_road_parent2_61 = layout61.findViewById(R.id.ll_big_road_parent2_landscape);
-            ll_big_road_parent2_62 = layout62.findViewById(R.id.ll_big_road_parent2_landscape);
-            ll_big_road_parent2_63 = layout63.findViewById(R.id.ll_big_road_parent2_landscape);
+            ll_big_road_parent2_1 = findViewById(R.id.gd__ll_big_road_parent2_landscape);
+            ll_big_road_parent2_2 = layout2.findViewById(R.id.gd__ll_big_road_parent2_landscape);
+            ll_big_road_parent2_3 = layout3.findViewById(R.id.gd__ll_big_road_parent2_landscape);
+            ll_big_road_parent2_61 = layout61.findViewById(R.id.gd__ll_big_road_parent2_landscape);
+            ll_big_road_parent2_62 = layout62.findViewById(R.id.gd__ll_big_road_parent2_landscape);
+            ll_big_road_parent2_63 = layout63.findViewById(R.id.gd__ll_big_road_parent2_landscape);
 
-            hsv_small_road_1_1 = findViewById(R.id.hsv_small_road_1_landscape);
-            hsv_small_road_1_2 = layout2.findViewById(R.id.hsv_small_road_1_landscape);
-            hsv_small_road_1_3 = layout3.findViewById(R.id.hsv_small_road_1_landscape);
-            hsv_small_road_1_61 = layout61.findViewById(R.id.hsv_small_road_1_landscape);
-            hsv_small_road_1_62 = layout62.findViewById(R.id.hsv_small_road_1_landscape);
-            hsv_small_road_1_63 = layout63.findViewById(R.id.hsv_small_road_1_landscape);
+            hsv_small_road_1_1 = findViewById(R.id.gd__hsv_small_road_1_landscape);
+            hsv_small_road_1_2 = layout2.findViewById(R.id.gd__hsv_small_road_1_landscape);
+            hsv_small_road_1_3 = layout3.findViewById(R.id.gd__hsv_small_road_1_landscape);
+            hsv_small_road_1_61 = layout61.findViewById(R.id.gd__hsv_small_road_1_landscape);
+            hsv_small_road_1_62 = layout62.findViewById(R.id.gd__hsv_small_road_1_landscape);
+            hsv_small_road_1_63 = layout63.findViewById(R.id.gd__hsv_small_road_1_landscape);
 
-            hsv_small_road_2_1 = findViewById(R.id.hsv_small_road_2_landscape);
-            hsv_small_road_2_2 = layout2.findViewById(R.id.hsv_small_road_2_landscape);
-            hsv_small_road_2_3 = layout3.findViewById(R.id.hsv_small_road_2_landscape);
-            hsv_small_road_2_61 = layout61.findViewById(R.id.hsv_small_road_2_landscape);
-            hsv_small_road_2_62 = layout62.findViewById(R.id.hsv_small_road_2_landscape);
-            hsv_small_road_2_63 = layout63.findViewById(R.id.hsv_small_road_2_landscape);
+            hsv_small_road_2_1 = findViewById(R.id.gd__hsv_small_road_2_landscape);
+            hsv_small_road_2_2 = layout2.findViewById(R.id.gd__hsv_small_road_2_landscape);
+            hsv_small_road_2_3 = layout3.findViewById(R.id.gd__hsv_small_road_2_landscape);
+            hsv_small_road_2_61 = layout61.findViewById(R.id.gd__hsv_small_road_2_landscape);
+            hsv_small_road_2_62 = layout62.findViewById(R.id.gd__hsv_small_road_2_landscape);
+            hsv_small_road_2_63 = layout63.findViewById(R.id.gd__hsv_small_road_2_landscape);
 
-            hsv_small_road_3_1 = findViewById(R.id.hsv_small_road_3_landscape);
-            hsv_small_road_3_2 = layout2.findViewById(R.id.hsv_small_road_3_landscape);
-            hsv_small_road_3_3 = layout3.findViewById(R.id.hsv_small_road_3_landscape);
-            hsv_small_road_3_61 = layout61.findViewById(R.id.hsv_small_road_3_landscape);
-            hsv_small_road_3_62 = layout62.findViewById(R.id.hsv_small_road_3_landscape);
-            hsv_small_road_3_63 = layout63.findViewById(R.id.hsv_small_road_3_landscape);
+            hsv_small_road_3_1 = findViewById(R.id.gd__hsv_small_road_3_landscape);
+            hsv_small_road_3_2 = layout2.findViewById(R.id.gd__hsv_small_road_3_landscape);
+            hsv_small_road_3_3 = layout3.findViewById(R.id.gd__hsv_small_road_3_landscape);
+            hsv_small_road_3_61 = layout61.findViewById(R.id.gd__hsv_small_road_3_landscape);
+            hsv_small_road_3_62 = layout62.findViewById(R.id.gd__hsv_small_road_3_landscape);
+            hsv_small_road_3_63 = layout63.findViewById(R.id.gd__hsv_small_road_3_landscape);
         }
-        shuffling2 = (TextView) layout2.findViewById(R.id.tv_shuffling);
-        shuffling3 = (TextView) layout3.findViewById(R.id.tv_shuffling);
-        shuffling61 = (TextView) layout61.findViewById(R.id.tv_shuffling);
-        shuffling62 = (TextView) layout62.findViewById(R.id.tv_shuffling);
-        shuffling63 = (TextView) layout63.findViewById(R.id.tv_shuffling);
-        scrollView2 = (HorizontalScrollView) layout2.findViewById(R.id.layout1);
-        scrollView3 = (HorizontalScrollView) layout3.findViewById(R.id.layout1);
-        scrollView61 = (HorizontalScrollView) layout61.findViewById(R.id.layout1);
-        scrollView62 = (HorizontalScrollView) layout62.findViewById(R.id.layout1);
-        scrollView63 = (HorizontalScrollView) layout63.findViewById(R.id.layout1);
+        shuffling2 = (TextView) layout2.findViewById(R.id.gd__tv_shuffling);
+        shuffling3 = (TextView) layout3.findViewById(R.id.gd__tv_shuffling);
+        shuffling61 = (TextView) layout61.findViewById(R.id.gd__tv_shuffling);
+        shuffling62 = (TextView) layout62.findViewById(R.id.gd__tv_shuffling);
+        shuffling63 = (TextView) layout63.findViewById(R.id.gd__tv_shuffling);
+        scrollView2 = (HorizontalScrollView) layout2.findViewById(R.id.gd__layout1);
+        scrollView3 = (HorizontalScrollView) layout3.findViewById(R.id.gd__layout1);
+        scrollView61 = (HorizontalScrollView) layout61.findViewById(R.id.gd__layout1);
+        scrollView62 = (HorizontalScrollView) layout62.findViewById(R.id.gd__layout1);
+        scrollView63 = (HorizontalScrollView) layout63.findViewById(R.id.gd__layout1);
         baccaratContentParentLl.addView(layout2);
         baccaratContentParentLl.addView(layout3);
         baccaratContentParentLl.addView(layout61);
         baccaratContentParentLl.addView(layout62);
         baccaratContentParentLl.addView(layout63);
 
-        baccarat_smalleyes_road1 = (GridLayout) fl4.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road1 = (GridLayout) fl5.findViewById(R.id.baccarat_gridlayout3);
+        baccarat_smalleyes_road1 = (GridLayout) fl4.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road1 = (GridLayout) fl5.findViewById(R.id.gd__baccarat_gridlayout3);
 
-        ll_good_road_parent2 = layout2.findViewById(R.id.ll_good_road_parent);
-        tv_good_road_name2 = layout2.findViewById(R.id.tv_good_road_name);
-        baccarat_head_road2 = (GridLayout) layout2.findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road2 = (GridLayout) layout2.findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road2 = (GridLayout) layout2.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_smalleyes_road2 = (GridLayout) layout2.findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road2 = (GridLayout) layout2.findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
+        ll_good_road_parent2 = layout2.findViewById(R.id.gd__ll_good_road_parent);
+        tv_good_road_name2 = layout2.findViewById(R.id.gd__tv_good_road_name);
+        baccarat_head_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_smalleyes_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
-        ll_good_road_parent3 = layout3.findViewById(R.id.ll_good_road_parent);
-        tv_good_road_name3 = layout3.findViewById(R.id.tv_good_road_name);
-        baccarat_head_road3 = (GridLayout) layout3.findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road3 = (GridLayout) layout3.findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road3 = (GridLayout) layout3.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_smalleyes_road3 = (GridLayout) layout3.findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road3 = (GridLayout) layout3.findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
+        ll_good_road_parent3 = layout3.findViewById(R.id.gd__ll_good_road_parent);
+        tv_good_road_name3 = layout3.findViewById(R.id.gd__tv_good_road_name);
+        baccarat_head_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_smalleyes_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
-        ll_good_road_parent61 = layout61.findViewById(R.id.ll_good_road_parent);
-        tv_good_road_name61 = layout61.findViewById(R.id.tv_good_road_name);
-        baccarat_head_road61 = (GridLayout) layout61.findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road61 = (GridLayout) layout61.findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road61 = (GridLayout) layout61.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_smalleyes_road61 = (GridLayout) layout61.findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road61 = (GridLayout) layout61.findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
+        ll_good_road_parent61 = layout61.findViewById(R.id.gd__ll_good_road_parent);
+        tv_good_road_name61 = layout61.findViewById(R.id.gd__tv_good_road_name);
+        baccarat_head_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_smalleyes_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
-        ll_good_road_parent62 = layout62.findViewById(R.id.ll_good_road_parent);
-        tv_good_road_name62 = layout62.findViewById(R.id.tv_good_road_name);
-        baccarat_head_road62 = (GridLayout) layout62.findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road62 = (GridLayout) layout62.findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road62 = (GridLayout) layout62.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_smalleyes_road62 = (GridLayout) layout62.findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road62 = (GridLayout) layout62.findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
+        ll_good_road_parent62 = layout62.findViewById(R.id.gd__ll_good_road_parent);
+        tv_good_road_name62 = layout62.findViewById(R.id.gd__tv_good_road_name);
+        baccarat_head_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_smalleyes_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
-        ll_good_road_parent63 = layout63.findViewById(R.id.ll_good_road_parent);
-        tv_good_road_name63 = layout63.findViewById(R.id.tv_good_road_name);
-        baccarat_head_road63 = (GridLayout) layout63.findViewById(R.id.baccarat_gridlayout1);
-        baccarat_big_road63 = (GridLayout) layout63.findViewById(R.id.baccarat_gridlayout2);
-        baccarat_bigeyes_road63 = (GridLayout) layout63.findViewById(R.id.baccarat_gridlayout3);
-        baccarat_smalleyes_road63 = (GridLayout) layout63.findViewById(R.id.baccarat_gridlayout4).findViewById(R.id.baccarat_gridlayout3);
-        baccarat_roach_road63 = (GridLayout) layout63.findViewById(R.id.baccarat_gridlayout5).findViewById(R.id.baccarat_gridlayout3);
+        ll_good_road_parent63 = layout63.findViewById(R.id.gd__ll_good_road_parent);
+        tv_good_road_name63 = layout63.findViewById(R.id.gd__tv_good_road_name);
+        baccarat_head_road63 = (GridLayout) layout63.findViewById(R.id.gd__baccarat_gridlayout1);
+        baccarat_big_road63 = (GridLayout) layout63.findViewById(R.id.gd__baccarat_gridlayout2);
+        baccarat_bigeyes_road63 = (GridLayout) layout63.findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_smalleyes_road63 = (GridLayout) layout63.findViewById(R.id.gd__baccarat_gridlayout4).findViewById(R.id.gd__baccarat_gridlayout3);
+        baccarat_roach_road63 = (GridLayout) layout63.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
-        tv_baccarat_timer01 = (TextView) findViewById(R.id.baccarat_status_tv);
-        tv_baccarat_timer02 = (TextView) layout2.findViewById(R.id.baccarat_status_tv);
-        tv_baccarat_timer03 = (TextView) layout3.findViewById(R.id.baccarat_status_tv);
-        tv_baccarat_timer61 = (TextView) layout61.findViewById(R.id.baccarat_status_tv);
-        tv_baccarat_timer62 = (TextView) layout62.findViewById(R.id.baccarat_status_tv);
-        tv_baccarat_timer63 = (TextView) layout63.findViewById(R.id.baccarat_status_tv);
+        tv_baccarat_timer01 = (TextView) findViewById(R.id.gd__baccarat_status_tv);
+        tv_baccarat_timer02 = (TextView) layout2.findViewById(R.id.gd__baccarat_status_tv);
+        tv_baccarat_timer03 = (TextView) layout3.findViewById(R.id.gd__baccarat_status_tv);
+        tv_baccarat_timer61 = (TextView) layout61.findViewById(R.id.gd__baccarat_status_tv);
+        tv_baccarat_timer62 = (TextView) layout62.findViewById(R.id.gd__baccarat_status_tv);
+        tv_baccarat_timer63 = (TextView) layout63.findViewById(R.id.gd__baccarat_status_tv);
 
-        tv_baccarat_shoe_number01 = (TextView) findViewById(R.id.text_shoe_game_number);
-        tv_baccarat_shoe_number02 = (TextView) layout2.findViewById(R.id.text_shoe_game_number);
-        tv_baccarat_shoe_number03 = (TextView) layout3.findViewById(R.id.text_shoe_game_number);
-        tv_baccarat_shoe_number61 = (TextView) layout61.findViewById(R.id.text_shoe_game_number);
-        tv_baccarat_shoe_number62 = (TextView) layout62.findViewById(R.id.text_shoe_game_number);
-        tv_baccarat_shoe_number63 = (TextView) layout63.findViewById(R.id.text_shoe_game_number);
+        tv_baccarat_shoe_number01 = (TextView) findViewById(R.id.gd__text_shoe_game_number);
+        tv_baccarat_shoe_number02 = (TextView) layout2.findViewById(R.id.gd__text_shoe_game_number);
+        tv_baccarat_shoe_number03 = (TextView) layout3.findViewById(R.id.gd__text_shoe_game_number);
+        tv_baccarat_shoe_number61 = (TextView) layout61.findViewById(R.id.gd__text_shoe_game_number);
+        tv_baccarat_shoe_number62 = (TextView) layout62.findViewById(R.id.gd__text_shoe_game_number);
+        tv_baccarat_shoe_number63 = (TextView) layout63.findViewById(R.id.gd__text_shoe_game_number);
 
-        tv_baccarat_total_number01 = (TextView) findViewById(R.id.text_total);
-        tv_baccarat_total_number02 = (TextView) layout2.findViewById(R.id.text_total);
-        tv_baccarat_total_number03 = (TextView) layout3.findViewById(R.id.text_total);
-        tv_baccarat_total_number61 = (TextView) layout61.findViewById(R.id.text_total);
-        tv_baccarat_total_number62 = (TextView) layout62.findViewById(R.id.text_total);
-        tv_baccarat_total_number63 = (TextView) layout63.findViewById(R.id.text_total);
+        tv_baccarat_total_number01 = (TextView) findViewById(R.id.gd__text_total);
+        tv_baccarat_total_number02 = (TextView) layout2.findViewById(R.id.gd__text_total);
+        tv_baccarat_total_number03 = (TextView) layout3.findViewById(R.id.gd__text_total);
+        tv_baccarat_total_number61 = (TextView) layout61.findViewById(R.id.gd__text_total);
+        tv_baccarat_total_number62 = (TextView) layout62.findViewById(R.id.gd__text_total);
+        tv_baccarat_total_number63 = (TextView) layout63.findViewById(R.id.gd__text_total);
 
-        tv_baccarat_banker_number01 = (TextView) findViewById(R.id.text_banker);
-        tv_baccarat_banker_number02 = (TextView) layout2.findViewById(R.id.text_banker);
-        tv_baccarat_banker_number03 = (TextView) layout3.findViewById(R.id.text_banker);
-        tv_baccarat_banker_number61 = (TextView) layout61.findViewById(R.id.text_banker);
-        tv_baccarat_banker_number62 = (TextView) layout62.findViewById(R.id.text_banker);
-        tv_baccarat_banker_number63 = (TextView) layout63.findViewById(R.id.text_banker);
+        tv_baccarat_banker_number01 = (TextView) findViewById(R.id.gd__text_banker);
+        tv_baccarat_banker_number02 = (TextView) layout2.findViewById(R.id.gd__text_banker);
+        tv_baccarat_banker_number03 = (TextView) layout3.findViewById(R.id.gd__text_banker);
+        tv_baccarat_banker_number61 = (TextView) layout61.findViewById(R.id.gd__text_banker);
+        tv_baccarat_banker_number62 = (TextView) layout62.findViewById(R.id.gd__text_banker);
+        tv_baccarat_banker_number63 = (TextView) layout63.findViewById(R.id.gd__text_banker);
 
-        tv_baccarat_player_number01 = (TextView) findViewById(R.id.text_player);
-        tv_baccarat_player_number02 = (TextView) layout2.findViewById(R.id.text_player);
-        tv_baccarat_player_number03 = (TextView) layout3.findViewById(R.id.text_player);
-        tv_baccarat_player_number61 = (TextView) layout61.findViewById(R.id.text_player);
-        tv_baccarat_player_number62 = (TextView) layout62.findViewById(R.id.text_player);
-        tv_baccarat_player_number63 = (TextView) layout63.findViewById(R.id.text_player);
+        tv_baccarat_player_number01 = (TextView) findViewById(R.id.gd__text_player);
+        tv_baccarat_player_number02 = (TextView) layout2.findViewById(R.id.gd__text_player);
+        tv_baccarat_player_number03 = (TextView) layout3.findViewById(R.id.gd__text_player);
+        tv_baccarat_player_number61 = (TextView) layout61.findViewById(R.id.gd__text_player);
+        tv_baccarat_player_number62 = (TextView) layout62.findViewById(R.id.gd__text_player);
+        tv_baccarat_player_number63 = (TextView) layout63.findViewById(R.id.gd__text_player);
 
-        tv_baccarat_tie_number01 = (TextView) findViewById(R.id.text_tie);
-        tv_baccarat_tie_number02 = (TextView) layout2.findViewById(R.id.text_tie);
-        tv_baccarat_tie_number03 = (TextView) layout3.findViewById(R.id.text_tie);
-        tv_baccarat_tie_number61 = (TextView) layout61.findViewById(R.id.text_tie);
-        tv_baccarat_tie_number62 = (TextView) layout62.findViewById(R.id.text_tie);
-        tv_baccarat_tie_number63 = (TextView) layout63.findViewById(R.id.text_tie);
+        tv_baccarat_tie_number01 = (TextView) findViewById(R.id.gd__text_tie);
+        tv_baccarat_tie_number02 = (TextView) layout2.findViewById(R.id.gd__text_tie);
+        tv_baccarat_tie_number03 = (TextView) layout3.findViewById(R.id.gd__text_tie);
+        tv_baccarat_tie_number61 = (TextView) layout61.findViewById(R.id.gd__text_tie);
+        tv_baccarat_tie_number62 = (TextView) layout62.findViewById(R.id.gd__text_tie);
+        tv_baccarat_tie_number63 = (TextView) layout63.findViewById(R.id.gd__text_tie);
 
-        tv_baccarat_table_name02 = (TextView) layout2.findViewById(R.id.tv_baccarat_table_name);
-        tv_baccarat_table_name03 = (TextView) layout3.findViewById(R.id.tv_baccarat_table_name);
-        tv_baccarat_table_name61 = (TextView) layout61.findViewById(R.id.tv_baccarat_table_name);
-        tv_baccarat_table_name62 = (TextView) layout62.findViewById(R.id.tv_baccarat_table_name);
-        tv_baccarat_table_name63 = (TextView) layout63.findViewById(R.id.tv_baccarat_table_name);
+        tv_baccarat_table_name02 = (TextView) layout2.findViewById(R.id.gd__tv_baccarat_table_name);
+        tv_baccarat_table_name03 = (TextView) layout3.findViewById(R.id.gd__tv_baccarat_table_name);
+        tv_baccarat_table_name61 = (TextView) layout61.findViewById(R.id.gd__tv_baccarat_table_name);
+        tv_baccarat_table_name62 = (TextView) layout62.findViewById(R.id.gd__tv_baccarat_table_name);
+        tv_baccarat_table_name63 = (TextView) layout63.findViewById(R.id.gd__tv_baccarat_table_name);
 
-        tv_baccarat_bp_number01 = (TextView) findViewById(R.id.text_bp);
-        tv_baccarat_bp_number02 = (TextView) layout2.findViewById(R.id.text_bp);
-        tv_baccarat_bp_number03 = (TextView) layout3.findViewById(R.id.text_bp);
-        tv_baccarat_bp_number61 = (TextView) layout61.findViewById(R.id.text_bp);
-        tv_baccarat_bp_number62 = (TextView) layout62.findViewById(R.id.text_bp);
-        tv_baccarat_bp_number63 = (TextView) layout63.findViewById(R.id.text_bp);
+        tv_baccarat_bp_number01 = (TextView) findViewById(R.id.gd__text_bp);
+        tv_baccarat_bp_number02 = (TextView) layout2.findViewById(R.id.gd__text_bp);
+        tv_baccarat_bp_number03 = (TextView) layout3.findViewById(R.id.gd__text_bp);
+        tv_baccarat_bp_number61 = (TextView) layout61.findViewById(R.id.gd__text_bp);
+        tv_baccarat_bp_number62 = (TextView) layout62.findViewById(R.id.gd__text_bp);
+        tv_baccarat_bp_number63 = (TextView) layout63.findViewById(R.id.gd__text_bp);
 
-        tv_baccarat_pp_number01 = (TextView) findViewById(R.id.text_pp);
-        tv_baccarat_pp_number02 = (TextView) layout2.findViewById(R.id.text_pp);
-        tv_baccarat_pp_number03 = (TextView) layout3.findViewById(R.id.text_pp);
-        tv_baccarat_pp_number61 = (TextView) layout61.findViewById(R.id.text_pp);
-        tv_baccarat_pp_number62 = (TextView) layout62.findViewById(R.id.text_pp);
-        tv_baccarat_pp_number63 = (TextView) layout63.findViewById(R.id.text_pp);
+        tv_baccarat_pp_number01 = (TextView) findViewById(R.id.gd__text_pp);
+        tv_baccarat_pp_number02 = (TextView) layout2.findViewById(R.id.gd__text_pp);
+        tv_baccarat_pp_number03 = (TextView) layout3.findViewById(R.id.gd__text_pp);
+        tv_baccarat_pp_number61 = (TextView) layout61.findViewById(R.id.gd__text_pp);
+        tv_baccarat_pp_number62 = (TextView) layout62.findViewById(R.id.gd__text_pp);
+        tv_baccarat_pp_number63 = (TextView) layout63.findViewById(R.id.gd__text_pp);
 
 
         setToolbarNameAndBalance();
-        baccarat_head_iv1 = (ImageView) findViewById(R.id.baccarat_head_iv);
-        baccarat_head_iv2 = (ImageView) layout2.findViewById(R.id.baccarat_head_iv);
-        baccarat_head_iv3 = (ImageView) layout3.findViewById(R.id.baccarat_head_iv);
-        baccarat_head_iv61 = (ImageView) layout61.findViewById(R.id.baccarat_head_iv);
-        baccarat_head_iv62 = (ImageView) layout62.findViewById(R.id.baccarat_head_iv);
-        baccarat_head_iv63 = (ImageView) layout63.findViewById(R.id.baccarat_head_iv);
+        baccarat_head_iv1 = (ImageView) findViewById(R.id.gd__baccarat_head_iv);
+        baccarat_head_iv2 = (ImageView) layout2.findViewById(R.id.gd__baccarat_head_iv);
+        baccarat_head_iv3 = (ImageView) layout3.findViewById(R.id.gd__baccarat_head_iv);
+        baccarat_head_iv61 = (ImageView) layout61.findViewById(R.id.gd__baccarat_head_iv);
+        baccarat_head_iv62 = (ImageView) layout62.findViewById(R.id.gd__baccarat_head_iv);
+        baccarat_head_iv63 = (ImageView) layout63.findViewById(R.id.gd__baccarat_head_iv);
 
-        tvBaccaratDealerName1 = (TextView) findViewById(R.id.tv_baccarat_dealer_name);
-        tvBaccaratDealerName2 = (TextView) layout2.findViewById(R.id.tv_baccarat_dealer_name);
-        tvBaccaratDealerName3 = (TextView) layout3.findViewById(R.id.tv_baccarat_dealer_name);
-        tvBaccaratDealerName61 = (TextView) layout61.findViewById(R.id.tv_baccarat_dealer_name);
-        tvBaccaratDealerName62 = (TextView) layout62.findViewById(R.id.tv_baccarat_dealer_name);
-        tvBaccaratDealerName63 = (TextView) layout63.findViewById(R.id.tv_baccarat_dealer_name);
+        tvBaccaratDealerName1 = (TextView) findViewById(R.id.gd__tv_baccarat_dealer_name);
+        tvBaccaratDealerName2 = (TextView) layout2.findViewById(R.id.gd__tv_baccarat_dealer_name);
+        tvBaccaratDealerName3 = (TextView) layout3.findViewById(R.id.gd__tv_baccarat_dealer_name);
+        tvBaccaratDealerName61 = (TextView) layout61.findViewById(R.id.gd__tv_baccarat_dealer_name);
+        tvBaccaratDealerName62 = (TextView) layout62.findViewById(R.id.gd__tv_baccarat_dealer_name);
+        tvBaccaratDealerName63 = (TextView) layout63.findViewById(R.id.gd__tv_baccarat_dealer_name);
 
         tvBaccaratDealerName1.setTextColor(getResources().getColor(R.color.orange_dealer_name));
         tvBaccaratDealerName2.setTextColor(getResources().getColor(R.color.orange_dealer_name));
@@ -978,353 +978,353 @@ public class LobbyBaccaratActivity extends BaseActivity {
         tvBaccaratDealerName62.setTextColor(getResources().getColor(R.color.orange_dealer_name));
         tvBaccaratDealerName63.setTextColor(getResources().getColor(R.color.orange_dealer_name));
 
-        baccarat_background_head_road1 = (GridBackgroundView) findViewById(R.id.baccarat_background_gridlayout1);
-        baccarat_background_head_road2 = (GridBackgroundView) layout2.findViewById(R.id.baccarat_background_gridlayout1);
-        baccarat_background_head_road3 = (GridBackgroundView) layout3.findViewById(R.id.baccarat_background_gridlayout1);
-        baccarat_background_head_road61 = (GridBackgroundView) layout61.findViewById(R.id.baccarat_background_gridlayout1);
-        baccarat_background_head_road62 = (GridBackgroundView) layout62.findViewById(R.id.baccarat_background_gridlayout1);
-        baccarat_background_head_road63 = (GridBackgroundView) layout63.findViewById(R.id.baccarat_background_gridlayout1);
-        smallway1 = (GridBackgroundView) findViewById(R.id.smallway_item);
-        smallway2 = (GridBackgroundView) layout2.findViewById(R.id.smallway_item);
-        smallway3 = (GridBackgroundView) layout3.findViewById(R.id.smallway_item);
-        smallway61 = (GridBackgroundView) layout61.findViewById(R.id.smallway_item);
-        smallway62 = (GridBackgroundView) layout62.findViewById(R.id.smallway_item);
-        smallway63 = (GridBackgroundView) layout63.findViewById(R.id.smallway_item);
-        View smallway21 = findViewById(R.id.baccarat_gridlayout4);
-        View smallway22 = layout2.findViewById(R.id.baccarat_gridlayout4);
-        View smallway23 = layout3.findViewById(R.id.baccarat_gridlayout4);
-        View smallway261 = layout61.findViewById(R.id.baccarat_gridlayout4);
-        View smallway262 = layout62.findViewById(R.id.baccarat_gridlayout4);
-        View smallway263 = layout63.findViewById(R.id.baccarat_gridlayout4);
-        View smallway31 = findViewById(R.id.baccarat_gridlayout5);
-        View smallway32 = layout2.findViewById(R.id.baccarat_gridlayout5);
-        View smallway33 = layout3.findViewById(R.id.baccarat_gridlayout5);
-        View smallway361 = layout61.findViewById(R.id.baccarat_gridlayout5);
-        View smallway362 = layout62.findViewById(R.id.baccarat_gridlayout5);
-        View smallway363 = layout63.findViewById(R.id.baccarat_gridlayout5);
-        View bigway1 = findViewById(R.id.big_way);
-        View bigway2 = layout2.findViewById(R.id.big_way);
-        View bigway3 = layout3.findViewById(R.id.big_way);
-        View bigway61 = layout61.findViewById(R.id.big_way);
-        View bigway62 = layout62.findViewById(R.id.big_way);
-        View bigway63 = layout63.findViewById(R.id.big_way);
-        ((TextView) findViewById(R.id.tv_baccarat_table_name)).setText("LB1");
+        baccarat_background_head_road1 = (GridBackgroundView) findViewById(R.id.gd__baccarat_background_gridlayout1);
+        baccarat_background_head_road2 = (GridBackgroundView) layout2.findViewById(R.id.gd__baccarat_background_gridlayout1);
+        baccarat_background_head_road3 = (GridBackgroundView) layout3.findViewById(R.id.gd__baccarat_background_gridlayout1);
+        baccarat_background_head_road61 = (GridBackgroundView) layout61.findViewById(R.id.gd__baccarat_background_gridlayout1);
+        baccarat_background_head_road62 = (GridBackgroundView) layout62.findViewById(R.id.gd__baccarat_background_gridlayout1);
+        baccarat_background_head_road63 = (GridBackgroundView) layout63.findViewById(R.id.gd__baccarat_background_gridlayout1);
+        smallway1 = (GridBackgroundView) findViewById(R.id.gd__smallway_item);
+        smallway2 = (GridBackgroundView) layout2.findViewById(R.id.gd__smallway_item);
+        smallway3 = (GridBackgroundView) layout3.findViewById(R.id.gd__smallway_item);
+        smallway61 = (GridBackgroundView) layout61.findViewById(R.id.gd__smallway_item);
+        smallway62 = (GridBackgroundView) layout62.findViewById(R.id.gd__smallway_item);
+        smallway63 = (GridBackgroundView) layout63.findViewById(R.id.gd__smallway_item);
+        View smallway21 = findViewById(R.id.gd__baccarat_gridlayout4);
+        View smallway22 = layout2.findViewById(R.id.gd__baccarat_gridlayout4);
+        View smallway23 = layout3.findViewById(R.id.gd__baccarat_gridlayout4);
+        View smallway261 = layout61.findViewById(R.id.gd__baccarat_gridlayout4);
+        View smallway262 = layout62.findViewById(R.id.gd__baccarat_gridlayout4);
+        View smallway263 = layout63.findViewById(R.id.gd__baccarat_gridlayout4);
+        View smallway31 = findViewById(R.id.gd__baccarat_gridlayout5);
+        View smallway32 = layout2.findViewById(R.id.gd__baccarat_gridlayout5);
+        View smallway33 = layout3.findViewById(R.id.gd__baccarat_gridlayout5);
+        View smallway361 = layout61.findViewById(R.id.gd__baccarat_gridlayout5);
+        View smallway362 = layout62.findViewById(R.id.gd__baccarat_gridlayout5);
+        View smallway363 = layout63.findViewById(R.id.gd__baccarat_gridlayout5);
+        View bigway1 = findViewById(R.id.gd__big_way);
+        View bigway2 = layout2.findViewById(R.id.gd__big_way);
+        View bigway3 = layout3.findViewById(R.id.gd__big_way);
+        View bigway61 = layout61.findViewById(R.id.gd__big_way);
+        View bigway62 = layout62.findViewById(R.id.gd__big_way);
+        View bigway63 = layout63.findViewById(R.id.gd__big_way);
+        ((TextView) findViewById(R.id.gd__tv_baccarat_table_name)).setText("LB1");
         tv_baccarat_table_name02.setText("LB2");
         tv_baccarat_table_name03.setText("LB3");
         tv_baccarat_table_name61.setText("LB5");
         tv_baccarat_table_name62.setText("LB6");
         tv_baccarat_table_name63.setText("LB7");
 
-        findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 1, "LB1", findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 1, "LB1", findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout2.findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        layout2.findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout3.findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        layout3.findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout61.findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        layout61.findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout62.findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        layout62.findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout63.findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        layout63.findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         addLayout4(baccaratContentParentLl);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            ll_big_road_parent2_71 = layout71.findViewById(R.id.ll_big_road_parent2);
-            hsv_small_road_1_71 = layout71.findViewById(R.id.hsv_small_road_1);
-            hsv_small_road_2_71 = layout71.findViewById(R.id.hsv_small_road_2);
-            hsv_small_road_3_71 = layout71.findViewById(R.id.hsv_small_road_3);
+            ll_big_road_parent2_71 = layout71.findViewById(R.id.gd__ll_big_road_parent2);
+            hsv_small_road_1_71 = layout71.findViewById(R.id.gd__hsv_small_road_1);
+            hsv_small_road_2_71 = layout71.findViewById(R.id.gd__hsv_small_road_2);
+            hsv_small_road_3_71 = layout71.findViewById(R.id.gd__hsv_small_road_3);
         } else {
-            ll_big_road_parent2_71 = layout71.findViewById(R.id.ll_big_road_parent2_landscape);
-            hsv_small_road_1_71 = layout71.findViewById(R.id.hsv_small_road_1_landscape);
-            hsv_small_road_2_71 = layout71.findViewById(R.id.hsv_small_road_2_landscape);
-            hsv_small_road_3_71 = layout71.findViewById(R.id.hsv_small_road_3_landscape);
+            ll_big_road_parent2_71 = layout71.findViewById(R.id.gd__ll_big_road_parent2_landscape);
+            hsv_small_road_1_71 = layout71.findViewById(R.id.gd__hsv_small_road_1_landscape);
+            hsv_small_road_2_71 = layout71.findViewById(R.id.gd__hsv_small_road_2_landscape);
+            hsv_small_road_3_71 = layout71.findViewById(R.id.gd__hsv_small_road_3_landscape);
         }
 
         baccarat_head_road1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 1, "LB1", findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 1, "LB1", findViewById(R.id.gd__ll_parent_limit));
             }
         });
         baccarat_background_head_road1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 1, "LB1", findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 1, "LB1", findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 1, "LB1", findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 1, "LB1", findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 1, "LB1", findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 1, "LB1", findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway31.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 1, "LB1", findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 1, "LB1", findViewById(R.id.gd__ll_parent_limit));
             }
         });
         bigway1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 1, "LB1", findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 1, "LB1", findViewById(R.id.gd__ll_parent_limit));
             }
         });
 
         baccarat_head_road2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         baccarat_background_head_road2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway32.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         bigway2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 2, "LB2", layout2.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         baccarat_head_road3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         baccarat_background_head_road3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway23.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway33.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         bigway3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 3, "LB3", layout3.findViewById(R.id.gd__ll_parent_limit));
             }
         });
 
         baccarat_head_road61.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         baccarat_background_head_road61.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway61.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway261.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway361.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         bigway61.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 61, "LB5", layout61.findViewById(R.id.gd__ll_parent_limit));
             }
         });
 
         baccarat_head_road62.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         baccarat_background_head_road62.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway62.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway262.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway362.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         bigway62.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 62, "LB6", layout62.findViewById(R.id.gd__ll_parent_limit));
             }
         });
 
         baccarat_head_road63.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         baccarat_background_head_road63.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway63.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway263.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         smallway363.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.gd__ll_parent_limit));
             }
         });
         bigway63.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 63, "LB7", layout63.findViewById(R.id.gd__ll_parent_limit));
             }
         });
 
-        layout71.findViewById(R.id.baccarat_gridlayout1).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__baccarat_gridlayout1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout71.findViewById(R.id.baccarat_background_gridlayout1).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__baccarat_background_gridlayout1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout71.findViewById(R.id.ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__ll_baccarat_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout71.findViewById(R.id.big_way).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__big_way).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout71.findViewById(R.id.smallway_item).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__smallway_item).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout71.findViewById(R.id.baccarat_gridlayout4).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__baccarat_gridlayout4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
-        layout71.findViewById(R.id.baccarat_gridlayout5).setOnClickListener(new View.OnClickListener() {
+        layout71.findViewById(R.id.gd__baccarat_gridlayout5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.ll_parent_limit));
+                clickGrid(v, 71, "BM1", layout71.findViewById(R.id.gd__ll_parent_limit));
             }
         });
 
@@ -1353,25 +1353,25 @@ public class LobbyBaccaratActivity extends BaseActivity {
 //    PopChoiceLanguage<String> centerPop;
 
     public void initLimitPop(View view, final int tableId, final String tableNumber, final View top_v) {
-        findViewById(R.id.ll_parent_limit).setVisibility(View.GONE);
+        findViewById(R.id.gd__ll_parent_limit).setVisibility(View.GONE);
         if (layout2 != null)
-            layout2.findViewById(R.id.ll_parent_limit).setVisibility(View.GONE);
+            layout2.findViewById(R.id.gd__ll_parent_limit).setVisibility(View.GONE);
         if (layout3 != null)
-            layout3.findViewById(R.id.ll_parent_limit).setVisibility(View.GONE);
+            layout3.findViewById(R.id.gd__ll_parent_limit).setVisibility(View.GONE);
         if (layout61 != null)
-            layout61.findViewById(R.id.ll_parent_limit).setVisibility(View.GONE);
+            layout61.findViewById(R.id.gd__ll_parent_limit).setVisibility(View.GONE);
         if (layout62 != null)
-            layout62.findViewById(R.id.ll_parent_limit).setVisibility(View.GONE);
+            layout62.findViewById(R.id.gd__ll_parent_limit).setVisibility(View.GONE);
         if (layout63 != null)
-            layout63.findViewById(R.id.ll_parent_limit).setVisibility(View.GONE);
+            layout63.findViewById(R.id.gd__ll_parent_limit).setVisibility(View.GONE);
         if (layout71 != null)
-            layout71.findViewById(R.id.ll_parent_limit).setVisibility(View.GONE);
-        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.base_rv);
+            layout71.findViewById(R.id.gd__ll_parent_limit).setVisibility(View.GONE);
+        RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.gd__base_rv);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.item_popupwindow_text_select) {
+        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.gd_item_popupwindow_text_select) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                holder.setText(R.id.pop_text_tv, item);
+                holder.setText(R.id.gd__pop_text_tv, item);
             }
 
         };
@@ -1419,13 +1419,13 @@ public class LobbyBaccaratActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(baseRecyclerAdapter);
-        top_v.findViewById(R.id.pop_close_iv).setOnClickListener(new View.OnClickListener() {
+        top_v.findViewById(R.id.gd__pop_close_iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 top_v.setVisibility(View.GONE);
             }
         });
-        ((TextView) top_v.findViewById(R.id.tv_table_game_number)).setText(tableNumber);
+        ((TextView) top_v.findViewById(R.id.gd__tv_table_game_number)).setText(tableNumber);
         top_v.setVisibility(View.VISIBLE);
 
     }
@@ -1450,7 +1450,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_baccarat_game;
+        return R.layout.gd_activity_baccarat_game;
     }
 
     @Override

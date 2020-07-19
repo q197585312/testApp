@@ -14,11 +14,11 @@ public class ModuleRenameResName {
     public static final String FILE_XML = ".xml";
 
     //要重命名的module的绝对路径
-    public static String renameModulePath = "/Users/chenzhihui193/Documents/GitHub/Demos/mylibrary";
+    public static String renameModulePath = "D:\\testApp\\app";
     public static String workSpaceDir = renameModulePath + "/src/main/";
     public static String renameResPath = workSpaceDir + "res/";
     //要添加的前缀 会加上下划线 所以不用额外加上下划线
-    public static String modulePrefix = "aaa";
+    public static String modulePrefix = "gd";
 
     public static void main(String[] args) {
         doRenameTask();
@@ -196,7 +196,9 @@ public class ModuleRenameResName {
      * @return
      */
     public static String getPathSuffix(String path) {
-        String sufix = path.substring(path.lastIndexOf("/") + 1, path.length());
+        int i = path.lastIndexOf("\\");
+        System.out.println(path + ",lastIndexOf(\"/\")is: " + i);
+        String sufix = path.substring(i + 1, path.length());
         if (sufix.contains("-")) {//针对drawable-hdpi类型的文件夹
             return sufix.substring(0, sufix.indexOf("-"));
         }
@@ -214,7 +216,7 @@ public class ModuleRenameResName {
      * @return
      */
     public static String doReplaceString(Boolean isJavaFile, String oldstr, String newStr, String line, String endParentPath) {
-        System.out.println("doReplaceString oldstr = "+oldstr+" newStr = "+newStr+" line = "+line+" endParentPath = "+endParentPath);
+        System.out.println("doReplaceString oldstr = " + oldstr + " newStr = " + newStr + " line = " + line + " endParentPath = " + endParentPath);
         if (endParentPath.equals("values")) {//values资源文件夹下的东西直接重命名
             return line;
         } else {

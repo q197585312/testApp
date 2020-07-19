@@ -55,14 +55,14 @@ public class FaceAdapter extends BaseAdapter {
 		ViewHolder viewHolder = null;
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.item_face, null);
+			convertView = inflater.inflate(R.layout.gd_item_face, null);
 			viewHolder.iv_face = (ImageView) convertView
-					.findViewById(R.id.item_iv_face);
+					.findViewById(R.id.gd__item_iv_face);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		if (emoji.getId() == R.drawable.face_del_icon) {
+		if (emoji.getId() == R.drawable.gd_face_del_icon) {
 			convertView.setBackgroundDrawable(null);
 			viewHolder.iv_face.setImageResource(emoji.getId());
 		} else if (TextUtils.isEmpty(emoji.getCharacter())) {

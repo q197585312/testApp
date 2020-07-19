@@ -29,7 +29,7 @@ public class PopReferralList extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.pop_referral_list;
+        return R.layout.gd_pop_referral_list;
     }
 
     Handler handler = new Handler() {
@@ -44,10 +44,10 @@ public class PopReferralList extends BasePopupWindow {
     };
 
     private void initAdapter(List<String> dataList) {
-        QuickBaseAdapter<String> adapter = new QuickBaseAdapter<String>(context, R.layout.item_referral_list, dataList) {
+        QuickBaseAdapter<String> adapter = new QuickBaseAdapter<String>(context, R.layout.gd_item_referral_list, dataList) {
             @Override
             protected void convert(ViewHolder helper, String item, int position) {
-                TextView tvContent = helper.retrieveView(R.id.tv_content);
+                TextView tvContent = helper.retrieveView(R.id.gd__tv_content);
                 tvContent.setText(item);
             }
         };
@@ -60,8 +60,8 @@ public class PopReferralList extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
-        img_exit = view.findViewById(R.id.img_exit);
-        lv_content = view.findViewById(R.id.lv_content);
+        img_exit = view.findViewById(R.id.gd__img_exit);
+        lv_content = view.findViewById(R.id.gd__lv_content);
         img_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

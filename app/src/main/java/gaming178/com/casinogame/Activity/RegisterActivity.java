@@ -32,51 +32,51 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
     private boolean confirmed = false;
 
-    @BindView(R2.id.edt_register_username)
+    @BindView(R2.id.gd__edt_register_username)
     EditText edtRegisterUsername;
-    @BindView(R2.id.tv_register_username_hint)
+    @BindView(R2.id.gd__tv_register_username_hint)
     TextView tvRegisterUsernameHint;
-    @BindView(R2.id.edt_register_password)
+    @BindView(R2.id.gd__edt_register_password)
     EditText edtRegisterPassword;
-    @BindView(R2.id.tv_register_password_hint)
+    @BindView(R2.id.gd__tv_register_password_hint)
     TextView tvRegisterPasswordHint;
-    @BindView(R2.id.edt_register_password_confirm)
+    @BindView(R2.id.gd__edt_register_password_confirm)
     EditText edtRegisterPasswordConfirm;
-    @BindView(R2.id.tv_register_password_confirm_hint)
+    @BindView(R2.id.gd__tv_register_password_confirm_hint)
     TextView tvRegisterPasswordConfirmHint;
-    @BindView(R2.id.edt_register_telephone)
+    @BindView(R2.id.gd__edt_register_telephone)
     EditText edtRegisterTelephone;
-    @BindView(R2.id.edt_register_email)
+    @BindView(R2.id.gd__edt_register_email)
     EditText edtRegisterEmail;
-    @BindView(R2.id.tv_register_email_hint)
+    @BindView(R2.id.gd__tv_register_email_hint)
     TextView tvRegisterEmailHint;
-    @BindView(R2.id.tv_register_telephone_hint)
+    @BindView(R2.id.gd__tv_register_telephone_hint)
     TextView tvRegisterTelephoneHint;
-    @BindView(R2.id.edt_register_full_name)
+    @BindView(R2.id.gd__edt_register_full_name)
     EditText edtRegisterFullName;
-    @BindView(R2.id.tv_register_choice_bank)
+    @BindView(R2.id.gd__tv_register_choice_bank)
     TextView tvRegisterChoiceBank;
-    @BindView(R2.id.tv_register_full_name_hint)
+    @BindView(R2.id.gd__tv_register_full_name_hint)
     TextView tvRegisterFullNameHint;
-    @BindView(R2.id.tv_register_bank_account_hint)
+    @BindView(R2.id.gd__tv_register_bank_account_hint)
     TextView tvRegisterBankAccountHint;
-    @BindView(R2.id.tv_bizhong)
+    @BindView(R2.id.gd__tv_bizhong)
     TextView tvBizhong;
-    @BindView(R2.id.tv_bizhong1)
+    @BindView(R2.id.gd__tv_bizhong1)
     TextView tvBizhong1;
-    @BindView(R2.id.ll_bizhong)
+    @BindView(R2.id.gd__ll_bizhong)
     LinearLayout llBizhong;
-    @BindView(R2.id.edt_register_bank_account)
+    @BindView(R2.id.gd__edt_register_bank_account)
     EditText edtRegisterBankAccount;
-    @BindView(R2.id.edt_register_bank_number)
+    @BindView(R2.id.gd__edt_register_bank_number)
     EditText edtRegisterBankNumber;
-    @BindView(R2.id.edt_register_verify_code)
+    @BindView(R2.id.gd__edt_register_verify_code)
     EditText edtRegisterVerifyCode;
-    @BindView(R2.id.tv_register_verify_code)
+    @BindView(R2.id.gd__tv_register_verify_code)
     TextView tvRegisterVerifyCode;
-    @BindView(R2.id.tv_register_verify_code_hint)
+    @BindView(R2.id.gd__tv_register_verify_code_hint)
     TextView tvRegisterVerifyCodeHint;
-    @BindView(R2.id.btn_register)
+    @BindView(R2.id.gd__btn_register)
     Button btnRegist;
 
 
@@ -432,7 +432,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
             @Override
             protected void convertItem(ViewHolder helper, CurrencyBean item, int position) {
-                helper.setText(R.id.text_tv1, item.getCurrencyName());
+                helper.setText(R.id.gd__text_tv1, item.getCurrencyName());
             }
 
             @Override
@@ -447,7 +447,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_register;
+        return R.layout.gd_activity_register;
     }
 
     public void clickBack(View view) {

@@ -48,7 +48,7 @@ public class ReportFormActivity extends BaseActivity {
 //        http://112api.gd09.info/report.jsp?lng=en&Usid=TESTSHMYR02
         //http://www.gd88asia.vip/OLTGames//report.jsp?lng=en&Usid=LK00ADTEST99
 
-        webView = (WebView) findViewById(R.id.wv_report);
+        webView = (WebView) findViewById(R.id.gd__wv_report);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
@@ -89,7 +89,7 @@ public class ReportFormActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_form;
+        return R.layout.gd_activity_form;
     }
 
     private CookieManager mCookieManager;

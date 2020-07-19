@@ -97,873 +97,873 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     private TextView tv_game_number;
 
 
-    @OnClick(R2.id.iv_baccarat_change_table)
+    @OnClick(R2.id.gd__iv_baccarat_change_table)
     public void clickTable(View v) {
         showChangeTable(v);
     }
 
-    @BindView(R2.id.tv_service_time)
+    @BindView(R2.id.gd__tv_service_time)
     TextView serviceTime;
-    @BindView(R2.id.fl_vedio_location_parent)
+    @BindView(R2.id.gd__fl_vedio_location_parent)
     FrameLayout fl_vedio_location_parent;
-    @BindView(R2.id.fl_roulette_result)
+    @BindView(R2.id.gd__fl_roulette_result)
     FrameLayout fl_roulette_result;
-    @BindView(R2.id.fl_surface_parent)
+    @BindView(R2.id.gd__fl_surface_parent)
     FrameLayout fl_surface_parent;
-    @BindView(R2.id.fl_vedio_parent)
+    @BindView(R2.id.gd__fl_vedio_parent)
     FrameLayout fl_vedio_parent;
-    @BindView(R2.id.handle1)
+    @BindView(R2.id.gd__handle1)
     View handle1;
-    @BindView(R2.id.rc_hot)
+    @BindView(R2.id.gd__rc_hot)
     RecyclerView rc_hot;
-    @BindView(R2.id.rc_ice)
+    @BindView(R2.id.gd__rc_ice)
     RecyclerView rc_ice;
     RecyclerView roulette_content_fgv;
-    @BindView(R2.id.tv_menu)
+    @BindView(R2.id.gd__tv_menu)
     TextView tvMenu;
-    @BindView(R2.id.ll_chip)
+    @BindView(R2.id.gd__ll_chip)
     LinearLayout ll_chip;
-    @BindView(R2.id.bottonPanel1)
+    @BindView(R2.id.gd__bottonPanel1)
     FrameLayout bottonPanel1;
-    @BindView(R2.id.iv_roulette_road_handle)
+    @BindView(R2.id.gd__iv_roulette_road_handle)
     View iv_roulette_road_handle;
-    @BindView(R2.id.btn_table_limit_red_title)
+    @BindView(R2.id.gd__btn_table_limit_red_title)
     TextView btnTableLimitRedTitle;
-    //   @BindView(R2.id.btn_table_pool_title)
+    //   @BindView(R2.id.gd__btn_table_pool_title)
     private TextView btn_game_number;
 
-    @BindView(R2.id.tv_table_bet_replay)
+    @BindView(R2.id.gd__tv_table_bet_replay)
     TextView tvTableBetReplay;
-    @BindView(R2.id.tv_table_bet_sure)
+    @BindView(R2.id.gd__tv_table_bet_sure)
     TextView tvTableBetSure;
 
     AdapterView lvBaccaratChips;
-    @BindView(R2.id.lv_limit)
+    @BindView(R2.id.gd__lv_limit)
     ListView lvLimit;
-    @BindView(R2.id.leftPanel1)
+    @BindView(R2.id.gd__leftPanel1)
     Panel leftPanel1;
-    @BindView(R2.id.fl_roulette_board_bg)
+    @BindView(R2.id.gd__fl_roulette_board_bg)
     FrameLayout fl_roulette_board_bg;
-    @BindView(R2.id.fl_roulette_board_bg_new)
+    @BindView(R2.id.gd__fl_roulette_board_bg_new)
     FrameLayout fl_roulette_board_bg_new;
 
 
-    @BindView(R2.id.fl_baccarat_parent)
+    @BindView(R2.id.gd__fl_baccarat_parent)
     FrameLayout flBaccaratParent;
 
-    @BindView(R2.id.iv_number03)
+    @BindView(R2.id.gd__iv_number03)
     ImageView ivNumber03;
-    @BindView(R2.id.iv_number03_new)
+    @BindView(R2.id.gd__iv_number03_new)
     ImageView ivNumber03New;
-    @BindView(R2.id.iv_number06)
+    @BindView(R2.id.gd__iv_number06)
     ImageView ivNumber06;
-    @BindView(R2.id.iv_number06_new)
+    @BindView(R2.id.gd__iv_number06_new)
     ImageView ivNumber06New;
-    @BindView(R2.id.iv_number09)
+    @BindView(R2.id.gd__iv_number09)
     ImageView ivNumber09;
-    @BindView(R2.id.iv_number09_new)
+    @BindView(R2.id.gd__iv_number09_new)
     ImageView ivNumber09New;
-    @BindView(R2.id.iv_number12)
+    @BindView(R2.id.gd__iv_number12)
     ImageView ivNumber12;
-    @BindView(R2.id.iv_number12_new)
+    @BindView(R2.id.gd__iv_number12_new)
     ImageView ivNumber12New;
-    @BindView(R2.id.iv_number15)
+    @BindView(R2.id.gd__iv_number15)
     ImageView ivNumber15;
-    @BindView(R2.id.iv_number15_new)
+    @BindView(R2.id.gd__iv_number15_new)
     ImageView ivNumber15New;
-    @BindView(R2.id.iv_number18)
+    @BindView(R2.id.gd__iv_number18)
     ImageView ivNumber18;
-    @BindView(R2.id.iv_number18_new)
+    @BindView(R2.id.gd__iv_number18_new)
     ImageView ivNumber18New;
-    @BindView(R2.id.iv_number21)
+    @BindView(R2.id.gd__iv_number21)
     ImageView ivNumber21;
-    @BindView(R2.id.iv_number21_new)
+    @BindView(R2.id.gd__iv_number21_new)
     ImageView ivNumber21New;
-    @BindView(R2.id.iv_number24)
+    @BindView(R2.id.gd__iv_number24)
     ImageView ivNumber24;
-    @BindView(R2.id.iv_number24_new)
+    @BindView(R2.id.gd__iv_number24_new)
     ImageView ivNumber24New;
-    @BindView(R2.id.iv_number27)
+    @BindView(R2.id.gd__iv_number27)
     ImageView ivNumber27;
-    @BindView(R2.id.iv_number27_new)
+    @BindView(R2.id.gd__iv_number27_new)
     ImageView ivNumber27New;
-    @BindView(R2.id.iv_number30)
+    @BindView(R2.id.gd__iv_number30)
     ImageView ivNumber30;
-    @BindView(R2.id.iv_number30_new)
+    @BindView(R2.id.gd__iv_number30_new)
     ImageView ivNumber30New;
-    @BindView(R2.id.iv_number33)
+    @BindView(R2.id.gd__iv_number33)
     ImageView ivNumber33;
-    @BindView(R2.id.iv_number33_new)
+    @BindView(R2.id.gd__iv_number33_new)
     ImageView ivNumber33New;
-    @BindView(R2.id.iv_1row1x2)
+    @BindView(R2.id.gd__iv_1row1x2)
     ImageView iv1row1x2;
-    @BindView(R2.id.iv_2row1x2)
+    @BindView(R2.id.gd__iv_2row1x2)
     ImageView iv2row1x2;
-    @BindView(R2.id.iv_number36)
+    @BindView(R2.id.gd__iv_number36)
     ImageView ivNumber36;
-    @BindView(R2.id.iv_number36_new)
+    @BindView(R2.id.gd__iv_number36_new)
     ImageView ivNumber36New;
-    @BindView(R2.id.fl_split0003)
+    @BindView(R2.id.gd__fl_split0003)
     FrameLayout flSplit0003;
-    @BindView(R2.id.fl_number03)
+    @BindView(R2.id.gd__fl_number03)
     FrameLayout flNumber03;
-    @BindView(R2.id.fl_number03_new)
+    @BindView(R2.id.gd__fl_number03_new)
     FrameLayout flNumber03New;
-    @BindView(R2.id.fl_split0306)
+    @BindView(R2.id.gd__fl_split0306)
     FrameLayout flSplit0306;
-    @BindView(R2.id.fl_number06)
+    @BindView(R2.id.gd__fl_number06)
     FrameLayout flNumber06;
-    @BindView(R2.id.fl_number06_new)
+    @BindView(R2.id.gd__fl_number06_new)
     FrameLayout flNumber06New;
-    @BindView(R2.id.fl_split0609)
+    @BindView(R2.id.gd__fl_split0609)
     FrameLayout flSplit0609;
-    @BindView(R2.id.fl_number09)
+    @BindView(R2.id.gd__fl_number09)
     FrameLayout flNumber09;
-    @BindView(R2.id.fl_number09_new)
+    @BindView(R2.id.gd__fl_number09_new)
     FrameLayout flNumber09New;
-    @BindView(R2.id.fl_split0912)
+    @BindView(R2.id.gd__fl_split0912)
     FrameLayout flSplit0912;
-    @BindView(R2.id.fl_number12)
+    @BindView(R2.id.gd__fl_number12)
     FrameLayout flNumber12;
-    @BindView(R2.id.fl_number12_new)
+    @BindView(R2.id.gd__fl_number12_new)
     FrameLayout flNumber12New;
-    @BindView(R2.id.fl_split1215)
+    @BindView(R2.id.gd__fl_split1215)
     FrameLayout flSplit1215;
-    @BindView(R2.id.fl_number15)
+    @BindView(R2.id.gd__fl_number15)
     FrameLayout flNumber15;
-    @BindView(R2.id.fl_number15_new)
+    @BindView(R2.id.gd__fl_number15_new)
     FrameLayout flNumber15New;
-    @BindView(R2.id.fl_split1518)
+    @BindView(R2.id.gd__fl_split1518)
     FrameLayout flSplit1518;
-    @BindView(R2.id.fl_number18)
+    @BindView(R2.id.gd__fl_number18)
     FrameLayout flNumber18;
-    @BindView(R2.id.fl_number18_new)
+    @BindView(R2.id.gd__fl_number18_new)
     FrameLayout flNumber18New;
-    @BindView(R2.id.fl_split1821)
+    @BindView(R2.id.gd__fl_split1821)
     FrameLayout flSplit1821;
-    @BindView(R2.id.fl_number21)
+    @BindView(R2.id.gd__fl_number21)
     FrameLayout flNumber21;
-    @BindView(R2.id.fl_number21_new)
+    @BindView(R2.id.gd__fl_number21_new)
     FrameLayout flNumber21New;
-    @BindView(R2.id.fl_split2124)
+    @BindView(R2.id.gd__fl_split2124)
     FrameLayout flSplit2124;
-    @BindView(R2.id.fl_number24)
+    @BindView(R2.id.gd__fl_number24)
     FrameLayout flNumber24;
-    @BindView(R2.id.fl_number24_new)
+    @BindView(R2.id.gd__fl_number24_new)
     FrameLayout flNumber24New;
-    @BindView(R2.id.fl_split2427)
+    @BindView(R2.id.gd__fl_split2427)
     FrameLayout flSplit2427;
-    @BindView(R2.id.fl_number27)
+    @BindView(R2.id.gd__fl_number27)
     FrameLayout flNumber27;
-    @BindView(R2.id.fl_number27_new)
+    @BindView(R2.id.gd__fl_number27_new)
     FrameLayout flNumber27New;
-    @BindView(R2.id.fl_split2730)
+    @BindView(R2.id.gd__fl_split2730)
     FrameLayout flSplit2730;
-    @BindView(R2.id.fl_number30)
+    @BindView(R2.id.gd__fl_number30)
     FrameLayout flNumber30;
-    @BindView(R2.id.fl_number30_new)
+    @BindView(R2.id.gd__fl_number30_new)
     FrameLayout flNumber30New;
-    @BindView(R2.id.fl_split3033)
+    @BindView(R2.id.gd__fl_split3033)
     FrameLayout flSplit3033;
-    @BindView(R2.id.fl_number33)
+    @BindView(R2.id.gd__fl_number33)
     FrameLayout flNumber33;
-    @BindView(R2.id.fl_number33_new)
+    @BindView(R2.id.gd__fl_number33_new)
     FrameLayout flNumber33New;
-    @BindView(R2.id.fl_split3336)
+    @BindView(R2.id.gd__fl_split3336)
     FrameLayout flSplit3336;
-    @BindView(R2.id.fl_number36)
+    @BindView(R2.id.gd__fl_number36)
     FrameLayout flNumber36;
-    @BindView(R2.id.fl_number36_new)
+    @BindView(R2.id.gd__fl_number36_new)
     FrameLayout flNumber36New;
-    @BindView(R2.id.fl_1row1x2)
+    @BindView(R2.id.gd__fl_1row1x2)
     FrameLayout fl1row1x2;
-    @BindView(R2.id.fl_street000203)
+    @BindView(R2.id.gd__fl_street000203)
     FrameLayout flStreet000203;
-    @BindView(R2.id.fl_split0203)
+    @BindView(R2.id.gd__fl_split0203)
     FrameLayout flSplit0203;
-    @BindView(R2.id.fl_corner02030506)
+    @BindView(R2.id.gd__fl_corner02030506)
     FrameLayout flCorner02030506;
-    @BindView(R2.id.fl_split0506)
+    @BindView(R2.id.gd__fl_split0506)
     FrameLayout flSplit0506;
-    @BindView(R2.id.fl_corner05060809)
+    @BindView(R2.id.gd__fl_corner05060809)
     FrameLayout flCorner05060809;
-    @BindView(R2.id.fl_split0809)
+    @BindView(R2.id.gd__fl_split0809)
     FrameLayout flSplit0809;
-    @BindView(R2.id.fl_corner08091112)
+    @BindView(R2.id.gd__fl_corner08091112)
     FrameLayout flCorner08091112;
-    @BindView(R2.id.fl_split1112)
+    @BindView(R2.id.gd__fl_split1112)
     FrameLayout flSplit1112;
-    @BindView(R2.id.fl_corner11121415)
+    @BindView(R2.id.gd__fl_corner11121415)
     FrameLayout flCorner11121415;
-    @BindView(R2.id.fl_split1415)
+    @BindView(R2.id.gd__fl_split1415)
     FrameLayout flSplit1415;
-    @BindView(R2.id.fl_corner14151718)
+    @BindView(R2.id.gd__fl_corner14151718)
     FrameLayout flCorner14151718;
-    @BindView(R2.id.fl_split1718)
+    @BindView(R2.id.gd__fl_split1718)
     FrameLayout flSplit1718;
-    @BindView(R2.id.fl_corner17182021)
+    @BindView(R2.id.gd__fl_corner17182021)
     FrameLayout flCorner17182021;
-    @BindView(R2.id.fl_split2021)
+    @BindView(R2.id.gd__fl_split2021)
     FrameLayout flSplit2021;
-    @BindView(R2.id.fl_corner20212324)
+    @BindView(R2.id.gd__fl_corner20212324)
     FrameLayout flCorner20212324;
-    @BindView(R2.id.fl_split2324)
+    @BindView(R2.id.gd__fl_split2324)
     FrameLayout flSplit2324;
-    @BindView(R2.id.fl_split2627)
+    @BindView(R2.id.gd__fl_split2627)
     FrameLayout flSplit2627;
-    @BindView(R2.id.fl_corner26272930)
+    @BindView(R2.id.gd__fl_corner26272930)
     FrameLayout flCorner26272930;
-    @BindView(R2.id.fl_split2930)
+    @BindView(R2.id.gd__fl_split2930)
     FrameLayout flSplit2930;
-    @BindView(R2.id.fl_corner29303233)
+    @BindView(R2.id.gd__fl_corner29303233)
     FrameLayout flCorner29303233;
-    @BindView(R2.id.fl_split3233)
+    @BindView(R2.id.gd__fl_split3233)
     FrameLayout flSplit3233;
-    @BindView(R2.id.fl_corner32333536)
+    @BindView(R2.id.gd__fl_corner32333536)
     FrameLayout flCorner32333536;
-    @BindView(R2.id.fl_split3536)
+    @BindView(R2.id.gd__fl_split3536)
     FrameLayout flSplit3536;
-    @BindView(R2.id.iv_number02)
+    @BindView(R2.id.gd__iv_number02)
     ImageView ivNumber02;
-    @BindView(R2.id.iv_number02_new)
+    @BindView(R2.id.gd__iv_number02_new)
     ImageView ivNumber02New;
-    @BindView(R2.id.iv_number05)
+    @BindView(R2.id.gd__iv_number05)
     ImageView ivNumber05;
-    @BindView(R2.id.iv_number05_new)
+    @BindView(R2.id.gd__iv_number05_new)
     ImageView ivNumber05New;
-    @BindView(R2.id.iv_number08)
+    @BindView(R2.id.gd__iv_number08)
     ImageView ivNumber08;
-    @BindView(R2.id.iv_number08_new)
+    @BindView(R2.id.gd__iv_number08_new)
     ImageView ivNumber08New;
-    @BindView(R2.id.iv_number11)
+    @BindView(R2.id.gd__iv_number11)
     ImageView ivNumber11;
-    @BindView(R2.id.iv_number11_new)
+    @BindView(R2.id.gd__iv_number11_new)
     ImageView ivNumber11New;
-    @BindView(R2.id.fl_number00)
+    @BindView(R2.id.gd__fl_number00)
     FrameLayout flNumber00;
-    @BindView(R2.id.fl_number00_new)
+    @BindView(R2.id.gd__fl_number00_new)
     FrameLayout flNumber00New;
-    @BindView(R2.id.iv_number14)
+    @BindView(R2.id.gd__iv_number14)
     ImageView ivNumber14;
-    @BindView(R2.id.iv_number14_new)
+    @BindView(R2.id.gd__iv_number14_new)
     ImageView ivNumber14New;
-    @BindView(R2.id.iv_number17)
+    @BindView(R2.id.gd__iv_number17)
     ImageView ivNumber17;
-    @BindView(R2.id.iv_number17_new)
+    @BindView(R2.id.gd__iv_number17_new)
     ImageView ivNumber17New;
-    @BindView(R2.id.iv_number20)
+    @BindView(R2.id.gd__iv_number20)
     ImageView ivNumber20;
-    @BindView(R2.id.iv_number20_new)
+    @BindView(R2.id.gd__iv_number20_new)
     ImageView ivNumber20New;
-    @BindView(R2.id.iv_number23)
+    @BindView(R2.id.gd__iv_number23)
     ImageView ivNumber23;
-    @BindView(R2.id.iv_number23_new)
+    @BindView(R2.id.gd__iv_number23_new)
     ImageView ivNumber23New;
-    @BindView(R2.id.iv_number26)
+    @BindView(R2.id.gd__iv_number26)
     ImageView ivNumber26;
-    @BindView(R2.id.iv_number26_new)
+    @BindView(R2.id.gd__iv_number26_new)
     ImageView ivNumber26New;
-    @BindView(R2.id.iv_number29)
+    @BindView(R2.id.gd__iv_number29)
     ImageView ivNumber29;
-    @BindView(R2.id.iv_number29_new)
+    @BindView(R2.id.gd__iv_number29_new)
     ImageView ivNumber29New;
-    @BindView(R2.id.iv_number32)
+    @BindView(R2.id.gd__iv_number32)
     ImageView ivNumber32;
-    @BindView(R2.id.iv_number32_new)
+    @BindView(R2.id.gd__iv_number32_new)
     ImageView ivNumber32New;
-    @BindView(R2.id.iv_number35)
+    @BindView(R2.id.gd__iv_number35)
     ImageView ivNumber35;
-    @BindView(R2.id.iv_number35_new)
+    @BindView(R2.id.gd__iv_number35_new)
     ImageView ivNumber35New;
 
-    @BindView(R2.id.fl_split0002)
+    @BindView(R2.id.gd__fl_split0002)
     FrameLayout flSplit0002;
-    @BindView(R2.id.fl_number02)
+    @BindView(R2.id.gd__fl_number02)
     FrameLayout flNumber02;
-    @BindView(R2.id.fl_number02_new)
+    @BindView(R2.id.gd__fl_number02_new)
     FrameLayout flNumber02New;
-    @BindView(R2.id.fl_split0205)
+    @BindView(R2.id.gd__fl_split0205)
     FrameLayout flSplit0205;
-    @BindView(R2.id.fl_number05)
+    @BindView(R2.id.gd__fl_number05)
     FrameLayout flNumber05;
-    @BindView(R2.id.fl_number05_new)
+    @BindView(R2.id.gd__fl_number05_new)
     FrameLayout flNumber05New;
-    @BindView(R2.id.fl_split0508)
+    @BindView(R2.id.gd__fl_split0508)
     FrameLayout flSplit0508;
-    @BindView(R2.id.fl_number08)
+    @BindView(R2.id.gd__fl_number08)
     FrameLayout flNumber08;
-    @BindView(R2.id.fl_number08_new)
+    @BindView(R2.id.gd__fl_number08_new)
     FrameLayout flNumber08New;
-    @BindView(R2.id.fl_split0811)
+    @BindView(R2.id.gd__fl_split0811)
     FrameLayout flSplit0811;
-    @BindView(R2.id.fl_number11)
+    @BindView(R2.id.gd__fl_number11)
     FrameLayout flNumber11;
-    @BindView(R2.id.fl_number11_new)
+    @BindView(R2.id.gd__fl_number11_new)
     FrameLayout flNumber11New;
-    @BindView(R2.id.fl_split1114)
+    @BindView(R2.id.gd__fl_split1114)
     FrameLayout flSplit1114;
-    @BindView(R2.id.fl_number14)
+    @BindView(R2.id.gd__fl_number14)
     FrameLayout flNumber14;
-    @BindView(R2.id.fl_number14_new)
+    @BindView(R2.id.gd__fl_number14_new)
     FrameLayout flNumber14New;
-    @BindView(R2.id.fl_split1417)
+    @BindView(R2.id.gd__fl_split1417)
     FrameLayout flSplit1417;
-    @BindView(R2.id.fl_number17)
+    @BindView(R2.id.gd__fl_number17)
     FrameLayout flNumber17;
-    @BindView(R2.id.fl_number17_new)
+    @BindView(R2.id.gd__fl_number17_new)
     FrameLayout flNumber17New;
-    @BindView(R2.id.fl_split1720)
+    @BindView(R2.id.gd__fl_split1720)
     FrameLayout flSplit1720;
-    @BindView(R2.id.fl_number20)
+    @BindView(R2.id.gd__fl_number20)
     FrameLayout flNumber20;
-    @BindView(R2.id.fl_number20_new)
+    @BindView(R2.id.gd__fl_number20_new)
     FrameLayout flNumber20New;
-    @BindView(R2.id.fl_split2023)
+    @BindView(R2.id.gd__fl_split2023)
     FrameLayout flSplit2023;
-    @BindView(R2.id.fl_number23)
+    @BindView(R2.id.gd__fl_number23)
     FrameLayout flNumber23;
-    @BindView(R2.id.fl_number23_new)
+    @BindView(R2.id.gd__fl_number23_new)
     FrameLayout flNumber23New;
-    @BindView(R2.id.fl_split2326)
+    @BindView(R2.id.gd__fl_split2326)
     FrameLayout flSplit2326;
-    @BindView(R2.id.fl_number26)
+    @BindView(R2.id.gd__fl_number26)
     FrameLayout flNumber26;
-    @BindView(R2.id.fl_number26_new)
+    @BindView(R2.id.gd__fl_number26_new)
     FrameLayout flNumber26New;
-    @BindView(R2.id.fl_split2629)
+    @BindView(R2.id.gd__fl_split2629)
     FrameLayout flSplit2629;
-    @BindView(R2.id.fl_number29)
+    @BindView(R2.id.gd__fl_number29)
     FrameLayout flNumber29;
-    @BindView(R2.id.fl_number29_new)
+    @BindView(R2.id.gd__fl_number29_new)
     FrameLayout flNumber29New;
-    @BindView(R2.id.fl_split2932)
+    @BindView(R2.id.gd__fl_split2932)
     FrameLayout flSplit2932;
-    @BindView(R2.id.fl_number32)
+    @BindView(R2.id.gd__fl_number32)
     FrameLayout flNumber32;
-    @BindView(R2.id.fl_number32_new)
+    @BindView(R2.id.gd__fl_number32_new)
     FrameLayout flNumber32New;
-    @BindView(R2.id.fl_split3235)
+    @BindView(R2.id.gd__fl_split3235)
     FrameLayout flSplit3235;
-    @BindView(R2.id.fl_number35)
+    @BindView(R2.id.gd__fl_number35)
     FrameLayout flNumber35;
-    @BindView(R2.id.fl_number35_new)
+    @BindView(R2.id.gd__fl_number35_new)
     FrameLayout flNumber35New;
-    @BindView(R2.id.fl_2row1x2)
+    @BindView(R2.id.gd__fl_2row1x2)
     FrameLayout fl2row1x2;
-    @BindView(R2.id.fl_street000102)
+    @BindView(R2.id.gd__fl_street000102)
     FrameLayout flStreet000102;
-    @BindView(R2.id.fl_split0102)
+    @BindView(R2.id.gd__fl_split0102)
     FrameLayout flSplit0102;
-    @BindView(R2.id.fl_corner01020405)
+    @BindView(R2.id.gd__fl_corner01020405)
     FrameLayout flCorner01020405;
-    @BindView(R2.id.fl_split0405)
+    @BindView(R2.id.gd__fl_split0405)
     FrameLayout flSplit0405;
-    @BindView(R2.id.fl_corner04050708)
+    @BindView(R2.id.gd__fl_corner04050708)
     FrameLayout flCorner04050708;
-    @BindView(R2.id.fl_split0708)
+    @BindView(R2.id.gd__fl_split0708)
     FrameLayout flSplit0708;
-    @BindView(R2.id.fl_corner07081011)
+    @BindView(R2.id.gd__fl_corner07081011)
     FrameLayout flCorner07081011;
-    @BindView(R2.id.fl_split1011)
+    @BindView(R2.id.gd__fl_split1011)
     FrameLayout flSplit1011;
-    @BindView(R2.id.fl_corner10111314)
+    @BindView(R2.id.gd__fl_corner10111314)
     FrameLayout flCorner10111314;
-    @BindView(R2.id.fl_split1314)
+    @BindView(R2.id.gd__fl_split1314)
     FrameLayout flSplit1314;
-    @BindView(R2.id.fl_corner13141617)
+    @BindView(R2.id.gd__fl_corner13141617)
     FrameLayout flCorner13141617;
-    @BindView(R2.id.fl_split1617)
+    @BindView(R2.id.gd__fl_split1617)
     FrameLayout flSplit1617;
-    @BindView(R2.id.fl_corner16171920)
+    @BindView(R2.id.gd__fl_corner16171920)
     FrameLayout flCorner16171920;
-    @BindView(R2.id.fl_split1920)
+    @BindView(R2.id.gd__fl_split1920)
     FrameLayout flSplit1920;
-    @BindView(R2.id.fl_corner19202223)
+    @BindView(R2.id.gd__fl_corner19202223)
     FrameLayout flCorner19202223;
-    @BindView(R2.id.fl_split2223)
+    @BindView(R2.id.gd__fl_split2223)
     FrameLayout flSplit2223;
-    @BindView(R2.id.fl_corner22232526)
+    @BindView(R2.id.gd__fl_corner22232526)
     FrameLayout flCorner22232526;
-    @BindView(R2.id.fl_split2526)
+    @BindView(R2.id.gd__fl_split2526)
     FrameLayout flSplit2526;
-    @BindView(R2.id.fl_corner25262829)
+    @BindView(R2.id.gd__fl_corner25262829)
     FrameLayout flCorner25262829;
-    @BindView(R2.id.fl_split2829)
+    @BindView(R2.id.gd__fl_split2829)
     FrameLayout flSplit2829;
-    @BindView(R2.id.fl_corner28293132)
+    @BindView(R2.id.gd__fl_corner28293132)
     FrameLayout flCorner28293132;
-    @BindView(R2.id.fl_split3132)
+    @BindView(R2.id.gd__fl_split3132)
     FrameLayout flSplit3132;
-    @BindView(R2.id.fl_corner31323435)
+    @BindView(R2.id.gd__fl_corner31323435)
     FrameLayout flCorner31323435;
-    @BindView(R2.id.fl_split3435)
+    @BindView(R2.id.gd__fl_split3435)
     FrameLayout flSplit3435;
-    @BindView(R2.id.iv_number01)
+    @BindView(R2.id.gd__iv_number01)
     ImageView ivNumber01;
-    @BindView(R2.id.iv_number01_new)
+    @BindView(R2.id.gd__iv_number01_new)
     ImageView ivNumber01New;
-    @BindView(R2.id.iv_number04)
+    @BindView(R2.id.gd__iv_number04)
     ImageView ivNumber04;
-    @BindView(R2.id.iv_number04_new)
+    @BindView(R2.id.gd__iv_number04_new)
     ImageView ivNumber04New;
-    @BindView(R2.id.iv_number07)
+    @BindView(R2.id.gd__iv_number07)
     ImageView ivNumber07;
-    @BindView(R2.id.iv_number07_new)
+    @BindView(R2.id.gd__iv_number07_new)
     ImageView ivNumber07New;
-    @BindView(R2.id.iv_number10)
+    @BindView(R2.id.gd__iv_number10)
     ImageView ivNumber10;
-    @BindView(R2.id.iv_number10_new)
+    @BindView(R2.id.gd__iv_number10_new)
     ImageView ivNumber10New;
-    @BindView(R2.id.iv_number13)
+    @BindView(R2.id.gd__iv_number13)
     ImageView ivNumber13;
-    @BindView(R2.id.iv_number13_new)
+    @BindView(R2.id.gd__iv_number13_new)
     ImageView ivNumber13New;
-    @BindView(R2.id.iv_number16)
+    @BindView(R2.id.gd__iv_number16)
     ImageView ivNumber16;
-    @BindView(R2.id.iv_number16_new)
+    @BindView(R2.id.gd__iv_number16_new)
     ImageView ivNumber16New;
-    @BindView(R2.id.iv_number19)
+    @BindView(R2.id.gd__iv_number19)
     ImageView ivNumber19;
-    @BindView(R2.id.iv_number19_new)
+    @BindView(R2.id.gd__iv_number19_new)
     ImageView ivNumber19New;
-    @BindView(R2.id.iv_number22)
+    @BindView(R2.id.gd__iv_number22)
     ImageView ivNumber22;
-    @BindView(R2.id.iv_number22_new)
+    @BindView(R2.id.gd__iv_number22_new)
     ImageView ivNumber22New;
-    @BindView(R2.id.iv_number25)
+    @BindView(R2.id.gd__iv_number25)
     ImageView ivNumber25;
-    @BindView(R2.id.iv_number25_new)
+    @BindView(R2.id.gd__iv_number25_new)
     ImageView ivNumber25New;
-    @BindView(R2.id.iv_number28)
+    @BindView(R2.id.gd__iv_number28)
     ImageView ivNumber28;
-    @BindView(R2.id.iv_number28_new)
+    @BindView(R2.id.gd__iv_number28_new)
     ImageView ivNumber28New;
-    @BindView(R2.id.iv_number31)
+    @BindView(R2.id.gd__iv_number31)
     ImageView ivNumber31;
-    @BindView(R2.id.iv_number31_new)
+    @BindView(R2.id.gd__iv_number31_new)
     ImageView ivNumber31New;
-    @BindView(R2.id.iv_number34)
+    @BindView(R2.id.gd__iv_number34)
     ImageView ivNumber34;
-    @BindView(R2.id.iv_number34_new)
+    @BindView(R2.id.gd__iv_number34_new)
     ImageView ivNumber34New;
-    @BindView(R2.id.iv_3row1x2)
+    @BindView(R2.id.gd__iv_3row1x2)
     ImageView iv3row1x2;
-    @BindView(R2.id.fl_split0001)
+    @BindView(R2.id.gd__fl_split0001)
     FrameLayout flSplit0001;
-    @BindView(R2.id.fl_number01)
+    @BindView(R2.id.gd__fl_number01)
     FrameLayout flNumber01;
-    @BindView(R2.id.fl_number01_new)
+    @BindView(R2.id.gd__fl_number01_new)
     FrameLayout flNumber01New;
-    @BindView(R2.id.fl_split0104)
+    @BindView(R2.id.gd__fl_split0104)
     FrameLayout flSplit0104;
-    @BindView(R2.id.fl_number04)
+    @BindView(R2.id.gd__fl_number04)
     FrameLayout flNumber04;
-    @BindView(R2.id.fl_number04_new)
+    @BindView(R2.id.gd__fl_number04_new)
     FrameLayout flNumber04New;
-    @BindView(R2.id.fl_split0407)
+    @BindView(R2.id.gd__fl_split0407)
     FrameLayout flSplit0407;
-    @BindView(R2.id.fl_number07)
+    @BindView(R2.id.gd__fl_number07)
     FrameLayout flNumber07;
-    @BindView(R2.id.fl_number07_new)
+    @BindView(R2.id.gd__fl_number07_new)
     FrameLayout flNumber07New;
-    @BindView(R2.id.fl_split0710)
+    @BindView(R2.id.gd__fl_split0710)
     FrameLayout flSplit0710;
-    @BindView(R2.id.fl_number10)
+    @BindView(R2.id.gd__fl_number10)
     FrameLayout flNumber10;
-    @BindView(R2.id.fl_number10_new)
+    @BindView(R2.id.gd__fl_number10_new)
     FrameLayout flNumber10New;
-    @BindView(R2.id.fl_split1013)
+    @BindView(R2.id.gd__fl_split1013)
     FrameLayout flSplit1013;
-    @BindView(R2.id.fl_number13)
+    @BindView(R2.id.gd__fl_number13)
     FrameLayout flNumber13;
-    @BindView(R2.id.fl_number13_new)
+    @BindView(R2.id.gd__fl_number13_new)
     FrameLayout flNumber13New;
-    @BindView(R2.id.fl_split1316)
+    @BindView(R2.id.gd__fl_split1316)
     FrameLayout flSplit1316;
-    @BindView(R2.id.fl_number16)
+    @BindView(R2.id.gd__fl_number16)
     FrameLayout flNumber16;
-    @BindView(R2.id.fl_number16_new)
+    @BindView(R2.id.gd__fl_number16_new)
     FrameLayout flNumber16New;
-    @BindView(R2.id.fl_split1619)
+    @BindView(R2.id.gd__fl_split1619)
     FrameLayout flSplit1619;
-    @BindView(R2.id.fl_number19)
+    @BindView(R2.id.gd__fl_number19)
     FrameLayout flNumber19;
-    @BindView(R2.id.fl_number19_new)
+    @BindView(R2.id.gd__fl_number19_new)
     FrameLayout flNumber19New;
-    @BindView(R2.id.fl_split1922)
+    @BindView(R2.id.gd__fl_split1922)
     FrameLayout flSplit1922;
-    @BindView(R2.id.fl_number22)
+    @BindView(R2.id.gd__fl_number22)
     FrameLayout flNumber22;
-    @BindView(R2.id.fl_number22_new)
+    @BindView(R2.id.gd__fl_number22_new)
     FrameLayout flNumber22New;
-    @BindView(R2.id.fl_split2225)
+    @BindView(R2.id.gd__fl_split2225)
     FrameLayout flSplit2225;
-    @BindView(R2.id.fl_number25)
+    @BindView(R2.id.gd__fl_number25)
     FrameLayout flNumber25;
-    @BindView(R2.id.fl_number25_new)
+    @BindView(R2.id.gd__fl_number25_new)
     FrameLayout flNumber25New;
-    @BindView(R2.id.fl_split2528)
+    @BindView(R2.id.gd__fl_split2528)
     FrameLayout flSplit2528;
-    @BindView(R2.id.fl_number28)
+    @BindView(R2.id.gd__fl_number28)
     FrameLayout flNumber28;
-    @BindView(R2.id.fl_number28_new)
+    @BindView(R2.id.gd__fl_number28_new)
     FrameLayout flNumber28New;
-    @BindView(R2.id.fl_split2831)
+    @BindView(R2.id.gd__fl_split2831)
     FrameLayout flSplit2831;
-    @BindView(R2.id.fl_number31)
+    @BindView(R2.id.gd__fl_number31)
     FrameLayout flNumber31;
-    @BindView(R2.id.fl_number31_new)
+    @BindView(R2.id.gd__fl_number31_new)
     FrameLayout flNumber31New;
-    @BindView(R2.id.fl_split3134)
+    @BindView(R2.id.gd__fl_split3134)
     FrameLayout flSplit3134;
-    @BindView(R2.id.fl_number34)
+    @BindView(R2.id.gd__fl_number34)
     FrameLayout flNumber34;
-    @BindView(R2.id.fl_number34_new)
+    @BindView(R2.id.gd__fl_number34_new)
     FrameLayout flNumber34New;
-    @BindView(R2.id.fl_3row1x2)
+    @BindView(R2.id.gd__fl_3row1x2)
     FrameLayout fl3row1x2;
-    @BindView(R2.id.fl_corner00010203)
+    @BindView(R2.id.gd__fl_corner00010203)
     FrameLayout flCorner00010203;
-    @BindView(R2.id.fl_street010203)
+    @BindView(R2.id.gd__fl_street010203)
     FrameLayout flStreet010203;
-    @BindView(R2.id.fl_line010203040506)
+    @BindView(R2.id.gd__fl_line010203040506)
     FrameLayout flLine010203040506;
-    @BindView(R2.id.fl_street040506)
+    @BindView(R2.id.gd__fl_street040506)
     FrameLayout flStreet040506;
-    @BindView(R2.id.fl_line040506070809)
+    @BindView(R2.id.gd__fl_line040506070809)
     FrameLayout flLine040506070809;
-    @BindView(R2.id.fl_street070809)
+    @BindView(R2.id.gd__fl_street070809)
     FrameLayout flStreet070809;
-    @BindView(R2.id.fl_line070809101112)
+    @BindView(R2.id.gd__fl_line070809101112)
     FrameLayout flLine070809101112;
-    @BindView(R2.id.fl_street101112)
+    @BindView(R2.id.gd__fl_street101112)
     FrameLayout flStreet101112;
-    @BindView(R2.id.fl_line101112131415)
+    @BindView(R2.id.gd__fl_line101112131415)
     FrameLayout flLine101112131415;
-    @BindView(R2.id.fl_street131415)
+    @BindView(R2.id.gd__fl_street131415)
     FrameLayout flStreet131415;
-    @BindView(R2.id.fl_line131415161718)
+    @BindView(R2.id.gd__fl_line131415161718)
     FrameLayout flLine131415161718;
-    @BindView(R2.id.fl_street161718)
+    @BindView(R2.id.gd__fl_street161718)
     FrameLayout flStreet161718;
-    @BindView(R2.id.fl_line161718192021)
+    @BindView(R2.id.gd__fl_line161718192021)
     FrameLayout flLine161718192021;
-    @BindView(R2.id.fl_street192021)
+    @BindView(R2.id.gd__fl_street192021)
     FrameLayout flStreet192021;
-    @BindView(R2.id.fl_line192021222324)
+    @BindView(R2.id.gd__fl_line192021222324)
     FrameLayout flLine192021222324;
-    @BindView(R2.id.fl_street222324)
+    @BindView(R2.id.gd__fl_street222324)
     FrameLayout flStreet222324;
-    @BindView(R2.id.fl_line222324252627)
+    @BindView(R2.id.gd__fl_line222324252627)
     FrameLayout flLine222324252627;
-    @BindView(R2.id.fl_street252627)
+    @BindView(R2.id.gd__fl_street252627)
     FrameLayout flStreet252627;
-    @BindView(R2.id.fl_line252627282930)
+    @BindView(R2.id.gd__fl_line252627282930)
     FrameLayout flLine252627282930;
-    @BindView(R2.id.fl_street282930)
+    @BindView(R2.id.gd__fl_street282930)
     FrameLayout flStreet282930;
-    @BindView(R2.id.fl_line282930313233)
+    @BindView(R2.id.gd__fl_line282930313233)
     FrameLayout flLine282930313233;
-    @BindView(R2.id.fl_street313233)
+    @BindView(R2.id.gd__fl_street313233)
     FrameLayout flStreet313233;
-    @BindView(R2.id.fl_line313233343536)
+    @BindView(R2.id.gd__fl_line313233343536)
     FrameLayout flLine313233343536;
-    @BindView(R2.id.fl_street343536)
+    @BindView(R2.id.gd__fl_street343536)
     FrameLayout flStreet343536;
-    @BindView(R2.id.fl_dozen1)
+    @BindView(R2.id.gd__fl_dozen1)
     FrameLayout flDozen1;
-    @BindView(R2.id.fl_dozen2)
+    @BindView(R2.id.gd__fl_dozen2)
     FrameLayout flDozen2;
-    @BindView(R2.id.fl_dozen3)
+    @BindView(R2.id.gd__fl_dozen3)
     FrameLayout flDozen3;
-    @BindView(R2.id.fl_low)
+    @BindView(R2.id.gd__fl_low)
     FrameLayout flLow;
-    @BindView(R2.id.fl_even)
+    @BindView(R2.id.gd__fl_even)
     FrameLayout flEven;
-    @BindView(R2.id.fl_black)
+    @BindView(R2.id.gd__fl_black)
     FrameLayout flBlack;
-    @BindView(R2.id.fl_red)
+    @BindView(R2.id.gd__fl_red)
     FrameLayout flRed;
-    @BindView(R2.id.fl_odd)
+    @BindView(R2.id.gd__fl_odd)
     FrameLayout flOdd;
-    @BindView(R2.id.fl_high)
+    @BindView(R2.id.gd__fl_high)
     FrameLayout flHigh;
 
-    @BindView(R2.id.tv_table_timer)
+    @BindView(R2.id.gd__tv_table_timer)
     TextView tv_table_timer;
-    @BindView(R2.id.countdown_view)
+    @BindView(R2.id.gd__countdown_view)
     CountDownView countdown_view;
-    @BindView(R2.id.tv_table_bet_cancel)
+    @BindView(R2.id.gd__tv_table_bet_cancel)
     TextView tvTableBetCancel;
 
 
-    @BindView(R2.id.text_red)
+    @BindView(R2.id.gd__text_red)
     TextView textRed;
-    @BindView(R2.id.text_black)
+    @BindView(R2.id.gd__text_black)
     TextView textBlack;
-    @BindView(R2.id.text_zero)
+    @BindView(R2.id.gd__text_zero)
     TextView textZero;
-    @BindView(R2.id.text_even)
+    @BindView(R2.id.gd__text_even)
     TextView textEven;
-    @BindView(R2.id.text_odd)
+    @BindView(R2.id.gd__text_odd)
     TextView textOdd;
 
 
-    @BindView(R2.id.btn_split0003)
+    @BindView(R2.id.gd__btn_split0003)
     Button btnSplit0003;
-    @BindView(R2.id.btn_split0306)
+    @BindView(R2.id.gd__btn_split0306)
     Button btnSplit0306;
-    @BindView(R2.id.btn_split0609)
+    @BindView(R2.id.gd__btn_split0609)
     Button btnSplit0609;
-    @BindView(R2.id.btn_split0912)
+    @BindView(R2.id.gd__btn_split0912)
     Button btnSplit0912;
-    @BindView(R2.id.btn_split1215)
+    @BindView(R2.id.gd__btn_split1215)
     Button btnSplit1215;
-    @BindView(R2.id.btn_split1518)
+    @BindView(R2.id.gd__btn_split1518)
     Button btnSplit1518;
-    @BindView(R2.id.btn_split1821)
+    @BindView(R2.id.gd__btn_split1821)
     Button btnSplit1821;
-    @BindView(R2.id.btn_split2124)
+    @BindView(R2.id.gd__btn_split2124)
     Button btnSplit2124;
-    @BindView(R2.id.btn_split2427)
+    @BindView(R2.id.gd__btn_split2427)
     Button btnSplit2427;
-    @BindView(R2.id.btn_split2730)
+    @BindView(R2.id.gd__btn_split2730)
     Button btnSplit2730;
-    @BindView(R2.id.btn_split3033)
+    @BindView(R2.id.gd__btn_split3033)
     Button btnSplit3033;
-    @BindView(R2.id.btn_split3336)
+    @BindView(R2.id.gd__btn_split3336)
     Button btnSplit3336;
-    //    @BindView(R2.id.btn_street000203)
+    //    @BindView(R2.id.gd__btn_street000203)
 //    Button btnSplit000203;
-    @BindView(R2.id.btn_split0203)
+    @BindView(R2.id.gd__btn_split0203)
     Button btnSplit0203;
-    @BindView(R2.id.btn_corner02030506)
+    @BindView(R2.id.gd__btn_corner02030506)
     Button btnCorner02030506;
-    @BindView(R2.id.btn_split0506)
+    @BindView(R2.id.gd__btn_split0506)
     Button btnSplit0506;
-    @BindView(R2.id.btn_corner05060809)
+    @BindView(R2.id.gd__btn_corner05060809)
     Button btnCorner05060809;
-    @BindView(R2.id.btn_split0809)
+    @BindView(R2.id.gd__btn_split0809)
     Button btnSplit0809;
-    @BindView(R2.id.btn_corner08091112)
+    @BindView(R2.id.gd__btn_corner08091112)
     Button btnCorner08091112;
-    @BindView(R2.id.btn_split1112)
+    @BindView(R2.id.gd__btn_split1112)
     Button btnSplit1112;
-    @BindView(R2.id.btn_corner11121415)
+    @BindView(R2.id.gd__btn_corner11121415)
     Button btnCorner11121415;
-    @BindView(R2.id.btn_split1415)
+    @BindView(R2.id.gd__btn_split1415)
     Button btnSplit1415;
-    @BindView(R2.id.btn_corner14151718)
+    @BindView(R2.id.gd__btn_corner14151718)
     Button btnCorner14151718;
-    @BindView(R2.id.btn_split1718)
+    @BindView(R2.id.gd__btn_split1718)
     Button btnSplit1718;
-    @BindView(R2.id.btn_corner17182021)
+    @BindView(R2.id.gd__btn_corner17182021)
     Button btnCorner17182021;
-    @BindView(R2.id.btn_split2021)
+    @BindView(R2.id.gd__btn_split2021)
     Button btnSplit2021;
-    @BindView(R2.id.btn_corner20212324)
+    @BindView(R2.id.gd__btn_corner20212324)
     Button btnCorner20212324;
-    @BindView(R2.id.btn_split2324)
+    @BindView(R2.id.gd__btn_split2324)
     Button btnSplit2324;
-    @BindView(R2.id.btn_corner23242627)
+    @BindView(R2.id.gd__btn_corner23242627)
     Button btnCorner23242627;
-    @BindView(R2.id.fl_corner23242627)
+    @BindView(R2.id.gd__fl_corner23242627)
     FrameLayout flCorner23242627;
-    @BindView(R2.id.btn_split2627)
+    @BindView(R2.id.gd__btn_split2627)
     Button btnSplit2627;
-    @BindView(R2.id.btn_corner26272930)
+    @BindView(R2.id.gd__btn_corner26272930)
     Button btnCorner26272930;
-    @BindView(R2.id.btn_split2930)
+    @BindView(R2.id.gd__btn_split2930)
     Button btnSplit2930;
-    @BindView(R2.id.btn_corner29303233)
+    @BindView(R2.id.gd__btn_corner29303233)
     Button btnCorner29303233;
-    @BindView(R2.id.btn_split3233)
+    @BindView(R2.id.gd__btn_split3233)
     Button btnSplit3233;
-    @BindView(R2.id.btn_corner32333536)
+    @BindView(R2.id.gd__btn_corner32333536)
     Button btnCorner32333536;
-    @BindView(R2.id.btn_split3536)
+    @BindView(R2.id.gd__btn_split3536)
     Button btnSplit3536;
-    @BindView(R2.id.btn_split0002)
+    @BindView(R2.id.gd__btn_split0002)
     Button btnSplit0002;
-    @BindView(R2.id.btn_split0205)
+    @BindView(R2.id.gd__btn_split0205)
     Button btnSplit0205;
-    @BindView(R2.id.btn_split0508)
+    @BindView(R2.id.gd__btn_split0508)
     Button btnSplit0508;
-    @BindView(R2.id.btn_split0811)
+    @BindView(R2.id.gd__btn_split0811)
     Button btnSplit0811;
-    @BindView(R2.id.btn_split1114)
+    @BindView(R2.id.gd__btn_split1114)
     Button btnSplit1114;
-    @BindView(R2.id.btn_split1417)
+    @BindView(R2.id.gd__btn_split1417)
     Button btnSplit1417;
-    @BindView(R2.id.btn_split1720)
+    @BindView(R2.id.gd__btn_split1720)
     Button btnSplit1720;
-    @BindView(R2.id.btn_split2023)
+    @BindView(R2.id.gd__btn_split2023)
     Button btnSplit2023;
-    @BindView(R2.id.btn_split2326)
+    @BindView(R2.id.gd__btn_split2326)
     Button btnSplit2326;
-    @BindView(R2.id.btn_split2629)
+    @BindView(R2.id.gd__btn_split2629)
     Button btnSplit2629;
-    @BindView(R2.id.btn_split2932)
+    @BindView(R2.id.gd__btn_split2932)
     Button btnSplit2932;
-    @BindView(R2.id.btn_split3235)
+    @BindView(R2.id.gd__btn_split3235)
     Button btnSplit3235;
-    @BindView(R2.id.btn_street000102)
+    @BindView(R2.id.gd__btn_street000102)
     Button btnStreet000102;
-    @BindView(R2.id.btn_split0102)
+    @BindView(R2.id.gd__btn_split0102)
     Button btnSplit0102;
-    @BindView(R2.id.btn_corner01020405)
+    @BindView(R2.id.gd__btn_corner01020405)
     Button btnCorner01020405;
-    @BindView(R2.id.btn_split0405)
+    @BindView(R2.id.gd__btn_split0405)
     Button btnSplit0405;
-    @BindView(R2.id.btn_corner04050708)
+    @BindView(R2.id.gd__btn_corner04050708)
     Button btnCorner04050708;
-    @BindView(R2.id.btn_split0708)
+    @BindView(R2.id.gd__btn_split0708)
     Button btnSplit0708;
-    @BindView(R2.id.btn_corner07081011)
+    @BindView(R2.id.gd__btn_corner07081011)
     Button btnCorner07081011;
-    @BindView(R2.id.btn_split1011)
+    @BindView(R2.id.gd__btn_split1011)
     Button btnSplit1011;
-    @BindView(R2.id.btn_corner10111314)
+    @BindView(R2.id.gd__btn_corner10111314)
     Button btnCorner10111314;
-    @BindView(R2.id.btn_split1314)
+    @BindView(R2.id.gd__btn_split1314)
     Button btnSplit1314;
-    @BindView(R2.id.btn_corner13141617)
+    @BindView(R2.id.gd__btn_corner13141617)
     Button btnCorner13141617;
-    @BindView(R2.id.btn_split1617)
+    @BindView(R2.id.gd__btn_split1617)
     Button btnSplit1617;
-    @BindView(R2.id.btn_corner16171920)
+    @BindView(R2.id.gd__btn_corner16171920)
     Button btnCorner16171920;
-    @BindView(R2.id.btn_split1920)
+    @BindView(R2.id.gd__btn_split1920)
     Button btnSplit1920;
-    @BindView(R2.id.btn_corner19202223)
+    @BindView(R2.id.gd__btn_corner19202223)
     Button btnCorner19202223;
-    @BindView(R2.id.btn_split2223)
+    @BindView(R2.id.gd__btn_split2223)
     Button btnSplit2223;
-    @BindView(R2.id.btn_corner22232526)
+    @BindView(R2.id.gd__btn_corner22232526)
     Button btnCorner22232526;
-    @BindView(R2.id.btn_split2526)
+    @BindView(R2.id.gd__btn_split2526)
     Button btnSplit2526;
-    @BindView(R2.id.btn_corner25262829)
+    @BindView(R2.id.gd__btn_corner25262829)
     Button btnCorner25262829;
-    @BindView(R2.id.btn_split2829)
+    @BindView(R2.id.gd__btn_split2829)
     Button btnSplit2829;
-    @BindView(R2.id.btn_corner28293132)
+    @BindView(R2.id.gd__btn_corner28293132)
     Button btnCorner28293132;
-    @BindView(R2.id.btn_split3132)
+    @BindView(R2.id.gd__btn_split3132)
     Button btnSplit3132;
-    @BindView(R2.id.btn_corner31323435)
+    @BindView(R2.id.gd__btn_corner31323435)
     Button btnCorner31323435;
-    @BindView(R2.id.btn_split3435)
+    @BindView(R2.id.gd__btn_split3435)
     Button btnSplit3435;
-    @BindView(R2.id.btn_split0001)
+    @BindView(R2.id.gd__btn_split0001)
     Button btnSplit0001;
-    @BindView(R2.id.btn_split0104)
+    @BindView(R2.id.gd__btn_split0104)
     Button btnSplit0104;
-    @BindView(R2.id.btn_split0407)
+    @BindView(R2.id.gd__btn_split0407)
     Button btnSplit0407;
-    @BindView(R2.id.btn_split0710)
+    @BindView(R2.id.gd__btn_split0710)
     Button btnSplit0710;
-    @BindView(R2.id.btn_split1013)
+    @BindView(R2.id.gd__btn_split1013)
     Button btnSplit1013;
-    @BindView(R2.id.btn_split1316)
+    @BindView(R2.id.gd__btn_split1316)
     Button btnSplit1316;
-    @BindView(R2.id.btn_split1619)
+    @BindView(R2.id.gd__btn_split1619)
     Button btnSplit1619;
-    @BindView(R2.id.btn_split1922)
+    @BindView(R2.id.gd__btn_split1922)
     Button btnSplit1922;
-    @BindView(R2.id.btn_split2225)
+    @BindView(R2.id.gd__btn_split2225)
     Button btnSplit2225;
-    @BindView(R2.id.btn_split2528)
+    @BindView(R2.id.gd__btn_split2528)
     Button btnSplit2528;
-    @BindView(R2.id.btn_split2831)
+    @BindView(R2.id.gd__btn_split2831)
     Button btnSplit2831;
-    @BindView(R2.id.btn_split3134)
+    @BindView(R2.id.gd__btn_split3134)
     Button btnSplit3134;
-    @BindView(R2.id.btn_corner00010203)
+    @BindView(R2.id.gd__btn_corner00010203)
     Button btnCorner00010203;
-    @BindView(R2.id.btn_street010203)
+    @BindView(R2.id.gd__btn_street010203)
     Button btnStreet010203;
-    @BindView(R2.id.btn_line010203040506)
+    @BindView(R2.id.gd__btn_line010203040506)
     Button btnLine010203040506;
-    @BindView(R2.id.btn_street040506)
+    @BindView(R2.id.gd__btn_street040506)
     Button btnStreet040506;
-    @BindView(R2.id.btn_line040506070809)
+    @BindView(R2.id.gd__btn_line040506070809)
     Button btnLine040506070809;
-    @BindView(R2.id.btn_street070809)
+    @BindView(R2.id.gd__btn_street070809)
     Button btnStreet070809;
-    @BindView(R2.id.btn_line070809101112)
+    @BindView(R2.id.gd__btn_line070809101112)
     Button btnLine070809101112;
-    @BindView(R2.id.btn_street101112)
+    @BindView(R2.id.gd__btn_street101112)
     Button btnStreet101112;
-    @BindView(R2.id.btn_line101112131415)
+    @BindView(R2.id.gd__btn_line101112131415)
     Button btnLine101112131415;
-    @BindView(R2.id.btn_street131415)
+    @BindView(R2.id.gd__btn_street131415)
     Button btnStreet131415;
-    @BindView(R2.id.btn_line131415161718)
+    @BindView(R2.id.gd__btn_line131415161718)
     Button btnLine131415161718;
-    @BindView(R2.id.btn_street161718)
+    @BindView(R2.id.gd__btn_street161718)
     Button btnStreet161718;
-    @BindView(R2.id.btn_line161718192021)
+    @BindView(R2.id.gd__btn_line161718192021)
     Button btnLine161718192021;
-    @BindView(R2.id.btn_street192021)
+    @BindView(R2.id.gd__btn_street192021)
     Button btnStreet192021;
-    @BindView(R2.id.btn_line192021222324)
+    @BindView(R2.id.gd__btn_line192021222324)
     Button btnLine192021222324;
-    @BindView(R2.id.btn_street222324)
+    @BindView(R2.id.gd__btn_street222324)
     Button btnStreet222324;
-    @BindView(R2.id.btn_line222324252627)
+    @BindView(R2.id.gd__btn_line222324252627)
     Button btnLine222324252627;
-    @BindView(R2.id.btn_street252627)
+    @BindView(R2.id.gd__btn_street252627)
     Button btnStreet252627;
-    @BindView(R2.id.btn_line252627282930)
+    @BindView(R2.id.gd__btn_line252627282930)
     Button btnLine252627282930;
-    @BindView(R2.id.btn_street282930)
+    @BindView(R2.id.gd__btn_street282930)
     Button btnStreet282930;
-    @BindView(R2.id.btn_line282930313233)
+    @BindView(R2.id.gd__btn_line282930313233)
     Button btnLine282930313233;
-    @BindView(R2.id.btn_street313233)
+    @BindView(R2.id.gd__btn_street313233)
     Button btnStreet313233;
-    @BindView(R2.id.btn_line313233343536)
+    @BindView(R2.id.gd__btn_line313233343536)
     Button btnLine313233343536;
-    @BindView(R2.id.btn_street343536)
+    @BindView(R2.id.gd__btn_street343536)
     Button btnStreet343536;
-    @BindView(R2.id.iv_number00)
+    @BindView(R2.id.gd__iv_number00)
     ImageView ivNumber00;
-    @BindView(R2.id.iv_number00_new)
+    @BindView(R2.id.gd__iv_number00_new)
     ImageView ivNumber00New;
 
-    @BindView(R2.id.iv_dozen1)
+    @BindView(R2.id.gd__iv_dozen1)
     ImageView ivDozen1;
-    @BindView(R2.id.iv_dozen2)
+    @BindView(R2.id.gd__iv_dozen2)
     ImageView ivDozen2;
-    @BindView(R2.id.iv_dozen3)
+    @BindView(R2.id.gd__iv_dozen3)
     ImageView ivDozen3;
-    @BindView(R2.id.iv_low)
+    @BindView(R2.id.gd__iv_low)
     ImageView ivLow;
-    @BindView(R2.id.iv_even)
+    @BindView(R2.id.gd__iv_even)
     ImageView ivEven;
-    @BindView(R2.id.iv_black)
+    @BindView(R2.id.gd__iv_black)
     ImageView ivBlack;
-    @BindView(R2.id.iv_red)
+    @BindView(R2.id.gd__iv_red)
     ImageView ivRed;
-    @BindView(R2.id.iv_odd)
+    @BindView(R2.id.gd__iv_odd)
     ImageView ivOdd;
-    @BindView(R2.id.iv_high)
+    @BindView(R2.id.gd__iv_high)
     ImageView ivHigh;
 
-    @BindView(R2.id.ll_bet_btn_parent)
+    @BindView(R2.id.gd__ll_bet_btn_parent)
     View ll_bet_btn_parent;
-    @BindView(R2.id.ll_chip_parent)
+    @BindView(R2.id.gd__ll_chip_parent)
     View ll_chip_parent;
-    @BindView(R2.id.tv_black_percentage)
+    @BindView(R2.id.gd__tv_black_percentage)
     TextView tv_black_percentage;
-    @BindView(R2.id.tv_red_percentage)
+    @BindView(R2.id.gd__tv_red_percentage)
     TextView tv_red_percentage;
-    @BindView(R2.id.tv_odd_percentage)
+    @BindView(R2.id.gd__tv_odd_percentage)
     TextView tv_odd_percentage;
-    @BindView(R2.id.tv_even_percentage)
+    @BindView(R2.id.gd__tv_even_percentage)
     TextView tv_even_percentage;
-    @BindView(R2.id.rc_road)
+    @BindView(R2.id.gd__rc_road)
     RecyclerView rc_road;
     private boolean limitRedShowAble = false;
     private boolean betInfoShowAble = false;
@@ -1042,11 +1042,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (ll_center_small == null)
             return;
 //        ll_center_small.setVisibility(View.VISIBLE);
-        int sure = R.mipmap.sureimg_light;
+        int sure = R.mipmap.gd_sureimg_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg_light;
+        int no = R.mipmap.gd_noimg_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -1082,11 +1082,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (ll_center_orphelins == null)
             return;
 //        ll_center_orphelins.setVisibility(View.VISIBLE);
-        int sure = R.mipmap.sureimg_light;
+        int sure = R.mipmap.gd_sureimg_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg_light;
+        int no = R.mipmap.gd_noimg_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -1122,11 +1122,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (ll_zero == null)
             return;
 //        ll_zero.setVisibility(View.VISIBLE);
-        int sure = R.mipmap.sureimg_light;
+        int sure = R.mipmap.gd_sureimg_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg_light;
+        int no = R.mipmap.gd_noimg_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -1171,11 +1171,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (ll_center_big == null)
             return;
 //        ll_center_big.setVisibility(View.VISIBLE);
-        int sure = R.mipmap.sureimg_light;
+        int sure = R.mipmap.gd_sureimg_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg_light;
+        int no = R.mipmap.gd_noimg_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -1772,10 +1772,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     private void setHotIceData(RecyclerView recyclerView, List<String> data, final int type) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        BaseRecyclerAdapter contentAdapter = new BaseRecyclerAdapter<String>(mContext, data, R.layout.item_hot_ice) {
+        BaseRecyclerAdapter contentAdapter = new BaseRecyclerAdapter<String>(mContext, data, R.layout.gd_item_hot_ice) {
             @Override
             public void convert(MyRecyclerViewHolder helper, int position, String item) {
-                TextView tvContent = helper.getView(R.id.tv_content);
+                TextView tvContent = helper.getView(R.id.gd__tv_content);
                 ViewGroup.LayoutParams layoutParams = tvContent.getLayoutParams();
                 int with;
                 if (type == 1) {
@@ -1831,7 +1831,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
                     fl_vedio_parent.setLayoutParams(layoutParams);
-                    fl_vedio_parent.setBackgroundResource(R.drawable.rectangle_trans_stroke_roulette_black);
+                    fl_vedio_parent.setBackgroundResource(R.drawable.gd_rectangle_trans_stroke_roulette_black);
                     isCanClickVedio = true;
                 }
             }, 500);
@@ -2154,11 +2154,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 }
             }
         }
-        int sure = R.mipmap.sureimg;
+        int sure = R.mipmap.gd_sureimg;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg;
+        int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -2191,11 +2191,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
 
             int id = v.getId();
-            if (id == R.id.tv_table_bet_replay) {
+            if (id == R.id.gd__tv_table_bet_replay) {
                 repeatBet();
-            } else if (id == R.id.tv_table_bet_sure) {
+            } else if (id == R.id.gd__tv_table_bet_sure) {
                 bet();
-            } else if (id == R.id.tv_table_bet_cancel) {
+            } else if (id == R.id.gd__tv_table_bet_cancel) {
                 if (listBetDetail.size() > 0)
                     mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
                 clearBetChip("all");
@@ -2243,18 +2243,18 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void initData(Bundle savedInstanceState) {
         rouletteNumberTv.setVisibility(View.VISIBLE);
         changeBetUiTv.setVisibility(View.VISIBLE);
-        changeBetUiTv.setBackgroundResource(R.mipmap.roulette_board_new1);
+        changeBetUiTv.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
         changeBetUiTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fl_roulette_board_bg.getVisibility() == View.VISIBLE && fl_roulette_board_bg_new.getVisibility() == View.INVISIBLE) {
                     fl_roulette_board_bg.setVisibility(View.INVISIBLE);
                     fl_roulette_board_bg_new.setVisibility(View.VISIBLE);
-                    changeBetUiTv.setBackgroundResource(R.mipmap.roulette_board);
+                    changeBetUiTv.setBackgroundResource(R.mipmap.gd_roulette_board);
                 } else {
                     fl_roulette_board_bg.setVisibility(View.VISIBLE);
                     fl_roulette_board_bg_new.setVisibility(View.INVISIBLE);
-                    changeBetUiTv.setBackgroundResource(R.mipmap.roulette_board_new1);
+                    changeBetUiTv.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
                 }
             }
         });
@@ -2288,7 +2288,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
 //        setTableBetPool(lv_person_bet_info,1);
-        mPreview = findViewById(R.id.surface);
+        mPreview = findViewById(R.id.gd__surface);
         setPlayVideo();
         setLeftPanel();
         /*setTableLimit();*/
@@ -2334,11 +2334,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     private void setLeftPanel() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             rc_road.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            contentAdapter = new BaseRecyclerAdapter<String>(mContext, new ArrayList<>(Collections.nCopies(22, "10")), R.layout.item_roulette_road_content) {
+            contentAdapter = new BaseRecyclerAdapter<String>(mContext, new ArrayList<>(Collections.nCopies(22, "10")), R.layout.gd_item_roulette_road_content) {
                 @Override
                 public void convert(MyRecyclerViewHolder helper, int position, String item) {
                     int height = tv_black_percentage.getHeight();
-                    TextView roulette_title_tv = helper.getView(R.id.roulette_title_tv);
+                    TextView roulette_title_tv = helper.getView(R.id.gd__roulette_title_tv);
                     ViewGroup.LayoutParams layoutParams = roulette_title_tv.getLayoutParams();
                     layoutParams.width = height;
                     layoutParams.height = height;
@@ -2362,16 +2362,16 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         case "31":
                         case "33":
                         case "35":
-                            helper.setBackgroundRes(R.id.roulette_title_tv, R.drawable.shape_roulette_black_bg);
+                            helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_black_bg);
                             break;
                         case "0":
-                            helper.setBackgroundRes(R.id.roulette_title_tv, R.drawable.shape_roulette_zero_bg);
+                            helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_zero_bg);
                             break;
                         default:
-                            helper.setBackgroundRes(R.id.roulette_title_tv, R.drawable.shape_roulette_red_bg);
+                            helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_red_bg);
                             break;
                     }
-                    helper.setText(R.id.roulette_title_tv, item);
+                    helper.setText(R.id.gd__roulette_title_tv, item);
                 }
             };
             rc_road.setAdapter(contentAdapter);
@@ -2386,13 +2386,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         contentLive.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_live_info3;
+                return R.layout.gd_item_live_info3;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                helper.setText(R.id.tv_type, item.getType());
-                helper.setText(R.id.tv_value2, item.getValue1());
+                helper.setText(R.id.gd__tv_type, item.getType());
+                helper.setText(R.id.gd__tv_value2, item.getValue1());
             }
         });
         List<LiveInfoBean> list = new ArrayList<>(Collections.nCopies(9, new LiveInfoBean("Max/Min", "1222", "")));
@@ -2404,16 +2404,16 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         contentList.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_live_info3;
+                return R.layout.gd_item_live_info3;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                helper.setText(R.id.tv_type, item.getType());
+                helper.setText(R.id.gd__tv_type, item.getType());
 
-                helper.setText(R.id.tv_value, item.getValue1() + "  -  " + item.getValue2());
-                helper.setTextColor(R.id.tv_value, getResources().getColor(R.color.yellow_gold));
-                helper.setVisibility(R.id.tv_value2, View.GONE);
+                helper.setText(R.id.gd__tv_value, item.getValue1() + "  -  " + item.getValue2());
+                helper.setTextColor(R.id.gd__tv_value, getResources().getColor(R.color.yellow_gold));
+                helper.setVisibility(R.id.gd__tv_value2, View.GONE);
             }
         });
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
@@ -2480,13 +2480,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         chips.setBaseAdapter(new QuickAdapterImp<ChipBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_image_chip;
+                return R.layout.gd_item_image_chip;
             }
 
             @Override
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
-                final LinearLayout llParent = helper.retrieveView(R.id.ll_chip_parent);
-                ImageView imgChip = helper.retrieveView(R.id.iv_chip_pic);
+                final LinearLayout llParent = helper.retrieveView(R.id.gd__ll_chip_parent);
+                ImageView imgChip = helper.retrieveView(R.id.gd__iv_chip_pic);
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     if (position == 0) {
                         llParent.post(new Runnable() {
@@ -2537,7 +2537,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     layoutParams.width = (int) (layoutParams.width * 1.2);
                     layoutParams.height = (int) (layoutParams.height * 1.2);
                     imgChip.setLayoutParams(layoutParams);
-                    helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
+                    helper.setBackgroundRes(R.id.gd__ll_chip_parent, R.drawable.gd_rectangle_trans_stroke_yellow);
                 } else {
                     if (position == 7 || position == 9) {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
@@ -2552,7 +2552,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     }
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
-                helper.setText(R.id.tv_chip_amount, item.getName());
+                helper.setText(R.id.gd__tv_chip_amount, item.getName());
                 if (item.getValue() == -1) {
                     currentSure = imgChip;
                 } else if (item.getValue() == -2) {
@@ -2600,13 +2600,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         contentPool.setBaseAdapter(new QuickAdapterImp<LiveInfoBean>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info_roulette;
+                return R.layout.gd_item_user_info_roulette;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
                 tvType.setTextColor(ContextCompat.getColor(mContext, R.color.white));
@@ -2638,12 +2638,12 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         contentAdapter.setBaseAdapter(new QuickAdapterImp<String>() {
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_limit_red_text;
+                return R.layout.gd_item_limit_red_text;
             }
 
             @Override
             public void convert(ViewHolder helper, String item, int position) {
-                TextView tv = helper.retrieveView(R.id.text_tv1);
+                TextView tv = helper.retrieveView(R.id.gd__text_tv1);
                 tv.setTextSize(12);
                 tv.setText(item);
                 tv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
@@ -2713,7 +2713,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_roulette_bet_game2;
+        return R.layout.gd_activity_roulette_bet_game2;
     }
 
 
@@ -2808,42 +2808,42 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             @Override
             protected void convertItem(ViewHolder helper, BetTypeRow item, int position) {
                 if (type == 2) {
-                    helper.setText(R.id.roulette_bet_type_tv1, item.getNumbers().get(0).toString());
-                    helper.setText(R.id.roulette_bet_type_tv2, item.getNumbers().get(1).toString());
-                    helper.setVisible(R.id.roulette_bet_type_tv3, false);
-                    helper.setVisible(R.id.roulette_bet_type_tv4, false);
-                    helper.setVisible(R.id.roulette_bet_type_tv5, false);
-                    helper.setVisible(R.id.roulette_bet_type_tv6, false);
+                    helper.setText(R.id.gd__roulette_bet_type_tv1, item.getNumbers().get(0).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv2, item.getNumbers().get(1).toString());
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv3, false);
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv4, false);
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv5, false);
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv6, false);
                 }
                 if (type == 3) {
-                    helper.setText(R.id.roulette_bet_type_tv1, item.getNumbers().get(0).toString());
-                    helper.setText(R.id.roulette_bet_type_tv2, item.getNumbers().get(1).toString());
-                    helper.setText(R.id.roulette_bet_type_tv3, item.getNumbers().get(2).toString());
-                    helper.setVisible(R.id.roulette_bet_type_tv4, false);
-                    helper.setVisible(R.id.roulette_bet_type_tv5, false);
-                    helper.setVisible(R.id.roulette_bet_type_tv6, false);
+                    helper.setText(R.id.gd__roulette_bet_type_tv1, item.getNumbers().get(0).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv2, item.getNumbers().get(1).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv3, item.getNumbers().get(2).toString());
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv4, false);
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv5, false);
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv6, false);
                 }
                 if (type == 4) {
-                    helper.setText(R.id.roulette_bet_type_tv1, item.getNumbers().get(0).toString());
-                    helper.setText(R.id.roulette_bet_type_tv2, item.getNumbers().get(1).toString());
-                    helper.setText(R.id.roulette_bet_type_tv3, item.getNumbers().get(2).toString());
-                    helper.setText(R.id.roulette_bet_type_tv4, item.getNumbers().get(3).toString());
-                    helper.setVisible(R.id.roulette_bet_type_tv5, false);
-                    helper.setVisible(R.id.roulette_bet_type_tv6, false);
+                    helper.setText(R.id.gd__roulette_bet_type_tv1, item.getNumbers().get(0).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv2, item.getNumbers().get(1).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv3, item.getNumbers().get(2).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv4, item.getNumbers().get(3).toString());
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv5, false);
+                    helper.setVisible(R.id.gd__roulette_bet_type_tv6, false);
                 }
                 if (type == 6) {
-                    helper.setText(R.id.roulette_bet_type_tv1, item.getNumbers().get(0).toString());
-                    helper.setText(R.id.roulette_bet_type_tv2, item.getNumbers().get(1).toString());
-                    helper.setText(R.id.roulette_bet_type_tv3, item.getNumbers().get(2).toString());
-                    helper.setText(R.id.roulette_bet_type_tv4, item.getNumbers().get(3).toString());
-                    helper.setText(R.id.roulette_bet_type_tv5, item.getNumbers().get(4).toString());
-                    helper.setText(R.id.roulette_bet_type_tv6, item.getNumbers().get(5).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv1, item.getNumbers().get(0).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv2, item.getNumbers().get(1).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv3, item.getNumbers().get(2).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv4, item.getNumbers().get(3).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv5, item.getNumbers().get(4).toString());
+                    helper.setText(R.id.gd__roulette_bet_type_tv6, item.getNumbers().get(5).toString());
                 }
             }
 
             @Override
             protected int getItemLayoutRes() {
-                return R.layout.item_roulette_bet_type_row;
+                return R.layout.gd_item_roulette_bet_type_row;
             }
 
             @Override
@@ -2853,7 +2853,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
             @Override
             protected int getContentViewLayoutRes() {
-                return R.layout.layout_bet_type_rows;
+                return R.layout.gd_layout_bet_type_rows;
             }
         };
         rowsPopup.setData(rows);
@@ -2943,16 +2943,16 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void initControl() {
         serviceTime.setTextSize(15);
-        tv_game_number01 = (TextView) findViewById(R.id.tv_table_game_number);
-        tv_game_number = (TextView) findViewById(R.id.text_shoe_game_number1);
-        tv_roulette_red01 = (TextView) findViewById(R.id.text_red);
-        tv_roulette_black01 = (TextView) findViewById(R.id.text_black);
-        tv_roulette_zero01 = (TextView) findViewById(R.id.text_zero);
-        tv_roulette_even01 = (TextView) findViewById(R.id.text_even);
-        tv_roulette_odd01 = (TextView) findViewById(R.id.text_odd);
-        tv_roulette_big01 = (TextView) findViewById(R.id.text_big);
-        tv_roulette_small01 = (TextView) findViewById(R.id.text_small);
-        btn_game_number = (TextView) findViewById(R.id.btn_table_pool_title);
+        tv_game_number01 = (TextView) findViewById(R.id.gd__tv_table_game_number);
+        tv_game_number = (TextView) findViewById(R.id.gd__text_shoe_game_number1);
+        tv_roulette_red01 = (TextView) findViewById(R.id.gd__text_red);
+        tv_roulette_black01 = (TextView) findViewById(R.id.gd__text_black);
+        tv_roulette_zero01 = (TextView) findViewById(R.id.gd__text_zero);
+        tv_roulette_even01 = (TextView) findViewById(R.id.gd__text_even);
+        tv_roulette_odd01 = (TextView) findViewById(R.id.gd__text_odd);
+        tv_roulette_big01 = (TextView) findViewById(R.id.gd__text_big);
+        tv_roulette_small01 = (TextView) findViewById(R.id.gd__text_small);
+        btn_game_number = (TextView) findViewById(R.id.gd__btn_table_pool_title);
         imgList.clear();
         imgList.add(ivNumber00);
         imgList.add(ivNumber00New);
@@ -4147,11 +4147,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             listBetDetail.clear();
             betDetails = mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().getBetDetail();
             if (betDetails.size() > 0) {
-                int sure = R.mipmap.sureimg_light;
+                int sure = R.mipmap.gd_sureimg_light;
                 if (currentSure != null && sure != 0) {
                     currentSure.setBackgroundResource(sure);
                 }
-                int no = R.mipmap.noimg_light;
+                int no = R.mipmap.gd_noimg_light;
                 if (currentCancel != null && no != 0) {
                     currentCancel.setBackgroundResource(no);
                 }
@@ -4166,11 +4166,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             showBetChip(getFrameLayout(betDetails.get(i).getNumber()), true, betDetails.get(i).getMoney(), false);
         }
         if (!bRepeat) {
-            int sure = R.mipmap.sureimg;
+            int sure = R.mipmap.gd_sureimg;
             if (currentSure != null && sure != 0) {
                 currentSure.setBackgroundResource(sure);
             }
-            int no = R.mipmap.noimg;
+            int no = R.mipmap.gd_noimg;
             if (currentCancel != null && no != 0) {
                 currentCancel.setBackgroundResource(no);
             }
@@ -4193,11 +4193,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     private void clearBetChip(String type) {
-        int sure = R.mipmap.sureimg;
+        int sure = R.mipmap.gd_sureimg;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg;
+        int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -4278,11 +4278,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clearAllChips() {
-        int sure = R.mipmap.sureimg;
+        int sure = R.mipmap.gd_sureimg;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
-        int no = R.mipmap.noimg;
+        int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
         }
@@ -4514,206 +4514,206 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (fl_roulette_board_bg.getVisibility() == View.VISIBLE && fl_roulette_board_bg_new.getVisibility() == View.INVISIBLE) {
             switch (type) {
                 case "0":
-                    return new ResultHintBean(ivNumber00, R.mipmap.number_0_trans);
+                    return new ResultHintBean(ivNumber00, R.mipmap.gd_number_0_trans);
                 case "1":
-                    return new ResultHintBean(ivNumber01, R.mipmap.r2);
+                    return new ResultHintBean(ivNumber01, R.mipmap.gd_r2);
                 case "2":
-                    return new ResultHintBean(ivNumber02, R.mipmap.r2);
+                    return new ResultHintBean(ivNumber02, R.mipmap.gd_r2);
                 case "3":
-                    return new ResultHintBean(ivNumber03, R.mipmap.r2);
+                    return new ResultHintBean(ivNumber03, R.mipmap.gd_r2);
                 case "4":
-                    return new ResultHintBean(ivNumber04, R.mipmap.r5);
+                    return new ResultHintBean(ivNumber04, R.mipmap.gd_r5);
                 case "5":
-                    return new ResultHintBean(ivNumber05, R.mipmap.r5);
+                    return new ResultHintBean(ivNumber05, R.mipmap.gd_r5);
                 case "6":
-                    return new ResultHintBean(ivNumber06, R.mipmap.r5);
+                    return new ResultHintBean(ivNumber06, R.mipmap.gd_r5);
                 case "7":
-                    return new ResultHintBean(ivNumber07, R.mipmap.r8);
+                    return new ResultHintBean(ivNumber07, R.mipmap.gd_r8);
                 case "8":
-                    return new ResultHintBean(ivNumber08, R.mipmap.r8);
+                    return new ResultHintBean(ivNumber08, R.mipmap.gd_r8);
                 case "9":
-                    return new ResultHintBean(ivNumber09, R.mipmap.r8);
+                    return new ResultHintBean(ivNumber09, R.mipmap.gd_r8);
                 case "10":
-                    return new ResultHintBean(ivNumber10, R.mipmap.r11);
+                    return new ResultHintBean(ivNumber10, R.mipmap.gd_r11);
                 case "11":
-                    return new ResultHintBean(ivNumber11, R.mipmap.r11);
+                    return new ResultHintBean(ivNumber11, R.mipmap.gd_r11);
                 case "12":
-                    return new ResultHintBean(ivNumber12, R.mipmap.r11);
+                    return new ResultHintBean(ivNumber12, R.mipmap.gd_r11);
                 case "13":
-                    return new ResultHintBean(ivNumber13, R.mipmap.r14);
+                    return new ResultHintBean(ivNumber13, R.mipmap.gd_r14);
                 case "14":
-                    return new ResultHintBean(ivNumber14, R.mipmap.r14);
+                    return new ResultHintBean(ivNumber14, R.mipmap.gd_r14);
                 case "15":
-                    return new ResultHintBean(ivNumber15, R.mipmap.r14);
+                    return new ResultHintBean(ivNumber15, R.mipmap.gd_r14);
                 case "16":
-                    return new ResultHintBean(ivNumber16, R.mipmap.r17);
+                    return new ResultHintBean(ivNumber16, R.mipmap.gd_r17);
                 case "17":
-                    return new ResultHintBean(ivNumber17, R.mipmap.r17);
+                    return new ResultHintBean(ivNumber17, R.mipmap.gd_r17);
                 case "18":
-                    return new ResultHintBean(ivNumber18, R.mipmap.r17);
+                    return new ResultHintBean(ivNumber18, R.mipmap.gd_r17);
                 case "19":
-                    return new ResultHintBean(ivNumber19, R.mipmap.r20);
+                    return new ResultHintBean(ivNumber19, R.mipmap.gd_r20);
                 case "20":
-                    return new ResultHintBean(ivNumber20, R.mipmap.r20);
+                    return new ResultHintBean(ivNumber20, R.mipmap.gd_r20);
                 case "21":
-                    return new ResultHintBean(ivNumber21, R.mipmap.r20);
+                    return new ResultHintBean(ivNumber21, R.mipmap.gd_r20);
                 case "22":
-                    return new ResultHintBean(ivNumber22, R.mipmap.r23);
+                    return new ResultHintBean(ivNumber22, R.mipmap.gd_r23);
                 case "23":
-                    return new ResultHintBean(ivNumber23, R.mipmap.r23);
+                    return new ResultHintBean(ivNumber23, R.mipmap.gd_r23);
                 case "24":
-                    return new ResultHintBean(ivNumber24, R.mipmap.r23);
+                    return new ResultHintBean(ivNumber24, R.mipmap.gd_r23);
                 case "25":
-                    return new ResultHintBean(ivNumber25, R.mipmap.r26);
+                    return new ResultHintBean(ivNumber25, R.mipmap.gd_r26);
                 case "26":
-                    return new ResultHintBean(ivNumber26, R.mipmap.r26);
+                    return new ResultHintBean(ivNumber26, R.mipmap.gd_r26);
                 case "27":
-                    return new ResultHintBean(ivNumber27, R.mipmap.r26);
+                    return new ResultHintBean(ivNumber27, R.mipmap.gd_r26);
                 case "28":
-                    return new ResultHintBean(ivNumber28, R.mipmap.r29);
+                    return new ResultHintBean(ivNumber28, R.mipmap.gd_r29);
                 case "29":
-                    return new ResultHintBean(ivNumber29, R.mipmap.r29);
+                    return new ResultHintBean(ivNumber29, R.mipmap.gd_r29);
                 case "30":
-                    return new ResultHintBean(ivNumber30, R.mipmap.r29);
+                    return new ResultHintBean(ivNumber30, R.mipmap.gd_r29);
                 case "31":
-                    return new ResultHintBean(ivNumber31, R.mipmap.r32);
+                    return new ResultHintBean(ivNumber31, R.mipmap.gd_r32);
                 case "32":
-                    return new ResultHintBean(ivNumber32, R.mipmap.r32);
+                    return new ResultHintBean(ivNumber32, R.mipmap.gd_r32);
                 case "33":
-                    return new ResultHintBean(ivNumber33, R.mipmap.r32);
+                    return new ResultHintBean(ivNumber33, R.mipmap.gd_r32);
                 case "34":
-                    return new ResultHintBean(ivNumber34, R.mipmap.r35);
+                    return new ResultHintBean(ivNumber34, R.mipmap.gd_r35);
                 case "35":
-                    return new ResultHintBean(ivNumber35, R.mipmap.r35);
+                    return new ResultHintBean(ivNumber35, R.mipmap.gd_r35);
                 case "36":
-                    return new ResultHintBean(ivNumber36, R.mipmap.r35);
+                    return new ResultHintBean(ivNumber36, R.mipmap.gd_r35);
                 case "Low":
-                    return new ResultHintBean(ivLow, R.mipmap.table_roulette_1_18);
+                    return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
                 case "High":
-                    return new ResultHintBean(ivHigh, R.mipmap.table_roulette_19_36);
+                    return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
                 case "Red":
-                    return new ResultHintBean(ivRed, R.mipmap.table_roulette_red);
+                    return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
                 case "Black":
-                    return new ResultHintBean(ivBlack, R.mipmap.table_roulette_black);
+                    return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
                 case "Odd":
-                    return new ResultHintBean(ivOdd, R.mipmap.ganjil);
+                    return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
                 case "Even":
-                    return new ResultHintBean(ivEven, R.mipmap.genap);
+                    return new ResultHintBean(ivEven, R.mipmap.gd_genap);
                 case "Row1":
-                    return new ResultHintBean(iv1row1x2, R.mipmap.row_1x2);
+                    return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
                 case "Row2":
-                    return new ResultHintBean(iv2row1x2, R.mipmap.row_1x2);
+                    return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
                 case "Row3":
-                    return new ResultHintBean(iv3row1x2, R.mipmap.row_1x2);
+                    return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
                 case "Col1":
-                    return new ResultHintBean(ivDozen1, R.mipmap.table_roulette_1_12);
+                    return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
                 case "Col2":
-                    return new ResultHintBean(ivDozen2, R.mipmap.table_roulette_13_24);
+                    return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
                 case "Col3":
-                    return new ResultHintBean(ivDozen3, R.mipmap.table_roulette_25_36);
+                    return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
                 default:
                     return null;
             }
         } else {
             switch (type) {
                 case "0":
-                    return new ResultHintBean(ivNumber00New, R.mipmap.number_0_new);
+                    return new ResultHintBean(ivNumber00New, R.mipmap.gd_number_0_new);
                 case "1":
-                    return new ResultHintBean(ivNumber01New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber01New, R.mipmap.gd_number_other_new);
                 case "2":
-                    return new ResultHintBean(ivNumber02New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber02New, R.mipmap.gd_number_other_new);
                 case "3":
-                    return new ResultHintBean(ivNumber03New, R.mipmap.number_3_new);
+                    return new ResultHintBean(ivNumber03New, R.mipmap.gd_number_3_new);
                 case "4":
-                    return new ResultHintBean(ivNumber04New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber04New, R.mipmap.gd_number_other_new);
                 case "5":
-                    return new ResultHintBean(ivNumber05New, R.mipmap.number_5_new);
+                    return new ResultHintBean(ivNumber05New, R.mipmap.gd_number_5_new);
                 case "6":
-                    return new ResultHintBean(ivNumber06New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber06New, R.mipmap.gd_number_other_new);
                 case "7":
-                    return new ResultHintBean(ivNumber07New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber07New, R.mipmap.gd_number_other_new);
                 case "8":
-                    return new ResultHintBean(ivNumber08New, R.mipmap.number_8_new);
+                    return new ResultHintBean(ivNumber08New, R.mipmap.gd_number_8_new);
                 case "9":
-                    return new ResultHintBean(ivNumber09New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber09New, R.mipmap.gd_number_other_new);
                 case "10":
-                    return new ResultHintBean(ivNumber10New, R.mipmap.number_10_new);
+                    return new ResultHintBean(ivNumber10New, R.mipmap.gd_number_10_new);
                 case "11":
-                    return new ResultHintBean(ivNumber11New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber11New, R.mipmap.gd_number_other_new);
                 case "12":
-                    return new ResultHintBean(ivNumber12New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber12New, R.mipmap.gd_number_other_new);
                 case "13":
-                    return new ResultHintBean(ivNumber13New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber13New, R.mipmap.gd_number_other_new);
                 case "14":
-                    return new ResultHintBean(ivNumber14New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber14New, R.mipmap.gd_number_other_new);
                 case "15":
-                    return new ResultHintBean(ivNumber15New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber15New, R.mipmap.gd_number_other_new);
                 case "16":
-                    return new ResultHintBean(ivNumber16New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber16New, R.mipmap.gd_number_other_new);
                 case "17":
-                    return new ResultHintBean(ivNumber17New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber17New, R.mipmap.gd_number_other_new);
                 case "18":
-                    return new ResultHintBean(ivNumber18New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber18New, R.mipmap.gd_number_other_new);
                 case "19":
-                    return new ResultHintBean(ivNumber19New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber19New, R.mipmap.gd_number_other_new);
                 case "20":
-                    return new ResultHintBean(ivNumber20New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber20New, R.mipmap.gd_number_other_new);
                 case "21":
-                    return new ResultHintBean(ivNumber21New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber21New, R.mipmap.gd_number_other_new);
                 case "22":
-                    return new ResultHintBean(ivNumber22New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber22New, R.mipmap.gd_number_other_new);
                 case "23":
-                    return new ResultHintBean(ivNumber23New, R.mipmap.number_23_new);
+                    return new ResultHintBean(ivNumber23New, R.mipmap.gd_number_23_new);
                 case "24":
-                    return new ResultHintBean(ivNumber24New, R.mipmap.number_24_new);
+                    return new ResultHintBean(ivNumber24New, R.mipmap.gd_number_24_new);
                 case "25":
-                    return new ResultHintBean(ivNumber25New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber25New, R.mipmap.gd_number_other_new);
                 case "26":
-                    return new ResultHintBean(ivNumber26New, R.mipmap.number_26_new);
+                    return new ResultHintBean(ivNumber26New, R.mipmap.gd_number_26_new);
                 case "27":
-                    return new ResultHintBean(ivNumber27New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber27New, R.mipmap.gd_number_other_new);
                 case "28":
-                    return new ResultHintBean(ivNumber28New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber28New, R.mipmap.gd_number_other_new);
                 case "29":
-                    return new ResultHintBean(ivNumber29New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber29New, R.mipmap.gd_number_other_new);
                 case "30":
-                    return new ResultHintBean(ivNumber30New, R.mipmap.number_30_new);
+                    return new ResultHintBean(ivNumber30New, R.mipmap.gd_number_30_new);
                 case "31":
-                    return new ResultHintBean(ivNumber31New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber31New, R.mipmap.gd_number_other_new);
                 case "32":
-                    return new ResultHintBean(ivNumber32New, R.mipmap.number_32_new);
+                    return new ResultHintBean(ivNumber32New, R.mipmap.gd_number_32_new);
                 case "33":
-                    return new ResultHintBean(ivNumber33New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber33New, R.mipmap.gd_number_other_new);
                 case "34":
-                    return new ResultHintBean(ivNumber34New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber34New, R.mipmap.gd_number_other_new);
                 case "35":
-                    return new ResultHintBean(ivNumber35New, R.mipmap.number_35_new);
+                    return new ResultHintBean(ivNumber35New, R.mipmap.gd_number_35_new);
                 case "36":
-                    return new ResultHintBean(ivNumber36New, R.mipmap.number_other_new);
+                    return new ResultHintBean(ivNumber36New, R.mipmap.gd_number_other_new);
                 case "Low":
-                    return new ResultHintBean(ivLow, R.mipmap.table_roulette_1_18);
+                    return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
                 case "High":
-                    return new ResultHintBean(ivHigh, R.mipmap.table_roulette_19_36);
+                    return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
                 case "Red":
-                    return new ResultHintBean(ivRed, R.mipmap.table_roulette_red);
+                    return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
                 case "Black":
-                    return new ResultHintBean(ivBlack, R.mipmap.table_roulette_black);
+                    return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
                 case "Odd":
-                    return new ResultHintBean(ivOdd, R.mipmap.ganjil);
+                    return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
                 case "Even":
-                    return new ResultHintBean(ivEven, R.mipmap.genap);
+                    return new ResultHintBean(ivEven, R.mipmap.gd_genap);
                 case "Row1":
-                    return new ResultHintBean(iv1row1x2, R.mipmap.row_1x2);
+                    return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
                 case "Row2":
-                    return new ResultHintBean(iv2row1x2, R.mipmap.row_1x2);
+                    return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
                 case "Row3":
-                    return new ResultHintBean(iv3row1x2, R.mipmap.row_1x2);
+                    return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
                 case "Col1":
-                    return new ResultHintBean(ivDozen1, R.mipmap.table_roulette_1_12);
+                    return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
                 case "Col2":
-                    return new ResultHintBean(ivDozen2, R.mipmap.table_roulette_13_24);
+                    return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
                 case "Col3":
-                    return new ResultHintBean(ivDozen3, R.mipmap.table_roulette_25_36);
+                    return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
                 default:
                     return null;
             }
@@ -6475,11 +6475,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         }
         if (isShow && money > 0) {
             if (operationDisplay) {
-                int sure = R.mipmap.sureimg_light;
+                int sure = R.mipmap.gd_sureimg_light;
                 if (currentSure != null && sure != 0) {
                     currentSure.setBackgroundResource(sure);
                 }
-                int no = R.mipmap.noimg_light;
+                int no = R.mipmap.gd_noimg_light;
                 if (currentCancel != null && no != 0) {
                     currentCancel.setBackgroundResource(no);
                 }
@@ -6532,9 +6532,9 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     public void initPopResultsWindows() {
-        TextView tv_pop_number = (TextView) fl_roulette_result.findViewById(R.id.tv_pop_number);
-        TextView tv_red_black = (TextView) fl_roulette_result.findViewById(R.id.tv_red_black);
-        TextView tv_odd_even = (TextView) fl_roulette_result.findViewById(R.id.tv_odd_even);
+        TextView tv_pop_number = (TextView) fl_roulette_result.findViewById(R.id.gd__tv_pop_number);
+        TextView tv_red_black = (TextView) fl_roulette_result.findViewById(R.id.gd__tv_red_black);
+        TextView tv_odd_even = (TextView) fl_roulette_result.findViewById(R.id.gd__tv_odd_even);
         if (mAppViewModel.getRoulette01().getResult() != null && !"".equals(mAppViewModel.getRoulette01().getResult())
         ) {
             switch (mAppViewModel.getRoulette01().getResult()) {
@@ -6556,29 +6556,29 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 case "31":
                 case "33":
                 case "35":
-                    tv_red_black.setBackgroundResource(R.drawable.shape_roulette_black_bg);
+                    tv_red_black.setBackgroundResource(R.drawable.gd_shape_roulette_black_bg);
                     tv_red_black.setText(getString(R.string.black_acronym));
-//                            tv_pop_number.setBackgroundResource(R.drawable.rectangle_black_corner2);
+//                            tv_pop_number.setBackgroundResource(R.drawable.gd_rectangle_black_corner2);
                     break;
                 case "0":
-                    tv_red_black.setBackgroundResource(R.drawable.shape_roulette_zero_bg);
+                    tv_red_black.setBackgroundResource(R.drawable.gd_shape_roulette_zero_bg);
                     tv_red_black.setText(getString(R.string.zero_acronym));
-//                            tv_pop_number.setBackgroundResource(R.drawable.rectangle_green_corner2);
+//                            tv_pop_number.setBackgroundResource(R.drawable.gd_rectangle_green_corner2);
                     break;
                 default:
-                    tv_red_black.setBackgroundResource(R.drawable.shape_roulette_red_bg);
+                    tv_red_black.setBackgroundResource(R.drawable.gd_shape_roulette_red_bg);
                     tv_red_black.setText(getString(R.string.red_acronym));
-//                            tv_pop_number.setBackgroundResource(R.drawable.rectangle_red_corner2);
+//                            tv_pop_number.setBackgroundResource(R.drawable.gd_rectangle_red_corner2);
                     break;
             }
             String resultStr = mAppViewModel.getRoulette01().getResult();
             tv_pop_number.setText(resultStr);
             int result = Integer.parseInt(resultStr);
             if (result % 2 == 0) {
-                tv_odd_even.setBackgroundResource(R.drawable.shape_roulette_red_bg);
+                tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_red_bg);
                 tv_odd_even.setText(getString(R.string.E));
             } else {
-                tv_odd_even.setBackgroundResource(R.drawable.shape_roulette_black_bg);
+                tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_black_bg);
                 tv_odd_even.setText(getString(R.string.O));
             }
         }
@@ -6600,7 +6600,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     private void displayAll(boolean b) {
         if (b) {
-            toolbar.setNavigationIcon(R.mipmap.back_black);
+            toolbar.setNavigationIcon(R.mipmap.gd_back_black);
         } else {
             toolbar.setNavigationIcon(null);
         }
@@ -6635,21 +6635,21 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void initOrientation() {
         super.initOrientation();
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            lvBaccaratChips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
+            lvBaccaratChips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
             roulette_content_fgv = (RecyclerView) findViewById(R.id.roulette_content_fgv);
         } else {
             if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                lvBaccaratChips = (AdapterView) findViewById(R.id.lv_baccarat_chips_h);
+                lvBaccaratChips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
                 roulette_content_fgv = (RecyclerView) findViewById(R.id.roulette_content_fgv);
-                bigGradLayout = (GridLayout) findViewById(R.id.baccarat_gridlayout2);
+                bigGradLayout = (GridLayout) findViewById(R.id.gd__baccarat_gridlayout2);
                 leftPanel1.setOpen(true, true);
             }
             ll_bet_btn_parent.setVisibility(View.GONE);
         }
-        ll_center_small = findViewById(R.id.ll_center_small);
-        ll_center_orphelins = findViewById(R.id.ll_center_orphelins);
-        ll_center_big = findViewById(R.id.ll_center_big);
-        ll_zero = findViewById(R.id.ll_zero);
+        ll_center_small = findViewById(R.id.gd__ll_center_small);
+        ll_center_orphelins = findViewById(R.id.gd__ll_center_orphelins);
+        ll_center_big = findViewById(R.id.gd__ll_center_big);
+        ll_zero = findViewById(R.id.gd__ll_zero);
     }
 
     @Override
@@ -6660,13 +6660,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         handler.removeCallbacksAndMessages(null);
     }
 
-    @BindView(R2.id.ll_info)
+    @BindView(R2.id.gd__ll_info)
     LinearLayout ll_info;
-    @BindView(R2.id.lv_user_info)
+    @BindView(R2.id.gd__lv_user_info)
     ListView lv_user_info;
-    @BindView(R2.id.lv_pool)
+    @BindView(R2.id.gd__lv_pool)
     ListView lv_pool;
-    @BindView(R2.id.tv_time)
+    @BindView(R2.id.gd__tv_time)
     TextView tv_time;
 
     @Override
@@ -6761,13 +6761,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public int getBaseItemResource() {
-                return R.layout.item_user_info1_roulette;
+                return R.layout.gd_item_user_info1_roulette;
             }
 
             @Override
             public void convert(ViewHolder helper, LiveInfoBean item, int position) {
-                TextView tvType = helper.retrieveView(R.id.tv_name);
-                TextView tvValue = helper.retrieveView(R.id.tv_value);
+                TextView tvType = helper.retrieveView(R.id.gd__tv_name);
+                TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.gold));
                 if (position >= 4) {
@@ -6793,8 +6793,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     public void onInGameChooseLanguage() {
         fl_roulette_board_bg.setBackgroundResource(0);
         fl_roulette_board_bg_new.setBackgroundResource(0);
-        fl_roulette_board_bg.setBackgroundResource(R.mipmap.roulette_board);
-        fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.roulette_board_new1);
+        fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board);
+        fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
         updatePercentage();
     }
 }

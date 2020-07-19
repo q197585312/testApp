@@ -35,13 +35,13 @@ public class PopReport extends BasePopupWindow {
 
     @Override
     protected int getContentViewLayoutRes() {
-        return R.layout.pop_report;
+        return R.layout.gd_pop_report;
     }
 
     @Override
     protected void initView(View view) {
         super.initView(view);
-        img_exit = view.findViewById(R.id.img_exit);
+        img_exit = view.findViewById(R.id.gd__img_exit);
         img_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +54,7 @@ public class PopReport extends BasePopupWindow {
         }
         activity = (BaseActivity) context;
         url = WebSiteUrl.REPORT_URL + "?Usid=" + activity.mAppViewModel.getUser().getName() + "&lng=" + language;
-        webView = (WebView) view.findViewById(R.id.wv_report);
+        webView = (WebView) view.findViewById(R.id.gd__wv_report);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false

@@ -93,13 +93,13 @@ public class WelcomeActivity extends BaseActivity {
         }
         LogIntervalUtils.logCustomTime(currentTime, "onCreate");
         ActivityPageManager.getInstance().addActivity(this);
-        flWelcome = (FrameLayout) findViewById(R.id.fl_welcome);
-        llLogin = (LinearLayout) findViewById(R.id.ll_login);
-        bgImg = (ImageView) findViewById(R.id.welcome_img);
+        flWelcome = (FrameLayout) findViewById(R.id.gd__fl_welcome);
+        llLogin = (LinearLayout) findViewById(R.id.gd__ll_login);
+        bgImg = (ImageView) findViewById(R.id.gd__welcome_img);
         if (!BuildConfig.FLAVOR.isEmpty()&&BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             bgImg.setImageResource(R.mipmap.gd88_welcome_logo);
         }else {
-            bgImg.setImageResource(R.mipmap.title_logo);
+            bgImg.setImageResource(R.mipmap.gd_title_logo);
         }
         flWelcome.setVisibility(View.VISIBLE);
         llLogin.setVisibility(View.GONE);
@@ -120,7 +120,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_welcome_gd;
+        return R.layout.gd_activity_welcome_gd;
     }
 
     @Override
@@ -895,8 +895,10 @@ public class WelcomeActivity extends BaseActivity {
     private Gson gson = new Gson();
 
     private void hasNewVersion() {
-        if(BuildConfig.FLAVOR.isEmpty())
+        if(BuildConfig.FLAVOR.isEmpty()) {
+            goMain();
             return;
+        }
         updateUrl = null;
         hasVersionChecked = false;
         QuickCookieThreadHandler threadHandler = new QuickCookieThreadHandler(this) {

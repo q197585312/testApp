@@ -27,7 +27,7 @@ public class PageCurlActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_curl);
+		setContentView(R.layout.gd_activity_curl);
 
 //		twistPage();
 
@@ -40,9 +40,9 @@ public class PageCurlActivity extends Activity {
 	}
 	PageWidgetT pw;
 	private void testView() {
-		pw = (PageWidgetT) findViewById(R.id.main1);
+		pw = (PageWidgetT) findViewById(R.id.gd__main1);
 		pw.setCanNotFlip(false);
-		pw.setImageRes( R.mipmap.poker_bg, R.mipmap.pk_2);
+		pw.setImageRes( R.mipmap.gd_poker_bg, R.mipmap.gd_pk_2);
 
 
 	}
