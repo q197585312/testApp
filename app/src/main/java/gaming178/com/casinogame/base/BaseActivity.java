@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.base.BaseApplication;
+import com.unkonw.testapp.libs.common.ActivityPageManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +59,6 @@ import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.PopReferralList;
 import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
-import gaming178.com.casinogame.Util.ActivityPageManager;
 import gaming178.com.casinogame.Util.AfbUtils;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
@@ -977,7 +977,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
             @Override
             protected int getListViewId() {
-                return R.id.gd__gridview_content_gv;
+                return R.id.gridview_content_gv;
             }
 
             @Override

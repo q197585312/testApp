@@ -24,6 +24,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.unkonw.testapp.libs.common.ActivityPageManager;
 
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
@@ -45,7 +46,6 @@ import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.entity.AppVersionBean;
 import gaming178.com.casinogame.Activity.entity.BalanceBean;
 import gaming178.com.casinogame.Bean.GdOrGrAgentBean;
-import gaming178.com.casinogame.Util.ActivityPageManager;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
