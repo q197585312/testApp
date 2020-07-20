@@ -432,7 +432,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
             @Override
             protected void convertItem(ViewHolder helper, CurrencyBean item, int position) {
-                helper.setText(R.id.gd__text_tv1, item.getCurrencyName());
+                helper.setText(R.id.text_tv1, item.getCurrencyName());
             }
 
             @Override

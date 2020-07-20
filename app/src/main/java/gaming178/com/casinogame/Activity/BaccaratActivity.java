@@ -2242,8 +2242,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     private void initResultAnimation() {
-        tv_banker_result_name.measure(0,0);
-        tv_player_result_name.measure(0,0);
+        tv_banker_result_name.measure(0, 0);
+        tv_player_result_name.measure(0, 0);
         ViewGroup.LayoutParams layoutParams1 = img_banker_animation.getLayoutParams();
         layoutParams1.width = tv_banker_result_name.getMeasuredWidth();
         layoutParams1.height = tv_banker_result_name.getMeasuredHeight();
@@ -4273,6 +4273,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     public void showResultsOnUI() {
 //        clearBetBg();
+        if (animationBanker == null || animationPlayer == null) {
+            initResultAnimation();
+        }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 1) {
 //            iv_baccarat_table_banker.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {

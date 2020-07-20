@@ -1223,7 +1223,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     ivFlag.setImageResource(item.getRes());
                     boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
                     if (itemLanguageSelected) {
-                        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                        if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
                             tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
                         } else {
                             tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -1237,7 +1237,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 @Override
                 public void onClickItem(MenuItemInfo item, int position) {
                     closePopupWindow();
-                    if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                    if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
                         AppTool.setAppLanguage(BaseActivity.this, item.getType());
                         recreate();
                     } else {
@@ -1374,7 +1374,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.gd__rg_switch);
                 RadioButton rb_limit = (RadioButton) view.findViewById(R.id.gd__rb_limit);
                 RadioButton rb_language = (RadioButton) view.findViewById(R.id.gd__rb_language);
-                if (!BuildConfig.FLAVOR.isEmpty() &&!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                if (!BuildConfig.FLAVOR.isEmpty() && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
                     rb_limit.setBackgroundResource(R.drawable.gd_selector_music_choose_right);
                     rb_language.setVisibility(View.GONE);
                 }
@@ -1706,9 +1706,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     if (gameMenuItem.getDrawableRes() == 1 || gameMenuItem.getDrawableRes() == 2 || gameMenuItem.getDrawableRes() == 3 ||
                             gameMenuItem.getDrawableRes() == 71 || gameMenuItem.getDrawableRes() == 61 || gameMenuItem.getDrawableRes() == 62 ||
                             gameMenuItem.getDrawableRes() == 63) {
-                        mAppViewModel.setTableId(gameMenuItem.getDrawableRes());
-                        tableId = gameMenuItem.getDrawableRes();
-                        initBaccarat();
+                        if (mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).getStatus() != 1) {
+                            Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                        } else {
+                            mAppViewModel.setTableId(gameMenuItem.getDrawableRes());
+                            tableId = gameMenuItem.getDrawableRes();
+                            initBaccarat();
+                        }
                         return;
                     }
                 }
@@ -1966,7 +1970,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     private void addGame(ArrayList<GameMenuItem> games1, GameMenuItem item, String removeStr) {
-        if (!item.getTitle().equals(removeStr))
+//        if (!item.getTitle().equals(removeStr))
             games1.add(item);
     }
 
@@ -2236,7 +2240,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         rightReportTv.setVisibility(View.VISIBLE);
         rightReportTv.setBackgroundResource(R.mipmap.gd_report_top);
         rightTv.setBackgroundResource(R.mipmap.gd_pool_top);
-        rightMusicTv.setBackgroundResource(R.mipmap.gd_set_music_green);
+        rightMusicTv.setBackgroundResource(R.mipmap.gd_set_black);
         rightTableTv.setBackgroundResource(R.mipmap.gd_table_top);
         rightReportTv.setOnClickListener(new View.OnClickListener() {
             @Override

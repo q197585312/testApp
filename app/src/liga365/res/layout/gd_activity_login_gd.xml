@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/login_bg"
+    android:background="@mipmap/gd_login_bg"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -11,7 +11,7 @@
         android:visibility="gone" />
 
     <LinearLayout
-        android:id="@+id/ll_container"
+        android:id="@+id/gd__ll_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@mipmap/app_logo" />
+                android:src="@mipmap/gd_app_logo" />
         </FrameLayout>
 
 
@@ -37,16 +37,15 @@
             android:layout_weight="1">
 
             <RelativeLayout
-                android:id="@+id/ll_bottom_btn"
+                android:id="@+id/gd__ll_bottom_btn"
                 android:layout_width="match_parent"
-                android:layout_height="222dp">
+                android:layout_height="252dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="177dp"
+                    android:layout_height="207dp"
                     android:background="@drawable/rectangle_white_graystroke_radius5"
                     android:orientation="vertical">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -58,15 +57,53 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="10dp"
-                            android:background="@mipmap/account" />
-
+                            android:background="@mipmap/gd_website_green" />
+                        <TextView
+                            android:gravity="center"
+                            android:text="www."
+                            android:textSize="18sp"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/blue_table_bg"
+                            android:textColorHint="@color/blue_table_bg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent" />
                         <EditText
-                            android:id="@+id/login_username_edt"
+                            android:id="@+id/gd__login_site_edt"
+                            android:hint="@string/login_site"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
+                            android:paddingLeft="5dp"
+                            android:textColor="@color/blue_table_bg"
+
+                            android:textSize="18sp"
+                            android:singleLine="true"
+                            android:textCursorDrawable="@null"
+                          />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@mipmap/gd_account" />
+
+                        <EditText
+                            android:id="@+id/gd__login_username_edt"
                             android:hint="@string/input_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
                             android:paddingLeft="15dp"
+                            android:textSize="18sp"
                             android:singleLine="true"
                             android:textColor="@color/blue_table_bg"
                             android:textColorHint="@color/blue_table_bg" />
@@ -89,14 +126,15 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="10dp"
-                            android:background="@mipmap/password" />
+                            android:background="@mipmap/gd_password" />
 
                         <EditText
-                            android:id="@+id/login_password_edt"
+                            android:id="@+id/gd__login_password_edt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
                             android:hint="@string/input_password"
+                            android:textSize="18sp"
                             android:inputType="textPassword"
                             android:paddingLeft="15dp"
                             android:textColor="@color/blue_table_bg"
@@ -112,12 +150,12 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/login_login_btn"
+                    android:id="@+id/gd__login_login_btn"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/layer_btn_login_bg"
+                    android:background="@drawable/gd_layer_btn_login_bg"
                     android:gravity="center"
                     android:onClick="clickLogin"
                     android:text="@string/login"
@@ -136,31 +174,31 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/ll_choose_language"
+                    android:id="@+id/gd__ll_choose_language"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rectangle_white_radius10"
+                    android:background="@drawable/gd_rectangle_white_radius10"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="5dp">
 
                     <ImageView
-                        android:id="@+id/iv_language_flag"
+                        android:id="@+id/gd__iv_language_flag"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@mipmap/flag_british_bg" />
+                        android:src="@mipmap/gd_flag_british_bg" />
 
                     <ImageView
                         android:layout_width="12dp"
                         android:layout_height="12dp"
                         android:layout_marginLeft="10dp"
-                        android:src="@drawable/triangle_blue_top" />
+                        android:src="@drawable/gd_triangle_blue_top" />
 
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_register"
+                    android:id="@+id/gd__tv_register"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_gravity="center_vertical"
