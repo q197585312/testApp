@@ -4,13 +4,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.unkonw.testapp.libs.widget.listener.VideoListener;
 
@@ -49,7 +50,7 @@ public class VideoPlayer extends FrameLayout {
     private SurfaceView mSurfaceView;
 
     private Context mContext;
-    private boolean mEnableMediaCodec;
+    private boolean mEnableMediaCodec=true;
 
     private VideoListener mListener;
     private AudioManager mAudioManager;
@@ -125,17 +126,17 @@ public class VideoPlayer extends FrameLayout {
 
 //        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 0);
 
-
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "rtsp_transport", "udp");
         ijkMediaPlayer.setOption(1, "analyzemaxduration", 100L);
-        ijkMediaPlayer.setOption(1, "probesize", 10240L);
+        ijkMediaPlayer.setOption(1, "probesize", 1024L);
         ijkMediaPlayer.setOption(1, "flush_packets", 1L);
         ijkMediaPlayer.setOption(4, "packet-buffering", 0L);
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC,"skip_loop_filter",0);//0 开销大
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC,"skip_loop_filter",48L);//0 开销大
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"analyzeduration",1);
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"probesize",1024*2);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"probesize",512);
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"packet-buffering",1);//预缓冲
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"framedrop",5);
-
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"framedrop",10);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 500 * 1024);
         ijkMediaPlayer.setVolume(1.0f, 1.0f);
         setEnableMediaCodec(ijkMediaPlayer,mEnableMediaCodec);
         return ijkMediaPlayer;

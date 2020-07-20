@@ -66,7 +66,7 @@ public class LivePlayHelper {
     public void turnPause() {
         playing = !playing;
         if (playing) {
-            onStartPlay();
+            onResumePlay();
         } else {
             onPausePlay();
         }
