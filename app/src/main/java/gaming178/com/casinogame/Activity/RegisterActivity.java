@@ -121,7 +121,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             @Override
             public void run() {
                 String getDomainInformUrl = "http://www.grjl25.com/getDomainInform.jsp?";
-                String httpResult = httpClient.setHttpClient(getDomainInformUrl + "labelid=" + BuildConfig.Labelid, null);
+                String httpResult = httpClient.getHttpClient(getDomainInformUrl + "labelid=" + BuildConfig.Labelid, null);
                 WebSiteUrl.setNormal(httpResult);
                 String url = httpResult + "getBank.jsp";
                 String result = httpClient.sendPost(url, "");

@@ -58,7 +58,7 @@ public class HttpClient {
         this.cookie = cookie;
     }
 
-    public String setHttpClient(String url, String cookie) {
+    public String getHttpClient(String url, String cookie) {
         String sReturn = "";
         this.url = url;
         this.cookie = cookie;

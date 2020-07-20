@@ -58,6 +58,8 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.Request;
 import retrofit2.Response;
 
@@ -154,24 +156,23 @@ public class MainPresenter extends BaseSwitchPresenter {
                     public void accept(Response responseBodyResponse) throws JSONException {
 
                         LogIntervalUtils.logTime("请求数据完成开始解析");
-                        okhttp3.Response response = responseBodyResponse.raw().priorResponse();
+                        Request rawRequest = responseBodyResponse.raw().request();
+                        HttpUrl url1 = rawRequest.url();
                         BaseToolbarActivity baseActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
-                        if (response != null) {
-                            Request request = response.request();
-                            String url = request.url().toString();
-                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseActivity;
 
+                        String url = url1.url().toString();
+                        if (url1.isHttps()) {
+                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseActivity;
                             Bundle intent = new Bundle();
 
                             //ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
-
-
                             PersonalInfo info = mainActivity.getApp().getUser();
                             intent.putString("username", info.getLoginName());
                             intent.putString("password", info.getPassword());
                             intent.putString("language", "en");
                             intent.putString("web_id", "-1");
                             intent.putString("webUrl", url);
+                            intent.putString("host", url1.host());
                             intent.putInt("gameType", 5);
                             intent.putString("balance", info.getCredit2());
                             LogIntervalUtils.logTime("请求数据完成开始跳转");
@@ -186,6 +187,15 @@ public class MainPresenter extends BaseSwitchPresenter {
                             });
                         }
                         baseContext.hideLoadingDialog();
+                    }
+
+                    private String findHttp(Headers headers) {
+                        String url = "";
+                        for (String name : headers.names()) {
+                            if (name.startsWith("http"))
+                                url = name;
+                        }
+                        return url;
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

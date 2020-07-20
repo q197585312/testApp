@@ -330,7 +330,7 @@ public class LoginActivity extends BaseActivity {
                         return;
                     }*/
                     //"http://113.130.125.198/OLTGames/lglogin.jsp?"
-                    String res1 = mAppViewModel.getHttpClient().setHttpClient(WebSiteUrl.LOGIN_URL + "?txtAcctid=" + res.getResult().getNickname() + "&txtLang=&txtPwd=PWDsecw1755x!&txtLang&txtRandCode=" + return_value, "");
+                    String res1 = mAppViewModel.getHttpClient().getHttpClient(WebSiteUrl.LOGIN_URL + "?txtAcctid=" + res.getResult().getNickname() + "&txtLang=&txtPwd=PWDsecw1755x!&txtLang&txtRandCode=" + return_value, "");
                     LogUtil.d("Afb88", res1);
                     String sessionId = mAppViewModel.getHttpClient().getSessionId();
                   /*  mAppViewModel.getHttpClient().setSessionId(sessionId);*/
@@ -390,7 +390,7 @@ public class LoginActivity extends BaseActivity {
     public void urlHostInit() {
         String url = "http://www.grjl25.com/getDomainInform.jsp?";
         String param = "labelid=" + BuildConfig.Labelid;
-        String result = httpClient.setHttpClient(url + param, null);
+        String result = httpClient.getHttpClient(url + param, null);
         Log.d("AppData", result);
         WebSiteUrl.setNormal(result);
     }
