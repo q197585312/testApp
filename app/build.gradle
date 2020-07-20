@@ -337,12 +337,12 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.55'
             }
-            sahabatcasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sahabatcasino"]
-                buildConfigField "String", "Labelid", '"47"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '3.55'
-            }
+//            sahabatcasino {
+//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sahabatcasino"]
+//                buildConfigField "String", "Labelid", '"47"'
+//                applicationId 'gaming178.com.baccaratgame'
+//                versionName '3.55'
+//            }
             sentosa88 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sentosa88"]
                 buildConfigField "String", "Labelid", '"58"'
