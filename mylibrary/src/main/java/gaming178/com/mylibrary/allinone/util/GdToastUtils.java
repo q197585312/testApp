@@ -16,10 +16,10 @@ import gaming178.com.mylibrary.R;
  * Created by Administrator on 2016/9/20.
  */
 
-public class ToastUtils {
+public class GdToastUtils {
     public  static void showBetSuccessToast(Context context, String msg){
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.def_toast, null);
+        View view = inflater.inflate(R.layout.gd_def_toast, null);
         TextView chapterNameTV = (TextView) view.findViewById(R.id.chapterName);
         chapterNameTV.setText(msg);
         final Toast toast = new Toast(context);

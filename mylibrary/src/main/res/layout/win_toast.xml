@@ -10,7 +10,7 @@
         android:layout_height="110dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@mipmap/win_bg"
+        android:background="@mipmap/gd_win_bg"
         android:orientation="vertical"
         android:paddingBottom="10dp"
         android:paddingTop="10dp">

@@ -483,6 +483,8 @@
 
         <include layout="@layout/gd_good_road_bg"></include>
 
+        <include layout="@layout/gd_table_close_bg"></include>
+
         <include
             layout="@layout/gd_popupwindow_limit_select_layout"
             android:visibility="gone" />

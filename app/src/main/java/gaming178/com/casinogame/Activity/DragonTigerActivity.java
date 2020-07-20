@@ -72,7 +72,7 @@ import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
-import gaming178.com.mylibrary.allinone.util.ToastUtils;
+import gaming178.com.mylibrary.allinone.util.GdToastUtils;
 import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.base.AdapterViewContent;
 import gaming178.com.mylibrary.base.ItemCLickImp;
@@ -954,12 +954,12 @@ public class DragonTigerActivity extends BaseActivity {
                 betTimeCount++;
                 if (betTimeCount == 6)//跳转到大厅
                 {
-                    ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.show_back_lobby));
+                    GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.show_back_lobby));
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
                 } else if (betTimeCount == 4) {
-                    ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
+                    GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 16, componentFront, mContext, mAppViewModel.getFrontVolume());
@@ -1770,7 +1770,7 @@ public class DragonTigerActivity extends BaseActivity {
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()), Color.RED);
                         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() > 0) {
                             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
-                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
+                            GdToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
                         }
 
                     }
@@ -1781,7 +1781,7 @@ public class DragonTigerActivity extends BaseActivity {
                 case HandlerCode.SHOW_BET_SUCCESS:
                     dismissBlockDialog();
                     initBetInformation(type);
-                    ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney());
+                    GdToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney());
                     serviceTime.setText(mAppViewModel.covertBalance((int) mAppViewModel.getUser().getBalance()));
                     break;
                 case HandlerCode.SHOW_BET_MONEY:
@@ -2263,7 +2263,7 @@ public class DragonTigerActivity extends BaseActivity {
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)
             return;
         if (mAppViewModel.getUser().getBalance() <= 0) {
-            ToastUtils.showToast(mContext, getString(R.string.Insufficient));
+            GdToastUtils.showToast(mContext, getString(R.string.Insufficient));
             return;
         }
         if (listBetDetail.size() > 0) {
@@ -3521,7 +3521,7 @@ public class DragonTigerActivity extends BaseActivity {
         if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)
             return;
         if (mAppViewModel.getUser().getBalance() <= 0) {
-            ToastUtils.showToast(mContext, getString(R.string.Insufficient));
+            GdToastUtils.showToast(mContext, getString(R.string.Insufficient));
             return;
         }
         if (listBetDetail.size() > 0) {

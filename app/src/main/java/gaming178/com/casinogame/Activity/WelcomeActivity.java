@@ -58,7 +58,7 @@ import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.DecimalUtils;
 import gaming178.com.mylibrary.allinone.util.MD5;
 import gaming178.com.mylibrary.allinone.util.StringUtils;
-import gaming178.com.mylibrary.allinone.util.ToastUtils;
+import gaming178.com.mylibrary.allinone.util.GdToastUtils;
 import gaming178.com.mylibrary.allinone.util.UpdateManager;
 import gaming178.com.mylibrary.base.RequestBean;
 import gaming178.com.mylibrary.base.quick.QuickCookieThreadHandler;
@@ -1152,7 +1152,7 @@ public class WelcomeActivity extends BaseActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     showDownload(updateUrl);
                 } else {
-                    ToastUtils.showToast(this, getString(R.string.no_permission));
+                    GdToastUtils.showToast(this, getString(R.string.no_permission));
                     //  引导用户手动开启安装权限
                 }
                 break;
@@ -1161,7 +1161,7 @@ public class WelcomeActivity extends BaseActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     AppTool.installApk(mContext, loadFile, BuildConfig.APPLICATION_ID);
                 } else {
-                    ToastUtils.showToast(this, getString(R.string.open_install));
+                    GdToastUtils.showToast(this, getString(R.string.open_install));
                     //  引导用户手动开启安装权限
                     Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
                     startActivityForResult(intent, INSTALL_CODE);

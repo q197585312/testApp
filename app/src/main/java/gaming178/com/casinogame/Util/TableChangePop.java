@@ -25,6 +25,7 @@ import gaming178.com.casinogame.Activity.entity.RouletteTableChangeViewBean;
 import gaming178.com.casinogame.Activity.entity.SicboTableChangeViewBean;
 import gaming178.com.casinogame.Activity.entity.TableTimerBean;
 import gaming178.com.casinogame.Bean.GameMenuItem;
+import gaming178.com.casinogame.Bean.TableMaintenanceBean;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.AppModel;
@@ -44,6 +45,7 @@ public class TableChangePop extends BasePopupWindow {
     private List<TableTimerBean> list;
     private TextView tv_b, tv_r, tv_s, tv_d;
     List<TextView> hereList = new ArrayList<>();
+    List<TableMaintenanceBean> tableMaintenanceList = new ArrayList<>();
     private AppModel mAppViewModel;
 
     public TableChangePop(Context context, View v, int width, int height) {
@@ -195,9 +197,10 @@ public class TableChangePop extends BasePopupWindow {
                                 baseActivity.getHandler().post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (list.size() == 9) {
+                                        if (list.size() == 10) {
                                             updateTimer(type, timer);
                                         }
+                                        updateTableMaintenance();
                                     }
                                 });
 
@@ -218,6 +221,39 @@ public class TableChangePop extends BasePopupWindow {
     protected void onCloose() {
         super.onCloose();
         isNeedRefenshTimer = false;
+    }
+
+    private void updateTableMaintenance() {
+        for (int i = 0; i < tableMaintenanceList.size(); i++) {
+            TableMaintenanceBean tableMaintenanceBean = tableMaintenanceList.get(i);
+            int tableId = tableMaintenanceBean.getTableId();
+            View view = tableMaintenanceBean.getView();
+            if (tableId == 5) {
+                if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
+                    view.setVisibility(View.VISIBLE);
+                } else {
+                    view.setVisibility(View.GONE);
+                }
+            } else if (tableId == 21) {
+                if (mAppViewModel.getRoulette01().getStatus() != 1) {
+                    view.setVisibility(View.VISIBLE);
+                } else {
+                    view.setVisibility(View.GONE);
+                }
+            } else if (tableId == 31) {
+                if (mAppViewModel.getSicbo01().getStatus() != 1) {
+                    view.setVisibility(View.VISIBLE);
+                } else {
+                    view.setVisibility(View.GONE);
+                }
+            } else {
+                if (mAppViewModel.getBaccarat(tableId).getStatus() != 1) {
+                    view.setVisibility(View.VISIBLE);
+                } else {
+                    view.setVisibility(View.GONE);
+                }
+            }
+        }
     }
 
     private void updateTimer(String type, String timer) {
@@ -306,11 +342,23 @@ public class TableChangePop extends BasePopupWindow {
     RouletteTableChangeViewBean rouletteTableChangeViewBean;
     SicboTableChangeViewBean sicboTableChangeViewBean;
 
+    private boolean isHaveThisTableId(String tableId) {
+        for (int i = 0; i < list.size(); i++) {
+            String type = list.get(i).getType();
+            if (type.equals(tableId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void setTablesData(AppModel mAppViewModel, ArrayList<GameMenuItem> tables) {
         this.mAppViewModel = mAppViewModel;
         isNeedRefenshTimer = false;
         list.clear();
+        hereList.clear();
+        tableMaintenanceList.clear();
         this.tables = tables;
         parent.removeAllViews();
         LinearLayout parentLine = null;
@@ -329,7 +377,7 @@ public class TableChangePop extends BasePopupWindow {
                 GridLayout layout = (GridLayout) aB1.findViewById(R.id.gd__baccarat_gridlayout2);
 
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
-                if (list.size() < 9) {
+                if (!isHaveThisTableId(item.getDrawableRes() + "")) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
                 TextView tv_baccarat_shoe_number = (TextView) aB1.findViewById(R.id.gd__text_shoe_game_number);
@@ -347,6 +395,8 @@ public class TableChangePop extends BasePopupWindow {
                 View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
                 TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
+                View table_close_bg = aB1.findViewById(R.id.gd_view_table_maintenance);
+                tableMaintenanceList.add(new TableMaintenanceBean(item.getDrawableRes(), table_close_bg));
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
@@ -361,7 +411,7 @@ public class TableChangePop extends BasePopupWindow {
             } else if (item.getDrawableRes() == 21) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_roultette, null);
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
-                if (list.size() < 9) {
+                if (!isHaveThisTableId(item.getDrawableRes() + "")) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
                 RecyclerView layout = (RecyclerView) aB1.findViewById(R.id.gd__gridView1);
@@ -377,6 +427,8 @@ public class TableChangePop extends BasePopupWindow {
                 View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
                 TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
+                View table_close_bg = aB1.findViewById(R.id.gd_view_table_maintenance);
+                tableMaintenanceList.add(new TableMaintenanceBean(item.getDrawableRes(), table_close_bg));
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
@@ -430,7 +482,7 @@ public class TableChangePop extends BasePopupWindow {
             } else if (item.getDrawableRes() == 31) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_scibao, null);
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
-                if (list.size() < 9) {
+                if (!isHaveThisTableId(item.getDrawableRes() + "")) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
                 textView = (TextView) aB1.findViewById(R.id.gd__tv_table_title);
@@ -444,6 +496,8 @@ public class TableChangePop extends BasePopupWindow {
                 View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
                 TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
+                View table_close_bg = aB1.findViewById(R.id.gd_view_table_maintenance);
+                tableMaintenanceList.add(new TableMaintenanceBean(item.getDrawableRes(), table_close_bg));
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
@@ -460,7 +514,7 @@ public class TableChangePop extends BasePopupWindow {
             } else if (item.getDrawableRes() == 5) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_brccarat, null);
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
-                if (list.size() < 9) {
+                if (!isHaveThisTableId(item.getDrawableRes() + "")) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
                 }
                 textView = (TextView) aB1.findViewById(R.id.gd__tv_table_title);
@@ -486,6 +540,8 @@ public class TableChangePop extends BasePopupWindow {
                 View view_you_here = aB1.findViewById(R.id.gd__view_you_here);
                 TextView tv_here = view_you_here.findViewById(R.id.gd__tv_here);
                 hereList.add(tv_here);
+                View table_close_bg = aB1.findViewById(R.id.gd_view_table_maintenance);
+                tableMaintenanceList.add(new TableMaintenanceBean(item.getDrawableRes(), table_close_bg));
                 if (mAppViewModel.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }

@@ -50,6 +50,8 @@ public class LobbyBaccaratActivity extends BaseActivity {
     GridLayout baccarat_head_road1;
     @BindView(R2.id.gd__ll_good_road_parent)
     View ll_good_road_parent1;
+    @BindView(R2.id.gd_view_table_maintenance)
+    View gd_view_table_maintenance1;
     @BindView(R2.id.gd__tv_good_road_name)
     TextView tv_good_road_name1;
     //    @BindView(R2.id.gd__baccarat_background_gridlayout1)
@@ -69,6 +71,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     private GridLayout baccarat_smalleyes_road2;
     private GridLayout baccarat_roach_road2;
     View ll_good_road_parent2;
+    View gd_view_table_maintenance2;
     TextView tv_good_road_name2;
 
     private GridLayout baccarat_head_road3;
@@ -77,6 +80,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     private GridLayout baccarat_smalleyes_road3;
     private GridLayout baccarat_roach_road3;
     View ll_good_road_parent3;
+    View gd_view_table_maintenance3;
     TextView tv_good_road_name3;
 
     private GridLayout baccarat_head_road61;
@@ -85,6 +89,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     private GridLayout baccarat_smalleyes_road61;
     private GridLayout baccarat_roach_road61;
     View ll_good_road_parent61;
+    View gd_view_table_maintenance61;
     TextView tv_good_road_name61;
 
     private GridLayout baccarat_head_road62;
@@ -93,6 +98,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     private GridLayout baccarat_smalleyes_road62;
     private GridLayout baccarat_roach_road62;
     View ll_good_road_parent62;
+    View gd_view_table_maintenance62;
     TextView tv_good_road_name62;
 
     private GridLayout baccarat_head_road63;
@@ -101,6 +107,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     private GridLayout baccarat_smalleyes_road63;
     private GridLayout baccarat_roach_road63;
     View ll_good_road_parent63;
+    View gd_view_table_maintenance63;
     TextView tv_good_road_name63;
 
     private GridBackgroundView baccarat_background_head_road1;
@@ -228,6 +235,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     private GridLayout baccarat_smalleyes_road71;
     private GridLayout baccarat_roach_road71;
     View ll_good_road_parent71;
+    View gd_view_table_maintenance71;
     TextView tv_good_road_name71;
     private View layout71;
     private View top_v;
@@ -588,6 +596,21 @@ public class LobbyBaccaratActivity extends BaseActivity {
     public void updateTimer() {
         updateTimer(1, 3);
         updateTimer(61, 63);
+        updateTableMaintenance(1, gd_view_table_maintenance1);
+        updateTableMaintenance(2, gd_view_table_maintenance2);
+        updateTableMaintenance(3, gd_view_table_maintenance3);
+        updateTableMaintenance(61, gd_view_table_maintenance61);
+        updateTableMaintenance(62, gd_view_table_maintenance62);
+        updateTableMaintenance(63, gd_view_table_maintenance63);
+        updateTableMaintenance(71, gd_view_table_maintenance71);
+    }
+
+    private void updateTableMaintenance(int tableId, View viewMaintenance) {
+        if (mAppViewModel.getBaccarat(tableId).getStatus() != 1) {
+            viewMaintenance.setVisibility(View.VISIBLE);
+        } else {
+            viewMaintenance.setVisibility(View.GONE);
+        }
     }
 
     public void updateInterface(int start, int end) {
@@ -701,6 +724,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         Glide.with(mContext).load(WebSiteUrl.DownLoadPicture + "baccarat_girl4.png").skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).into(baccarat_head_iv71);
         ll_good_road_parent71 = layout71.findViewById(R.id.gd__ll_good_road_parent);
+        gd_view_table_maintenance71 = layout71.findViewById(R.id.gd_view_table_maintenance);
         tv_good_road_name71 = layout71.findViewById(R.id.gd__tv_good_road_name);
         baccarat_head_road71 = (GridLayout) layout71.findViewById(R.id.gd__baccarat_gridlayout1);
         baccarat_big_road71 = (GridLayout) layout71.findViewById(R.id.gd__baccarat_gridlayout2);
@@ -854,6 +878,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         baccarat_roach_road1 = (GridLayout) fl5.findViewById(R.id.gd__baccarat_gridlayout3);
 
         ll_good_road_parent2 = layout2.findViewById(R.id.gd__ll_good_road_parent);
+        gd_view_table_maintenance2 = layout2.findViewById(R.id.gd_view_table_maintenance);
         tv_good_road_name2 = layout2.findViewById(R.id.gd__tv_good_road_name);
         baccarat_head_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout1);
         baccarat_big_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout2);
@@ -862,6 +887,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         baccarat_roach_road2 = (GridLayout) layout2.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
         ll_good_road_parent3 = layout3.findViewById(R.id.gd__ll_good_road_parent);
+        gd_view_table_maintenance3 = layout3.findViewById(R.id.gd_view_table_maintenance);
         tv_good_road_name3 = layout3.findViewById(R.id.gd__tv_good_road_name);
         baccarat_head_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout1);
         baccarat_big_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout2);
@@ -870,6 +896,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         baccarat_roach_road3 = (GridLayout) layout3.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
         ll_good_road_parent61 = layout61.findViewById(R.id.gd__ll_good_road_parent);
+        gd_view_table_maintenance61 = layout61.findViewById(R.id.gd_view_table_maintenance);
         tv_good_road_name61 = layout61.findViewById(R.id.gd__tv_good_road_name);
         baccarat_head_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout1);
         baccarat_big_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout2);
@@ -878,6 +905,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         baccarat_roach_road61 = (GridLayout) layout61.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
         ll_good_road_parent62 = layout62.findViewById(R.id.gd__ll_good_road_parent);
+        gd_view_table_maintenance62 = layout62.findViewById(R.id.gd_view_table_maintenance);
         tv_good_road_name62 = layout62.findViewById(R.id.gd__tv_good_road_name);
         baccarat_head_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout1);
         baccarat_big_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout2);
@@ -886,6 +914,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         baccarat_roach_road62 = (GridLayout) layout62.findViewById(R.id.gd__baccarat_gridlayout5).findViewById(R.id.gd__baccarat_gridlayout3);
 
         ll_good_road_parent63 = layout63.findViewById(R.id.gd__ll_good_road_parent);
+        gd_view_table_maintenance63 = layout63.findViewById(R.id.gd_view_table_maintenance);
         tv_good_road_name63 = layout63.findViewById(R.id.gd__tv_good_road_name);
         baccarat_head_road63 = (GridLayout) layout63.findViewById(R.id.gd__baccarat_gridlayout1);
         baccarat_big_road63 = (GridLayout) layout63.findViewById(R.id.gd__baccarat_gridlayout2);

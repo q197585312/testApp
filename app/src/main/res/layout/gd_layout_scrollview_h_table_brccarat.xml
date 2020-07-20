@@ -236,6 +236,12 @@
         <include layout="@layout/gd_good_road_bg"></include>
 
         <include
+            layout="@layout/gd_table_close_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"></include>
+
+        <include
             layout="@layout/gd_you_here_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

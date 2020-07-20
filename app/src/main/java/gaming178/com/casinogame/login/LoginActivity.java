@@ -40,7 +40,7 @@ import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.allinone.util.StringUtils;
-import gaming178.com.mylibrary.allinone.util.ToastUtils;
+import gaming178.com.mylibrary.allinone.util.GdToastUtils;
 import gaming178.com.mylibrary.lib.util.LogUtil;
 
 /**
@@ -143,7 +143,7 @@ public class LoginActivity extends BaseActivity {
                     tv_password.post(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtils.showToast(mContext, "no agent !");
+                            GdToastUtils.showToast(mContext, "no agent !");
                         }
                     });
                 }
