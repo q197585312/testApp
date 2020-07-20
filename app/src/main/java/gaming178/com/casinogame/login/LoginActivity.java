@@ -223,7 +223,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.gd_activity_login_gd;
+        return R.layout.gd_activity_login;
     }
 
     public void clickLogin(View v) {
