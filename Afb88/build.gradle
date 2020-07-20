@@ -20,8 +20,8 @@ android {
     buildToolsVersion = rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
         applicationId "com.nanyang.app"
-        minSdkVersion 18
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
         buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config

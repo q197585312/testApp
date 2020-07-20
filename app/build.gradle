@@ -33,7 +33,7 @@ android {
         if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
             applicationId 'gaming178.com.baccaratgame'
         }
-        minSdkVersion 18
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
         versionName '2.40'
@@ -104,7 +104,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "cahaya"]
                 buildConfigField "String", "Labelid", '"97"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.55'
+                versionName '3.51'
             }
             casino188 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casino188"]
