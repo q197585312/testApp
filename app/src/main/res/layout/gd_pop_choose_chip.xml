@@ -44,7 +44,7 @@
             android:layout_marginLeft="40dp"
             android:background="@drawable/gd_bg_sure"
             android:gravity="center"
-            android:text="@string/sure"
+            android:text="@string/confirm"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="16sp"></TextView>

@@ -3589,17 +3589,15 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void startPlayVideo() {
-        if (mPreview == null) {
-            mPreview = findViewById(R.id.gd__surface);
-            videoHelper = new VideoHelper(mContext, mPreview) {
-                @Override
-                public void doVideoFix() {
-                    super.doVideoFix();
-                    if (findViewById(R.id.gd__fl_baccarat_bg) != null)
-                        findViewById(R.id.gd__fl_baccarat_bg).setVisibility(View.GONE);
-                }
-            };
-        }
+        mPreview = findViewById(R.id.gd__surface);
+        videoHelper = new VideoHelper(mContext, mPreview) {
+            @Override
+            public void doVideoFix() {
+                super.doVideoFix();
+                if (findViewById(R.id.gd__fl_baccarat_bg) != null)
+                    findViewById(R.id.gd__fl_baccarat_bg).setVisibility(View.GONE);
+            }
+        };
         String localPath = "/myvideo1";
         if (mAppViewModel.getTableId() > 3) {
             localPath = "/b" + mAppViewModel.getTableId() + "1";

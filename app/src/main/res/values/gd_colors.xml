@@ -14,7 +14,7 @@
     <color name="green_table">#1C5091</color>
     <color name="blue_table_bg">#FF009B8D</color>
     <color name="blue_table_bg_light">#9983C9C5</color>
-    <color name="blue_green_bg">#17631F</color>
+    <color name="blue_green_bg">#447B42</color>
 
     <color name="baccarat_dragon_tiger_bg">#2f9492</color>
     <color name="light_white">#FFE2EDEB</color>
@@ -25,9 +25,9 @@
     <color name="green500_trans">#66000000</color>
     <color name="afb88_home_color">#0d5924</color>
     <color name="green_table_color">#17631F</color>
-    <color name="green_table_color_new">#17631F</color>
+    <color name="green_table_color_new">#447B42</color>
     <color name="timer_color">#f4cc7f</color>
-    <color name="table_color">#20443D</color>
+    <color name="table_color">#447B42</color>
     <color name="colorAccent1">#36D33A</color>
     <color name="colorAccent2">#ABABAB</color>
     <color name="yellow_gold2">#ffc107</color>
