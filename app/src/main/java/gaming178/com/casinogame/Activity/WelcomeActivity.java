@@ -83,7 +83,7 @@ public class WelcomeActivity extends BaseActivity {
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         String firstLg;
-        if (!BuildConfig.FLAVOR.isEmpty()&&!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.isEmpty() && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             firstLg = "my";
         } else {
             firstLg = "en";
@@ -96,9 +96,9 @@ public class WelcomeActivity extends BaseActivity {
         flWelcome = (FrameLayout) findViewById(R.id.gd__fl_welcome);
         llLogin = (LinearLayout) findViewById(R.id.gd__ll_login);
         bgImg = (ImageView) findViewById(R.id.gd__welcome_img);
-        if (!BuildConfig.FLAVOR.isEmpty()&&BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.isEmpty() && BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             bgImg.setImageResource(R.mipmap.gd88_welcome_logo);
-        }else {
+        } else {
             bgImg.setImageResource(R.mipmap.gd_title_logo);
         }
         flWelcome.setVisibility(View.VISIBLE);
@@ -469,14 +469,18 @@ public class WelcomeActivity extends BaseActivity {
                 Intent intent = getIntent();
                 String username = intent.getStringExtra("username").toUpperCase();//转成大写;
                 String password = intent.getStringExtra("password");
-                String language = intent.getStringExtra("language");
+
                 String balance = intent.getStringExtra("balance");
                 String webUrl = intent.getStringExtra("webUrl");
-                String resReturn = httpClient.sendPost(webUrl, "");
+                String host = intent.getStringExtra("host");
+
                 String strRes;
                 mAppViewModel.setCookie("");
-                LogIntervalUtils.logCustomTime(currentTime, "初始化cookie" + WebSiteUrl.INDEX);
-                mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
+                String mainUrl = "https://" + host + "/main.jsp?membername=" + username + "&lang=1";
+
+//http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
+                mAppViewModel.setHttpClient(new HttpClient(webUrl, mAppViewModel.getCookie()));
+
                 if (mAppViewModel.getHttpClient().connect("POST") == false) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
@@ -489,6 +493,7 @@ public class WelcomeActivity extends BaseActivity {
                     e.printStackTrace();
 
                 }
+
                 mAppViewModel.getUser().setName(username);
                 String language1 = "0";
                 String annoucementParams = "lng=" + language1 + "&Usid=" + mAppViewModel.getUser().getName();
@@ -527,15 +532,15 @@ public class WelcomeActivity extends BaseActivity {
                 mAppViewModel.splitTimer(strRes);
                 mAppViewModel.setbLogin(true);
                 mAppViewModel.setbLobby(true);
-                SimpleDateFormat dff = new SimpleDateFormat("MMddHHmmss");
+   /*             SimpleDateFormat dff = new SimpleDateFormat("MMddHHmmss");
                 dff.setTimeZone(TimeZone.getTimeZone("GMT+08"));
                 String dateStr = dff.format(new Date());
                 String sbUrl = "http://112-alias-api.gd88.org/player/afb1188/GD88WebService?wsdl";
                 String sbParam = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:maw=\"http://gd88/\"><soapenv:Header/><soapenv:Body><maw:memDeposit><!--Optional:--><strUsername>" + username + "</strUsername><Api_key>" + "j0h93zNB7VDGn4TJEMbnm8WfpOuLMDwl" + "</Api_key><strPwd>" + password + "</strPwd><addCredit>" + balance + "</addCredit><sIP>" + AppTool.getLocalIP() + "</sIP><Serial>" + dateStr + "</Serial></maw:memDeposit></soapenv:Body></soapenv:Envelope>";
                 LogIntervalUtils.logCustomTime(currentTime, "开始" + sbUrl);
-                String depositStr = httpClient.sendPostSoap(sbUrl, sbParam);
+                String depositStr = httpClient.sendPostSoap(sbUrl, sbParam);*/
                 handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
-                LogIntervalUtils.logCustomTime(currentTime, "" + sbUrl + "完成进入游戏------");
+                LogIntervalUtils.logCustomTime(currentTime, "LOGIN_SECCESS" + "完成进入游戏------");
             }
         }.start();
     }
@@ -783,7 +788,7 @@ public class WelcomeActivity extends BaseActivity {
                     dismissBlockDialog();
 
                     AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
-                    AppTool.setAppLanguage(mContext,AppTool.getAppLanguage(mContext));
+                    AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
                     finish();
                     break;
                 case HandlerCode.SHOW_BACCARACT_FAIL:
@@ -895,7 +900,7 @@ public class WelcomeActivity extends BaseActivity {
     private Gson gson = new Gson();
 
     private void hasNewVersion() {
-        if(BuildConfig.FLAVOR.isEmpty()) {
+        if (BuildConfig.FLAVOR.isEmpty()) {
             goMain();
             return;
         }
@@ -971,7 +976,7 @@ public class WelcomeActivity extends BaseActivity {
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
         String action = it.getAction();
-        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88")) {
+        if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88")) {
             if (false)
                 testIntent();
             else {
@@ -992,7 +997,7 @@ public class WelcomeActivity extends BaseActivity {
                         @Override
                         public void run() {
                             AppTool.activiyJump(WelcomeActivity.this, LoginActivity.class);
-                            AppTool.setAppLanguage(mContext,AppTool.getAppLanguage(mContext));
+                            AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
                             finish();
                         }
                     }, 2000);
@@ -1003,7 +1008,7 @@ public class WelcomeActivity extends BaseActivity {
                 @Override
                 public void run() {
                     AppTool.activiyJump(WelcomeActivity.this, LoginActivity.class);
-                    AppTool.setAppLanguage(mContext,AppTool.getAppLanguage(mContext));
+                    AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
                     finish();
                 }
             }, 2000);
@@ -1025,7 +1030,7 @@ public class WelcomeActivity extends BaseActivity {
     public void goLobby() {
         if (WebSiteUrl.GameType == 0) {
             AppTool.activiyJump(WelcomeActivity.this, LobbyActivity.class);
-            AppTool.setAppLanguage(mContext,AppTool.getAppLanguage(mContext));
+            AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
             finish();
         } else {
 //            showBlockDialog();

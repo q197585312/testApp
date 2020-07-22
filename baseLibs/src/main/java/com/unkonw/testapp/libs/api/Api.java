@@ -84,6 +84,7 @@ public class Api {
             return chain.proceed(request);
         }
     };
+
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
             // log拦截器  打印所有的log
@@ -101,13 +102,12 @@ public class Api {
 //                    .addInterceptor(mInterceptor)
                     .cache(cache)
                     .build();*/
-         client = new OkHttpClient.Builder()
+            client = new OkHttpClient.Builder()
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
-                    .retryOnConnectionFailure(true)
                     .addNetworkInterceptor(interceptor)
-                    .cookieJar( CookieManger.getInstance())
+                    .cookieJar(CookieManger.getInstance())
                     .cache(cache)
 //                    .addInterceptor( mInterceptor)
                     .build();

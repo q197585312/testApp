@@ -32,6 +32,7 @@ import retrofit2.http.Url;
 
 
 /**
+ *
  */
 public interface ApiService {
 
@@ -76,14 +77,23 @@ public interface ApiService {
     @Headers({"Content-Type: application/json", "Accept: application/json"})//需要添加头
     @POST
     Flowable<String> doPostJson(@Url String url, @Body RequestBody info);
+
     @GET
     Flowable<String> getData(@Url String url);
+
     @FormUrlEncoded
     @POST
     Flowable<ResultBean> doHuayMap(@Url String url, @FieldMap Map<String, String> info);
 
-
-
+    /*                conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows 2000)");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");*/
+    @Headers({
+            "Accept: text/html,application/xhtml+xml,application/xml",
+            "Accept-Encoding: gzip, deflate",
+            "Accept-Language: zh-CN",
+            "Connection: keep-alive",
+            "Host: wsapp.afb1188.net"
+    })
     @GET
     Flowable<Response<String>> getResponse(@Url String url);
 
