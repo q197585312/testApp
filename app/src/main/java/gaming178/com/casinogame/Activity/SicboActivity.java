@@ -5504,8 +5504,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 tv_odd_even.setBackgroundResource(R.drawable.rectangle_sicbo_blue);
                 tv_odd_even.setText(getString(R.string.gd_O));
             }
+            fl_sicbo_result.setVisibility(View.VISIBLE);
+        } else {
+            fl_sicbo_result.setVisibility(View.GONE);
         }
-        fl_sicbo_result.setVisibility(View.VISIBLE);
+
     }
 
     //重新选择了筹码，重新开始算下注筹码
