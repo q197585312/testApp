@@ -6,10 +6,10 @@
 
     <LinearLayout
         android:id="@+id/lin_person"
-        android:background="@color/yellow_white_bg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/yellow_white_bg"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -24,12 +24,12 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
-                android:textAllCaps="true"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="left|center_vertical"
                 android:text="User Name"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -53,7 +53,6 @@
                 <CheckBox
                     android:id="@+id/cb_choice"
                     android:layout_width="20dp"
-                    android:clickable="false"
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -61,6 +60,7 @@
                     android:background="@drawable/setting_checkbox_style"
                     android:button="@null"
                     android:checked="true"
+                    android:clickable="false"
                     android:gravity="right|center_vertical"
                     android:visibility="gone" />
 
@@ -72,59 +72,12 @@
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <ImageView
-                        android:scaleType="fitXY"
-                        android:id="@+id/img_chip_1"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:padding="3.5dp"
-                        android:src="@mipmap/chips1" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_chips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                    <ImageView
-                        android:scaleType="fitXY"
-                        android:id="@+id/img_chip_2"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        android:padding="3.5dp"
-                        android:src="@mipmap/chips1" />
 
-                    <ImageView
-                        android:scaleType="fitXY"
-                        android:id="@+id/img_chip_3"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        android:padding="3.5dp"
-                        android:src="@mipmap/chips1" />
-
-                    <ImageView
-                        android:scaleType="fitXY"
-                        android:id="@+id/img_chip_4"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        android:padding="3.5dp"
-                        android:src="@mipmap/chips1" />
-
-                    <ImageView
-                        android:scaleType="fitXY"
-                        android:id="@+id/img_chip_5"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        android:padding="3.5dp"
-                        android:src="@mipmap/chips1" />
-
-                    <ImageView
-                        android:scaleType="fitXY"
-                        android:id="@+id/img_chip_6"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:padding="3.5dp"
-                        android:src="@mipmap/chips1" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

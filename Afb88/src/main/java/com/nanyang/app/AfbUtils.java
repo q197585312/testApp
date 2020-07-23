@@ -1007,45 +1007,6 @@ public class AfbUtils {
         view.setLayoutParams(linearParams);
     }
 
-    /**
-     * 判断程序是否在前台运行（当前运行的程序）
-     */
-    public static boolean isRunForeground(Context context) {
-        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        String packageName = context.getPackageName();
-        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
-                .getRunningAppProcesses();
-        if (appProcesses == null)
-            return false;
-        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
-            if (appProcess.processName.equals(packageName)
-                    && appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                return true;// 程序运行在前台
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 判断程序是否在后台运行
-     */
-    public static boolean isRunBackground(Context context) {
-        ActivityManager activityManager = (ActivityManager) context
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
-                .getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
-            if (appProcess.processName.equals(context.getPackageName())) {
-                if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_BACKGROUND) {
-                    // 表明程序在后台运行
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
 
     public static List<MenuItemInfo<String>> getMarketsList(Context context) {
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
@@ -1100,6 +1061,7 @@ public class AfbUtils {
         chipStatusMap.put("50000", false);
         chipStatusMap.put("100000", false);
         chipStatusMap.put("max", false);
+        chipStatusMap.put("min", false);
         if (!StringUtils.isNull(chips)) {
             String[] split = chips.split(",");
             for (String s : split) {

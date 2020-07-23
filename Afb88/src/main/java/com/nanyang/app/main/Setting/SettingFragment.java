@@ -43,6 +43,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import gaming178.com.casinogame.Bean.ChipBean;
 
 
 /**
@@ -54,6 +55,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     RecyclerView rcContent;
     BaseToolbarActivity aty;
     BaseRecyclerAdapter<SettingInfoBean> adapter;
+
     private String quickAmount;
 
     @Override
@@ -75,12 +77,8 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 TextView tvChoiceType = holder.getView(R.id.tv_choice_type);
                 CheckBox cbChoice = holder.getView(R.id.cb_choice);
                 LinearLayout llChip = holder.getView(R.id.ll_chip);
-                ImageView imgChip1 = holder.getView(R.id.img_chip_1);
-                ImageView imgChip2 = holder.getView(R.id.img_chip_2);
-                ImageView imgChip3 = holder.getView(R.id.img_chip_3);
-                ImageView imgChip4 = holder.getView(R.id.img_chip_4);
-                ImageView imgChip5 = holder.getView(R.id.img_chip_5);
-                ImageView imgChip6 = holder.getView(R.id.img_chip_6);
+                RecyclerView rv_chips = holder.getView(R.id.rv_chips);
+
                 View vLine = holder.getView(R.id.v_line);
                 tvName.setText(item.getName());
                 tvChoiceType.setText(item.getChoiceType());
@@ -97,68 +95,13 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 } else {
                     tvChoiceType.setVisibility(View.GONE);
                     cbChoice.setVisibility(View.GONE);
-                    llChip.setVisibility(View.VISIBLE);
-                    int chip1 = item.getchip1();
-                    if (chip1 == 0) {
-                        imgChip1.setVisibility(View.GONE);
-                    } else {
-                        imgChip1.setVisibility(View.VISIBLE);
-                        imgChip1.setImageResource(item.getchip1());
-                        imgChip1.setTag(item.getChipSize1());
-                        setChipsBg(imgChip1, item.getChipSize1());
+                    if (item.chipBeans != null && item.chipBeans.size() > 0) {
+                        llChip.setVisibility(View.VISIBLE);
+                        BaseRecyclerAdapter<ChipBean> chipBeanBaseRecyclerAdapter = initChipAdapter();
+                        rv_chips.setAdapter(chipBeanBaseRecyclerAdapter);
+                        rv_chips.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+                        chipBeanBaseRecyclerAdapter.addAllAndClear(item.chipBeans);
                     }
-                    imgChip2.setImageResource(item.getchip2());
-                    imgChip2.setTag(item.getChipSize2());
-                    imgChip3.setImageResource(item.getchip3());
-                    imgChip3.setTag(item.getChipSize3());
-                    imgChip4.setImageResource(item.getchip4());
-                    imgChip4.setTag(item.getChipSize4());
-                    imgChip5.setImageResource(item.getchip5());
-                    imgChip5.setTag(item.getChipSize5());
-                    imgChip6.setImageResource(item.getChip6());
-                    imgChip6.setTag(item.getChipSize6());
-
-                    setChipsBg(imgChip2, item.getChipSize2());
-                    setChipsBg(imgChip3, item.getChipSize3());
-                    setChipsBg(imgChip4, item.getChipSize4());
-                    setChipsBg(imgChip5, item.getChipSize5());
-                    setChipsBg(imgChip6, item.getChipSize6());
-                    imgChip1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            chipClick(v);
-                        }
-                    });
-                    imgChip2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            chipClick(v);
-                        }
-                    });
-                    imgChip3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            chipClick(v);
-                        }
-                    });
-                    imgChip4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            chipClick(v);
-                        }
-                    });
-                    imgChip5.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            chipClick(v);
-                        }
-                    });
-                    imgChip6.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            chipClick(v);
-                        }
-                    });
                 }
                 if (position == 2 || position == 3 || position == 4 || position == 5) {
                     vLine.setVisibility(View.VISIBLE);
@@ -349,8 +292,33 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 }
             }
         });
+
+
         initSetData();
 
+    }
+
+    private BaseRecyclerAdapter<ChipBean> initChipAdapter() {
+        BaseRecyclerAdapter<ChipBean> adapterChip = new BaseRecyclerAdapter<ChipBean>(mContext, new ArrayList<ChipBean>(), R.layout.item_setting_chip) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, ChipBean item) {
+                ImageView view = holder.getView(R.id.img_chip);
+                view.setImageResource(item.getDrawableRes());
+                Boolean finalStatus = AfbUtils.getChipStatusMap().get(item.getName());
+                if (finalStatus != null && finalStatus) {
+                    view.setBackgroundResource(R.drawable.shape_chip);
+                } else {
+                    view.setBackgroundResource(0);
+                }
+            }
+        };
+        adapterChip.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<ChipBean>() {
+            @Override
+            public void onItemClick(View view, ChipBean item, int position) {
+                chipClick(item,adapterChip);
+            }
+        });
+        return adapterChip;
     }
 
     @Override
@@ -374,31 +342,37 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         LanguageHelper helper = new LanguageHelper(getBaseActivity());
         quickAmount = data.getAccamount() + "";
         List<SettingInfoBean> beanList = new ArrayList<>();
-        SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), getString(helper.getLanguageItem().getText()), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), getString(AfbUtils.getOddsTypeByType(mContext, data.getAccType(), ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText()), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), getString(R.string.customise), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting()/*((BaseToolbarActivity) getBaseActivity()).getApp().getSort()*/ + "", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "", R.mipmap.chips5000, R.mipmap.chips10000, R.mipmap.chips30000, R.mipmap.chips50000, R.mipmap.chips100000, R.mipmap.chips_max);
-        SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", R.mipmap.chips1, R.mipmap.chips10, R.mipmap.chips50, R.mipmap.chips100, R.mipmap.chips500, R.mipmap.chips1000);
-        infoBean11.setChipSize1(5000);
-        infoBean11.setChipSize2(10000);
-        infoBean11.setChipSize3(30000);
-        infoBean11.setChipSize4(50000);
-        infoBean11.setChipSize5(100000);
-        infoBean11.setChipSize6(0);
+        SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName());
+        SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********");
+        SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), getString(helper.getLanguageItem().getText()));
+        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), getString(AfbUtils.getOddsTypeByType(mContext, data.getAccType(), ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText()));
+        SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1");
+        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), getString(R.string.customise));
+        SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1");
+        SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting()/*((BaseToolbarActivity) getBaseActivity()).getApp().getSort()*/ + "");
+        SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType());
+        SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound());
+        List<ChipBean> chipList1 = new ArrayList<>();
+        List<ChipBean> chipList2 = new ArrayList<>();
+        chipList1.add(new ChipBean(R.mipmap.chips5000, "5000", 5000));
+        chipList1.add(new ChipBean(R.mipmap.chips10000, "10000", 10000));
+        chipList1.add(new ChipBean(R.mipmap.chips30000, "30000", 30000));
+        chipList1.add(new ChipBean(R.mipmap.chips50000, "50000", 50000));
+        chipList1.add(new ChipBean(R.mipmap.chips100000, "100000", 100000));
+        chipList1.add(new ChipBean(R.mipmap.chips_max, "max", 0));
 
-        infoBean12.setChipSize1(1);
-        infoBean12.setChipSize2(10);
-        infoBean12.setChipSize3(50);
-        infoBean12.setChipSize4(100);
-        infoBean12.setChipSize5(500);
-        infoBean12.setChipSize6(1000);
+        chipList2.add(new ChipBean(R.mipmap.chips_min, "min", -1));
+        chipList2.add(new ChipBean(R.mipmap.chips1, "1", 1));
+        chipList2.add(new ChipBean(R.mipmap.chips10, "10", 10));
+        chipList2.add(new ChipBean(R.mipmap.chips50, "50", 50));
+        chipList2.add(new ChipBean(R.mipmap.chips100, "100", 100));
+        chipList2.add(new ChipBean(R.mipmap.chips500, "500", 500));
+        chipList2.add(new ChipBean(R.mipmap.chips1000, "1000", 1000));
+
+
+        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "", chipList1);
+        SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", chipList2);
+
 
         beanList.add(infoBean1);
         beanList.add(infoBean2);
@@ -416,29 +390,11 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         return beanList;
     }
 
-    private void chipClick(View v) {
-        ImageView imageView = (ImageView) v;
-        int chipSize = (int) imageView.getTag();
-        String chip = chipSize + "";
-        if (chipSize == 0) {
-            chip = "max";
-        }
+    private void chipClick(ChipBean bean, BaseRecyclerAdapter<ChipBean> adapterChip) {
+        String chip = bean.getName();
         boolean status = AfbUtils.getChipStatusMap().get(chip);
         AfbUtils.getChipStatusMap().put(chip, !status);
-        setChipsBg(imageView, chipSize);
-    }
-
-    private void setChipsBg(ImageView imageView, int chipSize) {
-        String chip = chipSize + "";
-        if (chipSize == 0) {
-            chip = "max";
-        }
-        Boolean finalStatus = AfbUtils.getChipStatusMap().get(chip);
-        if (finalStatus != null && finalStatus) {
-            imageView.setBackgroundResource(R.drawable.shape_chip);
-        } else {
-            imageView.setBackgroundResource(0);
-        }
+        adapterChip.notifyDataSetChanged();
     }
 
     @Override

@@ -409,7 +409,7 @@ public class BetPop {
     List<PopChipBean> allListChip;
 
     private void initBetChip() {
-        allListChip = Arrays.asList(new PopChipBean(R.mipmap.chips_setting, -1, "set"), new PopChipBean(R.mipmap.chips1, 1, "1"), new PopChipBean(R.mipmap.chips10, 10, "10"),
+        allListChip = Arrays.asList(new PopChipBean(R.mipmap.chips_setting, -1, "set"),new PopChipBean(R.mipmap.chips_min, -1, "min"), new PopChipBean(R.mipmap.chips1, 1, "1"), new PopChipBean(R.mipmap.chips10, 10, "10"),
                 new PopChipBean(R.mipmap.chips50, 50, "50"), new PopChipBean(R.mipmap.chips100, 100, "100"), new PopChipBean(R.mipmap.chips500, 500, "500"),
                 new PopChipBean(R.mipmap.chips1000, 1000, "1000"), new PopChipBean(R.mipmap.chips5000, 5000, "5000"), new PopChipBean(R.mipmap.chips10000, 10000, "10000"),
                 new PopChipBean(R.mipmap.chips30000, 30000, "30000"), new PopChipBean(R.mipmap.chips50000, 50000, "50000"), new PopChipBean(R.mipmap.chips100000, 100000, "100000"),
@@ -454,6 +454,9 @@ public class BetPop {
                 if (betChip == 0) {
                     int maxLimit = getMaxLimit();
                     betChip = maxLimit;
+                }else if(betChip == -1){
+                    int maxLimit = getMinLimit();
+                    betChip = maxLimit;
                 }
 
                 betAmount += betChip;
@@ -491,7 +494,31 @@ public class BetPop {
 
         return maxLimit;
     }
+    private int getMinLimit() {
+        int minLimit = (int) Double.parseDouble(afbApplication.getBetAfbList().getMinLimit());
+        if (cursorMap.get(true) == null || StringUtils.isEmpty(cursorMap.get(true).getItemSocId())) {
+            if (list.size() > 1) {
+                minLimit = (int) Double.parseDouble(afbApplication.getBetAfbList().getMinLimit());
+            } else {
+                minLimit = list.get(0).getMinLimit();
+            }
+        } else {
+            for (AfbClickBetBean afbClickBetBean : list) {
+                if (afbClickBetBean.getSocOddsId().equals(cursorMap.get(true).getItemSocId())) {
+                    try {
+                        float min = Float.valueOf(afbClickBetBean.getMinLimit());
+                        return (int) min;
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        return afbClickBetBean.getMinLimit();
+                    }
 
+                }
+            }
+        }
+
+        return minLimit;
+    }
     private PopChipBean findChip(Integer key, List<PopChipBean> allList) {
         for (PopChipBean popChipBean : allList) {
             if (popChipBean.getBetChip() == key) {
