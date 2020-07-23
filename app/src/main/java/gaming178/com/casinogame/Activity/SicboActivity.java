@@ -1977,7 +1977,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     iv_dice_oe_tv.setText(getString(R.string.E));
                 } else {
                     iv_dice_oe_tv.setBackgroundResource(R.drawable.rectangle_sicbo_blue);
-                    iv_dice_oe_tv.setText(getString(R.string.O));
+                    iv_dice_oe_tv.setText(getString(R.string.gd_O));
                 }
             }
         });
@@ -5502,7 +5502,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 tv_odd_even.setText(getString(R.string.E));
             } else {
                 tv_odd_even.setBackgroundResource(R.drawable.rectangle_sicbo_blue);
-                tv_odd_even.setText(getString(R.string.O));
+                tv_odd_even.setText(getString(R.string.gd_O));
             }
         }
         fl_sicbo_result.setVisibility(View.VISIBLE);
@@ -5752,9 +5752,9 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         }
         strData.add(new LiveInfoBean(getString(R.string.B), (int) bigPercentage + "%", ""));
         strData.add(new LiveInfoBean(getString(R.string.S), (int) smallPercentage + "%", ""));
-        strData.add(new LiveInfoBean(getString(R.string.O), (int) oddPercentage + "%", ""));
+        strData.add(new LiveInfoBean(getString(R.string.gd_O), (int) oddPercentage + "%", ""));
         strData.add(new LiveInfoBean(getString(R.string.E), (int) evenPercentage + "%", ""));
-        strData.add(new LiveInfoBean(getString(R.string.other), (int) waidicPercentage + "%", ""));
+        strData.add(new LiveInfoBean(getString(R.string.gd_other), (int) waidicPercentage + "%", ""));
         return strData;
     }
 

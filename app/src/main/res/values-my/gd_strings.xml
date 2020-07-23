@@ -99,7 +99,7 @@
     <string name="S">S</string>
     <string name="T">T</string>
     <string name="B">B</string>
-    <string name="O">O</string>
+    <string name="gd_O">O</string>
     <!--轮盘 -->
     <string name="min_max">Min/Max</string>
     <string name="single">Single</string>

@@ -114,8 +114,8 @@
     <string name="S">小</string>
     <string name="T">圍</string>
     <string name="B">大</string>
-    <string name="O">單</string>
-    <string name="other">其他</string>
+    <string name="gd_O">單</string>
+    <string name="gd_other">其他</string>
     <!--輪盤 -->
     <string name="min_max">最小/最大</string>
     <string name="single">直注</string>

@@ -1854,7 +1854,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="2px"
-                    android:text="@string/O"
+                    android:text="@string/gd_O"
                     android:textColor="@color/blue"
                     android:textSize="30px"
                     android:textStyle="bold" />

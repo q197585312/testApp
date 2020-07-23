@@ -105,7 +105,7 @@
     <string name="S">เล็ก</string>
     <string name="T">ล้อมรอบ</string>
     <string name="B">ยิ่งใหญ่</string>
-    <string name="O">เดียว</string>
+    <string name="gd_O">เดียว</string>
     <!--轮盘 -->
     <string name="min_max">ต่ำสุด/สูงสุด</string>
     <string name="single">บันทึกโดยตรง</string>

@@ -118,8 +118,8 @@
     <string name="S">S</string>
     <string name="T">T</string>
     <string name="B">B</string>
-    <string name="O">O</string>
-    <string name="other">OR</string>
+    <string name="gd_O">O</string>
+    <string name="gd_other">OR</string>
     <!--轮盘 -->
     <string name="min_max">MIN/MAX</string>
     <string name="single">SINGLE</string>

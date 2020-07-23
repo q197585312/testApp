@@ -144,7 +144,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/O"
+            android:text="@string/gd_O"
             android:textSize="10sp"
             android:textColor="@color/white" />
         <TextView

@@ -1728,7 +1728,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         }
         tv_black_percentage.setText(getString(R.string.black_acronym) + "  " + (int) blackPercentage + "%");
         tv_red_percentage.setText(getString(R.string.red_acronym) + "  " + (int) redPercentage + "%");
-        tv_odd_percentage.setText(getString(R.string.O) + "  " + (int) oddPercentage + "%");
+        tv_odd_percentage.setText(getString(R.string.gd_O) + "  " + (int) oddPercentage + "%");
         tv_even_percentage.setText(getString(R.string.E) + "  " + (int) evenPercentage + "%");
         updateHotIceNumber();
 
@@ -6580,7 +6580,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 tv_odd_even.setText(getString(R.string.E));
             } else {
                 tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_black_bg);
-                tv_odd_even.setText(getString(R.string.O));
+                tv_odd_even.setText(getString(R.string.gd_O));
             }
         }
         fl_roulette_result.setVisibility(View.VISIBLE);
