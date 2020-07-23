@@ -73,7 +73,7 @@ android {
     if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
         productFlavors {
             gd88 {
-                versionName '3.59'
+                versionName '3.60'
                 buildConfigField "String", "Labelid", '"48"'
                 applicationId 'gaming178.com.baccaratgame'
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gd88"]
