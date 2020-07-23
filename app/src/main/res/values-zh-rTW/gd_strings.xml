@@ -144,6 +144,7 @@
     <string name="logout">退出&#160;&#160;</string>
 
     <string name="sure">確定</string>
+    <string name="confirm">確定</string>
     <string name="sure_logout">你確定要退出嗎?</string>
     <string name="yes">是</string>
     <string name="no">否</string>
