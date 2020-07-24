@@ -120,8 +120,10 @@ public class VideoPlayer extends FrameLayout {
 
 
         ijkMediaPlayer.setOption(1, "analyzemaxduration", 100L);
-        ijkMediaPlayer.setOption(1, "probesize", 10240L);
+        ijkMediaPlayer.setOption(1, "probesize", 200);
+//        ijkMediaPlayer.setOption(1, "probesize", 10240L);
         ijkMediaPlayer.setOption(1, "flush_packets", 1L);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,  "max_cached_duration", 1500);
         ijkMediaPlayer.setOption(4, "packet-buffering", 0L);
         ijkMediaPlayer.setOption(4, "framedrop", 1L);
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC,"skip_loop_filter",0);//0 开销大
