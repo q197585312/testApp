@@ -24,14 +24,14 @@ public class ModuleRenameString {
     private static final String FILE_XML = ".xml";
 
     //要重命名的module的绝对路径
-    public static String renameModulePath = "/Users/chenzhihui193/Documents/GitHub/Demos/mylibrary";
+    public static String renameModulePath = "E:\\testApp\\app";
     public static String workSpaceDir = renameModulePath + "/src/main/";
     //String文件的地址
-    public static String stringXmlFileNmae = "strings.xml";
+    public static String stringXmlFileNmae = "gd_strings.xml";
     public static String renameResPath = workSpaceDir + "res/";
     public static String stringXmlPath = renameResPath + "values/" + stringXmlFileNmae;
     //要添加的前缀 会加上下划线 所以不用额外加上下划线
-    public static String modulePrefix = "aaa";
+    public static String modulePrefix = "gd";
 
     public static void main(String[] args) {
         List<String> changedList = renameStringXml();

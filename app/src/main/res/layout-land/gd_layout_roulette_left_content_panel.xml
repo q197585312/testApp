@@ -187,7 +187,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/B"
+                android:text="@string/gd_B"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
@@ -215,7 +215,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/S"
+                android:text="@string/gd_S"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 

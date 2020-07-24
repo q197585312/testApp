@@ -1,11 +1,11 @@
 <resources>
     <!-- 程序异常处理字符串 -->
-    <string name="crash_mail">xiaoshuai@178gaming.com</string>
-    <string name="crash_mail_passwd">Nangyangkeji123</string>
-    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
-    <string name="crash_mail_port">465</string>
-    <string name="update_msg">Kính gửi, có một phiên bản mới có thể được tải xuống và cập nhật!</string>
-    <string name="version_update">Cập nhật phiên bản</string>
+    <string name="gd_crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="gd_crash_mail_passwd">Nangyangkeji123</string>
+    <string name="gd_crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="gd_crash_mail_port">465</string>
+    <string name="gd_update_msg">Kính gửi, có một phiên bản mới có thể được tải xuống và cập nhật!</string>
+    <string name="gd_version_update">Cập nhật phiên bản</string>
     <string name="update">Cập nhật</string>
     <string name="app_update">Cập nhật ứng dụng</string>
     <!--lig365不同-->
@@ -18,8 +18,8 @@
     <string name="Financial">Thị trường chứng khoán</string>
     <string name="Europe_View">Châu âu</string>
     <string name="Specials_4D">Trò chơi 4D</string>
-    <string name="Huay_Thai">Tiếng Thái ngàn chữ</string>
-    <string name="Muay_Thai">Muay Thái</string>
+    <string name="gd_Huay_Thai">Tiếng Thái ngàn chữ</string>
+    <string name="Huay_Thai">Muay Thái</string>
     <string name="E_Sport">Thể thao</string>
     <string name="Myanmar_Odds">Tỷ lệ cược Myanmar</string>
     <string name="Keno">Chile</string>
@@ -29,7 +29,7 @@
     <!--登录 -->
     <string name="input_username">Tên đăng nhập</string>
     <string name="input_password">Mật khẩu</string>
-    <string name="login">Đăng nhập</string>
+    <string name="gd_login">Đăng nhập</string>
     <string name="logining">Đăng nhập .....</string>
     <string name="afb88_right">Copyright © gd88.org  2014   Powered only receive aged 18 players </string>
 
@@ -40,13 +40,13 @@
     <string name="dragon_tiger">LONG HỔ</string>
 
     <!--轮盘大厅 -->
-    <string name="red">RED</string>
-    <string name="black">BLACK</string>
-    <string name="zero">ZERO</string>
-    <string name="even">EVEN</string>
-    <string name="odd">ODD</string>
-    <string name="big">BIG</string>
-    <string name="small">SMALL</string>
+    <string name="gd_red">RED</string>
+    <string name="gd_black">BLACK</string>
+    <string name="gd_zero">ZERO</string>
+    <string name="gd_even">EVEN</string>
+    <string name="gd_odd">ODD</string>
+    <string name="gd_big">BIG</string>
+    <string name="gd_small">SMALL</string>
     <string name="orphelins"> Orphelins</string>
     <string name="red_acronym">R</string>
     <string name="black_acronym">B</string>
@@ -80,8 +80,8 @@
     <string name="select_limit">giới hạn</string>
     <string name="START_DEALING">Mở thẻ</string>
     <string name="OK">OK </string>
-    <string name="Cancel">Hủy </string>
-    <string name="Repeat">Lập Lại </string>
+    <string name="gd_Cancel">Hủy </string>
+    <string name="gd_Repeat">Lập Lại </string>
     <string name="banker_m">Banker</string>
     <string name="player_m">Player</string>
     <string name="tie_m">Hòa</string>
@@ -101,10 +101,10 @@
     <string name="combination">COMBINATION</string>
     <string name="points">P</string>
     <string name="number">No</string>
-    <string name="E">E</string>
-    <string name="S">S</string>
-    <string name="T">T</string>
-    <string name="B">B</string>
+    <string name="gd_E">E</string>
+    <string name="gd_S">S</string>
+    <string name="gd_T">T</string>
+    <string name="gd_B">B</string>
     <string name="gd_O">O</string>
     <!--轮盘 -->
     <string name="min_max">Tối thiểu/Tối đa</string>
@@ -116,7 +116,7 @@
     <string name="dozen">Cá cược</string>
     <string name="colume">cột</string>
     <string name="even_lp">Lẻ Chẵn</string>
-    <string name="result">kết quả:</string>
+    <string name="gd_result">kết quả:</string>
     <string name="show_limit_over_max">Xin lỗi, quá hạn mức</string>
 
     <string name="show_limit_column">Không thể đặt cược tất cả các cược trong cùng một trò chơi</string>
@@ -160,7 +160,7 @@
     <string name="tiger">Hổ</string>
     <string name="show_limit_dragon_tiger">Không thể cược Dragon Tiger cùng một lúc</string>
 
-    <string name="enter">Vào</string>
+    <string name="gd_enter">Vào</string>
     <string name="chat">Trò chuyện</string>
     <string name="emoticons">Biểu hiện</string>
     <string name="records">Ghi lại</string>
@@ -176,8 +176,8 @@
     <string name="please_select_chips">Vui lòng chọn một con chip!</string>
     <string name="MUSIC">nhạc</string>
     <string name="TABLE">Chọn bàn</string>
-    <string name="b">Banker</string>
-    <string name="p">Player</string>
+    <string name="gd_b">Banker</string>
+    <string name="gd_p">Player</string>
     <string name="flip_0">Click the button  to adjust the poker position</string>
     <string name="flip_l">Swipe up and down with one hand</string>
     <string name="flip_t">Swipe up and down with both hands</string>

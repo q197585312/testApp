@@ -25,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
+import com.unkonw.testapp.libs.utils.ThreadPoolUtils;
 
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
@@ -78,6 +79,7 @@ public class WelcomeActivity extends BaseActivity {
     long currentTime;
     private String updateUrl;
     private File loadFile;
+    private volatile int hasSucceed = 0x0000;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -335,9 +337,9 @@ public class WelcomeActivity extends BaseActivity {
             }*/
             String language = "0";
             String annoucementParams = "lng=" + language + "&Usid=" + mAppViewModel.getUser().getName();
-            LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.ANNOUNCEMENT_URL);
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
-            LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.ANNOUNCEMENT_URL + "完成");
+            LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.GAME_GG_URL);
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+            LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.GAME_GG_URL + "完成");
             if (strRes.equals("netError")) {
 
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -347,9 +349,9 @@ public class WelcomeActivity extends BaseActivity {
             if (ann.length > 1)
                 mAppViewModel.setAnnouncement(ann[1]);
             //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
-            LogIntervalUtils.logCustomTime(currentTime, "开始请求游戏Table数据" + WebSiteUrl.TABLEINFO_URL_A);
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-            LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.TABLEINFO_URL_A + "游戏Table数据完成，开始解析");
+            LogIntervalUtils.logCustomTime(currentTime, "开始请求游戏Table数据" + WebSiteUrl.TABLE_INFO_A_URL);
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLE_INFO_A_URL, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+            LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.TABLE_INFO_A_URL + "游戏Table数据完成，开始解析");
             if (strRes.equals("netError")) {
 
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -463,7 +465,8 @@ public class WelcomeActivity extends BaseActivity {
         else {
             WebSiteUrl.setOther("http://afb88.bpt88.net/", "OLTGames/");
         }
-        new Thread() {
+        //https://112api.gd88bet.net/cklogin.jsp?txtAcctid=Demoafba0310&txtPwd=12345678&txtLang=0&txtRandCode=Ma5qXnw1HuauTpIpzO5WLWkE7tBgduFHmtNCClCEx4tM1xHZloL
+        postNewThread(new Runnable() {
             @Override
             public void run() {
                 Intent intent = getIntent();
@@ -473,45 +476,59 @@ public class WelcomeActivity extends BaseActivity {
                 String balance = intent.getStringExtra("balance");
                 String webUrl = intent.getStringExtra("webUrl");
                 String host = intent.getStringExtra("host");
-
-                String strRes;
+                mAppViewModel.setHttpClient(new HttpClient(webUrl, ""));
                 mAppViewModel.setCookie("");
-                String mainUrl = "https://" + host + "/main.jsp?membername=" + username + "&lang=1";
-
 //http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
-                mAppViewModel.setHttpClient(new HttpClient(webUrl, mAppViewModel.getCookie()));
+                mAppViewModel.setHttpClient(new HttpClient(webUrl, ""));
 
                 if (mAppViewModel.getHttpClient().connect("POST") == false) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
                 }
                 try {
-                    strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
+                    String strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
                     mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
                     LogIntervalUtils.logCustomTime(currentTime, "初始化cookie完成");
                 } catch (Exception e) {
                     e.printStackTrace();
-
                 }
-
                 mAppViewModel.getUser().setName(username);
-                String language1 = "0";
-                String annoucementParams = "lng=" + language1 + "&Usid=" + mAppViewModel.getUser().getName();
-                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.ANNOUNCEMENT_URL);
-                strRes = httpClient.sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
-                if (strRes.equals("netError")) {
+                checkSucceed(0x0001);
+            }
+        });
 
+        postNewThread(postGameGG());
+        postNewThread(postTableInfoA());
+        postNewThread(postTimer());
+    }
+
+    private Runnable postTimer() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                String strRes;
+                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.COUNTDOWN_URL_A);
+                strRes = httpClient.sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                if (strRes.equals("netError")) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
                 }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.ANNOUNCEMENT_URL + "完成");
-                String ann[] = strRes.split("Results=ok\\|");
-                if (ann.length > 1)
-                    mAppViewModel.setAnnouncement(ann[1]);
-                //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
-                LogIntervalUtils.logCustomTime(currentTime, "开始Table数据" + WebSiteUrl.TABLEINFO_URL_A);
-                strRes = httpClient.sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.TABLEINFO_URL_A + "完成");
+                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.COUNTDOWN_URL_A + "完成0x100");
+
+                mAppViewModel.splitTimer(strRes);
+                checkSucceed(0x1000);
+            }
+        };
+    }
+
+    private Runnable postTableInfoA() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                String strRes;
+                LogIntervalUtils.logCustomTime(currentTime, "开始Table数据" + WebSiteUrl.TABLE_INFO_A_URL);
+                strRes = httpClient.sendPost(WebSiteUrl.TABLE_INFO_A_URL, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+
                 if (strRes.equals("netError")) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
@@ -521,28 +538,48 @@ public class WelcomeActivity extends BaseActivity {
                     handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
                     return;
                 }
+                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.TABLE_INFO_A_URL + "完成0x010");
                 mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
-                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.COUNTDOWN_URL_A);
-                strRes = httpClient.sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                checkSucceed(0x0100);
+            }
+        };
+    }
+
+    private void postNewThread(Runnable runnable) {
+        ThreadPoolUtils.execute(runnable);
+    }
+
+    private Runnable postGameGG() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                String strRes;
+                String language1 = "0";
+                String annoucementParams = "lng=" + language1 + "&Usid=" + mAppViewModel.getUser().getName();
+                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.GAME_GG_URL);
+                strRes = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
                 if (strRes.equals("netError")) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
                 }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.COUNTDOWN_URL_A + "完成");
-                mAppViewModel.splitTimer(strRes);
-                mAppViewModel.setbLogin(true);
-                mAppViewModel.setbLobby(true);
-   /*             SimpleDateFormat dff = new SimpleDateFormat("MMddHHmmss");
-                dff.setTimeZone(TimeZone.getTimeZone("GMT+08"));
-                String dateStr = dff.format(new Date());
-                String sbUrl = "http://112-alias-api.gd88.org/player/afb1188/GD88WebService?wsdl";
-                String sbParam = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:maw=\"http://gd88/\"><soapenv:Header/><soapenv:Body><maw:memDeposit><!--Optional:--><strUsername>" + username + "</strUsername><Api_key>" + "j0h93zNB7VDGn4TJEMbnm8WfpOuLMDwl" + "</Api_key><strPwd>" + password + "</strPwd><addCredit>" + balance + "</addCredit><sIP>" + AppTool.getLocalIP() + "</sIP><Serial>" + dateStr + "</Serial></maw:memDeposit></soapenv:Body></soapenv:Envelope>";
-                LogIntervalUtils.logCustomTime(currentTime, "开始" + sbUrl);
-                String depositStr = httpClient.sendPostSoap(sbUrl, sbParam);*/
-                handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
-                LogIntervalUtils.logCustomTime(currentTime, "LOGIN_SECCESS" + "完成进入游戏------");
+                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.GAME_GG_URL + "完成0x001");
+                String ann[] = strRes.split("Results=ok\\|");
+                if (ann.length > 1)
+                    mAppViewModel.setAnnouncement(ann[1]);
+                checkSucceed(0x0010);
             }
-        }.start();
+        };
+
+    }
+
+    private void checkSucceed(int type) {
+        hasSucceed = hasSucceed | type;
+        if (hasSucceed == 0x1111 ) {
+            mAppViewModel.setbLogin(true);
+            mAppViewModel.setbLobby(true);
+            handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
+            LogIntervalUtils.logCustomTime(currentTime, "LOGIN_SECCESS" + "完成进入游戏------");
+        }
     }
 
     private void fromDig88(int web_id, String currency, int gameType) {
@@ -721,7 +758,7 @@ public class WelcomeActivity extends BaseActivity {
     private void loginInit(int gameType, String currency, String balance) {
         String strRes;
         String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
-        strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+        strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
         if (strRes.equals("netError")) {
             //	Log.e(WebSiteUrl.Tag,strRes);
             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -733,7 +770,7 @@ public class WelcomeActivity extends BaseActivity {
             mAppViewModel.setAnnouncement(ann[1]);
 
         //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
-        strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A/*"http://96.9.71.29/DIGKorean/select_tb_infoa.jsp"*/, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+        strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLE_INFO_A_URL/*"http://96.9.71.29/DIGKorean/select_tb_infoa.jsp"*/, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
         if (strRes.equals("netError")) {
             //	Log.e(WebSiteUrl.Tag,strRes);
             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -863,9 +900,9 @@ public class WelcomeActivity extends BaseActivity {
     private void showDownload(String updateUrl) {
         UpdateManager updateManager = new UpdateManager(mContext);
         updateManager.setCancel("");
-        updateManager.setTitle(getString(R.string.version_update));
+        updateManager.setTitle(getString(R.string.gd_version_update));
         updateManager.setUpdate(getString(R.string.update));
-        updateManager.setUpdateMsg(getString(R.string.update_msg));
+        updateManager.setUpdateMsg(getString(R.string.gd_update_msg));
         updateManager.setLoadTitle(getString(R.string.app_update));
         updateManager.checkUpdate(updateUrl);
         updateManager.setOnLoadEnd(new UpdateManager.ILoad() {
@@ -1064,7 +1101,7 @@ public class WelcomeActivity extends BaseActivity {
                 if (mAppViewModel.isbLogin()) {
                     //   Log.i(WebSiteUrl.Tag, "-------------- UpdateGameStatus 1");
                     String statusUrl = "";
-                    statusUrl = WebSiteUrl.TABLEINFO_URL_A;
+                    statusUrl = WebSiteUrl.TABLE_INFO_A_URL;
                     String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
                     String tableInfo[] = strRes.split("\\^");
 

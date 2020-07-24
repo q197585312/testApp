@@ -3845,15 +3845,15 @@ public class DragonTigerActivity extends BaseActivity {
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
-        data = new LiveInfoBean(getString(R.string.ID), usName, "");
+        data = new LiveInfoBean(getString(R.string.gd_ID), usName, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney() + "", "");
+        data = new LiveInfoBean(getString(R.string.gd_BET), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney() + "", "");
         if (Integer.parseInt(data.getValue1()) > 0) {
             tv_total_bet.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
             rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
         } else {
-            tv_total_bet.setText(getString(R.string.BET) + " :0");
-            rightBetTv.setText(getString(R.string.BET) + " :0");
+            tv_total_bet.setText(getString(R.string.gd_BET) + " :0");
+            rightBetTv.setText(getString(R.string.gd_BET) + " :0");
         }
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() + "", "");

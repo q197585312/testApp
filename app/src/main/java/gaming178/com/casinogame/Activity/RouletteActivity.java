@@ -1729,7 +1729,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         tv_black_percentage.setText(getString(R.string.black_acronym) + "  " + (int) blackPercentage + "%");
         tv_red_percentage.setText(getString(R.string.red_acronym) + "  " + (int) redPercentage + "%");
         tv_odd_percentage.setText(getString(R.string.gd_O) + "  " + (int) oddPercentage + "%");
-        tv_even_percentage.setText(getString(R.string.E) + "  " + (int) evenPercentage + "%");
+        tv_even_percentage.setText(getString(R.string.gd_E) + "  " + (int) evenPercentage + "%");
         updateHotIceNumber();
 
     }
@@ -6577,7 +6577,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             int result = Integer.parseInt(resultStr);
             if (result % 2 == 0) {
                 tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_red_bg);
-                tv_odd_even.setText(getString(R.string.E));
+                tv_odd_even.setText(getString(R.string.gd_E));
             } else {
                 tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_black_bg);
                 tv_odd_even.setText(getString(R.string.gd_O));
@@ -6688,13 +6688,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
         String name = usName;
-        data = new LiveInfoBean(getString(R.string.ID), name.toUpperCase(), "");
+        data = new LiveInfoBean(getString(R.string.gd_ID), name.toUpperCase(), "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getRoulette01().getRouletteBetInformation().getAllBetMoney() + "", "");
+        data = new LiveInfoBean(getString(R.string.gd_BET), mAppViewModel.getRoulette01().getRouletteBetInformation().getAllBetMoney() + "", "");
         if (Integer.parseInt(data.getValue1()) > 0) {
             rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
         } else {
-            rightBetTv.setText(getString(R.string.BET) + " :0");
+            rightBetTv.setText(getString(R.string.gd_BET) + " :0");
         }
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getRoulette01().getWonMoney() + "", "");

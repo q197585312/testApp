@@ -269,7 +269,7 @@
                 android:layout_weight="0.4"
                 android:background="@drawable/shape_bet_bg4"
                 android:gravity="center"
-                android:text="@string/cancel"
+                android:text="@string/gd_cancel"
                 android:textColor="@color/yellow2"
                 android:textStyle="bold" />
 

@@ -113,7 +113,7 @@
                 android:onClick="clickLogin"
                 android:padding="10dp"
                 android:paddingRight="3dp"
-                android:text="@string/login"
+                android:text="@string/gd_login"
                 android:textColor="@android:color/white"
                 android:textSize="15dip" />
         </LinearLayout>

@@ -3,7 +3,6 @@ package com.nanyang.app;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -87,10 +86,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -877,36 +874,15 @@ public class AfbUtils {
         DecimalFormat df = (DecimalFormat)
                 NumberFormat.getNumberInstance(enlocale);
         df.applyPattern(format);
-//        DecimalFormat df = new DecimalFormat(format);
 
-      /*  DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-        dfs.setDecimalSeparator('.');
-        df.setDecimalFormatSymbols(dfs);*/
-        return df.format(Double.parseDouble(s));
+        String format1 = df.format(Double.parseDouble(s));
+        return format1;
     }
 
-    public static String scientificToString(String scientificCounting, String format) {
-
-
-        scientificCounting = scientificCounting.toString().replace(",", "");
-        BigDecimal bd = new BigDecimal(scientificCounting);
-        String s = bd.toPlainString();
-        DecimalFormat df = new DecimalFormat(format);
-        return df.format(Double.parseDouble(s));
-    }
 
     public static String scientificCountingToStringNoT(String scientificCounting, String format) {
-
-
         scientificCounting = scientificCounting.toString().replace(",", "");
-        BigDecimal bd = new BigDecimal(scientificCounting);
-        String s = bd.toPlainString();
-        DecimalFormat df = new DecimalFormat(format);
-        df.setRoundingMode(RoundingMode.FLOOR);
-        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-        dfs.setDecimalSeparator('.');
-        df.setDecimalFormatSymbols(dfs);
-        return df.format(Double.parseDouble(s));
+        return scientificCountingToString(scientificCounting, format);
     }
 
     public static String getJsonParam(LinkedHashMap<String, String> map) {

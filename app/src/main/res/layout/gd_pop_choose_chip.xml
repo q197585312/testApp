@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/gd_bg_cancel"
             android:gravity="center"
-            android:text="@string/cancel"
+            android:text="@string/gd_cancel"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="16sp"></TextView>
@@ -44,7 +44,7 @@
             android:layout_marginLeft="40dp"
             android:background="@drawable/gd_bg_sure"
             android:gravity="center"
-            android:text="@string/confirm"
+            android:text="@string/gd_confirm"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="16sp"></TextView>

@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">gd88</string>
     <!-- 程序异常处理字符串 -->
-    <string name="crash_mail">xiaoshuai@178gaming.com</string>
-    <string name="crash_mail_passwd">Nangyangkeji123</string>
-    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
-    <string name="crash_mail_port">465</string>
+    <string name="gd_crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="gd_crash_mail_passwd">Nangyangkeji123</string>
+    <string name="gd_crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="gd_crash_mail_port">465</string>
 
-    <string name="update_msg">Pro, a new version faster download now!</string>
-    <string name="version_update">Update Version</string>
+    <string name="gd_update_msg">Pro, a new version faster download now!</string>
+    <string name="gd_version_update">Update Version</string>
     <string name="update">Update</string>
     <string name="app_update">Update App</string>
     <!--liga365不同-->
@@ -20,8 +20,8 @@
     <string name="Financial">Financial</string>
     <string name="Europe_View">Europe View</string>
     <string name="Specials_4D">4D Specials</string>
-    <string name="Huay_Thai">HUAY THAI</string>
-    <string name="Muay_Thai">MUAY THAI</string>
+    <string name="gd_Huay_Thai">HUAY THAI</string>
+    <string name="Huay_Thai">MUAY THAI</string>
     <string name="E_Sport">E-Sports</string>
     <string name="Myanmar_Odds">Myanmar Odds</string>
     <string name="Keno">Keno</string>
@@ -31,7 +31,7 @@
     <!--登录 -->
     <string name="input_username">Account</string>
     <string name="input_password">Password</string>
-    <string name="login">Login</string>
+    <string name="gd_login">Login</string>
     <string name="logining">Login.....</string>
     <string name="afb88_right">Copyright © gd88.org  2014   Powered only receive aged 18 players</string>
 
@@ -42,14 +42,14 @@
     <string name="dragon_tiger">Dragon Tiger</string>
 
     <!--轮盘大厅 -->
-    <string name="red">RED</string>
-    <string name="black">BLACK</string>
-    <string name="zero">ZERO</string>
-    <string name="even">EVEN</string>
-    <string name="odd">ODD</string>
-    <string name="big">BIG</string>
+    <string name="gd_red">RED</string>
+    <string name="gd_black">BLACK</string>
+    <string name="gd_zero">ZERO</string>
+    <string name="gd_even">EVEN</string>
+    <string name="gd_odd">ODD</string>
+    <string name="gd_big">BIG</string>
 
-    <string name="small">SMALL</string>
+    <string name="gd_small">SMALL</string>
     <string name="big_ac">B</string>
     <string name="small_ac">S</string>
     <string name="orphelins">Orphelins</string>
@@ -87,12 +87,12 @@
     <string name="PP">PP </string>
     <string name="POOL">POOL </string>
     <string name="LIMIT">LIMIT </string>
-    <string name="ALL">ALL </string>
+    <string name="gd_ALL">ALL </string>
     <string name="select_limit">LIMIT</string>
     <string name="START_DEALING">START DEALING</string>
     <string name="OK">OK </string>
-    <string name="Cancel">Cancel </string>
-    <string name="Repeat">Repeat </string>
+    <string name="gd_Cancel">Cancel </string>
+    <string name="gd_Repeat">Repeat </string>
     <string name="banker_m">B</string>
     <string name="player_m">P</string>
     <string name="tie_m">TIE</string>
@@ -114,10 +114,10 @@
     <string name="combination">COMBINATION</string>
     <string name="points">P</string>
     <string name="number">No</string>
-    <string name="E">E</string>
-    <string name="S">S</string>
-    <string name="T">T</string>
-    <string name="B">B</string>
+    <string name="gd_E">E</string>
+    <string name="gd_S">S</string>
+    <string name="gd_T">T</string>
+    <string name="gd_B">B</string>
     <string name="gd_O">O</string>
     <string name="gd_other">OR</string>
     <!--轮盘 -->
@@ -130,7 +130,7 @@
     <string name="dozen">DOZEN</string>
     <string name="colume">COLUME</string>
     <string name="even_lp">EVEN</string>
-    <string name="result">Result:</string>
+    <string name="gd_result">Result:</string>
     <string name="show_limit_over_max">Sorry,over max</string>
 
     <string name="show_limit_column">Can not be bet column in the same game</string>
@@ -175,7 +175,7 @@
     <string name="dragon">DRAGON</string>
     <string name="tiger">TIGER</string>
     <string name="show_limit_dragon_tiger">Dragon,tiger can not be at the same time bet</string>
-    <string name="enter">ENTER</string>
+    <string name="gd_enter">ENTER</string>
     <string name="chat">Chat</string>
     <string name="emoticons">Emoticons</string>
     <string name="records">Records</string>
@@ -191,8 +191,8 @@
     <string name="please_select_chips">Please select chips!</string>
     <string name="MUSIC">MUSIC</string>
     <string name="TABLE">TABLE</string>
-    <string name="b">B</string>
-    <string name="p">P</string>
+    <string name="gd_b">B</string>
+    <string name="gd_p">P</string>
     <string name="flip_0">Click the button  to adjust the poker position</string>
     <string name="flip_l">Swipe up and down with one hand</string>
     <string name="flip_t">Swipe up and down with both hands</string>
@@ -218,8 +218,8 @@
     <string name="dr">@string/dragon</string>
     <string name="ti">@string/tiger</string>
     <string name="register">Register</string>
-    <string name="username">Account</string>
-    <string name="password">Password</string>
+    <string name="gd_username">Account</string>
+    <string name="gd_password">Password</string>
     <string name="verify_password">Verify Password</string>
     <string name="telephone_number">Telephone</string>
     <string name="email">Email</string>
@@ -227,14 +227,14 @@
     <string name="choice_bank">Bank</string>
     <string name="bank_account">Bank Account</string>
     <string name="bank_number">Bank Number</string>
-    <string name="code">Code</string>
-    <string name="deposit">Deposit</string>
-    <string name="withdrawal">Withdraw</string>
-    <string name="Amount">Amount</string>
+    <string name="gd_code">Code</string>
+    <string name="gd_deposit">Deposit</string>
+    <string name="gd_withdrawal">Withdraw</string>
+    <string name="gd_Amount">Amount</string>
     <string name="Account_Name">Account Name</string>
-    <string name="confirm">Confirm</string>
-    <string name="cancel">Cancel</string>
-    <string name="Referrer">Referrer</string>
+    <string name="gd_confirm">Confirm</string>
+    <string name="gd_cancel">Cancel</string>
+    <string name="gd_Referrer">Referrer</string>
     <string name="katasandi">Katasandi</string>
     <string name="Copy_Address">Copy Link</string>
     <string name="Copy_Success">Copy Success</string>
@@ -243,8 +243,8 @@
     <string name="no_permission">Without this permission, this feature cannot be turned on, please turn on permissions!</string>
     <string name="open_install">Please open installation permissions for gd88</string>
     <string name="referral_list">Referral List</string>
-    <string name="ID">ID</string>
-    <string name="BET">BET</string>
+    <string name="gd_ID">ID</string>
+    <string name="gd_BET">BET</string>
     <string name="W_L">W/L</string>
     <string name="LIMIT_POP">LIMIT</string>
     <string name="BAL">BAL</string>

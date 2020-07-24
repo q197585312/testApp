@@ -69,7 +69,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/E"
+            android:text="@string/gd_E"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:gravity="center"
@@ -90,7 +90,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/S"
+            android:text="@string/gd_S"
             android:textSize="10sp"
             android:textColor="@color/white" />
         <TextView
@@ -109,7 +109,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/T"
+            android:text="@string/gd_T"
             android:textSize="10sp"
             android:textColor="@color/white" />
         <TextView
@@ -126,7 +126,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/B"
+            android:text="@string/gd_B"
             android:textSize="10sp"
             android:textColor="@color/white" />
         <TextView

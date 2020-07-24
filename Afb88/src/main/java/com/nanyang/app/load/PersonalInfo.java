@@ -1,8 +1,9 @@
 package com.nanyang.app.load;
 
-import java.math.RoundingMode;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by Administrator on 2017/3/27.
@@ -118,7 +119,6 @@ public class PersonalInfo {
     public void setIsEnabledDG(String isEnabledDG) {
         IsEnabledDG = isEnabledDG;
     }
-
 
 
     public String getXYCredit() {
@@ -269,12 +269,27 @@ public class PersonalInfo {
     }
 
     public String getCredit2() {
-        DecimalFormat df = new DecimalFormat("#.00");
+        String format = "#.00";
+       /* Locale enlocale = Locale.US;
+        DecimalFormat df = (DecimalFormat)
+                NumberFormat.getNumberInstance(enlocale);
+        df.applyPattern(format);
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         df.setRoundingMode(RoundingMode.FLOOR);
         dfs.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(dfs);
-        return df.format(Double.valueOf(getXYCredit()));
+        String format1 = df.format(getXYCredit());*/
+
+        BigDecimal bd = new BigDecimal(getXYCredit());
+        String s = bd.toPlainString();
+        Locale enlocale = Locale.US;
+        DecimalFormat df = (DecimalFormat)
+                NumberFormat.getNumberInstance(enlocale);
+        df.applyPattern(format);
+
+        String format1 = df.format(Double.parseDouble(s));
+
+        return format1;
     }
 
     public void setCredit2(String credit2) {

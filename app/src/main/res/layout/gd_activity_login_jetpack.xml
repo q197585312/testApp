@@ -202,7 +202,7 @@
                         android:background="@drawable/gd_layer_btn_login_bg"
                         android:gravity="center"
                         android:onClick="clickLogin"
-                        android:text="@string/login"
+                        android:text="@string/gd_login"
                         android:textAllCaps="true"
                         android:textColor="@color/gold_dark_title"
                         android:textSize="18sp"

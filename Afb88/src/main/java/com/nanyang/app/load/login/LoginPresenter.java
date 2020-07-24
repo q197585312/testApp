@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
-    public boolean hasAppGetDate;
-    public boolean hasSetting;
+
+    public volatile int hasSucceed = 0x00;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     LoginPresenter(LoginActivity view) {
@@ -62,8 +62,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                                     switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                                                                   @Override
                                                                   public void onBack(SettingAllDataBean data) throws JSONException {
-                                                                      hasSetting = true;
-                                                                      checkLogin();
+                                                                      checkLogin(0x01);
                                                                   }
                                                               }
                                     );
@@ -74,8 +73,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                                             PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
                                             personalInfo.setPassword(((LoginActivity) baseContext).getApp().getUser().getPassword());
                                             ((LoginActivity) baseContext).getApp().setUser(personalInfo);
-                                            hasAppGetDate = true;
-                                            checkLogin();
+                                            checkLogin(0x10);
                                         }
                                     });
 
@@ -108,8 +106,9 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         }
     }
 
-    private synchronized void checkLogin() {
-        if (hasAppGetDate && hasSetting)
+    private void checkLogin(int i) {
+        hasSucceed = hasSucceed | i;
+        if (hasSucceed == 0x11)
             baseContext.onLanguageSwitchSucceed("");
     }
 

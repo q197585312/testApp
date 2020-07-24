@@ -59,7 +59,6 @@ import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.PopReferralList;
 import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
-import gaming178.com.casinogame.Util.AfbUtils;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.ErrorCode;
@@ -632,7 +631,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 try {
                     if (mAppViewModel.isbLogin() && mAppViewModel.isbLobby()) {
                         String statusUrl = "";
-                        statusUrl = WebSiteUrl.TABLEINFO_URL_A;
+                        statusUrl = WebSiteUrl.TABLE_INFO_A_URL;
                         String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
                         Log.d("Afb88", strRes);
                         String tableInfo[] = strRes.split("\\^");
@@ -662,7 +661,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                     break;
                             }
                             String annoucementParams = "lng=" + language + "&Usid=" + mAppViewModel.getUser().getName();
-                            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+                            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
                             String ann[] = strRes.split("Results=ok\\|");
                             if (!strRes.equals("netError") && ann.length > 1) {
                                 mAppViewModel.setAnnouncement(ann[1]);
@@ -784,7 +783,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
         private void updateLobbyData(int hallId) {
             String statusUrl = "";
-            statusUrl = WebSiteUrl.TABLEINFO_URL_A;
+            statusUrl = WebSiteUrl.TABLE_INFO_A_URL;
             String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
             Log.d("Afb88", strRes);
             String tableInfo[] = strRes.split("\\^");
@@ -995,50 +994,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
         };
         initOrientation();
-    }
-
-    public void initTableChoose(View v) {
-        BasePopupWindow popupWindow = new BasePopupWindow(mContext, v, ScreenUtil.dip2px(mContext, 320), ScreenUtil.dip2px(mContext, 320)) {
-            @Override
-            protected int getContentViewLayoutRes() {
-                return R.layout.gd_popupwindow_all_game;
-            }
-
-            @Override
-            protected void initView(View view) {
-                super.initView(view);
-                RecyclerView rv = (RecyclerView) view.findViewById(R.id.gd__rv_list);
-                int homeColor = mAppViewModel.getHomeColor();
-                if (homeColor != 0) {
-                    rv.setBackgroundColor(homeColor);
-                }
-                BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rv);
-                adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-                    @Override
-                    public void onItemClick(View view, MenuItemInfo item, int position) {
-                        switch (item.getType()) {
-                            case "SportBook":
-                            case "Financial":
-                            case "Specials_4D":
-                            case "Muay_Thai":
-                            case "E_Sport":
-                            case "Myanmar_Odds":
-                            case "Europe":
-                            case "Huay_Thai":
-                            case "Live_Casino":
-                            case "Discount":
-                                closePopupWindow();
-                                mAppViewModel.setGameType(item.getType());
-                                ActivityPageManager.getInstance().finishAllActivity();
-                                break;
-                            default:
-                                Toast.makeText(mContext, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        };
-        popupWindow.showPopupCenterWindow();
     }
 
     protected void initOrientation() {
@@ -1971,7 +1926,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     private void addGame(ArrayList<GameMenuItem> games1, GameMenuItem item, String removeStr) {
 //        if (!item.getTitle().equals(removeStr))
-            games1.add(item);
+        games1.add(item);
     }
 
     public void changeSeatGame(int tId) {
@@ -2274,6 +2229,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         if (mAppViewModel != null)
             mAppViewModel.setbInitLimit(false);
         stopUpdateStatus();
+        if (BuildConfig.FLAVOR.isEmpty()) {
+            finish();
+            return;
+        }
         if (WebSiteUrl.isDomain) {
             ActivityPageManager.getInstance().finishAllActivity();
             return;
