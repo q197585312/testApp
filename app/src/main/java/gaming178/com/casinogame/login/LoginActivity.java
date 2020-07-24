@@ -203,7 +203,7 @@ public class LoginActivity extends BaseActivity {
     private void restart() {
         tv_name.setHint(getString(R.string.input_username));
         tv_password.setHint(getString(R.string.input_password));
-        btn_login.setText(getString(R.string.login));
+        btn_login.setText(getString(R.string.gd_login));
         dialog.setMsg(getString(R.string.logining));
     }
 
@@ -337,7 +337,7 @@ public class LoginActivity extends BaseActivity {
               /*         mAppViewModel.setCookie(sessionId);*/
 
                     String params = "GameType=11&Tbid=0&Usid=" + res.getResult().getNickname();
-                    strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, params);
+                    strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLE_INFO_A_URL, params);
                     if (strRes.equals("netError")) {
                         handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                         return;
@@ -350,8 +350,8 @@ public class LoginActivity extends BaseActivity {
 //            mAppViewModel.setbInitLimit(false);
                     mAppViewModel.splitTableInfo(strRes, 1);
                     String annoucementParams = "GameType=11&lng=" + language + "&Usid=" + res.getResult().getNickname();
-                    strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
-                    Log.d("Afb88", "url:" + WebSiteUrl.TABLEINFO_URL_A + ",params:" + annoucementParams);
+                    strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+                    Log.d("Afb88", "url:" + WebSiteUrl.TABLE_INFO_A_URL + ",params:" + annoucementParams);
                     if (strRes.equals("netError")) {
                         //	Log.e(WebSiteUrl.Tag,strRes);
                         handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -473,7 +473,7 @@ public class LoginActivity extends BaseActivity {
             }
 
             String annoucementParams = "lng=" + language + "&Usid=" + mAppViewModel.getUser().getName();
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
             if (strRes.equals("netError")) {
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                 return;
@@ -482,7 +482,7 @@ public class LoginActivity extends BaseActivity {
             if (ann.length > 1)
                 mAppViewModel.setAnnouncement(ann[1]);
             //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLE_INFO_A_URL, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
             if (strRes.equals("netError")) {
 
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);

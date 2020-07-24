@@ -43,7 +43,8 @@ abstract class BaseVMActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCom
         if (ViewDataBinding::class.java != cls && ViewDataBinding::class.java.isAssignableFrom(cls)) {
             mBinding = DataBindingUtil.setContentView(this, layoutId())
             mBinding?.lifecycleOwner = this
-        } else setContentView(layoutId())
+        } else
+            setContentView(layoutId())
         createViewModel()
     }
 

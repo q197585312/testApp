@@ -323,8 +323,8 @@ public class HttpClient {
                 //    cookie = cookie + cookieVal ;
             }
         }
-
         //   System.out.println(cookie);
+        LogIntervalUtils.logTime("cookie:"+cookie);
         return cookie;
     }
 

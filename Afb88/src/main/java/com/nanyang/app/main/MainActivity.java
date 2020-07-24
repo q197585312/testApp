@@ -52,6 +52,14 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     FrameLayout flLoginOut;
     @BindView(R.id.home_pop)
     TextView homePop;
+    @BindView(R.id.tv_tab_home)
+    TextView tv_tab_home;
+    @BindView(R.id.tv_tab_statement)
+    TextView tv_tab_statement;
+    @BindView(R.id.tv_tab_center)
+    TextView tv_tab_center;
+    @BindView(R.id.tv_tab_login_out)
+    TextView tv_tab_login_out;
     @BindView(R.id.ll_tab_menu_bottom)
     LinearLayout ll_tab_menu_bottom;
     @Nullable
@@ -107,6 +115,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Override
     protected void onResume() {
         super.onResume();
+         tv_tab_home.setText(R.string.balances);
+         tv_tab_statement.setText(R.string.statement);
+         tv_tab_center.setText(R.string.contact);
+         tv_tab_login_out.setText(R.string.more);
         presenter.oddsType();
 
         Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());

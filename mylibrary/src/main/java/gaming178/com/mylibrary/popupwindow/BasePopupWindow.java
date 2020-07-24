@@ -69,7 +69,6 @@ public abstract class BasePopupWindow {
         view = inflater.inflate(layoutId, null);
         ButterKnife.bind(this, view);
         initView(view);
-
         popoWindow = new PopupWindow(view, width, height, true);
         WindowManager wm = (WindowManager) context
                 .getSystemService(Context.WINDOW_SERVICE);

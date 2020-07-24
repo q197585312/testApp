@@ -61,15 +61,15 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:paddingTop="4dp"
                     android:id="@+id/tv_tab_home"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:drawableTop="@mipmap/main_balance"
+                    android:paddingTop="4dp"
                     android:text="@string/balances"
-                    android:textColor="@color/black_grey"
                     android:textAllCaps="true"
+                    android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>

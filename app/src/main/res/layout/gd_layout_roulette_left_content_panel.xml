@@ -113,7 +113,7 @@
             android:visibility="gone"
             style="@style/text_wrap_black12"
             android:layout_marginLeft="17dp"
-            android:text="@string/big"
+            android:text="@string/gd_big"
             android:textColor="@color/grey_dark_word" />
         <TextView
             android:visibility="gone"
@@ -126,7 +126,7 @@
             android:visibility="gone"
             style="@style/text_wrap_black12"
             android:layout_marginLeft="10dp"
-            android:text="@string/small"
+            android:text="@string/gd_small"
             android:textColor="@color/grey_dark_word" />
         <TextView
             android:visibility="gone"

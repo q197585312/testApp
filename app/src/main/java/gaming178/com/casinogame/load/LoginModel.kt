@@ -5,32 +5,39 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.lifecycle.MutableLiveData
+import com.unkonw.testapp.libs.utils.ToastUtils
 import gaming178.com.casinogame.Bean.Liga365AgentBean
 import gaming178.com.casinogame.base.BaseApiViewModel
 
 class LoginModel : BaseApiViewModel() {
     val map = MutableLiveData<HashMap<String, String>>()
-    var showLanguagePop=MutableLiveData<Boolean>()
+    var showLanguagePop = MutableLiveData<Boolean>()
 
     init {
 
     }
 
     fun initMap() {
-        launchGo({
+        launchGo(block = {
             val agentUrl = "http://www.appgd88.com/liga365agengt.php"
             val liga365AgentBean = api.getSiteMap(agentUrl)
-            val dataList: List<Liga365AgentBean.DataBean> =
-                liga365AgentBean.getData()
+            println(liga365AgentBean.toString())
+            val data = liga365AgentBean.data
             val siteMap = mutableMapOf<String, String>()
-            for (i in dataList.indices) {
-                val dataBean = dataList[i]
+            for (i in data.indices) {
+                val dataBean = data[i]
                 val web = dataBean.web
                 val agent = dataBean.agent
                 siteMap[web] = agent
             }
 
-        })
+        },
+            error = {
+                defUI.toastEvent.postValue(
+                    "no agent !$it"
+                )
+            }
+        )
 
     }
 

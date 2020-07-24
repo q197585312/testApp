@@ -64,7 +64,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.71'
+            versionName '2.72'
             buildConfigField "String", "Domain", '".afb1188.net"'
             buildConfigField "String", "H5_URL", '"http://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
             buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.net/"' //app专用服务器

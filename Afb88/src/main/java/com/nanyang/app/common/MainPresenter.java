@@ -31,6 +31,7 @@ import com.nanyang.app.main.home.SaCasinoWfBean;
 import com.nanyang.app.main.home.keno.WebActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
+import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -58,6 +59,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Cookie;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -166,6 +168,9 @@ public class MainPresenter extends BaseSwitchPresenter {
                             Bundle intent = new Bundle();
 
                             //ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
+                            for (Cookie cookie : CookieManger.getInstance().getCookieStore().getCookies()) {
+                                gaming178.com.casinogame.Util.LogIntervalUtils.logTime("getCookies:" + cookie.toString());
+                            }
                             PersonalInfo info = mainActivity.getApp().getUser();
                             intent.putString("username", info.getLoginName());
                             intent.putString("password", info.getPassword());

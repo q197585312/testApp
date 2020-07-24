@@ -1,6 +1,7 @@
 package gaming178.com.casinogame.base;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
+
+import com.unkonw.testapp.libs.utils.LogUtil;
+import com.unkonw.testapp.libs.utils.SystemTool;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -35,6 +39,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import cn.finalteam.toolsfinal.DeviceUtils;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Bean.BaccaratLimit;
@@ -53,11 +58,8 @@ import gaming178.com.casinogame.Util.TiagonalBlueView;
 import gaming178.com.casinogame.Util.TiagonalRedView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
-import gaming178.com.mylibrary.allinone.util.AppTool;
-import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.ThreadPoolUtils;
-import gaming178.com.mylibrary.allinone.util.WidgetUtil;
-import gaming178.com.mylibrary.lib.util.LogUtil;
+
 
 public class AppModel extends ViewModel {
     private HttpClient httpClient;
@@ -618,7 +620,6 @@ public class AppModel extends ViewModel {
             return;
         }
         baccarat.setTableName(timerInfoDetail[0]);
-        LogUtil.d("tv_baccarat_shoe_number", "splitTimerDetail:" + timerInfoDetail[0]);
         baccarat.setGameStatus(Integer.parseInt(timerInfoDetail[1]));
         baccarat.setTimer(Integer.parseInt(timerInfoDetail[2]));
     }
@@ -998,7 +999,7 @@ public class AppModel extends ViewModel {
 
 
         if (point % 2 == 0) {
-            if (AppTool.getAppLanguage(ctx).equals("zh")) {
+            if (SystemTool.getLanguage(ctx).equals("zh")) {
                 evenOdd = "双";
                 waiDic = "围";
             } else {
@@ -1006,7 +1007,7 @@ public class AppModel extends ViewModel {
                 waiDic = "T";
             }
         } else {
-            if (AppTool.getAppLanguage(ctx).equals("zh")) {
+            if (SystemTool.getLanguage(ctx).equals("zh")) {
                 evenOdd = "单";
                 waiDic = "围";
             } else {
@@ -1923,7 +1924,7 @@ public class AppModel extends ViewModel {
         if (baccarat.getBigRoad() != null && !baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) && !baccarat.getGameNumber().equals("0")) {
             //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
             baccarat.setBigRoadOld(baccarat.getBigRoad());
-            ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, ScreenUtil.getDisplayMetrics(mContext).density, 1, 1);
+            ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, DeviceUtils.getScreenPix((Activity) mContext).density, 1, 1);
             if (gridLayoutBigRoad != null) {
                 gridLayoutBigRoad.post(new Runnable() {
                     @Override
@@ -1967,7 +1968,7 @@ public class AppModel extends ViewModel {
                 //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
                 baccarat.setBigRoadOld(baccarat.getBigRoad());
                 int[][] road;
-                if (AppTool.getAppLanguage(mContext).equals("zh")) {
+                if (SystemTool.getLanguage(mContext).equals("zh")) {
                     dragon_road = "龍";
                     tiger_road = "虎";
                     tie_road = "和";
@@ -2034,7 +2035,7 @@ public class AppModel extends ViewModel {
             , final GridLayout gridLayoutSmallEyesRoad, final GridLayout gridLayoutRoachRoad
             , String data, boolean isBigShow, boolean isAddData, final View gridLayoutBigRoadParent, final View hsv_small_road1, final View hsv_small_road2, final View hsv_small_road3, final boolean isNeedInit) {
         int[][] road;
-        if (AppTool.getAppLanguage(mContext).equals("zh")) {
+        if (SystemTool.getLanguage(mContext).equals("zh")) {
             dragon_road = "龍";
             tiger_road = "虎";
             tie_road = "和";
@@ -2144,7 +2145,7 @@ public class AppModel extends ViewModel {
             //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
             baccarat.setBigRoadOld(baccarat.getBigRoad());
 
-            ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, ScreenUtil.getDisplayMetrics(mContext).density, 1, 1);
+            ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, DeviceUtils.getScreenPix((Activity) mContext).density, 1, 1);
             if (gridLayoutBigRoad != null) {
                 gridLayoutBigRoad.post(new Runnable() {
                     @Override
@@ -2178,7 +2179,7 @@ public class AppModel extends ViewModel {
                 gridLayoutRoachRoad.invalidate();
                 //     baccarat.setShoeNumberOld(baccarat.getShoeNumber());
                 tv_shoe.setText(baccarat.getShoeNumber() + " - 0");
-                LogUtil.d("tv_baccarat_shoe_number2", baccarat.getShoeNumber() + " - 0");
+
                 tv_total.setText("0");
                 tv_banker.setText("0");
                 tv_player.setText("0");
@@ -2200,7 +2201,7 @@ public class AppModel extends ViewModel {
                         }
                     }
                     int[][] road;
-                    if (AppTool.getAppLanguage(mContext).equals("zh")) {
+                    if (SystemTool.getLanguage(mContext).equals("zh")) {
                         banker_road = "庄";
                         player_road = "闲";
                         tie_road = "和";
@@ -2265,7 +2266,7 @@ public class AppModel extends ViewModel {
     }
 
     public void scrollTableRoad(GridLayout baccarat_big_road, Context mContext) {
-        int bigRoadParent2width = ScreenUtil.dip2px(mContext, 140);
+        int bigRoadParent2width = DeviceUtils.dip2px(mContext, 140);
         int bigRoadWidth = baccarat_big_road.getWidth();
         if (bigRoadWidth > bigRoadParent2width) {
             baccarat_big_road.scrollTo(0, 0);
@@ -2467,7 +2468,7 @@ public class AppModel extends ViewModel {
             , String data, boolean isBigShow, boolean isAddData, final View gridLayoutBigRoadParent, final View hsv_small_road1, final View hsv_small_road2, final View hsv_small_road3, final boolean isNeedInit) {
         try {
             int[][] road;
-            if (AppTool.getAppLanguage(mContext).equals("zh")) {
+            if (SystemTool.getLanguage(mContext).equals("zh")) {
                 banker_road = "庄";
                 player_road = "闲";
                 tie_road = "和";
@@ -2569,7 +2570,6 @@ public class AppModel extends ViewModel {
         } else {
             baccarat.setBankerPlayerCount(baccarat.getBigRoad());
             tv_shoe.setText("" + baccarat.getShoeNumber() + " - " + baccarat.getGameNumber());
-            LogUtil.d("tv_baccarat_shoe_number3", baccarat.getShoeNumber() + " - " + baccarat.getGameNumber());
             getMethodName();
             tv_total.setText("" + (baccarat.getTotalBanker() + baccarat.getTotalPlayer() + baccarat.getTotalTie()));
             tv_banker.setText("" + baccarat.getTotalBanker());
@@ -2586,7 +2586,6 @@ public class AppModel extends ViewModel {
         if (temp.length > 3) {
             for (int i = 3; i < (temp.length > 7 ? 7 : temp.length); i++) {
                 StackTraceElement a = temp[i];
-                LogUtil.d("tv_baccarat_shoe_number3", a.getMethodName());
             }
 
         }
@@ -2639,7 +2638,7 @@ public class AppModel extends ViewModel {
             //  Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+sicbo.getTableName()+",Luzi roads="+road);
             //         String road = "13-346-0#14-455-0#6-123-0#13-166-0#13-346-0#13-166-0#10-145-0#8-125-0#6-123-0#6-114-0#13-256-0#12-336-0#11-335-0#14-455-0#11-344-0#18-666-1#3-111-1#9-135-0#6-123-0#10-235-0#4-112-0#8-125-0#10-145-0#10-136-0#12-156-0#8-125-0#7-223-0#10-235-0#7-124-0#6-123-0#10-145-0#7-223-0#9-126-0#9-234-0#9-234-0#10-244-0#8-116-0#15-456-0#11-344-0#7-223-0#13-445-0#12-345-0#14-455-0#14-455-0#14-455-0#14-455-0#14-455-0#14-455-0#14-455-0#";
             if (!"".endsWith(road) && road != null) {
-                ShowBaccaratBigRoad(road, mContext, gridLayoutBigSmallRoad, 6, ScreenUtil.getDisplayMetrics(mContext).density, 5, 3);
+                ShowBaccaratBigRoad(road, mContext, gridLayoutBigSmallRoad, 6, DeviceUtils.getScreenPix((Activity) mContext).density, 5, 3);
 
             }
 
@@ -3071,7 +3070,7 @@ public class AppModel extends ViewModel {
     public void startFrontMuzicService(String action, int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)) {
+            if (SystemTool.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3092,7 +3091,7 @@ public class AppModel extends ViewModel {
     public void startBackgroudMuzicService(int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)) {
+            if (SystemTool.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3123,7 +3122,7 @@ public class AppModel extends ViewModel {
     public void changeMuzicVolumeService(ComponentName component, Context ctx, int volume, String action) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)) {
+            if (SystemTool.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;

@@ -2,6 +2,7 @@ package gaming178.com.casinogame.base
 
 import androidx.lifecycle.LiveData
 import gaming178.com.casinogame.Bean.Liga365AgentBean
+import gaming178.com.casinogame.load.Liga365Data
 import retrofit2.http.GET
 import retrofit2.http.Url
 
@@ -14,5 +15,5 @@ interface ApiService {
     suspend fun getData(@Url url: String): String
 
     @GET
-    suspend fun getSiteMap(@Url url: String): Liga365AgentBean
+    suspend fun getSiteMap(@Url url: String): Liga365Data
 }

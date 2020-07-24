@@ -1,11 +1,11 @@
 <resources>
     <!-- 程序异常处理字符串 -->
-    <string name="crash_mail">xiaoshuai@178gaming.com</string>
-    <string name="crash_mail_passwd">Nangyangkeji123</string>
-    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
-    <string name="crash_mail_port">465</string>
-    <string name="update_msg">親, 有新版本可以下載更新了!</string>
-    <string name="version_update">版本更新</string>
+    <string name="gd_crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="gd_crash_mail_passwd">Nangyangkeji123</string>
+    <string name="gd_crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="gd_crash_mail_port">465</string>
+    <string name="gd_update_msg">親, 有新版本可以下載更新了!</string>
+    <string name="gd_version_update">版本更新</string>
     <string name="update">更新</string>
     <string name="app_update">更新App</string>
     <!--lig365不同-->
@@ -18,8 +18,8 @@
     <string name="Financial">股市</string>
     <string name="Europe_View">歐洲</string>
     <string name="Specials_4D">4D遊戲</string>
-    <string name="Huay_Thai">泰式千字</string>
-    <string name="Muay_Thai">泰拳</string>
+    <string name="gd_Huay_Thai">泰式千字</string>
+    <string name="Huay_Thai">泰拳</string>
     <string name="E_Sport">電子競技</string>
     <string name="Myanmar_Odds">緬甸賠率</string>
     <string name="Keno">奇樂</string>
@@ -29,7 +29,7 @@
     <!--登录 -->
     <string name="input_username">用戶名</string>
     <string name="input_password">密碼</string>
-    <string name="login">登錄</string>
+    <string name="gd_login">登錄</string>
     <string name="logining">登錄.....</string>
     <string name="afb88_right">Copyright © gd88.org 2014 Powered only receive aged 18 players</string>
 
@@ -40,13 +40,13 @@
     <string name="dragon_tiger">龍虎</string>
 
     <!--轮盘大厅 -->
-    <string name="red">紅</string>
-    <string name="black">黑</string>
-    <string name="zero">零</string>
-    <string name="even">雙</string>
-    <string name="odd">單</string>
-    <string name="big">大</string>
-    <string name="small">小</string>
+    <string name="gd_red">紅</string>
+    <string name="gd_black">黑</string>
+    <string name="gd_zero">零</string>
+    <string name="gd_even">雙</string>
+    <string name="gd_odd">單</string>
+    <string name="gd_big">大</string>
+    <string name="gd_small">小</string>
     <string name="big_ac">大</string>
     <string name="small_ac">小</string>
     <string name="orphelins"> 輪上孤注</string>
@@ -84,12 +84,12 @@
     <string name="PP">閒對 </string>
     <string name="POOL">彩池 </string>
     <string name="LIMIT">限紅 </string>
-    <string name="ALL">全部 </string>
+    <string name="gd_ALL">全部 </string>
     <string name="select_limit">限紅</string>
     <string name="START_DEALING">開牌</string>
     <string name="OK">確定 </string>
-    <string name="Cancel">取消 </string>
-    <string name="Repeat">重複 </string>
+    <string name="gd_Cancel">取消 </string>
+    <string name="gd_Repeat">重複 </string>
     <string name="banker_m">莊</string>
     <string name="player_m">閒</string>
     <string name="tie_m">和</string>
@@ -110,10 +110,10 @@
     <string name="combination">點數</string>
     <string name="points">點</string>
     <string name="number">局號</string>
-    <string name="E">雙</string>
-    <string name="S">小</string>
-    <string name="T">圍</string>
-    <string name="B">大</string>
+    <string name="gd_E">雙</string>
+    <string name="gd_S">小</string>
+    <string name="gd_T">圍</string>
+    <string name="gd_B">大</string>
     <string name="gd_O">單</string>
     <string name="gd_other">其他</string>
     <!--輪盤 -->
@@ -126,7 +126,7 @@
     <string name="dozen">打注</string>
     <string name="colume">列注</string>
     <string name="even_lp">單雙</string>
-    <string name="result">結果:</string>
+    <string name="gd_result">結果:</string>
     <string name="show_limit_over_max">下注金額高於本局上限</string>
 
     <string name="show_limit_column">不能同局下注全部列注</string>
@@ -144,7 +144,7 @@
     <string name="logout">退出&#160;&#160;</string>
 
     <string name="sure">確定</string>
-    <string name="confirm">確定</string>
+    <string name="gd_confirm">確定</string>
     <string name="sure_logout">你確定要退出嗎?</string>
     <string name="yes">是</string>
     <string name="no">否</string>
@@ -172,7 +172,7 @@
     <string name="tiger">虎</string>
     <string name="show_limit_dragon_tiger">龍,虎不能同時下注</string>
 
-    <string name="enter">進入</string>
+    <string name="gd_enter">進入</string>
     <string name="chat">聊天</string>
     <string name="emoticons">表情</string>
     <string name="records">記錄</string>
@@ -188,8 +188,8 @@
     <string name="please_select_chips">請選擇籌碼!</string>
     <string name="MUSIC">音樂</string>
     <string name="TABLE">換桌</string>
-    <string name="b">莊</string>
-    <string name="p">閒</string>
+    <string name="gd_b">莊</string>
+    <string name="gd_p">閒</string>
     <string name="flip_0">點擊按鈕以調整撲克的橫豎狀態</string>
     <string name="flip_l">單指向上滑動即可開牌</string>
     <string name="flip_t">雙手單指向上滑動即可開牌</string>
@@ -210,8 +210,8 @@
     <string name="BPA" >莊對</string>
     <string name="dr">@string/dragon</string>
     <string name="ti">@string/tiger</string>
-    <string name="ID">用戶</string>
-    <string name="BET">下注</string>
+    <string name="gd_ID">用戶</string>
+    <string name="gd_BET">下注</string>
     <string name="W_L">輸/贏</string>
     <string name="LIMIT_POP">限紅</string>
     <string name="ask">問路</string>
@@ -227,7 +227,7 @@
     <string name="friendly_message">友善提醒</string>
     <string name="please_choose_chip">請選擇 6 個籌碼</string>
     <string name="your_here">你在這</string>
-    <string name="cancel">取消</string>
+    <string name="gd_cancel">取消</string>
     <string name="dragon_big">龍</string>
     <string name="table_maintenance">本桌維護中</string>
 </resources>

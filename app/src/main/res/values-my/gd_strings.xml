@@ -1,14 +1,14 @@
 <resources>
     <!-- 程序异常处理字符串 -->
-    <string name="crash_mail">xiaoshuai@178gaming.com</string>
-    <string name="crash_mail_passwd">Nangyangkeji123</string>
-    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
-    <string name="crash_mail_port">465</string>
+    <string name="gd_crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="gd_crash_mail_passwd">Nangyangkeji123</string>
+    <string name="gd_crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="gd_crash_mail_port">465</string>
 
     <!--登录 -->
     <string name="input_username">Nama Pengguna</string>
     <string name="input_password">Kata sandi</string>
-    <string name="login">Masuk</string>
+    <string name="gd_login">Masuk</string>
     <string name="logining">Masuk.....</string>
     <string name="afb88_right">Copyright © gd88.org  2014   Powered only receive aged 18 players</string>
     <!--afb88跳转-->
@@ -17,8 +17,8 @@
     <string name="Financial">Financial</string>
     <string name="Europe_View">Europe View</string>
     <string name="Specials_4D">4D Specials</string>
-    <string name="Huay_Thai">HUAY THAI</string>
-    <string name="Muay_Thai">MUAY THAI</string>
+    <string name="gd_Huay_Thai">HUAY THAI</string>
+    <string name="Huay_Thai">MUAY THAI</string>
     <string name="E_Sport">E-Sports</string>
     <string name="Myanmar_Odds">Myanmar Odds</string>
     <string name="Keno">Keno</string>
@@ -32,13 +32,13 @@
     <string name="dragon_tiger">Dragon Tiger</string>
 
     <!--轮盘大厅 -->
-    <string name="red">RED</string>
-    <string name="black">BLACK</string>
-    <string name="zero">ZERO</string>
-    <string name="even">EVEN</string>
-    <string name="odd">ODD</string>
-    <string name="big">BIG</string>
-    <string name="small">SMALL</string>
+    <string name="gd_red">RED</string>
+    <string name="gd_black">BLACK</string>
+    <string name="gd_zero">ZERO</string>
+    <string name="gd_even">EVEN</string>
+    <string name="gd_odd">ODD</string>
+    <string name="gd_big">BIG</string>
+    <string name="gd_small">SMALL</string>
     <string name="orphelins">Orphelins</string>
     <string name="red_acronym">R</string>
     <string name="black_acronym">B</string>
@@ -72,8 +72,8 @@
     <string name="select_limit">LIMIT</string>
     <string name="START_DEALING">START DEALING</string>
     <string name="OK">OK </string>
-    <string name="Cancel">Cancel </string>
-    <string name="Repeat">Repeat </string>
+    <string name="gd_Cancel">Cancel </string>
+    <string name="gd_Repeat">Repeat </string>
     <string name="banker_m">B</string>
     <string name="player_m">P</string>
     <string name="tie_m">Tie</string>
@@ -95,10 +95,10 @@
     <string name="combination">COMBINATION</string>
     <string name="points">P</string>
     <string name="number">No</string>
-    <string name="E">E</string>
-    <string name="S">S</string>
-    <string name="T">T</string>
-    <string name="B">B</string>
+    <string name="gd_E">E</string>
+    <string name="gd_S">S</string>
+    <string name="gd_T">T</string>
+    <string name="gd_B">B</string>
     <string name="gd_O">O</string>
     <!--轮盘 -->
     <string name="min_max">Min/Max</string>
@@ -110,7 +110,7 @@
     <string name="dozen">Dozen</string>
     <string name="colume">Colume</string>
     <string name="even_lp">Even</string>
-    <string name="result">Result:</string>
+    <string name="gd_result">Result:</string>
     <string name="show_limit_over_max">Sorry,over max</string>
 
     <string name="show_limit_column">Can not be bet column in the same game</string>
@@ -154,10 +154,10 @@
     <string name="dragon">DRAGON</string>
     <string name="tiger">TIGER</string>
     <string name="show_limit_dragon_tiger">Dragon,tiger can not be at the same time bet</string>
-    <string name="enter">ENTER</string>
+    <string name="gd_enter">ENTER</string>
     <string name="MUSIC">Musik</string>
-    <string name="b">B</string>
-    <string name="p">P</string>
+    <string name="gd_b">B</string>
+    <string name="gd_p">P</string>
     <string name="bad_luck">Oh no ,Bad luck.</string>
     <string name="chat">Chat</string>
     <string name="emoticons">Emoticons</string>
@@ -175,8 +175,8 @@
     <string name="login_site">Situs Login</string>
     <string name="error_site">Salah Site!</string>
     <string name="remember_me">Ingat saya</string>
-    <string name="update_msg">Pro, lagi versi yang lebih cepat men-download sekarang!</string>
-    <string name="version_update">Memperbarui Versi</string>
+    <string name="gd_update_msg">Pro, lagi versi yang lebih cepat men-download sekarang!</string>
+    <string name="gd_version_update">Memperbarui Versi</string>
     <string name="update">memperbarui</string>
     <string name="app_update">Perbarui APP</string>
     <string name="flip_0">Click the button  to adjust the poker position</string>
@@ -196,8 +196,8 @@
     <string name="dr">@string/dragon</string>
     <string name="ti">@string/tiger</string>
     <string name="register">DAFTAR</string>
-    <string name="username">ID pengguna</string>
-    <string name="password">kata sandi</string>
+    <string name="gd_username">ID pengguna</string>
+    <string name="gd_password">kata sandi</string>
     <string name="verify_password">pengulangan kata sandi</string>
     <string name="telephone_number">nomor telepon</string>
     <string name="email">email</string>
@@ -205,12 +205,12 @@
     <string name="choice_bank">nama bank</string>
     <string name="bank_account">nama di rekening</string>
     <string name="bank_number">Nomor rekening</string>
-    <string name="code">kode validasi</string>
-    <string name="deposit">setoran</string>
-    <string name="withdrawal">Penarikan</string>
-    <string name="Referrer">Referensi</string>
+    <string name="gd_code">kode validasi</string>
+    <string name="gd_deposit">setoran</string>
+    <string name="gd_withdrawal">Penarikan</string>
+    <string name="gd_Referrer">Referensi</string>
     <string name="katasandi">Katasandi</string>
-    <string name="cancel">Cancel</string>
+    <string name="gd_cancel">Cancel</string>
     <string name="Copy_Address">Salin Link Referral Anda</string>
     <string name="Copy_Success">Salin Sukses</string>
     <string name="Open_Address">Buka Link</string>

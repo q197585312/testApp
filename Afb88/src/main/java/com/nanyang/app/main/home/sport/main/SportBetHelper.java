@@ -290,6 +290,8 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             String socOddsId = betAfbList.get(i).getSocOddsId();
             String parId = betAfbList.get(i).getId();
             OddsClickBean oddsClickBean = next;
+            if (oddsClickBean == null)
+                return false;
             if (oddsClickBean.getBETID().equals(parId) || oddsClickBean.getBETID_PAR().equals(parId) || socOddsId.equals(oddsClickBean.getOid()) || socOddsId.equals(oddsClickBean.getOid_fh())) {
                 if (betAfbList.get(i).getIsRun() == 1) {
                     boolean isSame = isScoreSame(next.getItem(), betAfbList.get(i));

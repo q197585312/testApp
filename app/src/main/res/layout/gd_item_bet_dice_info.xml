@@ -33,14 +33,14 @@
         android:textColor="@color/yellow_brown_white_word"
         android:gravity="center"
         android:minWidth="20dp"
-        android:text="@string/big"
+        android:text="@string/gd_big"
         android:background="@drawable/gd_rectangle_white_stroke_grey"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp" />
     <TextView
         android:background="@drawable/gd_rectangle_white_stroke_grey"
-        android:text="@string/even"
+        android:text="@string/gd_even"
         android:id="@+id/gd__iv_dice_oe_tv"
         android:textColor="@color/yellow_brown_white_word"
         android:gravity="center"

@@ -44,9 +44,7 @@ import gaming178.com.mylibrary.allinone.volley.AuthFailureError;
 import gaming178.com.mylibrary.allinone.volley.Request;
 import gaming178.com.mylibrary.allinone.volley.Request.Method;
 
-/**
- * An HttpStack that performs request over an {@link HttpClient}.
- */
+
 public class HttpClientStack implements HttpStack {
     private final static String HEADER_CONTENT_TYPE = "Content-Type";
     protected final HttpClient mClient;

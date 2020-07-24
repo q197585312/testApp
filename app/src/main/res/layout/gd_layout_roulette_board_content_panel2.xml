@@ -1300,7 +1300,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/even"
+                android:text="@string/gd_even"
                 android:textColor="@color/white" />
 
             <ImageView
@@ -1397,7 +1397,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/odd"
+                android:text="@string/gd_odd"
                 android:textColor="@color/white" />
 
             <ImageView

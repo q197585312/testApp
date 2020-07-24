@@ -3,7 +3,7 @@
     <string name="sss">手指拖动值大于TouchSlop值时</string>
     <string name="app">我的App</string>
     <string name="ok">ok</string>
-    <string name="cancel">cancel</string>
+    <string name="gd_cancel">cancel</string>
     <string name="contacts_string">Total number of contacts: %1$,d\nFirst contact:<b>%2$s</b></string>
     <string name="contacts_none">No contacts stored on device.</string>
     <string name="contacts_empty">Contacts not loaded.</string>

@@ -123,7 +123,7 @@ public class LobbyActivity extends BaseActivity {
                 if (mAppViewModel.isbLogin() && mAppViewModel.isbLobby()) {
                     //   Log.i(WebSiteUrl.Tag, "-------------- UpdateGameStatus 1");
                     String statusUrl = "";
-                    statusUrl = WebSiteUrl.TABLEINFO_URL_A;
+                    statusUrl = WebSiteUrl.TABLE_INFO_A_URL;
 
                     String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
                     String tableInfo[] = strRes.split("\\^");

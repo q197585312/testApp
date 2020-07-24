@@ -330,7 +330,7 @@
                     android:drawableLeft="@mipmap/gd_replay_arrow_white"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="@string/Repeat"
+                    android:text="@string/gd_Repeat"
                     android:textColor="@color/white"
                     android:textSize="13sp"
                     android:visibility="gone" />
@@ -346,7 +346,7 @@
                     android:drawableLeft="@mipmap/gd_oval_white_fork"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="@string/Cancel"
+                    android:text="@string/gd_Cancel"
                     android:textColor="@color/white"
                     android:textSize="13sp"
                     android:visibility="gone" />

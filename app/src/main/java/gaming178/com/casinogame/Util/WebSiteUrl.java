@@ -19,8 +19,8 @@ public class WebSiteUrl {
     public static String INDEX = HEADER + PROJECT + "index.jsp";
     public static String LANGUAGE_URL = HEADER + "updateOnlineUser.jsp";
     public static String LOGIN_URL = HEADER + PROJECT + BuildConfig.loginjsp;
-    public static String ANNOUNCEMENT_URL = HEADER + PROJECT + "gameGG.jsp";
-    public static String TABLEINFO_URL_A = HEADER + PROJECT + "select_tb_infoa.jsp";
+    public static String GAME_GG_URL = HEADER + PROJECT + "gameGG.jsp";
+    public static String TABLE_INFO_A_URL = HEADER + PROJECT + "select_tb_infoa.jsp";
 
     public static String TABLEINFO_URL_C = HEADER + PROJECT + "select_tb_infoc.jsp";
     public static String COUNTDOWN_URL_A = HEADER + PROJECT + "select_Timer.jsp";
@@ -88,7 +88,7 @@ public class WebSiteUrl {
         INDEX = HEADER + PROJECT + "index.jsp";
         LANGUAGE_URL = HEADER + "updateOnlineUser.jsp";
         LOGIN_URL = HEADER + PROJECT + BuildConfig.loginjsp;
-        ANNOUNCEMENT_URL = HEADER + PROJECT + "gameGG.jsp";
+        GAME_GG_URL = HEADER + PROJECT + "gameGG.jsp";
         TABLEINFO_URL = HEADER + PROJECT + "select_tb_info.jsp";
         COUNTDOWN_URL = HEADER + PROJECT + "select_Timer.jsp";
         LOGOUT_URL = HEADER + PROJECT + "main.jsp";
@@ -125,7 +125,7 @@ public class WebSiteUrl {
         REPORT_URL = HEADER + PROJECT + "report.jsp";
 
         AppDig88LoginUrl = HEADER + PROJECT + "login.jsp";
-        TABLEINFO_URL_A = HEADER + PROJECT + "select_tb_infoa.jsp";
+        TABLE_INFO_A_URL = HEADER + PROJECT + "select_tb_infoa.jsp";
 
         TABLEINFO_URL_C = HEADER + PROJECT + "select_tb_infoc.jsp";
         COUNTDOWN_URL_A = HEADER + PROJECT + "select_Timer.jsp";
@@ -148,7 +148,7 @@ public class WebSiteUrl {
         INDEX = HEADER + PROJECT + "index.jsp";
         LANGUAGE_URL = HEADER + "onlineusers_2.jsp";
         LOGIN_URL = HEADER + PROJECT + "checklogin.jsp";
-        ANNOUNCEMENT_URL = HEADER + PROJECT + "gameGG.jsp";
+        GAME_GG_URL = HEADER + PROJECT + "gameGG.jsp";
         TABLEINFO_URL = HEADER + PROJECT + "select_tb_infoa.jsp";
         COUNTDOWN_URL = HEADER + PROJECT + "select_Timer.jsp";
         LOGOUT_URL = HEADER + PROJECT + "main.jsp";
@@ -185,7 +185,7 @@ public class WebSiteUrl {
         REPORT_URL = HEADER + PROJECT + "report.jsp";
 
         AppDig88LoginUrl = HEADER + PROJECT + "login.jsp";
-        TABLEINFO_URL_A = HEADER + PROJECT + "select_tb_infoa.jsp";
+        TABLE_INFO_A_URL = HEADER + PROJECT + "select_tb_infoa.jsp";
 
         TABLEINFO_URL_C = HEADER + PROJECT + "select_tb_infoc.jsp";
         COUNTDOWN_URL_A = HEADER + PROJECT + "select_Timer.jsp";
@@ -208,7 +208,7 @@ public class WebSiteUrl {
         INDEX = HEADER + PROJECT + "index.jsp";
         LANGUAGE_URL = HEADER + "updateOnlineUser.jsp";
         LOGIN_URL = HEADER + PROJECT + BuildConfig.loginjsp;
-        ANNOUNCEMENT_URL = HEADER + PROJECT + "gameGG.jsp";
+        GAME_GG_URL = HEADER + PROJECT + "gameGG.jsp";
         TABLEINFO_URL = HEADER + PROJECT + (gameType == 0 ? "select_tb_info.jsp" : "select_tb_info.jsp");
         COUNTDOWN_URL = HEADER + PROJECT + (gameType == 0 ? "select_Timer.jsp" : "select_Timer.jsp");
         LOGOUT_URL = HEADER + PROJECT + "main.jsp";
@@ -247,7 +247,7 @@ public class WebSiteUrl {
         AppWebServiceUrl = gameType == 0 ? "http://gd01.khmergaming.com/Dig88/GD88digWS?wsdl" : "http://gd02.khmergaming.com/Dig88WS?wsdl";
         AppWebServiceNameSpace = gameType == 0 ? "http://Dig88/" : "http://OLTGames/";
 
-        TABLEINFO_URL_A = HEADER + PROJECT + "select_tb_infoa.jsp";
+        TABLE_INFO_A_URL = HEADER + PROJECT + "select_tb_infoa.jsp";
 
         TABLEINFO_URL_C = HEADER + PROJECT + "select_tb_infoc.jsp";
         COUNTDOWN_URL_A = HEADER + PROJECT + "select_Timer.jsp";
@@ -272,7 +272,7 @@ public class WebSiteUrl {
         INDEX = HEADER + PROJECT + "index.jsp";
         LANGUAGE_URL = HEADER + "updateOnlineUser.jsp";
         LOGIN_URL = HEADER + PROJECT + BuildConfig.loginjsp;
-        ANNOUNCEMENT_URL = HEADER + PROJECT + "gameGG.jsp";
+        GAME_GG_URL = HEADER + PROJECT + "gameGG.jsp";
         TABLEINFO_URL = HEADER + PROJECT + "select_tb_infoa.jsp";
         COUNTDOWN_URL = HEADER + PROJECT + "select_Timer.jsp";
         LOGOUT_URL = HEADER + PROJECT + "main.jsp";
@@ -310,7 +310,7 @@ public class WebSiteUrl {
         AppWebServiceUrl = "http://42.168gdc.com/DIGKorean/DIGknWS?wsdl";
         AppWebServiceNameSpace = "http://DIGKorean/";
 
-        TABLEINFO_URL_A = HEADER + PROJECT + "select_tb_infoa.jsp";
+        TABLE_INFO_A_URL = HEADER + PROJECT + "select_tb_infoa.jsp";
         TABLEINFO_URL_C = HEADER + PROJECT + "select_tb_infoc.jsp";
         COUNTDOWN_URL_A = HEADER + PROJECT + "select_Timer.jsp";
         COUNTDOWN_URL_A_B = HEADER + PROJECT + "select_Timerab.jsp";

@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -19,14 +21,15 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Bean.ChipBean;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.mylibrary.allinone.util.ScreenUtil;
-import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
+
+
 
 public abstract class PopChooseChip extends BasePopupWindow {
     public PopChooseChip(Context context, View v, int width, int height) {
@@ -42,7 +45,7 @@ public abstract class PopChooseChip extends BasePopupWindow {
     }
 
     @Override
-    protected int getContentViewLayoutRes() {
+    protected int onSetLayoutRes() {
         return R.layout.gd_pop_choose_chip;
     }
 
@@ -67,7 +70,7 @@ public abstract class PopChooseChip extends BasePopupWindow {
         if (baseActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             spanCount = 6;
             ViewGroup.LayoutParams layoutParams = rcContent.getLayoutParams();
-            layoutParams.width = ScreenUtil.dip2px(context, 80) * 6;
+            layoutParams.width = DeviceUtils.dip2px(context, 80) * 6;
             rcContent.setLayoutParams(layoutParams);
         }
         rcContent.setLayoutManager(new GridLayoutManager(context, spanCount));
@@ -77,9 +80,9 @@ public abstract class PopChooseChip extends BasePopupWindow {
                 ImageView chipImg = helper.getView(R.id.gd__iv_chip_pic);
                 LinearLayout llParent = helper.getView(R.id.gd__ll_chip_parent);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                layoutParams.height = ScreenUtil.dip2px(mContext, 60);
-                layoutParams.bottomMargin = ScreenUtil.dip2px(mContext, 10);
+                layoutParams.width = DeviceUtils.dip2px(mContext, 60);
+                layoutParams.height = DeviceUtils.dip2px(mContext, 60);
+                layoutParams.bottomMargin = DeviceUtils.dip2px(mContext, 10);
                 llParent.setLayoutParams(layoutParams);
                 chipImg.setImageResource(item.getDrawableRes());
                 helper.setText(R.id.gd__tv_chip_amount, item.getName());

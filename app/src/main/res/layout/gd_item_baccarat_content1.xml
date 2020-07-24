@@ -263,7 +263,7 @@
                         android:background="@mipmap/gd_strip_tags_orange"
                         android:gravity="center_vertical"
                         android:padding="3dp"
-                        android:text="@string/enter"
+                        android:text="@string/gd_enter"
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="bold" />

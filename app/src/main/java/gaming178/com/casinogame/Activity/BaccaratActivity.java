@@ -3514,14 +3514,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         //    Log.i(WebSiteUrl.Tag,"GetBankerPool = "+mAppViewModel.getTableId());
         //   Log.i(WebSiteUrl.Tag,"GetBankerPool = "+mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker());
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() > 0)
-            data = new LiveInfoBean(getString(R.string.b) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBanker()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() + "", "");
+            data = new LiveInfoBean(getString(R.string.gd_b) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBanker()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.b) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBanker()*/, "0", "");
+            data = new LiveInfoBean(getString(R.string.gd_b) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalBanker()*/, "0", "");
         strData.add(data);
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() > 0)
-            data = new LiveInfoBean(getString(R.string.p)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayer()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() + "", "");
+            data = new LiveInfoBean(getString(R.string.gd_p)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayer()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.p) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayer()*/, "0", "");
+            data = new LiveInfoBean(getString(R.string.gd_p) /*+ " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalPlayer()*/, "0", "");
         strData.add(data);
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() > 0)
             data = new LiveInfoBean(getString(R.string.tie)/* + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getTotalTie()*/, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() + "", "");
@@ -5654,9 +5654,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
         String name = usName;
-        data = new LiveInfoBean(getString(R.string.ID), name.toUpperCase(), "");
+        data = new LiveInfoBean(getString(R.string.gd_ID), name.toUpperCase(), "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() +
+        data = new LiveInfoBean(getString(R.string.gd_BET), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() +
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() +
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie() +
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair() +
@@ -5666,8 +5666,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             tv_total_bet.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
             rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1())) + "");
         } else {
-            tv_total_bet.setText(getString(R.string.BET) + " :0");
-            rightBetTv.setText(getString(R.string.BET) + " :0");
+            tv_total_bet.setText(getString(R.string.gd_BET) + " :0");
+            rightBetTv.setText(getString(R.string.gd_BET) + " :0");
         }
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() + "", "");

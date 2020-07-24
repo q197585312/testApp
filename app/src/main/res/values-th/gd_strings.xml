@@ -1,11 +1,11 @@
 <resources>
     <!-- 程序异常处理字符串 -->
-    <string name="crash_mail">xiaoshuai@178gaming.com</string>
-    <string name="crash_mail_passwd">Nangyangkeji123</string>
-    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
-    <string name="crash_mail_port">465</string>
-    <string name="update_msg">pro มีเวอร์ชันใหม่สามารถดาวน์โหลดได้อัปเดตแล้ว!</string>
-    <string name="version_update">การอัปเดตเวอร์ชัน</string>
+    <string name="gd_crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="gd_crash_mail_passwd">Nangyangkeji123</string>
+    <string name="gd_crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="gd_crash_mail_port">465</string>
+    <string name="gd_update_msg">pro มีเวอร์ชันใหม่สามารถดาวน์โหลดได้อัปเดตแล้ว!</string>
+    <string name="gd_version_update">การอัปเดตเวอร์ชัน</string>
     <string name="update">ปรับปรุง</string>
     <string name="app_update">อัปเดตแอป</string>
     <!--lig365不同-->
@@ -18,8 +18,8 @@
     <string name="Financial">ตลาดหุ้น</string>
     <string name="Europe_View">ยุโรป</string>
     <string name="Specials_4D">เกม 4D</string>
-    <string name="Huay_Thai">อักขระไทยพันตัว</string>
-    <string name="Muay_Thai">มวยไทย</string>
+    <string name="gd_Huay_Thai">อักขระไทยพันตัว</string>
+    <string name="Huay_Thai">มวยไทย</string>
     <string name="E_Sport">E-กีฬา</string>
     <string name="Myanmar_Odds">อัตราเดิมพันพม่า</string>
     <string name="Keno">เพลงแปลก ๆ</string>
@@ -29,7 +29,7 @@
     <!--登录 -->
     <string name="input_username">ชื่อผู้ใช้</string>
     <string name="input_password">รหัสผ่าน</string>
-    <string name="login">ลงชื่อเข้าใช้</string>
+    <string name="gd_login">ลงชื่อเข้าใช้</string>
     <string name="logining">ลงชื่อเข้าใช้.....</string>
     <string name="afb88_right">Copyright © gd88.org  2014   Powered only receive aged 18 players</string>
 
@@ -40,13 +40,13 @@
     <string name="dragon_tiger">เสือมังกร</string>
 
     <!--轮盘大厅 -->
-    <string name="red">RED</string>
-    <string name="black">BLACK</string>
-    <string name="zero">ศูนย์</string>
-    <string name="even">EVEN</string>
-    <string name="odd">ODD</string>
-    <string name="big">ใหญ่</string>
-    <string name="small">เล็ก</string>
+    <string name="gd_red">RED</string>
+    <string name="gd_black">BLACK</string>
+    <string name="gd_zero">ศูนย์</string>
+    <string name="gd_even">EVEN</string>
+    <string name="gd_odd">ODD</string>
+    <string name="gd_big">ใหญ่</string>
+    <string name="gd_small">เล็ก</string>
     <string name="orphelins">รอบเดี่ยว</string>
     <string name="red_acronym">สีแดง</string>
     <string name="black_acronym">สีดำ</string>
@@ -80,8 +80,8 @@
     <string name="select_limit">จำกัด</string>
     <string name="START_DEALING">เปิด</string>
     <string name="OK">กำหนด </string>
-    <string name="Cancel">ยกเลิก </string>
-    <string name="Repeat">ทำซ้ำ </string>
+    <string name="gd_Cancel">ยกเลิก </string>
+    <string name="gd_Repeat">ทำซ้ำ </string>
     <string name="banker_m">หมู่บ้าน</string>
     <string name="player_m">ฟรี</string>
     <string name="tie_m">และ</string>
@@ -101,10 +101,10 @@
     <string name="combination">การรวมกัน</string>
     <string name="points">นับ</string>
     <string name="number">หมายเลขสำนัก</string>
-    <string name="E">สอง</string>
-    <string name="S">เล็ก</string>
-    <string name="T">ล้อมรอบ</string>
-    <string name="B">ยิ่งใหญ่</string>
+    <string name="gd_E">สอง</string>
+    <string name="gd_S">เล็ก</string>
+    <string name="gd_T">ล้อมรอบ</string>
+    <string name="gd_B">ยิ่งใหญ่</string>
     <string name="gd_O">เดียว</string>
     <!--轮盘 -->
     <string name="min_max">ต่ำสุด/สูงสุด</string>
@@ -116,7 +116,7 @@
     <string name="dozen">จดบันทึก</string>
     <string name="colume">รายชื่อบันทึกย่อ</string>
     <string name="even_lp">เดี่ยวและสองครั้ง</string>
-    <string name="result">ผลลัพธ์นี้:</string>
+    <string name="gd_result">ผลลัพธ์นี้:</string>
     <string name="show_limit_over_max">จำนวนเงินเดิมพันสูงกว่าขีด จำกัด นี้</string>
 
     <string name="show_limit_column">ไม่สามารถวางเดิมพันทั้งหมดในคอลัมน์เดียวกัน</string>
@@ -160,7 +160,7 @@
     <string name="tiger">TIGER</string>
     <string name="show_limit_dragon_tiger">มังกร,เสือไม่สามารถเดิมพันได้ในเวลาเดียวกัน</string>
 
-    <string name="enter">เข้าสู่</string>
+    <string name="gd_enter">เข้าสู่</string>
     <string name="chat">แชท</string>
     <string name="emoticons">นิพจน์</string>
     <string name="records">บันทึก</string>
@@ -176,8 +176,8 @@
     <string name="please_select_chips">โปรดเลือกชิป!</string>
     <string name="MUSIC">เพลง</string>
     <string name="TABLE">เปลี่ยนตาราง</string>
-    <string name="b">หมู่บ้าน</string>
-    <string name="p">ว่าง</string>
+    <string name="gd_b">หมู่บ้าน</string>
+    <string name="gd_p">ว่าง</string>
     <string name="flip_0">ด้วยมือเดียวคุณสามารถปัดขึ้นเพื่อเปิดการ์ด</string>
     <string name="flip_l">กวาดไปทางซ้ายและขวาเพื่อปรับโป๊กเกอร์</string>
     <string name="flip_t">มือสามารถเลื่อนขึ้นเพื่อเปิดการ์ด</string>

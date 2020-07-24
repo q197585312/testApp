@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dip"
             android:gravity="center"
-            android:text="@string/withdrawal"
+            android:text="@string/gd_withdrawal"
             android:textColor="@color/white"
             android:textSize="17dip"
             android:textStyle="bold" />
@@ -50,7 +50,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:gravity="right|center_vertical"
-                android:text="@string/username"
+                android:text="@string/gd_username"
                 android:textColor="#666666"
                 android:textSize="14sp" />
 
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right|center_vertical"
                 android:singleLine="true"
-                android:text="@string/Amount"
+                android:text="@string/gd_Amount"
                 android:textColor="#666666"
                 android:textSize="14sp" />
 
@@ -203,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right|center_vertical"
                 android:singleLine="true"
-                android:text="@string/password"
+                android:text="@string/gd_password"
                 android:textColor="#666666"
                 android:textSize="14sp" />
 
@@ -236,7 +236,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/gd_yellow_button"
                 android:gravity="center"
-                android:text="@string/confirm"
+                android:text="@string/gd_confirm"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -248,7 +248,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/gd_yellow_button"
                 android:gravity="center"
-                android:text="@string/cancel"
+                android:text="@string/gd_cancel"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>
