@@ -2885,7 +2885,9 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         List<String> listItem = new ArrayList<String>();
                         int n = roadDetail.length;
                         for (int i = n - 1; i >= n - 22; i--) {
-                            listItem.add(roadDetail[i]);
+                            if (!listItem.contains(roadDetail[i])){
+                                listItem.add(roadDetail[i]);
+                            }
                         }
                         if (contentAdapter != null && listItem != null) {
                             contentAdapter.addAllAndClear(listItem);
