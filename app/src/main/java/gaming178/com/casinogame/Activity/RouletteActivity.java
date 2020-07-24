@@ -6582,8 +6582,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_black_bg);
                 tv_odd_even.setText(getString(R.string.gd_O));
             }
+            fl_roulette_result.setVisibility(View.VISIBLE);
+        } else {
+            fl_roulette_result.setVisibility(View.GONE);
         }
-        fl_roulette_result.setVisibility(View.VISIBLE);
     }
 
     public int getNumberBetMoney(String type) {

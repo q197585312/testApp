@@ -3049,6 +3049,9 @@ public class DragonTigerActivity extends BaseActivity {
                     objectAnimatorDragonRed.start();
                 }
             } else {
+                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_red_black() == -100){
+                    return;
+                }
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //                    iv_dragon_black.setBackgroundResource(R.mipmap.gd_zuo2_03);
 //                } else {
@@ -3086,6 +3089,9 @@ public class DragonTigerActivity extends BaseActivity {
                     objectAnimatorTigerOdd.start();
                 }
             } else {
+                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_odd_even() == -100){
+                    return;
+                }
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //                    iv_tiger_even.setBackgroundResource(R.mipmap.gd_zuo8_03);
 //                } else {
@@ -3122,6 +3128,9 @@ public class DragonTigerActivity extends BaseActivity {
                     objectAnimatorTigerRed.start();
                 }
             } else {
+                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_red_black() == -100){
+                    return;
+                }
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //                    iv_tiger_black.setBackgroundResource(R.mipmap.gd_zuo6_03);
 //                } else {
