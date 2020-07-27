@@ -79,12 +79,6 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gd88"]
             }
 
-            bandarcasino {
-                versionName '3.57'
-                buildConfigField "String", "Labelid", '"33"'
-                applicationId 'gaming178.com.baccaratgame'
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "bandarcasino"]
-            }
             liga365 {
                 buildConfigField "String", "Labelid", '"23"'
                 buildConfigField "String", "AppWebServiceNameSpace", '"http://OLTGames/"'
@@ -93,6 +87,12 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "liga365"]
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.56'
+            }
+            bandarcasino {
+                versionName '3.57'
+                buildConfigField "String", "Labelid", '"33"'
+                applicationId 'gaming178.com.baccaratgame'
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "bandarcasino"]
             }
             ahlicasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ahlicasino"]
@@ -249,12 +249,6 @@ android {
             marina118 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "marina118"]
                 buildConfigField "String", "Labelid", '"93"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '3.57'
-            }
-            marina365 {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "marina365"]
-                buildConfigField "String", "Labelid", '"33"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.57'
             }
