@@ -203,7 +203,7 @@ public class WebSiteUrl {
         GetWithdraw_Url = HEADER + PROJECT + "getWithdraw.jsp";
         Deposit_Url = HEADER + PROJECT + "deposit.jsp";
         Withdraw_Url = HEADER + PROJECT + "withdraw.jsp";
-        HEADER = gameType == 0 ? "http://gd01.khmergaming.com/" : "http://" + urlHost + "/";//"http://113.130.125.201/";
+        HEADER = gameType == 0 ? "http://www.greendragon88.com/" : "http://" + urlHost + "/";//"http://113.130.125.201/";
         PROJECT = gameType == 0 ? "Dig88/" : "";
         INDEX = HEADER + PROJECT + "index.jsp";
         LANGUAGE_URL = HEADER + "updateOnlineUser.jsp";
@@ -244,7 +244,7 @@ public class WebSiteUrl {
         LH_LUZI_URL = HEADER + PROJECT + "lh_luzi.jsp";
         REPORT_URL = HEADER + PROJECT + (gameType == 0 ? "report.jsp" : "report.jsp");
         AppDig88LoginUrl = HEADER + PROJECT + (gameType == 0 ? "login.jsp" : "login.jsp");
-        AppWebServiceUrl = gameType == 0 ? "http://gd01.khmergaming.com/Dig88/GD88digWS?wsdl" : "http://gd02.khmergaming.com/Dig88WS?wsdl";
+        AppWebServiceUrl = gameType == 0 ? "http://www.greendragon88.com/Dig88/GD88digWS?wsdl" : "http://www.greendragon88.com/Dig88WS?wsdl";
         AppWebServiceNameSpace = gameType == 0 ? "http://Dig88/" : "http://OLTGames/";
 
         TABLE_INFO_A_URL = HEADER + PROJECT + "select_tb_infoa.jsp";

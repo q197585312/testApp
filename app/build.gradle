@@ -38,7 +38,7 @@ android {
         versionCode 1
         versionName '2.40'
         buildConfigField "String", "AppWebServiceNameSpace", '"http://Dig88/"'
-        buildConfigField "String", "AppWebServiceUrl", '"http://gd01.khmergaming.com/Dig88/GD88digWS?wsdl"'
+        buildConfigField "String", "AppWebServiceUrl", '"http://www.greendragon88.com/Dig88/GD88digWS?wsdl"'
         buildConfigField "String", "loginjsp", '"login.jsp"'
         buildConfigField "String", "Labelid", '"48"'
         flavorDimensions "versionCode"
@@ -130,12 +130,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.57'
             }
-//        csnqq {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "csnqq"]
-//            buildConfigField "String", "Labelid", '"136"'
-//            applicationId 'gaming178.com.baccaratgame'
-//            versionName '3.57'
-//        }
             depocasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "depocasino"]
                 buildConfigField "String", "Labelid", '"186"'
@@ -337,12 +331,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.57'
             }
-//            sahabatcasino {
-//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sahabatcasino"]
-//                buildConfigField "String", "Labelid", '"47"'
-//                applicationId 'gaming178.com.baccaratgame'
-//                versionName '3.57'
-//            }
             sentosa88 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sentosa88"]
                 buildConfigField "String", "Labelid", '"58"'
@@ -356,14 +344,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.57'
             }
-
-
-//        sicbo338a {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sicbo338a"]
-//            buildConfigField "String", "Labelid", '"26"'
-//            applicationId 'gaming178.com.baccaratgame'
-//            versionName '3.57'
-//        }
 
             sultankasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sultankasino"]
@@ -421,24 +401,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.57'
             }
-            /*cerdascasino { 不更新
-              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "cerdascasino"]
-              buildConfigField "String", "Labelid", '"222"'
-              applicationId 'gaming178.com.baccaratgame'
-              versionName '3.57'
-          }
-          giatcasino {
-              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "giatcasino"]
-              buildConfigField "String", "Labelid", '"223"'
-              applicationId 'gaming178.com.baccaratgame'
-              versionName '3.57'
-          }
-          palemcasino {
-              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "palemcasino"]
-              buildConfigField "String", "Labelid", '"224"'
-              applicationId 'gaming178.com.baccaratgame'
-              versionName '3.57'
-          }*/
             audicasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "audicasino"]
                 buildConfigField "String", "Labelid", '"228"'
@@ -448,6 +410,18 @@ android {
             rentalbaccarat {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rentalbaccarat"]
                 buildConfigField "String", "Labelid", '"240"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.57'
+            }
+            wincasino365 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wincasino365"]
+                buildConfigField "String", "Labelid", '"92"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.57'
+            }
+            menangcasino {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "menangcasino"]
+                buildConfigField "String", "Labelid", '"95"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.57'
             }
