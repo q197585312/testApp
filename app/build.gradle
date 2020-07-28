@@ -419,6 +419,18 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.57'
             }
+            casino288 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casino288"]
+                buildConfigField "String", "Labelid", '"222"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.57'
+            }
+            rolet303 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rolet303"]
+                buildConfigField "String", "Labelid", '"223"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.57'
+            }
         }
 
         applicationVariants.all { variant ->
