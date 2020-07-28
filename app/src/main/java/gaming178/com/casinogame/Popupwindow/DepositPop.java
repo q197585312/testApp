@@ -150,9 +150,9 @@ public class DepositPop extends BasePopupWindow {
 
             @Override
             public void convert(ViewHolder helper, BankInfo item, int position) {
-                helper.setText(R.id.gd__text_tv1, item.getBankName());
-                helper.setTextSize(R.id.gd__text_tv1, 12);
-                helper.setTextColor(R.id.gd__text_tv1, ContextCompat.getColor(context,R.color.gray_dark));
+                helper.setText(R.id.text_tv1, item.getBankName());
+                helper.setTextSize(R.id.text_tv1, 12);
+                helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context,R.color.gray_dark));
             }
         });
         content2.setItemClick(new ItemCLickImp<BankInfo>() {

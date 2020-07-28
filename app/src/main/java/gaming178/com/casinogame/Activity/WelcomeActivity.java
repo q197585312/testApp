@@ -833,6 +833,7 @@ public class WelcomeActivity extends BaseActivity {
                 float serverVersion = Float.parseFloat(appVersionBean.getData().getVersion().trim());
                 Log.d("AppData", serverVersion + ":server");
                 Log.d("AppData", localVersion + ":local");
+                Log.d("AppData", data + ":data");
                 if (version >= 23) {
                     StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
                     StrictMode.setVmPolicy(builder.build());

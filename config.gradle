@@ -1,6 +1,6 @@
 ext {
-    isGd88LibraryModule = true
-//    isGd88LibraryModule = false
+//    isGd88LibraryModule = true
+    isGd88LibraryModule = false
     android = [
             compileSdkVersion: 28,
             buildToolsVersion: '28.0.3',
