@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.BindView;
+import cn.finalteam.toolsfinal.StringUtils;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
@@ -85,8 +86,8 @@ public class LobbyActivity extends BaseActivity {
     private UpdateAnnouncement updateAnnouncement = null;
     private Thread threadAnnouncement = null;
     private boolean bGetAnnouncement = true;
-    private UpdateGameStatus updateGameStatus = null;
-    private Thread threadGameStatus = null;
+
+
     private int tableIndex = 0;
 
     public class UpdateAnnouncement implements Runnable {
@@ -95,8 +96,7 @@ public class LobbyActivity extends BaseActivity {
         public void run() {
             while (bGetAnnouncement) {
                 try {
-
-                    handler.sendEmptyMessageDelayed(1,1500);
+                    handler.sendEmptyMessageDelayed(1, 1500);
                     Thread.sleep(20000);
 
                 } catch (InterruptedException e) {
@@ -113,68 +113,6 @@ public class LobbyActivity extends BaseActivity {
 //        super.onRestoreInstanceState(savedInstanceState);
     }
 
-    public class UpdateGameStatus implements Runnable {
-        int iError = 0;
-
-
-        public void run() {
-
-            try {
-                if (mAppViewModel.isbLogin() && mAppViewModel.isbLobby()) {
-                    //   Log.i(WebSiteUrl.Tag, "-------------- UpdateGameStatus 1");
-                    String statusUrl = "";
-                    statusUrl = WebSiteUrl.TABLE_INFO_A_URL;
-
-                    String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-                    String tableInfo[] = strRes.split("\\^");
-
-                    if (strRes.equals("netError") || strRes.equals("Results=no") || tableInfo.length < 9) {//连续5次拿不到数据就退出，返回到登录界面
-
-                        iError++;
-                    } else {
-                        iError = 0;
-                    }
-
-                    if (iError == 0) {
-                        mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
-                        //拿公告信息
-
-                    }
-                    switch (mAppViewModel.getHallId()) {
-                        case 1:
-                            statusUrl = WebSiteUrl.COUNTDOWN_URL_A;
-                            break;
-                        case 2:
-                            statusUrl = WebSiteUrl.COUNTDOWN_URL_B;
-                            break;
-
-                    }
-                    strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-                    if (strRes.equals("netError") || strRes.equals("Results=no")) {//连续10次拿不到数据就退出，返回到登录界面
-
-                        iError++;
-                    } else
-                        iError = 0;
-
-
-                    //  Log.i(WebSiteUrl.Tag, "++++++++++++++ "+strRes);
-                    if (iError == 0) {
-                        mAppViewModel.splitTimer(strRes);
-                        handler.sendEmptyMessage(HandlerCode.SHOW_BACCARACT);
-                    } else
-                        handler.sendEmptyMessage(HandlerCode.SHOW_BACCARACT_FAIL);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                //   Log.i(WebSiteUrl.Tag, "////////////  update status error");
-                handler.sendEmptyMessage(HandlerCode.SHOW_BACCARACT_FAIL);
-            }
-        }
-        //  Log.i(WebSiteUrl.Tag, "-------------- end update status");
-
-
-    }
 
     private Handler handler = new Handler() {
 
@@ -214,27 +152,20 @@ public class LobbyActivity extends BaseActivity {
             case 0:
             case 1:
             case 2:
-                AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
+                skipAct( LobbyBaccaratActivity.class);
                 break;
             case 3:
-                AppTool.activiyJump(mContext, LobbyRouletteActivity.class);
+                skipAct( LobbyRouletteActivity.class);
                 break;
             case 4:
-                AppTool.activiyJump(mContext, LobbySicboActivity.class);
+                skipAct( LobbySicboActivity.class);
                 break;
             case 5:
-                AppTool.activiyJump(mContext, LobbyDragonTigerActivity.class);
+                skipAct( LobbyDragonTigerActivity.class);
                 break;
         }
     }
 
-    private void updateTableStatus() {
-        showBlockDialog();
-        updateGameStatus = new UpdateGameStatus();
-
-        threadGameStatus = new Thread(updateGameStatus);
-        threadGameStatus.start();
-    }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -243,10 +174,11 @@ public class LobbyActivity extends BaseActivity {
 //        params.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE;
 //        getWindow().setAttributes(params);
 
-        AppTool.setAppLanguage(mContext,AppTool.getAppLanguage(mContext));
+        AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
         setMoreToolbar(true);
 //        backTv.setText(R.string.back);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
         hallGameBottomPromptTv.setSelected(true);
         gridviewContentGv.setLayoutManager(new GridLayoutManager(mContext, 3));
         adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
@@ -264,7 +196,7 @@ public class LobbyActivity extends BaseActivity {
         adapterViewContent.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<HallGameItemBean>() {
             @Override
             public void onItemClick(View view, HallGameItemBean hallGameItemBean, int position) {
-                AppTool.setAppLanguage(LobbyActivity.this,AppTool.getAppLanguage(LobbyActivity.this));
+                AppTool.setAppLanguage(LobbyActivity.this, AppTool.getAppLanguage(LobbyActivity.this));
               /*  if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat) )) {
                     tableIndex = 0;
                     if (mAppViewModel.getHallId() != 1) {
@@ -272,7 +204,7 @@ public class LobbyActivity extends BaseActivity {
                         mAppViewModel.setHallId(1);
                         updateTableStatus();
                     } else
-                        AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
+                        skipAct( LobbyBaccaratActivity.class);
                     //创建线程初始化所有桌的数据
 
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat) + " B")) {
@@ -282,18 +214,12 @@ public class LobbyActivity extends BaseActivity {
                         mAppViewModel.setHallId(2);
                         updateTableStatus();
                     } else
-                        AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
+                        skipAct( LobbyBaccaratActivity.class);
 
                 } else */
                 if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat))) {
-
                     tableIndex = 0;
-                    if (mAppViewModel.getHallId() != 1) {
-//                        mAppViewModel.setbInitLimit(false);
-                        mAppViewModel.setHallId(1);
-                        updateTableStatus();
-                    } else
-                        AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
+                    skipAct( LobbyBaccaratActivity.class);
                     /*else {
                         tableIndex = 1;
                         if (mAppViewModel.getHallId() != 2) {
@@ -301,7 +227,7 @@ public class LobbyActivity extends BaseActivity {
                             mAppViewModel.setHallId(2);
                             updateTableStatus();
                         } else
-                            AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
+                            skipAct( LobbyBaccaratActivity.class);
                     }*/
                     //创建线程初始化所有桌的数据
 
@@ -311,43 +237,31 @@ public class LobbyActivity extends BaseActivity {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (mAppViewModel.getHallId() != 1) {
-                        mAppViewModel.setHallId(1);
-                        updateTableStatus();
-                    } else
-                        AppTool.activiyJump(mContext, LobbyRouletteActivity.class);
+                    skipAct( LobbyRouletteActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.sicbo))) {
                     if (mAppViewModel.getSicbo01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableIndex = 4;
-                    if (mAppViewModel.getHallId() != 1) {
-                        mAppViewModel.setHallId(1);
-                        updateTableStatus();
-                    } else
-                        AppTool.activiyJump(mContext, LobbySicboActivity.class);
+                    skipAct( LobbySicboActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.dragon_tiger))) {
                     if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableIndex = 5;
-                    if (mAppViewModel.getHallId() != 1) {
-                        mAppViewModel.setHallId(1);
-                        updateTableStatus();
-                    } else
-                        AppTool.activiyJump(mContext, LobbyDragonTigerActivity.class);
+                    skipAct( LobbyDragonTigerActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.slots))) {
-                    AppTool.activiyJump(mContext, SlotsGameActivity.class);
+                    skipAct( SlotsGameActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.cq))) {
-                    AppTool.activiyJump(mContext, CQSlotsGameActivity.class);
+                    skipAct( CQSlotsGameActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.cock_fighting))) {
-                    AppTool.activiyJump(mContext, CockFightingWebActivity.class);
+                    skipAct( CockFightingWebActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.afb1188))) {
                     goAfb1188();
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.DSV_Casino))) {
-                    AppTool.activiyJump(mContext, DsvCasinoActivity.class);
+                    skipAct( DsvCasinoActivity.class);
                 }
 
             }
@@ -362,6 +276,22 @@ public class LobbyActivity extends BaseActivity {
         //   startUpdateStatus();
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initFromAfb1188();
+    }
+
+    private void initFromAfb1188() {
+        Intent intent = getIntent();
+
+        if (intent != null && intent.getExtras() != null && !StringUtils.isEmpty(intent.getExtras().getString("web_id"))) {
+            showBlockDialog();
+            fromAfb1188(intent.getExtras().getInt("gameType", 0));
+        }
+    }
+
 
     private void initBar() {
         toolbar.setVisibility(View.GONE);
@@ -504,7 +434,8 @@ public class LobbyActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case INSTALL_CODE:

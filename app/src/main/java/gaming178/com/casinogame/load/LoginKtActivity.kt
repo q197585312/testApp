@@ -1,36 +1,21 @@
 package gaming178.com.casinogame.load
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Process
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import cn.finalteam.toolsfinal.DeviceUtils
-import com.unkonw.testapp.libs.base.BaseListPopupWindow
-import com.unkonw.testapp.libs.utils.SystemTool
-import gaming178.com.baccaratgame.BuildConfig
+import com.unkonw.testapp.libs.base.BasePopupWindow
 import gaming178.com.baccaratgame.R
 import gaming178.com.baccaratgame.databinding.GdActivityLoginJetpackBinding
 import gaming178.com.baccaratgame.databinding.GdPopLanguageSelectLayoutBinding
-import gaming178.com.casinogame.Activity.ChangePasswordActivity
-import gaming178.com.casinogame.Bean.User
-import gaming178.com.casinogame.Popupwindow.DepositPop
-import gaming178.com.casinogame.Popupwindow.PopReferralList
-import gaming178.com.casinogame.Popupwindow.WithdrawPop
-import gaming178.com.casinogame.Util.PopReferrer
-import gaming178.com.casinogame.adapter.MyRecyclerViewHolder
 import gaming178.com.casinogame.base.BaseKtActivity
 import gaming178.com.casinogame.login.LanguageHelper
-import gaming178.com.casinogame.login.MenuItemInfo
-import gaming178.com.casinogame.login.PopChoiceLanguage
+import gaming178.com.mylibrary.allinone.util.AppTool
+import gaming178.com.mylibrary.allinone.util.ScreenUtil
 import kotlinx.android.synthetic.main.gd_activity_login_jetpack.*
 
 
@@ -52,17 +37,10 @@ LoginKtActivity : BaseKtActivity<LoginModel, GdActivityLoginJetpackBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding?.loginModel = viewModel
-        mBinding?.shareModel = mAppViewModel
+
         mBinding?.run {
             loginModel = viewModel
-            shareModel = mAppViewModel
-        }
 
-        mBinding?.shareModel?.run {
-            isLiga365.observe(this@LoginKtActivity, Observer {
-                print("test:${isLiga365.value}")
-            })
         }
         viewModel.beyondKeyboardLayout(gd__ll_content, gd__login_btn)
         gd__login_password_edt.setOnKeyListener(onKey)
@@ -96,21 +74,57 @@ LoginKtActivity : BaseKtActivity<LoginModel, GdActivityLoginJetpackBinding>() {
         initLanguagePop()
     }
 
-    lateinit var popLanguage: BaseListPopupWindow<MenuItemInfo<String>, GdPopLanguageSelectLayoutBinding>
+    lateinit var popLanguage: BasePopupWindow<GdPopLanguageSelectLayoutBinding>
     private fun initLanguagePop() {
-        popLanguage = object : BaseListPopupWindow<MenuItemInfo<String>, GdPopLanguageSelectLayoutBinding>(
-            this@LoginKtActivity,
-            gd__ll_choose_language,
-            DeviceUtils.getScreenPix(this@LoginKtActivity).widthPixels - DeviceUtils.dip2px(
+        popLanguage =
+            object : BasePopupWindow<GdPopLanguageSelectLayoutBinding>(
                 this@LoginKtActivity,
-                20f
-            ),
-            DeviceUtils.dip2px(this@LoginKtActivity, 200f)
-        ){
-            override fun onSetLayoutRes(): Int {
-                return   return R.layout.gd_popupwindow_language_select
+                gd__ll_choose_language,
+                DeviceUtils.getScreenPix(this@LoginKtActivity).widthPixels - DeviceUtils.dip2px(
+                    this@LoginKtActivity,
+                    20f
+                ),
+                DeviceUtils.dip2px(this@LoginKtActivity, 200f)
+            ) {
+                override fun onSetLayoutRes(): Int {
+                    return return R.layout.gd_pop_language_select_layout
+                }
+
+                override fun initView(view: View) {
+                    super.initView(view)
+                    mBinding?.lifecycleOwner = this@LoginKtActivity
+                    val model = this@LoginKtActivity.getActivityViewModelProvider()
+                        .get(LanguageModel::class.java)
+                    mBinding?.languageModel = model
+                    mBinding?.languageModel?.items?.clear()
+                    mBinding?.languageModel?.items?.addAll(
+                        LanguageHelper(
+                            this@LoginKtActivity
+                        ).languageItems
+                    )
+                    mBinding?.languageModel?.languageType?.value =
+                        AppTool.getAppLanguage(this@LoginKtActivity)
+                    mBinding?.languageModel?.languageType?.observe(this@LoginKtActivity, Observer {
+                        mBinding!!.gdBaseRv.adapter?.notifyDataSetChanged()
+                    })
+
+                }
             }
-        }
+        viewModel.showLanguagePop.observe(this, Observer {
+            if (it)
+                popLanguage.showPopupWindowUpCenter(
+                    gd__tv_register,
+                    ScreenUtil.dip2px(this, 200f),
+                    ScreenUtil.getScreenWidthPix(this) - ScreenUtil.dip2px(this, 20f)
+                )
+            else {
+                popLanguage.closePopupWindow()
+            }
+        })
+    }
+
+    fun clickLanguage(view: View) {
+        viewModel.showLanguagePop.value = true
     }
 
 
@@ -267,3 +281,4 @@ LoginKtActivity : BaseKtActivity<LoginModel, GdActivityLoginJetpackBinding>() {
      var popLanguage: PopChoiceLanguage*/
 
 }
+

@@ -3,9 +3,10 @@
     android:id="@+id/item_regist_text_tv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:gravity="center"
     android:maxLines="1"
     android:paddingTop="20px"
     android:paddingBottom="20px"
     android:text="Cancel"
-    android:background="#ffffff"
     android:textColor="@color/black" />

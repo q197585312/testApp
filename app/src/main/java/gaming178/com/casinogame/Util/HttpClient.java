@@ -133,6 +133,7 @@ public class HttpClient {
             conn = null;
             in = null;
         }
+        LogIntervalUtils.logTime("url:" + urlString + ",sParams:" + sParams + ",Response:" + sReturn);
         return sReturn;
     }
 
@@ -324,7 +325,7 @@ public class HttpClient {
             }
         }
         //   System.out.println(cookie);
-        LogIntervalUtils.logTime("cookie:"+cookie);
+        LogIntervalUtils.logTime("cookie:" + cookie);
         return cookie;
     }
 

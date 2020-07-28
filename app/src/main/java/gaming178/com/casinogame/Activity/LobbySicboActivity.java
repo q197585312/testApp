@@ -28,7 +28,6 @@ import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 
 /**
@@ -196,7 +195,8 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void leftClick() {
         mAppViewModel.getSicbo01().setRoadOld("");
-        AppTool.activiyJump(mContext, LobbyActivity.class);
+        if (!WebSiteUrl.isDomain)
+            skipAct(LobbyActivity.class);
         finish();
 
     }
@@ -220,6 +220,7 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
         Glide.with(mContext).load(WebSiteUrl.DownLoadPicture + "sicbo.png").skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).into(img_head);
         titleTv.setText(getString(R.string.sicbo).toUpperCase());
+        setTitleChangeGame(titleTv);
         initOldBigRoad();
     }
 
@@ -289,12 +290,12 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
                     return;
                 mAppViewModel.getSicbo01().setLimitIndex(position + 1);
                 Bundle bundle = new Bundle();
-                bundle.putString("limit",s);
+                bundle.putString("limit", s);
                 bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 31);
                 //   AppTool.activiyJump(AutoNumberActivity.this, NumberGameSingleTableActivity.class, bundle);
                 mAppViewModel.setTableId(31);
                 mAppViewModel.setbLobby(false);
-                AppTool.activiyJump(mContext, SicboActivity.class, bundle);
+                skipAct(SicboActivity.class, bundle);
 
             }
         });

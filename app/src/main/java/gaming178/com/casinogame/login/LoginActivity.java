@@ -412,7 +412,7 @@ public class LoginActivity extends BaseActivity {
                     UserLoginBean userLoginBean = new UserLoginBean(site, usName, password);
 
                     AppTool.saveObjectData(mContext, WebSiteUrl.Tag, userLoginBean);
-                    AppTool.activiyJump(mContext, LobbyActivity.class);
+                    skipAct( LobbyActivity.class);
                     //    finish();
                     break;
                 case ErrorCode.LOGIN_AREADY:

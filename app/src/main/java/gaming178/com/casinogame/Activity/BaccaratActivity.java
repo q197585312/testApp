@@ -2269,7 +2269,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).Init();
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        AppTool.activiyJump(mContext, LobbyBaccaratActivity.class, bundle);
+        skipAct( LobbyBaccaratActivity.class, bundle);
         finish();
     }
 
@@ -2807,7 +2807,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private void checkGuide() {
         Boolean guide = (Boolean) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_Guide);
         if (guide == null || !guide) {
-            AppTool.activiyJump(mContext, HomeGuideActivity.class);
+            skipAct( HomeGuideActivity.class);
         }
     }
 
@@ -5272,7 +5272,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        AppTool.activiyJump(mContext, LobbyBaccaratActivity.class, bundle);
+        skipAct( LobbyBaccaratActivity.class, bundle);
     }
 
     //重新选择了筹码，重新开始算下注筹码

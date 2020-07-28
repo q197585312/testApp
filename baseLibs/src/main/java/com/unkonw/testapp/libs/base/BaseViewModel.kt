@@ -11,7 +11,9 @@ import kotlinx.coroutines.flow.flow
 
 open class BaseViewModel : ViewModel(), LifecycleObserver {
 
+
     val defUI: UIChange by lazy { UIChange() }
+
 
     /**
      * 所有网络请求都在 viewModelScope 域中启动，当页面销毁时会自动

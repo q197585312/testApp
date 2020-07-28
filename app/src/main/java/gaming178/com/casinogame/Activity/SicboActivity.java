@@ -1577,7 +1577,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getSicbo01().setRoadOld("");
-        AppTool.activiyJump(mContext, LobbySicboActivity.class);
+        skipAct( LobbySicboActivity.class);
         finish();
     }
 
@@ -4797,7 +4797,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        AppTool.activiyJump(mContext, LobbySicboActivity.class, bundle);
+        skipAct( LobbySicboActivity.class, bundle);
     }
 
     public void InitButtonClick() {

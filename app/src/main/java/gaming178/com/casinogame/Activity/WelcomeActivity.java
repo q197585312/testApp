@@ -25,7 +25,6 @@ import androidx.core.app.ActivityCompat;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
-import com.unkonw.testapp.libs.utils.ThreadPoolUtils;
 
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
@@ -57,9 +56,9 @@ import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.casinogame.login.LoginActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.allinone.util.GdToastUtils;
 import gaming178.com.mylibrary.allinone.util.MD5;
 import gaming178.com.mylibrary.allinone.util.StringUtils;
-import gaming178.com.mylibrary.allinone.util.GdToastUtils;
 import gaming178.com.mylibrary.allinone.util.UpdateManager;
 import gaming178.com.mylibrary.base.RequestBean;
 import gaming178.com.mylibrary.base.quick.QuickCookieThreadHandler;
@@ -79,7 +78,7 @@ public class WelcomeActivity extends BaseActivity {
     long currentTime;
     private String updateUrl;
     private File loadFile;
-    private volatile int hasSucceed = 0x0000;
+
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -454,133 +453,7 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
-    private void fromAfb1188(int type) {
-        //http://112-alias-api.gd88.org/cklogin.jsp?txtAcctid=TestSH20&txtPwd=12345678&txtLang=0&txtRandCode=qwtpbS8vRnYZedYdD1kWvnPwcAC1jijhVB90dQw1DpEJSG2Kvln
-        //http://112-alias-api.gd88.org/select_tb_infoa.jsp
-        //http://112-alias-api.gd88.org/GDWebService?wsdl
-        WebSiteUrl.isDomain = true;
-        LogIntervalUtils.logCustomTime(currentTime, "开始启动登录线程");
-        if (type == 5)
-            WebSiteUrl.setOther("http://112api.gd09.info/", "");
-        else {
-            WebSiteUrl.setOther("http://afb88.bpt88.net/", "OLTGames/");
-        }
-        //https://112api.gd88bet.net/cklogin.jsp?txtAcctid=Demoafba0310&txtPwd=12345678&txtLang=0&txtRandCode=Ma5qXnw1HuauTpIpzO5WLWkE7tBgduFHmtNCClCEx4tM1xHZloL
-        postNewThread(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = getIntent();
-                String username = intent.getStringExtra("username").toUpperCase();//转成大写;
-                String password = intent.getStringExtra("password");
 
-                String balance = intent.getStringExtra("balance");
-                String webUrl = intent.getStringExtra("webUrl");
-                String host = intent.getStringExtra("host");
-                mAppViewModel.setHttpClient(new HttpClient(webUrl, ""));
-                mAppViewModel.setCookie("");
-//http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
-                mAppViewModel.setHttpClient(new HttpClient(webUrl, ""));
-
-                if (mAppViewModel.getHttpClient().connect("POST") == false) {
-                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
-                    return;
-                }
-                try {
-                    String strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
-                    mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
-                    LogIntervalUtils.logCustomTime(currentTime, "初始化cookie完成");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                mAppViewModel.getUser().setName(username);
-                checkSucceed(0x0001);
-            }
-        });
-
-        postNewThread(postGameGG());
-        postNewThread(postTableInfoA());
-        postNewThread(postTimer());
-    }
-
-    private Runnable postTimer() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                String strRes;
-                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.COUNTDOWN_URL_A);
-                strRes = httpClient.sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-                if (strRes.equals("netError")) {
-                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
-                    return;
-                }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.COUNTDOWN_URL_A + "完成0x100");
-
-                mAppViewModel.splitTimer(strRes);
-                checkSucceed(0x1000);
-            }
-        };
-    }
-
-    private Runnable postTableInfoA() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                String strRes;
-                LogIntervalUtils.logCustomTime(currentTime, "开始Table数据" + WebSiteUrl.TABLE_INFO_A_URL);
-                strRes = httpClient.sendPost(WebSiteUrl.TABLE_INFO_A_URL, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-
-                if (strRes.equals("netError")) {
-                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
-                    return;
-                }
-                String tableInfo[] = strRes.split("\\^");
-                if (tableInfo.length < 12) {
-                    handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
-                    return;
-                }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.TABLE_INFO_A_URL + "完成0x010");
-                mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
-                checkSucceed(0x0100);
-            }
-        };
-    }
-
-    private void postNewThread(Runnable runnable) {
-        ThreadPoolUtils.execute(runnable);
-    }
-
-    private Runnable postGameGG() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                String strRes;
-                String language1 = "0";
-                String annoucementParams = "lng=" + language1 + "&Usid=" + mAppViewModel.getUser().getName();
-                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.GAME_GG_URL);
-                strRes = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
-                if (strRes.equals("netError")) {
-                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
-                    return;
-                }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.GAME_GG_URL + "完成0x001");
-                String ann[] = strRes.split("Results=ok\\|");
-                if (ann.length > 1)
-                    mAppViewModel.setAnnouncement(ann[1]);
-                checkSucceed(0x0010);
-            }
-        };
-
-    }
-
-    private void checkSucceed(int type) {
-        hasSucceed = hasSucceed | type;
-        if (hasSucceed == 0x1111 ) {
-            mAppViewModel.setbLogin(true);
-            mAppViewModel.setbLobby(true);
-            handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
-            LogIntervalUtils.logCustomTime(currentTime, "LOGIN_SECCESS" + "完成进入游戏------");
-        }
-    }
 
     private void fromDig88(int web_id, String currency, int gameType) {
         try {
@@ -782,7 +655,6 @@ public class WelcomeActivity extends BaseActivity {
             handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
             return;
         }
-        mAppViewModel.setHallId(gameType + 1);
         mAppViewModel.setbInitLimit(false);
         mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
         mAppViewModel.getUser().setCurrency(currency);
@@ -824,7 +696,7 @@ public class WelcomeActivity extends BaseActivity {
                 case HandlerCode.SHOW_BACCARACT:
                     dismissBlockDialog();
 
-                    AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
+                    skipAct( LobbyBaccaratActivity.class);
                     AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
                     finish();
                     break;
@@ -834,7 +706,7 @@ public class WelcomeActivity extends BaseActivity {
                     break;
                 case ErrorCode.LOGIN_SECCESS:
                     dismissBlockDialog();
-                    AppTool.activiyJump(mContext, LobbyActivity.class);
+                    skipAct( LobbyActivity.class);
                     if (WebSiteUrl.GameType != 3) {
                         finish();
                     }
@@ -867,6 +739,7 @@ public class WelcomeActivity extends BaseActivity {
 
         }
     };
+
 
     private void CheckNext() {
         if (hasVersionChecked && hasWebsiteChecked) {

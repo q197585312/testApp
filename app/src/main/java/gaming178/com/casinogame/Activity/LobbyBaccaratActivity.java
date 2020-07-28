@@ -1,5 +1,6 @@
 package gaming178.com.casinogame.Activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.BindView;
+import cn.finalteam.toolsfinal.StringUtils;
+import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Bean.Baccarat;
@@ -291,6 +294,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         }
     }
 
+
     private Handler handler = new Handler() {
 
         @Override
@@ -301,9 +305,11 @@ public class LobbyBaccaratActivity extends BaseActivity {
             }
             switch (msg.what) {
                 case HandlerCode.UPDATE_STATUS:
+                    updateToolbarUserInfo();
                     updateTimer();
                     updateInterface();
                     InitRoad();
+
                     updateShuffling();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -315,6 +321,11 @@ public class LobbyBaccaratActivity extends BaseActivity {
             }
         }
     };
+
+    private void updateToolbarUserInfo() {
+        toolbar_right_top_tv.setText(mAppViewModel.getUser().getName());
+        toolbar_right_bottom_tv.setText(mAppViewModel.getUser().getBalance() + "");
+    }
 
     private void updateShuffling() {
         if (mAppViewModel.getBaccarat(1).getGameStatus() == 8) {
@@ -526,11 +537,20 @@ public class LobbyBaccaratActivity extends BaseActivity {
         }
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
-        initUI();
+        if (mAppViewModel.isbLogin()) {
+            initUI();
+            startUpdateStatusThread();
+        }
+    }
 
+    @Override
+    protected void onAfbLoginSucceed() {
+        super.onAfbLoginSucceed();
+        initUI();
         startUpdateStatusThread();
     }
 
@@ -548,8 +568,8 @@ public class LobbyBaccaratActivity extends BaseActivity {
         for (int i = 61; i <= 63; i++) {
             mAppViewModel.getBaccarat(i).setBigRoadOld("");
         }
-        if (!(WebSiteUrl.isDomain && WebSiteUrl.GameType == 1))
-            AppTool.activiyJump(mContext, LobbyActivity.class);
+        if (!WebSiteUrl.isDomain)
+            skipAct( LobbyActivity.class);
         else {
             mAppViewModel.setbLogin(false);
         }
@@ -671,9 +691,24 @@ public class LobbyBaccaratActivity extends BaseActivity {
         setLayout.setVisibility(View.GONE);
         titleTv.setVisibility(View.VISIBLE);
         titleTv.setText(getString(R.string.baccarat).toUpperCase());
-
+        setTitleChangeGame(titleTv);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         InitControl();
+
+        Intent intent = getIntent();
+        if (intent != null && intent.getExtras() != null && !StringUtils.isEmpty(intent.getExtras().getString("web_id")))
+            mAppViewModel.setbLogin(false);
+        boolean isbLogin = mAppViewModel.isbLogin();
+        if (BuildConfig.FLAVOR.isEmpty() && !isbLogin) {
+            int gameType = intent.getExtras().getInt("gameType", 0);
+            initFromAfb1188(gameType);
+        } else {
+            initShoeNumber();
+        }
+    }
+
+
+    private void initShoeNumber() {
         for (int i = 1; i <= 3; i++) {
             mAppViewModel.getBaccarat(i).setShoeNumberOld(mAppViewModel.getBaccarat(i).getShoeNumber());
         }
@@ -681,8 +716,24 @@ public class LobbyBaccaratActivity extends BaseActivity {
             mAppViewModel.getBaccarat(i).setShoeNumberOld(mAppViewModel.getBaccarat(i).getShoeNumber());
         }
         mAppViewModel.getBaccarat71().setShoeNumberOld(mAppViewModel.getBaccarat71().getShoeNumber());
-
+        toolbar_right_top_tv.setText(mAppViewModel.getUser().getName());
+        toolbar_right_bottom_tv.setText(mAppViewModel.getUser().getBalance() + "");
     }
+
+    public void initLoginSucceed() {
+        initShoeNumber();
+        initUI();
+        startUpdateStatusThread();
+    }
+
+    private void initFromAfb1188(int gameType) {
+        fromAfb1188(gameType);
+    }
+
+    protected void onAfb1188LoginSucceed() {
+        initLoginSucceed();
+    }
+
 
     public void InitRoad() {
 //        road = mAppViewModel.getBaccarat02().ShowBaccaratBigRoad("5#5#7#1#5#1#1#1#1#5#5#1#5#1#1#2#1#6#9#7#1#1#5#1#1#5#9#9#1#1#1#1#3#1#1#1#1#5#3#5#5#5#1#5#1#1#7#1#",
@@ -1429,7 +1480,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
 //                        bundle.putBoolean("baccaratA", false);
 //                    }
                     bundle.putBoolean("baccaratA", true);
-                    AppTool.activiyJump(mContext, BaccaratActivity.class, bundle);
+                    skipAct( BaccaratActivity.class, bundle);
 
                 } else {
                     /*
@@ -1441,7 +1492,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
 //                mAppViewModel.setSerialId(serialId);
 //                mAppViewModel.setAreaId(areaId);
                     mAppViewModel.setbLobby(false);
-                    AppTool.activiyJump(mContext, BaccaratActivity.class, bundle);
+                    skipAct( BaccaratActivity.class, bundle);
 
                 }
 

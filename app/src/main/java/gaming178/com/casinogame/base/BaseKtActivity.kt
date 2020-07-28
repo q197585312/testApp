@@ -8,7 +8,7 @@ import com.unkonw.testapp.libs.base.BaseViewModel
 
 
 @SuppressLint("Registered")
-abstract class BaseKtActivity<VM : BaseViewModel, DB : ViewDataBinding> :
+abstract class BaseKtActivity<VM : BaseApiViewModel, DB : ViewDataBinding> :
     BaseVMActivity<VM, DB>() {
     public lateinit var mAppViewModel: AppViewModel
 
@@ -17,6 +17,7 @@ abstract class BaseKtActivity<VM : BaseViewModel, DB : ViewDataBinding> :
         super.onCreate(savedInstanceState)
         mAppViewModel =
             getAppViewModelProvider().get<AppViewModel>(AppViewModel::class.java)
+        viewModel.appViewModel= this.mAppViewModel
     }
 
 

@@ -27,11 +27,11 @@ class AppViewModel : ViewModel() {
     }
 
     val isMainFlavor = MutableLiveData<Boolean>().apply {
-        value = (flavor.value == "gd88" || flavor.value == "liga365")
+        value = (flavor.value == "" || flavor.value == "gd88" || flavor.value == "liga365")
     }
 
-    val  isLiga365 = MutableLiveData<Boolean>().apply {
+    val isLiga365 = MutableLiveData<Boolean>().apply {
         value = flavor.value == "liga365"
     }
-    var user=MutableLiveData<User>()
+    var user = MutableLiveData<User>()
 }

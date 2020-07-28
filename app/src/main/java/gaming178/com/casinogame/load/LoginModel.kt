@@ -95,6 +95,4 @@ class LoginModel : BaseApiViewModel() {
 
     }
 
-    fun showLanguagePop(v: View?, weight: Float) {
-    }
 }

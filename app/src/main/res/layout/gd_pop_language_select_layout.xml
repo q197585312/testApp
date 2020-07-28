@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="languageModel"
+            type="gaming178.com.casinogame.load.LanguageModel" />
 
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +40,9 @@
                 android:id="@+id/gd__base_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp" />
+                android:padding="5dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"/>
         </LinearLayout>
 
         <LinearLayout

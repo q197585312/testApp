@@ -1873,7 +1873,7 @@ public class DragonTigerActivity extends BaseActivity {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
-        AppTool.activiyJump(mContext, LobbyDragonTigerActivity.class);
+        skipAct( LobbyDragonTigerActivity.class);
         finish();
     }
 
@@ -3384,7 +3384,7 @@ public class DragonTigerActivity extends BaseActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        AppTool.activiyJump(mContext, LobbyDragonTigerActivity.class, bundle);
+        skipAct( LobbyDragonTigerActivity.class, bundle);
     }
 
     //重新选择了筹码，重新开始算下注筹码

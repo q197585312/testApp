@@ -22,22 +22,10 @@ import androidx.lifecycle.ViewModelStore;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.SystemTool;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import cn.finalteam.toolsfinal.DeviceUtils;
 import gaming178.com.baccaratgame.R;
@@ -50,7 +38,6 @@ import gaming178.com.casinogame.Bean.RouletteLimit;
 import gaming178.com.casinogame.Bean.Sicbo;
 import gaming178.com.casinogame.Bean.SicboLimit;
 import gaming178.com.casinogame.Bean.User;
-import gaming178.com.casinogame.Chat.FaceConversionUtil;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.HttpClient;
@@ -58,7 +45,6 @@ import gaming178.com.casinogame.Util.TiagonalBlueView;
 import gaming178.com.casinogame.Util.TiagonalRedView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
-import gaming178.com.mylibrary.allinone.util.ThreadPoolUtils;
 
 
 public class AppModel extends ViewModel {
@@ -123,17 +109,9 @@ public class AppModel extends ViewModel {
 
     //    private ComponentName componentBack = new ComponentName(this,
 //            BackgroudMuzicService.class);
-    private void initEmjoy(final Context mContext) {
-        ThreadPoolUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                FaceConversionUtil.getInstace().getFileText(mContext);
-            }
-        });
-
-    }
 
     public Baccarat getBaccarat(int tableId) {
+        getMethodName();
         switch (tableId) {
             case 1:
                 return baccarat01;
@@ -173,6 +151,7 @@ public class AppModel extends ViewModel {
     }
 
     public DragonTiger getDragonTiger(int tableId) {
+        getMethodName();
         switch (tableId) {
             case 5:
                 return dragonTiger01;
@@ -361,14 +340,16 @@ public class AppModel extends ViewModel {
     }
 
     public void splitTableInfo(String strRes, int hallId) {
+        getMethodName();
         String tableInfo[] = strRes.split("\\^");
         if (tableInfo.length < 8)
             return;
         String gameInfo[] = tableInfo[0].split("\\#");
         if (gameInfo.length < 8)
             return;
-        if (!gameInfo[1].equals(""))
+        if (!gameInfo[1].equals("")) {
             this.user.setName(gameInfo[1]);
+        }
         this.user.setBalance(!gameInfo[2].equals("") ? Double.parseDouble(gameInfo[2]) : 0);
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType == 1) {
             this.user.setExchangeRate(!gameInfo[7].equals("") && !gameInfo[7].equals("null") ? Double.parseDouble(gameInfo[7]) : 0);
@@ -378,7 +359,7 @@ public class AppModel extends ViewModel {
         this.user.setVideoUrl("rtmp://" + gameInfo[3]);
         this.user.setVideoUrlDefault("rtmp://" + gameInfo[4]);
         this.user.setVideoPoker("rtmp://" + gameInfo[5]);
-
+        LogUtil.d("getMethodName", "bInitLimit" + "---" + bInitLimit);
         if (!bInitLimit) {
             String tableLimit[] = tableInfo[1].split("\\|");
             if (tableLimit.length > 3) {
@@ -572,6 +553,7 @@ public class AppModel extends ViewModel {
     }
 
     public void splitTimer(String strRes) {
+        getMethodName();
         String timerInfo[] = strRes.split("\\^");
         if (timerInfo.length < 7)
             return;
@@ -2586,6 +2568,7 @@ public class AppModel extends ViewModel {
         if (temp.length > 3) {
             for (int i = 3; i < (temp.length > 7 ? 7 : temp.length); i++) {
                 StackTraceElement a = temp[i];
+//                LogUtil.d("getMethodName", a.getLineNumber() + "__" + a.getClassName() + "---" + a.getMethodName());
             }
 
         }
@@ -2593,6 +2576,8 @@ public class AppModel extends ViewModel {
 
     public void updateRoad(Sicbo sicbo, GridLayout gridLayoutBigSmallRoad, GridLayout gridLayoutEvenOddRoad
             , TextView tv_sicbo_number, TextView tv_even, TextView tv_small, TextView tv_waidic, TextView tv_big, TextView tv_odd, Context mContext, float density) {
+
+
         if (sicbo.getStatus() == 0)//清除路子信息
         {
             clearChildView(gridLayoutBigSmallRoad);
@@ -3489,84 +3474,13 @@ public class AppModel extends ViewModel {
         }
     }
 
-    private void closeAndroidPDialog() {
-        try {
-            Class aClass = Class.forName("android.content.pm.PackageParser$Package");
-            Constructor declaredConstructor = aClass.getDeclaredConstructor(String.class);
-            declaredConstructor.setAccessible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Class cls = Class.forName("android.app.ActivityThread");
-            Method declaredMethod = cls.getDeclaredMethod("currentActivityThread");
-            declaredMethod.setAccessible(true);
-            Object activityThread = declaredMethod.invoke(null);
-            Field mHiddenApiWarningShown = cls.getDeclaredField("mHiddenApiWarningShown");
-            mHiddenApiWarningShown.setAccessible(true);
-            mHiddenApiWarningShown.setBoolean(activityThread, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    public static void handleSSLHandshake() {
-        try {
-            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-
-                @Override
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-
-                @Override
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-            }};
-
-            SSLContext sc = SSLContext.getInstance("TLS");
-            // trustAllCerts信任所有的证书
-            sc.init(null, trustAllCerts, new SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-        } catch (Exception ignored) {
-            ignored.toString();
-        }
-    }
-
-    public void showCrashDialog(Context context) {
-        System.exit(0);
-      /*  AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-        dialogBuilder.create();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.program_crash_dialog, null);
-        view.findViewById(R.id.crash_dialog_but).setOnClickListener(
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View arg0) {
-                        AppExit();
-                    }
-                });
-        dialogBuilder.setView(view);
-        dialogBuilder.show();*/
-    }
-
 
     public String getAnnouncement() {
         return announcement;
     }
 
     public void setAnnouncement(String announcement) {
+        getMethodName();
         this.announcement = announcement;
     }
 

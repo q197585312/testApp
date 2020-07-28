@@ -132,7 +132,7 @@ public class SelectSeatActivity extends BaseActivity {
                     }else {
                         bundle.putBoolean("baccaratA",false);
                     }
-                    AppTool.activiyJump(mContext,BaccaratActivity.class,bundle);
+                    skipAct(BaccaratActivity.class,bundle);
                     finish();
                     break;
 
@@ -312,9 +312,9 @@ public class SelectSeatActivity extends BaseActivity {
 //
 //                Bundle bundle=new Bundle();
 //                bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA,""+tableId);
-//                AppTool.activiyJump(mContext,BaccaratActivity.class,bundle);
+//                skipAct(BaccaratActivity.class,bundle);
 //                chooseUserSeat(tableStatusBean.getAreaId(),0,view,R.id.gd__table_seat_tv7);
-//                AppTool.activiyJump(mContext,BaccaratActivity.class);
+//                skipAct(BaccaratActivity.class);
 //            }
 //        });
     }
