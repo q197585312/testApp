@@ -29,9 +29,7 @@ import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
 import com.nanyang.app.main.home.SaCasinoWfBean;
 import com.nanyang.app.main.home.keno.WebActivity;
-import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
-import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -53,17 +51,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Cookie;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.Request;
-import retrofit2.Response;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -150,6 +142,24 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     public void getSkipGd88Data() {
+        BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
+        Bundle intent = new Bundle();
+
+        //ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
+
+        PersonalInfo info = mainActivity.getApp().getUser();
+        intent.putString("username", info.getLoginName());
+        intent.putString("password", info.getPassword());
+        intent.putString("language", "en");
+        intent.putString("web_id", "-1");
+/*        intent.putString("webUrl", url);
+        intent.putString("host", url1.host());*/
+        intent.putInt("gameType", 5);
+        intent.putString("balance", info.getCredit2());
+        LogIntervalUtils.logTime("请求数据完成开始跳转");
+        baseContext.getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyBaccaratActivity");
+
+/*
         LogIntervalUtils.logTime("请求数据" + BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
         Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -164,24 +174,7 @@ public class MainPresenter extends BaseSwitchPresenter {
 
                         String url = url1.url().toString();
                         if (url1.isHttps()) {
-                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseActivity;
-                            Bundle intent = new Bundle();
 
-                            //ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
-                            for (Cookie cookie : CookieManger.getInstance().getCookieStore().getCookies()) {
-                                gaming178.com.casinogame.Util.LogIntervalUtils.logTime("getCookies:" + cookie.toString());
-                            }
-                            PersonalInfo info = mainActivity.getApp().getUser();
-                            intent.putString("username", info.getLoginName());
-                            intent.putString("password", info.getPassword());
-                            intent.putString("language", "en");
-                            intent.putString("web_id", "-1");
-                            intent.putString("webUrl", url);
-                            intent.putString("host", url1.host());
-                            intent.putInt("gameType", 5);
-                            intent.putString("balance", info.getCredit2());
-                            LogIntervalUtils.logTime("请求数据完成开始跳转");
-                            baseActivity.skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.WelcomeActivity");
 
                         } else {
                             baseActivity.reLoginPrompt(baseActivity.getString(R.string.failed_to_connect), new SportContract.CallBack() {
@@ -194,14 +187,6 @@ public class MainPresenter extends BaseSwitchPresenter {
                         baseContext.hideLoadingDialog();
                     }
 
-                    private String findHttp(Headers headers) {
-                        String url = "";
-                        for (String name : headers.names()) {
-                            if (name.startsWith("http"))
-                                url = name;
-                        }
-                        return url;
-                    }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
@@ -219,7 +204,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                         baseContext.showLoadingDialog();
                     }
                 });
-        mCompositeSubscription.add(subscription);
+        mCompositeSubscription.add(subscription);*/
     }
 
     public void downloadGd88() {

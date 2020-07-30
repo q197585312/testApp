@@ -2,6 +2,8 @@ package gaming178.com.casinogame.login;
 
 import android.content.Context;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +60,7 @@ public class LanguageHelper {
         return false;
     }
 
-
+    @NotNull
     public List<MenuItemInfo<String>> getLanguageItems() {
         return languageItems;
     }

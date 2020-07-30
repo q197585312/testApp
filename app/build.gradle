@@ -27,14 +27,14 @@ android {
             storePassword '123456'
         }
     }
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
         if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
             applicationId 'gaming178.com.baccaratgame'
         }
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName '2.40'
         buildConfigField "String", "AppWebServiceNameSpace", '"http://Dig88/"'
@@ -482,8 +482,8 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation rootProject.ext.dependencies["butterknife"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    implementation rootProject.ext.dependencies.butterknife
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
     implementation 'com.android.support:multidex:1.0.3'
 }
 repositories {

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,15 +29,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.base.BaseApplication;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
+import com.unkonw.testapp.libs.utils.ThreadPoolUtils;
+import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import gaming178.com.baccaratgame.BuildConfig;
@@ -45,6 +50,10 @@ import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Activity.ChangePasswordActivity;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
 import gaming178.com.casinogame.Activity.LobbyActivity;
+import gaming178.com.casinogame.Activity.LobbyBaccaratActivity;
+import gaming178.com.casinogame.Activity.LobbyDragonTigerActivity;
+import gaming178.com.casinogame.Activity.LobbyRouletteActivity;
+import gaming178.com.casinogame.Activity.LobbySicboActivity;
 import gaming178.com.casinogame.Activity.ReportFormActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
@@ -65,6 +74,8 @@ import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
+import gaming178.com.casinogame.Util.HttpClient;
+import gaming178.com.casinogame.Util.LogIntervalUtils;
 import gaming178.com.casinogame.Util.PopChooseChip;
 import gaming178.com.casinogame.Util.PopReferrer;
 import gaming178.com.casinogame.Util.TableChangePop;
@@ -862,12 +873,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     stopUpdateStatus();
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-                    AppTool.activiyJump(mContext, LoginActivity.class, bundle);
+                    skipAct(LoginActivity.class, bundle);
                     break;
                 case HandlerCode.CHOOSE_SEAT_SUCESS:
                     Bundle bundle2 = new Bundle();
                     bundle2.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
-                    AppTool.activiyJump(mContext, BaccaratActivity.class, bundle2);
+                    skipAct(BaccaratActivity.class, bundle2);
                     finish();
                     break;
                 case HandlerCode.THREAD_ERROR:
@@ -880,13 +891,56 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         isAllLobbyEnd = true;
                     }
                     break;
-
+                case ErrorCode.LOGIN_SECCESS:
+                    onAfbLoginSucceed();
+                    break;
 
             }
             //
 
         }
     };
+
+    public void skipAct(Class clazz) {
+        Intent intent = new Intent(this, clazz);
+        intent.putExtra("fromWhere", getClass().getSimpleName());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void skipAct(Class clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        intent.putExtras(bundle);
+        intent.putExtra("fromWhere", getClass().getSimpleName());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    /**
+     * 跳转到对应activity
+     */
+    public void skipFullNameActivity(Bundle bundle, String fullName) {
+        if (fullName != null && fullName.length() > 0) {
+            try {
+                skipAct(Class.forName(fullName), bundle);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void skipAct(Class clazz, Bundle bundle, int flags) {
+        Intent intent = new Intent(this, clazz);
+        intent.putExtras(bundle);
+        intent.putExtra("fromWhere", getClass().getSimpleName());
+        intent.setFlags(flags);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    protected void onAfbLoginSucceed() {
+        startUpdateStatus();
+    }
 
     @Override
     protected void initToolBar() {
@@ -1156,7 +1210,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     public void showReport() {
-        AppTool.activiyJump(mContext, ReportFormActivity.class);
+        skipAct(ReportFormActivity.class);
     }
 
     PopChoiceLanguage popLanguage;
@@ -1594,8 +1648,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
         darkenBackground(0.5f);
         popSet.showPopupDownWindow();
-
     }
+
 
     protected void showLimit() {
 
@@ -1607,7 +1661,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         mAppViewModel.setTableId(tableId);
         bundle.putBoolean("baccaratA", true);
         mAppViewModel.setbLobby(false);
-        AppTool.activiyJump(mContext, BaccaratActivity.class, bundle);
+        skipAct(BaccaratActivity.class, bundle);
         finish();
     }
 
@@ -1744,7 +1798,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             break;
                         }
                     }
-                    AppTool.activiyJump(mContext, RouletteActivity.class, bundle);
+                    skipAct(RouletteActivity.class, bundle);
                     finish();
                 } else if (menuStr.equals("SB1")) {
                     if (mAppViewModel.getSicbo01().getStatus() != 1) {
@@ -1773,7 +1827,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                     }
                     bundle.putString("limit", s);
-                    AppTool.activiyJump(mContext, SicboActivity.class, bundle);
+                    skipAct(SicboActivity.class, bundle);
                     finish();
                 } else if (menuStr.equals("DT1")) {
                     if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
@@ -1791,7 +1845,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             break;
                         }
                     }
-                    AppTool.activiyJump(mContext, DragonTigerActivity.class, bundle);
+                    skipAct(DragonTigerActivity.class, bundle);
                     finish();
                 } else if (menuStr.equals("LB5")) {
                     if (mAppViewModel.getBaccarat(61).getStatus() != 1) {
@@ -1854,7 +1908,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     }
                     changeSeatGame(66);
                 }
-                mAppViewModel.setHallId(1);
+
             }
         });
         tablePop.setTablesData(mAppViewModel, games);
@@ -2240,7 +2294,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         new Thread(new Logout()).start();
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        AppTool.activiyJump(mContext, LoginActivity.class, bundle);
+        skipAct(LoginActivity.class, bundle);
 
     }
 
@@ -2293,6 +2347,202 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     public ViewModelProvider getAppViewModelProvider() {
         return new ViewModelProvider(getApp().getViewModelStore(), getApp().getViewModelFactory());
+    }
+
+    long currentTime;
+
+    protected void fromAfb1188(int type) {
+        //http://112-alias-api.gd88.org/cklogin.jsp?txtAcctid=TestSH20&txtPwd=12345678&txtLang=0&txtRandCode=qwtpbS8vRnYZedYdD1kWvnPwcAC1jijhVB90dQw1DpEJSG2Kvln
+        //http://112-alias-api.gd88.org/select_tb_infoa.jsp
+        //http://112-alias-api.gd88.org/GDWebService?wsdl
+        WebSiteUrl.isDomain = true;
+        LogIntervalUtils.logCustomTime(currentTime, "开始启动登录线程");
+        if (type == 5)
+            WebSiteUrl.setOther("http://112api.gd09.info/", "");
+        else {
+            WebSiteUrl.setOther("http://afb88.bpt88.net/", "OLTGames/");
+        }
+        //https://112api.gd88bet.net/cklogin.jsp?txtAcctid=Demoafba0310&txtPwd=12345678&txtLang=0&txtRandCode=Ma5qXnw1HuauTpIpzO5WLWkE7tBgduFHmtNCClCEx4tM1xHZloL
+        mAppViewModel.setCookie("");
+//http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
+        LogIntervalUtils.logCustomTime(currentTime, "初始化cookie" + WebSiteUrl.INDEX);
+        mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username").toUpperCase();//转成大写;
+        String password = intent.getStringExtra("password");
+
+        String balance = intent.getStringExtra("balance");
+        mAppViewModel.getUser().setName(username);
+        postNewThread(new Runnable() {
+            @Override
+            public void run() {
+
+
+                if (mAppViewModel.getHttpClient().connect("POST") == false) {
+                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
+                    return;
+                }
+                try {
+                    String strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
+                    mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
+                    LogIntervalUtils.logCustomTime(currentTime, "初始化cookie完成");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                checkSucceed(0x0001);
+            }
+        });
+
+//        postNewThread(postGameGG());
+//        postNewThread(postTableInfoA());
+//        postNewThread(postTimer());
+    }
+
+    private Runnable postTimer() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                String strRes;
+                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.COUNTDOWN_URL_A);
+                strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                if (strRes.equals("netError")) {
+                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
+                    return;
+                }
+                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.COUNTDOWN_URL_A + "完成0x100");
+
+                mAppViewModel.splitTimer(strRes);
+                checkSucceed(0x1000);
+            }
+        };
+    }
+
+    private Runnable postTableInfoA() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                String strRes;
+                LogIntervalUtils.logCustomTime(currentTime, "开始Table数据" + WebSiteUrl.TABLE_INFO_A_URL);
+                strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLE_INFO_A_URL, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+
+                if (strRes.equals("netError")) {
+                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
+                    return;
+                }
+                String tableInfo[] = strRes.split("\\^");
+                if (tableInfo.length < 12) {
+                    handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
+                    return;
+                }
+                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.TABLE_INFO_A_URL + "完成0x010");
+                mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
+                checkSucceed(0x0100);
+            }
+        };
+    }
+
+    private void postNewThread(Runnable runnable) {
+        ThreadPoolUtils.execute(runnable);
+    }
+
+    private Runnable postGameGG() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                String strRes;
+                String language1 = "0";
+                String annoucementParams = "lng=" + language1 + "&Usid=" + mAppViewModel.getUser().getName();
+                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.GAME_GG_URL);
+                strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+                if (strRes.equals("netError")) {
+                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
+                    return;
+                }
+                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.GAME_GG_URL + "完成0x001");
+                String ann[] = strRes.split("Results=ok\\|");
+                if (ann.length > 1)
+                    mAppViewModel.setAnnouncement(ann[1]);
+                checkSucceed(0x0010);
+            }
+        };
+
+    }
+
+    private volatile int hasSucceed = 0x0000;
+
+    private void checkSucceed(int type) {
+        hasSucceed = hasSucceed | type;
+        if ((hasSucceed & 0x0001) == 0x0001) {
+            mAppViewModel.setbLogin(true);
+            mAppViewModel.setbLobby(true);
+            handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
+            LogIntervalUtils.logCustomTime(currentTime, "LOGIN_SECCESS" + "完成进入游戏------");
+        }
+    }
+
+    protected void setTitleChangeGame(TextView title) {
+        if (!BuildConfig.FLAVOR.isEmpty())
+            return;
+        title.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.gd_arrow_down_grey_light, 0);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOtherGameChoose(title);
+            }
+        });
+
+    }
+
+    private void initGamePopList(TextView title) {
+        popWindow = new BaseListPopupWindow<MenuItemInfo<Class>>(mContext, title, title.getMeasuredWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, title) {
+
+            @Override
+            public void onConvert(com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder holder, int position, MenuItemInfo<Class> item) {
+                TextView tv = holder.getView(com.unkonw.testapp.R.id.item_regist_text_tv);
+                tv.setAllCaps(true);
+                tv.setText(item.getText());
+                tv.setTextSize(16);
+                tv.setBackgroundColor(ContextCompat.getColor(BaseActivity.this, R.color.green_table_color));
+                tv.setTypeface(Typeface.DEFAULT_BOLD);
+                tv.setTextColor(ContextCompat.getColor(BaseActivity.this, R.color.white));
+            }
+
+            @Override
+            protected void clickItem(TextView tv, MenuItemInfo<Class> item) {
+                super.clickItem(tv, item);
+                skipAct(item.getParent());
+                closePopupWindow();
+                finish();
+
+
+            }
+        };
+        popWindow.setTrans(1f);
+    }
+
+    BaseListPopupWindow<MenuItemInfo<Class>> popWindow;
+
+    public void showOtherGameChoose(TextView title) {
+        Class aClass = this.getClass();
+        ArrayList<MenuItemInfo<Class>> menuItemInfos = new ArrayList<>(Arrays.asList(
+                new MenuItemInfo<Class>(R.mipmap.gd_ba1, getString(R.string.baccarat), "", LobbyBaccaratActivity.class),
+                new MenuItemInfo<Class>(R.mipmap.gd_longhu, getString(R.string.dragon_tiger), "", LobbyDragonTigerActivity.class),
+                new MenuItemInfo<Class>(R.mipmap.gd_lunpan, getString(R.string.roulette), "", LobbyRouletteActivity.class),
+                new MenuItemInfo<Class>(R.mipmap.gd_toubao, getString(R.string.sicbo), "", LobbySicboActivity.class)
+        ));
+        Iterator<MenuItemInfo<Class>> iterator = menuItemInfos.iterator();
+        while (iterator.hasNext()) {
+            MenuItemInfo<Class> next = iterator.next();
+            if (aClass.equals(next.getParent())) {
+                iterator.remove();
+                break;
+            }
+        }
+        if (popWindow == null)
+            initGamePopList(title);
+        popWindow.setData(menuItemInfos);
+        popWindow.showPopupDownWindow();
     }
 
 }

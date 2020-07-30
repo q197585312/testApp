@@ -29,8 +29,7 @@ abstract class BaseListPopupWindow<T, DB : ViewDataBinding>(
     var adapter: BaseRecyclerAdapter<T?>? = null
     var recyclerView: RecyclerView? = null
     private var data: List<T>? = null
-    val recyclerViewId: Int
-        get() = R.id.base_rv
+    open var recyclerViewId: Int = R.id.base_rv
 
     fun setData(data: List<T>?) {
         this.data = data

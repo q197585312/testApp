@@ -196,7 +196,8 @@ public class LobbyDragonTigerActivity extends BaseActivity {
     @Override
     protected void leftClick() {
         mAppViewModel.getDragonTiger01().setBigRoadOld("");
-        AppTool.activiyJump(mContext, LobbyActivity.class);
+        if (!WebSiteUrl.isDomain)
+            skipAct(LobbyActivity.class);
         finish();
     }
 
@@ -271,6 +272,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
         InitControl();
         mAppViewModel.getDragonTiger01().setShoeNumberOld(mAppViewModel.getDragonTiger01().getShoeNumber());
         titleTv.setText(getString(R.string.dragon_tiger).toUpperCase());
+        setTitleChangeGame(titleTv);
     }
 
     public void InitRoad() {
@@ -278,7 +280,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
 //                mContext,baccarat_big_road2,6,density,1);
         mAppViewModel.updateDragenTigerRoad(mContext, density, mAppViewModel.getDragonTiger01(), baccarat_head_road1, baccarat_big_road1, baccarat_bigeyes_road1, baccarat_smalleyes_road1, baccarat_roach_road1
                 , tv_baccarat_shoe_number01, tv_baccarat_total_number01, tv_baccarat_banker_number01, tv_baccarat_player_number01, tv_baccarat_tie_number01, tv_baccarat_bp_number01, tv_baccarat_pp_number01,
-                false,ll_big_road_parent2,hsv_small_road_1,hsv_small_road_2,hsv_small_road_3);
+                false, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3);
     }
 
     public void InitControl() {
@@ -401,7 +403,7 @@ public class LobbyDragonTigerActivity extends BaseActivity {
                 //   AppTool.activiyJump(AutoNumberActivity.this, NumberGameSingleTableActivity.class, bundle);
                 mAppViewModel.setTableId(5);
                 mAppViewModel.setbLobby(false);
-                AppTool.activiyJump(mContext, DragonTigerActivity.class, bundle);
+                skipAct(DragonTigerActivity.class, bundle);
 
             }
         });

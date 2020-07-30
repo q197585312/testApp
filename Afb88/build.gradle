@@ -16,12 +16,12 @@ android {
             storePassword '123456'
         }
     }
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    buildToolsVersion = rootProject.ext.android["buildToolsVersion"]
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion = rootProject.ext.android.buildToolsVersion
     defaultConfig {
         applicationId "com.nanyang.app"
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
         buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
@@ -119,8 +119,8 @@ dependencies {
     //    implementation 'com.android.support:appcompat-v7:25.1.0'
     testImplementation 'junit:junit:4.12'
     implementation project(':baseLibs')
-    implementation rootProject.ext.dependencies["butterknife"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    implementation rootProject.ext.dependencies.butterknife
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     implementation 'com.github.bumptech.glide:glide:3.7.0'

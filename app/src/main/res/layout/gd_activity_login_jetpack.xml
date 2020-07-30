@@ -12,10 +12,6 @@
             name="loginModel"
             type="gaming178.com.casinogame.load.LoginModel" />
 
-        <variable
-            name="shareModel"
-            type="gaming178.com.casinogame.base.AppViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,7 +73,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:visibility="@{shareModel.isLiga365 ? View.VISIBLE : View.GONE}">
+                        android:visibility="@{loginModel.appViewModel.isLiga365 ? View.VISIBLE : View.GONE}">
 
                         <ImageView
                             android:layout_width="20dp"
@@ -225,8 +221,9 @@
                     android:background="@drawable/gd_rectangle_white_radius10"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:onClick="clickLanguage"
                     android:padding="5dp"
-                    android:visibility="@{shareModel.isMainFlavor ? View.VISIBLE : View.GONE}">
+                    android:visibility="@{loginModel.appViewModel.isMainFlavor ? View.VISIBLE : View.GONE}">
 
                     <ImageView
                         android:id="@+id/gd__iv_language_flag"
@@ -246,14 +243,14 @@
                 <TextView
                     android:id="@+id/gd__tv_register"
                     android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_height="2dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
+                    android:onClick="@{(view) -> loginModel.clickLanguage(view)}"
                     android:padding="5dp"
                     android:text="@string/register"
                     android:textColor="#56958D"
-                    android:onClick="@{(view) -> loginModel.clickLanguage(view)}"
-                    android:visibility="@{shareModel.isMainFlavor ? View.GONE : View.VISIBLE}" />
+                    android:visibility="@{loginModel.appViewModel.isMainFlavor ? View.GONE : View.VISIBLE}" />
 
                 <View
                     android:id="@+id/gd__view_bottom_center"

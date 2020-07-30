@@ -2040,7 +2040,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getRoulette01().setRoadOld("");
-        AppTool.activiyJump(mContext, LobbyRouletteActivity.class);
+        skipAct( LobbyRouletteActivity.class);
         finish();
     }
 
@@ -4192,7 +4192,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        AppTool.activiyJump(mContext, LobbyRouletteActivity.class, bundle);
+        skipAct( LobbyRouletteActivity.class, bundle);
     }
 
     private void clearBetChip(String type) {

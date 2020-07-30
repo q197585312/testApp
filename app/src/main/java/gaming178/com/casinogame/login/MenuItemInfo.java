@@ -1,5 +1,7 @@
 package gaming178.com.casinogame.login;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 
 public class MenuItemInfo<P> implements Serializable, IString {
@@ -15,15 +17,14 @@ public class MenuItemInfo<P> implements Serializable, IString {
     public void setDateParam(String dateParam) {
         this.dateParam = dateParam;
     }
-
+    @NotNull
     public P getParent() {
         return parent;
     }
-
-    public void setParent(P parent) {
+    public void setParent(@NotNull P parent) {
         this.parent = parent;
     }
-
+    @NotNull
     P parent;
 
     public String getType() {

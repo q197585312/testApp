@@ -30,7 +30,6 @@ import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2016/4/1.
@@ -141,6 +140,7 @@ public class LobbyRouletteActivity extends BaseActivity {
             }
         });
         titleTv.setText(getString(R.string.roulette).toUpperCase());
+        setTitleChangeGame(titleTv);
         initOldBigRoad();
     }
 
@@ -173,7 +173,8 @@ public class LobbyRouletteActivity extends BaseActivity {
     @Override
     protected void leftClick() {
         mAppViewModel.getRoulette01().setRoadOld("");
-        AppTool.activiyJump(mContext, LobbyActivity.class);
+        if (!WebSiteUrl.isDomain)
+            skipAct(LobbyActivity.class);
         finish();
     }
 
@@ -368,8 +369,9 @@ public class LobbyRouletteActivity extends BaseActivity {
     }
 
     public void showLimit(View v, final int tableId) {
-        initLimitPop(v,tableId,findViewById(R.id.gd__ll_parent_limit));
+        initLimitPop(v, tableId, findViewById(R.id.gd__ll_parent_limit));
     }
+
     public void initLimitPop(View view, final int tableId, final View top_v) {
         String tableNumber = "RL1";
         RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.gd__base_rv);
@@ -392,7 +394,7 @@ public class LobbyRouletteActivity extends BaseActivity {
                 //   AppTool.activiyJump(AutoNumberActivity.this, NumberGameSingleTableActivity.class, bundle);
                 mAppViewModel.setTableId(21);
                 mAppViewModel.setbLobby(false);
-                AppTool.activiyJump(mContext, RouletteActivity.class, bundle);
+                skipAct(RouletteActivity.class, bundle);
 
             }
         });
