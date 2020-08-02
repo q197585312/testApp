@@ -121,7 +121,7 @@ public class LivePlayHelper {
     }
 
 
-    protected void onResumePlay() {
+    public void onResumePlay() {
         if (checkLivePlayVisible(itemBall)) {
             if (playType == 2) {
                 holder.web_wv.onPause();
@@ -209,7 +209,7 @@ public class LivePlayHelper {
     public void openRunMatch(IRTMatchInfo itemBall) {
         this.itemBall = itemBall;
         holder.fl_top_video.setVisibility(View.VISIBLE);
-        if (checkLivePlayVisible(itemBall) && !webloading) {
+        if (checkLivePlayVisible(itemBall)) {
             initPlayer(itemBall.getTvPathIBC());
             onResumePlay();
         } else {

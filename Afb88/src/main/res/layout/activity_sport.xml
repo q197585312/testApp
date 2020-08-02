@@ -34,6 +34,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_sport_head"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/green_dark">
@@ -121,6 +122,7 @@
                             android:text="@string/Five_Major_Match"
                             android:textColor="@color/white"
                             android:textSize="13sp"
+                            android:textAllCaps="true"
                             app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
                             app:layout_constraintEnd_toEndOf="@+id/ll_line1"
                             app:layout_constraintLeft_toRightOf="@+id/iv_sort_time"

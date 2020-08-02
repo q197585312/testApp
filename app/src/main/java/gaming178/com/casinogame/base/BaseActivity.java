@@ -44,6 +44,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import cn.finalteam.toolsfinal.DeviceUtils;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.BaccaratActivity;
@@ -2495,7 +2496,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     private void initGamePopList(TextView title) {
-        popWindow = new BaseListPopupWindow<MenuItemInfo<Class>>(mContext, title, title.getMeasuredWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, title) {
+        popWindow = new BaseListPopupWindow<MenuItemInfo<Class>>(mContext, title, DeviceUtils.dip2px(this, 160), LinearLayout.LayoutParams.WRAP_CONTENT, title) {
 
             @Override
             public void onConvert(com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder holder, int position, MenuItemInfo<Class> item) {
@@ -2503,6 +2504,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 tv.setAllCaps(true);
                 tv.setText(item.getText());
                 tv.setTextSize(16);
+                tv.setSelected(true);
                 tv.setBackgroundColor(ContextCompat.getColor(BaseActivity.this, R.color.green_table_color));
                 tv.setTypeface(Typeface.DEFAULT_BOLD);
                 tv.setTextColor(ContextCompat.getColor(BaseActivity.this, R.color.white));
@@ -2514,7 +2516,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 skipAct(item.getParent());
                 closePopupWindow();
                 finish();
+            }
 
+            @Override
+            protected int onSetLayoutRes() {
+                return R.layout.gd_layout_base_recycler_choose_game;
+            }
+
+            public int getItemLayoutRes() {
+                return R.layout.gd_choose_game_item;
 
             }
         };

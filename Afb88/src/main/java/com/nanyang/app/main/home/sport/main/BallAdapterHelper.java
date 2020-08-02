@@ -60,8 +60,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private IRTMatchInfo additionBallItem;
 
 
-
-
     void setSlIndex(int slIndex) {
         this.slIndex = slIndex;
     }
@@ -152,13 +150,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (contractedMatch) {
             parent.setVisibility(View.GONE);
             ll_title_list.setVisibility(View.GONE);
-            LogUtil.d("visiable:",contractedMatch+"getSocOddsId:"+item.getSocOddsId());
+            LogUtil.d("visiable:", contractedMatch + "getSocOddsId:" + item.getSocOddsId());
             return;
         }
-        LogUtil.d("visiable:",contractedMatch+"getSocOddsId:"+item.getSocOddsId());
+        LogUtil.d("visiable:", contractedMatch + "getSocOddsId:" + item.getSocOddsId());
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
 
-        if (onlyShowAdded) {
+        if (act.onlyShowOne) {
             ll_match_outside.setVisibility(View.GONE);
         } else {
             ll_match_outside.setVisibility(View.VISIBLE);
@@ -2281,12 +2279,28 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
     }
 
-    public void setOnlyShowAdded(boolean onlyShowAdded) {
-        if (this.onlyShowAdded != onlyShowAdded) {
-            super.setOnlyShowAdded(onlyShowAdded);
-            getBaseRecyclerAdapter().notifyDataSetChanged();
+
+    protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
+        SoccerRunningGoalManager.getInstance().runTimeStyle(timeTv, item.getMExtraTime(), item.getStatus(), item.getCurMinute(), item.getLive());
+
+        if (act != null && act.videoHolder != null && act.fl_top_video.getVisibility() == View.VISIBLE && act.videoHolder.tv_run_time.getVisibility() == View.VISIBLE
+                && act.itemBallAdded != null && act.itemBallAdded.getSocOddsId().equals(item.getSocOddsId())
+        ) {
+            SoccerRunningGoalManager.getInstance().runTimeStyleColor(act.videoHolder.tv_run_time, item.getMExtraTime(), item.getStatus(), item.getCurMinute(), item.getLive(), Color.WHITE);
         }
-
-
     }
+
+    @Override
+    public boolean clickAllContracted() {
+        additionMap.put(true, "");
+        return super.clickAllContracted();
+    }
+
+    @Override
+    public void clickOneTeamContracted(I item) {
+        if (additionMap != null && additionMap.get(true) != null && item.getSocOddsId().trim().equals(additionMap.get(true)))
+            additionMap.put(true, "");
+        super.clickOneTeamContracted(item);
+    }
+
 }
