@@ -417,7 +417,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "menangcasino"]
                 buildConfigField "String", "Labelid", '"95"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.57'
+                versionName '3.58'
             }
             casino288 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casino288"]

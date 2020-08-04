@@ -216,6 +216,8 @@
     <string name="Open_Address">Buka Link</string>
     <string name="Referrer_Title">salin kode referensi Anda dan daftarkan teman Anda sebanyak mungkin</string>
     <string name="referral_list">List Refernsi</string>
+    <string name="PROMOTION">PROMOSI</string>
+    <string name="CONTACT">KONTAK</string>
 </resources>
 
 

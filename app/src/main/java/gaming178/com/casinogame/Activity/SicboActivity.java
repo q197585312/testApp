@@ -5674,10 +5674,10 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getSicbo01().getWonMoney() + "", "");
         if (mAppViewModel.getSicbo01().getWonMoney() > 0) {
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.win_color));
             rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getSicbo01().getWonMoney()) + "");
         } else if (mAppViewModel.getSicbo01().getWonMoney() == 0) {
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.bet_color));
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.white));
             rightWinLoseTv.setText(getString(R.string.W_L) + " :0");
         } else {
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));

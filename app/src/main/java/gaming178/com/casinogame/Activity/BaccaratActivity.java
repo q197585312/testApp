@@ -5674,12 +5674,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() > 0) {
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.win_color));
             tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.win_color));
             rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()) + "");
         } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() == 0) {
-            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_gold));
+            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.white));
             tv_win_lose_bet.setText(getString(R.string.W_L) + " :0");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.bet_color));
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.white));
             rightWinLoseTv.setText(getString(R.string.W_L) + " :0");
         } else {
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.lose_color));
