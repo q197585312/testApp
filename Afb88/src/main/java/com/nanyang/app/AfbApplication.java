@@ -378,6 +378,8 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("DG CASINO", isEnabledDG);
         String isEnabledWM = getUser().getIsEnabledWM();
         enableMap.put("WM CASINO", isEnabledWM);
+        enableMap.put("NL CASINO", isEnabledWM);
+        enableMap.put("LG CASINO", isEnabledWM);
         return enableMap;
     }
 

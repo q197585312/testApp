@@ -53,6 +53,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
 
+import static com.unkonw.testapp.libs.utils.LogUtil.getMethodName;
+
 /**
  * Created by Administrator on 2017/3/13.
  */
@@ -123,7 +125,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             if (getBaseActivity().getBetContent().v.getVisibility() == View.VISIBLE)
                 getBaseActivity().getBetContent().stopUpdateOdds();
             presenter.getStateHelper().setIsHide(true, additionPresenter);
-            getBaseActivity().closeTv(tvNoGames);
         } else {// 重新显示到最前端中
             showContent();
             rememberLastOdds();
@@ -138,6 +139,14 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (!isHidden()) {
+            showContent();
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         presenter.getStateHelper().setIsHide(false, additionPresenter);
@@ -147,7 +156,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
         isFirstIn = false;
 
-        showContent();
 
         Log.d(TAG, "onResumePlay: " + getClass().getSimpleName());
 
@@ -573,14 +581,25 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     public void showContent() {
         super.showContent();
+        getMethodName();
+        LogUtil.d("getMethodName", getClass().getSimpleName() + ",onlyShowAdded:" + getBaseActivity().onlyShowOne);
         getBaseActivity().setToolbarVisibility(View.GONE);
+        getBaseActivity().cl_sport_head.setVisibility(View.VISIBLE);
+        getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
+        getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
         if (getBaseActivity().fl_top_video.getVisibility() == View.GONE) {
             getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
             getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
+        } else {
+            getBaseActivity().liveMatchHelper.onResumePlay();
+            if (getBaseActivity().onlyShowOne) {
+
+                presenter.getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().notifyDataSetChanged();
+                getBaseActivity().llSportMenuBottom.setVisibility(View.GONE);
+                getBaseActivity().ll_footer_sport.setVisibility(View.GONE);
+            }
         }
-        getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
-        getBaseActivity().ll_header_sport.setVisibility(View.VISIBLE);
-        getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
+
     }
 
 

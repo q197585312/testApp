@@ -547,6 +547,10 @@ public class AfbUtils {
         map.put("DG CASINO", new SportIdBean("DG CASINO", "", R.string.DG_Cashio, "DG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_dg));
         map.put("WM CASINO", new SportIdBean("WM CASINO", "", R.string.WM_Cashio, "WM CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_wm_gaming));
 
+//        map.put("NL CASINO", new SportIdBean("NL CASINO", "", R.string.NG_Cashio, "NL CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ng_casnio_game));
+//        map.put("LG CASINO", new SportIdBean("LG CASINO", "", R.string.LG_Cashio, "LG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_wm_gaming));
+
+
         map.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_pg_symbol));
         map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
         map.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PS_GAMING, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ps_gaming));

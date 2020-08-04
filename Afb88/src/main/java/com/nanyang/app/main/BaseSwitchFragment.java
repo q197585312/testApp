@@ -3,7 +3,6 @@ package com.nanyang.app.main;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.StringUtils;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -50,7 +49,6 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
     }
 
     public void showContent() {
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(baseToolbarActivity), baseToolbarActivity);
     }
 
     public void setHolder(AfbDrawerViewHolder holder) {
@@ -66,12 +64,20 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         if (!isHidden()) {
             showContent();
         }
-        LogUtil.d("showContent", getClass().getSimpleName() + ",onResumePlay:");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+/*        if (!isHidden()) {
+            showContent();
+        }*/
+
     }
 
     public boolean checkCanBack() {

@@ -21,7 +21,7 @@ import java.util.Map;
 public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapterHelper<B> {
 
     public Map<Boolean, String> additionMap;
-    public boolean onlyShowAdded;
+
 
     public BaseRecyclerAdapter<B> getBaseRecyclerAdapter() {
         return baseRecyclerAdapter;
@@ -40,15 +40,15 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
 
     }
 
+    public boolean isContracted() {
+        return isContracted;
+    }
+
     boolean isContracted;
 
     public void bindAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter) {
         this.baseRecyclerAdapter = baseRecyclerAdapter;
         isContracted = false;
-    }
-
-    public void setOnlyShowAdded(boolean onlyShowAdded) {
-        this.onlyShowAdded = onlyShowAdded;
     }
 
 
@@ -80,7 +80,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         Boolean aBoolean = contractedMap.get(item.getModuleId());
         View ll_match_content = helper.getView(R.id.ll_match_content);
         TextView module_League_child_count_tv = helper.getView(R.id.module_League_child_count_tv);
-        if (aBoolean == null || !aBoolean) {
+        if ((aBoolean == null && !isContracted()) || (aBoolean != null && !aBoolean)) {
             ll_match_content.setVisibility(View.VISIBLE);
             module_League_child_count_tv.setVisibility(View.GONE);
             return false;

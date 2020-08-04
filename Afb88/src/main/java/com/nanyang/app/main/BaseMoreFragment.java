@@ -22,10 +22,10 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
         baseToolbarActivity.getTvToolbarTitle().setVisibility(View.GONE);
         baseToolbarActivity.getToolbar().setNavigationIcon(R.mipmap.go_back_left_white);
         if (baseToolbarActivity instanceof SportActivity) {
-            ((SportActivity) baseToolbarActivity).ll_line1.setVisibility(View.GONE);
-            ((SportActivity) baseToolbarActivity).ll_line2.setVisibility(View.GONE);
-            ((SportActivity) baseToolbarActivity).ll_header_sport.setVisibility(View.GONE);
-            ((SportActivity) baseToolbarActivity).bet_pop_parent_ll.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).cl_sport_head.setVisibility(View.GONE);
+            if (((SportActivity) baseToolbarActivity).liveMatchHelper != null) {
+                ((SportActivity) baseToolbarActivity).liveMatchHelper.onStopPlay();
+            }
             ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).llSportMenuBottom.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).collectionNumTv.setVisibility(View.GONE);

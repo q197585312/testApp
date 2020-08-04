@@ -98,6 +98,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.tv_match_play)
     TextView tv_match_play;
 
+    @BindView(R.id.cl_sport_head)
+    public View cl_sport_head;
     @BindView(R.id.ll_line1)
     public View ll_line1;
     @BindView(R.id.ll_line2)
@@ -200,7 +202,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public LivePlayHelper liveMatchHelper;
     public IRTMatchInfo itemBallAdded;
     private int positionBallAdded;
-    private boolean onlyShowOne;
+    public boolean onlyShowOne;
     private boolean isPlay;
     public IRTMatchInfo itemBall;
     private List<SportIdBean> listSport;
@@ -687,7 +689,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
         stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
-        closeTv(fl_top_video);
     }
 
     Map<String, String> numMap = new HashMap<>();
@@ -1023,23 +1024,34 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void closeTv(View view) {
+        closeTv();
+        resumeCurrent();
+
+    }
+
+    public void closeTv() {
         fl_top_video.setVisibility(View.GONE);
-        this.onlyShowOne = false;
         liveMatchHelper.onStopPlay();
-        liveMatchHelper.onDestroy();
+
+    }
+
+    public void resumeCurrent() {
         if (currentFragment.isVisible()) {
+            cl_sport_head.setVisibility(View.VISIBLE);
             ll_line1.setVisibility(View.VISIBLE);
             ll_line2.setVisibility(View.VISIBLE);
+
             ll_header_sport.setVisibility(View.VISIBLE);
             llSportMenuBottom.setVisibility(View.VISIBLE);
-            if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-                BallAdapterHelper adapterHelper = (BallAdapterHelper) currentFragment.getPresenter().getStateHelper().getAdapterHelper();
-                adapterHelper.setOnlyShowAdded(onlyShowOne);
+            onlyShowOne = false;
+       /*     if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+
                 if (getBetContent() != null)
                     getBetContent().ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
-            }
+            }*/
         }
     }
+
 
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
@@ -1069,11 +1081,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             ll_line2.setVisibility(View.GONE);
             collectionNumTv.setVisibility(View.GONE);
             ll_header_sport.setVisibility(View.GONE);
-            currentFragment.presenter.getStateHelper().getAdapterHelper().setOnlyShowAdded(onlyOne);
+
             if (getBetContent() != null)
                 getBetContent().ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
-
-
             if (itemBall instanceof RunMatchInfo && !currentFragment.getBallDbid().equals(((RunMatchInfo) itemBall).getDbid())) {
                 if (AfbUtils.getSportByDbid(((RunMatchInfo) itemBall).getDbid()) != null)
                     initSportFragment(AfbUtils.getSportByDbid(((RunMatchInfo) itemBall).getDbid()), itemBall);

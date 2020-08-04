@@ -138,6 +138,12 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenDGGamee", "", "wfDGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         } else if (g.equals("WM CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenWMGamee", "", "wfWMLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+        }else if(g.equals("NL CASINO")){
+            //{"ACT":"OpenNLGamee","PT":"wfNLLogin"
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenNLGamee", "", "wfNLLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+        }else if(g.equals("LG CASINO")){
+            skipPCashio("post", AppConstant.getInstance().HOST + "api/LGLogin", g, new SaCasinoWfBean("", "", "LGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+//
         }
     }
 
@@ -157,6 +163,7 @@ public class MainPresenter extends BaseSwitchPresenter {
         intent.putInt("gameType", 5);
         intent.putString("balance", info.getCredit2());
         LogIntervalUtils.logTime("请求数据完成开始跳转");
+
         baseContext.getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyBaccaratActivity");
 
 /*
