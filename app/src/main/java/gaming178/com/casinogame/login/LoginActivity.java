@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -38,6 +40,7 @@ import gaming178.com.casinogame.Bean.UserResponseBean;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.PopMenu;
+import gaming178.com.casinogame.Util.PopWebView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
@@ -69,6 +72,7 @@ public class LoginActivity extends BaseActivity {
     private ImageView imgOpen;
     private ImageView img_in;
     private ImageView img_en;
+    private ImageView img_gif;
     private LinearLayout ll_lg;
 
     @Override
@@ -85,10 +89,46 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void initControl() {
+        img_gif = findViewById(R.id.gd_img_gif);
         ll_lg = findViewById(R.id.gd_ll_lg);
         img_in = findViewById(R.id.gd_img_in);
         img_en = findViewById(R.id.gd_img_en);
         imgOpen = findViewById(R.id.gd_img_open);
+        if (BuildConfig.FLAVOR.equals("mainkasino")) {
+            img_gif.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(LoginActivity.this, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://www.pragmaticplay.com/en/games/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+            img_gif.setVisibility(View.VISIBLE);
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    Log.d("AppData", result);
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Glide.with(LoginActivity.this).asGif().load(result + "images/banner-20200724.gif").diskCacheStrategy(DiskCacheStrategy.NONE).into(img_gif);
+                        }
+                    });
+                }
+            }.start();
+        }
         if (BuildConfig.FLAVOR.equals("menangcasino")) {
             imgOpen.setVisibility(View.VISIBLE);
             imgOpen.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +140,7 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
-        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")){
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             ll_lg.setVisibility(View.VISIBLE);
             img_in.setOnClickListener(new View.OnClickListener() {
                 @Override
