@@ -158,6 +158,9 @@
     <string name="music1">Music 1</string>
     <string name="music2">Music 2</string>
     <string name="music3">Music 3</string>
+    <string name="music4">Music 4</string>
+    <string name="music5">Music 5</string>
+    <string name="music6">Music 6</string>
     <string name="music_background_volume">Background volume</string>
     <string name="music_front_volume">Front volume</string>
 
