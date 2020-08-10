@@ -154,6 +154,9 @@
     <string name="music1">音樂 1</string>
     <string name="music2">音樂 2</string>
     <string name="music3">音樂 3</string>
+    <string name="music4">音樂 4</string>
+    <string name="music5">音樂 5</string>
+    <string name="music6">音樂 6</string>
     <string name="music_background_volume">背景音樂音量</string>
     <string name="music_front_volume">界面音樂音量</string>
 

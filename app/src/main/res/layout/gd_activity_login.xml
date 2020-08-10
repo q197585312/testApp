@@ -19,6 +19,14 @@
         android:background="@mipmap/gd_menu"
         android:visibility="gone"></ImageView>
 
+    <ImageView
+        android:id="@+id/gd_img_gif"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"></ImageView>
+
+
     <LinearLayout
         android:id="@+id/gd_ll_lg"
         android:layout_width="wrap_content"

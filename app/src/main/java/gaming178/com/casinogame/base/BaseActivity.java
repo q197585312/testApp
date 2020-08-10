@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -1363,6 +1364,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     }
 
+    CheckBox currentBox;
+
     public void showSetPop(final View v, int gravity) {
         View center = v;
         if (v == null) {
@@ -1474,40 +1477,68 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                     }
                 });
-                RadioGroup rg_music_rg = (RadioGroup) view.findViewById(R.id.gd__rg_music_rg);
-                //         final  ComponentName componentBack = new ComponentName(mContext,
-                //                 BackgroudMuzicService.class);
+                CheckBox checkBox1 = view.findViewById(R.id.gd__rb_set_muzic1);
+                CheckBox checkBox2 = view.findViewById(R.id.gd__rb_set_muzic2);
+                CheckBox checkBox3 = view.findViewById(R.id.gd__rb_set_muzic3);
+                CheckBox checkBox4 = view.findViewById(R.id.gd__rb_set_muzic4);
+                CheckBox checkBox5 = view.findViewById(R.id.gd__rb_set_muzic5);
+                CheckBox checkBox6 = view.findViewById(R.id.gd__rb_set_muzic6);
+                List<CheckBox> boxList = Arrays.asList(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6);
                 switch (mAppViewModel.getMuzicIndex()) {
                     case 1:
-                        rg_music_rg.check(R.id.gd__rb_set_muzic1);
+                        currentBox = checkBox1;
                         break;
                     case 2:
-                        rg_music_rg.check(R.id.gd__rb_set_muzic2);
+                        currentBox = checkBox2;
                         break;
                     case 3:
-                        rg_music_rg.check(R.id.gd__rb_set_muzic3);
+                        currentBox = checkBox3;
+                        break;
+                    case 4:
+                        currentBox = checkBox4;
+                        break;
+                    case 5:
+                        currentBox = checkBox5;
+                        break;
+                    case 6:
+                        currentBox = checkBox6;
                         break;
                 }
-
-                rg_music_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                currentBox.setChecked(true);
+                checkBox1.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        if (checkedId == R.id.gd__rb_set_muzic1) {
-                            mAppViewModel.setMuzicIndex(1);
-                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 1");
-                            if (mAppViewModel.isbLobby() == false)
-                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        } else if (checkedId == R.id.gd__rb_set_muzic2) {
-                            mAppViewModel.setMuzicIndex(2);
-                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 2");
-                            if (mAppViewModel.isbLobby() == false)
-                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        } else if (checkedId == R.id.gd__rb_set_muzic3) {
-                            mAppViewModel.setMuzicIndex(3);
-                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 3");
-                            if (mAppViewModel.isbLobby() == false)
-                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        }
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
                     }
                 });
                 SeekBar sb_front_voice = (SeekBar) view.findViewById(R.id.gd__sb_front_voice);
@@ -1566,6 +1597,27 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             if (viewById != null)
                 viewById.setVisibility(View.VISIBLE);
             pop.showPopupWindowUpCenter(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+        }
+    }
+
+    private void chooseMusic(List<CheckBox> boxList, CheckBox chooseCheckBox) {
+        if (currentBox.equals(chooseCheckBox)) {
+            chooseCheckBox.setChecked(true);
+            return;
+        } else {
+            currentBox = chooseCheckBox;
+        }
+        for (int i = 0; i < boxList.size(); i++) {
+            CheckBox checkBox = boxList.get(i);
+            if (checkBox.equals(chooseCheckBox)) {
+                checkBox.setChecked(true);
+                mAppViewModel.setMuzicIndex(i + 1);
+                if (mAppViewModel.isbLobby() == false) {
+                    mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                }
+            } else {
+                checkBox.setChecked(false);
+            }
         }
     }
 

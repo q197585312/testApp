@@ -142,6 +142,9 @@
     <string name="music1">เพลง 1</string>
     <string name="music2">เพลง 2</string>
     <string name="music3">เพลง 3</string>
+    <string name="music4">เพลง 4</string>
+    <string name="music5">เพลง 5</string>
+    <string name="music6">เพลง 6</string>
     <string name="music_background_volume">วอลุ่มเพลงพื้นหลัง</string>
     <string name="music_front_volume">ปริมาณการเชื่อมต่อเพลง</string>
 

@@ -100,8 +100,7 @@
                     android:text="@string/Genre"
                     android:textColor="@color/black_grey" />
 
-                <RadioGroup
-                    android:id="@+id/gd__rg_music_rg"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -110,17 +109,16 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/gd__rb_set_muzic1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
-                        android:checked="true"
                         android:text="@string/music1"
                         android:textColor="@color/black_grey" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/gd__rb_set_muzic2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -131,7 +129,7 @@
                         android:text="@string/music2"
                         android:textColor="@color/black_grey" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/gd__rb_set_muzic3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -139,7 +137,46 @@
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
                         android:text="@string/music3"
                         android:textColor="@color/black_grey" />
-                </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <CheckBox
+                        android:id="@+id/gd__rb_set_muzic4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
+                        android:text="@string/music4"
+                        android:textColor="@color/black_grey" />
+
+                    <CheckBox
+                        android:id="@+id/gd__rb_set_muzic5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
+                        android:text="@string/music5"
+                        android:textColor="@color/black_grey" />
+
+                    <CheckBox
+                        android:id="@+id/gd__rb_set_muzic6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
+                        android:text="@string/music6"
+                        android:textColor="@color/black_grey" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
