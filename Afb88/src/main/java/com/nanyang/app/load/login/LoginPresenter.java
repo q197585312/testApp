@@ -8,6 +8,7 @@ import android.widget.MediaController;
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
@@ -71,8 +72,10 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                                         @Override
                                         public void onBack(String data) {
                                             PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
-                                            personalInfo.setPassword(((LoginActivity) baseContext).getApp().getUser().getPassword());
-                                            ((LoginActivity) baseContext).getApp().setUser(personalInfo);
+                                            personalInfo.setPassword(((BaseToolbarActivity)( baseContext.getBaseActivity())).getApp().getUser().getPassword());
+                                            personalInfo.setLoginUrl(url);
+                                            ((BaseToolbarActivity)( baseContext.getBaseActivity())).getApp().setUser(personalInfo);
+
                                             checkLogin(0x10);
                                         }
                                     });

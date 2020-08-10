@@ -58,7 +58,6 @@ import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.utils.GZipUtil;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -616,15 +615,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
 
-    @Override
-    public void againLogin(String gameType) {
-        presenter.login(new LoginInfo(app.getUser().getLoginName(), app.getUser().getPassword()), new BaseConsumer<String>(this) {
-            @Override
-            protected void onBaseGetData(String data) {
-                onLanguageSwitchSucceed(data);
-            }
-        });
-    }
 
     public void clickCup(View view) {
         currentFragment.presenter.getStateHelper().createChoosePop(presenter.mApiWrapper, view);
