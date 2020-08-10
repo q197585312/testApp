@@ -41,7 +41,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             final String url_login = AppConstant.getInstance().URL_LOGIN;
             String infoWfmain = info.getWfmainJson("Login", new LanguageHelper(baseContext).getLanguage());
             String url = url_login + "?_fm=" + infoWfmain;
-            doRetrofitApiOnUiThread(getService(ApiService.class).getData(url)
+            doRetrofitApiOnDefaultThread(getService(ApiService.class).getData(url)
                     , new BaseConsumer<String>(baseContext) {
                         @Override
                         protected void onBaseGetData(String s) throws JSONException {
@@ -109,7 +109,13 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
     private void checkLogin(int i) {
         hasSucceed = hasSucceed | i;
         if (hasSucceed == 0x11)
-            baseContext.onLanguageSwitchSucceed("");
+            baseContext.getBaseActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    baseContext.onLanguageSwitchSucceed("");
+                }
+            });
+
     }
 
 

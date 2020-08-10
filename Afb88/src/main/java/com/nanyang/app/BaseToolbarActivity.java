@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
+import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
@@ -29,6 +30,7 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.LoadMainDataHelper;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
@@ -42,8 +44,12 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
+import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -54,6 +60,13 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.HttpUrl;
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
+import okio.Buffer;
+import okio.BufferedSource;
+import retrofit2.Response;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -105,7 +118,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         llRight = (LinearLayout) findViewById(R.id.ll_right);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.color.green_black_word);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -331,6 +344,84 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     }
 
+    public String getResponseBody(Response response) {
+
+        Charset UTF8 = Charset.forName("UTF-8");
+        ResponseBody responseBody = (ResponseBody) response.body();
+        BufferedSource source = responseBody.source();
+        try {
+            source.request(Long.MAX_VALUE); // Buffer the entire body.
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Buffer buffer = source.buffer();
+
+        Charset charset = UTF8;
+        MediaType contentType = responseBody.contentType();
+        if (contentType != null) {
+            try {
+                charset = contentType.charset(UTF8);
+            } catch (UnsupportedCharsetException e) {
+                e.printStackTrace();
+            }
+        }
+        return buffer.clone().readString(charset);
+    }
+
+    public void getSkipGd88Data() {
+
+
+        LogIntervalUtils.logTime("请求数据" + BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
+        Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Response>() {
+                    @Override
+                    public void accept(Response responseBodyResponse) throws JSONException {
+                        int code = responseBodyResponse.code();
+                        LogIntervalUtils.logTime("请求数据完成开始解析s:" + ",code=" + code);
+                        Request rawRequest = responseBodyResponse.raw().request();
+                        HttpUrl url1 = rawRequest.url();
+
+                        String url = url1.url().toString();
+                        if (url.contains("login.jsp")) {
+
+                            Bundle intent = new Bundle();
+                            PersonalInfo info = getApp().getUser();
+                            SettingAllDataBean bean = getApp().getSettingAllDataBean();
+                            intent.putString("username", info.getLoginName());
+                            intent.putString("password", info.getPassword());
+                            intent.putString("language", "en");
+                            intent.putString("web_id", "-1");
+                            intent.putInt("gameType", 5);
+                            intent.putString("balance", info.getCredit2());
+                            intent.putString("curCode", bean.getCurCode());
+                            LogIntervalUtils.logTime("请求数据完成开始跳转");
+                            getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyBaccaratActivity");
+                        } else {
+                            ToastUtils.showShort("not find agent!Please contact your agent!");
+                        }
+                        hideLoadingDialog();
+                    }
+
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        subscription.request(Long.MAX_VALUE);
+                        showLoadingDialog();
+                    }
+                });
+        mCompositeSubscription.add(subscription);
+    }
 
     public void reLoginPrompt(String msg, final SportContract.CallBack callBack) {
 //        ToastUtils.showShort(getString(R.string.another_login));
@@ -483,9 +574,9 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 if (!beanList.contains(waitNum)) {
                     String accType = getOtType();
                     BetGoalWindowUtils.showBetWindow(accType, waitNum, this, true);
-                    waitSize=Integer.parseInt(waitNum);
-                }else{
-                    waitSize=0;
+                    waitSize = Integer.parseInt(waitNum);
+                } else {
+                    waitSize = 0;
                 }
             }
             lastWaitDataBeanList = beanList;

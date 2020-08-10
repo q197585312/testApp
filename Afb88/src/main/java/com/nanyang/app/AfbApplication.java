@@ -382,7 +382,6 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("LG CASINO", isEnabledWM);
         return enableMap;
     }
-
     public void setDelayBet(int delayBet) {
         this.delayBet = delayBet;
     }

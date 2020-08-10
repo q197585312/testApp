@@ -2404,7 +2404,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     long currentTime;
 
-    protected void fromAfb1188(int type) {
+    protected void fromAfb1188(int type, Bundle extras) {
         //http://112-alias-api.gd88.org/cklogin.jsp?txtAcctid=TestSH20&txtPwd=12345678&txtLang=0&txtRandCode=qwtpbS8vRnYZedYdD1kWvnPwcAC1jijhVB90dQw1DpEJSG2Kvln
         //http://112-alias-api.gd88.org/select_tb_infoa.jsp
         //http://112-alias-api.gd88.org/GDWebService?wsdl
@@ -2418,18 +2418,40 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         //https://112api.gd88bet.net/cklogin.jsp?txtAcctid=Demoafba0310&txtPwd=12345678&txtLang=0&txtRandCode=Ma5qXnw1HuauTpIpzO5WLWkE7tBgduFHmtNCClCEx4tM1xHZloL
         mAppViewModel.setCookie("");
 //http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
-        LogIntervalUtils.logCustomTime(currentTime, "初始化cookie" + WebSiteUrl.INDEX);
-        mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username").toUpperCase();//转成大写;
-        String password = intent.getStringExtra("password");
 
-        String balance = intent.getStringExtra("balance");
-        mAppViewModel.getUser().setName(username);
+        /*  intent.putString("username", info.getLoginName());
+        intent.putString("password", info.getPassword());
+        intent.putString("language", "en");*/
+
+        String username = extras.getString("username").toUpperCase();//转成大写;
+//        String password = extras.getString("password");
+        String password = "12345678";
+        String balance = extras.getString("balance");
+        String curCode = extras.getString("curCode");
+
+
         postNewThread(new Runnable() {
             @Override
             public void run() {
+                String strAgent = Gd88Utils.getCurCodeMap().get(curCode);
+                String sbUrl = "http://112api.gd09.info/player/afb1188/GD88WebService?wsdl";
+                String sbParam = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:maw=\"http://gd88/\"><soapenv:Header/><soapenv:Body><maw:CreateAccount><!--Optional:--><strUsername>"
+                        + username + "</strUsername><Api_key>"
+                        + "j0h93zNB7VDGn4TJEMbnm8WfpOuLMDwl"
+                        + "</Api_key><strPassword>"
+                        + password + "</strPassword><strAgent>"
+                        + strAgent + "</strAgent></maw:CreateAccount></soapenv:Body></soapenv:Envelope>";
 
+                HttpClient httpClient = new HttpClient(sbUrl
+                        , "");
+                String depositStr = httpClient.sendPostSoap(sbUrl, sbParam);
+                LogIntervalUtils.logCustomTime(currentTime, "sbUrl:" + sbUrl + ",depositStr:" + depositStr);
+                LogIntervalUtils.logCustomTime(currentTime, ",sbParam:" + sbParam);
+
+                String urlLogin = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + BuildConfig.loginjsp + "?txtAcctid=" + username + "&txtPwd=12345678&txtLang=0";
+                mAppViewModel.setHttpClient(new HttpClient(urlLogin
+                        , mAppViewModel.getCookie()));
+                mAppViewModel.getUser().setName(username);
 
                 if (mAppViewModel.getHttpClient().connect("POST") == false) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -2438,7 +2460,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 try {
                     String strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
                     mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
-                    LogIntervalUtils.logCustomTime(currentTime, "初始化cookie完成");
+                    LogIntervalUtils.logCustomTime(currentTime, urlLogin + "初始化cookie完成:" + strRes);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

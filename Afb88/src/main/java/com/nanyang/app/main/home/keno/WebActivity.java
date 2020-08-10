@@ -3,12 +3,13 @@ package com.nanyang.app.main.home.keno;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import androidx.annotation.Nullable;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -60,10 +61,14 @@ public class WebActivity extends BaseToolbarActivity {
                     url = request.toString();
                 }
                 LogUtil.d("requesturl", url);
+                ///_View/LiveDealerGDC.aspx?time=1596692876201
                 if (url.contains("html?ispc=1"))
                     finish();
-                else
+                else if (url.contains("/LiveDealerGDC.aspx")) {
+                    goGd88App();
+                } else {
                     view.loadUrl(url);
+                }
                 return true;
             }
 
@@ -72,6 +77,10 @@ public class WebActivity extends BaseToolbarActivity {
                 handler.proceed();//接受证书
             }
         });
+    }
+
+    private void goGd88App() {
+        getSkipGd88Data();
     }
 
     public void onResume() {

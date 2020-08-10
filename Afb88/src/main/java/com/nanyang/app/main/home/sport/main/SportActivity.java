@@ -1026,7 +1026,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void closeTv(View view) {
         closeTv();
         resumeCurrent();
-
+        currentFragment.presenter.getStateHelper().getAdapterHelper().additionMap.put(true, "");
+        currentFragment.presenter.getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().notifyDataSetChanged();
     }
 
     public void closeTv() {
@@ -1044,6 +1045,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             ll_header_sport.setVisibility(View.VISIBLE);
             llSportMenuBottom.setVisibility(View.VISIBLE);
             onlyShowOne = false;
+
        /*     if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
 
                 if (getBetContent() != null)
@@ -1056,7 +1058,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
             if (!(currentFragment.presenter.getStateHelper().getStateType().getType().charAt(0) + "").toLowerCase().startsWith("r")) {
-                closeTv(ll_header_sport);
+//                closeTv(ll_header_sport);
                 return;
             }
             if (!liveMatchHelper.checkLivePlayVisible(itemBall) && !liveMatchHelper.checkWebRtsVisible(itemBall)) {
