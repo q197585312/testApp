@@ -187,7 +187,9 @@ public class LoginInfo {
         String lang = "";
         String pgLable = "0.6398654664343417";
         String vsn = "4.0.12";
+        String IsMobile = "1";
         String PT = AppConstant.wfMain;
+
 
         public LanguageWfBean(String ACT, String lang, String PT) {
             this.ACT = ACT;

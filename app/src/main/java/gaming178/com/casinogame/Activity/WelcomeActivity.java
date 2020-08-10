@@ -409,7 +409,7 @@ public class WelcomeActivity extends BaseActivity {
                 ThreadLogin login = new ThreadLogin(us.trim(), k);
                 login.start();
             } else {
-                fromAfb1188(gameType);
+                fromAfb1188(gameType, bundle);
             }
 
         } else if (gameType == 4) {
@@ -431,7 +431,7 @@ public class WelcomeActivity extends BaseActivity {
             createAccountUrl = "http://" + urlHost + "/GDWebService?wsdl";
             initNewIntent(urlHost);
         } else if (gameType == 5) {
-            fromAfb1188(gameType);
+            fromAfb1188(gameType, bundle);
         } else if (gameType == 6) {
             Intent i = getIntent();
             userName = i.getStringExtra("userName").toUpperCase();

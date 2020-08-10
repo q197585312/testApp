@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.BindView;
-import cn.finalteam.toolsfinal.StringUtils;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
@@ -152,16 +151,16 @@ public class LobbyActivity extends BaseActivity {
             case 0:
             case 1:
             case 2:
-                skipAct( LobbyBaccaratActivity.class);
+                skipAct(LobbyBaccaratActivity.class);
                 break;
             case 3:
-                skipAct( LobbyRouletteActivity.class);
+                skipAct(LobbyRouletteActivity.class);
                 break;
             case 4:
-                skipAct( LobbySicboActivity.class);
+                skipAct(LobbySicboActivity.class);
                 break;
             case 5:
-                skipAct( LobbyDragonTigerActivity.class);
+                skipAct(LobbyDragonTigerActivity.class);
                 break;
         }
     }
@@ -219,7 +218,7 @@ public class LobbyActivity extends BaseActivity {
                 } else */
                 if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat))) {
                     tableIndex = 0;
-                    skipAct( LobbyBaccaratActivity.class);
+                    skipAct(LobbyBaccaratActivity.class);
                     /*else {
                         tableIndex = 1;
                         if (mAppViewModel.getHallId() != 2) {
@@ -237,31 +236,31 @@ public class LobbyActivity extends BaseActivity {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    skipAct( LobbyRouletteActivity.class);
+                    skipAct(LobbyRouletteActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.sicbo))) {
                     if (mAppViewModel.getSicbo01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableIndex = 4;
-                    skipAct( LobbySicboActivity.class);
+                    skipAct(LobbySicboActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.dragon_tiger))) {
                     if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableIndex = 5;
-                    skipAct( LobbyDragonTigerActivity.class);
+                    skipAct(LobbyDragonTigerActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.slots))) {
-                    skipAct( SlotsGameActivity.class);
+                    skipAct(SlotsGameActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.cq))) {
-                    skipAct( CQSlotsGameActivity.class);
+                    skipAct(CQSlotsGameActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.cock_fighting))) {
-                    skipAct( CockFightingWebActivity.class);
+                    skipAct(CockFightingWebActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.afb1188))) {
                     goAfb1188();
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.DSV_Casino))) {
-                    skipAct( DsvCasinoActivity.class);
+                    skipAct(DsvCasinoActivity.class);
                 }
 
             }
@@ -280,16 +279,7 @@ public class LobbyActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        initFromAfb1188();
-    }
 
-    private void initFromAfb1188() {
-        Intent intent = getIntent();
-
-        if (intent != null && intent.getExtras() != null && !StringUtils.isEmpty(intent.getExtras().getString("web_id"))) {
-            showBlockDialog();
-            fromAfb1188(intent.getExtras().getInt("gameType", 0));
-        }
     }
 
 

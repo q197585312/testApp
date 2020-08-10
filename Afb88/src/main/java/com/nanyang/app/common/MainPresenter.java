@@ -18,8 +18,6 @@ import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
-import com.nanyang.app.Utils.LogIntervalUtils;
-import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -120,7 +118,7 @@ public class MainPresenter extends BaseSwitchPresenter {
     public void clickGdGameItem(String g) {
 
         if (g.equals("Casino")) {
-            getSkipGd88Data();
+            ((BaseToolbarActivity) baseContext.getBaseActivity()).getSkipGd88Data();
         } else if (g.equals("PRAGMATIC CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
         } else if (g.equals("PG CASINO")) {
@@ -138,81 +136,15 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenDGGamee", "", "wfDGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         } else if (g.equals("WM CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenWMGamee", "", "wfWMLogin"), "", "^.*\"(http[^\"]+)\",.*$");
-        }else if(g.equals("NL CASINO")){
+        } else if (g.equals("NL CASINO")) {
             //{"ACT":"OpenNLGamee","PT":"wfNLLogin"
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenNLGamee", "", "wfNLLogin"), "", "^.*\"(http[^\"]+)\",.*$");
-        }else if(g.equals("LG CASINO")){
+        } else if (g.equals("LG CASINO")) {
             skipPCashio("post", AppConstant.getInstance().HOST + "api/LGLogin", g, new SaCasinoWfBean("", "", "LGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
 //
         }
     }
 
-    public void getSkipGd88Data() {
-        BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
-        Bundle intent = new Bundle();
-
-        //ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
-
-        PersonalInfo info = mainActivity.getApp().getUser();
-        intent.putString("username", info.getLoginName());
-        intent.putString("password", info.getPassword());
-        intent.putString("language", "en");
-        intent.putString("web_id", "-1");
-/*        intent.putString("webUrl", url);
-        intent.putString("host", url1.host());*/
-        intent.putInt("gameType", 5);
-        intent.putString("balance", info.getCredit2());
-        LogIntervalUtils.logTime("请求数据完成开始跳转");
-
-        baseContext.getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyBaccaratActivity");
-
-/*
-        LogIntervalUtils.logTime("请求数据" + BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
-        Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Response>() {
-                    @Override
-                    public void accept(Response responseBodyResponse) throws JSONException {
-
-                        LogIntervalUtils.logTime("请求数据完成开始解析");
-                        Request rawRequest = responseBodyResponse.raw().request();
-                        HttpUrl url1 = rawRequest.url();
-                        BaseToolbarActivity baseActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
-
-                        String url = url1.url().toString();
-                        if (url1.isHttps()) {
-
-
-                        } else {
-                            baseActivity.reLoginPrompt(baseActivity.getString(R.string.failed_to_connect), new SportContract.CallBack() {
-                                @Override
-                                public void clickCancel(View v) {
-                                    ToastUtils.showShort("not find agent!");
-                                }
-                            });
-                        }
-                        baseContext.hideLoadingDialog();
-                    }
-
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        throwable.printStackTrace();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        subscription.request(Long.MAX_VALUE);
-                        baseContext.showLoadingDialog();
-                    }
-                });
-        mCompositeSubscription.add(subscription);*/
-    }
 
     public void downloadGd88() {
         String url = "http://www.appgd88.com/api/gd88AndroidVersion.php?Labelid=48";
