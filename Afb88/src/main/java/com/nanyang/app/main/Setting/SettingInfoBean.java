@@ -2,7 +2,6 @@ package com.nanyang.app.main.Setting;
 
 import java.util.List;
 
-import gaming178.com.casinogame.Bean.ChipBean;
 
 /**
  * Created by Administrator on 2019/5/7.

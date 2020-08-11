@@ -26,7 +26,7 @@ ext {
             takephoto_library   : 'com.jph.takephoto:takephoto_library:4.0.3',
             glide               : 'com.github.bumptech.glide:glide:3.7.0',
             bga_swipebacklayout : 'cn.bingoogolapple:bga-swipebacklayout:1.2.0@aar',
-            bdclta              : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:3.1.1',
-            bdclta_rv           : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:3.1.1'
+            bdclta              : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0',
+            bdclta_rv           : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0'
     ]
 }
