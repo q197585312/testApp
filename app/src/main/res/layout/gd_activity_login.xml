@@ -10,6 +10,46 @@
         layout="@layout/toolbar_layout"
         android:visibility="gone" />
 
+    <ImageView
+        android:id="@+id/gd_img_open"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="-8dp"
+        android:layout_marginTop="-8dp"
+        android:background="@mipmap/gd_menu"
+        android:visibility="gone"></ImageView>
+
+    <ImageView
+        android:id="@+id/gd_img_gif"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"></ImageView>
+
+
+    <LinearLayout
+        android:id="@+id/gd_ll_lg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/gd_img_in"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/gd_lang_in_flag"></ImageView>
+
+        <ImageView
+            android:id="@+id/gd_img_en"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/gd_lang_en_flag"></ImageView>
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/gd__ll_container"
         android:layout_width="match_parent"

@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -1363,6 +1364,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     }
 
+    CheckBox currentBox;
+
     public void showSetPop(final View v, int gravity) {
         View center = v;
         if (v == null) {
@@ -1474,40 +1477,68 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                     }
                 });
-                RadioGroup rg_music_rg = (RadioGroup) view.findViewById(R.id.gd__rg_music_rg);
-                //         final  ComponentName componentBack = new ComponentName(mContext,
-                //                 BackgroudMuzicService.class);
+                CheckBox checkBox1 = view.findViewById(R.id.gd__rb_set_muzic1);
+                CheckBox checkBox2 = view.findViewById(R.id.gd__rb_set_muzic2);
+                CheckBox checkBox3 = view.findViewById(R.id.gd__rb_set_muzic3);
+                CheckBox checkBox4 = view.findViewById(R.id.gd__rb_set_muzic4);
+                CheckBox checkBox5 = view.findViewById(R.id.gd__rb_set_muzic5);
+                CheckBox checkBox6 = view.findViewById(R.id.gd__rb_set_muzic6);
+                List<CheckBox> boxList = Arrays.asList(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6);
                 switch (mAppViewModel.getMuzicIndex()) {
                     case 1:
-                        rg_music_rg.check(R.id.gd__rb_set_muzic1);
+                        currentBox = checkBox1;
                         break;
                     case 2:
-                        rg_music_rg.check(R.id.gd__rb_set_muzic2);
+                        currentBox = checkBox2;
                         break;
                     case 3:
-                        rg_music_rg.check(R.id.gd__rb_set_muzic3);
+                        currentBox = checkBox3;
+                        break;
+                    case 4:
+                        currentBox = checkBox4;
+                        break;
+                    case 5:
+                        currentBox = checkBox5;
+                        break;
+                    case 6:
+                        currentBox = checkBox6;
                         break;
                 }
-
-                rg_music_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                currentBox.setChecked(true);
+                checkBox1.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        if (checkedId == R.id.gd__rb_set_muzic1) {
-                            mAppViewModel.setMuzicIndex(1);
-                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 1");
-                            if (mAppViewModel.isbLobby() == false)
-                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        } else if (checkedId == R.id.gd__rb_set_muzic2) {
-                            mAppViewModel.setMuzicIndex(2);
-                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 2");
-                            if (mAppViewModel.isbLobby() == false)
-                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        } else if (checkedId == R.id.gd__rb_set_muzic3) {
-                            mAppViewModel.setMuzicIndex(3);
-                            //      Log.i(WebSiteUrl.Tag,"setMuzicIndex = 3");
-                            if (mAppViewModel.isbLobby() == false)
-                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                        }
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
+                    }
+                });
+                checkBox6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseMusic(boxList, (CheckBox) v);
                     }
                 });
                 SeekBar sb_front_voice = (SeekBar) view.findViewById(R.id.gd__sb_front_voice);
@@ -1566,6 +1597,27 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             if (viewById != null)
                 viewById.setVisibility(View.VISIBLE);
             pop.showPopupWindowUpCenter(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+        }
+    }
+
+    private void chooseMusic(List<CheckBox> boxList, CheckBox chooseCheckBox) {
+        if (currentBox.equals(chooseCheckBox)) {
+            chooseCheckBox.setChecked(true);
+            return;
+        } else {
+            currentBox = chooseCheckBox;
+        }
+        for (int i = 0; i < boxList.size(); i++) {
+            CheckBox checkBox = boxList.get(i);
+            if (checkBox.equals(chooseCheckBox)) {
+                checkBox.setChecked(true);
+                mAppViewModel.setMuzicIndex(i + 1);
+                if (mAppViewModel.isbLobby() == false) {
+                    mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                }
+            } else {
+                checkBox.setChecked(false);
+            }
         }
     }
 
@@ -2352,7 +2404,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     long currentTime;
 
-    protected void fromAfb1188(int type) {
+    protected void fromAfb1188(int type, Bundle extras) {
         //http://112-alias-api.gd88.org/cklogin.jsp?txtAcctid=TestSH20&txtPwd=12345678&txtLang=0&txtRandCode=qwtpbS8vRnYZedYdD1kWvnPwcAC1jijhVB90dQw1DpEJSG2Kvln
         //http://112-alias-api.gd88.org/select_tb_infoa.jsp
         //http://112-alias-api.gd88.org/GDWebService?wsdl
@@ -2366,18 +2418,40 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         //https://112api.gd88bet.net/cklogin.jsp?txtAcctid=Demoafba0310&txtPwd=12345678&txtLang=0&txtRandCode=Ma5qXnw1HuauTpIpzO5WLWkE7tBgduFHmtNCClCEx4tM1xHZloL
         mAppViewModel.setCookie("");
 //http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
-        LogIntervalUtils.logCustomTime(currentTime, "初始化cookie" + WebSiteUrl.INDEX);
-        mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username").toUpperCase();//转成大写;
-        String password = intent.getStringExtra("password");
 
-        String balance = intent.getStringExtra("balance");
-        mAppViewModel.getUser().setName(username);
+        /*  intent.putString("username", info.getLoginName());
+        intent.putString("password", info.getPassword());
+        intent.putString("language", "en");*/
+
+        String username = extras.getString("username").toUpperCase();//转成大写;
+//        String password = extras.getString("password");
+        String password = "12345678";
+        String balance = extras.getString("balance");
+        String curCode = extras.getString("curCode");
+
+
         postNewThread(new Runnable() {
             @Override
             public void run() {
+                String strAgent = Gd88Utils.getCurCodeMap().get(curCode);
+                String sbUrl = "http://112api.gd09.info/player/afb1188/GD88WebService?wsdl";
+                String sbParam = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:maw=\"http://gd88/\"><soapenv:Header/><soapenv:Body><maw:CreateAccount><!--Optional:--><strUsername>"
+                        + username + "</strUsername><Api_key>"
+                        + "j0h93zNB7VDGn4TJEMbnm8WfpOuLMDwl"
+                        + "</Api_key><strPassword>"
+                        + password + "</strPassword><strAgent>"
+                        + strAgent + "</strAgent></maw:CreateAccount></soapenv:Body></soapenv:Envelope>";
 
+                HttpClient httpClient = new HttpClient(sbUrl
+                        , "");
+                String depositStr = httpClient.sendPostSoap(sbUrl, sbParam);
+                LogIntervalUtils.logCustomTime(currentTime, "sbUrl:" + sbUrl + ",depositStr:" + depositStr);
+                LogIntervalUtils.logCustomTime(currentTime, ",sbParam:" + sbParam);
+
+                String urlLogin = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + BuildConfig.loginjsp + "?txtAcctid=" + username + "&txtPwd=12345678&txtLang=0";
+                mAppViewModel.setHttpClient(new HttpClient(urlLogin
+                        , mAppViewModel.getCookie()));
+                mAppViewModel.getUser().setName(username);
 
                 if (mAppViewModel.getHttpClient().connect("POST") == false) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -2386,7 +2460,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 try {
                     String strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
                     mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
-                    LogIntervalUtils.logCustomTime(currentTime, "初始化cookie完成");
+                    LogIntervalUtils.logCustomTime(currentTime, urlLogin + "初始化cookie完成:" + strRes);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

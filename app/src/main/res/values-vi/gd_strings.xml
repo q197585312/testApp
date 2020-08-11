@@ -142,6 +142,9 @@
     <string name="music1">nhạc 1</string>
     <string name="music2">nhạc 2</string>
     <string name="music3">nhạc 3</string>
+    <string name="music4">nhạc 4</string>
+    <string name="music5">nhạc 5</string>
+    <string name="music6">nhạc 6</string>
     <string name="music_background_volume">Cài đặt âm lượng nhạc nền</string>
     <string name="music_front_volume">Cài đặt âm lượng nhạc</string>
 

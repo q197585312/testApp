@@ -569,7 +569,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
             mAppViewModel.getBaccarat(i).setBigRoadOld("");
         }
         if (!WebSiteUrl.isDomain)
-            skipAct( LobbyActivity.class);
+            skipAct(LobbyActivity.class);
         else {
             mAppViewModel.setbLogin(false);
         }
@@ -696,12 +696,14 @@ public class LobbyBaccaratActivity extends BaseActivity {
         InitControl();
 
         Intent intent = getIntent();
-        if (intent != null && intent.getExtras() != null && !StringUtils.isEmpty(intent.getExtras().getString("web_id")))
+        Bundle extras = intent.getExtras();
+        if (extras != null && !StringUtils.isEmpty(extras.getString("web_id")))
             mAppViewModel.setbLogin(false);
         boolean isbLogin = mAppViewModel.isbLogin();
         if (BuildConfig.FLAVOR.isEmpty() && !isbLogin) {
-            int gameType = intent.getExtras().getInt("gameType", 0);
-            initFromAfb1188(gameType);
+
+            int gameType = extras.getInt("gameType", 0);
+            initFromAfb1188(gameType, extras);
         } else {
             initShoeNumber();
         }
@@ -726,8 +728,8 @@ public class LobbyBaccaratActivity extends BaseActivity {
         startUpdateStatusThread();
     }
 
-    private void initFromAfb1188(int gameType) {
-        fromAfb1188(gameType);
+    private void initFromAfb1188(int gameType, Bundle extras) {
+        fromAfb1188(gameType,extras);
     }
 
     protected void onAfb1188LoginSucceed() {
@@ -1480,7 +1482,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
 //                        bundle.putBoolean("baccaratA", false);
 //                    }
                     bundle.putBoolean("baccaratA", true);
-                    skipAct( BaccaratActivity.class, bundle);
+                    skipAct(BaccaratActivity.class, bundle);
 
                 } else {
                     /*
@@ -1492,7 +1494,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
 //                mAppViewModel.setSerialId(serialId);
 //                mAppViewModel.setAreaId(areaId);
                     mAppViewModel.setbLobby(false);
-                    skipAct( BaccaratActivity.class, bundle);
+                    skipAct(BaccaratActivity.class, bundle);
 
                 }
 

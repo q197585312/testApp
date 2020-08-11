@@ -190,6 +190,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                     public void onBack(String data) {
                         PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
                         personalInfo.setPassword(((AfbApplication) baseContext.getBaseActivity().getApplication()).getUser().getPassword());
+                        personalInfo.setLoginUrl(url_login);
                         ((AfbApplication) baseContext.getBaseActivity().getApplication()).setUser(personalInfo);
                         WelcomePresenter.this.baseContext.onLanguageSwitchSucceed(data);
                     }

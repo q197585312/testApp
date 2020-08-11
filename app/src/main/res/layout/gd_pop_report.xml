@@ -18,6 +18,7 @@
             android:background="@mipmap/gd_arrow_left_back" />
 
         <TextView
+            android:id="@+id/gd_tv_pop_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

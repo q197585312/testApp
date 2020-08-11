@@ -9,7 +9,7 @@
         android:id="@+id/gd__surface"
         android:layout_width="match_parent"
         android:layout_height="250px"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal" />
 
     <include layout="@layout/toolbar_layout" />
 
@@ -17,8 +17,8 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="right"
-        android:layout_marginRight="5px"
-        android:layout_marginTop="44dp">
+        android:layout_marginTop="44dp"
+        android:layout_marginRight="5px">
 
         <gaming178.com.casinogame.Util.CountDownView
             android:id="@+id/gd__countdown_view"
@@ -41,7 +41,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="255px"
+        android:layout_marginTop="253px"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -49,56 +49,66 @@
             android:id="@+id/gd__tv_table_game_number1"
             style="@style/text_shadow"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="3dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:background="@mipmap/gd_img_balance_bg"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
             android:text="0 - 0"
             android:textColor="@color/white"
             android:textSize="13sp" />
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="4dp"
-            android:background="@mipmap/gd_dollar_yellow" />
-
-        <TextView
-            android:id="@+id/gd__tv_service_time"
-            style="@style/text_shadow"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:text="111"
-            android:textColor="@color/yellow_gold"
-            android:textSize="13sp" />
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:background="@mipmap/gd_img_balance_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@mipmap/gd_dollar_white" />
+
+            <TextView
+                android:id="@+id/gd__tv_service_time"
+                style="@style/text_shadow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="111"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/gd__tv_total_bet"
             style="@style/text_shadow"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:background="@drawable/gd_shape_bet_bg"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center"
-            android:paddingBottom="0.5dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:paddingTop="0.5dp"
-            android:textColor="@color/yellow_gold"
+            android:textColor="@color/white"
             android:textSize="13sp" />
 
         <TextView
             android:id="@+id/gd__tv_win_lose_bet"
             style="@style/text_shadow"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:background="@drawable/gd_shape_bet_bg"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center"
-            android:paddingBottom="0.5dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:paddingTop="0.5dp"
-            android:textColor="@color/yellow_gold"
+            android:textColor="@color/white"
             android:textSize="13sp" />
 
         <View
@@ -164,17 +174,17 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:layout_centerInParent="true"
                             android:id="@+id/gd__img_dragon_animation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:background="@drawable/gd_animation_banker" />
 
                         <TextView
-                            android:layout_centerInParent="true"
                             android:id="@+id/gd__tv_dragon_result_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:background="@drawable/gd_shape_result_name"
                             android:paddingLeft="3dp"
                             android:paddingRight="3dp"
@@ -247,17 +257,17 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:layout_centerInParent="true"
                             android:id="@+id/gd__img_tiger_animation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:background="@drawable/gd_animation_player" />
 
                         <TextView
-                            android:layout_centerInParent="true"
                             android:id="@+id/gd__tv_tiger_result_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:background="@drawable/gd_shape_result_name_player"
                             android:paddingLeft="3dp"
                             android:paddingRight="3dp"
@@ -439,8 +449,8 @@
                 android:layout_width="140px"
                 android:layout_height="200px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="70px"
                 android:layout_marginRight="70px"
+                android:layout_marginBottom="70px"
                 android:background="@drawable/gd_rectangle_grey_corner5_pop"
                 android:padding="5dp"
                 android:scrollbars="none"
@@ -480,8 +490,8 @@
                 android:layout_height="160px"
                 android:layout_gravity="right"
                 android:layout_marginLeft="120px"
-                android:layout_marginRight="1dp"
                 android:layout_marginTop="15px"
+                android:layout_marginRight="1dp"
                 android:background="@drawable/gd_rectangle_grey_corner5_pop"
                 android:padding="5dp"
                 android:scrollbars="none"
@@ -504,10 +514,10 @@
             android:background="@mipmap/gd_set_icon_trans"
             android:clickable="true"
             android:gravity="center"
-            android:paddingBottom="3dp"
             android:paddingLeft="7dp"
-            android:paddingRight="5dp"
             android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="3dp"
             android:text=""
             android:textColor="#394e04"
             android:textSize="14sp"
@@ -516,38 +526,27 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="255px"
+        android:id="@+id/gd__iv_baccarat_change_table"
+        android:layout_width="35dp"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="253px"
+        android:layout_marginRight="5dp"
+        android:background="@mipmap/gd_img_change_table_bg"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            style="@style/text_shadow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:textSize="13sp"
-            android:visibility="invisible" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></View>
-
-        <TextView
-            android:id="@+id/gd__iv_baccarat_change_table"
             android:layout_width="25dp"
             android:layout_height="15dp"
-            android:layout_marginRight="3dp"
             android:background="@mipmap/gd_table_p"
-            android:clickable="true"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:visibility="visible" />
 
     </LinearLayout>
+
 
     <include layout="@layout/gd_shuffling" />
 
@@ -569,8 +568,8 @@
                 android:id="@+id/gd__tv_time"
                 android:layout_width="match_parent"
                 android:layout_height="25.5dp"
-                android:layout_marginBottom="0.5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginBottom="0.5dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
@@ -608,9 +607,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="25.5dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="0.5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="2dp"
+                android:layout_marginBottom="0.5dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/white"
                 android:textSize="11sp" />

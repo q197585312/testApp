@@ -3091,6 +3091,15 @@ public class AppModel extends ViewModel {
                 case 3:
                     strMuzic = BackgroudMuzicService.PLAY_SONG3;
                     break;
+                case 4:
+                    strMuzic = BackgroudMuzicService.PLAY_SONG4;
+                    break;
+                case 5:
+                    strMuzic = BackgroudMuzicService.PLAY_SONG5;
+                    break;
+                case 6:
+                    strMuzic = BackgroudMuzicService.PLAY_SONG6;
+                    break;
             }
             mIntent = new Intent(strMuzic);
             mIntent.putExtra("volume", volume);

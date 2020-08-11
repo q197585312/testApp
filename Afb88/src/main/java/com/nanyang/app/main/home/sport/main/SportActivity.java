@@ -58,7 +58,6 @@ import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.utils.GZipUtil;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -616,15 +615,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
 
-    @Override
-    public void againLogin(String gameType) {
-        presenter.login(new LoginInfo(app.getUser().getLoginName(), app.getUser().getPassword()), new BaseConsumer<String>(this) {
-            @Override
-            protected void onBaseGetData(String data) {
-                onLanguageSwitchSucceed(data);
-            }
-        });
-    }
 
     public void clickCup(View view) {
         currentFragment.presenter.getStateHelper().createChoosePop(presenter.mApiWrapper, view);
@@ -1026,7 +1016,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void closeTv(View view) {
         closeTv();
         resumeCurrent();
-
+        currentFragment.presenter.getStateHelper().getAdapterHelper().additionMap.put(true, "");
+        currentFragment.presenter.getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().notifyDataSetChanged();
     }
 
     public void closeTv() {
@@ -1044,6 +1035,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             ll_header_sport.setVisibility(View.VISIBLE);
             llSportMenuBottom.setVisibility(View.VISIBLE);
             onlyShowOne = false;
+
        /*     if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
 
                 if (getBetContent() != null)
@@ -1056,7 +1048,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
             if (!(currentFragment.presenter.getStateHelper().getStateType().getType().charAt(0) + "").toLowerCase().startsWith("r")) {
-                closeTv(ll_header_sport);
+//                closeTv(ll_header_sport);
                 return;
             }
             if (!liveMatchHelper.checkLivePlayVisible(itemBall) && !liveMatchHelper.checkWebRtsVisible(itemBall)) {

@@ -86,11 +86,17 @@ public interface ApiService {
     Flowable<ResultBean> doHuayMap(@Url String url, @FieldMap Map<String, String> info);
 
     /*                conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows 2000)");
-                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");*/
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+    addHeader("Content-Type","text/html; charset=gb2312")
+                .
+
+    addHeader("Content-Type","text/html; charset=UTF-8")*/
+
     @Headers({
             "Accept: text/html,application/xhtml+xml,application/xml",
-            "Accept-Encoding: gzip, deflate",
             "Accept-Language: zh-CN",
+            "Content-Type: text/html; charset=utf-8",
             "Connection: keep-alive",
             "Host: wsapp.afb1188.net"
     })

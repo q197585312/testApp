@@ -13,6 +13,7 @@ public class PersonalInfo {
 
     String password = "";
     private String IsEnabledWM;
+    private String loginUrl;
 
     public String getLastLoginDate() {
         return lastLoginDate;
@@ -306,5 +307,13 @@ public class PersonalInfo {
 
     public String getIsEnabledWM() {
         return IsEnabledWM;
+    }
+
+    public void setLoginUrl(String loginUrl) {
+        this.loginUrl = loginUrl;
+    }
+
+    public String getLoginUrl() {
+        return loginUrl;
     }
 }

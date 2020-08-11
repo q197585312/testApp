@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
+import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
@@ -29,19 +30,22 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.LoadMainDataHelper;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
-import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
+import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import java.util.LinkedHashMap;
@@ -54,11 +58,14 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.HttpUrl;
+import okhttp3.Request;
+import retrofit2.Response;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> implements IGetRefreshMenu {
+public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> extends BaseActivity<T> implements IGetRefreshMenu {
     public BetGoalWindowUtils BetGoalWindowUtils = new BetGoalWindowUtils();
     @Nullable
     public
@@ -105,7 +112,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         llRight = (LinearLayout) findViewById(R.id.ll_right);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.color.green_black_word);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,8 +189,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                            reLoginPrompt("", new SportContract.CallBack() {
                                                @Override
                                                public void clickCancel(View v) {
-                                                   Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                   startActivity(intent);
+                                                   errorCount = 0;
                                                }
                                            });
                                            errorCount = 0;
@@ -256,6 +262,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             public void onBack(String data) {
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
                 personalInfo.setPassword(((AfbApplication) getBaseActivity().getApplication()).getUser().getPassword());
+                personalInfo.setLoginUrl(((AfbApplication) getBaseActivity().getApplication()).getUser().getLoginUrl());
                 ((AfbApplication) getBaseActivity().getApplication()).setUser(personalInfo);
                 updateBalanceTv(personalInfo.getCredit2());
             }
@@ -331,6 +338,65 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     }
 
+    public void getSkipGd88Data() {
+
+
+        LogIntervalUtils.logTime("请求数据" + BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
+        Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Response>() {
+                    @Override
+                    public void accept(Response responseBodyResponse) throws JSONException {
+                        int code = responseBodyResponse.code();
+                        String body = responseBodyResponse.body() != null ? responseBodyResponse.body().toString() : "null";
+                        LogIntervalUtils.logTime("请求数据完成开始解析s:" + body + ",code=" + code);
+                        Request rawRequest = responseBodyResponse.raw().request();
+                        HttpUrl url1 = rawRequest.url();
+
+                        String url = url1.url().toString();
+                        if (url.contains("login.jsp")) {
+
+                            Bundle intent = new Bundle();
+                            PersonalInfo info = getApp().getUser();
+                            SettingAllDataBean bean = getApp().getSettingAllDataBean();
+                            intent.putString("username", info.getLoginName());
+                            intent.putString("password", info.getPassword());
+                            intent.putString("language", "en");
+                            intent.putString("web_id", "-1");
+                            intent.putInt("gameType", 5);
+                            intent.putString("balance", info.getCredit2());
+                            intent.putString("curCode", bean.getCurCode());
+                            LogIntervalUtils.logTime("请求数据完成开始跳转");
+                            getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyBaccaratActivity");
+                        } else if (code == 200 && body.contains("not online")) {
+                            ToastUtils.showShort("User not online");
+                            reLogin();
+
+                        } else {
+                            ToastUtils.showShort("not find agent!Please contact your agent!");
+                        }
+                        hideLoadingDialog();
+                    }
+
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        subscription.request(Long.MAX_VALUE);
+                        showLoadingDialog();
+                    }
+                });
+        mCompositeSubscription.add(subscription);
+    }
 
     public void reLoginPrompt(String msg, final SportContract.CallBack callBack) {
 //        ToastUtils.showShort(getString(R.string.another_login));
@@ -355,8 +421,11 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             @Override
             protected void clickCancel(View v) {
                 super.clickCancel(v);
+                reLogin();
                 if (callBack != null) {
                     callBack.clickCancel(v);
+                } else {
+
                 }
             }
         };
@@ -417,25 +486,44 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 7 && resultCode == 8) {
             String gameType = data.getStringExtra("gameType");
-            againLogin(gameType);
+            reLogin();
         }
     }
 
-    public void againLogin(String gameType) {
+    public void reLogin() {
+        presenter.doRetrofitApiOnUiThread(getService(ApiService.class).getData(getApp().getUser().getLoginUrl())
+                , new BaseConsumer<String>(this) {
+                    @Override
+                    protected void onBaseGetData(String s) throws JSONException {
+                        if (s.contains("Maintenance")) {
+                            Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
+                            onError(exception);
+                        } else {
+                            ToastUtils.showLong(R.string.Login_Success);
+                        }
+
+
+                    }
+
+                    @Override
+                    protected void onHideDialog() {
+                    }
+
+                    @Override
+                    protected void onError(final Throwable throwable) {
+                        super.onError(throwable);
+                        (baseContext.getBaseActivity()).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastUtils.showShort(throwable.getMessage());
+                            }
+                        });
+
+                    }
+                });
 
     }
 
-    public int getHomeColor() {
-        switch (getString(R.string.app_name)) {
-            case "Afb88":
-                return 0xff0d5924;
-            case "I1bet88":
-                return 0xff0E3D59;
-            case "AP889":
-                return 0xff300F2D;
-        }
-        return 0xff0d5924;
-    }
 
     public void setToolbarVisibility(int b) {
         toolbar.setVisibility(b);
@@ -483,9 +571,9 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 if (!beanList.contains(waitNum)) {
                     String accType = getOtType();
                     BetGoalWindowUtils.showBetWindow(accType, waitNum, this, true);
-                    waitSize=Integer.parseInt(waitNum);
-                }else{
-                    waitSize=0;
+                    waitSize = Integer.parseInt(waitNum);
+                } else {
+                    waitSize = 0;
                 }
             }
             lastWaitDataBeanList = beanList;

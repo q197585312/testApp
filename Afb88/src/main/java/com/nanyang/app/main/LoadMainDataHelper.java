@@ -48,6 +48,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);
+
                 String updateString = AfbUtils.delHTMLTag(data);
                 JSONArray jsonArray = new JSONArray(updateString);
                 if (jsonArray.length() > 3) {

@@ -10,14 +10,18 @@ import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,6 +39,8 @@ import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.HttpClient;
+import gaming178.com.casinogame.Util.PopMenu;
+import gaming178.com.casinogame.Util.PopWebView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
@@ -63,10 +69,15 @@ public class LoginActivity extends BaseActivity {
     private View llBottomBtn;
     private int scrollHeight = 0;
     private HashMap<String, String> siteMap;
+    private ImageView imgOpen;
+    private ImageView img_in;
+    private ImageView img_en;
+    private ImageView img_gif;
+    private LinearLayout ll_lg;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        AppTool.setAppLanguage(mContext,AppTool.getAppLanguage(mContext));
+        AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
         version = AppTool.getApkInfo(mContext).versionName;
         toolbar.setVisibility(View.GONE);
         initControl();
@@ -78,13 +89,81 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void initControl() {
+        img_gif = findViewById(R.id.gd_img_gif);
+        ll_lg = findViewById(R.id.gd_ll_lg);
+        img_in = findViewById(R.id.gd_img_in);
+        img_en = findViewById(R.id.gd_img_en);
+        imgOpen = findViewById(R.id.gd_img_open);
+        if (BuildConfig.FLAVOR.equals("mainkasino")) {
+            img_gif.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(LoginActivity.this, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://www.pragmaticplay.com/en/games/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+            img_gif.setVisibility(View.VISIBLE);
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    Log.d("AppData", result);
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Glide.with(LoginActivity.this).asGif().load(result + "images/banner-20200724.gif").diskCacheStrategy(DiskCacheStrategy.NONE).into(img_gif);
+                        }
+                    });
+                }
+            }.start();
+        }
+        if (BuildConfig.FLAVOR.equals("menangcasino")) {
+            imgOpen.setVisibility(View.VISIBLE);
+            imgOpen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppTool.setAppLanguage(LoginActivity.this, AppTool.getAppLanguage(LoginActivity.this));
+                    PopMenu popMenu = new PopMenu(mContext, v, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    popMenu.showPopupDownWindow();
+                }
+            });
+        }
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            ll_lg.setVisibility(View.VISIBLE);
+            img_in.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppTool.setAppLanguage(mContext, "my");
+                    recreate();
+                }
+            });
+            img_en.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppTool.setAppLanguage(mContext, "en");
+                    recreate();
+                }
+            });
+        }
         tv_name = (EditText) this.findViewById(R.id.gd__login_username_edt);
         tv_password = (EditText) this.findViewById(R.id.gd__login_password_edt);
         ll_language = findViewById(R.id.gd__ll_choose_language);
         view_bottom_center = findViewById(R.id.gd__view_bottom_center);
         tv_register = (TextView) findViewById(R.id.gd__tv_register);
         iv_language_flag = (ImageView) findViewById(R.id.gd__iv_language_flag);
-        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+        if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             tv_register.setVisibility(View.GONE);
             ll_language.setVisibility(View.VISIBLE);
         } else {
@@ -306,7 +385,7 @@ public class LoginActivity extends BaseActivity {
                     String strPost = mAppViewModel.getHttpClient().sendPostSoap(WebSiteUrl.AppWebServiceUrl, soapRequestData);
 */
 //                    String paramsRandCode= "operatorName=liga365&OperatorPwd=gdccs$365&action=getRandCode";
-                    String paramsRandCode = "{\"strUsername\":\""+res.getResult().getNickname()+"\",\"operatorName\":\"liga365\",\"operatorPwd\":\"gdccs$365\",\"action\":\"getRandCode\"}";
+                    String paramsRandCode = "{\"strUsername\":\"" + res.getResult().getNickname() + "\",\"operatorName\":\"liga365\",\"operatorPwd\":\"gdccs$365\",\"action\":\"getRandCode\"}";
 
                     String return_value = mAppViewModel.getHttpClient().sendPostSoap(urlHost, paramsRandCode);
                     Log.w("Afb88", return_value);
@@ -333,8 +412,8 @@ public class LoginActivity extends BaseActivity {
                     String res1 = mAppViewModel.getHttpClient().getHttpClient(WebSiteUrl.LOGIN_URL + "?txtAcctid=" + res.getResult().getNickname() + "&txtLang=&txtPwd=PWDsecw1755x!&txtLang&txtRandCode=" + return_value, "");
                     LogUtil.d("Afb88", res1);
                     String sessionId = mAppViewModel.getHttpClient().getSessionId();
-                  /*  mAppViewModel.getHttpClient().setSessionId(sessionId);*/
-              /*         mAppViewModel.setCookie(sessionId);*/
+                    /*  mAppViewModel.getHttpClient().setSessionId(sessionId);*/
+                    /*         mAppViewModel.setCookie(sessionId);*/
 
                     String params = "GameType=11&Tbid=0&Usid=" + res.getResult().getNickname();
                     strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLE_INFO_A_URL, params);
@@ -404,7 +483,7 @@ public class LoginActivity extends BaseActivity {
                     dismissLoginBlockDialog();
                     String usName = tv_name.getText().toString().trim();
                     String password = tv_password.getText().toString().trim();
-                    EditText siteEdt =  findViewById(R.id.gd__login_site_edt);
+                    EditText siteEdt = findViewById(R.id.gd__login_site_edt);
                     String site = "";
                     if (siteEdt != null) {
                         site = siteEdt.getText().toString().trim();
@@ -412,7 +491,7 @@ public class LoginActivity extends BaseActivity {
                     UserLoginBean userLoginBean = new UserLoginBean(site, usName, password);
 
                     AppTool.saveObjectData(mContext, WebSiteUrl.Tag, userLoginBean);
-                    skipAct( LobbyActivity.class);
+                    skipAct(LobbyActivity.class);
                     //    finish();
                     break;
                 case ErrorCode.LOGIN_AREADY:
