@@ -37,7 +37,8 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
-import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -47,9 +48,6 @@ import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.UnsupportedCharsetException;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -61,17 +59,13 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.HttpUrl;
-import okhttp3.MediaType;
 import okhttp3.Request;
-import okhttp3.ResponseBody;
-import okio.Buffer;
-import okio.BufferedSource;
 import retrofit2.Response;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> implements IGetRefreshMenu {
+public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> extends BaseActivity<T> implements IGetRefreshMenu {
     public BetGoalWindowUtils BetGoalWindowUtils = new BetGoalWindowUtils();
     @Nullable
     public
@@ -195,8 +189,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                            reLoginPrompt("", new SportContract.CallBack() {
                                                @Override
                                                public void clickCancel(View v) {
-                                                   Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                   startActivity(intent);
+                                                   errorCount = 0;
                                                }
                                            });
                                            errorCount = 0;
@@ -269,6 +262,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             public void onBack(String data) {
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
                 personalInfo.setPassword(((AfbApplication) getBaseActivity().getApplication()).getUser().getPassword());
+                personalInfo.setLoginUrl(((AfbApplication) getBaseActivity().getApplication()).getUser().getLoginUrl());
                 ((AfbApplication) getBaseActivity().getApplication()).setUser(personalInfo);
                 updateBalanceTv(personalInfo.getCredit2());
             }
@@ -344,30 +338,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     }
 
-    public String getResponseBody(Response response) {
-
-        Charset UTF8 = Charset.forName("UTF-8");
-        ResponseBody responseBody = (ResponseBody) response.body();
-        BufferedSource source = responseBody.source();
-        try {
-            source.request(Long.MAX_VALUE); // Buffer the entire body.
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Buffer buffer = source.buffer();
-
-        Charset charset = UTF8;
-        MediaType contentType = responseBody.contentType();
-        if (contentType != null) {
-            try {
-                charset = contentType.charset(UTF8);
-            } catch (UnsupportedCharsetException e) {
-                e.printStackTrace();
-            }
-        }
-        return buffer.clone().readString(charset);
-    }
-
     public void getSkipGd88Data() {
 
 
@@ -378,7 +348,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                     @Override
                     public void accept(Response responseBodyResponse) throws JSONException {
                         int code = responseBodyResponse.code();
-                        LogIntervalUtils.logTime("请求数据完成开始解析s:" + ",code=" + code);
+                        String body = responseBodyResponse.body() != null ? responseBodyResponse.body().toString() : "null";
+                        LogIntervalUtils.logTime("请求数据完成开始解析s:" + body + ",code=" + code);
                         Request rawRequest = responseBodyResponse.raw().request();
                         HttpUrl url1 = rawRequest.url();
 
@@ -397,6 +368,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                             intent.putString("curCode", bean.getCurCode());
                             LogIntervalUtils.logTime("请求数据完成开始跳转");
                             getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyBaccaratActivity");
+                        } else if (code == 200 && body.contains("not online")) {
+                            ToastUtils.showShort("User not online");
+                            reLogin();
+
                         } else {
                             ToastUtils.showShort("not find agent!Please contact your agent!");
                         }
@@ -446,8 +421,11 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             @Override
             protected void clickCancel(View v) {
                 super.clickCancel(v);
+                reLogin();
                 if (callBack != null) {
                     callBack.clickCancel(v);
+                } else {
+
                 }
             }
         };
@@ -508,25 +486,44 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 7 && resultCode == 8) {
             String gameType = data.getStringExtra("gameType");
-            againLogin(gameType);
+            reLogin();
         }
     }
 
-    public void againLogin(String gameType) {
+    public void reLogin() {
+        presenter.doRetrofitApiOnUiThread(getService(ApiService.class).getData(getApp().getUser().getLoginUrl())
+                , new BaseConsumer<String>(this) {
+                    @Override
+                    protected void onBaseGetData(String s) throws JSONException {
+                        if (s.contains("Maintenance")) {
+                            Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
+                            onError(exception);
+                        } else {
+                            ToastUtils.showLong(R.string.Login_Success);
+                        }
+
+
+                    }
+
+                    @Override
+                    protected void onHideDialog() {
+                    }
+
+                    @Override
+                    protected void onError(final Throwable throwable) {
+                        super.onError(throwable);
+                        (baseContext.getBaseActivity()).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastUtils.showShort(throwable.getMessage());
+                            }
+                        });
+
+                    }
+                });
 
     }
 
-    public int getHomeColor() {
-        switch (getString(R.string.app_name)) {
-            case "Afb88":
-                return 0xff0d5924;
-            case "I1bet88":
-                return 0xff0E3D59;
-            case "AP889":
-                return 0xff300F2D;
-        }
-        return 0xff0d5924;
-    }
 
     public void setToolbarVisibility(int b) {
         toolbar.setVisibility(b);

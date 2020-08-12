@@ -29,7 +29,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.zhy.autolayout.config.AutoLayoutConifg;
 import com.zhy.autolayout.config.UseLandscape;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -89,7 +89,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     Map<FrameLayout, ChipShowHelper> ChipMap = new HashMap<>();
     List<ImageView> imgList = new ArrayList<>();
     private GridLayout bigGradLayout;
-    private GoogleApiClient client;
+
     private View ll_center_small;
     private View ll_center_orphelins;
     private View ll_center_big;

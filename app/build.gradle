@@ -4,6 +4,7 @@ if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
     apply plugin: 'com.android.library'
 }
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jakewharton.butterknife'
 
@@ -475,20 +476,19 @@ android {
         enabled = true
     }
 }
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':mylibrary')
     implementation project(':baseLibs')
-    implementation 'com.google.android.gms:play-services-appindexing:8.4.0'
-    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport:3.2.33'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation rootProject.ext.dependencies.butterknife
-    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+    implementation rootProject.ext.dependencies.bdclta
+    implementation rootProject.ext.dependencies.bdclta_rv
+    kapt rootProject.ext.dependencies.butterknife_compiler
     implementation 'com.android.support:multidex:1.0.3'
-}
-repositories {
-    mavenCentral()
+        //版本要与gradle版本一致
+    kapt "com.android.databinding:compiler:3.6.1"
 }
