@@ -19,6 +19,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/music_setting"
+            android:textAllCaps="true"
             android:textColor="@color/black_grey"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -98,6 +99,7 @@
                     android:layout_marginTop="8dp"
                     android:drawablePadding="10dp"
                     android:text="@string/Genre"
+                    android:textAllCaps="true"
                     android:textColor="@color/black_grey" />
 
                 <LinearLayout
@@ -116,6 +118,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
                         android:text="@string/music1"
+                        android:textAllCaps="true"
                         android:textColor="@color/black_grey" />
 
                     <CheckBox
@@ -127,6 +130,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
                         android:text="@string/music2"
+                        android:textAllCaps="true"
                         android:textColor="@color/black_grey" />
 
                     <CheckBox
@@ -136,6 +140,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
                         android:text="@string/music3"
+                        android:textAllCaps="true"
                         android:textColor="@color/black_grey" />
                 </LinearLayout>
 
@@ -155,6 +160,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
                         android:text="@string/music4"
+                        android:textAllCaps="true"
                         android:textColor="@color/black_grey" />
 
                     <CheckBox
@@ -166,6 +172,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
                         android:text="@string/music5"
+                        android:textAllCaps="true"
                         android:textColor="@color/black_grey" />
 
                     <CheckBox
@@ -175,6 +182,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/gd_oval_white_red_center_check_bnt_selector"
                         android:text="@string/music6"
+                        android:textAllCaps="true"
                         android:textColor="@color/black_grey" />
                 </LinearLayout>
 
@@ -185,6 +193,7 @@
                     android:layout_marginTop="8dp"
                     android:drawablePadding="10dp"
                     android:text="@string/music_background_volume"
+                    android:textAllCaps="true"
                     android:textColor="@color/black_grey" />
 
                 <LinearLayout
@@ -214,6 +223,7 @@
                     android:layout_marginTop="8dp"
                     android:drawablePadding="1dp"
                     android:text="@string/music_front_volume"
+                    android:textAllCaps="true"
                     android:textColor="@color/black_grey" />
 
                 <LinearLayout

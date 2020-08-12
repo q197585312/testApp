@@ -129,7 +129,8 @@ public class LoginActivity extends BaseActivity {
                 }
             }.start();
         }
-        if (BuildConfig.FLAVOR.equals("menangcasino")) {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
+                !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
             imgOpen.setVisibility(View.VISIBLE);
             imgOpen.setOnClickListener(new View.OnClickListener() {
                 @Override
