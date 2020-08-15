@@ -104,7 +104,7 @@ public class PopMenu extends BasePopupWindow {
         PopWebView popWebView = new PopWebView(context, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
             @Override
             public String getUrl() {
-                return WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "tentangkamim.jsp";
+                return WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "hubungikamim.jsp";
             }
 
             @Override
