@@ -2734,13 +2734,17 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             @Override
             public void run() {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                checkSlideHint(tv_table_timer);
             }
         }, 1000);
 //        startUpdateStatusThread();
         videoHelper.loadVideo();
     }
 
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        checkSlideHint(tv_table_timer);
+    }
 
     public void clickSplit(View v) {
         showBetTypeList(v, 2);

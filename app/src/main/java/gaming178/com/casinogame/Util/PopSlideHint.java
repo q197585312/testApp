@@ -19,6 +19,7 @@ public class PopSlideHint extends BasePopupWindow {
     public PopSlideHint(Context context, View v, int width, int height) {
         super(context, v, width, height);
         baseActivity = (BaseActivity) context;
+        initContent();
     }
 
     @Override
@@ -43,10 +44,6 @@ public class PopSlideHint extends BasePopupWindow {
         img_right = view.findViewById(R.id.gd_img_right);
         img_bottom = view.findViewById(R.id.gd_img_bottom);
         tv_slide_hint = view.findViewById(R.id.gd_tv_slide_hint);
-        Glide.with(context).asGif().load(R.mipmap.slide_top_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_top);
-        Glide.with(context).asGif().load(R.mipmap.slide_left_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_left);
-        Glide.with(context).asGif().load(R.mipmap.slide_right_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_right);
-        Glide.with(context).asGif().load(R.mipmap.slide_bottom_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_bottom);
         rl_parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +60,15 @@ public class PopSlideHint extends BasePopupWindow {
             AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_P, true);
         } else {
             AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_l, true);
+        }
+    }
+
+    private void initContent(){
+        if (baseActivity != null && !baseActivity.isDestroyed() && !baseActivity.isFinishing()) {
+            Glide.with(context).asGif().load(R.mipmap.slide_top_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_top);
+            Glide.with(context).asGif().load(R.mipmap.slide_left_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_left);
+            Glide.with(context).asGif().load(R.mipmap.slide_right_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_right);
+            Glide.with(context).asGif().load(R.mipmap.slide_bottom_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_bottom);
         }
     }
 

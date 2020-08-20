@@ -2212,23 +2212,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
             }
         }, 1000);
-        if (mAppViewModel.getTableId() == 71) {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        checkSlideHint(tv_table_timer);
-                    }
-                }, 1000);
-            }
-        } else {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    checkSlideHint(tv_table_timer);
-                }
-            }, 1000);
-        }
         videoHelper.loadVideo();
 //        handler.postDelayed(new Runnable() {
 //            @Override
@@ -4548,6 +4531,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         isAttached = true;
+        if (mAppViewModel.getTableId() == 71) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                checkSlideHint(tv_table_timer);
+            }
+        } else {
+            checkSlideHint(tv_table_timer);
+        }
     }
 
     @Override

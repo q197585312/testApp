@@ -1827,11 +1827,16 @@ public class DragonTigerActivity extends BaseActivity {
             @Override
             public void run() {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-                checkSlideHint(tv_table_timer);
             }
         }, 1000);
 //        startUpdateStatusThread();
         videoHelper.loadVideo();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        checkSlideHint(tv_table_timer);
     }
 
     @Override
