@@ -16,6 +16,7 @@ import android.os.PersistableBundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -74,12 +75,14 @@ import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.FrontMuzicService;
+import gaming178.com.casinogame.Util.GameSlideChangeTableHelper;
 import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.LogIntervalUtils;
 import gaming178.com.casinogame.Util.PopChooseChip;
 import gaming178.com.casinogame.Util.PopReferrer;
+import gaming178.com.casinogame.Util.PopSlideHint;
 import gaming178.com.casinogame.Util.TableChangePop;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
@@ -119,7 +122,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     protected LinearLayout llCenter;
     protected AbsListPopupWindow<String> popupGameChoose;
     protected List<String> selectableGames;
-    private int tableId;
+    public int tableId;
     protected String usName;
     public String currency;
     private String appUserName;
@@ -2629,4 +2632,66 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         popWindow.showPopupDownWindow();
     }
 
+    public boolean isCanSlideChangeTable() {
+        return false;
+    }
+
+    int lastX, lastY;
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (!isCanSlideChangeTable()) {
+            return super.dispatchTouchEvent(event);
+        }
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                lastX = x;
+                lastY = y;
+                break;
+            case MotionEvent.ACTION_UP:
+                int offsetX = x - lastX;
+                int offsetY = y - lastY;
+                if (Math.abs(offsetX) > 260 || Math.abs(offsetY) > 260) {
+                    if (Math.abs(offsetX) > Math.abs(offsetY)) {
+                        if (offsetX > 0) {
+                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideRight);
+                        } else {
+                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideLeft);
+                        }
+                    } else {
+                        if (offsetY > 0) {
+                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideDown);
+                        } else {
+                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideUp);
+                        }
+                    }
+                    return true;
+                }
+                break;
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
+    public PopSlideHint popSlideHint;
+
+    public void checkSlideHint(View view) {
+        int orientation = getResources().getConfiguration().orientation;
+        if (popSlideHint == null) {
+            popSlideHint = new PopSlideHint(mContext, view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        }
+        Boolean guide;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            guide = (Boolean) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_P);
+        } else {
+            guide = (Boolean) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_l);
+        }
+        if (guide == null || !guide) {
+            if (!popSlideHint.isShowing()) {
+                popSlideHint.initOrientation();
+                popSlideHint.showPopupCenterWindow();
+            }
+        }
+    }
 }

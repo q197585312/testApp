@@ -1577,7 +1577,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getSicbo01().setRoadOld("");
-        skipAct( LobbySicboActivity.class);
+        skipAct(LobbySicboActivity.class);
         finish();
     }
 
@@ -1648,6 +1648,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             @Override
             public void run() {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                checkSlideHint(tv_table_timer);
             }
         }, 1000);
 //        startUpdateStatusThread();
@@ -4797,7 +4798,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct( LobbySicboActivity.class, bundle);
+        skipAct(LobbySicboActivity.class, bundle);
     }
 
     public void InitButtonClick() {
@@ -5834,5 +5835,10 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         contentPercentage.notifyDataSetChanged();
         contentResults.setData(getResultsData());
         contentResults.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean isCanSlideChangeTable() {
+        return true;
     }
 }

@@ -2212,6 +2212,23 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
             }
         }, 1000);
+        if (mAppViewModel.getTableId() == 71) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkSlideHint(tv_table_timer);
+                    }
+                }, 1000);
+            }
+        } else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    checkSlideHint(tv_table_timer);
+                }
+            }, 1000);
+        }
         videoHelper.loadVideo();
 //        handler.postDelayed(new Runnable() {
 //            @Override
@@ -2269,7 +2286,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).Init();
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct( LobbyBaccaratActivity.class, bundle);
+        skipAct(LobbyBaccaratActivity.class, bundle);
         finish();
     }
 
@@ -2807,7 +2824,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private void checkGuide() {
         Boolean guide = (Boolean) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_Guide);
         if (guide == null || !guide) {
-            skipAct( HomeGuideActivity.class);
+            skipAct(HomeGuideActivity.class);
         }
     }
 
@@ -5272,7 +5289,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct( LobbyBaccaratActivity.class, bundle);
+        skipAct(LobbyBaccaratActivity.class, bundle);
     }
 
     //重新选择了筹码，重新开始算下注筹码
@@ -5765,5 +5782,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         tv_player_result_name.setText(getString(R.string.player_home));
         tv_banker_result_name.setText(getString(R.string.banker_home));
         initResultAnimation();
+    }
+
+    @Override
+    public boolean isCanSlideChangeTable() {
+        return true;
     }
 }

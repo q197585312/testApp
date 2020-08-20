@@ -2734,6 +2734,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             @Override
             public void run() {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                checkSlideHint(tv_table_timer);
             }
         }, 1000);
 //        startUpdateStatusThread();
@@ -6801,5 +6802,10 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board);
         fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
         updatePercentage();
+    }
+
+    @Override
+    public boolean isCanSlideChangeTable() {
+        return true;
     }
 }

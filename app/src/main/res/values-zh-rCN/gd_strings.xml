@@ -234,4 +234,6 @@
     <string name="gd_cancel">取消</string>
     <string name="dragon_big">龍</string>
     <string name="table_maintenance">本桌维护中</string>
+    <string name="slide_top_down">向上/下滑动切桌</string>
+    <string name="slide_left_right">向左/右滑动切桌</string>
 </resources>

@@ -2170,8 +2170,7 @@ public class AppModel extends ViewModel {
                 tv_pp.setText("0");
                 //需要显示洗牌中
             } else {//显示路子
-                if (baccarat.getBigRoad() != null && !baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) && !baccarat.getGameNumber().equals("0")) {
-                    //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
+                if (baccarat.getBigRoad() != null && (!baccarat.getBigRoad().equals(baccarat.getBigRoadOld())||gridLayoutHeadRoad.getChildCount()<1) && !baccarat.getGameNumber().equals("0")) {
                     baccarat.setBigRoadOld(baccarat.getBigRoad());
                     if (ll_good_road_parent != null && tv_good_road_name != null) {
                         String s = updateGoodRoad(mContext, baccarat.getBigRoad());

@@ -1827,6 +1827,7 @@ public class DragonTigerActivity extends BaseActivity {
             @Override
             public void run() {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                checkSlideHint(tv_table_timer);
             }
         }, 1000);
 //        startUpdateStatusThread();
@@ -1851,8 +1852,8 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     private void initResultAnimation() {
-        tv_dragon_result_name.measure(0,0);
-        tv_tiger_result_name.measure(0,0);
+        tv_dragon_result_name.measure(0, 0);
+        tv_tiger_result_name.measure(0, 0);
         ViewGroup.LayoutParams layoutParams1 = img_dragon_animation.getLayoutParams();
         layoutParams1.width = tv_dragon_result_name.getMeasuredWidth();
         layoutParams1.height = tv_dragon_result_name.getMeasuredHeight();
@@ -1873,7 +1874,7 @@ public class DragonTigerActivity extends BaseActivity {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
-        skipAct( LobbyDragonTigerActivity.class);
+        skipAct(LobbyDragonTigerActivity.class);
         finish();
     }
 
@@ -3049,7 +3050,7 @@ public class DragonTigerActivity extends BaseActivity {
                     objectAnimatorDragonRed.start();
                 }
             } else {
-                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_red_black() == -100){
+                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_red_black() == -100) {
                     return;
                 }
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -3089,7 +3090,7 @@ public class DragonTigerActivity extends BaseActivity {
                     objectAnimatorTigerOdd.start();
                 }
             } else {
-                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_odd_even() == -100){
+                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_odd_even() == -100) {
                     return;
                 }
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -3128,7 +3129,7 @@ public class DragonTigerActivity extends BaseActivity {
                     objectAnimatorTigerRed.start();
                 }
             } else {
-                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_red_black() == -100){
+                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_red_black() == -100) {
                     return;
                 }
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -3384,7 +3385,7 @@ public class DragonTigerActivity extends BaseActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct( LobbyDragonTigerActivity.class, bundle);
+        skipAct(LobbyDragonTigerActivity.class, bundle);
     }
 
     //重新选择了筹码，重新开始算下注筹码
@@ -3973,5 +3974,10 @@ public class DragonTigerActivity extends BaseActivity {
         tv_dragon_result_name.setText(getString(R.string.dragon));
         tv_tiger_result_name.setText(getString(R.string.tiger));
         initResultAnimation();
+    }
+
+    @Override
+    public boolean isCanSlideChangeTable() {
+        return true;
     }
 }
