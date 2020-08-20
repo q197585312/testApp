@@ -140,6 +140,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public void handleAdapter() {
+        if (baseView.getIBaseContext().getBaseActivity() == null)
+            return;
+
         LogUtil.d("additionMap", "onSetAdapterHelper,handleAdapter");
         adapterHelper = onSetAdapterHelper();
         adapterHelper.onSetAdapterItemLayout();
@@ -456,7 +459,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
         }*/
-        pageList=filterData;
+        pageList = filterData;
         LogUtil.d("current", "page:" + page);
 
         return pageList;
@@ -1508,7 +1511,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private void showAllOdds(final TextView textView) {
 
-        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, textView.getWidth()+ DeviceUtils.dip2px(activity,20), LinearLayout.LayoutParams.WRAP_CONTENT) {
+        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, textView.getWidth() + DeviceUtils.dip2px(activity, 20), LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
