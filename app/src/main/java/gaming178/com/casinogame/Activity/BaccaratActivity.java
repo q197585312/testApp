@@ -5786,6 +5786,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     @Override
     public boolean isCanSlideChangeTable() {
-        return true;
+        if (mAppViewModel.getTableId() == 71) {
+            if (fl_poker_bottom_parent.getVisibility() == View.VISIBLE) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
 }
