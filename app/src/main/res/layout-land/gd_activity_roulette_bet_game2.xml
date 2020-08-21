@@ -635,7 +635,7 @@
             android:background="@drawable/gd_rectangle_trans_stroke_yellow"
             android:padding="2dp">
 
-            <gaming178.com.casinogame.Util.VideoPlayer
+            <SurfaceView
                 android:id="@+id/gd__surface"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

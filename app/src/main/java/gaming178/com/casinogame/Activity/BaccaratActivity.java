@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -90,7 +91,7 @@ import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.ImageRotate3D;
 import gaming178.com.casinogame.Util.PopGoodRoad;
 import gaming178.com.casinogame.Util.UIUtil;
-import gaming178.com.casinogame.Util.VideoPlayer;
+import gaming178.com.casinogame.Util.VideoHelper;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
@@ -410,7 +411,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     List<ApngPlayBean> apngPlayBeanList = new ArrayList<>();
     private TextView shufflingTv;
 
-    private VideoPlayer mPreview;
+    private SurfaceView mPreview;
     private SurfaceHolder holder;
     private String path;
     private Bundle extras;
@@ -2212,7 +2213,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
             }
         }, 1000);
-        videoHelper.loadVideo();
+        videoHelper.playVideo();
 //        handler.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -2673,7 +2674,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setPlayerPair(-100);
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameStatus(-1);
         startPlayVideo();
-        videoHelper.loadVideo();
+        videoHelper.playVideo();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -3653,7 +3654,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     protected void onPause() {
         super.onPause();
 //        stopUpdateStatusThread();
-        videoHelper.pauseVideo();
+        videoHelper.stopVideo();
 //        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameStatus(1);
         mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
         mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
@@ -4518,7 +4519,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        videoHelper.stopVideo();
         stopUpdateStatusThread();
         objectAnimatorB.cancel();
         objectAnimatorP.cancel();

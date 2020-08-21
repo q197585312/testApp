@@ -10,6 +10,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -57,6 +58,7 @@ import gaming178.com.casinogame.Util.ChipShowHelper;
 import gaming178.com.casinogame.Util.CountDownView;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.HandlerCode;
+import gaming178.com.casinogame.Util.VideoHelper;
 import gaming178.com.casinogame.Util.VideoPlayer;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
@@ -549,7 +551,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
 
     private boolean personInfoShowAble;
-    private VideoPlayer mPreview;
+    private SurfaceView mPreview;
     private boolean isBottomOpen = false;
     private boolean isVisibility = false;
     private boolean isDiceVisible;
@@ -1651,7 +1653,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             }
         }, 1000);
 //        startUpdateStatusThread();
-        videoHelper.loadVideo();
+        videoHelper.playVideo();
 
     }
 
@@ -2385,14 +2387,13 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     protected void onPause() {
         super.onPause();
 //        stopUpdateStatusThread();
-        videoHelper.pauseVideo();
+        videoHelper.stopVideo();
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        videoHelper.stopVideo();
         stopUpdateStatusThread();
     }
 

@@ -31,6 +31,9 @@ android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
+        ndk {
+            abiFilters "armeabi-v7a" //, "x86", "armeabi"  按需设置
+        }
         if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
             applicationId 'gaming178.com.baccaratgame'
         }
@@ -481,7 +484,6 @@ dependencies {
     implementation project(':mylibrary')
     implementation project(':baseLibs')
     implementation 'com.tencent.bugly:crashreport:3.2.33'
-
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation rootProject.ext.dependencies.butterknife
@@ -489,6 +491,7 @@ dependencies {
     implementation rootProject.ext.dependencies.bdclta_rv
     kapt rootProject.ext.dependencies.butterknife_compiler
     implementation 'com.android.support:multidex:1.0.3'
-        //版本要与gradle版本一致
+    //版本要与gradle版本一致
     kapt "com.android.databinding:compiler:3.6.1"
+    implementation files('libs/NodeMediaClient-v1.2.10.jar')
 }
