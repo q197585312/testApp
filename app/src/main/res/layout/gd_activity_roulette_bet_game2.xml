@@ -30,7 +30,7 @@
                 android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <gaming178.com.casinogame.Util.VideoPlayer
+                <SurfaceView
                     android:id="@+id/gd__surface"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

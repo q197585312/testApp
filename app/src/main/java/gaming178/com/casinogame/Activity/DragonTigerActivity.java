@@ -12,6 +12,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -66,6 +67,7 @@ import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.PopGoodRoad;
 import gaming178.com.casinogame.Util.SkewTexView;
 import gaming178.com.casinogame.Util.UIUtil;
+import gaming178.com.casinogame.Util.VideoHelper;
 import gaming178.com.casinogame.Util.VideoPlayer;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
@@ -234,7 +236,7 @@ public class DragonTigerActivity extends BaseActivity {
     List<ApngPlayBean> apngPlayBeanList = new ArrayList<>();
     private TextView tv_table_game_number;
     private TextView tv_table_game_number1;
-    private VideoPlayer mPreview;
+    private SurfaceView mPreview;
     private String path;
     private boolean isFirstBet = true;
 
@@ -1830,7 +1832,7 @@ public class DragonTigerActivity extends BaseActivity {
             }
         }, 1000);
 //        startUpdateStatusThread();
-        videoHelper.loadVideo();
+        videoHelper.playVideo();
     }
 
     @Override
@@ -2575,7 +2577,7 @@ public class DragonTigerActivity extends BaseActivity {
         super.onPause();
         //   hidePoker();
 
-        videoHelper.pauseVideo();
+        videoHelper.stopVideo();
 
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setGameStatus(1);
         if (isBottomOpen)//正好在发牌的时候锁频，再次打开屏幕的时候要先隐藏
@@ -2585,7 +2587,6 @@ public class DragonTigerActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        videoHelper.stopVideo();
         stopUpdateStatusThread();
     }
     /*    @Override
