@@ -67,7 +67,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                     if ((baseActivity).getBetContent().v.getVisibility() == View.VISIBLE)
                         (baseActivity).getBetContent().stopUpdateOdds();
 
-                    if (oddsUrlBean!=null&&!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
+                    if (oddsUrlBean != null && !StringUtils.isEmpty(oddsUrlBean.getBETID())) {
                         LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
                         if (hasPar && typeHasPar) {
                             saveCurrentMixBet(oddsUrlBean);
@@ -78,10 +78,18 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                         if (StringUtils.isEmpty(app.getRefreshSingleOddsUrl())) {
                             (baseActivity).getBetContent().closePopupWindow();
                         } else {
-                            if (baseActivity.getOtType().toLowerCase().startsWith("r"))
-                                (baseActivity).getBetContent().isNeedInitWeb = true;
-                            getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
+                            if (app.getMixBetList().size() > 14) {
+                                app.isSingleBet = false;
+                                betOddsUrl = app.getRefreshMixOddsUrl();
+                                getDisposable(v, isHf, betOddsUrl);
+
+                            } else {
+                                if (baseActivity.getOtType().toLowerCase().startsWith("r"))
+                                    (baseActivity).getBetContent().isNeedInitWeb = true;
+                                getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
+                            }
                         }
+
                     }
 
                 }
@@ -137,7 +145,11 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
     }
 
     protected OddsClickBean<B> getOddsUrl(int socId, String type, boolean isHf, String odds, String sc, B item) {
-        return new OddsClickBean<>(type, getBallG(), socId + "", isHf ? socId + "" : "", sc, item);
+        String ballG = getBallG();
+        if (ballG.equals("182")) {
+            ballG = "1";
+        }
+        return new OddsClickBean<>(type, ballG, socId + "", isHf ? socId + "" : "", sc, item);
     }
 
 

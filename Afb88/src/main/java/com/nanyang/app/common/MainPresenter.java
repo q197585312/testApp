@@ -346,18 +346,20 @@ public class MainPresenter extends BaseSwitchPresenter {
     //
     public void skipPCashio(String Method, String url, final String itemG, LoginInfo.LanguageWfBean wfBean, final String host, String matches) {
 
-
+        baseContext.getBaseActivity().showLoadingDialog();
         LoadPCasinoDataHelper<LoginInfo.LanguageWfBean> helper = new LoadPCasinoDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         if (Method.equals("get")) {
             helper.doRetrofitApiOnUiThreadBackGet(url, wfBean, new CallBackError<String>() {
                 @Override
                 public void onBack(String data) throws JSONException {
                     goPCasino(data, itemG, host);
+                    baseContext.getBaseActivity().hideLoadingDialog();
                 }
 
                 @Override
                 public void onError(String data) throws JSONException {
                     ToastUtils.showLong(data);
+                    baseContext.getBaseActivity().hideLoadingDialog();
                 }
             }, matches);
         } else {
@@ -366,11 +368,13 @@ public class MainPresenter extends BaseSwitchPresenter {
                 @Override
                 public void onBack(String data) throws JSONException {
                     goPCasino(data, itemG, host);
+                    baseContext.getBaseActivity().hideLoadingDialog();
                 }
 
                 @Override
                 public void onError(String data) throws JSONException {
                     ToastUtils.showLong(data);
+                    baseContext.getBaseActivity().hideLoadingDialog();
                 }
             }, matches);
 

@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
@@ -422,7 +424,11 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
 
     public SportActivity getBaseActivity() {
-        return (SportActivity) this.getActivity();
+        Activity act = this.getActivity();
+        if (act == null) {
+            act = ActivityPageManager.getInstance().currentActivity();
+        }
+        return (SportActivity) act;
     }
 
     @Override

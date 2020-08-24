@@ -1,6 +1,7 @@
 package com.nanyang.app.load.login;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -90,6 +92,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         String userName = AppCacheUtils.getInstance(this).getString("USER_NAME") != null ? AppCacheUtils.getInstance(this).getString("USER_NAME") : "";
         edtLoginUsername.setText(userName);
         edtLoginPassword.setText(password);
+
         if (userName == null || userName.isEmpty()) {
             cbLoginRemember.setChecked(false);
         } else {
@@ -213,7 +216,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         String us = edtLoginUsername.getText().toString();
         String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
         if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
-            presenter.login(new LoginInfo(us, k)          );
+            presenter.login(new LoginInfo(us, k));
         } else {
             ToastUtils.showShort(getString(R.string.enter_username_or_password));
         }
@@ -247,6 +250,13 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     protected void onResume() {
         super.onResume();
         c_video_bg.start();
+        edtLoginUsername.setCursorVisible(true);// 再次点击显示光标
+        edtLoginUsername.setFocusable(true);
+        edtLoginUsername.setFocusableInTouchMode(true);
+        edtLoginUsername.requestFocus();
+        InputMethodManager inputManager =
+                (InputMethodManager) edtLoginUsername.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(edtLoginUsername, 0);
     }
 
     @Override

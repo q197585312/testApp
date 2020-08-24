@@ -237,7 +237,7 @@
     <string name="gd_content">在線娛樂美女荷官真人賭場，真人百家樂，貴賓廳，國際廳，願您玩的開心</string>
     <string name="gr_content">在線美女荷官真人遊戲，百家樂，骰寶，龍虎，番攤，輪盤，色碟遊戲，讓你玩的盡興</string>
     <string name="Version">版本</string>
-    <string name="failed_to_connect">連接服務器失敗是否重新登錄?</string>
+    <string name="failed_to_connect">連接服務器失敗，是否退出登錄?</string>
     <string name="All_Markets">全部盤口</string>
     <string name="Main_Markets">主要盤口</string>
     <string name="Other_Bet_Markets">更多玩法盤口</string>
@@ -546,7 +546,7 @@
     <string name="switching_market_failure">切換盤口失敗</string>
     <string name="All_Market">全部盤口</string>
     <string name="single_bet">單註</string>
-    <string name="can_not_more_than_10">過關注單不能超過10</string>
+    <string name="can_not_more_than_10">過關注單不能超過15</string>
     <string name="live_stream">live streaming</string>
     <string name="live_center">live center</string>
     <string name="HDP_OU">亞州盤</string>
