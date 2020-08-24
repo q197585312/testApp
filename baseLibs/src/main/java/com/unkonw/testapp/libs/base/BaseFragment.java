@@ -193,4 +193,5 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     public void setParentHidden(boolean hidden) {
         this.parentHidden =hidden;
     }
+
 }

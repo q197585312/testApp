@@ -43,6 +43,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
+import com.unkonw.testapp.libs.base.BaseApplication;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
@@ -173,12 +174,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-    SportActivity activity;
+    Context activity;
 
     public SportState(V baseView) {
         setBaseView(baseView);
         handleAdapter();
-        activity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
+        activity = BaseApplication.getInstance();
         switchTypeAdapter = new BaseRecyclerAdapter<MenuItemInfo<Integer>>(activity, getTypes(), R.layout.item_sport_switch) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<Integer> item) {
@@ -193,7 +194,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     tvGamePic.setText("");
                     tv.setText(item.getText());
                 }
-                if (activity.dateClickPosition == position) {
+                if (((SportActivity) baseView.getIBaseContext().getBaseActivity()).dateClickPosition == position) {
                     tvGamePic.setBackgroundResource(item.getParent());
                     holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
                     tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
@@ -1285,13 +1286,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d4 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 4), "yyyy-MM-dd");
         String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
         String d6 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
-        Context context = getBaseView().getIBaseContext().getBaseActivity();
-        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d1.split("-")[1]), context.getString(AfbUtils.getLangMonth(d1.split("-")[1])), R.mipmap.date_day_green, d1.split("-")[2], d1);
-        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d2.split("-")[1]), context.getString(AfbUtils.getLangMonth(d2.split("-")[1])), R.mipmap.date_day_green, d2.split("-")[2], d2);
-        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d3.split("-")[1]), context.getString(AfbUtils.getLangMonth(d3.split("-")[1])), R.mipmap.date_day_green, d3.split("-")[2], d3);
-        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d4.split("-")[1]), context.getString(AfbUtils.getLangMonth(d4.split("-")[1])), R.mipmap.date_day_green, d4.split("-")[2], d4);
-        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d5.split("-")[1]), context.getString(AfbUtils.getLangMonth(d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
-        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d6.split("-")[1]), context.getString(AfbUtils.getLangMonth(d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
+        BaseApplication baseActivity = BaseApplication.getInstance();
+        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d1.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d1.split("-")[1])), R.mipmap.date_day_green, d1.split("-")[2], d1);
+        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d2.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d2.split("-")[1])), R.mipmap.date_day_green, d2.split("-")[2], d2);
+        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d3.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d3.split("-")[1])), R.mipmap.date_day_green, d3.split("-")[2], d3);
+        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d4.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d4.split("-")[1])), R.mipmap.date_day_green, d4.split("-")[2], d4);
+        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d5.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
+        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d6.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
         MenuItemInfo<Integer> itemTop = new MenuItemInfo<>(R.mipmap.sport_game_cup_white, (R.string.TOP), "Top", R.mipmap.sport_game_cup_white);
 
         MenuItemInfo<Integer> itemRunning = new MenuItemInfo<>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);

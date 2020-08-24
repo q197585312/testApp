@@ -34,6 +34,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
@@ -613,7 +614,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public int getSortType() {
         return getApp().getSort();
     }
-
 
 
     public void clickCup(View view) {
@@ -1241,7 +1241,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickPcType(View view) {
-        presenter.goWebPc(AppConstant.getInstance().URL_PC);
+        presenter.goWebPc(BuildConfig.PC_URL);
     }
 
     public void onChangeMatchClick(View view) {

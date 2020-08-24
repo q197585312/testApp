@@ -242,7 +242,7 @@
     <string name="gd_content">在线娱乐美女荷官真人赌场，真人百家乐，贵宾厅，国际厅，愿您玩的开心</string>
     <string name="gr_content">在线美女荷官真人游戏，百家乐，骰宝，龙虎，番摊，轮盘，色碟游戏，让你玩的尽兴</string>
     <string name="Version">版本</string>
-    <string name="failed_to_connect">连接服务器失败是否重新登录?</string>
+    <string name="failed_to_connect">连接服务器失败，是否退出登录?</string>
     <string name="All_Markets">全部盘口</string>
     <string name="Main_Markets">主要盘口</string>
     <string name="Other_Bet_Markets">更多玩法盘口</string>
@@ -553,7 +553,7 @@
     <string name="switching_market_failure">切换盘口失败</string>
     <string name="All_Market">全部盘口</string>
     <string name="single_bet">单注</string>
-    <string name="can_not_more_than_10">过关注单不能超过10</string>
+    <string name="can_not_more_than_10">过关注单不能超过15</string>
     <string name="live_stream">live streaming</string>
     <string name="live_center">live center</string>
     <string name="HDP_OU">亚州盤</string>
