@@ -8,12 +8,18 @@ import androidx.lifecycle.MutableLiveData
 import com.unkonw.testapp.libs.utils.ToastUtils
 import gaming178.com.casinogame.Bean.Liga365AgentBean
 import gaming178.com.casinogame.base.BaseApiViewModel
+import kotlin.reflect.KCallable
 
 class LoginModel : BaseApiViewModel() {
     val map = MutableLiveData<HashMap<String, String>>()
     var showLanguagePop = MutableLiveData<Boolean>()
 
     init {
+        val a:DataBean= DataBean("","")
+        val find = a::class.members.find {
+            it.name == "agent"
+        }
+        println(find?.call(a))
 
     }
 
