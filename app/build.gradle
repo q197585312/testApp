@@ -438,6 +438,12 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.64'
             }
+            oricasino {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]
+                buildConfigField "String", "Labelid", '"224"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.64'
+            }
         }
 
         applicationVariants.all { variant ->
