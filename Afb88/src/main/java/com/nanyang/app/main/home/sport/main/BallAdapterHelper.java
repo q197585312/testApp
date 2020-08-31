@@ -52,6 +52,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
     public final SportActivity act;
+    private boolean allowedEurope=true;
     private BaseMixStyleHandler handler;
     private String curCode = "";
     protected Context context;
@@ -378,7 +379,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     public void createAddedData(I item, LinearLayout parent, AddMBean additionData, HashMap<Boolean, MenuItemInfo> selectedMap) {
-
+        allowedEurope = allowedEurope();
         LogUtil.d("additionMap", "--------------additionBallItem:" + item);
         parent.removeAllViews();
 
@@ -412,7 +413,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
         int res = selectedMap.get(true).getRes();
         boolean isAll = (res == R.string.all);
-        if (size > 0 && (isAll || res == R.string.HDP_OU)) {
+
+        if (allowedEurope && size > 0 && (isAll || res == R.string.HDP_OU)) {
 
             for (int i = 0; i < size; i++) {
                 if (i == 0) {
@@ -1080,6 +1082,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             }
         }
+    }
+
+    protected boolean allowedEurope() {
+        return true;
     }
 
 

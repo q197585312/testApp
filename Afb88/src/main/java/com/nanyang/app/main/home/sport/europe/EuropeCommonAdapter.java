@@ -9,6 +9,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
@@ -17,13 +18,21 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by ASUS on 2019/4/13.
+ *
+ *  
  */
 
 public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
+    SportActivity activity;
     public EuropeCommonAdapter(Context context) {
         super(context);
     }
-
+    // new MenuItemInfo(0, (R.string.MY_ODDS), "MY");
+    @Override
+    protected boolean allowedEurope() {
+        activity= (SportActivity) context;
+        return activity.getOddsType().getText()==R.string.EU_ODDS;
+    }
     @Override
     public void updateMixNormalBackground(MyRecyclerViewHolder helper, BallInfo item) {
 

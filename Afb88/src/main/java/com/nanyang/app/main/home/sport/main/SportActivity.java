@@ -439,8 +439,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     return;
                 if (s.equals("3"))
                     return;
+                if (currentFragment == null || !currentFragment.isVisible())
+                    return;
                 LogUtil.d("Socket", "---获得服务器返回数据-----------");
                 String s1 = GZipUtil.uncompressToString(s.getBytes());
+
                 currentFragment.presenter.getStateHelper().handleData(s1);
             }
         }, this);

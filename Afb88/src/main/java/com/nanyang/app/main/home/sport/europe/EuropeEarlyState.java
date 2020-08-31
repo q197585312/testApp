@@ -48,10 +48,6 @@ public class EuropeEarlyState extends EuropeState {
         }
     }
 
-    @Override
-    protected void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
-
-    }
 
     @Override
     public boolean mix() {

@@ -4498,7 +4498,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }, 1000);
 
                 for (PageWidgetT pw : pws) {
-                    if (!isFinishing() && isAttached)
+                    if (!isFinishing() && isAttached && pw.getVisibility() == View.VISIBLE)
                         pw.flipPicAnimation3D();
                 }
                 mAppViewModel.showPoint(getPlayer1(),
@@ -4942,6 +4942,23 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (type < 3 && (banker1 == 0 || banker2 == 0)) {
 
         } else {
+            int player1 = flipMap.get(gameIdNumber + "player1") == null ? 0 : flipMap.get(gameIdNumber + "player1");
+            int player2 = flipMap.get(gameIdNumber + "player2") == null ? 0 : flipMap.get(gameIdNumber + "player2");
+            int player3 = flipMap.get(gameIdNumber + "player3") == null ? 0 : flipMap.get(gameIdNumber + "player3");
+
+            if (player1 > 0 && player2 > 0 &&
+                    banker1 > 0 && banker2 > 0 && banker3 > 0) {
+                com.unkonw.testapp.libs.utils.LogUtil.d("setOpen", "showBankerPoint,hideType:" + type + "," +
+                        ",player1=" + player1 +
+                        ",player2=" + player2 +
+                        ",player3=" + player3 +
+                        ",banker1=" + banker1 +
+                        ",banker2=" + banker2 +
+                        ",banker3=" + banker3
+                );
+                com.unkonw.testapp.libs.utils.LogUtil.getMethodName("setOpen");
+            }
+
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -4961,7 +4978,24 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 /*tv_point_player*/tv_player_result, /*getString(player)*/"");
         if (type < 3 && (player1 == 0 || player2 == 0)) {
 
-        } else {
+        }
+        if (type == 3) {
+
+            int banker1 = flipMap.get(gameIdNumber + "banker1") == null ? 0 : flipMap.get(gameIdNumber + "banker1");
+            int banker2 = flipMap.get(gameIdNumber + "banker2") == null ? 0 : flipMap.get(gameIdNumber + "banker2");
+            int banker3 = flipMap.get(gameIdNumber + "banker3") == null ? 0 : flipMap.get(gameIdNumber + "banker3");
+            if (player1 > 0 && player2 > 0 &&
+                    banker1 > 0 && banker2 > 0 && banker3 > 0) {
+                com.unkonw.testapp.libs.utils.LogUtil.d("showPlayerPoint,setOpen", "hideType:" + type + "," +
+                        ",player1=" + player1 +
+                        ",player2=" + player2 +
+                        ",player3=" + player3 +
+                        ",banker1=" + banker1 +
+                        ",banker2=" + banker2 +
+                        ",banker3=" + banker3
+                );
+                com.unkonw.testapp.libs.utils.LogUtil.getMethodName("setOpen");
+            }
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -5096,6 +5130,25 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             return;
         fl_poker_bottom_parent.setVisibility(View.GONE);
         bottomPanel1.setOpen(false, true);
+        int player1 = flipMap.get(gameIdNumber + "player1") == null ? 0 : flipMap.get(gameIdNumber + "player1");
+        int player2 = flipMap.get(gameIdNumber + "player2") == null ? 0 : flipMap.get(gameIdNumber + "player2");
+        int player3 = flipMap.get(gameIdNumber + "player3") == null ? 0 : flipMap.get(gameIdNumber + "player3");
+        int banker1 = flipMap.get(gameIdNumber + "banker1") == null ? 0 : flipMap.get(gameIdNumber + "banker1");
+        int banker2 = flipMap.get(gameIdNumber + "banker2") == null ? 0 : flipMap.get(gameIdNumber + "banker2");
+        int banker3 = flipMap.get(gameIdNumber + "banker3") == null ? 0 : flipMap.get(gameIdNumber + "banker3");
+        if (player1 > 0 && player2 > 0 &&
+                banker1 > 0 && banker2 > 0 && banker3 > 0) {
+            com.unkonw.testapp.libs.utils.LogUtil.d("setOpen", "hideType:" + hideType + "," +
+                    ",player1=" + player1 +
+                    ",player2=" + player2 +
+                    ",player3=" + player3 +
+                    ",banker1=" + banker1 +
+                    ",banker2=" + banker2 +
+                    ",banker3=" + banker3
+            );
+            com.unkonw.testapp.libs.utils.LogUtil.getMethodName("setOpen");
+        }
+
         iv_poker_banker1.setVisibility(View.GONE);
         iv_poker_banker2.setVisibility(View.GONE);
         iv_poker_banker3.setVisibility(View.GONE);

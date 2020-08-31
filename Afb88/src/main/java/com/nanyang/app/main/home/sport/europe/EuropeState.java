@@ -12,10 +12,6 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -68,34 +64,6 @@ public abstract class EuropeState extends BallState {
         return false;
     }
 
-
-    protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item);
-
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
-        repMap.put(position, false);
-    }
-
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
-        repMap.put(position, true);
-    }
-
-    public Map<Integer, Boolean> getRepMap() {
-        return repMap;
-    }
-
-    Map<Integer, Boolean> repMap = new HashMap<>();
-
-    public int getNextNotRepeat(int position) {
-        if (position < getBaseRecyclerAdapter().getItemCount()) {
-            if (repMap.get(position + 1) == null || !repMap.get(position + 1)) {
-                return position;
-            } else {
-                return getNextNotRepeat(position + 1);
-            }
-        } else
-            return 0;
-
-    }
 
 
     @Override

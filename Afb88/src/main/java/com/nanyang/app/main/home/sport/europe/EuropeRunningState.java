@@ -1,9 +1,6 @@
 package com.nanyang.app.main.home.sport.europe;
 
 import androidx.core.content.ContextCompat;
-import android.text.Html;
-import android.view.View;
-import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -12,7 +9,6 @@ import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -60,54 +56,6 @@ public class EuropeRunningState extends EuropeState {
 
     }*/
 
-
-    @Override
-    protected void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
-        TextView timeTv = helper.getView(R.id.module_match_time_tv);
-        TextView dateTv = helper.getView(R.id.module_match_date_tv);
-        helper.getView(R.id.module_match_live_iv).setVisibility(View.GONE);
-        String channel = item.getLive();
-        channel = Html.fromHtml(channel).toString();
-
-
-        if (channel.contains("HT")) {
-            timeTv.setText("HT");
-            String score = channel.substring(0, channel.indexOf("HT"));
-            dateTv.setText(score.trim());
-        } else {
-            int min;
-            try {
-
-                switch (item.getStatus()) {
-                    case "0":
-                        timeTv.setText("LIVE");
-                        break;
-                    case "2":
-                        min = Integer.valueOf(item.getCurMinute());
-
-                        if (min < 130 && min > 0) {
-                            timeTv.setText("2H " + min + "'");
-                        } else {
-                            timeTv.setText("");
-                        }
-                        break;
-                    default:
-                        min = Integer.valueOf(item.getCurMinute());
-                        if (min < 130 && min > 0) {
-                            timeTv.setText("1H " + min + "'");
-                        } else {
-                            timeTv.setText("");
-                        }
-                        break;
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                timeTv.setText("");
-            }
-        }
-    }
 
     @Override
     public MenuItemInfo getStateType() {
