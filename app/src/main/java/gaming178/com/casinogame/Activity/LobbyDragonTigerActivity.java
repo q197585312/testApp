@@ -13,6 +13,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -378,6 +379,10 @@ public class LobbyDragonTigerActivity extends BaseActivity {
     }
 
     public void clickGrid(View v, final int tableId) {
+        if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
+            Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+            return;
+        }
         initLimitPop(v, tableId, findViewById(R.id.gd__ll_parent_limit));
     }
 

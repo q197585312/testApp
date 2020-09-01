@@ -4942,12 +4942,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (type < 3 && (banker1 == 0 || banker2 == 0)) {
 
         } else {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    hidePoker(type);
-                }
-            }, 3000);
+            if (fl_banker_pw_parent.getVisibility()==View.VISIBLE){
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        hidePoker(type);
+                    }
+                }, 3000);
+            }
         }
     }
 
@@ -4962,12 +4964,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (type < 3 && (player1 == 0 || player2 == 0)) {
 
         } else {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    hidePoker(type);
-                }
-            }, 3000);
+            if (fl_player_pw_parent.getVisibility()==View.VISIBLE){
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        hidePoker(type);
+                    }
+                }, 3000);
+            }
         }
     }
 
