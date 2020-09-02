@@ -56,14 +56,27 @@ public class PopSlideHint extends BasePopupWindow {
     protected void onCloose() {
         super.onCloose();
         int orientation = getOrientation();
+        Integer times;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_P, true);
+            times = (Integer) AppTool.getObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_P);
+            if (times == null) {
+                times = 1;
+            } else {
+                times++;
+            }
+            AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_P, times);
         } else {
-            AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_l, true);
+            times = (Integer) AppTool.getObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_l);
+            if (times == null) {
+                times = 1;
+            } else {
+                times++;
+            }
+            AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_l, times);
         }
     }
 
-    private void initContent(){
+    private void initContent() {
         if (baseActivity != null && !baseActivity.isDestroyed() && !baseActivity.isFinishing()) {
             Glide.with(context).asGif().load(R.mipmap.slide_top_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_top);
             Glide.with(context).asGif().load(R.mipmap.slide_left_gif).diskCacheStrategy(DiskCacheStrategy.NONE).into(img_left);

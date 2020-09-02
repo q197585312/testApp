@@ -25,7 +25,7 @@
 
                 <HorizontalScrollView
                     android:id="@+id/gd__layout1"
-                    android:layout_width="142dp"
+                    android:layout_width="162dp"
                     android:layout_height="wrap_content"
                     android:scrollbars="none">
 

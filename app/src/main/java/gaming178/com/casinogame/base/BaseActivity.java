@@ -2678,13 +2678,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     public void checkSlideHint(View view) {
         int orientation = getResources().getConfiguration().orientation;
-        Boolean guide;
+        Integer times;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            guide = (Boolean) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_P);
+            times = (Integer) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_P);
         } else {
-            guide = (Boolean) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_l);
+            times = (Integer) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_l);
         }
-        if (guide == null || !guide) {
+        if (times == null || times < 3) {
             if (popSlideHint == null) {
                 popSlideHint = new PopSlideHint(mContext, view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             }

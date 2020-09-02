@@ -1962,9 +1962,9 @@ public class AppModel extends ViewModel {
                 String bigRoadOld = baccarat.getBigRoadOld();
                 List<String> dataList = new ArrayList<>();
                 String[] split = bigRoadOld.split("#");
-                if (split.length > 41) {
-                    int firstIndex = 41;
-                    for (int i = 0; i < 41; i++) {
+                if (split.length > 47) {
+                    int firstIndex = 47;
+                    for (int i = 0; i < 47; i++) {
                         firstIndex--;
                         int index = (split.length - 1) - firstIndex;
                         dataList.add(split[index]);
@@ -2029,11 +2029,11 @@ public class AppModel extends ViewModel {
         String bigRoadOld = data;
         List<String> dataList = new ArrayList<>();
         String[] split = bigRoadOld.split("#");
-        int length = 41;
+        int length = 47;
         if (isAddData) {
-            length = 42;
+            length = 48;
         }
-        if (split.length > 41) {
+        if (split.length > 47) {
             int firstIndex = length;
             for (int i = 0; i < length; i++) {
                 firstIndex--;
@@ -2194,9 +2194,9 @@ public class AppModel extends ViewModel {
                     String bigRoadOld = baccarat.getBigRoadOld();
                     List<String> dataList = new ArrayList<>();
                     String[] split = bigRoadOld.split("#");
-                    if (split.length > 41) {
-                        int firstIndex = 41;
-                        for (int i = 0; i < 41; i++) {
+                    if (split.length > 47) {
+                        int firstIndex = 47;
+                        for (int i = 0; i < 47; i++) {
                             firstIndex--;
                             int index = (split.length - 1) - firstIndex;
                             dataList.add(split[index]);
@@ -2461,11 +2461,11 @@ public class AppModel extends ViewModel {
             String bigRoadOld = data;
             List<String> dataList = new ArrayList<>();
             String[] split = bigRoadOld.split("#");
-            int length = 41;
+            int length = 47;
             if (isAddData) {
-                length = 42;
+                length = 48;
             }
-            if (split.length > 41) {
+            if (split.length > 47) {
                 int firstIndex = length;
                 for (int i = 0; i < length; i++) {
                     firstIndex--;

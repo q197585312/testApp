@@ -1493,9 +1493,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     baccarat_background_gridlayout1_big.setVisibility(View.GONE);
                     ViewGroup.LayoutParams layoutParams = layout1.getLayoutParams();
                     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 99);
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 113);
                     } else {
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 142);
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 162);
                     }
                     layout1.setLayoutParams(layoutParams);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;

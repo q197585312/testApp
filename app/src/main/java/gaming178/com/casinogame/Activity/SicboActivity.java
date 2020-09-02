@@ -3438,7 +3438,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         }
 
         if (type == SbBetType.All || type == SbBetType.ninewayBet45) {
-            showBetChipOld(flSicboCombination35, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("4,5"));
+            showBetChipOld(flSicboCombination45, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("4,5"));
             clickNinewayCount45 = 0;
             ninewayBet45 = 0;
 
@@ -4771,7 +4771,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
         showBetChip(flSicboCombination56, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("5,6"), false);
         showBetChip(flSicboCombination46, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("4,6"), false);
-        showBetChip(flSicboCombination35, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("4,5"), false);
+        showBetChip(flSicboCombination45, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("4,5"), false);
         showBetChip(flSicboCombination36, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("3,6"), false);
         showBetChip(flSicboCombination35, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("3,5"), false);
         showBetChip(flSicboCombination34, true, mAppViewModel.getSicbo01().getSicboBetInformation().getNinewayBetMoney("3,4"), false);

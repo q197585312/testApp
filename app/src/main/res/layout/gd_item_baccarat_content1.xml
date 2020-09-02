@@ -321,7 +321,7 @@
 
                         <gaming178.com.casinogame.Control.ParentClickHorizontalScrollView
                             android:id="@+id/gd__layout1"
-                            android:layout_width="99dp"
+                            android:layout_width="113dp"
                             android:layout_height="wrap_content"
                             android:focusable="false"
                             android:scrollbars="none">
