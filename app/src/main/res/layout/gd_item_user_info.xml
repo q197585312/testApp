@@ -16,6 +16,7 @@
             android:id="@+id/gd__tv_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:textSize="11sp"
             android:gravity="center_vertical|left" />

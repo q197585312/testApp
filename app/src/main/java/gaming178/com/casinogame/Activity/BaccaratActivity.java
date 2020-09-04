@@ -3477,23 +3477,23 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
-                switch (position) {
-                    case 0:
-                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
-                        break;
-                    case 1:
-                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
-                        break;
-                    case 2:
-                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.tie_color));
-                        break;
-                    case 3:
-                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
-                        break;
-                    case 4:
-                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
-                        break;
-                }
+//                switch (position) {
+//                    case 0:
+//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
+//                        break;
+//                    case 1:
+//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
+//                        break;
+//                    case 2:
+//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.tie_color));
+//                        break;
+//                    case 3:
+//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
+//                        break;
+//                    case 4:
+//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
+//                        break;
+//                }
             }
         });
 
