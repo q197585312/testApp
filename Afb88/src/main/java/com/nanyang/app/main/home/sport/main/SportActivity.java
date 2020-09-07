@@ -156,6 +156,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.tv_mix_count)
     TextView tvMixCount;
 
+
     @BindView(R.id.tv_way_run)
     public TextView tvMatchType;
     @BindView(R.id.tv_menu)
@@ -493,6 +494,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        betPop.closePopupWindow();
         BetGoalWindowUtils.clear();
         liveMatchHelper.onDestroy();
         unregisterReceiver(myGoHomeBroadcastReceiver);

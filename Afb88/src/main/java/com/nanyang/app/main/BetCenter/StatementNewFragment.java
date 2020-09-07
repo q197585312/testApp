@@ -268,7 +268,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                             llAddView1.setVisibility(View.VISIBLE);
                         }
                         if (llAddView1.getChildCount() < 1) {
-                            getStatementOpen2Data(bean.getIndex22(), index11);
+                            getStatementOpen2Data(bean.getIndex22(), index11,bean.getIndex17());
                         }
                     }
                 });
@@ -377,7 +377,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
 
 
 
-    public void onGetStatementOpen2Data(List<StatementOpen2ListDataBean> list, final String id, final String transType) {
+    public void onGetStatementOpen2Data(List<StatementOpen2ListDataBean> list, final String id, final String transType, String index17) {
         for (int i = 0; i < list.size(); i++) {
             final StatementOpen2ListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_open2, null);
@@ -489,7 +489,12 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             }
             if (i == list.size() - 1) {
                 TextView tvDetail = view.findViewById(R.id.tv_open_detail);
-                tvDetail.setVisibility(View.VISIBLE);
+                if (StringUtils.isNull(index17) || index17.endsWith("1")) {
+                    tvDetail.setVisibility(View.GONE);
+                } else {
+                    tvDetail.setVisibility(View.VISIBLE);
+                }
+
                 tvDetail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -654,8 +659,8 @@ spanFontHtml()         tv_match_at2_1.setText(matchAtStr2);
         presenter.getStatemenOpen1Data(date);
     }
 
-    private void getStatementOpen2Data(String id, String transType) {
-        presenter.getStatementOpen2Data(id, transType);
+    private void getStatementOpen2Data(String id, String transType, String index17) {
+        presenter.getStatementOpen2Data(id, transType, index17);
     }
 
     private void getStatementOpen3Data(String id, String transType) {

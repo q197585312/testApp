@@ -117,7 +117,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
         });
     }
 
-    public void getStatementOpen2Data(final String id, final String transType) {
+    public void getStatementOpen2Data(final String id, final String transType, String index17) {
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetMatch", "wfRunningH50", id, "", "", -1).getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -140,7 +140,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
                                 jsonArrayArr.getString(22), "");
                         list.add(bean);
                     }
-                    statementNewFragment.onGetStatementOpen2Data(list, id, transType);
+                    statementNewFragment.onGetStatementOpen2Data(list, id, transType,index17);
                 }
             }
         });

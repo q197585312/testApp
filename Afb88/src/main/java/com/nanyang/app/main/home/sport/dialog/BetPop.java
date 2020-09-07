@@ -421,7 +421,7 @@ public class BetPop {
             public void convert(MyRecyclerViewHolder holder, int position, PopChipBean item) {
                 View holderView = holder.getHolderView();
                 int widthPixels = DeviceUtils.getScreenPix(activity).widthPixels;
-                int width = (widthPixels - DeviceUtils.dip2px(activity, 20)) / 7;
+                int width = (widthPixels - DeviceUtils.dip2px(activity, 20)) / adapterChip.getItemCount();
                 ViewGroup.LayoutParams layoutParams = holderView.getLayoutParams();
                 layoutParams.width = width;
                 ImageView imgContent = holder.getView(R.id.img_content);
@@ -753,12 +753,11 @@ public class BetPop {
         }
         if (beanList.size() < 2) {
             beanList = allListChip;
+
+            beanList = beanList.subList(0, 7);
+
         }
-        List<PopChipBean> popChipBeans = beanList;
-        if (beanList.size() > 7) {
-            popChipBeans = beanList.subList(0, 7);
-        }
-        adapterChip.addAllAndClear(popChipBeans);
+        adapterChip.addAllAndClear(beanList);
     }
 
     private void webViewPause() {
@@ -1043,10 +1042,8 @@ public class BetPop {
 
                     String oddsed = oddsMap.get(position);
                     if (oddsed != null && oddsed.equals(odds)) {
-                        LogUtil.d("oddsed", "======oddsed:" + oddsed + "===spanned:" + spanned);
                         objectAnimator = startAlphaColor(tvBetOddsAnimation, R.color.update_bg1);
                     } else {
-                        LogUtil.d("oddsed", "!!!!======oddsed:" + oddsed + "===spanned:" + spanned);
                         objectAnimator = startAlphaColor(tvBetOddsAnimation, R.color.yellow_gold);
                         oddsMap.put(position, odds);
                     }
@@ -1322,17 +1319,17 @@ public class BetPop {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public ValueAnimator startAlphaColor(final View view, int color) {
         //
-        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context, color), Color.TRANSPARENT);
-
+        ValueAnimator animator = ValueAnimator.ofArgb(Color.TRANSPARENT, ContextCompat.getColor(context, color));
         animator.setRepeatCount(Animation.INFINITE);
         animator.setDuration(2000);
-        animator.start();
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 view.setBackgroundColor((Integer) animation.getAnimatedValue());
+                LogUtil.d("oddsed", "======color:" + animation.getAnimatedValue());
             }
         });
+        animator.start();
         return animator;
     }
 
