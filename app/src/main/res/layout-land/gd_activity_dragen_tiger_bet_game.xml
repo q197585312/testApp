@@ -86,17 +86,17 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_centerInParent="true"
                 android:id="@+id/gd__img_dragon_animation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:background="@drawable/gd_animation_banker" />
 
             <TextView
-                android:layout_centerInParent="true"
                 android:id="@+id/gd__tv_dragon_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:background="@drawable/gd_shape_result_name"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
@@ -171,17 +171,17 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_centerInParent="true"
                 android:id="@+id/gd__img_tiger_animation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:background="@drawable/gd_animation_player" />
 
             <TextView
-                android:layout_centerInParent="true"
                 android:id="@+id/gd__tv_tiger_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:background="@drawable/gd_shape_result_name_player"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
@@ -1113,14 +1113,16 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
-                    android:divider="@null"></ListView>
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
 
                 <ListView
                     android:id="@+id/gd__lv_pool"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:divider="@null"></ListView>
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
             </LinearLayout>
         </LinearLayout>
 
