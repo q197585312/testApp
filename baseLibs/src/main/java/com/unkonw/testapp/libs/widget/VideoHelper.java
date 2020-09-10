@@ -44,6 +44,10 @@ public class VideoHelper {
 
     NodePlayerView playSurface;
 
+    public NodePlayer getNodePlayer() {
+        return nodePlayer;
+    }
+
     public VideoHelper(Context mContext, NodePlayerView playSurface) {
         this.mContext = mContext;
         this.playSurface = playSurface;

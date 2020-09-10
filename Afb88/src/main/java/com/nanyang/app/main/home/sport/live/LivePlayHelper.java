@@ -10,12 +10,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.utils.LogUtil;
-import com.unkonw.testapp.libs.widget.listener.VideoListener;
-
-import java.io.IOException;
-
-import cn.nodemedia.NodePlayer;
-import tv.danmaku.ijk.media.player.IMediaPlayer;
+import com.unkonw.testapp.libs.widget.VideoHelper;
 
 /**
  * Created by Administrator on 2020/1/10.
@@ -32,9 +27,9 @@ public class LivePlayHelper {
 
     public LivePlayHelper(ViewHolder holder, Context context) {
         this.holder = holder;
-        holder.videoPlayerStream=  new NodePlayer(context,"M2FmZTEzMGUwMC00ZTRkNTMyMS1jbi5ub2RlbWVkaWEucWxpdmU=-OTv6MJuhXZKNyWWMkdKJWsVKmLHwWPcPfnRbbWGIIf+8t39TqL/mW2f5O5WdT/W8JJE7ePvkvKaS371xVckAZ/U00dSwPp8ShB8Yic2W1GhwCyq04DYETsrGnkOWrhARH7nzNhd3Eq6sVC1Fr74GCEUHbDSCZnCfhcEnzGU9InRiQJ2PImtHORahN3blAGlHb6LZmdnobw5odvKEeUhbkhxYf8S1Fv4VRnSpDCSS3LZ2U3Mp6MfGDA1ZXPadmgdwaJitIrnWA2zP/yqmlUHjMtTv8PzGcc73Tm5k5q+OMbKCJsPq8KSEpFthncvaGZJ2kS2GHx6V5TqYZglBrTx61g==");holder.videoPlayerView
-
-    this.context = context;
+        VideoHelper videoHelper = new VideoHelper(context, holder.videoPlayerView);
+        holder.videoPlayerStream = videoHelper.getNodePlayer();
+        this.context = context;
         initClick();
     }
 
@@ -88,10 +83,10 @@ public class LivePlayHelper {
     public void turnVoice() {
         voiceOpen = !voiceOpen;
         if (voiceOpen) {
-            holder.videoPlayerStream.getmMediaPlayer().setVolume(1.0f, 1.0f);
+            holder.videoPlayerStream.setVolume(1.0f);
             holder.ivVoice.setImageResource(R.mipmap.play_mute_white);
         } else {
-            holder.videoPlayerStream.getmMediaPlayer().setVolume(0.0f, 0.0f);
+            holder.videoPlayerStream.setVolume(0.0f);
             holder.ivVoice.setImageResource(R.mipmap.play_voice_white);
         }
     }
@@ -130,66 +125,22 @@ public class LivePlayHelper {
                 holder.web_wv.onPause();
             }
             holder.ll_run_match_title.setVisibility(View.VISIBLE);
-            holder.videoPlayerStream.setVisibility(View.VISIBLE);
+            holder.videoPlayerView.setVisibility(View.VISIBLE);
             holder.web_wv.setVisibility(View.GONE);
             webloading = false;
             holder.llStatus.setVisibility(View.VISIBLE);
             holder.tv_run_time.setVisibility(View.VISIBLE);
             LogUtil.d("");
             playType = 1;
-            try {
-                if (holder.videoPlayerStream != null && holder.videoPlayerStream.getmPath() != null)
-                    holder.videoPlayerStream.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            if (holder.videoPlayerStream != null)
+                holder.videoPlayerStream.start();
+
         }
 
     }
 
-    public void initPlayer(String livePlayUrlId) {
-        holder.videoPlayerStream.setVideoListener(new VideoListener() {
-            @Override
-            public void onBufferingUpdate(IMediaPlayer iMediaPlayer, int i) {
-                Log.d("ijk", "onBufferingUpdate");
-            }
 
-            @Override
-            public void onCompletion(IMediaPlayer iMediaPlayer) {
-                Log.d("ijk", "onCompletion");
-            }
-
-            @Override
-            public boolean onError(IMediaPlayer iMediaPlayer, int i, int i1) {
-                Log.d("ijk", "onError");
-                return false;
-
-            }
-
-            @Override
-            public boolean onInfo(IMediaPlayer iMediaPlayer, int i, int i1) {
-                Log.d("ijk", "onInfo");
-                return false;
-            }
-
-            @Override
-            public void onPrepared(IMediaPlayer iMediaPlayer) {
-                onStartPlay();
-                Log.d("ijk", "onPrepared");
-            }
-
-            @Override
-            public void onSeekComplete(IMediaPlayer iMediaPlayer) {
-                Log.d("ijk", "onSeekComplete");
-            }
-
-            @Override
-            public void onVideoSizeChanged(IMediaPlayer iMediaPlayer, int i, int i1, int i2, int i3) {
-                Log.d("ijk", "onVideoSizeChanged");
-            }
-        });
-        setLivePlayUrlId(livePlayUrlId);
-    }
 
     public void setLivePlayUrlId(String BID) {
 
@@ -206,15 +157,15 @@ public class LivePlayHelper {
             }
 
         }
-        holder.videoPlayerStream.reset();
-        holder.videoPlayerStream.setPath(path);
+
+        holder.videoPlayerStream.setInputUrl(path);
     }
 
     public void openRunMatch(IRTMatchInfo itemBall) {
         this.itemBall = itemBall;
         holder.fl_top_video.setVisibility(View.VISIBLE);
         if (checkLivePlayVisible(itemBall)) {
-            initPlayer(itemBall.getTvPathIBC());
+            setLivePlayUrlId(itemBall.getTvPathIBC());
             onResumePlay();
         } else {
             onResumeWeb();
@@ -227,7 +178,7 @@ public class LivePlayHelper {
 
     private void onResumeWeb() {
         if (checkWebRtsVisible(itemBall)) {
-            holder.videoPlayerStream.setVisibility(View.GONE);
+            holder.videoPlayerView.setVisibility(View.GONE);
             holder.web_wv.setVisibility(View.VISIBLE);
             holder.llStatus.setVisibility(View.GONE);
             holder.tv_run_time.setVisibility(View.GONE);
