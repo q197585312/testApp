@@ -233,7 +233,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             }
                         }
                     });
-                    View view = holder.getView(R.id.ll_live_parent1);
 
 
                 } else {
@@ -318,13 +317,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     showDetail(item, refNo, running_TransDate, running_ModuleTitle, running_OddsType, isOu, view2);
                 }
                 View view = holder.getView(R.id.ll_live_parent);
-                View view1 = holder.getView(R.id.ll_live_parent1);
+//                View view1 = holder.getView(R.id.ll_live_parent1);
                 TextView tv_running_score = holder.getView(R.id.tv_running_score);
-                TextView tv_running_score1 = holder.getView(R.id.tv_running_score1);
+//                TextView tv_running_score1 = holder.getView(R.id.tv_running_score1);
                 TextView tv_running_time = holder.getView(R.id.tv_running_time);
-                TextView tv_running_time1 = holder.getView(R.id.tv_running_time1);
+//                TextView tv_running_time1 = holder.getView(R.id.tv_running_time1);
                 setLiveView(item, view, tv_running_time, tv_running_score);
-                setLiveView(item, view1, tv_running_time1, tv_running_score1);
+//                setLiveView(item, view1, tv_running_time1, tv_running_score1);
                 utils.showStatus(getBaseActivity(), item.getStatus20(), running_par_DangerStatus);
                 utils.showStatus(getBaseActivity(), item.getStatus20(), tv_running_status);
             }
