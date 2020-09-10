@@ -10,14 +10,12 @@ import com.nanyang.app.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.nodemedia.NodePlayer;
 import cn.nodemedia.NodePlayerView;
 
 
 public class ViewHolder {
     @BindView(R.id.video_player_stream)
     public NodePlayerView videoPlayerView;
-    public NodePlayer videoPlayerStream;
 
     @BindView(R.id.web_wv)
     public WebView web_wv;

@@ -12,7 +12,6 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -35,6 +34,7 @@ import androidx.core.content.ContextCompat;
 import com.apng.utils.FileUtils;
 import com.apng.view.ApngImageView;
 import com.apng.view.ApngLoader;
+import com.unkonw.testapp.libs.widget.VideoHelper;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 import com.zhy.autolayout.config.UseLandscape;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -49,6 +49,7 @@ import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.nodemedia.NodePlayerView;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.entity.ApngPlayBean;
@@ -67,14 +68,12 @@ import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.PopGoodRoad;
 import gaming178.com.casinogame.Util.SkewTexView;
 import gaming178.com.casinogame.Util.UIUtil;
-import gaming178.com.casinogame.Util.VideoHelper;
-import gaming178.com.casinogame.Util.VideoPlayer;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
-import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.GdToastUtils;
+import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.base.AdapterViewContent;
 import gaming178.com.mylibrary.base.ItemCLickImp;
@@ -236,7 +235,7 @@ public class DragonTigerActivity extends BaseActivity {
     List<ApngPlayBean> apngPlayBeanList = new ArrayList<>();
     private TextView tv_table_game_number;
     private TextView tv_table_game_number1;
-    private SurfaceView mPreview;
+    private NodePlayerView mPreview;
     private String path;
     private boolean isFirstBet = true;
 
@@ -2589,6 +2588,7 @@ public class DragonTigerActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        videoHelper.onDestroy();
         stopUpdateStatusThread();
     }
     /*    @Override

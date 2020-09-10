@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/table_color">
 
-    <SurfaceView
+    <cn.nodemedia.NodePlayerView
         android:id="@+id/gd__surface"
         android:layout_width="match_parent"
         android:layout_height="250px"

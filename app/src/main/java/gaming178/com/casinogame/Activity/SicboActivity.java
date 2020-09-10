@@ -29,6 +29,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import com.unkonw.testapp.libs.widget.VideoHelper;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 import com.zhy.autolayout.config.UseLandscape;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -44,6 +45,7 @@ import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.nodemedia.NodePlayerView;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.entity.DiceBean;
@@ -58,13 +60,11 @@ import gaming178.com.casinogame.Util.ChipShowHelper;
 import gaming178.com.casinogame.Util.CountDownView;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.HandlerCode;
-import gaming178.com.casinogame.Util.VideoHelper;
-import gaming178.com.casinogame.Util.VideoPlayer;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
-import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.GdToastUtils;
+import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.base.AdapterViewContent;
 import gaming178.com.mylibrary.base.ItemCLickImp;
@@ -551,7 +551,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
 
     private boolean personInfoShowAble;
-    private SurfaceView mPreview;
+    private NodePlayerView mPreview;
     private boolean isBottomOpen = false;
     private boolean isVisibility = false;
     private boolean isDiceVisible;
@@ -2396,6 +2396,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        videoHelper.onDestroy();
         stopUpdateStatusThread();
     }
 

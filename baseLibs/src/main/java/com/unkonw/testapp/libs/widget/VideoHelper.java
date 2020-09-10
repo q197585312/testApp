@@ -32,12 +32,14 @@ public class VideoHelper {
 
     int bufferTime = 300;
     int maxBufferTime = 2100;
-    int videoScaleMode =1;
-    boolean autoHA=true;
-    String rtspTransport="udp";
+    int videoScaleMode = 1;
+    boolean autoHA = true;
+    String rtspTransport = "udp";
+
     public void setMaxBufferTime(int maxBufferTime) {
         this.maxBufferTime = maxBufferTime;
     }
+
     public void setBufferTime(int bufferTime) {
         this.bufferTime = bufferTime;
     }
@@ -54,8 +56,8 @@ public class VideoHelper {
 
         //设置播放视图的渲染器模式,可以使用SurfaceView或TextureView. 默认SurfaceView
         playSurface.setRenderType(NodePlayerView.RenderType.SURFACEVIEW);
-        playSurface.setUIViewContentMode(NodePlayerView.UIViewContentMode.ScaleAspectFit);
-        nodePlayer = new NodePlayer(mContext,"M2FmZTEzMGUwMC00ZTRkNTMyMS1jbi5ub2RlbWVkaWEucWxpdmU=-OTv6MJuhXZKNyWWMkdKJWsVKmLHwWPcPfnRbbWGIIf+8t39TqL/mW2f5O5WdT/W8JJE7ePvkvKaS371xVckAZ/U00dSwPp8ShB8Yic2W1GhwCyq04DYETsrGnkOWrhARH7nzNhd3Eq6sVC1Fr74GCEUHbDSCZnCfhcEnzGU9InRiQJ2PImtHORahN3blAGlHb6LZmdnobw5odvKEeUhbkhxYf8S1Fv4VRnSpDCSS3LZ2U3Mp6MfGDA1ZXPadmgdwaJitIrnWA2zP/yqmlUHjMtTv8PzGcc73Tm5k5q+OMbKCJsPq8KSEpFthncvaGZJ2kS2GHx6V5TqYZglBrTx61g==");
+        playSurface.setUIViewContentMode(NodePlayerView.UIViewContentMode.ScaleToFill);
+        nodePlayer = new NodePlayer(mContext, "M2FmZTEzMGUwMC00ZTRkNTMyMS1jbi5ub2RlbWVkaWEucWxpdmU=-OTv6MJuhXZKNyWWMkdKJWsVKmLHwWPcPfnRbbWGIIf+8t39TqL/mW2f5O5WdT/W8JJE7ePvkvKaS371xVckAZ/U00dSwPp8ShB8Yic2W1GhwCyq04DYETsrGnkOWrhARH7nzNhd3Eq6sVC1Fr74GCEUHbDSCZnCfhcEnzGU9InRiQJ2PImtHORahN3blAGlHb6LZmdnobw5odvKEeUhbkhxYf8S1Fv4VRnSpDCSS3LZ2U3Mp6MfGDA1ZXPadmgdwaJitIrnWA2zP/yqmlUHjMtTv8PzGcc73Tm5k5q+OMbKCJsPq8KSEpFthncvaGZJ2kS2GHx6V5TqYZglBrTx61g==");
         nodePlayer.setNodePlayerDelegate(new NodePlayerDelegate() {
             @Override
             public void onEventCallback(NodePlayer player, int event, String msg) {
@@ -124,6 +126,8 @@ public class VideoHelper {
 
 
     public void playVideo() {
+        if (nodePlayer.isPlaying())
+            nodePlayer.stop();
         nodePlayer.start();
     }
 
@@ -132,7 +136,6 @@ public class VideoHelper {
     }
 
     public void onDestroy() {
-        nodePlayer.stop();
 
         /**
          * 释放资源
@@ -141,9 +144,6 @@ public class VideoHelper {
     }
 
 
-
-    private Integer srcWidth;
-    private Integer srcHeight;
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         // 回调处理
@@ -160,6 +160,7 @@ public class VideoHelper {
                     // Toast.makeText(LivePlayerDemoActivity.this, "视频连接成功",
                     // Toast.LENGTH_SHORT).show();
                     isStarting = true;
+                    doVideoFix();
                     break;
                 case 1002:
                     // Toast.makeText(LivePlayerDemoActivity.this, "视频连接失败",
@@ -204,11 +205,9 @@ public class VideoHelper {
                      * LinearLayout的大小为最大高宽,SurfaceView在内部等比缩放,画面不失真
                      * 等比缩放使用在不确定视频源高宽比例的场景,用上层LinearLayout限定了最大高宽
                      * */
-                    String[] info = msg.getData().getString("msg").split("x");
-                    srcWidth = Integer.valueOf(info[0]);
-                    srcHeight = Integer.valueOf(info[1]);
                     doVideoFix();
                     break;
+
                 default:
                     break;
             }
