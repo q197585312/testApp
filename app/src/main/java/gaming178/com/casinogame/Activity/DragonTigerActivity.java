@@ -1825,12 +1825,14 @@ public class DragonTigerActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         AutoLayoutConifg.getInstance().setSize(this);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-            }
-        }, 1000);
+        if (mAppViewModel.isMusicOpen()){
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                }
+            }, 1000);
+        }
 //        startUpdateStatusThread();
         videoHelper.playVideo();
     }
