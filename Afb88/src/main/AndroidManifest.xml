@@ -78,7 +78,6 @@
             android:name=".main.home.keno.WebActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".main.home.sport.live.LivePlayActivity" />
 
         <meta-data
             android:name="UMENG_CHANNEL"

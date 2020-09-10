@@ -7,15 +7,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.unkonw.testapp.libs.widget.VideoPlayer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.nodemedia.NodePlayer;
+import cn.nodemedia.NodePlayerView;
 
 
 public class ViewHolder {
     @BindView(R.id.video_player_stream)
-    public VideoPlayer videoPlayerStream;
+    public NodePlayerView videoPlayerView;
+    public NodePlayer videoPlayerStream;
+
     @BindView(R.id.web_wv)
     public WebView web_wv;
     @BindView(R.id.iv_play_status)

@@ -10,7 +10,7 @@
 
         <include layout="@layout/toolbar_layout_1188" />
 
-        <com.unkonw.testapp.libs.widget.VideoPlayer
+        <cn.nodemedia.NodePlayerView
             android:id="@+id/video_player_stream"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

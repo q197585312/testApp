@@ -126,12 +126,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         View ll_match_outside = helper.getView(R.id.ll_match_outside);
         View ll_title_list = helper.getView(R.id.ll_title_list);
         boolean contractedMatch = updateContractedMatch(helper, item);
-        if (contractedMatch) {
-            parent.setVisibility(View.GONE);
-            ll_title_list.setVisibility(View.GONE);
-            LogUtil.d("visiable:", contractedMatch + "getSocOddsId:" + item.getSocOddsId());
-            return;
-        }
+
         LogUtil.d("visiable:", contractedMatch + "getSocOddsId:" + item.getSocOddsId());
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
 
@@ -140,7 +135,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         } else {
             ll_match_outside.setVisibility(View.VISIBLE);
         }
-
+        if (contractedMatch) {
+            parent.setVisibility(View.GONE);
+            ll_title_list.setVisibility(View.GONE);
+            LogUtil.d("visiable:", contractedMatch + "getSocOddsId:" + item.getSocOddsId());
+            return;
+        }
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
             ll_title_list.setVisibility(View.VISIBLE);
             liveSelectedHelper.iniSelectedHelper(rv_title_list, context, new MainPresenter.CallBack<MenuItemInfo>() {

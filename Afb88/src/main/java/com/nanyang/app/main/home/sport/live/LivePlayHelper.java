@@ -14,6 +14,7 @@ import com.unkonw.testapp.libs.widget.listener.VideoListener;
 
 import java.io.IOException;
 
+import cn.nodemedia.NodePlayer;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
@@ -31,7 +32,9 @@ public class LivePlayHelper {
 
     public LivePlayHelper(ViewHolder holder, Context context) {
         this.holder = holder;
-        this.context = context;
+        holder.videoPlayerStream=  new NodePlayer(context,"M2FmZTEzMGUwMC00ZTRkNTMyMS1jbi5ub2RlbWVkaWEucWxpdmU=-OTv6MJuhXZKNyWWMkdKJWsVKmLHwWPcPfnRbbWGIIf+8t39TqL/mW2f5O5WdT/W8JJE7ePvkvKaS371xVckAZ/U00dSwPp8ShB8Yic2W1GhwCyq04DYETsrGnkOWrhARH7nzNhd3Eq6sVC1Fr74GCEUHbDSCZnCfhcEnzGU9InRiQJ2PImtHORahN3blAGlHb6LZmdnobw5odvKEeUhbkhxYf8S1Fv4VRnSpDCSS3LZ2U3Mp6MfGDA1ZXPadmgdwaJitIrnWA2zP/yqmlUHjMtTv8PzGcc73Tm5k5q+OMbKCJsPq8KSEpFthncvaGZJ2kS2GHx6V5TqYZglBrTx61g==");holder.videoPlayerView
+
+    this.context = context;
         initClick();
     }
 
@@ -203,6 +206,7 @@ public class LivePlayHelper {
             }
 
         }
+        holder.videoPlayerStream.reset();
         holder.videoPlayerStream.setPath(path);
     }
 

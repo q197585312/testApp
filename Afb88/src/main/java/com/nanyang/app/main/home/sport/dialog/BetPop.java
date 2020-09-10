@@ -1319,14 +1319,13 @@ public class BetPop {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public ValueAnimator startAlphaColor(final View view, int color) {
         //
-        ValueAnimator animator = ValueAnimator.ofArgb(Color.TRANSPARENT, ContextCompat.getColor(context, color));
+        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context,R.color.transparent ), ContextCompat.getColor(context, color));
         animator.setRepeatCount(Animation.INFINITE);
         animator.setDuration(2000);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 view.setBackgroundColor((Integer) animation.getAnimatedValue());
-                LogUtil.d("oddsed", "======color:" + animation.getAnimatedValue());
             }
         });
         animator.start();
