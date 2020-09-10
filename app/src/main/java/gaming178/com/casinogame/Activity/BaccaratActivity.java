@@ -2207,12 +2207,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         super.onResume();
         AutoLayoutConifg.getInstance().setSize(this);
 //        startUpdateStatusThread();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-            }
-        }, 1000);
+        if (mAppViewModel.isMusicOpen()){
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                }
+            }, 1000);
+        }
         videoHelper.playVideo();
 //        handler.postDelayed(new Runnable() {
 //            @Override
@@ -2477,7 +2479,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);
 //        serviceTime.setVisibility(View.GONE);
-        mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+        if (mAppViewModel.isMusicOpen()){
+            mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+        }
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
         setTableBetPool(lv_person_bet_info, "Banker");
@@ -2609,7 +2613,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
         initControl();
         serviceTime.setText(mAppViewModel.covertBalance((int) mAppViewModel.getUser().getBalance()));
-        mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+        if (mAppViewModel.isMusicOpen()){
+            mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+        }
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
         setTableBetPool(lv_person_bet_info, "Banker");

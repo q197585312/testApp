@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Util.ChangePasswordHelper;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
@@ -70,62 +71,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
         oldPassword = edt_old_passwrod.getText().toString();
         newPassword = edt_new_passwrod.getText().toString();
         confirmPassword = edt_confirm_passwrod.getText().toString();
-        if (TextUtils.isEmpty(oldPassword)) {
-            Toast.makeText(mContext, "Please input old password!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(newPassword)) {
-            Toast.makeText(mContext, "Please input new password!", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            if (newPassword.length() < 6) {
-                Toast.makeText(mContext, "New password is too short!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-        if (TextUtils.isEmpty(confirmPassword)) {
-            Toast.makeText(mContext, "Please input confirm new password!", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            if (confirmPassword.length() < 6) {
-                Toast.makeText(mContext, "Confirm new password is too short!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-        if (!newPassword.equals(confirmPassword)) {
-            Toast.makeText(mContext, "New password and Confirm new password is different!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        showBlockDialog();
-        new Thread() {
-            @Override
-            public void run() {
-                String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "changepwd.jsp";
-                String param = "oldpass=" + oldPassword + "&newpass1=" + newPassword + "&newpass2=" + confirmPassword;
-                if (mAppViewModel.getHttpClient() == null || TextUtils.isEmpty(url) || TextUtils.isEmpty(param)) {
-                    return;
-                }
-                String result = mAppViewModel.getHttpClient().sendPost(url, param);
-                if (result.startsWith("Results=error")) {
-                    handler.sendEmptyMessage(0);
-                } else if (result.startsWith("Results=ok")) {
-                    handler.sendEmptyMessage(1);
-                } else {
-                    handler.sendEmptyMessage(0);
-                }
-            }
-        }.start();
+        ChangePasswordHelper changePasswordHelper = new ChangePasswordHelper(oldPassword, newPassword, confirmPassword, this);
+        changePasswordHelper.changePassword();
     }
-
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            dismissBlockDialog();
-            if (msg.what == 0) {
-                Toast.makeText(mContext, "Old password error.", Toast.LENGTH_SHORT).show();
-            } else if (msg.what == 1) {
-                Toast.makeText(mContext, "Updated sucessful.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
 }

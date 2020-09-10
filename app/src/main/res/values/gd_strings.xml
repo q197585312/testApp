@@ -270,6 +270,7 @@
     <string name="CONTACT">Contact Us</string>
     <string name="slide_top_down">Swipe Up/Down to Switch table</string>
     <string name="slide_left_right">Swipe Left/Right to Switch table</string>
+    <string name="password_c">PASSWORD</string>
 </resources>
 
 

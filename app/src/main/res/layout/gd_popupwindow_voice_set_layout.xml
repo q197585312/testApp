@@ -41,11 +41,27 @@
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
-                android:padding="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="@string/MUSIC"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="16sp"></RadioButton>
+                android:textSize="15sp"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/gd__rb_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/gd_selector_music_choose_mid"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/password_c"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="15sp"></RadioButton>
 
             <RadioButton
                 android:id="@+id/gd__rb_limit"
@@ -55,11 +71,12 @@
                 android:background="@drawable/gd_selector_music_choose_mid"
                 android:button="@null"
                 android:gravity="center"
-                android:padding="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="@string/LIMIT"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="16sp"></RadioButton>
+                android:textSize="15sp"></RadioButton>
 
             <RadioButton
                 android:id="@+id/gd__rb_language"
@@ -69,11 +86,12 @@
                 android:background="@drawable/gd_selector_music_choose_right"
                 android:button="@null"
                 android:gravity="center"
-                android:padding="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="@string/language"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="16sp"></RadioButton>
+                android:textSize="15sp"></RadioButton>
         </RadioGroup>
 
 
@@ -90,17 +108,8 @@
                 android:id="@+id/gd__ll_music"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="8dp"
-                    android:drawablePadding="10dp"
-                    android:text="@string/Genre"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black_grey" />
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -186,15 +195,29 @@
                         android:textColor="@color/black_grey" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
-                    android:drawablePadding="10dp"
-                    android:text="@string/music_background_volume"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black_grey" />
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:text="@string/music_background_volume"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black_grey" />
+
+                    <ImageView
+                        android:id="@+id/gd_img_open_close"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"></ImageView>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -246,6 +269,65 @@
                         android:progressDrawable="@drawable/gd_layer_seek_progress"
                         android:thumb="@mipmap/gd_slider_oval" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gd__ll_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:visibility="gone">
+
+                <EditText
+
+                    android:id="@+id/gd__edt_old_passwrod"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/gd_shape_edt_change_password"
+                    android:hint="Old Password"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#D2D2D4"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/gd__edt_new_passwrod"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/gd_shape_edt_change_password"
+                    android:hint="New Password"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#D2D2D4"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/gd__edt_confirm_passwrod"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/gd_shape_edt_change_password"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#D2D2D4"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/gd_yellow_button"
+                    android:gravity="center"
+                    android:text="OK"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

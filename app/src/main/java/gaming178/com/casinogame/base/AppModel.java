@@ -3641,6 +3641,16 @@ public class AppModel extends ViewModel {
         this.muzicIndex = muzicIndex;
     }
 
+    private boolean musicOpen = true;
+
+    public boolean isMusicOpen() {
+        return musicOpen;
+    }
+
+    public void setMusicOpen(boolean musicOpen) {
+        this.musicOpen = musicOpen;
+    }
+
     public int getHallId() {
         return hallId;
     }

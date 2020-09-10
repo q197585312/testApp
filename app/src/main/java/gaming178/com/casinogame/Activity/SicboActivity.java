@@ -1646,12 +1646,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         super.onResume();
         initAutoSize();
 //        initUI();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
-            }
-        }, 1000);
+        if (mAppViewModel.isMusicOpen()){
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                }
+            }, 1000);
+        }
 //        startUpdateStatusThread();
         videoHelper.playVideo();
 

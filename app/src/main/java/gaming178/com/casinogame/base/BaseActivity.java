@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -73,6 +74,7 @@ import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
+import gaming178.com.casinogame.Util.ChangePasswordHelper;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.GameSlideChangeTableHelper;
@@ -133,6 +135,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     protected TextView toolbar_right_bottom_tv;
     protected TextView toolbar_right_top_tv;
 
+    protected TextView logoutTv;
     protected TextView rightTv;
     protected ImageView imgBack;
     protected TextView rightTableTv;
@@ -953,6 +956,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         llCenter = (LinearLayout) findViewById(R.id.toolbar_center_ll);
         toolbar_right_bottom_tv = (TextView) findViewById(R.id.toolbar_right_bottom_tv);
         toolbar_right_top_tv = (TextView) findViewById(R.id.toolbar_right_top_tv);
+        logoutTv = (TextView) findViewById(R.id.toolbar_logout_tv);
         rightTv = (TextView) findViewById(R.id.toolbar_right_tv);
         imgBack = (ImageView) findViewById(R.id.img_back);
         rightTableTv = (TextView) findViewById(R.id.toolbar_right_table_tv);
@@ -1368,6 +1372,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     CheckBox currentBox;
+    private boolean isGameUi;
 
     public void showSetPop(final View v, int gravity) {
         View center = v;
@@ -1388,18 +1393,48 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             protected void initView(View view) {
                 super.initView(view);
                 RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.gd__rg_switch);
+                RadioButton rb_password = (RadioButton) view.findViewById(R.id.gd__rb_password);
                 RadioButton rb_limit = (RadioButton) view.findViewById(R.id.gd__rb_limit);
                 RadioButton rb_language = (RadioButton) view.findViewById(R.id.gd__rb_language);
+                ImageView img_open_close = (ImageView) view.findViewById(R.id.gd_img_open_close);
+                if (mAppViewModel.isMusicOpen()) {
+                    img_open_close.setImageResource(R.mipmap.music_open);
+                } else {
+                    img_open_close.setImageResource(R.mipmap.music_close);
+                }
                 if (!BuildConfig.FLAVOR.isEmpty() && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
                     rb_limit.setBackgroundResource(R.drawable.gd_selector_music_choose_right);
+                    rb_password.setVisibility(View.GONE);
                     rb_language.setVisibility(View.GONE);
                 }
                 TextView tv_music_title = (TextView) view.findViewById(R.id.gd__tv_music_title);
                 if (BaseActivity.this instanceof LobbyActivity) {
                     rg_switch.setVisibility(View.GONE);
                     tv_music_title.setVisibility(View.VISIBLE);
+                    isGameUi = false;
+                } else {
+                    isGameUi = true;
                 }
+                img_open_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mAppViewModel.isMusicOpen()) {
+                            mAppViewModel.setMusicOpen(false);
+                            img_open_close.setImageResource(R.mipmap.music_close);
+                            if (isGameUi) {
+                                mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+                            }
+                        } else {
+                            mAppViewModel.setMusicOpen(true);
+                            img_open_close.setImageResource(R.mipmap.music_open);
+                            if (isGameUi) {
+                                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
+                            }
+                        }
+                    }
+                });
                 final LinearLayout ll_music = view.findViewById(R.id.gd__ll_music);
+                final LinearLayout ll_password = view.findViewById(R.id.gd__ll_password);
                 final RecyclerView recyclerView = view.findViewById(R.id.gd__base_rv);
                 final RecyclerView rc_lg = view.findViewById(R.id.gd__rc_lg);
                 recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
@@ -1469,14 +1504,22 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             ll_music.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             rc_lg.setVisibility(View.GONE);
+                            ll_password.setVisibility(View.GONE);
+                        } else if (checkedId == R.id.gd__rb_password) {
+                            ll_music.setVisibility(View.INVISIBLE);
+                            ll_password.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                            rc_lg.setVisibility(View.GONE);
                         } else if (checkedId == R.id.gd__rb_limit) {
                             ll_music.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
                             rc_lg.setVisibility(View.GONE);
+                            ll_password.setVisibility(View.GONE);
                         } else if (checkedId == R.id.gd__rb_language) {
                             ll_music.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             rc_lg.setVisibility(View.VISIBLE);
+                            ll_password.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -1580,6 +1623,21 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
 
+                    }
+                });
+
+                EditText edt_old_passwrod = (EditText) view.findViewById(R.id.gd__edt_old_passwrod);
+                EditText edt_new_passwrod = (EditText) view.findViewById(R.id.gd__edt_new_passwrod);
+                EditText edt_confirm_passwrod = (EditText) view.findViewById(R.id.gd__edt_confirm_passwrod);
+                TextView tv_ok = (TextView) view.findViewById(R.id.gd__tv_ok);
+                tv_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String oldPassword = edt_old_passwrod.getText().toString();
+                        String newPassword = edt_new_passwrod.getText().toString();
+                        String confirmPassword = edt_confirm_passwrod.getText().toString();
+                        ChangePasswordHelper changePasswordHelper = new ChangePasswordHelper(oldPassword, newPassword, confirmPassword, BaseActivity.this);
+                        changePasswordHelper.changePassword();
                     }
                 });
             }
@@ -2301,9 +2359,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             reportParams.width = ScreenUtil.dip2px(mContext, 24);
             reportParams.height = ScreenUtil.dip2px(mContext, 24);
             rightReportTv.setLayoutParams(reportParams);
+            LinearLayout.LayoutParams logoutParams = (LinearLayout.LayoutParams) logoutTv.getLayoutParams();
+            logoutParams.width = ScreenUtil.dip2px(mContext, 24);
+            logoutParams.height = ScreenUtil.dip2px(mContext, 24);
+            logoutTv.setLayoutParams(logoutParams);
+            logoutTv.setVisibility(View.VISIBLE);
         }
         rightReportTv.setVisibility(View.VISIBLE);
         rightReportTv.setBackgroundResource(R.mipmap.gd_report_top);
+        logoutTv.setBackgroundResource(R.mipmap.logout_gd);
         rightTv.setBackgroundResource(R.mipmap.gd_pool_top);
         rightMusicTv.setBackgroundResource(R.mipmap.gd_set_black);
         rightTableTv.setBackgroundResource(R.mipmap.gd_table_top);
@@ -2312,6 +2376,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             public void onClick(View v) {
                 PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 popReport.showPopupCenterWindow();
+            }
+        });
+        logoutTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopUpdateStatus();
+                Bundle bundle = new Bundle();
+                bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
+                skipAct(LoginActivity.class, bundle);
             }
         });
         rightTableTv.setOnClickListener(new View.OnClickListener() {
