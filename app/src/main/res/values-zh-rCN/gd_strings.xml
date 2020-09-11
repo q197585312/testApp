@@ -237,4 +237,7 @@
     <string name="slide_top_down">向上/下滑动切桌</string>
     <string name="slide_left_right">向左/右滑动切桌</string>
     <string name="password_c">密码</string>
+    <string name="gd_old_password">旧密码</string>
+    <string name="gd_new_password">新密码</string>
+    <string name="gd_confirm_password">确认密码</string>
 </resources>

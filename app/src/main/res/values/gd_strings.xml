@@ -271,6 +271,9 @@
     <string name="slide_top_down">Swipe Up/Down to Switch table</string>
     <string name="slide_left_right">Swipe Left/Right to Switch table</string>
     <string name="password_c">PASSWORD</string>
+    <string name="gd_old_password">Old Password</string>
+    <string name="gd_new_password">New Password</string>
+    <string name="gd_confirm_password">Confirm Password</string>
 </resources>
 
 
