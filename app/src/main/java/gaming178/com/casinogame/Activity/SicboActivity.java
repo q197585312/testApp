@@ -2389,6 +2389,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     protected void onPause() {
         super.onPause();
 //        stopUpdateStatusThread();
+        mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
         videoHelper.stopVideo();
     }
 

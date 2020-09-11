@@ -2580,7 +2580,8 @@ public class DragonTigerActivity extends BaseActivity {
         //   hidePoker();
 
         videoHelper.stopVideo();
-
+        mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setGameStatus(1);
         if (isBottomOpen)//正好在发牌的时候锁频，再次打开屏幕的时候要先隐藏
             hidePoker();

@@ -2722,6 +2722,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void onPause() {
         super.onPause();
         videoHelper.stopVideo();
+        mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
 //        stopUpdateStatusThread();
     }
 
