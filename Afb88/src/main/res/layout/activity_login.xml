@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:ignore="ContentDescription">
-<com.nanyang.app.load.login.CustomVideoView
-    android:id="@+id/c_video_bg"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+
+    <com.nanyang.app.load.login.CustomVideoView
+        android:id="@+id/c_video_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <include
         layout="@layout/toolbar_layout_1188"
         android:visibility="gone" />
 
     <ImageView
-        android:layout_marginTop="110dp"
         android:layout_width="match_parent"
         android:layout_height="113dp"
+        android:layout_marginTop="110dp"
         android:layout_marginBottom="15dp"
         android:src="@mipmap/logo" />
-
-
-
 
 
     <LinearLayout
@@ -29,116 +29,180 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/login_language"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/trans_white_dark"
-            android:drawableBottom="@drawable/line_grey"
-            android:drawableRight="@mipmap/gary_down"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rectangle_trans_black_light_corner5"
+            android:gravity="center"
+            android:orientation="vertical"
             android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:text="@string/language_switch"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/edt_login_username"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/trans_white_dark"
-            android:drawableBottom="@drawable/line_grey"
-            android:gravity="center_vertical"
-            android:hint="@string/home_user_name"
-            android:paddingLeft="10dp"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gary2"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/edt_login_password"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/trans_white_dark"
-            android:gravity="center_vertical"
-            android:hint="@string/Password"
-            android:inputType="textPassword"
-            android:paddingLeft="10dp"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gary2"
-            android:textSize="15sp" />
+            android:paddingBottom="20dp">
 
 
-        <LinearLayout
-            android:id="@+id/ll_bottom_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/btn_desktop"
+            <EditText
+                android:id="@+id/edt_login_username"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/layer_btn_desktop_bg"
-                android:gravity="center"
-                android:onClick="clickDesktop"
-                android:text="@string/desktop"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/btn_login_login"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="3dp"
-                android:layout_weight="1"
-                android:background="@drawable/layer_btn_login_bg"
-                android:gravity="center"
-                android:text="@string/Login"
-                android:textAllCaps="false"
-                android:textColor="@color/green" />
-
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical"
+                android:hint="@string/home_user_name"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gary2"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/edt_login_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <LinearLayout
-                android:id="@+id/ll_login_remember"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="3dp"
-                android:background="@drawable/layer_btn_remember_bg"
-                android:clickable="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:orientation="vertical"
+                android:paddingRight="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_login_username"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <CheckBox
-                    android:id="@+id/cb_login_remember"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/checkbox_style"
-                    android:checked="false"
-                    android:clickable="false" />
 
                 <TextView
                     android:id="@+id/tv_remember_me"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:background="@drawable/rectangle_white_corners8"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:text="@string/remember_me"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:textColor="@color/black" />
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/gd_triangle_white_bottom"
+                    />
 
+                <CheckBox
+                    android:id="@+id/cb_login_remember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:button="@drawable/checkbox_style"
+                    />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/edt_login_password"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical"
+                android:hint="@string/Password"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gary2"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/login_language"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_login_username" />
+
+            <CheckBox
+                android:id="@+id/cb_login_password_eye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:button="@drawable/checkbox_eye_style"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_login_password"
+                app:layout_constraintEnd_toEndOf="@+id/edt_login_username"
+                app:layout_constraintTop_toBottomOf="@+id/edt_login_username" />
+            <TextView
+                android:id="@+id/login_language"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableRight="@mipmap/gd_arrow_down_grey_light"
+                android:drawableBottom="@drawable/line_grey"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:text="@string/language_switch"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/ll_bottom_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_login_password" />
+
+            <LinearLayout
+                android:id="@+id/ll_bottom_btn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_language">
+
+                <TextView
+                    android:id="@+id/btn_login_login"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/login_button"
+                    android:gravity="center"
+
+                    android:text="@string/view1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/btn_desktop"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/login_button"
+                    android:gravity="center"
+                    android:text="@string/view2"
+                    android:onClick="loginView2"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
