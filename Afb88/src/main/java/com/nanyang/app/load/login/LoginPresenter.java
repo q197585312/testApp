@@ -30,6 +30,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
 
     public volatile int hasSucceed = 0x00;
+    public volatile int loginType = 0;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     LoginPresenter(LoginActivity view) {

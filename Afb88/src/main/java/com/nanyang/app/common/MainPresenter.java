@@ -2,7 +2,6 @@ package com.nanyang.app.common;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,7 +25,6 @@ import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
 import com.nanyang.app.main.home.SaCasinoWfBean;
-import com.nanyang.app.main.home.keno.WebActivity;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
@@ -395,11 +393,8 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     private void goWebActivity(String url, String string, boolean canFinish) {
-        Bundle bundle = new Bundle();
-        bundle.putString("url", url);
-        bundle.putString(AppConstant.KEY_STRING, string);
-        bundle.putBoolean(AppConstant.KEY_BOOLEAN, canFinish);
-        baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
+
+        ((BaseToolbarActivity)baseContext.getBaseActivity()).goWebActivity( url,  string,  canFinish);
     }
 
     Runnable runnable;

@@ -2,11 +2,11 @@ package com.nanyang.app.load.login;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -15,6 +15,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,14 +71,15 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     CheckBox cbLoginRemember;
     @BindView(R.id.ll_container)
     LinearLayout llContainer;
-    @BindView(R.id.ll_login_remember)
-    LinearLayout llLoginRemember;
 
+    @BindView(R.id.cb_login_password_eye)
+    CheckBox cb_login_password_eye;
     @BindView(R.id.login_language)
     TextView loginLanguage;
     private PopChoiceLanguage popLanguage;
     private int[] sc;
     private int scrollHeight;
+    private volatile int loginType = 0;
 
 
     @Override
@@ -98,17 +100,20 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         } else {
             cbLoginRemember.setChecked(true);
         }
-        llLoginRemember.setOnClickListener(new View.OnClickListener() {
+        edtLoginUsername.requestFocus();
+        cb_login_password_eye.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (cbLoginRemember.isChecked()) {
-                    cbLoginRemember.setChecked(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    edtLoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 } else {
-                    cbLoginRemember.setChecked(true);
+                    edtLoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
                 }
+                edtLoginPassword.setSelection(edtLoginPassword.getText().length());
             }
         });
-        edtLoginUsername.requestFocus();
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove();
         presenter.playVideoRaw(c_video_bg);
@@ -159,6 +164,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
+                loginType = 0;
                 login();
                 break;
             case R.id.login_language:
@@ -189,12 +195,16 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         }
     }
 
+    public void loginView2(View v){
+        loginType = 1;
+        login();
+    }
     protected void restart() {
         super.restart();
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
-        btnLoginLogin.setText(getString(R.string.Login));
-        btn_desktop.setText(getString(R.string.desktop));
+        btnLoginLogin.setText(getString(R.string.view1));
+        btn_desktop.setText(getString(R.string.view2));
         tv_remember_me.setText(getString(R.string.remember_me));
         loginLanguage.setText(getString(R.string.language_switch));
 
@@ -204,6 +214,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         @Override
         public boolean onKey(View view, int keyCode, KeyEvent event) {
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                loginType = 0;
                 login();
                 return true;
             }
@@ -239,10 +250,16 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
         AppConstant.IS_AGENT = false;
         AppConstant.wfMain = "wfMainH50";
-        AfbUtils.initAllSprotMap();
-        Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
-        skipAct(MainActivity.class);
-        finish();
+        if (loginType == 0) {
+            AfbUtils.initAllSprotMap();
+            Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
+            skipAct(MainActivity.class);
+            finish();
+        } else {
+            String string = getString(R.string.app_name);
+            goWebActivity(BuildConfig.PC_URL, string, true);
+        }
+
     }
 
 
@@ -270,15 +287,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         super.onDestroy();
 
 
-    }
-
-    public void clickDesktop(View view) {
-        //代码实现跳转
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        Uri content_url = Uri.parse(BuildConfig.H5_URL);//此处填链接
-        intent.setData(content_url);
-        startActivity(intent);
     }
 
     public void inputMove() {

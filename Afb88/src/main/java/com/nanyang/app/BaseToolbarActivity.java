@@ -33,6 +33,7 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
+import com.nanyang.app.main.home.keno.WebActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.api.Api;
@@ -131,7 +132,14 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
             }
         });
     }
+    public void goWebActivity(String url, String string, boolean canFinish) {
 
+        Bundle bundle = new Bundle();
+        bundle.putString("url", url);
+        bundle.putString(AppConstant.KEY_STRING, string);
+        bundle.putBoolean(AppConstant.KEY_BOOLEAN, canFinish);
+        skipAct(WebActivity.class, bundle);
+    }
 
     public void initAgent() {
         tvToolbarLeft.setVisibility(View.GONE);
