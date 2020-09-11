@@ -2987,15 +2987,15 @@ public class AppModel extends ViewModel {
     public int getBetMoney(int chooseChip, int minLimit, int maxLimit, int clickCount, int alreadyBet, int totalbet, Context ctx, ComponentName componentName) {
         int betMoney = 0;
         int betChip = chooseChip;
-        Log.i(WebSiteUrl.Tag, "minLimit=" + minLimit + ",maxLimit=" + maxLimit + ",clickCount=" + clickCount + ",alreadyBet=" + alreadyBet + ",betChip=" + betChip + ",totalbet=" + totalbet);
+        Log.i("WebSiteUrl.Tag", "minLimit=" + minLimit + ",maxLimit=" + maxLimit + ",clickCount=" + clickCount + ",alreadyBet=" + alreadyBet + ",betChip=" + betChip + ",totalbet=" + totalbet);
         if (clickCount == 1)
             betMoney = betChip * clickCount + alreadyBet;
         else if (clickCount > 1) {
-            //   betMoney = betChip * clickCount + alreadyBet;
-            if (betChip < minLimit) {
-                betMoney = minLimit + betChip * (clickCount - 1) + alreadyBet;
-            } else
-                betMoney = betChip * clickCount + alreadyBet;
+               betMoney = betChip * clickCount + alreadyBet;
+//            if (betChip < minLimit) {
+//                betMoney = minLimit + betChip * (clickCount - 1) + alreadyBet;
+//            } else
+//                betMoney = betChip * clickCount + alreadyBet;
         }
 
         if (betMoney > maxLimit) {
@@ -3034,7 +3034,7 @@ public class AppModel extends ViewModel {
 
             startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentName, ctx, getFrontVolume());
         }
-        Log.i(WebSiteUrl.Tag, "minLimit=" + minLimit + ",maxLimit=" + maxLimit + ",clickCount=" + clickCount + ",alreadyBet=" + alreadyBet + ",betMoney=" + betMoney + ",totalbet=" + totalbet);
+        Log.i("WebSiteUrl.Tag", "minLimit=" + minLimit + ",maxLimit=" + maxLimit + ",clickCount=" + clickCount + ",alreadyBet=" + alreadyBet + ",betMoney=" + betMoney + ",totalbet=" + totalbet);
         return betMoney;
     }
 

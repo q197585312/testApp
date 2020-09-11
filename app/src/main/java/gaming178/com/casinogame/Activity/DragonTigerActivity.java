@@ -945,6 +945,7 @@ public class DragonTigerActivity extends BaseActivity {
             if (!gameNumber.equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())) {
                 gameNumber = mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber();
                 mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).Init();
+                clearBetBg();
                 clearAllChips();
                 hidePoker();
                 dragonTigerTimer = mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getTimer();
