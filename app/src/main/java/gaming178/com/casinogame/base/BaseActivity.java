@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.StrictMode;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -2381,10 +2382,14 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         logoutTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopUpdateStatus();
-                Bundle bundle = new Bundle();
-                bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-                skipAct(LoginActivity.class, bundle);
+                if (TextUtils.isEmpty(BuildConfig.FLAVOR)) {
+                    leftClick();
+                }else {
+                    stopUpdateStatus();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
+                    skipAct(LoginActivity.class, bundle);
+                }
             }
         });
         rightTableTv.setOnClickListener(new View.OnClickListener() {
