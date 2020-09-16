@@ -3,6 +3,7 @@ package gaming178.com.casinogame.load
 import kotlinx.coroutines.*
 import java.util.*
 import kotlin.properties.Delegates
+import kotlin.reflect.jvm.internal.impl.protobuf.LazyStringArrayList
 
 class TeMain constructor(
     val code: String,
@@ -54,7 +55,7 @@ class Update : Observable() {
 public fun main(args: Array<String>)=runBlocking {//主协成 一定会执行
     launch {
         delay(2000L)//挂起 不阻塞线程  挂起可以执行其他的线程或者携程
-        println("World2000")
+        test()
     }
     println("runBlocking")
     val one= async {
@@ -106,9 +107,22 @@ suspend fun searchStr(s: String): String {
 }
 
 fun test() {
-    println("test222")
+    val intlist= arrayListOf<Int>(1,2,3)
+    val flist= arrayListOf(1.1,2.2,3)
+    val dlist= arrayOf(1.1,2.2,3.2,3.222)
+    val slist2= LazyStringArrayList()
+
+    slist2.add("slist2")
+    slist2.add("ss2")
+    println(intlist)
+    println(flist)
+    println(dlist)
+    println(slist2)
+
 }
 
 fun test1(t: () -> Unit) {
     t.invoke()
+
+
 }

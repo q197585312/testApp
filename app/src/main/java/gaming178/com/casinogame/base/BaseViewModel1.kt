@@ -43,7 +43,7 @@ open class BaseViewModel1 : ViewModel() {
 
     suspend fun <T> launchOnIO(block: suspend CoroutineScope.() -> T) {
         withContext(Dispatchers.IO) {
-            block
+            block()
         }
     }
 }

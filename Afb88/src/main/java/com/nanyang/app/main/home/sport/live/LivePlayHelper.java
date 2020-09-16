@@ -120,13 +120,16 @@ public class LivePlayHelper {
             holder.tv_run_time.setVisibility(View.VISIBLE);
             LogUtil.d("");
             playType = 1;
-
-            if (videoHelper.getNodePlayer() != null) {
-                if (videoHelper.getNodePlayer().isPlaying())
-                    videoHelper.getNodePlayer().stop();
-                videoHelper.getNodePlayer().start();
-                playing = true;
-                holder.ivPlayStatus.setImageResource(R.mipmap.play_pause_white);
+            try {
+                if (videoHelper.getNodePlayer() != null) {
+                    if (videoHelper.getNodePlayer().isPlaying())
+                        videoHelper.getNodePlayer().stop();
+                    videoHelper.getNodePlayer().start();
+                    playing = true;
+                    holder.ivPlayStatus.setImageResource(R.mipmap.play_pause_white);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
 

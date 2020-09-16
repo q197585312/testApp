@@ -23,4 +23,5 @@
     <color name="green_word">#133a7d</color>
     <color name="green_light_button">#a5bcfd</color>
     <color name="green900_trans">#661768AE</color>
+    <color name="app_title_color" >@color/green_word</color>
 </resources>
