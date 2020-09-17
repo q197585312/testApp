@@ -2124,7 +2124,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     protected void onCreate(Bundle savedInstanceState) {
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         if (!isLogin()) {
-            ActivityPageManager.getInstance().addActivity(this);
+            ActivityPageManager.getInstance().addGd88Activity(this);
         }
 //        AutoLayoutConifg.getInstance().setSize(this);
         initBetImg();
@@ -2383,7 +2383,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(BuildConfig.FLAVOR)) {
-                    leftClick();
+                    ActivityPageManager.getInstance().finishGd88AllActivity();
                 }else {
                     stopUpdateStatus();
                     Bundle bundle = new Bundle();
