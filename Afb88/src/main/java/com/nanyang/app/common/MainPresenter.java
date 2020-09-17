@@ -112,7 +112,8 @@ public class MainPresenter extends BaseSwitchPresenter {
             }
         }, "^.*wsParam=([^;]+);.*?");
     }
-
+//_fm={"ACT":"GetTT","PT":"wfPSLogin","IsMobile":"1","pgLable":"0.8117879300531028","vsn":"4.0.12"}
+//    https://www.i1bet99.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","IsMobile":"1","PT":"wfPSLogin","accType":"","lang":"","pgLable":"0.6398654664343417","vsn":"4.0.12"}
     public void clickGdGameItem(String g) {
 
         if (g.equals("Casino")) {

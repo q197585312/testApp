@@ -98,7 +98,7 @@ public interface ApiService {
             "Accept-Language: zh-CN",
             "Content-Type: text/html; charset=utf-8",
             "Connection: keep-alive",
-            "Host: wsapp.afb1188.net"
+            "Host: "+BuildConfig.HOST
     })
     @GET
     Flowable<Response<String>> getResponse(@Url String url);

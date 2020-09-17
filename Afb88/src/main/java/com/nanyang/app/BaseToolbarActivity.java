@@ -132,6 +132,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
             }
         });
     }
+
     public void goWebActivity(String url, String string, boolean canFinish) {
 
         Bundle bundle = new Bundle();
@@ -350,6 +351,8 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
 
 
         LogIntervalUtils.logTime("请求数据" + BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
+//        https://www.i1bet99.com/_View/LiveDealerGDC.aspx
+//        https://www.i1bet99.com/_View/LiveDealerGDC.aspx
         Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response>() {
