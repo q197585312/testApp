@@ -127,7 +127,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         View ll_title_list = helper.getView(R.id.ll_title_list);
         boolean contractedMatch = updateContractedMatch(helper, item);
 
-        LogUtil.d("visiable:", contractedMatch + "getSocOddsId:" + item.getSocOddsId());
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
 
         if (act.onlyShowOne) {

@@ -607,15 +607,18 @@ public class BetPop {
                 ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
                 betAmountEdt.setText("");
                 return false;
-            } else if (count > max) {
+            }
+            if (count > max) {
                 ToastUtils.showShort(context.getString(R.string.stake_is_more_than_max_limit));
                 betAmountEdt.setText("");
                 return false;
-            } else if (count < min) {
+            }
+            if (count < min) {
                 ToastUtils.showShort(context.getString(R.string.stake_is_less_than_min_limit));
                 betAmountEdt.setText("");
                 return false;
             }
+
         }
         if (list != null && list.size() > 1) {
             boolean isValid = true;
@@ -698,7 +701,7 @@ public class BetPop {
         }
 
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
-        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getCredit2(),false));
+        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getCredit2(), false));
         if (list.size() > 1) {
             tvDelete.setVisibility(View.VISIBLE);
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
@@ -741,6 +744,8 @@ public class BetPop {
         if (list.size() > 1) {
             webViewPause();
         }
+        ll_bet_title.setVisibility((activity.fl_top_video.getVisibility() == View.VISIBLE && activity.onlyShowOne) ? View.GONE : View.VISIBLE);
+
     }
 
     public void refreshChip() {
@@ -1182,12 +1187,11 @@ public class BetPop {
     }
 
     public boolean isNeedInitWeb = true;
-
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
 
         if (activity == null)
             return;
-        LogUtil.d("BetPop", "setrTMatchInfo----noShowRts:" + activity.getApp().isNoShowRts());
+
         if (activity.getApp().isNoShowRts()) {
             webViewPause();
             return;
@@ -1319,7 +1323,7 @@ public class BetPop {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public ValueAnimator startAlphaColor(final View view, int color) {
         //
-        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context,R.color.transparent ), ContextCompat.getColor(context, color));
+        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context, R.color.transparent), ContextCompat.getColor(context, color));
         animator.setRepeatCount(Animation.INFINITE);
         animator.setDuration(2000);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

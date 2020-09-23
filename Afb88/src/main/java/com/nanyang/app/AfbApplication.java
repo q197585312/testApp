@@ -12,7 +12,6 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
-import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.lang.reflect.Constructor;
@@ -147,7 +146,6 @@ public class AfbApplication extends BaseApplication {
     }
 
     public void setBetAfbList(AfbClickResponseBean betParList) {
-        LogUtil.d("BetPop", "setBetAfbList:" + betParList);
         if (betParList != null && betParList.getList() != null && betParList.getList().size() > 0) {
             if (betParList.getList() == null || betParList.getList().size() < 1) {
                 this.betAfbList = null;

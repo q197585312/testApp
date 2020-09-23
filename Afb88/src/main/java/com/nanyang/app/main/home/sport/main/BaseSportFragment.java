@@ -151,10 +151,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Override
     public void onResume() {
         super.onResume();
-        presenter.getStateHelper().setIsHide(false, additionPresenter);
-        if (!isFirstIn) {
-            presenter.getStateHelper().refresh();
-            updateMixOrderCount();
+        if (presenter != null) {
+            presenter.getStateHelper().setIsHide(false, additionPresenter);
+            if (!isFirstIn) {
+                presenter.getStateHelper().refresh();
+                updateMixOrderCount();
+            }
         }
         isFirstIn = false;
 
@@ -183,10 +185,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Override
     public void onWebShow(int nextNotRepeat, int position, BallInfo item, View view) {
         if (presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r")) {
-            View v = rvContent.getChildAt(nextNotRepeat);
-            if (v == null) {
-                v = view;
-            }
             getBaseActivity().clickRunMatchPlay(item, position, true);
         }
     }
@@ -332,8 +330,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void setAdapter(BaseRecyclerAdapter baseRecyclerAdapter) {
-        rvContent.setLayoutManager(new LinearLayoutManager(mContext));
-        rvContent.setAdapter(baseRecyclerAdapter);
+        if (rvContent != null) {
+            rvContent.setLayoutManager(new LinearLayoutManager(mContext));
+            rvContent.setAdapter(baseRecyclerAdapter);
+        }
         this.baseRecyclerAdapter = baseRecyclerAdapter;
     }
 

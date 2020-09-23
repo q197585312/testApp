@@ -36,7 +36,10 @@ public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> imple
     public void addition(AddedParamsInfo info, IAdded iAdded) {
 
         this.bean = info.getBean();
+
         this.dbid = info.getDbid();
+        if (dbid.equals("36"))
+            dbid = "1";
         this.oddsType = info.getOddsType();
         this.iAdded = iAdded;
         startUpdate();

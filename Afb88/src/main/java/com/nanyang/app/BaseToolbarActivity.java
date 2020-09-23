@@ -502,36 +502,39 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
     }
 
     public void reLogin() {
-        presenter.doRetrofitApiOnUiThread(getService(ApiService.class).getData(getApp().getUser().getLoginUrl())
-                , new BaseConsumer<String>(this) {
-                    @Override
-                    protected void onBaseGetData(String s) throws JSONException {
-                        if (s.contains("Maintenance")) {
-                            Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
-                            onError(exception);
-                        } else {
-                            ToastUtils.showLong(R.string.Login_Success);
+        if (presenter != null && getApp().getUser() != null &&
+                getApp().getUser().getLoginUrl() != null) {
+            presenter.doRetrofitApiOnUiThread(getService(ApiService.class).getData(getApp().getUser().getLoginUrl())
+                    , new BaseConsumer<String>(this) {
+                        @Override
+                        protected void onBaseGetData(String s) throws JSONException {
+                            if (s.contains("Maintenance")) {
+                                Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
+                                onError(exception);
+                            } else {
+                                ToastUtils.showLong(R.string.Login_Success);
+                            }
+
+
                         }
 
+                        @Override
+                        protected void onHideDialog() {
+                        }
 
-                    }
+                        @Override
+                        protected void onError(final Throwable throwable) {
+                            super.onError(throwable);
+                            (baseContext.getBaseActivity()).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ToastUtils.showShort(throwable.getMessage());
+                                }
+                            });
 
-                    @Override
-                    protected void onHideDialog() {
-                    }
-
-                    @Override
-                    protected void onError(final Throwable throwable) {
-                        super.onError(throwable);
-                        (baseContext.getBaseActivity()).runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ToastUtils.showShort(throwable.getMessage());
-                            }
-                        });
-
-                    }
-                });
+                        }
+                    });
+        }
 
     }
 

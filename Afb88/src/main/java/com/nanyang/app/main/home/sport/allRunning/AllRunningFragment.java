@@ -9,6 +9,7 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.main.BaseAllFragment;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +35,7 @@ public class AllRunningFragment extends BaseAllFragment {
         getBaseActivity().presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
+                LogUtil.d("running",data);
                 try {
                     final JSONObject jsonObjectNum = new JSONObject(data);
                     List<String> all = Arrays.asList( "182", "1", "9", "21", "29", "14","12", "51"

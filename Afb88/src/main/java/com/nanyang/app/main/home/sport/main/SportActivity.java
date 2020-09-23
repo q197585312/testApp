@@ -672,7 +672,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void onPause() {
         super.onPause();
         if (liveMatchHelper != null)
-            liveMatchHelper.onPausePlay();
+            liveMatchHelper.onStopPlay();
     }
 
     @Override
@@ -681,7 +681,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onStop();
         if (getBetContent().v.getVisibility() == View.VISIBLE)
             getBetContent().stopUpdateOdds();
-
         stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
     }
@@ -1040,12 +1039,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             ll_header_sport.setVisibility(View.VISIBLE);
             llSportMenuBottom.setVisibility(View.VISIBLE);
             onlyShowOne = false;
-
-       /*     if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-
-                if (getBetContent() != null)
-                    getBetContent().ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
-            }*/
         }
     }
 
@@ -1063,8 +1056,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 return;
             this.itemBallAdded = itemBall;
             this.positionBallAdded = positionBall;
-            this.onlyShowOne = onlyOne;
 
+            this.onlyShowOne = onlyOne;
+            LogUtil.d("xiao", "clickRunMatchPlay-onlyShowOne:" + onlyShowOne);
             if (onlyShowOne) {
                 tv_match_play.setText(R.string.All_Match);
                 llSportMenuBottom.setVisibility(View.GONE);
@@ -1078,9 +1072,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             ll_line2.setVisibility(View.GONE);
             collectionNumTv.setVisibility(View.GONE);
             ll_header_sport.setVisibility(View.GONE);
-
-            if (getBetContent() != null)
-                getBetContent().ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
+            LogUtil.d("xiao",
+                    "onlyShowOne:" + onlyShowOne +
+                            ",fl_top_video:" + (fl_top_video.getVisibility() == View.VISIBLE));
             if (itemBall instanceof RunMatchInfo && !currentFragment.getBallDbid().equals(((RunMatchInfo) itemBall).getDbid())) {
                 if (AfbUtils.getSportByDbid(((RunMatchInfo) itemBall).getDbid()) != null)
                     initSportFragment(AfbUtils.getSportByDbid(((RunMatchInfo) itemBall).getDbid()), itemBall);
@@ -1134,6 +1128,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     }
                 });
             }
+
         }
     }
 

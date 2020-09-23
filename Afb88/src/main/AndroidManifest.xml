@@ -47,7 +47,7 @@
         tools:ignore="AllowBackup">
         <meta-data
             android:name="android.max_aspect"
-            android:value="2.2" />
+            android:value="2.1" />
 
         <activity
             android:name=".load.login.LoginActivity"
@@ -79,9 +79,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

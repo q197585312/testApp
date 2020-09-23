@@ -1,5 +1,7 @@
 package com.nanyang.app.load;
 
+import com.nanyang.app.Utils.StringUtils;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -280,7 +282,8 @@ public class PersonalInfo {
         dfs.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(dfs);
         String format1 = df.format(getXYCredit());*/
-
+        if (StringUtils.isNull(getXYCredit()))
+            return "0.00";
         BigDecimal bd = new BigDecimal(getXYCredit());
         String s = bd.toPlainString();
         Locale enlocale = Locale.US;

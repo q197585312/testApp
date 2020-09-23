@@ -10,6 +10,7 @@ import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -17,6 +18,8 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.List;
 
 /**
  * Created by ASUS on 2019/4/26.
@@ -118,6 +121,12 @@ public class AllRunningCommonState extends OutRightState {
             public String getBallG() {
                 return fragment.currentIdBean.getId();
             }
+
+            protected void showBetPopView(List<AfbClickBetBean> bean, View v) {
+                super.showBetPopView(bean, v);
+                betPop.setrTMatchInfo(item);
+
+            }
         };
     }
 
@@ -127,10 +136,9 @@ public class AllRunningCommonState extends OutRightState {
     }
 
 
-
     @Override
     public MenuItemInfo getStateType() {
-        if (0==(text))
+        if (0 == (text))
             text = (R.string.Today);
         return new MenuItemInfo<String>(0, text, "AllRunning", getSportName());
     }

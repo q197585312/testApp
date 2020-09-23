@@ -26,11 +26,7 @@ android {
         buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
         flavorDimensions "versionCode"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath true
-            }
-        }
+
         multiDexEnabled true
     }
     buildTypes {
@@ -64,7 +60,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.80'
+            versionName '2.81'
             buildConfigField "String", "Domain", '".afb1188.net"'
             buildConfigField "String", "H5_URL", '"http://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
             buildConfigField "String", "PC_URL", '"http://wsapp.afb1188.net/W0/Pub/wfMain0.html"'
@@ -81,7 +77,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '2.80'
+            versionName '2.81'
             buildConfigField "String", "Domain", '".i1bet99.com"'
             buildConfigField "String", "H5_URL", '"https://www.i1bet99.com/H52/Pub/wfLoginH50.html"'
             buildConfigField "String", "PC_URL", '"https://www.i1bet99.com/W2/Pub/wfMain.html"'

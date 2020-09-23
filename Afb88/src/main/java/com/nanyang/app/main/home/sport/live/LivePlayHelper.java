@@ -9,7 +9,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
-import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.VideoHelper;
 
 /**
@@ -92,7 +91,7 @@ public class LivePlayHelper {
 
     public void onStopPlay() {
         if (videoHelper.getNodePlayer() != null) {
-            videoHelper.getNodePlayer().stop();
+            videoHelper.stopVideo();
             playing = false;
         }
     }
@@ -118,17 +117,14 @@ public class LivePlayHelper {
             webloading = false;
             holder.llStatus.setVisibility(View.VISIBLE);
             holder.tv_run_time.setVisibility(View.VISIBLE);
-            LogUtil.d("");
             playType = 1;
             try {
                 if (videoHelper.getNodePlayer() != null) {
-                    if (videoHelper.getNodePlayer().isPlaying())
-                        videoHelper.getNodePlayer().stop();
                     videoHelper.getNodePlayer().start();
                     playing = true;
                     holder.ivPlayStatus.setImageResource(R.mipmap.play_pause_white);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -153,7 +149,7 @@ public class LivePlayHelper {
             }
 
         }
-
+//        path = "rtmp://pull.prosportslive.net/live/331";
         videoHelper.getNodePlayer().setInputUrl(path);
     }
 
