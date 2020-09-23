@@ -1245,8 +1245,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
                             tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
                         } else {
-                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-
+                            if (BaseActivity.this instanceof LoginActivity) {
+                                tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
+                            } else {
+                                tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            }
                         }
                     } else {
                         tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -1260,34 +1263,39 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         AppTool.setAppLanguage(BaseActivity.this, item.getType());
                         recreate();
                     } else {
-                        int screenWidth = WidgetUtil.getPortraitScreenWidth((Activity) context);
-                        int width = screenWidth / 15 * 14;
-                        String type = item.getType();
-                        User u = mAppViewModel.getUser();
-                        switch (type) {
-                            case "deposit":
-                                DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                pop.setDialog(dialog);
-                                pop.setUser(u);
-                                pop.showPopupCenterWindow();
-                                break;
-                            case "withdraw":
-                                WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                p.setDialog(dialog);
-                                p.setUser(u);
-                                p.showPopupCenterWindow();
-                                break;
-                            case "referrer":
-                                PopReferrer popReferrer = new PopReferrer(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                popReferrer.showPopupCenterWindow();
-                                break;
-                            case "katasandi":
-                                startActivity(new Intent(mContext, ChangePasswordActivity.class));
-                                break;
-                            case "Referral_List":
-                                PopReferralList popReferralList = new PopReferralList(mContext, v, width, width);
-                                popReferralList.showPopupCenterWindow();
-                                break;
+                        if (BaseActivity.this instanceof LoginActivity) {
+                            AppTool.setAppLanguage(BaseActivity.this, item.getType());
+                            recreate();
+                        } else {
+                            int screenWidth = WidgetUtil.getPortraitScreenWidth((Activity) context);
+                            int width = screenWidth / 15 * 14;
+                            String type = item.getType();
+                            User u = mAppViewModel.getUser();
+                            switch (type) {
+                                case "deposit":
+                                    DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                    pop.setDialog(dialog);
+                                    pop.setUser(u);
+                                    pop.showPopupCenterWindow();
+                                    break;
+                                case "withdraw":
+                                    WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                    p.setDialog(dialog);
+                                    p.setUser(u);
+                                    p.showPopupCenterWindow();
+                                    break;
+                                case "referrer":
+                                    PopReferrer popReferrer = new PopReferrer(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                    popReferrer.showPopupCenterWindow();
+                                    break;
+                                case "katasandi":
+                                    startActivity(new Intent(mContext, ChangePasswordActivity.class));
+                                    break;
+                                case "Referral_List":
+                                    PopReferralList popReferralList = new PopReferralList(mContext, v, width, width);
+                                    popReferralList.showPopupCenterWindow();
+                                    break;
+                            }
                         }
                     }
 
@@ -1323,7 +1331,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             popLanguage.setData(new LanguageHelper(mContext).getLanguageItems());
         }
         darkenBackground(0.5f);
-        popLanguage.showPopupWindowUpCenter(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+        if (BaseActivity.this instanceof LoginActivity) {
+            popLanguage.showPopupDownWindow();
+        }else {
+            popLanguage.showPopupWindowUpCenter(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+        }
 
     }
 
@@ -2124,7 +2136,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     protected void onCreate(Bundle savedInstanceState) {
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         if (!isLogin()) {
-            ActivityPageManager.getInstance().addActivity(this);
+            ActivityPageManager.getInstance().addGd88Activity(this);
         }
 //        AutoLayoutConifg.getInstance().setSize(this);
         initBetImg();
@@ -2383,8 +2395,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(BuildConfig.FLAVOR)) {
-                    leftClick();
-                }else {
+                    ActivityPageManager.getInstance().finishGd88AllActivity();
+                } else {
                     stopUpdateStatus();
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);

@@ -9,6 +9,7 @@ import java.util.List;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 
 /**
@@ -23,7 +24,7 @@ public class LanguageHelper {
     public LanguageHelper(Context context) {
         this.context = context;
         languageItems = new ArrayList<>();
-        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88")) {
+        if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88")) {
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_zh_flag, "简体中文", "zh", "ZH-CN"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "English", "en", "EN-US"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_th_flag, "ภาษาไทย", "th", "TH-TH"));
@@ -35,12 +36,18 @@ public class LanguageHelper {
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "English", "en", "EN-US"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "INDONESIAN", "my", "EN-AU"));
         } else {
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_deposit_home, context.getString(R.string.gd_deposit), "deposit", ""));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_withdraw_home, context.getString(R.string.gd_withdrawal), "withdraw", ""));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_referrer_home, context.getString(R.string.gd_Referrer), "referrer", ""));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_change_password_home, context.getString(R.string.katasandi), "katasandi", ""));
-            if (!BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("mejaemas") && !BuildConfig.FLAVOR.equals("royalkasino")) {
-                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_referral_list, context.getString(R.string.referral_list), "Referral_List", ""));
+            BaseActivity baseActivity = (BaseActivity) context;
+            if (baseActivity instanceof LoginActivity) {
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "INDONESIAN", "my", "EN-AU"));
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "English", "en", "EN-US"));
+            } else {
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_deposit_home, context.getString(R.string.gd_deposit), "deposit", ""));
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_withdraw_home, context.getString(R.string.gd_withdrawal), "withdraw", ""));
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_referrer_home, context.getString(R.string.gd_Referrer), "referrer", ""));
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_change_password_home, context.getString(R.string.katasandi), "katasandi", ""));
+                if (!BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("mejaemas") && !BuildConfig.FLAVOR.equals("royalkasino")) {
+                    languageItems.add(new MenuItemInfo<>(R.mipmap.gd_referral_list, context.getString(R.string.referral_list), "Referral_List", ""));
+                }
             }
         }
     }

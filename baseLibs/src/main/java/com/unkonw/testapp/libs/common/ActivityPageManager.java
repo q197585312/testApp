@@ -19,6 +19,7 @@ import java.util.Stack;
 public class ActivityPageManager {
 
     private static Stack<Activity> activityStack;
+    private static Stack<Activity> activityGd88Stack;
     private static ActivityPageManager instance;
 
     /**
@@ -46,6 +47,13 @@ public class ActivityPageManager {
             activityStack = new Stack<Activity>();
         }
         activityStack.add(activity);
+    }
+
+    public void addGd88Activity(Activity activity) {
+        if (activityGd88Stack == null) {
+            activityGd88Stack = new Stack<Activity>();
+        }
+        activityGd88Stack.add(activity);
     }
 
 
@@ -86,6 +94,15 @@ public class ActivityPageManager {
                 finishActivity(activity);
             }
         }
+    }
+
+    public void finishGd88AllActivity() {
+        for (Activity activity : activityGd88Stack) {
+            if (null != activity && !activity.isFinishing()) {
+                activity.finish();
+            }
+        }
+        activityGd88Stack.clear();
     }
 
     public void finishAllActivity() {

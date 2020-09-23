@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,10 +71,11 @@ public class LoginActivity extends BaseActivity {
     private int scrollHeight = 0;
     private HashMap<String, String> siteMap;
     private ImageView imgOpen;
-    private ImageView img_in;
-    private ImageView img_en;
     private ImageView img_gif;
-    private LinearLayout ll_lg;
+    private ImageView img_login_title;
+    private LinearLayout ll_liga365;
+    private LinearLayout ll_remember_me;
+    private CheckBox cb_remember_me;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -89,10 +91,18 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void initControl() {
+        img_login_title = findViewById(R.id.gd_img_login_title);
+        ll_liga365 = findViewById(R.id.ll_liga365);
+        ll_remember_me = findViewById(R.id.ll_remember_me);
+        cb_remember_me = findViewById(R.id.cb_remember_me);
+        tv_register = (TextView) findViewById(R.id.gd__tv_register);
+        if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+            img_login_title.setImageResource(R.mipmap.gd_app_logo);
+        } else {
+            tv_register.setVisibility(View.VISIBLE);
+            img_login_title.setImageResource(R.mipmap.gd_title_logo);
+        }
         img_gif = findViewById(R.id.gd_img_gif);
-        ll_lg = findViewById(R.id.gd_ll_lg);
-        img_in = findViewById(R.id.gd_img_in);
-        img_en = findViewById(R.id.gd_img_en);
         imgOpen = findViewById(R.id.gd_img_open);
         if (BuildConfig.FLAVOR.equals("mainkasino")) {
             img_gif.setOnClickListener(new View.OnClickListener() {
@@ -141,37 +151,13 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
-        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-            ll_lg.setVisibility(View.VISIBLE);
-            img_in.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AppTool.setAppLanguage(mContext, "my");
-                    recreate();
-                }
-            });
-            img_en.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AppTool.setAppLanguage(mContext, "en");
-                    recreate();
-                }
-            });
-        }
         tv_name = (EditText) this.findViewById(R.id.gd__login_username_edt);
         tv_password = (EditText) this.findViewById(R.id.gd__login_password_edt);
         ll_language = findViewById(R.id.gd__ll_choose_language);
         view_bottom_center = findViewById(R.id.gd__view_bottom_center);
-        tv_register = (TextView) findViewById(R.id.gd__tv_register);
         iv_language_flag = (ImageView) findViewById(R.id.gd__iv_language_flag);
-        if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
-            tv_register.setVisibility(View.GONE);
-            ll_language.setVisibility(View.VISIBLE);
-        } else {
-            ll_language.setVisibility(View.GONE);
-            tv_register.setVisibility(View.VISIBLE);
-        }
         if (BuildConfig.FLAVOR.equals("liga365")) {
+            ll_liga365.setVisibility(View.VISIBLE);
             initSiteMap();
         }
 
@@ -183,8 +169,19 @@ public class LoginActivity extends BaseActivity {
         ll_language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initLanguage(view_bottom_center);
+                initLanguage(ll_language);
 
+            }
+        });
+        ll_remember_me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isCheck = cb_remember_me.isChecked();
+                if (isCheck) {
+                    cb_remember_me.setChecked(false);
+                } else {
+                    cb_remember_me.setChecked(true);
+                }
             }
         });
         tv_register.setOnClickListener(new View.OnClickListener() {
@@ -197,12 +194,15 @@ public class LoginActivity extends BaseActivity {
         iv_language_flag.setImageResource(languageItem.getRes());
         Object objectData1 = AppTool.getObjectData(mContext, WebSiteUrl.Tag);
         if (objectData1 != null && objectData1 instanceof UserLoginBean) {
+            cb_remember_me.setChecked(true);
             UserLoginBean objectData = (UserLoginBean) objectData1;
             tv_name.setText(objectData.getUsername());
             tv_password.setText(objectData.getPassword());
             EditText viewById = (EditText) findViewById(R.id.gd__login_site_edt);
             if (viewById != null)
                 viewById.setText(objectData.getSite());
+        } else {
+            cb_remember_me.setChecked(false);
         }
 
     }
@@ -482,16 +482,20 @@ public class LoginActivity extends BaseActivity {
             switch (msg.what) {
                 case ErrorCode.LOGIN_SECCESS:
                     dismissLoginBlockDialog();
-                    String usName = tv_name.getText().toString().trim();
-                    String password = tv_password.getText().toString().trim();
-                    EditText siteEdt = findViewById(R.id.gd__login_site_edt);
-                    String site = "";
-                    if (siteEdt != null) {
-                        site = siteEdt.getText().toString().trim();
-                    }
-                    UserLoginBean userLoginBean = new UserLoginBean(site, usName, password);
+                    if (cb_remember_me.isChecked()) {
+                        String usName = tv_name.getText().toString().trim();
+                        String password = tv_password.getText().toString().trim();
+                        EditText siteEdt = findViewById(R.id.gd__login_site_edt);
+                        String site = "";
+                        if (siteEdt != null) {
+                            site = siteEdt.getText().toString().trim();
+                        }
+                        UserLoginBean userLoginBean = new UserLoginBean(site, usName, password);
 
-                    AppTool.saveObjectData(mContext, WebSiteUrl.Tag, userLoginBean);
+                        AppTool.saveObjectData(mContext, WebSiteUrl.Tag, userLoginBean);
+                    } else {
+                        AppTool.saveObjectData(mContext, WebSiteUrl.Tag, null);
+                    }
                     skipAct(LobbyActivity.class);
                     //    finish();
                     break;
