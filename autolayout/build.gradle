@@ -17,8 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors {
-    }
+
 }
 
 def siteUrl = 'https://github.com/hongyangAndroid/AndroidAutoLayout'                        // #CONFIG# // project homepage

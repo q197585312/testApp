@@ -17,7 +17,8 @@ import cn.nodemedia.NodePlayerView;
 public class VideoHelper {
     private final NodePlayer nodePlayer;
     Context mContext;
-    private boolean isStarting;
+    private boolean isloading;
+    private int loadingCount = 0;
 
     public void setPlayUrl(String playUrl) {
         this.playUrl = playUrl;
@@ -126,17 +127,18 @@ public class VideoHelper {
 
 
     public void playVideo() {
-        if (nodePlayer.isPlaying())
-            nodePlayer.stop();
+        LogUtil.d("playVideo", "playVideo");
         nodePlayer.start();
     }
 
     public void stopVideo() {
-        nodePlayer.stop();
+        LogUtil.d("playVideo", "stopVideo");
+        if (nodePlayer.isLive())
+            nodePlayer.stop();
     }
 
     public void onDestroy() {
-
+        LogUtil.d("playVideo", "onDestroy");
         /**
          * 释放资源
          */
@@ -150,31 +152,41 @@ public class VideoHelper {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
             switch (msg.what) {
                 case 1000:
                     // Toast.makeText(LivePlayerDemoActivity.this, "正在连接视频",
                     // Toast.LENGTH_SHORT).show();
+                    isloading = true;
                     break;
                 case 1001:
                     // Toast.makeText(LivePlayerDemoActivity.this, "视频连接成功",
                     // Toast.LENGTH_SHORT).show();
-                    isStarting = true;
+                    isloading = false;
+                    loadingCount = 0;
                     doVideoFix();
                     break;
                 case 1002:
                     // Toast.makeText(LivePlayerDemoActivity.this, "视频连接失败",
                     // Toast.LENGTH_SHORT).show();
                     //流地址不存在，或者本地网络无法和服务端通信，回调这里。5秒后重连， 可停止
-                    //LivePlayer.stopPlay();
                     break;
                 case 1003:
                     //Toast.makeText(LivePlayerDemoActivity.this, "视频开始重连",
                     //LivePlayer.stopPlay();	//自动重连总开关
+                    if (isloading) {
+                        loadingCount = loadingCount + 1;
+                    }
+                    if (loadingCount > 0) {
+                        stopVideo();
+
+                    }
+
                     break;
                 case 1004:
                     // Toast.makeText(LivePlayerDemoActivity.this, "视频播放结束",
                     // Toast.LENGTH_SHORT).show();
+                    isloading = false;
+                    loadingCount = 0;
                     break;
                 case 1005:
                     // Toast.makeText(LivePlayerDemoActivity.this, "网络异常,播放中断",
@@ -198,15 +210,6 @@ public class VideoHelper {
                     //本sdk仍然会继续在1秒后重连，如不需要，可停止
 //				LivePlayer.stopPlay();
                     break;
-                case 1104:
-                    /**
-                     * 得到 解码后得到的视频高宽值,可用于重绘surfaceview的大小比例 格式为:{width}x{height}
-                     * 本例使用LinearLayout内嵌SurfaceView
-                     * LinearLayout的大小为最大高宽,SurfaceView在内部等比缩放,画面不失真
-                     * 等比缩放使用在不确定视频源高宽比例的场景,用上层LinearLayout限定了最大高宽
-                     * */
-                    doVideoFix();
-                    break;
 
                 default:
                     break;
@@ -218,22 +221,6 @@ public class VideoHelper {
      * 视频画面高宽等比缩放，此SDK——demo 取屏幕高宽做最大高宽缩放
      */
     public void doVideoFix() {
-      /*  DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-        float maxWidth=  dm.widthPixels;
-        float maxHeight = dm.heightPixels;
-        float fixWidth;
-        float fixHeight;
-        if (srcWidth / srcHeight <= maxWidth / maxHeight) {
-            fixWidth = srcWidth * maxHeight / srcHeight;
-            fixHeight = maxHeight;
-        } else {
-            fixWidth = maxWidth;
-            fixHeight = srcHeight * maxWidth / srcWidth;
-        }
-        ViewGroup.LayoutParams lp = sv.getLayoutParams();
-        lp.width = (int) maxWidth;
-        lp.height = (int) maxHeight;
 
-        sv.setLayoutParams(lp);*/
     }
 }

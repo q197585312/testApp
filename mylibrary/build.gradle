@@ -12,11 +12,7 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath true
-            }
-        }
+
     }
     buildTypes {
         release {
@@ -24,8 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors {
-    }
+
 }
 
 dependencies {
@@ -36,6 +31,6 @@ dependencies {
     api project(':autolayout')
     api project(':gestrueLibrary')
     api project(':apng')
-    implementation  rootProject.ext.dependencies.butterknife
+    implementation rootProject.ext.dependencies.butterknife
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
 }

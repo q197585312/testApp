@@ -157,10 +157,6 @@
         <service android:name="gaming178.com.casinogame.Util.BackgroudMuzicService" />
         <service android:name="gaming178.com.casinogame.Util.FrontMuzicService" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}" />
     </application>
 
 </manifest>

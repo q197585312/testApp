@@ -45,12 +45,13 @@ android {
         buildConfigField "String", "AppWebServiceUrl", '"http://www.greendragon88.com/Dig88/GD88digWS?wsdl"'
         buildConfigField "String", "loginjsp", '"login.jsp"'
         buildConfigField "String", "Labelid", '"48"'
-        flavorDimensions "versionCode"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath true
-            }
+        if (rootProject.ext.isGd88LibraryModule.toBoolean()) {
+            buildConfigField "String", "FLAVOR", '""'
+            buildConfigField "String", "APPLICATION_ID", '"gaming178.com.baccaratgame"'
         }
+
+        flavorDimensions "versionCode"
+
         multiDexEnabled true
     }
     buildTypes {
@@ -443,6 +444,7 @@ android {
                 buildConfigField "String", "Labelid", '"224"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.66'
+
             }
         }
 
@@ -481,8 +483,8 @@ android {
 
         }
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
 dependencies {

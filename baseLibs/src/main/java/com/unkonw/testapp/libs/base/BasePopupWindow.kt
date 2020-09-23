@@ -37,18 +37,12 @@ abstract class BasePopupWindow<DB : ViewDataBinding> @JvmOverloads constructor(
     private var trans = 0.3f
 
     val isShowing: Boolean
-        get() = if (popWindow != null) {
+        get() = run {
             Log.d(
                 TAG,
                 "!= null,isShowing: " + popWindow.isShowing
             )
             popWindow.isShowing
-        } else {
-            Log.d(
-                TAG,
-                "== null,isShowing: " + false
-            )
-            false
         }
 
     protected abstract fun onSetLayoutRes(): Int
@@ -75,9 +69,7 @@ abstract class BasePopupWindow<DB : ViewDataBinding> @JvmOverloads constructor(
     }
 
     fun setSoftInputMode(softInputMode: Int) {
-        if (popWindow != null) {
-            popWindow.softInputMode = softInputMode
-        }
+        popWindow.softInputMode = softInputMode
     }
 
     private fun setBackgroundAttr(f: Float) {
@@ -101,7 +93,7 @@ abstract class BasePopupWindow<DB : ViewDataBinding> @JvmOverloads constructor(
         maskView = View(context)
         maskView!!.setBackgroundColor(0x7f000000)
         maskView!!.fitsSystemWindows = false
-        maskView!!.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        maskView!!.setOnKeyListener(View.OnKeyListener { _, keyCode, _ ->
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 removeMask()
                 return@OnKeyListener true
@@ -175,7 +167,7 @@ abstract class BasePopupWindow<DB : ViewDataBinding> @JvmOverloads constructor(
 
     fun showPopupCenterWindow() {
         setBackgroundAttr(trans)
-        if (context != null && !(context as Activity).isFinishing) {
+        if ( !(context as Activity).isFinishing) {
             popWindow.showAtLocation(v, Gravity.CENTER, 0, 0)
         }
     }
@@ -204,12 +196,12 @@ abstract class BasePopupWindow<DB : ViewDataBinding> @JvmOverloads constructor(
 
     fun showPopupWindowUpCenter(view: View) {
         //获取自身的长宽高
-        contentView!!.measure(
+        contentView.measure(
             View.MeasureSpec.UNSPECIFIED,
             View.MeasureSpec.UNSPECIFIED
         )
-        val popupHeight = contentView!!.measuredHeight
-        val popupWidth = contentView!!.measuredWidth
+        val popupHeight = contentView.measuredHeight
+        val popupWidth = contentView.measuredWidth
         //获取需要在其上方显示的控件的位置信息
         val location = IntArray(2)
         view.getLocationOnScreen(location)
@@ -228,7 +220,7 @@ abstract class BasePopupWindow<DB : ViewDataBinding> @JvmOverloads constructor(
      */
     fun closePopupWindow() {
         LogUtil.d("BetPop", "closePopupWindow----noShowRts:")
-        if (context != null && popWindow != null && popWindow.isShowing) {
+        if (popWindow.isShowing) {
             popWindow.dismiss()
         }
     }
@@ -240,7 +232,7 @@ abstract class BasePopupWindow<DB : ViewDataBinding> @JvmOverloads constructor(
     }
 
     fun getHeight(): Int {
-        return contentView!!.height
+        return contentView.height
     }
 
     companion object {

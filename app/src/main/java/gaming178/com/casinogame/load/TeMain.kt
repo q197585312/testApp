@@ -1,6 +1,7 @@
 package gaming178.com.casinogame.load
 
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
 import java.util.*
 import kotlin.properties.Delegates
 import kotlin.reflect.jvm.internal.impl.protobuf.LazyStringArrayList
@@ -51,24 +52,43 @@ class Update : Observable() {
     }
 }
 
+fun main() {
+    runBlocking {
+        val chanel = Channel<String>()
+        launch {
+            addProduct(chanel)
+        }
+        launch {
+            readProduct(chanel)
+        }
+    }
+}
 
-public fun main(args: Array<String>)=runBlocking {//主协成 一定会执行
+/*fun main() = runBlocking {//主协成 一定会执行
+     val chanel=Channel<String>()
     launch {
+       addProduct(chanel)
+    }
+    launch {
+        readProduct(chanel)
+    }
+
+   /* launch {
         delay(2000L)//挂起 不阻塞线程  挂起可以执行其他的线程或者携程
         test()
     }
     println("runBlocking")
-    val one= async {
+    val one = async {
         searchStr("One")
     }
-    val two= async {//相当于一个子携程  会有个返回值 非阻塞 可取消
+    val two = async {//相当于一个子携程  会有个返回值 非阻塞 可取消
         searchStr("two")
     }
-    println("reslut one=${one.await()},two=${two.await()}")
+    println("reslut one=${one.await()},two=${two.await()}")*/
 
 
 //        delay(2000L)//挂起 不阻塞线程
-}/* {
+} {
 //    println(TeMain("", ""))
 //    val su = Update()
 //    val sd = Display()
@@ -106,11 +126,23 @@ suspend fun searchStr(s: String): String {
     return s
 }
 
+suspend fun addProduct(channel: Channel<String>) {
+    for (x in 1..5) channel.send("111")
+//    channel.close() // we're done sending
+}
+
+suspend fun readProduct(channel: Channel<String>) {
+    for (x in channel)
+        println(x)
+    println("done!")
+
+}
+
 fun test() {
-    val intlist= arrayListOf<Int>(1,2,3)
-    val flist= arrayListOf(1.1,2.2,3)
-    val dlist= arrayOf(1.1,2.2,3.2,3.222)
-    val slist2= LazyStringArrayList()
+    val intlist = arrayListOf<Int>(1, 2, 3)
+    val flist = arrayListOf(1.1, 2.2, 3)
+    val dlist = arrayOf(1.1, 2.2, 3.2, 3.222)
+    val slist2 = LazyStringArrayList()
 
     slist2.add("slist2")
     slist2.add("ss2")
