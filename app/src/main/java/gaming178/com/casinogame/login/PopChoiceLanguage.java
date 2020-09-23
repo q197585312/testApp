@@ -2,6 +2,7 @@ package gaming178.com.casinogame.login;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,8 +13,10 @@ import java.util.List;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
+import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
@@ -37,16 +40,22 @@ public abstract class PopChoiceLanguage<T> extends BasePopupWindow {
 
     public RecyclerView recyclerView;
     public TextView tv_title;
+    public LinearLayout ll_arrow;
 
     @Override
     protected void initView(View view) {
         super.initView(view);
         recyclerView = (RecyclerView) view.findViewById(R.id.gd__base_rv);
         tv_title = (TextView) view.findViewById(R.id.gd__tv_title);
-        if (!BuildConfig.FLAVOR.isEmpty()&&!BuildConfig.FLAVOR.equals("gd88")&&!BuildConfig.FLAVOR.equals("liga365")) {
-            if (tv_title != null) {
+        ll_arrow = (LinearLayout) view.findViewById(R.id.ll_arrow);
+        BaseActivity activity = (BaseActivity) context;
+        if (!BuildConfig.FLAVOR.isEmpty() && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            if (tv_title != null && activity instanceof LobbyActivity) {
                 tv_title.setText("Pusat Anggota");
             }
+        }
+        if (ll_arrow != null && activity instanceof LoginActivity) {
+            ll_arrow.setVisibility(View.GONE);
         }
     }
 
