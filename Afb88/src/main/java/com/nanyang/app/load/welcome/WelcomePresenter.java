@@ -9,7 +9,6 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.CheckVersionBean;
@@ -164,7 +163,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     private void onSkipSucceeded(String url_login) {
         AppConstant.IS_AGENT = true;
         AppConstant.wfMain = "wfMainH501";
-        AfbUtils.initAllSprotMap();
+
         MainPresenter switchLanguage = new MainPresenter(baseContext);
         AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
         String us = StringUtils.findGroup(url_login, "^.*us=([^&]+)&.*?", 1);

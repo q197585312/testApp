@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.outRight;
 import android.graphics.Color;
 import android.os.Handler;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.main.home.sport.athletics.AthleticsFragment;
@@ -70,7 +69,7 @@ public class OutRightFragment extends BaseAllFragment {
 
 
     private List<SportIdBean> getOutRightSports() {
-        Iterator<Map.Entry<String, SportIdBean>> iterator = AfbUtils.beanHashMap.entrySet().iterator();
+        Iterator<Map.Entry<String, SportIdBean>> iterator = getApp().beanHashMap.entrySet().iterator();
         List<SportIdBean> list = new ArrayList<>();
         while (iterator.hasNext()) {
             Map.Entry<String, SportIdBean> next = iterator.next();

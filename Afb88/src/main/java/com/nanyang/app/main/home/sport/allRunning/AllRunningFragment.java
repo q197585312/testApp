@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.allRunning;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
@@ -61,7 +60,7 @@ public class AllRunningFragment extends BaseAllFragment {
 
                     for (int i = 0; i < all.size(); i++) {
                         String s = all.get(i);
-                        SportIdBean sportIdIndex = AfbUtils.getSportFromOtherAndSportByG(s);
+                        SportIdBean sportIdIndex = getApp().getSportFromOtherAndSportByG(s);
                         if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + sportIdIndex.getDbid()))) {
                             if (addHead) {
                                 allTopSport.add(sportIdIndex);

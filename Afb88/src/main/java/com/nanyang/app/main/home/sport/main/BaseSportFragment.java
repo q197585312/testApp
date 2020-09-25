@@ -364,7 +364,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         } else {
             tvNoGames.setVisibility(View.GONE);
         }
-        if (getBaseActivity().liveMatchHelper != null && getBaseActivity().itemBall != null && getBaseActivity().itemBall instanceof RunMatchInfo && ((RunMatchInfo) getBaseActivity().itemBall).getDbid().equals(getBallDbid())) {
+        if (getBaseActivity().liveMatchHelper != null && getBaseActivity().itemBall != null && getBaseActivity().itemBall instanceof RunMatchInfo && !((RunMatchInfo) getBaseActivity().itemBall).getDbid().equals(getBallDbid())) {
             getBaseActivity().liveMatchHelper.openRunMatch(getBaseActivity().itemBall);
             getBaseActivity().itemBall = null;
         }
@@ -571,7 +571,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         String dbid = "1";
         if (betHelper instanceof BallBetHelper) {
             String ballG = (betHelper).getBallG();
-            SportIdBean sportIdBean = AfbUtils.getSportByG(ballG);
+            SportIdBean sportIdBean = getApp().getSportByG(ballG);
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
         }

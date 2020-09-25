@@ -112,7 +112,8 @@ public class MainPresenter extends BaseSwitchPresenter {
             }
         }, "^.*wsParam=([^;]+);.*?");
     }
-//_fm={"ACT":"GetTT","PT":"wfPSLogin","IsMobile":"1","pgLable":"0.8117879300531028","vsn":"4.0.12"}
+
+    //_fm={"ACT":"GetTT","PT":"wfPSLogin","IsMobile":"1","pgLable":"0.8117879300531028","vsn":"4.0.12"}
 //    https://www.i1bet99.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","IsMobile":"1","PT":"wfPSLogin","accType":"","lang":"","pgLable":"0.6398654664343417","vsn":"4.0.12"}
     public void clickGdGameItem(String g) {
 
@@ -382,7 +383,7 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     private void goPCasino(String data, String itemG, String host) {
-        final SportIdBean sportIdBean = AfbUtils.getSportByG(itemG);
+        final SportIdBean sportIdBean = ((BaseToolbarActivity) baseContext.getBaseActivity()).getApp().getSportByG(itemG);
         String url = host + data;
         String string = baseContext.getBaseActivity().getString(sportIdBean.getTextRes());
         goWebActivity(url, string, false);
@@ -395,7 +396,7 @@ public class MainPresenter extends BaseSwitchPresenter {
 
     private void goWebActivity(String url, String string, boolean canFinish) {
 
-        ((BaseToolbarActivity)baseContext.getBaseActivity()).goWebActivity( url,  string,  canFinish);
+        ((BaseToolbarActivity) baseContext.getBaseActivity()).goWebActivity(url, string, canFinish);
     }
 
     Runnable runnable;

@@ -459,7 +459,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
     }
 
     public void switchSkipAct(String gameType) {
-        SportIdBean sportIdBean = AfbUtils.getSportByG(gameType);
+        SportIdBean sportIdBean = getApp().getSportByG(gameType);
         switch (gameType) {
             case "SportBook":
             case "Financial":

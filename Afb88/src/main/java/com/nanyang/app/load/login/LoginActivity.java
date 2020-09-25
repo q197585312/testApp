@@ -251,7 +251,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         AppConstant.IS_AGENT = false;
         AppConstant.wfMain = "wfMainH50";
         if (loginType == 0) {
-            AfbUtils.initAllSprotMap();
             Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
             skipAct(MainActivity.class);
             finish();
