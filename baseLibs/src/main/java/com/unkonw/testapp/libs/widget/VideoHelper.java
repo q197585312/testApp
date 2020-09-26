@@ -15,16 +15,18 @@ import cn.nodemedia.NodePlayerView;
  * Created by Administrator on 2016/5/18.
  */
 public class VideoHelper {
-    private final NodePlayer nodePlayer;
+    private NodePlayer nodePlayer;
     Context mContext;
     private boolean isloading;
     private int loadingCount = 0;
 
     public void setPlayUrl(String playUrl) {
-        this.playUrl = playUrl;
         /**
          * 设置播放直播视频url
          */
+
+        nodePlayer.stop();
+
         nodePlayer.setInputUrl(playUrl);
     }
 
@@ -129,6 +131,7 @@ public class VideoHelper {
     public void playVideo() {
         LogUtil.d("playVideo", "playVideo");
         nodePlayer.start();
+
     }
 
     public void stopVideo() {
