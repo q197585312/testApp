@@ -1695,6 +1695,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     private void updatePercentage() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        decimalFormat.setRoundingMode(RoundingMode.DOWN);
         Roulette roulette = mAppViewModel.getRoulette01();
         double red = roulette.getRed();
         double black = roulette.getBlack();
@@ -1707,29 +1709,22 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         double redBlackTotal = red + black;
         double oddEvenTotal = odd + even;
         if (redBlackTotal > 0) {
-            DecimalFormat decimalFormat = new DecimalFormat("0.00");
-            decimalFormat.setRoundingMode(RoundingMode.DOWN);
             if (black > 0) {
                 blackPercentage = Double.parseDouble(decimalFormat.format(black / redBlackTotal));
             }
             redPercentage = Double.parseDouble(decimalFormat.format(1 - blackPercentage));
-            redPercentage = redPercentage * 100;
-            blackPercentage = blackPercentage * 100;
         }
         if (oddEvenTotal > 0) {
-            DecimalFormat decimalFormat = new DecimalFormat("0.00");
-            decimalFormat.setRoundingMode(RoundingMode.DOWN);
             if (odd > 0) {
                 oddPercentage = Double.parseDouble(decimalFormat.format(odd / oddEvenTotal));
             }
             evenPercentage = Double.parseDouble(decimalFormat.format(1 - oddPercentage));
-            evenPercentage = evenPercentage * 100;
-            oddPercentage = oddPercentage * 100;
         }
-        tv_black_percentage.setText(getString(R.string.black_acronym) + "  " + (int) blackPercentage + "%");
-        tv_red_percentage.setText(getString(R.string.red_acronym) + "  " + (int) redPercentage + "%");
-        tv_odd_percentage.setText(getString(R.string.gd_O) + "  " + (int) oddPercentage + "%");
-        tv_even_percentage.setText(getString(R.string.gd_E) + "  " + (int) evenPercentage + "%");
+        DecimalFormat decimalFormat1 = new DecimalFormat("0");
+        tv_black_percentage.setText(getString(R.string.black_acronym) + "  " + decimalFormat1.format(blackPercentage * 100) + "%");
+        tv_red_percentage.setText(getString(R.string.red_acronym) + "  " + decimalFormat1.format(redPercentage * 100) + "%");
+        tv_odd_percentage.setText(getString(R.string.gd_O) + "  " + decimalFormat1.format(oddPercentage * 100) + "%");
+        tv_even_percentage.setText(getString(R.string.gd_E) + "  " + decimalFormat1.format(evenPercentage * 100) + "%");
         updateHotIceNumber();
 
     }
@@ -2040,7 +2035,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getRoulette01().setRoadOld("");
-        skipAct( LobbyRouletteActivity.class);
+        skipAct(LobbyRouletteActivity.class);
         finish();
     }
 
@@ -2732,7 +2727,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         super.onResume();
         initSize();
 //        initUI();
-        if (mAppViewModel.isMusicOpen()){
+        if (mAppViewModel.isMusicOpen()) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -2894,9 +2889,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         List<String> listItem = new ArrayList<String>();
                         int n = roadDetail.length;
                         for (int i = n - 1; i >= n - 22; i--) {
-                            if (!listItem.contains(roadDetail[i])){
-                                listItem.add(roadDetail[i]);
-                            }
+                            listItem.add(roadDetail[i]);
                         }
                         if (contentAdapter != null && listItem != null) {
                             contentAdapter.addAllAndClear(listItem);
@@ -4201,7 +4194,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct( LobbyRouletteActivity.class, bundle);
+        skipAct(LobbyRouletteActivity.class, bundle);
     }
 
     private void clearBetChip(String type) {

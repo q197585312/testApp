@@ -284,12 +284,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.66'
             }
-            mistercasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mistercasino"]
-                buildConfigField "String", "Labelid", '"214"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '3.66'
-            }
             nagacasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "nagacasino"]
                 buildConfigField "String", "Labelid", '"185"'
@@ -442,6 +436,13 @@ android {
             oricasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]
                 buildConfigField "String", "Labelid", '"224"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.66'
+
+            }
+            rajawalicasino {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rajawalicasino"]
+                buildConfigField "String", "Labelid", '"214"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.66'
 
