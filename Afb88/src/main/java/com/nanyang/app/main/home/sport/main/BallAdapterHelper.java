@@ -686,7 +686,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 );
 
             }
-            if (!StringUtils.isNull(additionData.getHDB_CNT()) && !additionData.getHDB_CNT().equals("0") && (isAll || res == R.string.X1X2)) {
+            if (!StringUtils.isNull(additionData.getHDB_CNT()) && !additionData.getHDB_CNT().equals("0") && (isAll || res == R.string.DC)) {
 //                    addAdditionDC(additionData.getHTDC(), false, parent, item);
                 View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                 addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.double_chance));

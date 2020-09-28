@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -48,7 +47,7 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
 
-        initSport(AfbUtils.getSportByG("1"));//默认足球
+        initSport(getApp().getSportByG("1"));//默认足球
         rvContent.setVisibility(View.GONE);
         switchType(type);
 

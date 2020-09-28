@@ -409,7 +409,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (AppConstant.IS_AGENT)
             return;
         Map<String, String> enableMap = getApp().updateOtherMap();
-        Iterator<SportIdBean> iterator = AfbUtils.othersMap.values().iterator();
+        Iterator<SportIdBean> iterator = getApp().othersMap.values().iterator();
         final List<SportIdBean> listOther = new ArrayList<>();
         while (iterator.hasNext()) {
             SportIdBean next = iterator.next();
@@ -502,9 +502,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     private void initFragment(String parentType) {
-        SportIdBean sportIdBean = AfbUtils.getSportByType(parentType);
+        SportIdBean sportIdBean = getApp().getSportByType(parentType);
         if (sportIdBean == null)
-            sportIdBean = AfbUtils.getSportByG("1");
+            sportIdBean = getApp().getSportByG("1");
         if (sportIdBean == null)
             sportIdBean = new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, new SoccerFragment(), Color.BLACK, R.mipmap.football);
         currentGameType = sportIdBean.getType();
@@ -724,7 +724,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                         typeStr = "M_EAm";
                     }
 
-                    Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
+                    Iterator<SportIdBean> iterator = getApp().sportMap.values().iterator();
                     while (iterator.hasNext()) {
                         SportIdBean next = iterator.next();
 
@@ -763,7 +763,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         dateClickPosition = 1;
         MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         runWayItem(item);
-        SportIdBean sportIdBean = AfbUtils.sportMap.get("1,9,21,29,51,182");
+        SportIdBean sportIdBean = getApp().sportMap.get("1,9,21,29,51,182");
         selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
     }
 
@@ -1076,8 +1076,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     "onlyShowOne:" + onlyShowOne +
                             ",fl_top_video:" + (fl_top_video.getVisibility() == View.VISIBLE));
             if (itemBall instanceof RunMatchInfo && !currentFragment.getBallDbid().equals(((RunMatchInfo) itemBall).getDbid())) {
-                if (AfbUtils.getSportByDbid(((RunMatchInfo) itemBall).getDbid()) != null)
-                    initSportFragment(AfbUtils.getSportByDbid(((RunMatchInfo) itemBall).getDbid()), itemBall);
+                if (getApp().getSportByDbid(((RunMatchInfo) itemBall).getDbid()) != null)
+                    initSportFragment(getApp().getSportByDbid(((RunMatchInfo) itemBall).getDbid()), itemBall);
             } else {
                 liveMatchHelper.openRunMatch(itemBall);
                 presenter.loadAllRunMatches(fl_top_video, handler, new MainPresenter.CallBack<List<RunMatchInfo>>() {
@@ -1095,7 +1095,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                                 TextView tv = holder.getView(R.id.text_tv);
                                 ImageView play_iv = holder.getView(R.id.play_iv);
                                 ImageView ball_iv = holder.getView(R.id.ball_iv);
-                                SportIdBean sportByDbid = AfbUtils.getSportByDbid(item.getDbid());
+                                SportIdBean sportByDbid = getApp().getSportByDbid(item.getDbid());
                                 if (sportByDbid != null) {
                                     ball_iv.setImageResource(sportByDbid.getSportPic());
                                 }

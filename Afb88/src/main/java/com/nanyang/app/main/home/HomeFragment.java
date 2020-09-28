@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbApplication;
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
@@ -159,7 +158,7 @@ public class HomeFragment extends BaseSwitchFragment {
                 TextView tv = holder.getView(R.id.tv_text);
                 TextView tv_num = holder.getView(R.id.tv_num);
                 holder.setImageByUrl(R.id.iv_pic, item.getImg());
-                SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
+                SportIdBean sportIdBean = getBaseToolbarActivity().getApp().getSportByG(item.getG());
                 if (sportIdBean != null && sportIdBean.getTextRes() > 0) {
                     tv.setText(getString(sportIdBean.getTextRes()));//M_RAm1
                     int textColor = sportIdBean.getTextColor();
@@ -191,7 +190,7 @@ public class HomeFragment extends BaseSwitchFragment {
                     ((MainPresenter) getBaseActivity().presenter).clickGdGameItem(g);
                     return;
                 }
-                SportIdBean sportIdBean = AfbUtils.getSportByG(g);
+                SportIdBean sportIdBean = getBaseToolbarActivity().getApp().getSportByG(g);
                 MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, (R.string.running));
                 menuItemInfo.setType("Running");
 

@@ -7,6 +7,7 @@ import android.view.View;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.widget.VideoHelper;
@@ -118,9 +119,11 @@ public class LivePlayHelper {
             holder.llStatus.setVisibility(View.VISIBLE);
             holder.tv_run_time.setVisibility(View.VISIBLE);
             playType = 1;
+            LogIntervalUtils.logTime("Bid:" + itemBall.getTvPathIBC());
             try {
                 if (videoHelper.getNodePlayer() != null) {
-                    videoHelper.getNodePlayer().start();
+                    videoHelper.playVideo();
+                    LogIntervalUtils.logTime("start:" + itemBall.getTvPathIBC());
                     playing = true;
                     holder.ivPlayStatus.setImageResource(R.mipmap.play_pause_white);
                 }
@@ -150,13 +153,16 @@ public class LivePlayHelper {
 
         }
 //        path = "rtmp://pull.prosportslive.net/live/331";
-        videoHelper.getNodePlayer().setInputUrl(path);
+        videoHelper.setPlayUrl(path);
     }
 
     public void openRunMatch(IRTMatchInfo itemBall) {
-        this.itemBall = itemBall;
+        if (this.itemBall == null || !this.itemBall.getSocOddsId().equals(itemBall.getSocOddsId())) {
+            this.itemBall = itemBall;
+            webloading = false;
+        }
         holder.fl_top_video.setVisibility(View.VISIBLE);
-        if (checkLivePlayVisible(itemBall)) {
+        if (checkLivePlayVisible(itemBall) && !webloading) {
             setLivePlayUrlId(itemBall.getTvPathIBC());
             onResumePlay();
         } else {
