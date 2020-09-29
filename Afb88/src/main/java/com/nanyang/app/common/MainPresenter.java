@@ -360,6 +360,9 @@ public class MainPresenter extends BaseSwitchPresenter {
                 public void onError(String data) throws JSONException {
                     ToastUtils.showLong(data);
                     baseContext.getBaseActivity().hideLoadingDialog();
+                    if(data.contains("not online")){
+                        ((BaseToolbarActivity) baseContext.getBaseActivity()).reLogin();
+                    }
                 }
             }, matches);
         } else {

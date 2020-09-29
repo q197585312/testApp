@@ -255,8 +255,12 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
             skipAct(MainActivity.class);
             finish();
         } else {
-            String string = getString(R.string.app_name);
-            goWebActivity(BuildConfig.PC_URL, string, true);
+            Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
+            Bundle bundle=new Bundle();
+            bundle.putInt(AppConstant.KEY_INT, loginType);
+            skipAct(MainActivity.class,bundle);
+            finish();
+
         }
 
     }

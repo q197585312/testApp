@@ -76,8 +76,10 @@
         <activity android:name=".main.home.huayThai.HuayThaiActivity" />
         <activity
             android:name=".main.home.keno.WebActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensor"
+            />
 
         <provider
             android:name="androidx.core.content.FileProvider"

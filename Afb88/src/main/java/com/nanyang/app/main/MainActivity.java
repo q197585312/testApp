@@ -21,6 +21,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.HomePopItemBeen;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
@@ -81,21 +82,25 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
         afbDrawerViewHolder.switchFragment(homeFragment);
-
+        int intExtra = getIntent().getIntExtra(AppConstant.KEY_INT, 0);
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
-        registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (AppConstant.IS_AGENT) {
-                    defaultSkip("SportBook");
-                    finish();
-                }
+        if (intExtra > 0) {
+            String string = getString(R.string.app_name);
+            goWebActivity(BuildConfig.PC_URL, string, true);
+        } else {
+            registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+            if (AppConstant.IS_AGENT) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        defaultSkip("SportBook");
+                        finish();
+
+                    }
+                }, 100);
             }
-        }, 100);
-
-
-
+        }
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragment();
@@ -115,10 +120,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Override
     protected void onResume() {
         super.onResume();
-         tv_tab_home.setText(R.string.balances);
-         tv_tab_statement.setText(R.string.statement);
-         tv_tab_center.setText(R.string.contact);
-         tv_tab_login_out.setText(R.string.more);
+        tv_tab_home.setText(R.string.balances);
+        tv_tab_statement.setText(R.string.statement);
+        tv_tab_center.setText(R.string.contact);
+        tv_tab_login_out.setText(R.string.more);
         presenter.oddsType();
 
         Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
