@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.keno;
 
+import android.content.pm.ActivityInfo;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,12 +35,21 @@ public class WebActivity extends BaseToolbarActivity {
         AndroidBug5497Workaround.assistActivity(this);
         webView = (WebView) findViewById(R.id.web_wv);
         String url = getIntent().getStringExtra("url");
+
         String title = getIntent().getStringExtra(AppConstant.KEY_STRING);
         canFinish = getIntent().getBooleanExtra(AppConstant.KEY_BOOLEAN, false);
         if (title == null) {
             ToastUtils.showLong(R.string.failed_to_connect);
             finish();
             return;
+        }
+        //-https://www.onlinegames22.com/player/login/apiLogin0?userId=209122&agentId=a8&tokenId=gSxwaalV3647bSfRd7Sg%2F4qvfASgPPSdYntO%2B77guMA%3D&isMobileLogin=True&isShowSymbol=true&currencySymbol=&isApp=false&externalURL=https%3A%2F%2Fafb1188.com&gameCode=MX-LIVE-001&platform=SEXYBCRT&gameType=LIVE&isLaunchGame=true&language=cn
+        //2020-09-29 10:49:44.922 22541-22541/com.nanyang.afb1188 D/ActivityThread:
+        if(url.contains("www.onlinegames22.com")){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }else{
+            // 设置为跟随系统sensor的状态
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
 //        toolbar.setTitle(title);
 //        tvToolbarTitle.setText(title);
