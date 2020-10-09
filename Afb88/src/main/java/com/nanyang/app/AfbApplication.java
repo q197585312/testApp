@@ -446,7 +446,7 @@ public class AfbApplication extends BaseApplication {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppChannel(BuildConfig.FLAVOR);  //设置渠道
         CrashReport.initCrashReport(getApplicationContext(), "8b1c356aef", true, strategy);
-        MultiDex.install(this);
+
 /*        CrashReport.initCrashReport(getApplicationContext(),你后台的ID, true);//true表示异常立刻上报，建议打开
 
         CrashReport.setUserId(你自己的标识码);*/

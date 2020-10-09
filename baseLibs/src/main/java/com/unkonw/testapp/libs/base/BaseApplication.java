@@ -10,6 +10,7 @@ import android.content.Context;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
+import androidx.multidex.MultiDex;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -65,6 +66,7 @@ public class BaseApplication extends Application implements IViewModelStoreOwner
     private void init() {
         mAppViewModelStore = new ViewModelStore();
         mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this);
+        MultiDex.install(this);
         initImageLoader();
 //        CrashHandler.create(this);
 //        JPushInterface.init(this); // 初始化JPush

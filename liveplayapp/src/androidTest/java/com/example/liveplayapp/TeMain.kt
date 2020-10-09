@@ -1,10 +1,9 @@
-package gaming178.com.casinogame.load
+package com.example.liveplayapp
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import java.util.*
 import kotlin.properties.Delegates
-import kotlin.reflect.jvm.internal.impl.protobuf.LazyStringArrayList
 
 class TeMain constructor(
     val code: String,
@@ -46,20 +45,21 @@ class Update : Observable() {
     }
 
 
-    class Datamap(val datas: List<DataBean>) {
+/*    class Datamap(val datas: List<DataBean>) {
         operator fun iterator(): Iterator<DataBean> = datas.iterator()
 
-    }
+    }*/
 }
 
 fun main() {
     runBlocking {
         val chanel = Channel<String>()
-        launch {
-            addProduct(chanel)
-        }
+
         launch {
             readProduct(chanel)
+        }
+        launch {
+            addProduct(chanel)
         }
     }
 }
@@ -132,9 +132,12 @@ suspend fun addProduct(channel: Channel<String>) {
 }
 
 suspend fun readProduct(channel: Channel<String>) {
-    for (x in channel)
+    for (x in channel)//沒有close前會一直挂起
         println(x)
     println("done!")
+    repeat(10000){
+        delay(1000)
+    }
 
 }
 
@@ -142,14 +145,14 @@ fun test() {
     val intlist = arrayListOf<Int>(1, 2, 3)
     val flist = arrayListOf(1.1, 2.2, 3)
     val dlist = arrayOf(1.1, 2.2, 3.2, 3.222)
-    val slist2 = LazyStringArrayList()
+//    val slist2 = LazyStringArrayList()
 
-    slist2.add("slist2")
-    slist2.add("ss2")
+//    slist2.add("slist2")
+//    slist2.add("ss2")
     println(intlist)
     println(flist)
     println(dlist)
-    println(slist2)
+//    println(slist2)
 
 }
 

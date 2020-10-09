@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.unkonw.testapp.libs.utils.LogUtil;
 
@@ -24,7 +25,7 @@ public class VideoHelper {
         /**
          * 设置播放直播视频url
          */
-
+        Log.d("LivePlayUrlId", "BID:" + playUrl);
         nodePlayer.stop();
 
         nodePlayer.setInputUrl(playUrl);

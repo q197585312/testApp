@@ -50,6 +50,9 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         if (isShowDialog) defUI.showDialog.call()
         launchUI {
             handleException(
+                /*withContext（context）：切换当前协程的上下文，当执行给定的块时，协程将切换回先前的上下文。
+                async（context）：在给定上下文中启动新的协程，如果我们在返回的 Deferred 任务上调用 .await（） ，它将暂停调用协程并在生成的协程内执行的代码块返回时恢复。
+*/
                 withContext(Dispatchers.IO) { block },
                 { error(it) },
                 {
@@ -68,7 +71,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
      * @param complete  完成回调（无论成功失败都会调用）
      * @param isShowDialog 是否显示加载框
      */
-    fun <T> launchOnlyresult(
+    fun <T> launchOnlyResult(
         block: suspend CoroutineScope.() -> IBaseResponse<T>,
         success: (T) -> Unit,
         error: (String) -> Unit = {

@@ -95,25 +95,25 @@ public class WebActivity extends BaseToolbarActivity {
 
     public void onResume() {
         super.onResume();
-        webView.resumeTimers();
         webView.onResume();
 
     }
 
     @Override
     public void onPause() {
-
         super.onPause();
         webView.onPause();
-        webView.pauseTimers();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
     @Override
     protected void onDestroy() {
 
         webView.destroy();
-        webView = null;
         super.onDestroy();
 
     }

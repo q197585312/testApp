@@ -16,7 +16,7 @@ abstract class BaseVMActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCom
     private var loading: DialogLoading? = null
     public lateinit var viewModel: VM
 
-    public var mBinding: DB? = null
+    public lateinit var mBinding: DB
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +24,7 @@ abstract class BaseVMActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCom
         initViewDataBinding()
         lifecycle.addObserver(viewModel)
         //注册 UI事件
-        registorDefUIChange()
+        registerDefUIChange()
         initView(savedInstanceState)
         initData()
     }
@@ -42,7 +42,7 @@ abstract class BaseVMActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCom
             (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<*>
         if (ViewDataBinding::class.java != cls && ViewDataBinding::class.java.isAssignableFrom(cls)) {
             mBinding = DataBindingUtil.setContentView(this, layoutId())
-            mBinding?.lifecycleOwner = this
+            mBinding.lifecycleOwner = this
         } else
             setContentView(layoutId())
         createViewModel()
@@ -52,7 +52,7 @@ abstract class BaseVMActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCom
     /**
      * 注册 UI 事件
      */
-    private fun registorDefUIChange() {
+    open fun registerDefUIChange() {
         viewModel.defUI.showDialog.observe(this, Observer {
             println("showDialog $it")
             showLoading()
@@ -77,7 +77,7 @@ abstract class BaseVMActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCom
             loading = DialogLoading(this)
         }
         loading?.run {
-            if (!isFinishing)
+            if (!hasWindowFocus())
                 show()
         }
 
@@ -110,6 +110,7 @@ abstract class BaseVMActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCom
     }
 
     fun getActivityViewModelProvider(): ViewModelProvider {
+        getViewModelStore()
         return ViewModelProvider(this, this.defaultViewModelProviderFactory)
     }
 }

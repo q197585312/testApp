@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unkonw.testapp.R
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder
-import java.text.FieldPosition
 
 import java.util.*
 
@@ -71,7 +70,7 @@ abstract class BaseListPopupWindow<T, DB : ViewDataBinding>(
                 onConvert(holder, position, item)
             }
         }
-        (adapter as BaseRecyclerAdapter<T?>).setOnItemClickListener(BaseRecyclerAdapter.OnItemClickListener<T> { _, item, position ->
+        (adapter as BaseRecyclerAdapter<T?>).setOnItemClickListener(BaseRecyclerAdapter.OnItemClickListener<T> { _, item, _ ->
             if (tv1 != null) {
                 tv1?.text = "OK"
                 tv1?.visibility = View.VISIBLE
