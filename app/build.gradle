@@ -208,12 +208,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.66'
             }
-            jrcsn {//juaracasino
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "jrcsn"]
-                buildConfigField "String", "Labelid", '"137"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '3.66'
-            }
             juragan {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "juragan"]
                 buildConfigField "String", "Labelid", '"170"'
@@ -443,6 +437,13 @@ android {
             rajawalicasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rajawalicasino"]
                 buildConfigField "String", "Labelid", '"214"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.66'
+
+            }
+            istanacasino {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "istanacasino"]
+                buildConfigField "String", "Labelid", '"137"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.66'
 
