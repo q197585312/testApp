@@ -19,7 +19,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * Created by 47184 on 2019/4/7.

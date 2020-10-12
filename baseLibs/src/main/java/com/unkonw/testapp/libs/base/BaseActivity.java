@@ -59,7 +59,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     protected DialogLoading loading;
     protected BasePopupWindow popWindow;
     private Map<Boolean, String> additionMap = new HashMap<>();
-    private boolean stopCloseWindow = true;
 
     public boolean isHasAttached() {
         return hasAttached;
@@ -181,14 +180,10 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     @Override
     protected void onStop() {
         super.onStop();
-        if (stopCloseWindow)
-            stopPopupWindow();
+
     }
 
 
-    public void setStopCloseWindow(boolean stopCloseWindow) {
-        this.stopCloseWindow = stopCloseWindow;
-    }
 
     @Override
     protected void onDestroy() {

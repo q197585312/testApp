@@ -24,7 +24,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 
 /**

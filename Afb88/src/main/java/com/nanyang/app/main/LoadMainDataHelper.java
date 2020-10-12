@@ -11,7 +11,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.Setting.RefreshDataBean;
-import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 
@@ -28,9 +28,9 @@ import io.reactivex.disposables.Disposable;
 public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
     private CompositeDisposable mCompositeSubscription;
     private BaseActivity baseContext;
-    private Api mApiWrapper;
+    private ApiManager mApiWrapper;
 
-    public LoadMainDataHelper(Api mApiWrapper, BaseActivity baseContext, CompositeDisposable mCompositeSubscription) {
+    public LoadMainDataHelper(ApiManager mApiWrapper, BaseActivity baseContext, CompositeDisposable mCompositeSubscription) {
         this.mApiWrapper = mApiWrapper;
         this.baseContext = baseContext;
         this.mCompositeSubscription = mCompositeSubscription;
@@ -44,7 +44,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
-        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
+        Disposable disposable = mApiWrapper.applyDisposable(ApiManager.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);
@@ -94,7 +94,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
-        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
+        Disposable disposable = mApiWrapper.applyDisposable(ApiManager.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);

@@ -41,7 +41,7 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseApplication;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -75,7 +75,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * sport页面球加载、分页、更新、显示的adapter的逻辑实现
@@ -1433,7 +1433,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return texts;
     }
 
-    public void createChoosePop(Api mApiWrapper, final View view) {
+    public void createChoosePop(ApiManager mApiWrapper, final View view) {
 
 
         LoadMainDataHelper<SelectedLeagueWfBean> dataHelper = new LoadMainDataHelper<>(mApiWrapper, baseView.getIBaseContext().getBaseActivity(), mCompositeSubscription);

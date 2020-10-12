@@ -22,7 +22,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * Created by Administrator on 2017/3/10.

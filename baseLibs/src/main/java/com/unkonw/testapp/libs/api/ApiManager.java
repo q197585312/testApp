@@ -45,7 +45,7 @@ import static android.content.ContentValues.TAG;
 /**
  * Created by Sunflower on 2015/11/4.
  */
-public class Api {
+public class ApiManager {
 
     /**
      * 服务器地址

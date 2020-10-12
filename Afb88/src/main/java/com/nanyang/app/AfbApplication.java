@@ -2,8 +2,6 @@ package com.nanyang.app;
 
 import android.graphics.Color;
 
-import androidx.multidex.MultiDex;
-
 import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.PersonalInfo;
@@ -63,6 +61,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.finalteam.toolsfinal.AppCacheUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
 
 /**
@@ -92,6 +91,11 @@ public class AfbApplication extends BaseApplication {
 
 
     public RefreshDataBean getRefreshDataBean() {
+        if (refreshDataBean == null) {
+            Object refresh = AppCacheUtils.getInstance(this).getObject("RefreshData");
+            if (refresh != null)
+                this.refreshDataBean = (RefreshDataBean) refresh;
+        }
         return refreshDataBean;
     }
 
@@ -106,7 +110,7 @@ public class AfbApplication extends BaseApplication {
     public MenuItemInfo getOddsType() {
         if (oddsType != null && getSettingAllDataBean() != null)
             return AfbUtils.getOddsTypeByType(this, oddsType.getType(), getSettingAllDataBean().getCurCode());
-        return  new MenuItemInfo(0, (R.string.MY_ODDS), "MY");
+        return new MenuItemInfo(0, (R.string.MY_ODDS), "MY");
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
@@ -162,12 +166,12 @@ public class AfbApplication extends BaseApplication {
 
     private PersonalInfo user = new PersonalInfo();
 
-    public  LinkedHashMap<String, SportIdBean> beanHashMap = new LinkedHashMap<>();
-    public  LinkedHashMap<String, SportIdBean> sportMap = new LinkedHashMap<>();
-    public  LinkedHashMap<String, SportIdBean> othersMap = new LinkedHashMap<>();
-    public  LinkedHashMap<String, SportIdBean> outRightMap = new LinkedHashMap<>();
+    public LinkedHashMap<String, SportIdBean> beanHashMap = new LinkedHashMap<>();
+    public LinkedHashMap<String, SportIdBean> sportMap = new LinkedHashMap<>();
+    public LinkedHashMap<String, SportIdBean> othersMap = new LinkedHashMap<>();
+    public LinkedHashMap<String, SportIdBean> outRightMap = new LinkedHashMap<>();
 
-    public  void initAllSprotMap() {
+    public void initAllSprotMap() {
         BaseSportFragment soccerFragment = new SoccerFragment();
         BaseSportFragment basketballFragment = new BasketballFragment();
         BaseSportFragment tennisFragment = new TennisFragment();
@@ -316,16 +320,16 @@ public class AfbApplication extends BaseApplication {
     }
 
     //("1", "9", "21", "29", "14", "5");
-    public  SportIdBean getSportFromOtherAndSportByG(String id) {
+    public SportIdBean getSportFromOtherAndSportByG(String id) {
         return sportMap.get(id);
     }
 
-    public  SportIdBean getSportByG(String id) {
+    public SportIdBean getSportByG(String id) {
         return beanHashMap.get(id);
     }
 
 
-    public  SportIdBean getSportByType(String type) {
+    public SportIdBean getSportByType(String type) {
         Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
         while (iterator.hasNext()) {
             SportIdBean next = iterator.next().getValue();
@@ -335,7 +339,7 @@ public class AfbApplication extends BaseApplication {
         return null;
     }
 
-    public  SportIdBean getSportByDbid(String dbid) {
+    public SportIdBean getSportByDbid(String dbid) {
         Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
         while (iterator.hasNext()) {
             SportIdBean next = iterator.next().getValue();
@@ -345,7 +349,7 @@ public class AfbApplication extends BaseApplication {
         return null;
     }
 
-    public  String getOutRightGByDbid(SportIdBean sportIdBean) {
+    public String getOutRightGByDbid(SportIdBean sportIdBean) {
         String dbid = sportIdBean.getDbid();
         String outRightG = "";
         switch (dbid) {
@@ -582,6 +586,7 @@ public class AfbApplication extends BaseApplication {
     }
 
     public void setRefreshDataBean(RefreshDataBean refreshDataBean) {
+        AppCacheUtils.getInstance(this).put("RefreshData", refreshDataBean);
         this.refreshDataBean = refreshDataBean;
     }
 
@@ -692,6 +697,7 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("LG CASINO", isEnabledWM);
         return enableMap;
     }
+
     public void setDelayBet(int delayBet) {
         this.delayBet = delayBet;
     }

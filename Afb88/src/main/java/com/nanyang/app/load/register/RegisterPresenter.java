@@ -15,7 +15,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 public class RegisterPresenter extends BaseRetrofitPresenter<RegisterActivity> implements RegisterContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）

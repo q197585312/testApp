@@ -3,7 +3,7 @@ package com.nanyang.app.load.register;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.load.UserInfo;
-import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.api.ApiManager;
 
 import java.util.Map;
 
@@ -13,7 +13,7 @@ import retrofit2.Call;
 /**
  * Api类的包装
  */
-public class ApiRegister extends Api {
+public class ApiRegister extends ApiManager {
     /**
      * String loginParams = "txtLang=0&txtAcctid="+getApp().getUser().getName()+"&txtPwd="+getApp().getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
      * strRes = getApp().getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);

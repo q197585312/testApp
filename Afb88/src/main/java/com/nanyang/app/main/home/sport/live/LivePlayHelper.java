@@ -65,7 +65,7 @@ public class LivePlayHelper {
         if (playing) {
             onResumePlay();
         } else {
-            onPausePlay();
+            onStopPlay();
         }
     }
 
@@ -182,7 +182,7 @@ public class LivePlayHelper {
             holder.tv_run_time.setVisibility(View.GONE);
             holder.ll_run_match_title.setVisibility(View.GONE);
             if (playing) {
-                onPausePlay();
+                onStopPlay();
             }
             webloading = true;
             webLoad();

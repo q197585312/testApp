@@ -38,7 +38,7 @@ import java.util.Iterator;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     private File file;

@@ -137,8 +137,7 @@ public class VideoHelper {
 
     public void stopVideo() {
         LogUtil.d("playVideo", "stopVideo");
-        if (nodePlayer.isLive())
-            nodePlayer.stop();
+        nodePlayer.stop();
     }
 
     public void onDestroy() {

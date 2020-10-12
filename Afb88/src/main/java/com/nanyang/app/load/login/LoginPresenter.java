@@ -25,7 +25,7 @@ import org.json.JSONException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
 
