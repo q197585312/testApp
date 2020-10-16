@@ -1,8 +1,7 @@
 package com.unkonw.testapp.libs.base
 
 
-import androidx.lifecycle.ViewModel
-import com.unkonw.testapp.libs.api.Api
+import com.unkonw.testapp.libs.api.ApiManager
 
 /**
  *   @auther : Aleyn
@@ -11,7 +10,7 @@ import com.unkonw.testapp.libs.api.Api
 class BaseApiService {
 
     inline fun <reified T> create(): T {
-        return Api.getService(T::class.java)
+        return ApiManager.getService(T::class.java)
     }
 
     companion object {

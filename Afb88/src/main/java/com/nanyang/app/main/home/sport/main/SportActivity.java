@@ -671,14 +671,14 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onPause() {
         super.onPause();
-        if (liveMatchHelper != null)
-            liveMatchHelper.onStopPlay();
+
     }
 
     @Override
     protected void onStop() {
-        setStopCloseWindow(false);
         super.onStop();
+        if (liveMatchHelper != null)
+            liveMatchHelper.onStopPlay();
         if (getBetContent().v.getVisibility() == View.VISIBLE)
             getBetContent().stopUpdateOdds();
         stopRefreshMenu();

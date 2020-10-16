@@ -18,7 +18,7 @@ import org.json.JSONException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> implements IBasePresenter {
     private IRTMatchInfo bean;

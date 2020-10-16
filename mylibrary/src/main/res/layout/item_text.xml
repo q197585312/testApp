@@ -2,7 +2,6 @@
     android:id="@+id/text_tv1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textColor="@color/gray_dark"
     android:gravity="center"
     android:drawablePadding="5dp"
     android:padding="5dp"

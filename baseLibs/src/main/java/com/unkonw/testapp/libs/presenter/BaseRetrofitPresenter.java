@@ -1,7 +1,7 @@
 package com.unkonw.testapp.libs.presenter;
 
 import com.google.gson.Gson;
-import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 
@@ -31,7 +31,7 @@ public abstract class BaseRetrofitPresenter<V extends IBaseContext> implements I
      * Api类的包装 对象
      */
 
-    public Api mApiWrapper;
+    public ApiManager mApiWrapper;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -47,8 +47,8 @@ public abstract class BaseRetrofitPresenter<V extends IBaseContext> implements I
         }
     }
 
-    public Api createRetrofitApi() {
-        return new Api();
+    public ApiManager createRetrofitApi() {
+        return new ApiManager();
     }
 
     public <T> void doRetrofitApiOnUiThread(Flowable<T> flowable, BaseConsumer<T> baseConsumer) {

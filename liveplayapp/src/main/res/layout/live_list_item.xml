@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="itemModel"
+            type="com.example.liveplayapp.live.Data" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        app:layoutDescription="@xml/live_list_item_scene"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        >
+
+        <ImageView
+            android:id="@+id/gd__iv_flag_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

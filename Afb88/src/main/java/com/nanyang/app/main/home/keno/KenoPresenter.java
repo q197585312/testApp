@@ -1,24 +1,14 @@
 package com.nanyang.app.main.home.keno;
 
-import android.graphics.Color;
 import android.os.Handler;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
 
-import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
-import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
-import com.unkonw.testapp.libs.utils.ToastUtils;
-
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/11/16.
@@ -48,21 +38,21 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoActivity> {
 
         @Override
         public void run() {
-            doRetrofitApiOnUiThread(Api.getService(ApiService.class).getKenoData(AppConstant.getInstance().URL_KENO_DATA), consumer);
+            doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getKenoData(AppConstant.getInstance().URL_KENO_DATA), consumer);
             handler.postDelayed(this, countdownTime);
         }
     }
 
     public void getBetStatus(final String p, BaseConsumer<KenoBetLimitBean> consumer) {
-        doRetrofitApiOnUiThread(Api.getService(ApiService.class).getKenoBetStatusData(AppConstant.getInstance().URL_KENO_STATU_DATA + p), consumer);
+        doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getKenoBetStatusData(AppConstant.getInstance().URL_KENO_STATU_DATA + p), consumer);
     }
 
     public void kenoBet(String params, BaseConsumer<String> consumer) {
-        doRetrofitApiOnUiThread(Api.getService(ApiService.class).getData(AppConstant.getInstance().URL_KENO_BET + params), consumer);
+        doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getData(AppConstant.getInstance().URL_KENO_BET + params), consumer);
     }
 
     public void KenoBetSuccessMsg(BaseConsumer<String> consumer) {
-        doRetrofitApiOnUiThread(Api.getService(ApiService.class).getData(AppConstant.getInstance().URL_STAKE), consumer);
+        doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getData(AppConstant.getInstance().URL_STAKE), consumer);
     }
 
 

@@ -1,10 +1,12 @@
 package com.nanyang.app.main.Setting;
 
+import java.io.Serializable;
+
 /**
  * Created by ASUS on 2019/6/28.
  */
 
-public class RefreshDataBean {
+public class RefreshDataBean implements Serializable {
 
     /**
      * token : 1iosh1kwcq1knifohbiukvuj

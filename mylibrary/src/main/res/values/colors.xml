@@ -48,8 +48,7 @@
     <color name="orange_dark">#ff3300</color>
     <color name="orange">#C95C4E</color>
     <color name="red_title">#ff0000</color>
-   <!--yellow-->
-    <color name="yellow_dark_d2560b">#d2560b</color>
+      <color name="yellow_dark_d2560b">#d2560b</color>
     <color name="yellow_gold">#FFFDD26A</color>
     <color name="yellow_brown_word">#a2a40e</color>
     <color name="colorAccent">#ffc107</color>
@@ -65,10 +64,6 @@
     <color name="colorPrimaryDark">#455a64</color>
     <color name="colorPrimaryLight">#cfd8dc</color>
 
-    <color name="gray_dark">#616161</color>
-    <color name="brown">#5d4037</color>
-    <color name="indicator_1">#55B3C2</color>
-    <color name="indicator_2">#64A4A4</color>
     <color name="indicator_3">#66D7B9</color>
     <color name="indicator_4">#FDBC7D</color>
     <!--orange-->

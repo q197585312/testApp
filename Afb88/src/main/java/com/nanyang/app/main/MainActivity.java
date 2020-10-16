@@ -84,11 +84,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         afbDrawerViewHolder.switchFragment(homeFragment);
         int intExtra = getIntent().getIntExtra(AppConstant.KEY_INT, 0);
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
+        registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
         if (intExtra > 0) {
             String string = getString(R.string.app_name);
             goWebActivity(BuildConfig.PC_URL, string, true);
         } else {
-            registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
             if (AppConstant.IS_AGENT) {
                 new Handler().postDelayed(new Runnable() {
                     @Override

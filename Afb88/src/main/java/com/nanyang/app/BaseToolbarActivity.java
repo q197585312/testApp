@@ -36,7 +36,7 @@ import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.keno.WebActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -64,7 +64,7 @@ import okhttp3.Request;
 import retrofit2.Response;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> extends BaseActivity<T> implements IGetRefreshMenu {
     public BetGoalWindowUtils BetGoalWindowUtils = new BetGoalWindowUtils();
@@ -265,7 +265,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
 
     public void updateBalance() {
         String language = new LanguageHelper(getBaseActivity()).getLanguage();
-        LoadMainDataHelper helper = new LoadMainDataHelper(new Api(), getBaseActivity(), mCompositeSubscription);
+        LoadMainDataHelper helper = new LoadMainDataHelper(new ApiManager(), getBaseActivity(), mCompositeSubscription);
         helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {

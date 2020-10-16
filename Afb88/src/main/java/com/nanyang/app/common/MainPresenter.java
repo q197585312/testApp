@@ -53,7 +53,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
+import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * Created by Administrator on 2017/4/19.
@@ -120,18 +120,19 @@ public class MainPresenter extends BaseSwitchPresenter {
         if (g.equals("Casino")) {
             ((BaseToolbarActivity) baseContext.getBaseActivity()).getSkipGd88Data();
         } else if (g.equals("PRAGMATIC CASINO")) {
-            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), "", "^.*\"(http[^\"]+)\".*$");
+
         } else if (g.equals("PG CASINO")) {
-            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"), "", "^.*(http[^\"]+)\"\\}.*$");
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("PS GAMING")) {
-            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPSLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPSLogin"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("SEXY CASINO")) {
-            skipPCashio("post", AppConstant.getInstance().HOST + "api/SGCheckonline", g, new SaCasinoWfBean("", "", "SGCheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
+            skipPCashio("post", AppConstant.getInstance().HOST + "api/SGCheckonline", g, new SaCasinoWfBean("", "", "SGCheckonline"), "", "^.*\"(http[^\"]+)\".*$");
 //                    skipPCashio(item.getG(),"GetTT",  "wfPGHome","","^.*(http[^\"]+)\"\\}.*$");
         } else if (g.equals("SA CASINO")) {
-            skipPCashio("post", AppConstant.getInstance().HOST + "api/SACheckonline", g, new SaCasinoWfBean("", "", "SACheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
+            skipPCashio("post", AppConstant.getInstance().HOST + "api/SACheckonline", g, new SaCasinoWfBean("", "", "SACheckonline"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("EVOPLAY")) {
-            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfEVLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfEVLogin"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("DG CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenDGGamee", "", "wfDGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         } else if (g.equals("WM CASINO")) {

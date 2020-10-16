@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.live;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 
 import com.nanyang.app.AfbUtils;
@@ -66,7 +65,7 @@ public class LivePlayHelper {
         if (playing) {
             onResumePlay();
         } else {
-            onPausePlay();
+            onStopPlay();
         }
     }
 
@@ -139,7 +138,7 @@ public class LivePlayHelper {
 
     public void setLivePlayUrlId(String BID) {
 
-        Log.d("LivePlayUrlId", "BID:" + BID);
+
         String path;
         if (StringUtils.isNull(BID) || BID.equals("0")) {
             return;
@@ -152,6 +151,7 @@ public class LivePlayHelper {
             }
 
         }
+
 //        path = "rtmp://pull.prosportslive.net/live/331";
         videoHelper.setPlayUrl(path);
     }
@@ -182,7 +182,7 @@ public class LivePlayHelper {
             holder.tv_run_time.setVisibility(View.GONE);
             holder.ll_run_match_title.setVisibility(View.GONE);
             if (playing) {
-                onPausePlay();
+                onStopPlay();
             }
             webloading = true;
             webLoad();

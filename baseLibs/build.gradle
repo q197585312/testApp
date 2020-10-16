@@ -63,6 +63,9 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     api 'com.squareup.retrofit2:retrofit:2.6.0'
-    implementation  rootProject.ext.dependencies.butterknife
+    api 'com.android.support:multidex:1.0.3'
+    api rootProject.ext.dependencies.bdclta
+    api rootProject.ext.dependencies.bdclta_rv
+    implementation rootProject.ext.dependencies.butterknife
     kapt rootProject.ext.dependencies.butterknife_compiler
 }

@@ -497,12 +497,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation rootProject.ext.dependencies.butterknife
-    implementation rootProject.ext.dependencies.bdclta
-    implementation rootProject.ext.dependencies.bdclta_rv
+
     kapt rootProject.ext.dependencies.butterknife_compiler
-    implementation 'com.android.support:multidex:1.0.3'
     //版本要与gradle版本一致
-    kapt "com.android.databinding:compiler:3.6.1"
+    kapt rootProject.ext.dependencies.gradle_kapt
 
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.71"
 }
