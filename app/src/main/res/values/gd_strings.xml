@@ -274,6 +274,7 @@
     <string name="gd_old_password">Old Password</string>
     <string name="gd_new_password">New Password</string>
     <string name="gd_confirm_password">Confirm Password</string>
+    <string name="switch_account">Switch Account</string>
 </resources>
 
 

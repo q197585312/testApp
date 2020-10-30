@@ -31,4 +31,6 @@
     <color name="colorAccent1">#36D33A</color>
     <color name="colorAccent2">#ABABAB</color>
     <color name="yellow_gold2">#ffc107</color>
+    <color name="home_no_select_color">#FFEDB2</color>
+    <color name="home_select_color">#460900</color>
 </resources>

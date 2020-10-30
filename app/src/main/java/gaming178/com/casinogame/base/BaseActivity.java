@@ -1248,11 +1248,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             if (BaseActivity.this instanceof LoginActivity) {
                                 tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
                             } else {
-                                tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                                tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12_1, 0);
                             }
                         }
                     } else {
-                        tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12_1, 0);
                     }
                 }
 
@@ -1333,8 +1333,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         darkenBackground(0.5f);
         if (BaseActivity.this instanceof LoginActivity) {
             popLanguage.showPopupDownWindow();
-        }else {
-            popLanguage.showPopupWindowUpCenter(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+        } else {
+            popLanguage.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
         }
 
     }
@@ -1670,7 +1670,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         } else {
             if (viewById != null)
                 viewById.setVisibility(View.VISIBLE);
-            pop.showPopupWindowUpCenter(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+            pop.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
         }
     }
 

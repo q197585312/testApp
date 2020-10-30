@@ -109,7 +109,7 @@ public abstract class BasePopupWindow {
 
     }
 
-    public void showPopupWindowUpCenter(View view, int popupHeight, int popupWidth) {
+    public void showPopupWindowBottom(View view, int popupHeight, int popupWidth) {
         //获取自身的长宽高
 /*        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int popupHeight = contentView.getMeasuredHeight();
@@ -118,7 +118,7 @@ public abstract class BasePopupWindow {
         int[] location = new int[2];
         view.getLocationOnScreen(location);
 //在控件上方显示    向上移动y轴是负数
-        popoWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
+        popoWindow.showAtLocation(view, Gravity.BOTTOM, 0, location[1] - popupHeight);
     }
 
     /**

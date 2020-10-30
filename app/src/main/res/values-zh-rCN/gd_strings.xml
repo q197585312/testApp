@@ -138,10 +138,10 @@
 
     <string name="server_network_error">连接服务器失败</string>
     <string name="choose_language">选择语言</string>
-    <string name="language">语言&#160;&#160;</string>
-    <string name="report">报表&#160;&#160;</string>
-    <string name="setting">设置&#160;&#160;</string>
-    <string name="logout">退出&#160;&#160;</string>
+    <string name="language">语言</string>
+    <string name="report">报表</string>
+    <string name="setting">设置</string>
+    <string name="logout">退出</string>
 
     <string name="sure">确定</string>
     <string name="gd_confirm">确定</string>
@@ -240,4 +240,5 @@
     <string name="gd_old_password">旧密码</string>
     <string name="gd_new_password">新密码</string>
     <string name="gd_confirm_password">确认密码</string>
+    <string name="switch_account">切换账号</string>
 </resources>

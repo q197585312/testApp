@@ -138,10 +138,10 @@
 
     <string name="server_network_error">連接服務器失敗</string>
     <string name="choose_language">選擇語言</string>
-    <string name="language">語言&#160;&#160;</string>
-    <string name="report">報表&#160;&#160;</string>
-    <string name="setting">設置&#160;&#160;</string>
-    <string name="logout">退出&#160;&#160;</string>
+    <string name="language">語言</string>
+    <string name="report">報表</string>
+    <string name="setting">設置</string>
+    <string name="logout">退出</string>
 
     <string name="sure">確定</string>
     <string name="gd_confirm">確定</string>
@@ -239,4 +239,5 @@
     <string name="gd_old_password">舊密碼</string>
     <string name="gd_new_password">新密碼</string>
     <string name="gd_confirm_password">確認密碼</string>
+    <string name="switch_account">切換賬號</string>
 </resources>

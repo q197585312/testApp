@@ -20,14 +20,22 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -54,8 +62,6 @@ import gaming178.com.mylibrary.allinone.util.UpdateManager;
  * Created by Administrator on 2016/3/22.
  */
 public class LobbyActivity extends BaseActivity {
-    @BindView(R2.id.gd__img_head)
-    ImageView imageView;
     @BindView(R2.id.gd__tv_home_user_name)
     TextView tv_home_user_name;
     @BindView(R2.id.gd__tv_home_balance)
@@ -80,6 +86,18 @@ public class LobbyActivity extends BaseActivity {
     BaseRecyclerAdapter<HallGameItemBean> adapterViewContent;
     @BindView(R2.id.gd__hall_game_bottom_prompt_tv)
     AutoScrollTextView hallGameBottomPromptTv;
+    @BindView(R2.id.rb_baccarat)
+    RadioButton rb_baccarat;
+    @BindView(R2.id.rg_home_game)
+    RadioGroup rg_home_game;
+    @BindView(R2.id.ll_game_pic)
+    LinearLayout ll_game_pic;
+    @BindView(R2.id.tv_switch_account)
+    TextView tv_switch_account;
+    @BindView(R2.id.tv_lg)
+    TextView tv_lg;
+    @BindView(R2.id.tv_set)
+    TextView tv_set;
     private BlockDialog dialog;
     private String announcement = "";
     private UpdateAnnouncement updateAnnouncement = null;
@@ -127,7 +145,7 @@ public class LobbyActivity extends BaseActivity {
                         hallGameBottomPromptTv.stopScroll();
                         hallGameBottomPromptTv.setText(announcement);
                         hallGameBottomPromptTv.setSpeed(0.8f);
-                        hallGameBottomPromptTv.setTextColor(mContext.getResources().getColor(R.color.blue_table_bg));
+                        hallGameBottomPromptTv.setTextColor(mContext.getResources().getColor(R.color.white));
                         hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
                         hallGameBottomPromptTv.startScroll();
                     }
@@ -179,92 +197,7 @@ public class LobbyActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
         hallGameBottomPromptTv.setSelected(true);
-        gridviewContentGv.setLayoutManager(new GridLayoutManager(mContext, 3));
-        adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
-                Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
-                holder.setImageBitmap(R.id.gd__hall_game_pic_iv, bitmap);
-                holder.setText(R.id.gd__hall_game_title_tv, item.getTitle());
-            }
-        };
-        gridviewContentGv.setAdapter(adapterViewContent);
-
         initOrientation();
-        setAdapterData();
-        adapterViewContent.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<HallGameItemBean>() {
-            @Override
-            public void onItemClick(View view, HallGameItemBean hallGameItemBean, int position) {
-                AppTool.setAppLanguage(LobbyActivity.this, AppTool.getAppLanguage(LobbyActivity.this));
-              /*  if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat) )) {
-                    tableIndex = 0;
-                    if (mAppViewModel.getHallId() != 1) {
-//                        mAppViewModel.setbInitLimit(false);
-                        mAppViewModel.setHallId(1);
-                        updateTableStatus();
-                    } else
-                        skipAct( LobbyBaccaratActivity.class);
-                    //创建线程初始化所有桌的数据
-
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat) + " B")) {
-                    tableIndex = 1;
-                    if (mAppViewModel.getHallId() != 2) {
-//                        mAppViewModel.setbInitLimit(false);
-                        mAppViewModel.setHallId(2);
-                        updateTableStatus();
-                    } else
-                        skipAct( LobbyBaccaratActivity.class);
-
-                } else */
-                if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat))) {
-                    tableIndex = 0;
-                    skipAct(LobbyBaccaratActivity.class);
-                    /*else {
-                        tableIndex = 1;
-                        if (mAppViewModel.getHallId() != 2) {
-//                        mAppViewModel.setbInitLimit(false);
-                            mAppViewModel.setHallId(2);
-                            updateTableStatus();
-                        } else
-                            skipAct( LobbyBaccaratActivity.class);
-                    }*/
-                    //创建线程初始化所有桌的数据
-
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.roulette))) {
-                    tableIndex = 3;
-                    if (mAppViewModel.getRoulette01().getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    skipAct(LobbyRouletteActivity.class);
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.sicbo))) {
-                    if (mAppViewModel.getSicbo01().getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableIndex = 4;
-                    skipAct(LobbySicboActivity.class);
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.dragon_tiger))) {
-                    if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableIndex = 5;
-                    skipAct(LobbyDragonTigerActivity.class);
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.slots))) {
-                    skipAct(SlotsGameActivity.class);
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.cq))) {
-                    skipAct(CQSlotsGameActivity.class);
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.cock_fighting))) {
-                    skipAct(CockFightingWebActivity.class);
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.afb1188))) {
-                    goAfb1188();
-                } else if (hallGameItemBean.getTitle().equals(getString(R.string.DSV_Casino))) {
-                    skipAct(DsvCasinoActivity.class);
-                }
-
-            }
-        });
         //设置公告
         announcement = "";
         hallGameBottomPromptTv.setText("  ");
@@ -273,7 +206,118 @@ public class LobbyActivity extends BaseActivity {
 
 
         //   startUpdateStatus();
+        rb_baccarat.post(new Runnable() {
+            @Override
+            public void run() {
+                int width = rb_baccarat.getWidth();
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) rg_home_game.getLayoutParams();
+                layoutParams.height = width;
+                rg_home_game.setLayoutParams(layoutParams);
+                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) ll_game_pic.getLayoutParams();
+                params.height = width;
+                ll_game_pic.setLayoutParams(params);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+                gridviewContentGv.setLayoutManager(linearLayoutManager);
+                adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
+                        RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
+                        int width = rb_baccarat.getWidth();
+                        ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
+                        layoutParams.width = width / 6 * 5;
+                        layoutParams.height = (int) ((width / 6 * 5) * 1.2);
+                        rl_parent.setLayoutParams(layoutParams);
+                        ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
+                        Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
+                        imageView.setImageBitmap(bitmap);
+                        holder.setText(R.id.gd__hall_game_title_tv, item.getTitle());
+                    }
+                };
+                gridviewContentGv.setAdapter(adapterViewContent);
+                setAdapterData();
+                adapterViewContent.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<HallGameItemBean>() {
+                    @Override
+                    public void onItemClick(View view, HallGameItemBean hallGameItemBean, int position) {
+                        AppTool.setAppLanguage(LobbyActivity.this, AppTool.getAppLanguage(LobbyActivity.this));
+                        if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat))) {
+                            tableIndex = 0;
+                            skipAct(LobbyBaccaratActivity.class);
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.roulette))) {
+                            tableIndex = 3;
+                            if (mAppViewModel.getRoulette01().getStatus() != 1) {
+                                Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            skipAct(LobbyRouletteActivity.class);
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.sicbo))) {
+                            if (mAppViewModel.getSicbo01().getStatus() != 1) {
+                                Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            tableIndex = 4;
+                            skipAct(LobbySicboActivity.class);
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.dragon_tiger))) {
+                            if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
+                                Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            tableIndex = 5;
+                            skipAct(LobbyDragonTigerActivity.class);
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.slots))) {
+                            skipAct(SlotsGameActivity.class);
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.cq))) {
+                            skipAct(CQSlotsGameActivity.class);
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.cock_fighting))) {
+                            skipAct(CockFightingWebActivity.class);
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.afb1188))) {
+                            goAfb1188();
+                        } else if (hallGameItemBean.getTitle().equals(getString(R.string.DSV_Casino))) {
+                            skipAct(DsvCasinoActivity.class);
+                        }
 
+                    }
+                });
+
+            }
+        });
+        rg_home_game.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rb_baccarat:
+                        ToastUtils.showShort("baccarat");
+                        break;
+                    case R.id.rb_dragon_tiger:
+                        ToastUtils.showShort("dragonTiger");
+                        break;
+                    case R.id.rb_roulette:
+                        ToastUtils.showShort("roulette");
+                        break;
+                    case R.id.rb_sicbo:
+                        ToastUtils.showShort("sicbo");
+                        break;
+                }
+            }
+        });
+        tv_lg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLanguagePop(img_home, 0.75f);
+            }
+        });
+        tv_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSetPop(img_home, Gravity.TOP);
+            }
+        });
+        tv_switch_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
     }
 
     @Override
@@ -311,20 +355,6 @@ public class LobbyActivity extends BaseActivity {
                 showReport();
             }
         });
-
-        // 这里是因为控件有边距，需要处理，没有的可以不用管这里
-        int marWidth = ScreenUtil.getScreenWidthPix(mContext);
-
-        //  int mHeight = (int) ((dm.widthPixels-marWidth*2)/(340f/110f));
-        int mHeight = (int) ((marWidth * 19) / 32);
-
-        // 如果有时候宽度需要计算，也是类似于上面的公式了，就自己试了，毕竟设置宽度的需求较少。
-        // int mWidth = dm.widthPixels;
-
-        ViewGroup.LayoutParams params = imageView.getLayoutParams();
-        // params.width = mWidth;
-        params.height = mHeight;
-        imageView.setLayoutParams(params);
     }
 
     private void goAfb1188() {
@@ -456,33 +486,29 @@ public class LobbyActivity extends BaseActivity {
 
     private void setAdapterData() {
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
-            if (WebSiteUrl.GameType == 0) {
-                if (WebSiteUrl.HEADER.equals("http://202.178.114.15/")) {
-                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
-                } else {
-                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)),
-                            new HallGameItemBean(R.mipmap.gd_longhu, getString(R.string.dragon_tiger)),
-                            new HallGameItemBean(R.mipmap.gd_lunpan, getString(R.string.roulette)),
-                            new HallGameItemBean(R.mipmap.gd_toubao, getString(R.string.sicbo))
-                    )));
-                }
-            } else {
-                adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
-            }
+//            if (WebSiteUrl.GameType == 0) {
+//                if (WebSiteUrl.HEADER.equals("http://202.178.114.15/")) {
+//                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
+//                } else {
+//                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)),
+//                            new HallGameItemBean(R.mipmap.gd_longhu, getString(R.string.dragon_tiger)),
+//                            new HallGameItemBean(R.mipmap.gd_lunpan, getString(R.string.roulette)),
+//                            new HallGameItemBean(R.mipmap.gd_toubao, getString(R.string.sicbo))
+//                    )));
+//                }
+//            } else {
+//                adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
+//            }
         } else {
-            ArrayList<HallGameItemBean> hallGameItemBeenS = new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)),
-                    new HallGameItemBean(R.mipmap.gd_longhu, getString(R.string.dragon_tiger)),
-                    new HallGameItemBean(R.mipmap.gd_lunpan, getString(R.string.roulette)),
-                    new HallGameItemBean(R.mipmap.gd_toubao, getString(R.string.sicbo)),
-                    new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots)),
-                    new HallGameItemBean(R.mipmap.gd_cq_slots, getString(R.string.cq))
-            ));
-            if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, getString(R.string.cock_fighting)));
-            }
+            ArrayList<HallGameItemBean> hallGameItemBeenS = new ArrayList<>();
             if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, getString(R.string.afb1188)));
             }
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, getString(R.string.cq)));
+            if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, getString(R.string.cock_fighting)));
+            }
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots)));
             adapterViewContent.addAllAndClear(hallGameItemBeenS);
         }
     }
