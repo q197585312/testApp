@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,13 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -76,6 +84,9 @@ public class LoginActivity extends BaseActivity {
     private LinearLayout ll_liga365;
     private LinearLayout ll_remember_me;
     private CheckBox cb_remember_me;
+    private WebView webView;
+    private ImageView img_exit;
+    private RelativeLayout rl_webview;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -91,6 +102,54 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void initControl() {
+        if (BuildConfig.FLAVOR.equals("gd88")) {
+            webView = findViewById(R.id.gd_login_webview);
+            img_exit = findViewById(R.id.gd_img_exit);
+            rl_webview = findViewById(R.id.gd_rl_webview);
+            rl_webview.setVisibility(View.VISIBLE);
+            img_exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rl_webview.setVisibility(View.GONE);
+                    webView.destroy();
+                    rl_webview.removeAllViews();
+                }
+            });
+            webView.post(new Runnable() {
+                @Override
+                public void run() {
+                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) webView.getLayoutParams();
+                    layoutParams.height = webView.getWidth() / 16 * 9;
+                    webView.setLayoutParams(layoutParams);
+                }
+            });
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.getSettings().setSupportZoom(true);//是否可以缩放，默认true
+            webView.getSettings().setBuiltInZoomControls(true);//是否显示缩放按钮，默认false
+            webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+            webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
+            webView.setWebChromeClient(new WebChromeClient());
+            webView.setWebViewClient(new WebViewClient() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    view.loadUrl(request.getUrl().toString());
+                    return true;
+                }
+
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    view.loadUrl(url);
+                    return true;
+                }
+            });
+            String lg = AppTool.getAppLanguage(mContext);
+            String webViewUrl = "https://www.youtube.com/embed/YA5fXr8jrN0";
+            if (lg.equals("th")) {
+                webViewUrl = "https://www.youtube.com/embed/Rb2oTrsV1XA";
+            }
+            webView.loadUrl(webViewUrl);
+        }
         img_login_title = findViewById(R.id.gd_img_login_title);
         ll_liga365 = findViewById(R.id.ll_liga365);
         ll_remember_me = findViewById(R.id.ll_remember_me);
