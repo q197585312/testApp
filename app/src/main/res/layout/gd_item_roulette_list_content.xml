@@ -6,9 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/brown_black_bg"
-        android:orientation="vertical"
-        android:padding="3dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,8 +46,8 @@
                 <LinearLayout
                     android:layout_width="40dp"
                     android:layout_height="18dp"
-                    android:gravity="center"
                     android:background="@drawable/gd_rectangle_b_shape"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp">
@@ -71,12 +69,12 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="40dp"
-                    android:layout_marginTop="0.11dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="0.11dp"
                     android:background="@drawable/gd_rectangle_black_shape"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp">
@@ -100,9 +98,9 @@
                 <LinearLayout
                     android:layout_width="40dp"
                     android:layout_height="18dp"
-                    android:gravity="center"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/gd_rectangle_tie_shape"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp">
@@ -133,9 +131,9 @@
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="18dp"
-                        android:gravity="center"
                         android:layout_marginLeft="8dp"
                         android:background="@drawable/gd_rectangle_b_shape"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -159,9 +157,9 @@
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="18dp"
-                        android:gravity="center"
                         android:layout_marginLeft="8dp"
                         android:background="@drawable/gd_rectangle_p_shape"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -185,9 +183,9 @@
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="18dp"
-                        android:gravity="center"
                         android:layout_marginLeft="8dp"
                         android:background="@drawable/gd_rectangle_b_shape"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -211,9 +209,9 @@
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="18dp"
-                        android:gravity="center"
                         android:layout_marginLeft="8dp"
                         android:background="@drawable/gd_rectangle_p_shape"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -236,10 +234,12 @@
 
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/gd__roulette_status_tv"
                 android:layout_width="24dp"
@@ -258,12 +258,11 @@
         </LinearLayout>
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gd_rectangle_white_bottom_corner5"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="1dp">
 
 
             <LinearLayout
@@ -291,7 +290,7 @@
                 android:id="@+id/gd__base_rv"
 
                 android:layout_width="match_parent"
-                android:layout_height="104dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/gd_rectangle_white_bottom_corner5"
                 android:divider="@null" />
         </LinearLayout>
@@ -300,7 +299,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="142dp">
+        android:layout_height="wrap_content">
 
         <include
             layout="@layout/gd_popupwindow_limit_select_layout"

@@ -1579,7 +1579,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getSicbo01().setRoadOld("");
-        skipAct(LobbySicboActivity.class);
+        skipAct(LobbyActivity.class);
         finish();
     }
 

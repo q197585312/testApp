@@ -22,20 +22,20 @@ import gaming178.com.mylibrary.allinone.util.BlockDialog;
 
 public abstract class BaseActivity extends AutoLayoutActivity {
     protected Toolbar toolbar;
-    protected TextView titleTv;
+    public TextView titleTv;
     protected TextView tvCenterTitle;
     protected Context mContext;
 
     //    protected LinearLayout searchLl;
 //    protected AutoCompleteTextView searchEdt;
-    protected LinearLayout setLayout;
+    public LinearLayout setLayout;
     protected Button searchSubmitBtn;
 
 
-    protected TextView backTv;
+    public TextView backTv;
 
-    protected BlockDialog dialog;
-    protected boolean isAttached;
+    public BlockDialog dialog;
+    public boolean isAttached;
     protected View baseContentView;
 
 

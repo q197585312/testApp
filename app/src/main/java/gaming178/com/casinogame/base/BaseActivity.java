@@ -133,8 +133,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     protected TableChangePop tablePop;
     private UpdateAllHallIdGameStatus updateAllLobby;
     protected ArrayList<GameMenuItem> games;
-    protected TextView toolbar_right_bottom_tv;
-    protected TextView toolbar_right_top_tv;
+    public TextView toolbar_right_bottom_tv;
+    public TextView toolbar_right_top_tv;
 
     protected TextView logoutTv;
     protected TextView rightTv;
@@ -147,9 +147,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     protected TextView rightBalanceTv;
     protected TextView changeBetUiTv;
     protected TextView rouletteNumberTv;
-    protected LinearLayout girlLayout;
+    public LinearLayout girlLayout;
 
-    protected LinearLayout ll_more_info;
+    public LinearLayout ll_more_info;
     public float poolSize = 12;
     public AppModel mAppViewModel;
 
@@ -1157,7 +1157,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
     }
 
-    protected void setMoreToolbar(boolean hasMoreToolbar) {
+    public void setMoreToolbar(boolean hasMoreToolbar) {
      /*   if (hasMoreToolbar) {
 
             llCenter.setVisibility(View.VISIBLE);
@@ -2649,7 +2649,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
     }
 
-    protected void setTitleChangeGame(TextView title) {
+    public void setTitleChangeGame(TextView title) {
         if (!BuildConfig.FLAVOR.isEmpty())
             return;
         title.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.gd_arrow_down_grey_light, 0);

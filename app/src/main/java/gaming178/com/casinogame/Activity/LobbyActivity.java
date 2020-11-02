@@ -31,7 +31,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,12 +41,18 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Control.AutoScrollTextView;
+import gaming178.com.casinogame.Fragment.BaseFragment;
+import gaming178.com.casinogame.Fragment.LobbyBaccaratFragment;
+import gaming178.com.casinogame.Fragment.LobbyDragonTigerFragment;
+import gaming178.com.casinogame.Fragment.LobbyRouletteFragment;
+import gaming178.com.casinogame.Fragment.LobbySicboFragment;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
@@ -103,7 +110,12 @@ public class LobbyActivity extends BaseActivity {
     private UpdateAnnouncement updateAnnouncement = null;
     private Thread threadAnnouncement = null;
     private boolean bGetAnnouncement = true;
-
+    private List<BaseFragment> fragmentList;
+    public BaseFragment currentFragment;
+    public BaseFragment baccaratFragment;
+    public BaseFragment dragonTigerFragment;
+    public BaseFragment rouletteFragment;
+    public BaseFragment sicboFragment;
 
     private int tableIndex = 0;
 
@@ -204,6 +216,11 @@ public class LobbyActivity extends BaseActivity {
 
         initBar();
 
+        baccaratFragment = new LobbyBaccaratFragment();
+        dragonTigerFragment = new LobbyDragonTigerFragment();
+        rouletteFragment = new LobbyRouletteFragment();
+        sicboFragment = new LobbySicboFragment();
+        fragmentList = Arrays.asList(baccaratFragment, dragonTigerFragment, rouletteFragment, sicboFragment);
 
         //   startUpdateStatus();
         rb_baccarat.post(new Runnable() {
@@ -281,21 +298,24 @@ public class LobbyActivity extends BaseActivity {
 
             }
         });
+        FrameLayout fl_home = findViewById(R.id.fl_home);
+        fl_home.removeAllViews();
+        switchFragment(0);
         rg_home_game.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_baccarat:
-                        ToastUtils.showShort("baccarat");
+                        switchFragment(0);
                         break;
                     case R.id.rb_dragon_tiger:
-                        ToastUtils.showShort("dragonTiger");
+                        switchFragment(1);
                         break;
                     case R.id.rb_roulette:
-                        ToastUtils.showShort("roulette");
+                        switchFragment(2);
                         break;
                     case R.id.rb_sicbo:
-                        ToastUtils.showShort("sicbo");
+                        switchFragment(3);
                         break;
                 }
             }
@@ -560,6 +580,35 @@ public class LobbyActivity extends BaseActivity {
             return true;
         }
         return false;
+    }
+
+    int lastIndex = -1;
+
+    private void switchFragment(int index) {
+        if (lastIndex == index) {
+            return;
+        }
+        BaseFragment baseFragment = fragmentList.get(index);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if (!baseFragment.isAdded()) {
+            fragmentTransaction.add(R.id.fl_home, baseFragment);
+        } else {
+            fragmentTransaction.show(baseFragment);
+        }
+        currentFragment = baseFragment;
+        if (lastIndex != -1) {
+            fragmentTransaction.hide(fragmentList.get(lastIndex));
+        }
+        lastIndex = index;
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        getSupportFragmentManager().beginTransaction()
+                .remove(currentFragment).commitAllowingStateLoss();
+        super.onSaveInstanceState(outState);
     }
 
 }

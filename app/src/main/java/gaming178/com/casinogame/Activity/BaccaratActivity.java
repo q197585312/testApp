@@ -2273,7 +2273,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).Init();
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct(LobbyBaccaratActivity.class, bundle);
+        skipAct(LobbyActivity.class, bundle);
         finish();
     }
 

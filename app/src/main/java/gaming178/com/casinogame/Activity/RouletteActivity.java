@@ -2035,7 +2035,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getRoulette01().setRoadOld("");
-        skipAct(LobbyRouletteActivity.class);
+        skipAct(LobbyActivity.class);
         finish();
     }
 

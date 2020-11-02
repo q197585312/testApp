@@ -1883,7 +1883,7 @@ public class DragonTigerActivity extends BaseActivity {
     protected void leftClick() {
         mAppViewModel.setbLobby(true);
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
-        skipAct(LobbyDragonTigerActivity.class);
+        skipAct(LobbyActivity.class);
         finish();
     }
 
