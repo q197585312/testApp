@@ -1224,12 +1224,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     PopChoiceLanguage popLanguage;
-    public boolean isChangeLg;
 
     public void showLanguagePop(View v, final float weight) {
 
         if (popLanguage == null) {
-            popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20), ScreenUtil.dip2px(mContext, 200)) {
+            int width = ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                width = width / 2;
+            }
+            popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, width, ScreenUtil.dip2px(mContext, 200)) {
                 @Override
                 protected int onSetRcItemLayout() {
                     return R.layout.gd_item_language_selected;
@@ -1262,7 +1265,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     closePopupWindow();
                     if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
                         AppTool.setAppLanguage(BaseActivity.this, item.getType());
-                        isChangeLg = true;
                         recreate();
                     } else {
                         if (BaseActivity.this instanceof LoginActivity) {

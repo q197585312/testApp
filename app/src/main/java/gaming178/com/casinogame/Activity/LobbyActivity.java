@@ -64,6 +64,7 @@ import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.UpdateManager;
+import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 
 /**
  * Created by Administrator on 2016/3/22.
@@ -73,20 +74,6 @@ public class LobbyActivity extends BaseActivity {
     TextView tv_home_user_name;
     @BindView(R2.id.gd__tv_home_balance)
     TextView tv_home_balance;
-
-    @BindView(R2.id.gd__iv_set)
-    ImageView iv_set;
-    @BindView(R2.id.gd__iv_report)
-    ImageView iv_report;
-
-    @BindView(R2.id.gd__iv_language)
-    ImageView iv_language;
-
-    @BindView(R2.id.gd__view_center)
-    View img_home;
-    @BindView(R2.id.gd__iv_logout)
-    ImageView iv_logout;
-
 
     @BindView(R2.id.gd__gridview_content_gv)
     RecyclerView gridviewContentGv;
@@ -235,6 +222,9 @@ public class LobbyActivity extends BaseActivity {
                 ll_game_pic.setLayoutParams(params);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
                 linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+                }
                 gridviewContentGv.setLayoutManager(linearLayoutManager);
                 adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
                     @Override
@@ -242,8 +232,13 @@ public class LobbyActivity extends BaseActivity {
                         RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
                         int width = rb_baccarat.getWidth();
                         ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
-                        layoutParams.width = width / 6 * 5;
-                        layoutParams.height = (int) ((width / 6 * 5) * 1.2);
+                        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                            layoutParams.width = width;
+                            layoutParams.height = width;
+                        } else {
+                            layoutParams.width = width / 6 * 5;
+                            layoutParams.height = (int) ((width / 6 * 5) * 1.2);
+                        }
                         rl_parent.setLayoutParams(layoutParams);
                         ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
                         Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
@@ -321,13 +316,13 @@ public class LobbyActivity extends BaseActivity {
         tv_lg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLanguagePop(img_home, 0.75f);
+                showLanguagePop(tv_lg, 0.75f);
             }
         });
         tv_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSetPop(img_home, Gravity.TOP);
+                showSetPop(tv_set, Gravity.TOP);
             }
         });
         tv_switch_account.setOnClickListener(new View.OnClickListener() {
@@ -349,30 +344,6 @@ public class LobbyActivity extends BaseActivity {
         toolbar.setVisibility(View.GONE);
         tv_home_user_name.setText(usName);
         tv_home_balance.setText(mAppViewModel.getUser().getBalance() + "");
-        iv_language.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLanguagePop(img_home, 0.75f);
-            }
-        });
-        iv_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
-        iv_set.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSetPop(img_home, Gravity.TOP);
-            }
-        });
-        iv_report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showReport();
-            }
-        });
     }
 
     private void goAfb1188() {
@@ -564,14 +535,6 @@ public class LobbyActivity extends BaseActivity {
         mAppViewModel.setbLogin(false);
     }
 
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        initOrientation();
-    }
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -605,11 +568,12 @@ public class LobbyActivity extends BaseActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if (isChangeLg) {
-            getSupportFragmentManager().beginTransaction()
-                    .remove(currentFragment).commitAllowingStateLoss();
-        }
-        super.onSaveInstanceState(outState);
+//        if (!WidgetUtil.isRunBackground(this)) {
+//            if (currentFragment != null) {
+//                getSupportFragmentManager().beginTransaction().remove(currentFragment).commitAllowingStateLoss();
+//            }
+//        }
+//        super.onSaveInstanceState(outState);
     }
 
 }

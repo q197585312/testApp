@@ -1,0 +1,265 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/gd_home_bottom_land"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar_layout"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@mipmap/gd_home_top_land"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@mipmap/gd_title_logo" />
+
+            <TextView
+                android:id="@+id/gd__tv_home_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:drawableLeft="@mipmap/home_user"
+                android:drawablePadding="3dp"
+                android:text="xxx"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/gd__tv_home_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:drawableLeft="@mipmap/home_money"
+                android:drawablePadding="3dp"
+                android:text="xxx"
+                android:textColor="@color/home_no_select_color"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></View>
+
+            <TextView
+                android:id="@+id/tv_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_home_black"
+                android:drawableLeft="@mipmap/home_set"
+                android:drawablePadding="6dp"
+                android:padding="8dp"
+                android:text="@string/setting"
+                android:textColor="@color/white"></TextView>
+
+            <TextView
+                android:id="@+id/tv_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shape_home_black"
+                android:drawableLeft="@mipmap/home_lg"
+                android:drawablePadding="6dp"
+                android:padding="8dp"
+                android:text="@string/language"
+                android:textColor="@color/white"></TextView>
+
+            <TextView
+                android:id="@+id/tv_switch_account"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/home_yellow_button"
+                android:gravity="center_vertical"
+                android:padding="9dp"
+                android:text="@string/switch_account"
+                android:textColor="@color/home_select_color"></TextView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/gd__ll_notice"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/shape_home_black"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/gd_notice_home" />
+
+                <gaming178.com.casinogame.Control.AutoScrollTextView
+                    android:id="@+id/gd__hall_game_bottom_prompt_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="6dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RadioGroup
+                    android:id="@+id/rg_home_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_baccarat"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_home_game"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="bottom|center"
+                        android:paddingBottom="3dp"
+                        android:text="@string/baccarat"
+                        android:textColor="@drawable/selector_home_text"
+                        android:textSize="12sp"></RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rb_dragon_tiger"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_home_game"
+                        android:button="@null"
+                        android:gravity="bottom|center"
+                        android:paddingBottom="3dp"
+                        android:text="@string/dragon_tiger"
+                        android:textColor="@drawable/selector_home_text"
+                        android:textSize="12sp"></RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rb_roulette"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_home_game"
+                        android:button="@null"
+                        android:gravity="bottom|center"
+                        android:paddingBottom="3dp"
+                        android:text="@string/roulette"
+                        android:textColor="@drawable/selector_home_text"
+                        android:textSize="12sp"></RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rb_sicbo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_home_game"
+                        android:button="@null"
+                        android:gravity="bottom|center"
+                        android:paddingBottom="3dp"
+                        android:text="@string/sicbo"
+                        android:textColor="@drawable/selector_home_text"
+                        android:textSize="12sp"></RadioButton>
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/ll_game_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@mipmap/home_b" />
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/home_dt" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/home_r" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/home_s" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gd__gridview_content_gv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.03"></androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fl_home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

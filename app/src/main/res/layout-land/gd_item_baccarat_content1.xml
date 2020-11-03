@@ -3,9 +3,8 @@
     android:id="@+id/gd__ll_baccarat_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/brown_black_bg"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:paddingBottom="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,8 +16,7 @@
             android:layout_height="24dp"
             android:background="@drawable/gd_rectangle_brown_top_corner5"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="5dp">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
