@@ -182,8 +182,8 @@ public class LobbyActivity extends BaseActivity {
     @Override
     protected void onAfbLoginSucceed() {
         super.onAfbLoginSucceed();
-        initUI();
-        startUpdateStatusThread();
+//        initUI();
+//        startUpdateStatusThread();
     }
     public void checkAfb1188Data() {
         Intent intent = getIntent();
@@ -512,6 +512,9 @@ public class LobbyActivity extends BaseActivity {
             }
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots)));
             adapterViewContent.addAllAndClear(hallGameItemBeenS);
+        }
+        if (adapterViewContent.getItemCount()==0){
+            gridviewContentGv.setVisibility(View.GONE);
         }
     }
 
