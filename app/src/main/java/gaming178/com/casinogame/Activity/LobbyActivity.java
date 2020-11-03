@@ -36,14 +36,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.unkonw.testapp.libs.utils.ToastUtils;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.finalteam.toolsfinal.StringUtils;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
@@ -64,7 +63,6 @@ import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.UpdateManager;
-import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 
 /**
  * Created by Administrator on 2016/3/22.
@@ -182,6 +180,20 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
+    public void checkAfb1188Data() {
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null && !StringUtils.isEmpty(extras.getString("web_id")))
+            mAppViewModel.setbLogin(false);
+        boolean isbLogin = mAppViewModel.isbLogin();
+        if (BuildConfig.FLAVOR.isEmpty() && !isbLogin) {
+
+            int gameType = extras.getInt("gameType", 0);
+            fromAfb1188(gameType, extras);
+        } else {
+//            initOtherData();
+        }
+    }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -202,7 +214,7 @@ public class LobbyActivity extends BaseActivity {
         hallGameBottomPromptTv.setText("  ");
 
         initBar();
-
+        checkAfb1188Data();
         baccaratFragment = new LobbyBaccaratFragment();
         dragonTigerFragment = new LobbyDragonTigerFragment();
         rouletteFragment = new LobbyRouletteFragment();
@@ -297,19 +309,14 @@ public class LobbyActivity extends BaseActivity {
         rg_home_game.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rb_baccarat:
-                        switchFragment(0);
-                        break;
-                    case R.id.rb_dragon_tiger:
-                        switchFragment(1);
-                        break;
-                    case R.id.rb_roulette:
-                        switchFragment(2);
-                        break;
-                    case R.id.rb_sicbo:
-                        switchFragment(3);
-                        break;
+                if (checkedId == R.id.rb_baccarat) {
+                    switchFragment(0);
+                } else if (checkedId == R.id.rb_dragon_tiger) {
+                    switchFragment(1);
+                } else if (checkedId == R.id.rb_roulette) {
+                    switchFragment(2);
+                } else if (checkedId == R.id.rb_sicbo) {
+                    switchFragment(3);
                 }
             }
         });
@@ -331,6 +338,7 @@ public class LobbyActivity extends BaseActivity {
                 logout();
             }
         });
+
     }
 
     @Override

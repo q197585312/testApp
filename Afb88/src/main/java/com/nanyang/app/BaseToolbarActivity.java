@@ -378,7 +378,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                             intent.putString("balance", info.getCredit2());
                             intent.putString("curCode", bean.getCurCode());
                             LogIntervalUtils.logTime("请求数据完成开始跳转");
-                            getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyBaccaratActivity");
+                            getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyActivity");
                         } else if (code == 200 && body.contains("not online")) {
                             ToastUtils.showShort("User not online");
                             reLogin();
