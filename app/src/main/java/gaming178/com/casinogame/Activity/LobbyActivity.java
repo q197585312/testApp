@@ -179,7 +179,12 @@ public class LobbyActivity extends BaseActivity {
                 break;
         }
     }
-
+    @Override
+    protected void onAfbLoginSucceed() {
+        super.onAfbLoginSucceed();
+        initUI();
+        startUpdateStatusThread();
+    }
     public void checkAfb1188Data() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
