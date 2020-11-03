@@ -90,6 +90,8 @@ public class LobbyActivity extends BaseActivity {
     TextView tv_lg;
     @BindView(R2.id.tv_set)
     TextView tv_set;
+    @BindView(R2.id.fl_home)
+    FrameLayout fl_home;
     private BlockDialog dialog;
     private String announcement = "";
     private UpdateAnnouncement updateAnnouncement = null;
@@ -179,12 +181,19 @@ public class LobbyActivity extends BaseActivity {
                 break;
         }
     }
+
     @Override
     protected void onAfbLoginSucceed() {
         super.onAfbLoginSucceed();
 //        initUI();
 //        startUpdateStatusThread();
+
+        if (fl_home.getChildCount() == 0) {
+            switchFragment(0);
+            initBar();
+        }
     }
+
     public void checkAfb1188Data() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -310,7 +319,9 @@ public class LobbyActivity extends BaseActivity {
 
             }
         });
-        switchFragment(0);
+        if (mAppViewModel.isbLogin()) {
+            switchFragment(0);
+        }
         rg_home_game.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -355,7 +366,7 @@ public class LobbyActivity extends BaseActivity {
 
     private void initBar() {
         toolbar.setVisibility(View.GONE);
-        tv_home_user_name.setText(usName);
+        tv_home_user_name.setText(mAppViewModel.getUser().getName());
         tv_home_balance.setText(mAppViewModel.getUser().getBalance() + "");
     }
 
@@ -513,7 +524,7 @@ public class LobbyActivity extends BaseActivity {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots)));
             adapterViewContent.addAllAndClear(hallGameItemBeenS);
         }
-        if (adapterViewContent.getItemCount()==0){
+        if (adapterViewContent.getItemCount() == 0) {
             gridviewContentGv.setVisibility(View.GONE);
         }
     }

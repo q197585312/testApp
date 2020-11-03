@@ -2146,7 +2146,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         initBetImg();
 
         super.onCreate(savedInstanceState);
-        startUpdateStatus();
+        if (mAppViewModel.isbLogin()) {
+            startUpdateStatus();
+        }
         getMethodName();
     }
 
@@ -2171,7 +2173,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     @Override
     protected void onResume() {
         super.onResume();
-        if (!bGetGameStatus && !bGetGameTimer) {
+        if (!bGetGameStatus && !bGetGameTimer && mAppViewModel.isbLogin()) {
             startUpdateStatus();
         }
         getMethodName();
@@ -2549,7 +2551,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 mAppViewModel.setHttpClient(new HttpClient(urlLogin
                         , mAppViewModel.getCookie()));
                 mAppViewModel.getUser().setName(username);
-
+                if (balance != null) {
+                    mAppViewModel.getUser().setBalance(Double.parseDouble(balance));
+                }
                 if (mAppViewModel.getHttpClient().connect("POST") == false) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
