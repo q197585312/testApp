@@ -1224,6 +1224,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     PopChoiceLanguage popLanguage;
+    public boolean isChangeLg;
 
     public void showLanguagePop(View v, final float weight) {
 
@@ -1261,6 +1262,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     closePopupWindow();
                     if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
                         AppTool.setAppLanguage(BaseActivity.this, item.getType());
+                        isChangeLg = true;
                         recreate();
                     } else {
                         if (BaseActivity.this instanceof LoginActivity) {

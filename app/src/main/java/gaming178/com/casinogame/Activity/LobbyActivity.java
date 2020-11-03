@@ -298,8 +298,6 @@ public class LobbyActivity extends BaseActivity {
 
             }
         });
-        FrameLayout fl_home = findViewById(R.id.fl_home);
-        fl_home.removeAllViews();
         switchFragment(0);
         rg_home_game.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -545,6 +543,7 @@ public class LobbyActivity extends BaseActivity {
         updateAnnouncement = new UpdateAnnouncement();
         threadAnnouncement = new Thread(updateAnnouncement);
         threadAnnouncement.start();
+        hallGameBottomPromptTv.startScroll();
 
 
     }
@@ -606,8 +605,10 @@ public class LobbyActivity extends BaseActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        getSupportFragmentManager().beginTransaction()
-                .remove(currentFragment).commitAllowingStateLoss();
+        if (isChangeLg) {
+            getSupportFragmentManager().beginTransaction()
+                    .remove(currentFragment).commitAllowingStateLoss();
+        }
         super.onSaveInstanceState(outState);
     }
 
