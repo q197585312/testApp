@@ -5,6 +5,5 @@
 
     <!-- corners表示是有半径为3像素的圆角 -->
     <solid android:color="#f4cc7f" />
-    <corners android:topRightRadius="5dp" />
 
 </shape>
