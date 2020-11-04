@@ -260,12 +260,8 @@
         </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <include
+        layout="@layout/gd_popupwindow_limit_select_layout"
+        android:visibility="gone" />
 
-        <include
-            layout="@layout/gd_popupwindow_limit_select_layout"
-            android:visibility="gone" />
-    </FrameLayout>
 </FrameLayout>

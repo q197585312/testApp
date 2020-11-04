@@ -41,9 +41,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_home_black"
                 android:drawableLeft="@mipmap/home_set"
-                android:drawablePadding="6dp"
-                android:padding="8dp"
+                android:drawablePadding="4dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
                 android:text="@string/setting"
+                android:textAllCaps="true"
                 android:textColor="@color/white"></TextView>
 
             <TextView
@@ -53,9 +57,13 @@
                 android:layout_marginLeft="6dp"
                 android:background="@drawable/shape_home_black"
                 android:drawableLeft="@mipmap/home_lg"
-                android:drawablePadding="6dp"
-                android:padding="8dp"
+                android:drawablePadding="4dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
                 android:text="@string/language"
+                android:textAllCaps="true"
                 android:textColor="@color/white"></TextView>
         </LinearLayout>
 
@@ -99,8 +107,9 @@
                 android:layout_height="wrap_content"
                 android:background="@mipmap/home_yellow_button"
                 android:gravity="center_vertical"
-                android:padding="9dp"
-                android:text="@string/switch_account"
+                android:padding="7dp"
+                android:text="@string/logout"
+                android:textAllCaps="true"
                 android:textColor="@color/home_select_color"></TextView>
 
 
@@ -169,7 +178,9 @@
                     android:gravity="bottom|center"
                     android:paddingBottom="3dp"
                     android:text="@string/baccarat"
-                    android:textColor="@drawable/selector_home_text"></RadioButton>
+                    android:textAllCaps="true"
+                    android:textColor="@drawable/selector_home_text"
+                    android:textSize="12sp"></RadioButton>
 
                 <RadioButton
                     android:id="@+id/rb_dragon_tiger"
@@ -182,7 +193,9 @@
                     android:gravity="bottom|center"
                     android:paddingBottom="3dp"
                     android:text="@string/dragon_tiger"
-                    android:textColor="@drawable/selector_home_text"></RadioButton>
+                    android:textAllCaps="true"
+                    android:textColor="@drawable/selector_home_text"
+                    android:textSize="12sp"></RadioButton>
 
                 <RadioButton
                     android:id="@+id/rb_roulette"
@@ -195,7 +208,9 @@
                     android:gravity="bottom|center"
                     android:paddingBottom="3dp"
                     android:text="@string/roulette"
-                    android:textColor="@drawable/selector_home_text"></RadioButton>
+                    android:textAllCaps="true"
+                    android:textColor="@drawable/selector_home_text"
+                    android:textSize="12sp"></RadioButton>
 
                 <RadioButton
                     android:id="@+id/rb_sicbo"
@@ -208,7 +223,9 @@
                     android:gravity="bottom|center"
                     android:paddingBottom="3dp"
                     android:text="@string/sicbo"
-                    android:textColor="@drawable/selector_home_text"></RadioButton>
+                    android:textAllCaps="true"
+                    android:textColor="@drawable/selector_home_text"
+                    android:textSize="12sp"></RadioButton>
             </RadioGroup>
 
             <LinearLayout

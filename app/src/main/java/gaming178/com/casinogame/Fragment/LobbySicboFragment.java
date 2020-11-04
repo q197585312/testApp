@@ -271,7 +271,7 @@ public class LobbySicboFragment extends BaseFragment {
         String tableNumber = "SB1";
         RecyclerView recyclerView = (RecyclerView) top_v.findViewById(R.id.gd__base_rv);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.gd_item_popupwindow_text_select_sicbo) {
+        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getLimitData(tableId), R.layout.gd_item_popupwindow_text_select) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
                 holder.setText(R.id.gd__pop_text_tv, item);

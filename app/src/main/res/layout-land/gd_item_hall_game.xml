@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:textAllCaps="true"
         android:textColor="@color/home_no_select_color"
         android:textSize="12sp" />
 
