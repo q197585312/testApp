@@ -12,8 +12,6 @@ public class SportPresenter implements SportContract.Presenter {
 
     public void setStateHelper(SportState stateHelperNew) {
         this.stateHelper = stateHelperNew;
-        if (stateHelper.isMix())
-            stateHelper.clearMix();
 
     }
 

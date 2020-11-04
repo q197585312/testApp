@@ -49,11 +49,6 @@ public class USFootballTodayState extends BasketballTodayState {
         return new MenuItemInfo<String>(0, (R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
     }
 
-    @Override
-    public boolean mix() {
-        getBaseView().switchState(new USFootballTodayMixState(getBaseView()));
-        return true;
-    }
 
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {

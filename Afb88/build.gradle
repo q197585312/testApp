@@ -63,7 +63,7 @@ android {
             versionName '2.83'
             buildConfigField "String", "Domain", '".afb1188.net"'
             buildConfigField "String", "H5_URL", '"http://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
-            buildConfigField "String", "PC_URL", '"http://wsapp.afb1188.net/W0/Pub/wfMain0.html"'
+            buildConfigField "String", "PC_URL", '"http://wsapp.afb1188.net/W0/Pub/wfMain0.html"'//https://wsapp.afb1188.net/W0/Pub/wfMain0.html
             buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.net/"' //app专用服务器
             buildConfigField "String", "HOST", '"wsapp.afb1188.net"' //app专用服务器
             buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'

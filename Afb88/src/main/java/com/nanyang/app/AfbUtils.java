@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,9 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -237,40 +235,57 @@ public class AfbUtils {
     }
 
     public static void synCookies(Context context, WebView webView, String url, boolean isZoom, WebViewClient webViewClient) {
-        webView.getSettings().setUseWideViewPort(isZoom);
+        WebSettings webSettings = webView.getSettings();
+
+        //设置自适应屏幕，两者合用
+        webSettings.setUseWideViewPort(isZoom); //将图片调整到适合webview的大小
+        webSettings.setLoadWithOverviewMode(isZoom); // 缩放至屏幕的大小
 //设置可以支持缩放
-        webView.getSettings().setSupportZoom(isZoom);
+        webSettings.setSupportZoom(isZoom);
 //设置出现缩放工具
-        webView.getSettings().setBuiltInZoomControls(isZoom);
+        webSettings.setBuiltInZoomControls(false);
         //设定缩放控件隐藏
         if (isZoom) {
             webView.setInitialScale(100);
         }
-        webView.getSettings().setDisplayZoomControls(false);
-        //开启javascript
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
-        webView.getSettings().setJavaScriptEnabled(true);//是否允许执行js，默认为false。设置true时，会提醒可能造成XSS漏洞
-        webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
-        webView.getSettings().setDomStorageEnabled(true);//DOM Storage
-        webView.setWebChromeClient(new WebChromeClient());
+
+// 若加载的 html 里有JS 在执行动画等操作，会造成资源浪费（CPU、电量）
+// 在 onStop 和 onResume 里分别把 setJavaScriptEnabled() 给设置成 false 和 true 即可
+        webSettings.setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false
+//支持插件
+
+
+//其他细节操作
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
+        webSettings.setBlockNetworkImage(false);//解决图片不显示
+        webSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+        webSettings.setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
+        webSettings.setAppCacheEnabled(true);//是否使用缓存
+        webSettings.setDomStorageEnabled(true);//开启本地DOM存储
+        webSettings.setLoadsImagesAutomatically(true); // 加载图片
+        webSettings.setMediaPlaybackRequiresUserGesture(false);
+
+        webSettings.setDomStorageEnabled(true);//开启本地DOM存储
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
         if (webViewClient == null) {
             webView.setWebViewClient(new WebViewClient() {
 
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         view.loadUrl(request.getUrl().toString());
+                        LogUtil.d("url", request.getUrl().toString());
                     } else {
                         view.loadUrl(request.toString());
+                        LogUtil.d("url", request.toString());
                     }
                     return true;
                 }
 
-                @Override
-                public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                    handler.proceed();//接受证书
-                }
+
             });
         } else {
             webView.setWebViewClient(webViewClient);
@@ -302,6 +317,7 @@ public class AfbUtils {
         for (int i = 0; i < cookies.size(); i++) {
             Cookie cookie = cookies.get(i);
             String value = cookie.name() + "=" + cookie.value();
+            LogUtil.d("url", "cookie:" + value);
             cookieManager.setCookie(BuildConfig.Domain, value);
         }
         cookieManager.setCookie(BuildConfig.Domain, "Domain=" + BuildConfig.Domain);
@@ -309,6 +325,7 @@ public class AfbUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             CookieSyncManager.getInstance().sync();
         } else {
+            CookieSyncManager.getInstance().sync();
             cookieManager.flush();
 
         }

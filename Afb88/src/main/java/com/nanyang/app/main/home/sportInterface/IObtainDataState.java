@@ -32,11 +32,11 @@ public interface IObtainDataState {
     void switchOddsType(String oddsType);
 
 
-    boolean isMix();
+//    boolean isMix();
 
-    boolean mix();
+//    boolean mix();
 
-    void clearMix();
+//    void clearMix();
 
     /* AfbParseHelper<B> afbParseHelper = new AfbParseHelper<B>();
             B ballInfo = afbParseHelper.parseJsonArray(matchArray);

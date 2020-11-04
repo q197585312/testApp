@@ -63,11 +63,6 @@ public class EuropeRunningState extends EuropeState {
     }
 
     @Override
-    public boolean mix() {
-        return false;
-    }
-
-    @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new EuropeRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }

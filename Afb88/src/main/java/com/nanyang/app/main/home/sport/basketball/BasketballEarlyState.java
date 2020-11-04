@@ -17,12 +17,6 @@ public class BasketballEarlyState extends BasketballCommonState {
 
 
     @Override
-    public boolean mix() {
-        getBaseView().switchState(new BasketballEarlyMixState(getBaseView()));
-        return true;
-    }
-
-    @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_BASKETBALL_EARLY;
     }

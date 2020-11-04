@@ -15,11 +15,6 @@ public class HandballOutRightState extends OutRightState {
     }
 
 
-    @Override
-    public boolean mix() {
-        return false;
-    }
-
 
     @Override
     protected String getSportName() {

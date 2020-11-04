@@ -18,12 +18,6 @@ public class SoccerTodayState extends SoccerCommonState {
 
 
     @Override
-    public boolean mix() {
-        getBaseView().switchState(new SoccerTodayMixState(getBaseView()));
-        return true;
-    }
-
-    @Override
     protected String getAllOddsUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
         return AppConstant.getInstance().HOST + "_view/OddsPageSetting.aspx?ot=t&ov=0&wd=" + tfDate + "&tf=-1&isPageSingDouble=RMOdds1&m=save";
