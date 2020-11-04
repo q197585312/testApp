@@ -4809,7 +4809,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct(LobbySicboActivity.class, bundle);
+        skipAct(LobbyActivity.class, bundle);
     }
 
     public void InitButtonClick() {

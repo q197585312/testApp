@@ -3395,7 +3395,7 @@ public class DragonTigerActivity extends BaseActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
-        skipAct(LobbyDragonTigerActivity.class, bundle);
+        skipAct(LobbyActivity.class, bundle);
     }
 
     //重新选择了筹码，重新开始算下注筹码

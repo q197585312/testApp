@@ -263,7 +263,6 @@
                 android:id="@+id/fl_home"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
                 android:layout_weight="1"></FrameLayout>
         </LinearLayout>
     </LinearLayout>
