@@ -18,12 +18,6 @@ public class TableTennisOutRightState extends OutRightState {
 
 
     @Override
-    public boolean mix() {
-        return false;
-    }
-
-
-    @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_TABLE_TENNIS_OUTRIGHT + "&ot=e";
     }

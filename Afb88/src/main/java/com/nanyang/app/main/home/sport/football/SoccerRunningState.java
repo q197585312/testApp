@@ -24,11 +24,6 @@ public class SoccerRunningState extends SoccerCommonState {
 
 
     @Override
-    public boolean mix() {
-        return false;
-    }
-
-    @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_FOOTBALL_RUNNING;
     }

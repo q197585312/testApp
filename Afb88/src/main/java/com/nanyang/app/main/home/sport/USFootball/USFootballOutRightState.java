@@ -16,11 +16,6 @@ public class USFootballOutRightState extends OutRightState {
 
 
     @Override
-    public boolean mix() {
-        return false;
-    }
-
-    @Override
     protected String getSportName() {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football);
     }

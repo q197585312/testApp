@@ -53,8 +53,5 @@ public abstract class FiveMajorState extends SoccerCommonState {
         return new SoccerCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
-    @Override
-    public boolean mix() {
-        return false;
-    }
+
 }

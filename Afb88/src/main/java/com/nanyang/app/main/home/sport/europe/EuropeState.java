@@ -43,11 +43,6 @@ public abstract class EuropeState extends BallState {
     }
 
 
-    @Override
-    public boolean isMix() {
-        return false;
-    }
-
 
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
@@ -82,7 +77,15 @@ public abstract class EuropeState extends BallState {
                 helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
 
             }
+            @Override
+            public boolean isItemCollection(BallInfo item) {
+                return isItemCollectionCommon(item);
+            }
 
+            @Override
+            public boolean isLeagueCollection(BallInfo item) {
+                return isLeagueCollectionCommon(item);
+            }
             @Override
             public void clickView(View v, final BallInfo item, int position) {
                 switch (v.getId()) {

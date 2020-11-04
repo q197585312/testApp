@@ -16,10 +16,6 @@ public class BasketballOutRightState extends OutRightState {
         super(baseView);
     }
 
-    @Override
-    public boolean mix() {
-        return false;
-    }
 
     @Override
     protected String getSportName() {

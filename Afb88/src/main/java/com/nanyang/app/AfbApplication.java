@@ -217,8 +217,6 @@ public class AfbApplication extends BaseApplication {
         outRightMap = new LinkedHashMap<>();
         beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
 
-/*2 = {AllBannerImagesBean$MainBannersBean@5230} "MainBannersBean{dbid='', g='PG CASINO', img='https://wsapp.afb1188.com/H50/Img/PGSymbol-Median.png'}"
-3 = {AllBannerImagesBean$MainBannersBean@5231} "MainBannersBean{dbid='', g='PRAGMATIC CASINO', img='https://wsapp.afb1188.com/H50/Img/PRG.png'}"*/
         putOtherMap(beanHashMap, soccerFragment);
 
         beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
@@ -311,11 +309,16 @@ public class AfbApplication extends BaseApplication {
         map.put("NL CASINO", new SportIdBean("NL CASINO", "", R.string.NG_Cashio, "NL CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ng_casnio_game));
         map.put("LG CASINO", new SportIdBean("LG CASINO", "", R.string.LG_Cashio, "LG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_lg_gaming));
 
+        map.put("MK CASINO", new SportIdBean("MK CASINO", "", R.string.MK_CASINO, "MK CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.mkg_game));
+
 
         map.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_pg_symbol));
         map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
         map.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PS_GAMING, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ps_gaming));
         map.put("EVOPLAY", new SportIdBean("EVOPLAY", "", R.string.EV_Cashio, "EVOPLAY", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_evoplay));
+
+        map.put("CQ9 GAME", new SportIdBean("CQ9 GAME", "", R.string.CQ9_GAME, "CQ9 GAME", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.cq9_game));
+        map.put("TFG CASINO", new SportIdBean("TFG CASINO", "", R.string.TFG_CASINO, "TFG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.tfg_game));
 
     }
 
@@ -695,6 +698,9 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("WM CASINO", isEnabledWM);
         enableMap.put("NL CASINO", isEnabledWM);
         enableMap.put("LG CASINO", isEnabledWM);
+        enableMap.put("MK CASINO", isEnabledWM);
+        enableMap.put("CQ9 GAME", isEnabledWM);
+        enableMap.put("TFG CASINO", isEnabledWM);
         return enableMap;
     }
 

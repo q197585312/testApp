@@ -23,22 +23,13 @@ import java.util.List;
 
 public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract.View<MyanmarInfo>> {
 
-    private boolean isCollection;
+
 
 
     public MyanmarState(SportContract.View baseView) {
         super(baseView);
     }
 
-    public boolean isCollection() {
-        return isCollection;
-    }
-
-    public boolean collection() {
-        isCollection = !isCollection;
-        initAllData(allData);
-        return isCollection;
-    }
 
     @Override
     public IAdapterHelper<MyanmarInfo> onSetAdapterHelper() {
@@ -48,9 +39,15 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<MyanmarInfo>(baseRecyclerAdapter) {
+
             @Override
             public boolean isItemCollection(MyanmarInfo item) {
                 return isItemCollectionCommon(item);
+            }
+
+            @Override
+            public boolean isLeagueCollection(MyanmarInfo item) {
+                return isLeagueCollectionCommon(item);
             }
 
             @Override
@@ -184,11 +181,6 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
         return allData;
     }
 
-
-    @Override
-    public boolean mix() {
-        return false;
-    }
 
 //    @Override
 //    protected List<List<String>> initHeaderList() {

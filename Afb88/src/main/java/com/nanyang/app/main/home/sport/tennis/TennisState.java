@@ -35,16 +35,6 @@ public abstract class TennisState extends BasketballCommonState {
 
     }
 
-    @Override
-    public boolean mix() {
-        return false;
-    }
-
-    @Override
-    public boolean isMix() {
-        return false;
-    }
-
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {

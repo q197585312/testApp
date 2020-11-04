@@ -182,8 +182,6 @@ public class LobbyActivity extends BaseActivity {
     @Override
     protected void onAfbLoginSucceed() {
         super.onAfbLoginSucceed();
-        initUI();
-        startUpdateStatusThread();
     }
     public void checkAfb1188Data() {
         Intent intent = getIntent();

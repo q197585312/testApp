@@ -25,15 +25,14 @@ public abstract class BasketballCommonState extends BallState {
         super(baseView);
     }
 
-    public boolean isCollection() {
-        return isCollection;
-    }
 
+/*
     public boolean collection() {
         isCollection = !isCollection;
         initAllData(allData);
         return isCollection;
     }
+*/
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {

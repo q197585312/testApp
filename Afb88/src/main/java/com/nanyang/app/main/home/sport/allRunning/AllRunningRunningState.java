@@ -27,12 +27,6 @@ class AllRunningRunningState extends AllRunningCommonState {
         return new MenuItemInfo<String>(0,(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running));
     }
 
-
-    @Override
-    public boolean mix() {
-        return false;
-    }
-
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_POOL_EARLY;

@@ -15,11 +15,6 @@ public class BasketballTodayState extends BasketballCommonState {
     }
 
 
-    @Override
-    public boolean mix() {
-        getBaseView().switchState(new BasketballTodayMixState(getBaseView()));
-        return true;
-    }
 
 
     @Override

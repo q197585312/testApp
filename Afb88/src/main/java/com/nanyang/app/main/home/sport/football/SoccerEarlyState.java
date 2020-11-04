@@ -21,11 +21,6 @@ public class SoccerEarlyState extends SoccerCommonState {
     }
 
 
-    @Override
-    public boolean mix() {
-        getBaseView().switchState(new SoccerEarlyMixState(getBaseView()));
-        return true;
-    }
 
     @Override
     protected String getAllOddsUrl() {

@@ -68,14 +68,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
         }
     }
 
-    public boolean isCollection() {
-        return false;
-    }
 
-    @Override
-    public boolean collection() {
-        return false;
-    }
 
     @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
