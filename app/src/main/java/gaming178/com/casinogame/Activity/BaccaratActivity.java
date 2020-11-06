@@ -2015,6 +2015,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //        }
 //Results=ok^Banker6:10^#^player3:I155078806^player5:DLDLDLYY16^player6:DLDLDLYY15^#1#3#0#20290(5)#52400#2#398#2#0#0#KH 2017-07-12 10:00:21#61#Navy#null#null#null|null#null#null#13127#36#|2#0#0#0#0
 //Results=ok^Banker3:40^Banker5:10^Banker8:10^#^player2:emboy007^player3:LK00AUBANGOKAY^player5:LK00AWRAKA05^player6:demoafbai9^player8:LK00BRMASTER^#5#0#2001#209#1045#2#103#103#0#0#KH 2017-08-18 15:40:43#3#sisi#02#27#null|08#26#null#78136#56#
+        Log.d("updateBetMoney", str);
         if (str.startsWith("Results=ok")) {
             String[] userBetMsg = str.split("#");
             String userBet = userBetMsg[0];
@@ -2025,8 +2026,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             bpLotteryPool = userBetMsg[7];
             ppLotteryPool = userBetMsg[8];
             String[] typePeople = str.split("\\|");
-            if (typePeople.length == 3) {
-                String people = typePeople[typePeople.length - 1];
+            if (typePeople.length >= 3) {
+                String people = typePeople[2];
                 String[] betTypePeople = people.split("#");
                 bankerPeople = betTypePeople[0];
                 playerPeople = betTypePeople[1];
@@ -2041,28 +2042,28 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 ppPeople = "0";
             }
             handler.sendEmptyMessage(HandlerCode.REFRESH_GAME_LOTTERY_POOL);
-            if (singleBetMsg.length > 1) {
-                //B区数据处理
-                for (int j = 0; j < singleBetMsg.length; j++) {
-                    for (int i = 0; i < userBetList.size(); i++) {
-                        if (singleBetMsg[j].startsWith(userBetList.get(i))) {
-                            userBetMap.put(userBetList.get(i), singleBetMsg[j]);
-                        }
-                    }
-                }
-                if (!baccaratA) {
-                    player1BetMoney = subStringBetMoneyInt(userBetMap.get(Player1)) + subStringBetMoneyInt(userBetMap.get(Pd1)) + subStringBetMoneyInt(userBetMap.get(Tie1)) + subStringBetMoneyInt(userBetMap.get(Bd1)) + subStringBetMoneyInt(userBetMap.get(Banker1));
-                    player2BetMoney = subStringBetMoneyInt(userBetMap.get(Player2)) + subStringBetMoneyInt(userBetMap.get(Pd2)) + subStringBetMoneyInt(userBetMap.get(Tie2)) + subStringBetMoneyInt(userBetMap.get(Bd2)) + subStringBetMoneyInt(userBetMap.get(Banker2));
-                    player3BetMoney = subStringBetMoneyInt(userBetMap.get(Player3)) + subStringBetMoneyInt(userBetMap.get(Pd3)) + subStringBetMoneyInt(userBetMap.get(Tie3)) + subStringBetMoneyInt(userBetMap.get(Bd3)) + subStringBetMoneyInt(userBetMap.get(Banker3));
-                    player5BetMoney = subStringBetMoneyInt(userBetMap.get(Player5)) + subStringBetMoneyInt(userBetMap.get(Pd5)) + subStringBetMoneyInt(userBetMap.get(Tie5)) + subStringBetMoneyInt(userBetMap.get(Bd5)) + subStringBetMoneyInt(userBetMap.get(Banker5));
-                    player6BetMoney = subStringBetMoneyInt(userBetMap.get(Player6)) + subStringBetMoneyInt(userBetMap.get(Pd6)) + subStringBetMoneyInt(userBetMap.get(Tie6)) + subStringBetMoneyInt(userBetMap.get(Bd6)) + subStringBetMoneyInt(userBetMap.get(Banker6));
-                    player7BetMoney = subStringBetMoneyInt(userBetMap.get(Player7)) + subStringBetMoneyInt(userBetMap.get(Pd7)) + subStringBetMoneyInt(userBetMap.get(Tie7)) + subStringBetMoneyInt(userBetMap.get(Bd7)) + subStringBetMoneyInt(userBetMap.get(Banker7));
-                    player8BetMoney = subStringBetMoneyInt(userBetMap.get(Player8)) + subStringBetMoneyInt(userBetMap.get(Pd8)) + subStringBetMoneyInt(userBetMap.get(Tie8)) + subStringBetMoneyInt(userBetMap.get(Bd8)) + subStringBetMoneyInt(userBetMap.get(Banker8));
-                    if (isCanRefreshBetImg && tableId > 3 && tableId != 71 && this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        handler.sendEmptyMessage(HandlerCode.REFRESH_GAME_BET_IMG);
-                    }
-                }
-            }
+//            if (singleBetMsg.length > 1) {
+//                //B区数据处理
+//                for (int j = 0; j < singleBetMsg.length; j++) {
+//                    for (int i = 0; i < userBetList.size(); i++) {
+//                        if (singleBetMsg[j].startsWith(userBetList.get(i))) {
+//                            userBetMap.put(userBetList.get(i), singleBetMsg[j]);
+//                        }
+//                    }
+//                }
+//                if (!baccaratA) {
+//                    player1BetMoney = subStringBetMoneyInt(userBetMap.get(Player1)) + subStringBetMoneyInt(userBetMap.get(Pd1)) + subStringBetMoneyInt(userBetMap.get(Tie1)) + subStringBetMoneyInt(userBetMap.get(Bd1)) + subStringBetMoneyInt(userBetMap.get(Banker1));
+//                    player2BetMoney = subStringBetMoneyInt(userBetMap.get(Player2)) + subStringBetMoneyInt(userBetMap.get(Pd2)) + subStringBetMoneyInt(userBetMap.get(Tie2)) + subStringBetMoneyInt(userBetMap.get(Bd2)) + subStringBetMoneyInt(userBetMap.get(Banker2));
+//                    player3BetMoney = subStringBetMoneyInt(userBetMap.get(Player3)) + subStringBetMoneyInt(userBetMap.get(Pd3)) + subStringBetMoneyInt(userBetMap.get(Tie3)) + subStringBetMoneyInt(userBetMap.get(Bd3)) + subStringBetMoneyInt(userBetMap.get(Banker3));
+//                    player5BetMoney = subStringBetMoneyInt(userBetMap.get(Player5)) + subStringBetMoneyInt(userBetMap.get(Pd5)) + subStringBetMoneyInt(userBetMap.get(Tie5)) + subStringBetMoneyInt(userBetMap.get(Bd5)) + subStringBetMoneyInt(userBetMap.get(Banker5));
+//                    player6BetMoney = subStringBetMoneyInt(userBetMap.get(Player6)) + subStringBetMoneyInt(userBetMap.get(Pd6)) + subStringBetMoneyInt(userBetMap.get(Tie6)) + subStringBetMoneyInt(userBetMap.get(Bd6)) + subStringBetMoneyInt(userBetMap.get(Banker6));
+//                    player7BetMoney = subStringBetMoneyInt(userBetMap.get(Player7)) + subStringBetMoneyInt(userBetMap.get(Pd7)) + subStringBetMoneyInt(userBetMap.get(Tie7)) + subStringBetMoneyInt(userBetMap.get(Bd7)) + subStringBetMoneyInt(userBetMap.get(Banker7));
+//                    player8BetMoney = subStringBetMoneyInt(userBetMap.get(Player8)) + subStringBetMoneyInt(userBetMap.get(Pd8)) + subStringBetMoneyInt(userBetMap.get(Tie8)) + subStringBetMoneyInt(userBetMap.get(Bd8)) + subStringBetMoneyInt(userBetMap.get(Banker8));
+//                    if (isCanRefreshBetImg && tableId > 3 && tableId != 71 && this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                        handler.sendEmptyMessage(HandlerCode.REFRESH_GAME_BET_IMG);
+//                    }
+//                }
+//            }
         }
     }
 
@@ -2208,7 +2209,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         super.onResume();
         AutoLayoutConifg.getInstance().setSize(this);
 //        startUpdateStatusThread();
-        if (mAppViewModel.isMusicOpen()){
+        if (mAppViewModel.isMusicOpen()) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -2480,7 +2481,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);
 //        serviceTime.setVisibility(View.GONE);
-        if (mAppViewModel.isMusicOpen()){
+        if (mAppViewModel.isMusicOpen()) {
             mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
         }
         setTablePool(lv_pool);
@@ -2614,7 +2615,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
         initControl();
         serviceTime.setText(mAppViewModel.covertBalance((int) mAppViewModel.getUser().getBalance()));
-        if (mAppViewModel.isMusicOpen()){
+        if (mAppViewModel.isMusicOpen()) {
             mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
         }
         setTablePool(lv_pool);
@@ -4556,6 +4557,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     private void showPoker71() {
         if (gameBetMap.get(gameIdNumber) != null && gameBetMap.get(gameIdNumber) != 0) {
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
+                gameBetMap.put(gameIdNumber, 1);
+            } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
+                gameBetMap.put(gameIdNumber, 2);
+            }
             fl_poker_bottom_parent.setVisibility(View.VISIBLE);
         } else {
             fl_poker_bottom_parent.setVisibility(View.GONE);
@@ -4950,7 +4956,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (type < 3 && (banker1 == 0 || banker2 == 0)) {
 
         } else {
-            if (fl_banker_pw_parent.getVisibility()==View.VISIBLE){
+            if (fl_banker_pw_parent.getVisibility() == View.VISIBLE) {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -4972,7 +4978,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (type < 3 && (player1 == 0 || player2 == 0)) {
 
         } else {
-            if (fl_player_pw_parent.getVisibility()==View.VISIBLE){
+            if (fl_player_pw_parent.getVisibility() == View.VISIBLE) {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
