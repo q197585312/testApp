@@ -321,6 +321,7 @@ public class LobbyActivity extends BaseActivity {
         });
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             tv_lg.setText(getString(R.string.member_center));
+            tv_lg.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.home_member_center, 0, 0, 0);
         }
         if (mAppViewModel.isbLogin()) {
             switchFragment(0);
