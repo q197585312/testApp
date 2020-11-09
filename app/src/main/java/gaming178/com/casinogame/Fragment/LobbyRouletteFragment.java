@@ -1,5 +1,6 @@
 package gaming178.com.casinogame.Fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -236,6 +237,11 @@ public class LobbyRouletteFragment extends BaseFragment {
         tv_roulette_big01 = (TextView) rootView.findViewById(R.id.gd__text_big);
         tv_roulette_small01 = (TextView) rootView.findViewById(R.id.gd__text_small);
         baseActivity.girlLayout = (LinearLayout) rootView.findViewById(R.id.gd__ll_layout_girl);
+        if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
+            baseActivity.girlLayout.setVisibility(View.VISIBLE);
+        }else {
+            baseActivity.girlLayout.setVisibility(View.GONE);
+        }
         baseActivity.ll_more_info = (LinearLayout) rootView.findViewById(R.id.gd__ll_more_info);
 
         ((TextView) rootView.findViewById(R.id.gd__tv_roulette_table_name)).setText("RL1");

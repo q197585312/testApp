@@ -280,7 +280,7 @@
                 <ImageView
                     android:id="@+id/gd__img_head"
                     android:layout_width="69dp"
-                    android:layout_height="92dp"
+                    android:layout_height="90dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_routtle_girl" />
 

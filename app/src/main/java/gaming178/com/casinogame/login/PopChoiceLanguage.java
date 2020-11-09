@@ -51,7 +51,7 @@ public abstract class PopChoiceLanguage<T> extends BasePopupWindow {
         BaseActivity activity = (BaseActivity) context;
         if (!BuildConfig.FLAVOR.isEmpty() && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             if (tv_title != null && activity instanceof LobbyActivity) {
-                tv_title.setText("Pusat Anggota");
+                tv_title.setText(context.getString(R.string.member_center));
             }
         }
         if (ll_arrow != null && activity instanceof LoginActivity) {

@@ -1256,7 +1256,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             }
                         }
                     } else {
-                        tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12_1, 0);
+                        tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     }
                 }
 
@@ -1271,7 +1271,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             AppTool.setAppLanguage(BaseActivity.this, item.getType());
                             recreate();
                         } else {
-                            int screenWidth = WidgetUtil.getPortraitScreenWidth((Activity) context);
+                            int screenWidth = WidgetUtil.getPopScreenWidth((Activity) context);
                             int width = screenWidth / 15 * 14;
                             String type = item.getType();
                             User u = mAppViewModel.getUser();

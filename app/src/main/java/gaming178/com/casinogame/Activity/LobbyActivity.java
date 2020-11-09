@@ -319,6 +319,9 @@ public class LobbyActivity extends BaseActivity {
 
             }
         });
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            tv_lg.setText(getString(R.string.member_center));
+        }
         if (mAppViewModel.isbLogin()) {
             switchFragment(0);
         }

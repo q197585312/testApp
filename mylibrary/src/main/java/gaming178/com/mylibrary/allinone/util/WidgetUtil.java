@@ -193,6 +193,7 @@ public class WidgetUtil {
 
     private static DisplayMetrics outMetrics;
     private static DisplayMetrics portraitOutMetrics;
+    private static DisplayMetrics popOutMetrics;
 
     private static void createScreen(Activity activity) {
         if (outMetrics == null) {
@@ -205,6 +206,13 @@ public class WidgetUtil {
         if (portraitOutMetrics == null) {
             portraitOutMetrics = new DisplayMetrics();
             activity.getWindowManager().getDefaultDisplay().getMetrics(portraitOutMetrics);
+        }
+    }
+
+    private static void createPopScreen(Activity activity) {
+        if (popOutMetrics == null) {
+            popOutMetrics = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(popOutMetrics);
         }
     }
 
@@ -230,6 +238,17 @@ public class WidgetUtil {
         createPortraitScreen(activity);
         return portraitOutMetrics.widthPixels;
 
+    }
+
+    public static int getPopScreenWidth(Activity activity) {
+        createPopScreen(activity);
+        int width = popOutMetrics.widthPixels;
+        int height = popOutMetrics.heightPixels;
+        if (width < height) {
+            return width;
+        } else {
+            return height;
+        }
     }
 
     public static void shrinkAnimation(final View view, int from, int to) {
