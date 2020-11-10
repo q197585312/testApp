@@ -390,7 +390,7 @@ public class LobbyDragonTigerFragment extends BaseFragment {
                 baseActivity.mAppViewModel.setTableId(5);
                 baseActivity.mAppViewModel.setbLobby(false);
                 baseActivity.skipAct(DragonTigerActivity.class, bundle);
-
+                baseActivity.finish();
             }
         });
         recyclerView.setAdapter(baseRecyclerAdapter);

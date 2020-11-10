@@ -1294,12 +1294,16 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 betTimeCount++;
                 if (betTimeCount == 6)//跳转到大厅
                 {
-                    GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.show_back_lobby));
+                    if (!WidgetUtil.isRunBackground(SicboActivity.this)) {
+                        GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.show_back_lobby));
+                    }
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
                 } else if (betTimeCount == 4) {
-                    GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
+                    if (!WidgetUtil.isRunBackground(SicboActivity.this)) {
+                        GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
+                    }
                 }
                 tvTableBetSure.setEnabled(true);
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 2, componentFront, mContext, mAppViewModel.getFrontVolume());
@@ -1528,7 +1532,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getSicbo01().getWonMoney(), ContextCompat.getColor(mContext, R.color.blue_word));
 //                        } else
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-mAppViewModel.getSicbo01().getWonMoney()), Color.RED);
-                        if (mAppViewModel.getSicbo01().getWonMoney() > 0) {
+                        if (mAppViewModel.getSicbo01().getWonMoney() > 0 && !WidgetUtil.isRunBackground(SicboActivity.this)) {
                             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
                             GdToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getSicbo01().getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
                         }
@@ -1646,7 +1650,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         super.onResume();
         initAutoSize();
 //        initUI();
-        if (mAppViewModel.isMusicOpen()){
+        if (mAppViewModel.isMusicOpen()) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

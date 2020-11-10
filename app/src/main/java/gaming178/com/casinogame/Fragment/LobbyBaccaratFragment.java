@@ -1464,6 +1464,7 @@ public class LobbyBaccaratFragment extends BaseFragment {
 //                    }
                     bundle.putBoolean("baccaratA", true);
                     baseActivity.skipAct(BaccaratActivity.class, bundle);
+                    baseActivity.finish();
 
                 } else {
                     /*
@@ -1476,7 +1477,7 @@ public class LobbyBaccaratFragment extends BaseFragment {
 //                mAppViewModel.setAreaId(areaId);
                     baseActivity.mAppViewModel.setbLobby(false);
                     baseActivity.skipAct(BaccaratActivity.class, bundle);
-
+                    baseActivity.finish();
                 }
 
             }

@@ -386,7 +386,7 @@ public class LobbyRouletteFragment extends BaseFragment {
                 baseActivity.mAppViewModel.setTableId(21);
                 baseActivity.mAppViewModel.setbLobby(false);
                 baseActivity.skipAct(RouletteActivity.class, bundle);
-
+                baseActivity.finish();
             }
         });
         recyclerView.setAdapter(baseRecyclerAdapter);

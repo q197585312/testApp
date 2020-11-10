@@ -45,6 +45,7 @@ import gaming178.com.casinogame.Util.TiagonalBlueView;
 import gaming178.com.casinogame.Util.TiagonalRedView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
+import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 
 
 public class AppModel extends ViewModel {
@@ -3050,11 +3051,10 @@ public class AppModel extends ViewModel {
         //	Log.i(WebSiteUrl.Tag, "closeMuzicService="+ctx);
     }
 
-    @TargetApi(26)
     public void startFrontMuzicService(String action, int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (SystemTool.isRunBackground(activity)) {
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3071,11 +3071,10 @@ public class AppModel extends ViewModel {
         }
     }
 
-    @TargetApi(26)
     public void startBackgroudMuzicService(int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (SystemTool.isRunBackground(activity)) {
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3111,11 +3110,10 @@ public class AppModel extends ViewModel {
         }
     }
 
-    @TargetApi(26)
     public void changeMuzicVolumeService(ComponentName component, Context ctx, int volume, String action) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (SystemTool.isRunBackground(activity)) {
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;

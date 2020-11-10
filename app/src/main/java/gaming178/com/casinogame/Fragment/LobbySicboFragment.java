@@ -291,7 +291,7 @@ public class LobbySicboFragment extends BaseFragment {
                 baseActivity.mAppViewModel.setTableId(31);
                 baseActivity.mAppViewModel.setbLobby(false);
                 baseActivity.skipAct(SicboActivity.class, bundle);
-
+                baseActivity.finish();
             }
         });
         recyclerView.setAdapter(baseRecyclerAdapter);

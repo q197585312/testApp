@@ -909,12 +909,16 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 betTimeCount++;
                 if (betTimeCount == 6)//跳转到大厅
                 {
-                    GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.show_back_lobby));
+                    if (!WidgetUtil.isRunBackground(BaccaratActivity.this)){
+                        GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.show_back_lobby));
+                    }
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
                 } else if (betTimeCount == 4) {
-                    GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
+                    if (!WidgetUtil.isRunBackground(BaccaratActivity.this)){
+                        GdToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
+                    }
                 }
                 tvTableBetSure.setEnabled(true);
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 2, componentFront, mContext, mAppViewModel.getFrontVolume());
@@ -1868,7 +1872,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //
 //                        } else
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney()), Color.RED);
-                        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() > 0) {
+                        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney() > 0 && !WidgetUtil.isRunBackground(BaccaratActivity.this)) {
                             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
                             GdToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
                         }
