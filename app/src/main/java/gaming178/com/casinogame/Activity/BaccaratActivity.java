@@ -5682,8 +5682,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
-        String name = usName;
-        data = new LiveInfoBean(getString(R.string.gd_ID), name.toUpperCase(), "");
+        String name = "";
+        if (!TextUtils.isEmpty(usName)){
+            name = usName.toUpperCase();
+        }
+        data = new LiveInfoBean(getString(R.string.gd_ID), name, "");
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.gd_BET), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() +
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() +
