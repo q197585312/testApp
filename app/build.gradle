@@ -448,6 +448,13 @@ android {
                 versionName '3.68'
 
             }
+            naga888 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "naga888"]
+                buildConfigField "String", "Labelid", '"47"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.68'
+
+            }
         }
 
         applicationVariants.all { variant ->
