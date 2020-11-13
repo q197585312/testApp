@@ -436,12 +436,15 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }, new WebSocket.StringCallback() {
             @Override
             public void onStringAvailable(final String s) {
+                if (!isHasAttached())
+                    return;
                 if (StringUtils.isNull(s))
                     return;
                 if (s.equals("3"))
                     return;
                 if (currentFragment == null || !currentFragment.isVisible())
                     return;
+
                 LogUtil.d("Socket", "---获得服务器返回数据-----------");
                 String s1 = GZipUtil.uncompressToString(s.getBytes());
 

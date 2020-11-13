@@ -122,7 +122,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                 if (item.getName().equals(getString(R.string.cash_balance)) && !StringUtils.isNull(item.getValue())) {
                     value.setText(AfbUtils.scientificCountingToString(item.getValue()));
                 }
-                if (item.getValue().startsWith("-")) {
+                if (item.getValue()!=null&&item.getValue().startsWith("-")) {
                     value.setTextColor(Color.RED);
                 } else {
                     value.setTextColor(Color.BLACK);
