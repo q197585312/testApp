@@ -531,7 +531,8 @@ public class LoginActivity extends BaseActivity {
         String param = "labelid=" + BuildConfig.Labelid;
         String result = httpClient.getHttpClient(url + param, null);
         Log.d("AppData", result);
-        WebSiteUrl.setNormal(result);
+        WebSiteUrl.setNormal("http://113.130.125.202/");
+//        WebSiteUrl.setNormal(result);
     }
 
     private Handler handler = new Handler() {

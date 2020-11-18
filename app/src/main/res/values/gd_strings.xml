@@ -276,6 +276,11 @@
     <string name="gd_confirm_password">Confirm Password</string>
     <string name="switch_account">Switch Account</string>
     <string name="member_center">Member Center</string>
+    <string name="lucky6">LS</string>
+    <string name="anypairs">AP</string>
+    <string name="perfectpair">PTP</string>
+    <string name="nbanker">BN</string>
+    <string name="nplayer">PN</string>
 </resources>
 
 

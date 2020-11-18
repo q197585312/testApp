@@ -22,6 +22,8 @@ import androidx.lifecycle.ViewModelStore;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.SystemTool;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -210,7 +212,95 @@ public class AppModel extends ViewModel {
         bLimit.setMinBigBet(Integer.parseInt(limit[9]));
         bLimit.setMaxSmallBet(Integer.parseInt(limit[10]));
         bLimit.setMinSmallBet(Integer.parseInt(limit[11]));
-        //	bLimit.setIndex(Integer.parseInt(limit[12]));
+        double min = Double.parseDouble(limit[3]);
+        double max = Double.parseDouble(limit[2]);
+        int minLuckySixBet = 0;
+        int maxLuckySixBet = 0;
+        int minAnyPairBet = 0;
+        int maxAnyPairBet = 0;
+        int minPlayerNaturalBet = 0;
+        int maxPlayerNaturalBet = 0;
+        int minPerfectPairBet = 0;
+        int maxPerfectPairBet = 0;
+        int minBankerNaturalBet = 0;
+        int maxBankerNaturalBet = 0;
+        int minCowBankerBet = 0;
+        int maxCowBankerBet = 0;
+        int minCowPlayerBet = 0;
+        int maxCowPlayerBet = 0;
+        int minCowTieBet = 0;
+        int maxCowTieBet = 0;
+        if (min > 0) {
+            minLuckySixBet = Integer.parseInt(getDecimalFormat().format(min / 12));
+            minAnyPairBet = Integer.parseInt(getDecimalFormat().format(min / 5));
+            minPlayerNaturalBet = Integer.parseInt(getDecimalFormat().format(min * 2 / 7));
+            minPerfectPairBet = Integer.parseInt(getDecimalFormat().format(min / 25));
+            minBankerNaturalBet = Integer.parseInt(getDecimalFormat().format(min * 2 / 7));
+            minCowBankerBet = Integer.parseInt(getDecimalFormat().format(min / 9));
+            minCowPlayerBet = Integer.parseInt(getDecimalFormat().format(min / 9));
+            minCowTieBet = Integer.parseInt(getDecimalFormat().format(min / 8));
+            if (minLuckySixBet == 0) {
+                minLuckySixBet = 1;
+            }
+            if (minAnyPairBet == 0) {
+                minAnyPairBet = 1;
+            }
+            if (minPlayerNaturalBet == 0) {
+                minPlayerNaturalBet = 1;
+            }
+            if (minPerfectPairBet == 0) {
+                minPerfectPairBet = 1;
+            }
+            if (minBankerNaturalBet == 0) {
+                minBankerNaturalBet = 1;
+            }
+            if (minCowBankerBet == 0) {
+                minCowBankerBet = 1;
+            }
+            if (minCowPlayerBet == 0) {
+                minCowPlayerBet = 1;
+            }
+            if (minCowTieBet == 0) {
+                minCowTieBet = 1;
+            }
+
+        }
+        if (max > 0) {
+            maxLuckySixBet = Integer.parseInt(getDecimalFormat().format(max / 12));
+            maxAnyPairBet = Integer.parseInt(getDecimalFormat().format(max / 5));
+            maxPlayerNaturalBet = Integer.parseInt(getDecimalFormat().format(max * 2 / 7));
+            maxPerfectPairBet = Integer.parseInt(getDecimalFormat().format(max / 25));
+            maxBankerNaturalBet = Integer.parseInt(getDecimalFormat().format(max * 2 / 7));
+            maxCowBankerBet = Integer.parseInt(getDecimalFormat().format(max / 9));
+            maxCowPlayerBet = Integer.parseInt(getDecimalFormat().format(max / 9));
+            maxCowTieBet = Integer.parseInt(getDecimalFormat().format(max / 8));
+        }
+        bLimit.setMinLuckySixBet(minLuckySixBet);
+        bLimit.setMaxLuckySixBet(maxLuckySixBet);
+        bLimit.setMinAnyPairBet(minAnyPairBet);
+        bLimit.setMaxAnyPairBet(maxAnyPairBet);
+        bLimit.setMinPlayerNaturalBet(minPlayerNaturalBet);
+        bLimit.setMaxPlayerNaturalBet(maxPlayerNaturalBet);
+        bLimit.setMinPerfectPairBet(minPerfectPairBet);
+        bLimit.setMaxPerfectPairBet(maxPerfectPairBet);
+        bLimit.setMinBankerNaturalBet(minBankerNaturalBet);
+        bLimit.setMaxBankerNaturalBet(maxBankerNaturalBet);
+        bLimit.setMinCowBankerBet(minCowBankerBet);
+        bLimit.setMaxCowBankerBet(maxCowBankerBet);
+        bLimit.setMinCowPlayerBet(minCowPlayerBet);
+        bLimit.setMaxCowPlayerBet(maxCowPlayerBet);
+        bLimit.setMinCowTieBet(minCowTieBet);
+        bLimit.setMaxCowTieBet(maxCowTieBet);
+    }
+
+    DecimalFormat decimalFormat;
+
+    public DecimalFormat getDecimalFormat() {
+        if (decimalFormat == null) {
+            decimalFormat = new DecimalFormat("0");
+            decimalFormat.setRoundingMode(RoundingMode.DOWN);
+        }
+        return decimalFormat;
     }
 
     public void getDragonTigerLimitDetail(String strLimit, DragonTiger dragonTiger, int index) {
@@ -2171,7 +2261,7 @@ public class AppModel extends ViewModel {
                 tv_pp.setText("0");
                 //需要显示洗牌中
             } else {//显示路子
-                if (baccarat.getBigRoad() != null && (!baccarat.getBigRoad().equals(baccarat.getBigRoadOld())||gridLayoutHeadRoad.getChildCount()<1) && !baccarat.getGameNumber().equals("0")) {
+                if (baccarat.getBigRoad() != null && (!baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) || gridLayoutHeadRoad.getChildCount() < 1) && !baccarat.getGameNumber().equals("0")) {
                     baccarat.setBigRoadOld(baccarat.getBigRoad());
                     if (ll_good_road_parent != null && tv_good_road_name != null) {
                         String s = updateGoodRoad(mContext, baccarat.getBigRoad());
@@ -2992,7 +3082,7 @@ public class AppModel extends ViewModel {
         if (clickCount == 1)
             betMoney = betChip * clickCount + alreadyBet;
         else if (clickCount > 1) {
-               betMoney = betChip * clickCount + alreadyBet;
+            betMoney = betChip * clickCount + alreadyBet;
 //            if (betChip < minLimit) {
 //                betMoney = minLimit + betChip * (clickCount - 1) + alreadyBet;
 //            } else
