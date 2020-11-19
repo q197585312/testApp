@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -83,6 +82,7 @@ import gaming178.com.casinogame.Chat.MsgBean;
 import gaming178.com.casinogame.Chat.ReceiveMsgBean;
 import gaming178.com.casinogame.Control.PageWidgetT;
 import gaming178.com.casinogame.Control.flipCallBack;
+import gaming178.com.casinogame.Popupwindow.PopRule;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.BetUiHelper;
@@ -198,6 +198,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     @BindView(R2.id.gd__fl_baccarat_a_table)
     View fl_baccarat_a_table;
+
+    @BindView(R2.id.gd__fl_baccarat_b_table)
+    View fl_baccarat_b_table;
+    @BindView(R2.id.fl_bet_content_1)
+    View fl_bet_content_1;
+    @BindView(R2.id.fl_bet_content_2)
+    View fl_bet_content_2;
 
     @BindView(R2.id.gd__tv_ask1)
     TextView tv_ask1;
@@ -416,6 +423,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     ImageView img_bet_bg_perfect;
     @BindView(R2.id.gd__img_bet_bg_banker_n)
     ImageView img_bet_bg_banker_n;
+    @BindView(R2.id.gd__img_bet_bg_c_p)
+    ImageView img_bet_bg_c_p;
+    @BindView(R2.id.gd__img_bet_bg_c_t)
+    ImageView img_bet_bg_c_t;
+    @BindView(R2.id.gd__img_bet_bg_c_b)
+    ImageView img_bet_bg_c_b;
     @BindView(R2.id.gd__tv_lucky_bet_money)
     TextView tv_lucky_bet_money;
     @BindView(R2.id.gd__tv_lucky_bet_count)
@@ -470,6 +483,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private int clickPlayerCount = 0;
     private int clickTieCount = 0;
     private int clickLuckyCount = 0;
+    private int clickAnyCount = 0;
+    private int clickPlayerNCount = 0;
+    private int clickPerfectCount = 0;
+    private int clickBankerNCount = 0;
+    private int clickCPlayerCount = 0;
+    private int clickCTieCount = 0;
+    private int clickCBankerCount = 0;
     private int clickPlayerPairCount = 0;
     private int clickBankerPairCount = 0;
     private boolean bBetSucess = false;
@@ -477,6 +497,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private int playerBet = 0;
     private int tieBet = 0;
     private int luckyBet = 0;
+    private int anyBet = 0;
+    private int playerNBet = 0;
+    private int perfectBet = 0;
+    private int bankerNBet = 0;
+    private int cPlayerBet = 0;
+    private int cTieBet = 0;
+    private int cBankerBet = 0;
     private int bankerPairBet = 0;
     private int playerPairBet = 0;
     private int betTimeCount = 0;
@@ -511,6 +538,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private ChipShowHelper chipHelperBankerPair;
     private ChipShowHelper chipHelperTie;
     private ChipShowHelper chipHelperLucky;
+    private ChipShowHelper chipHelperAny;
+    private ChipShowHelper chipHelperPlayerN;
+    private ChipShowHelper chipHelperPerfect;
+    private ChipShowHelper chipHelperBankerN;
+    private ChipShowHelper chipHelperCPlayer;
+    private ChipShowHelper chipHelperCTie;
+    private ChipShowHelper chipHelperCBanker;
     private ChipShowHelper chipHelperCurrent;
     private AnimationDrawable animationDrawablePokerBanker;
     private AnimationDrawable animationDrawablePokerPlayer;
@@ -728,6 +762,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     String banker = "0";
                     String tie = "0";
                     String lucky = "0";
+                    String any = "0";
+                    String playerN = "0";
+                    String perfect = "0";
+                    String bankerN = "0";
+                    String cPlayer = "0";
+                    String cTie = "0";
+                    String cBanker = "0";
                     String playerPair = "0";
                     String bankerPair = "0";
 
@@ -740,6 +781,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
                     if (luckyBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.Lucky))
                         lucky = "" + (luckyBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getLucky());
+                    if (anyBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.Any))
+                        any = "" + (anyBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny());
+                    if (playerNBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.PlayerN))
+                        playerN = "" + (playerNBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN());
+                    if (perfectBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.Perfect))
+                        perfect = "" + (perfectBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect());
+                    if (bankerNBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.BankerN))
+                        bankerN = "" + (bankerNBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN());
+                    if (cPlayerBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.CowPlayer))
+                        cPlayer = "" + (cPlayerBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer());
+                    if (cTieBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.CowTie))
+                        cTie = "" + (cTieBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie());
+                    if (cBankerBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.CowBanker))
+                        cBanker = "" + (cBankerBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker());
 
                     if (playerPairBet > 0 && (type == BaccaratBetType.All || type == BaccaratBetType.PlayerPair))
                         playerPair = "" + (playerPairBet - mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair());
@@ -753,8 +808,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                             + "&Player=" + player + "&Banker=" + banker + "&Tie=" + tie + "&Bd=" + bankerPair + "&Pd=" + playerPair
                             + "&Big=0&Small=0";
 
-                    params += "&Lucky6=" + lucky;
-//                    params += "&Lucky6=1&AnyPairs=2&PerfectPairs=4&NBanker=5&NPlayer=3&CowBanker=0&CowPlayer=0&CowTie=0";
+                    params += "&Lucky6=" + lucky + "&AnyPairs=" + any + "&NPlayer=" + playerN + "&PerfectPairs=" + perfect + "&NBanker=" + bankerN +
+                            "&CowPlayer=" + cPlayer + "&CowTie=" + cTie + "&CowBanker=" + cBanker;
 
                     String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_BET_URL, params);
                     Log.i("BaccaratBet", "BaccaratBet params= " + params);
@@ -1139,7 +1194,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 //        Log.i(WebSiteUrl.Tag, "gameNumber="+gameNumber+",gameNumber1="+mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
                 clearAllChips();
             }*/
-            if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0 || luckyBet > 0) {
+            if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0 || luckyBet > 0 || anyBet > 0 ||
+                    playerNBet > 0 || perfectBet > 0 || bankerNBet > 0 || cPlayerBet > 0 || cTieBet > 0 || cBankerBet > 0) {
 
                 clearNoBetChip();
             }
@@ -1218,6 +1274,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 objectAnimatorPN.cancel();
                 objectAnimatorPerfect.cancel();
                 objectAnimatorBN.cancel();
+                objectAnimatorCP.cancel();
+                objectAnimatorCT.cancel();
+                objectAnimatorCB.cancel();
                 clearBetBg();
                 animationPlayer.stop();
                 animationPlayer.selectDrawable(0);
@@ -2556,6 +2615,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     @BindView(R.id.gd__fl_baccarat_table_lucky)
     FrameLayout fl_baccarat_table_lucky;
+    @BindView(R.id.gd__fl_baccarat_table_any)
+    FrameLayout fl_baccarat_table_any;
+    @BindView(R.id.gd__fl_baccarat_table_player_natural)
+    FrameLayout fl_baccarat_table_player_natural;
+    @BindView(R.id.gd__fl_baccarat_table_perfect)
+    FrameLayout fl_baccarat_table_perfect;
+    @BindView(R.id.gd__fl_baccarat_table_banker_natural)
+    FrameLayout fl_baccarat_table_banker_natural;
+    @BindView(R.id.gd__fl_baccarat_table_cow_player)
+    FrameLayout fl_baccarat_table_cow_player;
+    @BindView(R.id.gd__fl_baccarat_table_cow_tie)
+    FrameLayout fl_baccarat_table_cow_tie;
+    @BindView(R.id.gd__fl_baccarat_table_cow_banker)
+    FrameLayout gfl_baccarat_table_cow_banker;
 
     FrameLayout fl_baccarat_table_tie;
     FrameLayout fl_baccarat_table_player_pair;
@@ -2598,6 +2671,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         objectAnimatorPN = WidgetUtil.startAlphaAnimation(img_bet_bg_player_n);
         objectAnimatorPerfect = WidgetUtil.startAlphaAnimation(img_bet_bg_perfect);
         objectAnimatorBN = WidgetUtil.startAlphaAnimation(img_bet_bg_banker_n);
+        objectAnimatorCP = WidgetUtil.startAlphaAnimation(img_bet_bg_c_p);
+        objectAnimatorCT = WidgetUtil.startAlphaAnimation(img_bet_bg_c_t);
+        objectAnimatorCB = WidgetUtil.startAlphaAnimation(img_bet_bg_c_b);
         initUI();
         initApngList();
         initUserBetMsg();
@@ -2758,6 +2834,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         objectAnimatorPN.cancel();
         objectAnimatorPerfect.cancel();
         objectAnimatorBN.cancel();
+        objectAnimatorCP.cancel();
+        objectAnimatorCT.cancel();
+        objectAnimatorCB.cancel();
         animationPlayer.stop();
         animationPlayer.selectDrawable(0);
         animationBanker.stop();
@@ -3121,20 +3200,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         showRepeatBetBg();
         if (bBetSucess == false)//当前局还没有下注的时候允许重复下注
         {
-            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
-            {
-                chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
-
-                playerPairBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair();
-                chipHelperCurrent = chipHelperPlayerPair;
-            } else
-                chipHelperPlayerPair.setOperationButtonDisplay(false);
 
             if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0)//清楚未下注的筹码
             {
                 chipHelperPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
                 playerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer();
-                chipHelperCurrent = chipHelperPlayer;
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperPlayer;
+                }
             } else {
                 chipHelperPlayer.setOperationButtonDisplay(false);
             }
@@ -3144,7 +3217,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 bankerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker();
-                chipHelperCurrent = chipHelperBanker;
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperBanker;
+                }
             } else {
                 chipHelperBanker.setOperationButtonDisplay(false);
             }
@@ -3154,29 +3229,124 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 tieBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie();
-                chipHelperCurrent = chipHelperTie;
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperTie;
+                }
             } else {
                 chipHelperTie.setOperationButtonDisplay(false);
             }
 
-            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky() > 0)//清楚未下注的筹码
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
             {
-                chipHelperLucky.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+                chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
-                luckyBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky();
-                chipHelperCurrent = chipHelperLucky;
-            } else {
-                chipHelperLucky.setOperationButtonDisplay(false);
-            }
+                playerPairBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair();
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperPlayerPair;
+                }
+            } else
+                chipHelperPlayerPair.setOperationButtonDisplay(false);
 
             if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0)//清楚未下注的筹码
             {
                 chipHelperBankerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 bankerPairBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair();
-                chipHelperCurrent = chipHelperBankerPair;
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperBankerPair;
+                }
             } else
                 chipHelperBankerPair.setOperationButtonDisplay(false);
+
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky() > 0)//清楚未下注的筹码
+            {
+                chipHelperLucky.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                luckyBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky();
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperLucky;
+                }
+            } else {
+                chipHelperLucky.setOperationButtonDisplay(false);
+            }
+
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getAny() > 0)//清楚未下注的筹码
+            {
+                chipHelperAny.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getAny(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                anyBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getAny();
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperAny;
+                }
+            } else {
+                chipHelperAny.setOperationButtonDisplay(false);
+            }
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerN() > 0)//清楚未下注的筹码
+            {
+                chipHelperPlayerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerN(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                playerNBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerN();
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperPlayerN;
+                }
+            } else {
+                chipHelperPlayerN.setOperationButtonDisplay(false);
+            }
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPerfect() > 0)//清楚未下注的筹码
+            {
+                chipHelperPerfect.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPerfect(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                perfectBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPerfect();
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperPerfect;
+                }
+            } else {
+                chipHelperPerfect.setOperationButtonDisplay(false);
+            }
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerN() > 0)//清楚未下注的筹码
+            {
+                chipHelperBankerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerN(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                bankerNBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerN();
+                if (getCurrentBetContent()==1){
+                    chipHelperCurrent = chipHelperBankerN;
+                }
+            } else {
+                chipHelperBankerN.setOperationButtonDisplay(false);
+            }
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowPlayer() > 0)//清楚未下注的筹码
+            {
+                chipHelperCPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowPlayer(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                cPlayerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowPlayer();
+                if (getCurrentBetContent()==2){
+                    chipHelperCurrent = chipHelperCPlayer;
+                }
+            } else {
+                chipHelperCPlayer.setOperationButtonDisplay(false);
+            }
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowTie() > 0)//清楚未下注的筹码
+            {
+                chipHelperCTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                cTieBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowTie();
+                if (getCurrentBetContent()==2){
+                    chipHelperCurrent = chipHelperCTie;
+                }
+            } else {
+                chipHelperCTie.setOperationButtonDisplay(false);
+            }
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowBanker() > 0)//清楚未下注的筹码
+            {
+                chipHelperCBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowBanker(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+                cBankerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowBanker();
+                if (getCurrentBetContent()==2){
+                    chipHelperCurrent = chipHelperCBanker;
+                }
+            } else {
+                chipHelperCBanker.setOperationButtonDisplay(false);
+            }
 
             if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0 ||
                     mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0
@@ -3277,7 +3447,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     private void clearAllBet() {
-        if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0 || luckyBet > 0) {
+        if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0 || luckyBet > 0 || anyBet > 0 ||
+                playerNBet > 0 || perfectBet > 0 || bankerNBet > 0 || cPlayerBet > 0 || cTieBet > 0 || cBankerBet > 0) {
             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
         }
         img_bet_bg_b.setBackgroundResource(0);
@@ -3290,6 +3461,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         img_bet_bg_player_n.setBackgroundResource(0);
         img_bet_bg_perfect.setBackgroundResource(0);
         img_bet_bg_banker_n.setBackgroundResource(0);
+        img_bet_bg_c_p.setBackgroundResource(0);
+        img_bet_bg_c_t.setBackgroundResource(0);
+        img_bet_bg_c_b.setBackgroundResource(0);
         clearAllShowChip();
         clearNoBetChip();
     }
@@ -3301,7 +3475,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             GdToastUtils.showToast(mContext, getString(R.string.Insufficient));
             return;
         }
-        if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0 || luckyBet > 0) {
+        if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0 || luckyBet > 0 || anyBet > 0 ||
+                playerNBet > 0 || perfectBet > 0 || bankerNBet > 0 || cPlayerBet > 0 || cTieBet > 0 || cBankerBet > 0) {
             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
             //执行下注的线程
             baccaratBet = new BaccaratBet(BaccaratBetType.All);
@@ -3469,12 +3644,26 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperBanker = new ChipShowHelper(mContext, fl_baccarat_table_banker_bg, chipList);
         chipHelperTie = new ChipShowHelper(mContext, fl_baccarat_table_tie, chipList);
         chipHelperLucky = new ChipShowHelper(mContext, fl_baccarat_table_lucky, chipList);
+        chipHelperAny = new ChipShowHelper(mContext, fl_baccarat_table_any, chipList);
+        chipHelperPlayerN = new ChipShowHelper(mContext, fl_baccarat_table_player_natural, chipList);
+        chipHelperPerfect = new ChipShowHelper(mContext, fl_baccarat_table_perfect, chipList);
+        chipHelperBankerN = new ChipShowHelper(mContext, fl_baccarat_table_banker_natural, chipList);
+        chipHelperCPlayer = new ChipShowHelper(mContext, fl_baccarat_table_cow_player, chipList);
+        chipHelperCTie = new ChipShowHelper(mContext, fl_baccarat_table_cow_tie, chipList);
+        chipHelperCBanker = new ChipShowHelper(mContext, gfl_baccarat_table_cow_banker, chipList);
         chipHelperPlayerPair = new ChipShowHelper(mContext, fl_baccarat_table_player_pair, chipList);
         chipHelperBankerPair = new ChipShowHelper(mContext, fl_baccarat_table_banker_pair, chipList);
         chipShowHelperList.add(chipHelperPlayer);
         chipShowHelperList.add(chipHelperBanker);
         chipShowHelperList.add(chipHelperTie);
         chipShowHelperList.add(chipHelperLucky);
+        chipShowHelperList.add(chipHelperAny);
+        chipShowHelperList.add(chipHelperPlayerN);
+        chipShowHelperList.add(chipHelperPerfect);
+        chipShowHelperList.add(chipHelperBankerN);
+        chipShowHelperList.add(chipHelperCPlayer);
+        chipShowHelperList.add(chipHelperCTie);
+        chipShowHelperList.add(chipHelperCBanker);
         chipShowHelperList.add(chipHelperPlayerPair);
         chipShowHelperList.add(chipHelperBankerPair);
         chipHelperPlayer.setOperationButton(new View.OnClickListener() {
@@ -3553,6 +3742,139 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }
             }
         });
+        chipHelperAny.setOperationButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAll();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllBet();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFirstBet) {
+                    clearNoBetChip(BaccaratBetType.Any);
+                    setOnRepeatListener();
+                }
+            }
+        });
+        chipHelperPlayerN.setOperationButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAll();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllBet();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFirstBet) {
+                    clearNoBetChip(BaccaratBetType.PlayerN);
+                    setOnRepeatListener();
+                }
+            }
+        });
+        chipHelperPerfect.setOperationButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAll();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllBet();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFirstBet) {
+                    clearNoBetChip(BaccaratBetType.Perfect);
+                    setOnRepeatListener();
+                }
+            }
+        });
+        chipHelperBankerN.setOperationButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAll();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllBet();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFirstBet) {
+                    clearNoBetChip(BaccaratBetType.BankerN);
+                    setOnRepeatListener();
+                }
+            }
+        });
+        chipHelperCPlayer.setOperationButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAll();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllBet();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFirstBet) {
+                    clearNoBetChip(BaccaratBetType.CowPlayer);
+                    setOnRepeatListener();
+                }
+            }
+        });
+        chipHelperCTie.setOperationButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAll();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllBet();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFirstBet) {
+                    clearNoBetChip(BaccaratBetType.CowTie);
+                    setOnRepeatListener();
+                }
+            }
+        });
+        chipHelperCBanker.setOperationButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAll();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearAllBet();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFirstBet) {
+                    clearNoBetChip(BaccaratBetType.CowBanker);
+                    setOnRepeatListener();
+                }
+            }
+        });
         chipHelperPlayerPair.setOperationButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -3595,12 +3917,26 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperPlayerPair.setTextGravity(Gravity.TOP);
         chipHelperTie.setTextGravity(Gravity.TOP);
         chipHelperLucky.setTextGravity(Gravity.TOP);
+        chipHelperAny.setTextGravity(Gravity.TOP);
+        chipHelperPlayerN.setTextGravity(Gravity.TOP);
+        chipHelperPerfect.setTextGravity(Gravity.TOP);
+        chipHelperBankerN.setTextGravity(Gravity.TOP);
+        chipHelperCPlayer.setTextGravity(Gravity.TOP);
+        chipHelperCTie.setTextGravity(Gravity.TOP);
+        chipHelperCBanker.setTextGravity(Gravity.TOP);
         chipHelperBanker.setTextGravity(Gravity.TOP);
         chipHelperPlayer.setTextGravity(Gravity.TOP);
         chipHelperBankerPair.setTextGravity(Gravity.TOP);
         chipHelperPlayerPair.setTopMargin(AutoUtils.getPercentHeightSize(7));
         chipHelperTie.setTopMargin(AutoUtils.getPercentHeightSize(7));
         chipHelperLucky.setTopMargin(AutoUtils.getPercentHeightSize(7));
+        chipHelperAny.setTopMargin(AutoUtils.getPercentHeightSize(7));
+        chipHelperPlayerN.setTopMargin(AutoUtils.getPercentHeightSize(7));
+        chipHelperPerfect.setTopMargin(AutoUtils.getPercentHeightSize(7));
+        chipHelperBankerN.setTopMargin(AutoUtils.getPercentHeightSize(7));
+        chipHelperCPlayer.setTopMargin(AutoUtils.getPercentHeightSize(7));
+        chipHelperCTie.setTopMargin(AutoUtils.getPercentHeightSize(7));
+        chipHelperCBanker.setTopMargin(AutoUtils.getPercentHeightSize(7));
         chipHelperBanker.setTopMargin(AutoUtils.getPercentHeightSize(7));
         chipHelperPlayer.setTopMargin(AutoUtils.getPercentHeightSize(7));
         chipHelperBankerPair.setTopMargin(AutoUtils.getPercentHeightSize(7));
@@ -3609,6 +3945,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperBankerPair.setMoneyTipsTextSize(12);
         chipHelperTie.setMoneyTipsTextSize(12);
         chipHelperLucky.setMoneyTipsTextSize(12);
+        chipHelperAny.setMoneyTipsTextSize(12);
+        chipHelperPlayerN.setMoneyTipsTextSize(12);
+        chipHelperPerfect.setMoneyTipsTextSize(12);
+        chipHelperBankerN.setMoneyTipsTextSize(12);
+        chipHelperCPlayer.setMoneyTipsTextSize(12);
+        chipHelperCTie.setMoneyTipsTextSize(12);
+        chipHelperCBanker.setMoneyTipsTextSize(12);
         chipHelperBanker.setMoneyTipsTextSize(12);
         chipHelperPlayer.setMoneyTipsTextSize(12);
     }
@@ -3758,15 +4101,21 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             data = new LiveInfoBean(getString(R.string.PP), "0", "");
         strData.add(data);
 
-        data = new LiveInfoBean(getString(R.string.lucky6), luckySixPeople, "");
+        data = new LiveInfoBean(getString(R.string.lucky6), luckySixMoney, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.anypairs), anyPairPeople, "");
+        data = new LiveInfoBean(getString(R.string.anypairs), anyPairMoney, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.nplayer), playerNaturalPeople, "");
+        data = new LiveInfoBean(getString(R.string.nplayer), playerNaturalMoney, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.perfectpair), perfectPairPeople, "");
+        data = new LiveInfoBean(getString(R.string.perfectpair), perfectPairMoney, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.nbanker), bankerNaturalPeople, "");
+        data = new LiveInfoBean(getString(R.string.nbanker), bankerNaturalMoney, "");
+        strData.add(data);
+        data = new LiveInfoBean(getString(R.string.cplayer), cowPlayerMoney, "");
+        strData.add(data);
+        data = new LiveInfoBean(getString(R.string.ctie), cowTieMoney, "");
+        strData.add(data);
+        data = new LiveInfoBean(getString(R.string.cbanker), cowBankerMoney, "");
         strData.add(data);
 
         return strData;
@@ -4165,6 +4514,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     int playerShowChip;
     int tieShowChip;
     int luckyShowChip;
+    int anyShowChip;
+    int playerNShowChip;
+    int perfectShowChip;
+    int bankerNShowChip;
+    int cPlayerShowChip;
+    int cTieShowChip;
+    int cBankerShowChip;
     int bbShowChip;
     int ppShowChip;
 
@@ -4173,6 +4529,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         playerShowChip = 0;
         tieShowChip = 0;
         luckyShowChip = 0;
+        anyShowChip = 0;
+        playerNShowChip = 0;
+        perfectShowChip = 0;
+        bankerNShowChip = 0;
+        cPlayerShowChip = 0;
+        cTieShowChip = 0;
+        cBankerShowChip = 0;
         bbShowChip = 0;
         ppShowChip = 0;
     }
@@ -4281,24 +4644,52 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int banker = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker();
         int player = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer();
         int lucky = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getLucky();
+        int any = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny();
+        int playerN = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN();
+        int perfect = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect();
+        int bankerN = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN();
+        int cPlayer = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer();
+        int cTie = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie();
+        int cBanker = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker();
         switch (type) {
             case "B":
-                allShowChip = playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + player + tie + playerPair + bankerPair + lucky;
+                allShowChip = playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + playerPair + bankerPair + lucky + any + playerN + perfect + bankerN + cPlayer + cTie + cBanker;
                 break;
             case "P":
-                allShowChip = bankerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + banker + tie + playerPair + bankerPair + lucky;
+                allShowChip = bankerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + banker + tie + playerPair + bankerPair + lucky + any + playerN + perfect + bankerN + cPlayer + cTie + cBanker;
                 break;
             case "T":
-                allShowChip = bankerShowChip + playerShowChip + bbShowChip + ppShowChip + luckyShowChip + player + banker + playerPair + bankerPair + lucky;
+                allShowChip = bankerShowChip + playerShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + banker + playerPair + bankerPair + lucky + any + playerN + perfect + bankerN + cPlayer + cTie + cBanker;
                 break;
             case "BB":
-                allShowChip = bankerShowChip + playerShowChip + tieShowChip + ppShowChip + luckyShowChip + player + tie + playerPair + banker + lucky;
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + playerPair + banker + lucky + any + playerN + perfect + bankerN + cPlayer + cTie + cBanker;
                 break;
             case "PP":
-                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + luckyShowChip + player + tie + banker + bankerPair + lucky;
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + banker + bankerPair + lucky + any + playerN + perfect + bankerN + cPlayer + cTie + cBanker;
                 break;
             case "Lucky":
-                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + player + tie + banker + playerPair + bankerPair;
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + banker + playerPair + bankerPair + any + playerN + perfect + bankerN + cPlayer + cTie + cBanker;
+                break;
+            case "Any":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + banker + playerPair + bankerPair + lucky + playerN + perfect + bankerN + cPlayer + cTie + cBanker;
+                break;
+            case "PlayerN":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + banker + playerPair + bankerPair + lucky + any + perfect + bankerN + cPlayer + cTie + cBanker;
+                break;
+            case "Perfect":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + banker + playerPair + bankerPair + lucky + any + playerN + bankerN + cPlayer + cTie + cBanker;
+                break;
+            case "BankerN":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + cPlayerShowChip + cTieShowChip + cBankerShowChip + player + tie + banker + playerPair + bankerPair + lucky + any + playerN + perfect + cPlayer + cTie + cBanker;
+                break;
+            case "CPlayer":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cTieShowChip + cBankerShowChip + player + tie + banker + playerPair + bankerPair + lucky + any + playerN + perfect + bankerN + cTie + cBanker;
+                break;
+            case "CTie":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cBankerShowChip + player + tie + banker + playerPair + bankerPair + lucky + any + playerN + perfect + bankerN + cPlayer + cBanker;
+                break;
+            case "CBanker":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + player + tie + banker + playerPair + bankerPair + lucky + any + playerN + perfect + bankerN + cPlayer + cTie;
                 break;
         }
         int maxTotalBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet();
@@ -4367,6 +4758,224 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         } else {
             clickLuckyCount = 0;
             luckyBet = 0;
+            handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
+        }
+
+    }
+
+    public void clickBetAny(final View f) {
+        if (checkChoose()) return;
+        chipHelperCurrent = chipHelperAny;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
+            return;
+        clickAnyCount++;
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinAnyPairBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxAnyPairBet(), clickAnyCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        anyShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "Any");
+        if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            } else {
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_t);
+            }
+            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            anyBet = betMoney;
+            closeOtherSure();
+        } else {
+            clickAnyCount = 0;
+            anyBet = 0;
+            handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
+        }
+
+    }
+
+    public void clickBetPlayerNatural(final View f) {
+        if (checkChoose()) return;
+        chipHelperCurrent = chipHelperPlayerN;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
+            return;
+        clickPlayerNCount++;
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPlayerNaturalBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPlayerNaturalBet(), clickPlayerNCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        playerNShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "PlayerN");
+        if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+            } else {
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pp);
+            }
+            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            playerNBet = betMoney;
+            closeOtherSure();
+        } else {
+            clickPlayerNCount = 0;
+            playerNBet = 0;
+            handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
+        }
+
+    }
+
+    public void clickBetPlayerPerfect(final View f) {
+        if (checkChoose()) return;
+        chipHelperCurrent = chipHelperPerfect;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
+            return;
+        clickPerfectCount++;
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPerfectPairBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPerfectPairBet(), clickPerfectCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        perfectShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "Perfect");
+        if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            } else {
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_t);
+            }
+            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            perfectBet = betMoney;
+            closeOtherSure();
+        } else {
+            clickPerfectCount = 0;
+            perfectBet = 0;
+            handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
+        }
+
+    }
+
+    public void clickBetBankerNatural(final View f) {
+        if (checkChoose()) return;
+        chipHelperCurrent = chipHelperBankerN;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
+            return;
+        clickBankerNCount++;
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerNaturalBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerNaturalBet(), clickBankerNCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        bankerNShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "BankerN");
+        if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+            } else {
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_h_bp);
+            }
+            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            bankerNBet = betMoney;
+            closeOtherSure();
+        } else {
+            clickBankerNCount = 0;
+            bankerNBet = 0;
+            handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
+        }
+
+    }
+
+    public void clickBetCowPlayer(final View f) {
+        if (checkChoose()) return;
+        chipHelperCurrent = chipHelperCPlayer;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
+            return;
+        if (cBankerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
+            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
+            return;
+        }
+        clickCPlayerCount++;
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowPlayerBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowPlayerBet(), clickCPlayerCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        cPlayerShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "CPlayer");
+        if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_v_cp);
+            } else {
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_h_cp);
+            }
+            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            cPlayerBet = betMoney;
+            closeOtherSure();
+        } else {
+            clickCPlayerCount = 0;
+            cPlayerBet = 0;
+            handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
+        }
+
+    }
+
+    public void clickBetCowTie(final View f) {
+        if (checkChoose()) return;
+        chipHelperCurrent = chipHelperCTie;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
+            return;
+        clickCTieCount++;
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowTieBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowTieBet(), clickCTieCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        cTieShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "CTie");
+        if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_v_ct);
+            } else {
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_h_ct);
+            }
+            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            cTieBet = betMoney;
+            closeOtherSure();
+        } else {
+            clickCTieCount = 0;
+            cTieBet = 0;
+            handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
+        }
+
+    }
+
+    public void clickBetCowBanker(final View f) {
+        if (checkChoose()) return;
+        chipHelperCurrent = chipHelperCBanker;
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
+            return;
+        if (cPlayerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
+            return;
+        }
+        clickCBankerCount++;
+        int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowBankerBet(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowBankerBet(), clickCBankerCount,
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker(),
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        bankerNShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "CBanker");
+        if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_v_cb);
+            } else {
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_h_cb);
+            }
+            chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            cBankerBet = betMoney;
+            closeOtherSure();
+        } else {
+            clickCBankerCount = 0;
+            cBankerBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
 
@@ -4472,6 +5081,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperPlayerPair.setOperationButtonDisplay(false);
         chipHelperTie.setOperationButtonDisplay(false);
         chipHelperLucky.setOperationButtonDisplay(false);
+        chipHelperAny.setOperationButtonDisplay(false);
+        chipHelperPlayerN.setOperationButtonDisplay(false);
+        chipHelperPerfect.setOperationButtonDisplay(false);
+        chipHelperBankerN.setOperationButtonDisplay(false);
+        chipHelperCPlayer.setOperationButtonDisplay(false);
+        chipHelperCTie.setOperationButtonDisplay(false);
+        chipHelperCBanker.setOperationButtonDisplay(false);
         chipHelperBanker.setOperationButtonDisplay(false);
         chipHelperPlayer.setOperationButtonDisplay(false);
 
@@ -4479,6 +5095,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperBanker.clearAllChips();
         chipHelperTie.clearAllChips();
         chipHelperLucky.clearAllChips();
+        chipHelperAny.clearAllChips();
+        chipHelperPlayerN.clearAllChips();
+        chipHelperPerfect.clearAllChips();
+        chipHelperBankerN.clearAllChips();
+        chipHelperCPlayer.clearAllChips();
+        chipHelperCTie.clearAllChips();
+        chipHelperCBanker.clearAllChips();
         chipHelperPlayerPair.clearAllChips();
         chipHelperBankerPair.clearAllChips();
 
@@ -4504,6 +5127,41 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getLucky() > 0)//清楚未下注的筹码
         {
             chipHelperLucky.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getLucky(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny() > 0)//清楚未下注的筹码
+        {
+            chipHelperAny.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN() > 0)//清楚未下注的筹码
+        {
+            chipHelperPlayerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect() > 0)//清楚未下注的筹码
+        {
+            chipHelperPerfect.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN() > 0)//清楚未下注的筹码
+        {
+            chipHelperBankerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0)//清楚未下注的筹码
+        {
+            chipHelperCPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie() > 0)//清楚未下注的筹码
+        {
+            chipHelperCTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0)//清楚未下注的筹码
+        {
+            chipHelperCBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
@@ -4547,6 +5205,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     ObjectAnimator objectAnimatorPN;
     ObjectAnimator objectAnimatorPerfect;
     ObjectAnimator objectAnimatorBN;
+    ObjectAnimator objectAnimatorCP;
+    ObjectAnimator objectAnimatorCT;
+    ObjectAnimator objectAnimatorCB;
 
     public void showResultsOnUI() {
 //        clearBetBg();
@@ -4632,14 +5293,22 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //            iv_baccarat_table_banker.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_v_b);
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_v_cb);
             } else {
                 img_bet_bg_b.setBackgroundResource(R.mipmap.gd_bet_h_b);
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_h_cb);
             }
             if (objectAnimatorB.isRunning()) {
                 objectAnimatorB.cancel();
                 objectAnimatorB.start();
             } else {
                 objectAnimatorB.start();
+            }
+            if (objectAnimatorCB.isRunning()) {
+                objectAnimatorCB.cancel();
+                objectAnimatorCB.start();
+            } else {
+                objectAnimatorCB.start();
             }
             showApng(2);
             animationBanker.start();
@@ -4648,8 +5317,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             showApng(0);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_v_p);
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_v_cp);
             } else {
                 img_bet_bg_p.setBackgroundResource(R.mipmap.gd_bet_h_p);
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_h_cp);
             }
             animationPlayer.start();
 //            iv_baccarat_table_player.setVisibility(View.VISIBLE);
@@ -4659,20 +5330,34 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             } else {
                 objectAnimatorP.start();
             }
+            if (objectAnimatorCP.isRunning()) {
+                objectAnimatorCP.cancel();
+                objectAnimatorCP.start();
+            } else {
+                objectAnimatorCP.start();
+            }
             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 5, componentFront, mContext, mAppViewModel.getFrontVolume());
         } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 3) {
             showApng(1);
 //            iv_baccarat_table_tie.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_v_ct);
             } else {
                 img_bet_bg_t.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_h_ct);
             }
             if (objectAnimatorT.isRunning()) {
                 objectAnimatorT.cancel();
                 objectAnimatorT.start();
             } else {
                 objectAnimatorT.start();
+            }
+            if (objectAnimatorCT.isRunning()) {
+                objectAnimatorCT.cancel();
+                objectAnimatorCT.start();
+            } else {
+                objectAnimatorCT.start();
             }
             mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 6, componentFront, mContext, mAppViewModel.getFrontVolume());
         }
@@ -4879,6 +5564,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         objectAnimatorT.cancel();
         objectAnimatorBP.cancel();
         objectAnimatorPP.cancel();
+        objectAnimatorLucky.cancel();
+        objectAnimatorAny.cancel();
+        objectAnimatorPN.cancel();
+        objectAnimatorPerfect.cancel();
+        objectAnimatorBN.cancel();
+        objectAnimatorCP.cancel();
+        objectAnimatorCT.cancel();
+        objectAnimatorCB.cancel();
     }
 
     @Override
@@ -5653,6 +6346,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         clickPlayerPairCount = 0;
         clickTieCount = 0;
         clickLuckyCount = 0;
+        clickAnyCount = 0;
+        clickPlayerNCount = 0;
+        clickPerfectCount = 0;
+        clickBankerNCount = 0;
+        clickCPlayerCount = 0;
+        clickCTieCount = 0;
+        clickCBankerCount = 0;
     }
 
 
@@ -5872,6 +6572,48 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             clickLuckyCount = 0;
             chipHelperLucky.setOperationButtonDisplay(false);
         }
+        if (type == BaccaratBetType.All || type == BaccaratBetType.Any) {
+            chipHelperAny.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            anyBet = 0;
+            clickAnyCount = 0;
+            chipHelperAny.setOperationButtonDisplay(false);
+        }
+        if (type == BaccaratBetType.All || type == BaccaratBetType.PlayerN) {
+            chipHelperPlayerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            playerNBet = 0;
+            clickPlayerNCount = 0;
+            chipHelperPlayerN.setOperationButtonDisplay(false);
+        }
+        if (type == BaccaratBetType.All || type == BaccaratBetType.Perfect) {
+            chipHelperPerfect.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            perfectBet = 0;
+            clickPerfectCount = 0;
+            chipHelperPerfect.setOperationButtonDisplay(false);
+        }
+        if (type == BaccaratBetType.All || type == BaccaratBetType.BankerN) {
+            chipHelperBankerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            bankerNBet = 0;
+            clickBankerNCount = 0;
+            chipHelperBankerN.setOperationButtonDisplay(false);
+        }
+        if (type == BaccaratBetType.All || type == BaccaratBetType.CowPlayer) {
+            chipHelperCPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            cPlayerBet = 0;
+            clickCPlayerCount = 0;
+            chipHelperCPlayer.setOperationButtonDisplay(false);
+        }
+        if (type == BaccaratBetType.All || type == BaccaratBetType.CowTie) {
+            chipHelperCTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            cTieBet = 0;
+            clickCTieCount = 0;
+            chipHelperCTie.setOperationButtonDisplay(false);
+        }
+        if (type == BaccaratBetType.All || type == BaccaratBetType.CowBanker) {
+            chipHelperCBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker(), tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+            cBankerBet = 0;
+            clickCBankerCount = 0;
+            chipHelperCBanker.setOperationButtonDisplay(false);
+        }
         if (type == BaccaratBetType.All || type == BaccaratBetType.PlayerPair) {
             chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair(), chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerPairBet = 0;
@@ -5890,12 +6632,27 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 bankerPairBet == 0 &&
                 tieBet == 0 &&
                 luckyBet == 0 &&
+                anyBet == 0 &&
+                playerNBet == 0 &&
+                perfectBet == 0 &&
+                bankerNBet == 0 &&
+                cPlayerBet == 0 &&
+                cTieBet == 0 &&
+                cBankerBet == 0 &&
                 clickBankerCount == 0 &&
                 clickPlayerCount == 0 &&
                 clickBankerPairCount == 0 &&
                 clickPlayerPairCount == 0 &&
                 clickTieCount == 0 &&
-                clickLuckyCount == 0) {
+                clickLuckyCount == 0 &&
+                clickAnyCount == 0 &&
+                clickPlayerNCount == 0 &&
+                clickPerfectCount == 0 &&
+                clickBankerNCount == 0 &&
+                clickCPlayerCount == 0 &&
+                clickCTieCount == 0 &&
+                clickCBankerCount == 0
+        ) {
             BetUiHelper.betStateColor(tvTableBetSure, false);
         }
     }
@@ -5911,6 +6668,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         img_bet_bg_player_n.setBackgroundResource(0);
         img_bet_bg_perfect.setBackgroundResource(0);
         img_bet_bg_banker_n.setBackgroundResource(0);
+        img_bet_bg_c_p.setBackgroundResource(0);
+        img_bet_bg_c_t.setBackgroundResource(0);
+        img_bet_bg_c_b.setBackgroundResource(0);
     }
 
     private void showBetBg() {
@@ -5958,6 +6718,56 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_t);
             }
         }
+
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            } else {
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_t);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+            } else {
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pp);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            } else {
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_t);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+            } else {
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_h_bp);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_v_cp);
+            } else {
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_h_cp);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_v_ct);
+            } else {
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_h_ct);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_v_cb);
+            } else {
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_h_cb);
+            }
+        }
     }
 
     private void showRepeatBetBg() {
@@ -5995,6 +6805,62 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_v_bp);
             } else {
                 img_bet_bg_bp.setBackgroundResource(R.mipmap.gd_bet_h_bp);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            } else {
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_t);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getAny() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            } else {
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_t);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerN() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+            } else {
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pp);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPerfect() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            } else {
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerN() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+            } else {
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowPlayer() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_v_cp);
+            } else {
+                img_bet_bg_c_p.setBackgroundResource(R.mipmap.gd_bet_h_cp);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowTie() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_v_ct);
+            } else {
+                img_bet_bg_c_t.setBackgroundResource(R.mipmap.gd_bet_h_ct);
+            }
+        }
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowBanker() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_v_cb);
+            } else {
+                img_bet_bg_c_b.setBackgroundResource(R.mipmap.gd_bet_h_cb);
             }
         }
     }
@@ -6104,6 +6970,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPerfectPairBet())));
         strData.add(new LiveInfoBean(getString(R.string.nbanker), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerNaturalBet())
                 , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerNaturalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.cplayer), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowPlayerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowPlayerBet())));
+        strData.add(new LiveInfoBean(getString(R.string.ctie), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowTieBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowTieBet())));
+        strData.add(new LiveInfoBean(getString(R.string.cbanker), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowBankerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowBankerBet())));
 
         return strData;
     }
@@ -6143,13 +7015,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         contentInfo.setData(updateInfoData());
     }
 
+    @BindView(R.id.tv_niu_p_hint)
+    TextView tv_niu_p_hint;
+    @BindView(R.id.tv_niu_b_hint)
+    TextView tv_niu_b_hint;
+
     @Override
     public void onInGameChooseLanguage() {
         initApngList();
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoadOld("");
         fl_baccarat_a_table.setBackgroundResource(0);
+        fl_baccarat_b_table.setBackgroundResource(0);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             fl_baccarat_a_table.setBackgroundResource(R.mipmap.gd_baccarat_bg_h);
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.gd_baccarat_bg_h_niu);
         } else {
             fl_baccarat_a_table.setBackgroundResource(R.mipmap.gd_bet_a_bg_trans);
         }
@@ -6166,7 +7045,32 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         ((TextView) findViewById(R.id.gd__tv_total)).setText(getString(R.string.total_m));
         tv_player_result_name.setText(getString(R.string.player_home));
         tv_banker_result_name.setText(getString(R.string.banker_home));
+        tv_niu_p_hint.setText(getString(R.string.niu_hint));
+        tv_niu_b_hint.setText(getString(R.string.niu_hint));
         initResultAnimation();
+    }
+
+    public void clickNiuRule(View f) {
+        PopRule popRule = new PopRule(mContext, f, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        popRule.showPopupCenterWindow();
+    }
+
+    public void clickChangeBetContent(View f) {
+        if (getCurrentBetContent() == 1) {
+            fl_bet_content_1.setVisibility(View.INVISIBLE);
+            fl_bet_content_2.setVisibility(View.VISIBLE);
+        } else {
+            fl_bet_content_1.setVisibility(View.VISIBLE);
+            fl_bet_content_2.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private int getCurrentBetContent() {
+        if (fl_bet_content_1.getVisibility() == View.VISIBLE && fl_bet_content_2.getVisibility() == View.INVISIBLE) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
     @Override

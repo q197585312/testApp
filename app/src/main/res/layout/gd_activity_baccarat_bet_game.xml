@@ -665,4 +665,14 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5px"
+        android:layout_marginTop="225px"
+        android:onClick="clickChangeBetContent"
+        android:text="切换牛牛"
+        android:textColor="@color/white"
+        android:textSize="20px"></TextView>
+
 </FrameLayout>

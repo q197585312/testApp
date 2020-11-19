@@ -281,6 +281,11 @@
     <string name="perfectpair">PTP</string>
     <string name="nbanker">BN</string>
     <string name="nplayer">PN</string>
+    <string name="cplayer">PC</string>
+    <string name="ctie">TC</string>
+    <string name="cbanker">BC</string>
+    <string name="niu_hint">Win/Loss amount varies based on the end game result</string>
+    <string name="Rule">Rule</string>
 </resources>
 
 
