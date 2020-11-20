@@ -2814,6 +2814,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         clearAllShowChip();
         clearAllChips();
         clearBetBg();
+        initClickCount();
         initPokerState();
         hidePoker(3);
         bUpdateRoad = true;
@@ -6336,6 +6337,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
         skipAct(LobbyActivity.class, bundle);
+        finish();
     }
 
     //重新选择了筹码，重新开始算下注筹码
@@ -7031,6 +7033,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             fl_baccarat_b_table.setBackgroundResource(R.mipmap.gd_baccarat_bg_h_niu);
         } else {
             fl_baccarat_a_table.setBackgroundResource(R.mipmap.gd_bet_a_bg_trans);
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.gd_bet_a_bg_trans_niu);
         }
         tv_ask1.setText(getString(R.string.banker1));
         tv_ask2.setText(getString(R.string.player1));

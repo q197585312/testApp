@@ -1,481 +1,908 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/gd__fl_bet1_bg"
     android:layout_width="match_parent"
     android:layout_height="280px"
     android:layout_gravity="bottom|center_horizontal"
     android:layout_marginBottom="53px">
 
-    <RelativeLayout
-        android:layout_width="644px"
-        android:layout_height="113px"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="15px">
-
-        <FrameLayout
-            android:layout_width="144px"
-            android:layout_height="match_parent"
-            android:layout_gravity="left">
-
-            <ImageView
-                android:id="@+id/gd__img_bet_bg_pp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/gd__fl_tie_bet_bg"
-            android:layout_width="112px"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true">
-
-            <ImageView
-                android:id="@+id/gd__img_bet_bg_t"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="168px"
-            android:layout_height="match_parent"
-            android:layout_marginRight="-13px"
-            android:layout_toLeftOf="@id/gd__fl_tie_bet_bg">
-
-            <ImageView
-                android:id="@+id/gd__img_bet_bg_p"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="164px"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="-7px"
-            android:layout_toRightOf="@id/gd__fl_tie_bet_bg">
-
-            <ImageView
-                android:id="@+id/gd__img_bet_bg_b"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
-
-        <FrameLayout
-
-            android:layout_width="136px"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true">
-
-            <ImageView
-                android:id="@+id/gd__img_bet_bg_bp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/gd__fl_baccarat_a_table"
-        android:layout_width="644px"
-        android:layout_height="113px"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="15px"
-        android:background="@mipmap/gd_bet_a_bg_trans">
-
-        <FrameLayout
-            android:layout_width="144px"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:clickable="true"
-            android:onClick="clickBetPlayerPair">
-
-            <ImageView
-                android:id="@+id/gd__iv_baccarat_table_player_pair"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/gd_table_4"
-                android:visibility="gone" />
-
-            <gaming178.com.casinogame.Util.SkewTexView
-                android:id="@+id/gd__tv_baccarat_pp"
-                android:layout_width="80px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="11px"
-                android:layout_marginTop="18px"
-                android:gravity="center"
-                android:text="@string/PP"
-                android:textColor="@color/blue_height"
-                android:textSize="20px"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:skew_x="-0.35" />
-
-            <TextView
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="35px"
-                android:text="1:11"
-                android:textColor="@color/yellow_gold"
-                android:textSize="15px"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/gd__tv_player_pair_bet_money"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="left|bottom"
-                android:layout_marginLeft="10px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_dollar_white"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-
-            <TextView
-
-
-                android:id="@+id/gd__tv_player_pair_bet_count"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="right|bottom"
-
-                android:layout_marginRight="32px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_home_user_head_white"
-                android:gravity="center"
-                android:onClick="clickPlayerPair"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingRight="5dp"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/gd__fl_tie"
-            android:layout_width="112px"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:clickable="true"
-            android:onClick="clickBetTie">
-
-            <ImageView
-                android:id="@+id/gd__iv_baccarat_table_tie"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/gd_table_3"
-                android:visibility="gone" />
-
-            <gaming178.com.casinogame.Util.SkewTexView
-                android:id="@+id/gd__tv_baccarat_tie"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="3px"
-                android:layout_marginTop="18px"
-                android:gravity="center"
-                android:text="@string/tie_dragon_tiger"
-                android:textColor="@color/green500"
-                android:textSize="20px"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <TextView
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="35px"
-                android:text="1:8"
-                android:textColor="@color/white"
-                android:textSize="15px"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/gd__tv_tie_bet_money"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="left|bottom"
-                android:layout_marginLeft="7px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_dollar_white"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-
-            <TextView
-
-                android:id="@+id/gd__tv_tie_bet_count"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="right|bottom"
-
-                android:layout_marginRight="6px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_home_user_head_white"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingRight="5dp"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/gd__fl_baccarat_table_player"
-            android:layout_width="168px"
-            android:layout_height="match_parent"
-            android:layout_marginRight="-13px"
-            android:layout_toLeftOf="@id/gd__fl_tie"
-            android:clickable="true"
-            android:onClick="clickBetPlayer">
-
-            <ImageView
-                android:id="@+id/gd__iv_baccarat_table_player"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/gd_table_1"
-                android:clickable="true"
-                android:onClick="clickBetPlayer"
-                android:visibility="gone" />
-
-            <gaming178.com.casinogame.Util.SkewTexView
-                android:id="@+id/gd__tv_baccarat_player"
-                android:layout_width="145px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="8px"
-                android:layout_marginTop="18px"
-                android:gravity="center"
-                android:text="@string/player"
-                android:textColor="@color/blue_height"
-                android:textSize="20px"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:skew_x="-0.21" />
-
-            <TextView
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="15px"
-                android:layout_marginTop="60px"
-                android:text="1:1"
-                android:textColor="@color/yellow_gold"
-                android:textSize="20px"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/gd__tv_player_bet_money"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="left|bottom"
-                android:layout_marginLeft="12px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_dollar_white"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-
-            <TextView
-
-                android:id="@+id/gd__tv_player_bet_count"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="right|bottom"
-                android:layout_marginRight="17px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_home_user_head_white"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingRight="5dp"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/gd__fl_baccarat_table_banker"
-            android:layout_width="164px"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="-7px"
-            android:layout_toRightOf="@id/gd__fl_tie"
-            android:clickable="true"
-            android:onClick="clickBetBanker">
-
-            <ImageView
-                android:id="@+id/gd__iv_baccarat_table_banker"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/gd_table_2"
-                android:visibility="gone" />
-
-            <gaming178.com.casinogame.Util.SkewTexView
-                android:id="@+id/gd__tv_baccarat_banker"
-                android:layout_width="145px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="18px"
-                android:layout_marginRight="8px"
-                android:gravity="center"
-                android:text="@string/banker"
-                android:textColor="@color/red"
-                android:textSize="20px"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:skew_x="0.21" />
-
-            <TextView
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="60px"
-                android:layout_marginRight="15px"
-                android:text="1:0.95"
-                android:textColor="@color/white"
-                android:textSize="20px"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/gd__tv_banker_bet_money"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="left|bottom"
-                android:layout_marginLeft="9px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_dollar_white"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-
-            <TextView
-                android:id="@+id/gd__tv_banker_bet_count"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="right|bottom"
-
-                android:layout_marginRight="15px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_home_user_head_white"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingRight="5dp"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px"
-
-                />
-        </FrameLayout>
-
-        <FrameLayout
-
-            android:layout_width="136px"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/gd_table5_trans_black_selector"
-            android:clickable="true"
-            android:onClick="clickBetBankerPair">
-
-            <ImageView
-                android:id="@+id/gd__iv_baccarat_table_banker_pair"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/gd_table_5"
-                android:visibility="gone" />
-
-            <gaming178.com.casinogame.Util.SkewTexView
-                android:id="@+id/gd__tv_baccarat_bp"
-                android:layout_width="52px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="18px"
-                android:layout_marginRight="10px"
-                android:gravity="center"
-                android:text="@string/BP"
-                android:textColor="@color/red"
-                android:textSize="20px"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:skew_x="0.31" />
-
-            <TextView
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="35px"
-                android:text="1:11"
-                android:textColor="@color/yellow_gold"
-                android:textSize="15px"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/gd__tv_banker_pair_bet_money"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="left|bottom"
-                android:layout_marginLeft="25px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_dollar_white"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-
-            <TextView
-
-                android:id="@+id/gd__tv_banker_pair_bet_count"
-                style="@style/style_wrap_wrap"
-                android:layout_gravity="right|bottom"
-
-                android:layout_marginRight="10px"
-                android:layout_marginBottom="10px"
-                android:drawableLeft="@mipmap/gd_home_user_head_white"
-                android:gravity="center"
-                android:onClick="clickBankerPair"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingRight="5dp"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="16px" />
-        </FrameLayout>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="644px"
+    <FrameLayout
+        android:id="@+id/fl_bet_content_1"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="15px">
+        android:visibility="visible">
 
-        <FrameLayout
-            android:id="@+id/gd__fl_baccarat_table_player_pair"
-            android:layout_width="144px"
-            android:layout_height="match_parent" />
+        <RelativeLayout
+            android:layout_width="644px"
+            android:layout_height="113px"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="15px">
 
-        <FrameLayout
-            android:id="@+id/gd__fl_baccarat_table_tie"
-            android:layout_width="130px"
+            <FrameLayout
+                android:layout_width="113px"
+                android:layout_height="57px"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="left"
+                android:layout_marginLeft="103px"
+                android:paddingRight="2px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_pp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="105px"
+                android:layout_height="52px"
+                android:layout_gravity="left"
+                android:layout_marginLeft="116px"
+                android:paddingLeft="1px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_player_n"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_tie_bet_bg"
+                android:layout_width="106px"
+                android:layout_height="57px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="214px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_t"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="101px"
+                android:layout_height="52px"
+                android:layout_marginLeft="221px"
+                android:paddingRight="2px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_any"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:paddingLeft="1px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_p"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:paddingRight="1px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="111px"
+                android:layout_height="57px"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="103px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_bp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="104px"
+                android:layout_height="52px"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="118px"
+                android:paddingLeft="1px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_banker_n"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="107px"
+                android:layout_height="57px"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="215px"
+                android:paddingLeft="2px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_lucky"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="100px"
+                android:layout_height="52px"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="221px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_perfect"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/gd__fl_baccarat_a_table"
+            android:layout_width="644px"
+            android:layout_height="113px"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="15px"
+            android:background="@mipmap/gd_bet_a_bg_trans">
+
+            <FrameLayout
+                android:layout_width="113px"
+                android:layout_height="57px"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="left"
+                android:layout_marginLeft="103px"
+                android:clickable="true"
+                android:onClick="clickBetPlayerPair">
+
+                <ImageView
+                    android:id="@+id/gd__iv_baccarat_table_player_pair"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_4"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_player_pair_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_player_pair_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="32px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:onClick="clickPlayerPair"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="105px"
+                android:layout_height="52px"
+                android:layout_gravity="left"
+                android:layout_marginLeft="116px"
+                android:clickable="true"
+                android:onClick="clickBetPlayerNatural">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_4"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_player_n_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_player_n_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="32px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:onClick="clickPlayerPair"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_tie"
+                android:layout_width="106px"
+                android:layout_height="57px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="214px"
+                android:clickable="true"
+                android:onClick="clickBetTie">
+
+                <ImageView
+                    android:id="@+id/gd__iv_baccarat_table_tie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_3"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_tie_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="7px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_tie_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="6px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="101px"
+                android:layout_height="52px"
+                android:layout_marginLeft="221px"
+                android:clickable="true"
+                android:onClick="clickBetAny">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_3"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_any_pair_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="7px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_any_pair_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="6px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_player"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:onClick="clickBetPlayer">
+
+                <ImageView
+                    android:id="@+id/gd__iv_baccarat_table_player"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_1"
+                    android:clickable="true"
+                    android:onClick="clickBetPlayer"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_player_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="12px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_player_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="17px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_banker"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="clickBetBanker">
+
+                <ImageView
+                    android:id="@+id/gd__iv_baccarat_table_banker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_2"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_banker_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="9px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_banker_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="15px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone"
+
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+
+                android:layout_width="111px"
+                android:layout_height="57px"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="103px"
+                android:background="@drawable/gd_table5_trans_black_selector"
+                android:clickable="true"
+                android:onClick="clickBetBankerPair">
+
+                <ImageView
+                    android:id="@+id/gd__iv_baccarat_table_banker_pair"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_5"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_banker_pair_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="25px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_banker_pair_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="10px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:onClick="clickBankerPair"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+
+                android:layout_width="104px"
+                android:layout_height="52px"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="118px"
+                android:background="@drawable/gd_table5_trans_black_selector"
+                android:clickable="true"
+                android:onClick="clickBetBankerNatural">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_5"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_banker_n_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="25px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_banker_n_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="10px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:onClick="clickBankerPair"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+
+                android:layout_width="107px"
+                android:layout_height="57px"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="215px"
+                android:background="@drawable/gd_table5_trans_black_selector"
+                android:clickable="true"
+                android:onClick="clickBetLucky">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_5"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_lucky_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="25px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_lucky_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="10px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:onClick="clickBankerPair"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="100px"
+                android:layout_height="52px"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="221px"
+                android:background="@drawable/gd_table5_trans_black_selector"
+                android:clickable="true"
+                android:onClick="clickBetPlayerPerfect">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/gd_table_5"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_perfect_bet_money"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="25px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_dollar_white"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/gd__tv_perfect_bet_count"
+                    style="@style/style_wrap_wrap"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="10px"
+                    android:layout_marginBottom="10px"
+                    android:drawableLeft="@mipmap/gd_home_user_head_white"
+                    android:gravity="center"
+                    android:onClick="clickBankerPair"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="16px"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="644px"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true" />
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="78px">
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_player_natural"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="109px" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_any"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="209px" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_perfect"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="210px" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_banker_natural"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="109px" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="644px"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="15px">
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_player_bg"
+                android:layout_width="121px"
+                android:layout_height="match_parent" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_player_pair"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="100px"
+                android:layout_marginTop="57px" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_tie"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="207px"
+                android:layout_marginTop="57px" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_lucky"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="60px"
+                android:layout_marginRight="208px" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_banker_pair"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="57px"
+                android:layout_marginRight="98px" />
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_banker_bg"
+                android:layout_width="121px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true">
+
+            </FrameLayout>
+        </RelativeLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_bet_content_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
         <FrameLayout
-            android:id="@+id/gd__fl_baccarat_table_player_bg"
-            android:layout_width="171px"
-            android:layout_height="match_parent"
-            android:layout_marginRight="-25px"
-            android:layout_toLeftOf="@id/gd__fl_baccarat_table_tie" />
+            android:layout_width="644px"
+            android:layout_height="113px"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="15px">
+
+            <FrameLayout
+                android:layout_width="248px"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_c_p"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="165px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="240px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_c_t"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="241px"
+                android:layout_height="match_parent"
+                android:layout_gravity="right">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_c_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+        </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/gd__fl_baccarat_table_banker_bg"
-            android:layout_width="161px"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_marginLeft="-13px"
-            android:layout_toRightOf="@id/gd__fl_baccarat_table_tie">
+            android:id="@+id/gd__fl_baccarat_b_table"
+            android:layout_width="644px"
+            android:layout_height="113px"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="15px"
+            android:background="@mipmap/gd_bet_a_bg_trans_niu">
+
+            <FrameLayout
+                android:layout_width="248px"
+                android:layout_height="match_parent"
+                android:onClick="clickBetCowPlayer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="35px"
+                    android:paddingRight="30px">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@mipmap/niu_1" />
+
+                    <View
+                        android:layout_width="2px"
+                        android:layout_height="match_parent"></View>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@mipmap/niu" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5px"
+                    android:onClick="clickNiuRule"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15px"
+                    android:paddingRight="5px">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/gd_ask" />
+
+                    <TextView
+                        android:id="@+id/tv_niu_p_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="@string/niu_hint"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"></TextView>
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="165px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="240px"
+                android:onClick="clickBetCowTie">
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="241px"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:onClick="clickBetCowBanker">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="25px"
+                    android:paddingRight="35px">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@mipmap/niu_1" />
+
+                    <View
+                        android:layout_width="2px"
+                        android:layout_height="match_parent"></View>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@mipmap/niu" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5px"
+                    android:onClick="clickNiuRule"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10px"
+                    android:paddingRight="5px">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/gd_ask" />
+
+                    <TextView
+                        android:id="@+id/tv_niu_b_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="@string/niu_hint"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"></TextView>
+                </LinearLayout>
+
+            </FrameLayout>
 
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/gd__fl_baccarat_table_banker_pair"
-            android:layout_width="135px"
+            android:layout_width="644px"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true" />
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="15px">
 
-    </RelativeLayout>
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_cow_player"
+                android:layout_width="248px"
+                android:layout_height="match_parent"></FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_cow_tie"
+                android:layout_width="165px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="240px"></FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_baccarat_table_cow_banker"
+                android:layout_width="241px"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"></FrameLayout>
+        </FrameLayout>
+
+    </FrameLayout>
+
 </FrameLayout>
