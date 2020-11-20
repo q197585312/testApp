@@ -1,8 +1,9 @@
 package com.nanyang.app.main.home.sport.basketball;
 
-import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -20,12 +21,6 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 public class BasketballRunningState extends BasketballCommonState {
     public BasketballRunningState(SportContract.View baseView) {
         super(baseView);
-    }
-
-
-    @Override
-    public boolean mix() {
-        return false;
     }
 
     @Override

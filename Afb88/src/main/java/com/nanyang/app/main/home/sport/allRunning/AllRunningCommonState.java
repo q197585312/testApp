@@ -96,14 +96,7 @@ public class AllRunningCommonState extends OutRightState {
         }
     }
 
-    public boolean isCollection() {
-        return false;
-    }
 
-    @Override
-    public boolean mix() {
-        return false;
-    }
 
     @Override
     protected String getRefreshUrl() {

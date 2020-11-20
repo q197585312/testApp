@@ -46,10 +46,6 @@ public class DartsTodayState extends BasketballTodayState {
         return new MenuItemInfo<String>(0, (R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts));
     }
 
-    @Override
-    public boolean mix() {
-        getBaseView().switchState(new DartsTodayMixState(getBaseView()));
-        return true;
-    }
+
 
 }

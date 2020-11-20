@@ -49,12 +49,6 @@ public class USFootballEarlyState extends BasketballEarlyState {
     }
 
     @Override
-    public boolean mix() {
-        getBaseView().switchState(new USFootballEarlyMixState(getBaseView()));
-        return true;
-    }
-
-    @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new BallBetHelper(getBaseView()) {
             @Override

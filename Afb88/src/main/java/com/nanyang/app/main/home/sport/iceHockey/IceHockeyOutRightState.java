@@ -14,13 +14,6 @@ public class IceHockeyOutRightState extends OutRightState {
         super(baseView);
     }
 
-
-    @Override
-    public boolean mix() {
-        return false;
-    }
-
-
     @Override
     protected String getSportName() {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.IceHockey);

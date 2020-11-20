@@ -43,9 +43,4 @@ public class EuropeTodayState extends EuropeState {
         return new MenuItemInfo<String>(0, (R.string.Today), "Today", getParentText());
     }
 
-    @Override
-    public boolean mix() {
-        getBaseView().switchState(new EuropeTodayMixState(getBaseView()));
-        return true;
-    }
 }

@@ -315,7 +315,6 @@ public class BetPop {
     }
 
     private void showMyBets(View view) {
-        closePopupWindow();
         if (activity != null && activity instanceof SportActivity && ((SportActivity) activity).afbDrawerViewHolder != null) {
             AfbDrawerViewHolder afbDrawerViewHolder = ((SportActivity) activity).afbDrawerViewHolder;
             afbDrawerViewHolder.goRecord();
@@ -767,16 +766,14 @@ public class BetPop {
 
     private void webViewPause() {
         betPopParentTopFl.setVisibility(View.GONE);
-        webView.onPause();
-        webView.pauseTimers();
-        webView.stopLoading();
+        webView.getSettings().setJavaScriptEnabled(false);
+
     }
 
     private void webViewResume() {
-        webView.stopLoading();
+
         betPopParentTopFl.setVisibility(View.VISIBLE);
-        webView.resumeTimers();
-        webView.onResume();
+        webView.getSettings().setJavaScriptEnabled(true);
     }
 
     private void setListLayoutParams() {
@@ -1187,6 +1184,7 @@ public class BetPop {
     }
 
     public boolean isNeedInitWeb = true;
+
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
 
         if (activity == null)
@@ -1289,9 +1287,14 @@ public class BetPop {
             }
         }
         objectAnimatorMap.clear();
-        webView.stopLoading();
-        webView.clearFormData();
-        webView.clearDisappearingChildren();
+
+        webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+        webView.clearHistory();
+
+        ((ViewGroup) webView.getParent()).removeView(webView);
+        webView.destroy();
+
+
     }
 
 

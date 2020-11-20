@@ -7,6 +7,8 @@
 
     <com.unkonw.testapp.libs.widget.LollipopFixedWebView
         android:id="@+id/web_wv"
+        android:layerType="software"
+        android:alpha="1.1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -20,4 +22,8 @@
     <include
         layout="@layout/toolbar_layout_1188"
         android:visibility="gone" />
+    <View
+        android:background="@color/trans_white_red"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </FrameLayout>

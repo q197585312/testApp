@@ -21,11 +21,6 @@ public class BaseballEarlyState extends BaseballState {
     }
 
     @Override
-    public boolean mix() {
-        return false;
-    }
-
-    @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_BASEBALL_EARLY;
     }

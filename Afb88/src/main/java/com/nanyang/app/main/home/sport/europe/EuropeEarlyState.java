@@ -4,8 +4,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -49,9 +47,5 @@ public class EuropeEarlyState extends EuropeState {
     }
 
 
-    @Override
-    public boolean mix() {
-        getBaseView().switchState(new EuropeEarlyMixState(getBaseView()));
-        return true;
-    }
+
 }

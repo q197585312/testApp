@@ -17,11 +17,6 @@ public class FormulaOutRightState extends OutRightState {
 
 
     @Override
-    public boolean mix() {
-        return false;
-    }
-
-    @Override
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0, (R.string.OutRight), "OutRight", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Formula1));
     }

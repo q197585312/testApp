@@ -22,12 +22,6 @@ class OutRightTodayState extends OutRightState {
         return new MenuItemInfo<String>(0, (R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight));
     }
 
-
-    @Override
-    public boolean mix() {
-        return false;
-    }
-
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_POOL_EARLY;

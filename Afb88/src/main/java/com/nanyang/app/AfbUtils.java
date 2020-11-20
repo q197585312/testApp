@@ -246,6 +246,10 @@ public class AfbUtils {
         if (isZoom) {
             webView.setInitialScale(100);
         }
+
+        webView.getSettings().setDefaultTextEncodingName("utf-8") ;
+
+
         webView.getSettings().setDisplayZoomControls(false);
         //开启javascript
         webView.getSettings().setDomStorageEnabled(true);
@@ -259,10 +263,13 @@ public class AfbUtils {
 
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         view.loadUrl(request.getUrl().toString());
+                        LogUtil.d("url", request.getUrl().toString());
                     } else {
                         view.loadUrl(request.toString());
+                        LogUtil.d("url", request.toString());
                     }
                     return true;
                 }
@@ -302,6 +309,7 @@ public class AfbUtils {
         for (int i = 0; i < cookies.size(); i++) {
             Cookie cookie = cookies.get(i);
             String value = cookie.name() + "=" + cookie.value();
+            LogUtil.d("url", "cookie:" + value);
             cookieManager.setCookie(BuildConfig.Domain, value);
         }
         cookieManager.setCookie(BuildConfig.Domain, "Domain=" + BuildConfig.Domain);
@@ -309,6 +317,7 @@ public class AfbUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             CookieSyncManager.getInstance().sync();
         } else {
+            CookieSyncManager.getInstance().sync();
             cookieManager.flush();
 
         }

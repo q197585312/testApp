@@ -68,7 +68,6 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -1383,44 +1382,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 });
         mCompositeSubscription.add(subscription);
 
-    }
-
-    @Override
-    public boolean isMix() {
-        return false;
-    }
-
-    @Override
-    public void clearMix() {
-        if (isMix()) {
-            Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-//                    mApiWrapper.goMain()
-                    .subscribe(new Consumer<String>() {//onNext
-                        @Override
-                        public void accept(String Str) throws Exception {
-                            getBaseView().onUpdateMixSucceed(null);
-                        }
-                    }, new Consumer<Throwable>() {//错误
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-                            getBaseView().onFailed(throwable.getMessage());
-                            getBaseView().getIBaseContext().hideLoadingDialog();
-                        }
-                    }, new Action() {//完成
-                        @Override
-                        public void run() throws Exception {
-                            getBaseView().getIBaseContext().hideLoadingDialog();
-                        }
-                    }, new Consumer<Subscription>() {//开始绑定
-                        @Override
-                        public void accept(Subscription subscription) throws Exception {
-                            getBaseView().getIBaseContext().showLoadingDialog();
-                            subscription.request(Long.MAX_VALUE);
-                        }
-                    });
-            mCompositeSubscription.add(subscription);
-        }
     }
 
 

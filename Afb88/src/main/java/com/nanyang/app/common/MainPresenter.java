@@ -142,7 +142,17 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenNLGamee", "", "wfNLLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         } else if (g.equals("LG CASINO")) {
             skipPCashio("post", AppConstant.getInstance().HOST + "api/LGLogin", g, new SaCasinoWfBean("", "", "LGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
-//
+        }
+        else if (g.equals("MK CASINO")) {
+            skipPCashio("post", AppConstant.getInstance().HOST + "api/MKLogin", g, new SaCasinoWfBean("", "", "MKLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+        }
+        /*  skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPSLogin"), "", "^.*\"(http[^\"]+)\".*$");*/
+        else if (g.equals("CQ9 GAME")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfCQLogin"), "", "^.*\"(http[^\"]+)\".*$");
+
+        }
+        else if (g.equals("TFG CASINO")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenTFGGamee", "", "wfTFGLogin"), "", "^.*\"(http[^\"]+)\".*$");
         }
     }
 

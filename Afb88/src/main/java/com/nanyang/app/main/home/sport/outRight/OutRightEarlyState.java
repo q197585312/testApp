@@ -27,11 +27,6 @@ public class OutRightEarlyState extends OutRightState {
     }
 
     @Override
-    public boolean mix() {
-        return false;
-    }
-
-    @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_POOL_EARLY;
     }

@@ -46,11 +46,6 @@ public class DartsEarlyState extends BasketballEarlyState {
         }
     }
 
-    @Override
-    public boolean mix() {
-        getBaseView().switchState(new DartsEarlyMixState(getBaseView()));
-        return true;
-    }
 
     @Override
     public IBetHelper onSetBetHelper() {

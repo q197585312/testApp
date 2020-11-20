@@ -34,9 +34,4 @@ public abstract class BaseballState extends BasketballCommonState {
         return null;
     }
 
-    @Override
-    public boolean mix() {
-        return false;
-    }
-
 }
