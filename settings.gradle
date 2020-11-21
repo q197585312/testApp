@@ -1,2 +1,2 @@
-include ':liveplayapp'
+
 include ':baseLibs', ':Afb88', ':autolayout', ':gestrueLibrary', ':mylibrary', ':app', ':apng'
