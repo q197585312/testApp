@@ -68,19 +68,15 @@ public class GameSlideChangeTableHelper {
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             if (slideType == SlideUp || slideType == SlideDown) {
                 if (slideType == SlideDown) {
-                    if (index > 0) {
-                        int toTableId = slideList.get(index - 1);
-                        goGame(baseActivity, toTableId, R.anim.slide_in_top, R.anim.slide_out_bottom);
-                    }else {
-                        int toTableId = slideList.get(6);
+                    int toTableIdIndex = getToTableIdIndex(index, slideList, Configuration.ORIENTATION_PORTRAIT, SlideDown, baseActivity);
+                    int toTableId = slideList.get(toTableIdIndex);
+                    if (index != toTableIdIndex) {
                         goGame(baseActivity, toTableId, R.anim.slide_in_top, R.anim.slide_out_bottom);
                     }
                 } else {
-                    if (index < 6) {
-                        int toTableId = slideList.get(index + 1);
-                        goGame(baseActivity, toTableId, R.anim.slide_in_bottom, R.anim.slide_out_top);
-                    }else {
-                        int toTableId = slideList.get(0);
+                    int toTableIdIndex = getToTableIdIndex(index, slideList, Configuration.ORIENTATION_PORTRAIT, SlideUp, baseActivity);
+                    int toTableId = slideList.get(toTableIdIndex);
+                    if (index != toTableIdIndex) {
                         goGame(baseActivity, toTableId, R.anim.slide_in_bottom, R.anim.slide_out_top);
                     }
                 }
@@ -88,19 +84,15 @@ public class GameSlideChangeTableHelper {
         } else {
             if (slideType == SlideLeft || slideType == SlideRight) {
                 if (slideType == SlideRight) {
-                    if (index > 0) {
-                        int toTableId = slideList.get(index - 1);
-                        goGame(baseActivity, toTableId, R.anim.slide_in_left, R.anim.slide_out_right);
-                    }else {
-                        int toTableId = slideList.get(9);
+                    int toTableIdIndex = getToTableIdIndex(index, slideList, Configuration.ORIENTATION_LANDSCAPE, SlideRight, baseActivity);
+                    int toTableId = slideList.get(toTableIdIndex);
+                    if (index != toTableIdIndex) {
                         goGame(baseActivity, toTableId, R.anim.slide_in_left, R.anim.slide_out_right);
                     }
                 } else {
-                    if (index < 9) {
-                        int toTableId = slideList.get(index + 1);
-                        goGame(baseActivity, toTableId, R.anim.slide_in_right, R.anim.slide_out_left);
-                    }else {
-                        int toTableId = slideList.get(0);
+                    int toTableIdIndex = getToTableIdIndex(index, slideList, Configuration.ORIENTATION_LANDSCAPE, SlideLeft, baseActivity);
+                    int toTableId = slideList.get(toTableIdIndex);
+                    if (index != toTableIdIndex) {
                         goGame(baseActivity, toTableId, R.anim.slide_in_right, R.anim.slide_out_left);
                     }
                 }
@@ -119,12 +111,6 @@ public class GameSlideChangeTableHelper {
             case 62:
             case 63:
             case 71:
-//                for (int i = 1; i <= 4; i++) {
-//                    if (baseActivity.mAppViewModel.getBaccarat(tableId).getBaccaratLimit(i).getMaxTotalBet() > 0) {
-//                        baseActivity.mAppViewModel.getBaccarat(tableId).setLimitIndex(i);
-//                        break;
-//                    }
-//                }
                 Bundle bundle = new Bundle();
                 bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
                 baseActivity.mAppViewModel.setTableId(tableId);
@@ -182,6 +168,73 @@ public class GameSlideChangeTableHelper {
         }
         baseActivity.overridePendingTransition(enter, exit);
         baseActivity.finish();
+    }
+
+    private static int getToTableIdIndex(int index, List<Integer> slideList, int orientation, int slideType, BaseActivity baseActivity) {
+        int gameStatus = -1;
+        int myIndex = index;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            if (slideType == SlideDown) {
+                while (gameStatus == -1) {
+                    myIndex--;
+                    if (myIndex < 0) {
+                        myIndex = 6;
+                    }
+                    gameStatus = getGameStatus(slideList.get(myIndex), baseActivity);
+                    if (gameStatus != 1) {
+                        gameStatus = -1;
+                    }
+                }
+            } else {
+                while (gameStatus == -1) {
+                    myIndex++;
+                    if (myIndex > 6) {
+                        myIndex = 0;
+                    }
+                    gameStatus = getGameStatus(slideList.get(myIndex), baseActivity);
+                    if (gameStatus != 1) {
+                        gameStatus = -1;
+                    }
+                }
+            }
+        } else {
+            if (slideType == SlideRight) {
+                while (gameStatus == -1) {
+                    myIndex--;
+                    if (myIndex < 0) {
+                        myIndex = 9;
+                    }
+                    gameStatus = getGameStatus(slideList.get(myIndex), baseActivity);
+                    if (gameStatus != 1) {
+                        gameStatus = -1;
+                    }
+                }
+            } else {
+                while (gameStatus == -1) {
+                    myIndex++;
+                    if (myIndex > 9) {
+                        myIndex = 0;
+                    }
+                    gameStatus = getGameStatus(slideList.get(myIndex), baseActivity);
+                    if (gameStatus != 1) {
+                        gameStatus = -1;
+                    }
+                }
+            }
+        }
+        return myIndex;
+    }
+
+    private static int getGameStatus(int tableId, BaseActivity baseActivity) {
+        if (tableId == 5) {
+            return baseActivity.mAppViewModel.getDragonTiger01().getStatus();
+        } else if (tableId == 21) {
+            return baseActivity.mAppViewModel.getRoulette01().getStatus();
+        } else if (tableId == 31) {
+            return baseActivity.mAppViewModel.getSicbo01().getStatus();
+        } else {
+            return baseActivity.mAppViewModel.getBaccarat(tableId).getStatus();
+        }
     }
 
 }
