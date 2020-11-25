@@ -9,7 +9,7 @@
         android:id="@+id/gd__fl_baccarat_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/green_table_color" />
+        android:background="@mipmap/roulette_bg_new" />
 
     <LinearLayout
         android:layout_width="match_parent"

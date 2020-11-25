@@ -244,4 +244,6 @@
     <string name="member_center">会员中心</string>
     <string name="niu_hint">赢/输金额因最终游戏结果而异</string>
     <string name="Rule">规则</string>
+    <string name="bjl">百家乐</string>
+    <string name="nn">牛牛</string>
 </resources>

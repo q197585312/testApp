@@ -17,6 +17,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="240px"
             android:layout_marginBottom="5px"
+            android:background="@mipmap/lv"
             android:orientation="vertical">
 
             <LinearLayout
@@ -806,6 +807,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="240px"
             android:layout_marginBottom="5px"
+            android:background="@mipmap/nv"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -874,7 +876,7 @@
                     android:src="@mipmap/niu_1"></ImageView>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginLeft="7px"
@@ -894,7 +896,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/niu_hint"
                         android:textColor="@color/white"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
 
                 </LinearLayout>
             </FrameLayout>
@@ -918,7 +921,7 @@
                     android:src="@mipmap/niu"></ImageView>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginLeft="12px"
@@ -938,7 +941,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/niu_hint"
                         android:textColor="@color/white"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
 
                 </LinearLayout>
 

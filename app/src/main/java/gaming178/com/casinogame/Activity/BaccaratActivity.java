@@ -142,6 +142,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     /*
         @BindView(R2.id.gd__iv_baccarat_road_handle)
         ImageView iv;*/
+    @BindView(R2.id.tv_change_bet_content)
+    TextView tv_change_bet_content;
     @BindView(R2.id.gd__layout1)
     HorizontalScrollView layout1;
     @BindView(R2.id.gd__baccarat_background_gridlayout1)
@@ -3206,7 +3208,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             {
                 chipHelperPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
                 playerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayer();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperPlayer;
                 }
             } else {
@@ -3218,7 +3220,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 bankerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBanker();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperBanker;
                 }
             } else {
@@ -3230,7 +3232,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 tieBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getTie();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperTie;
                 }
             } else {
@@ -3242,7 +3244,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperPlayerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 playerPairBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperPlayerPair;
                 }
             } else
@@ -3253,7 +3255,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperBankerPair.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 bankerPairBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerPair();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperBankerPair;
                 }
             } else
@@ -3264,7 +3266,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperLucky.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 luckyBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperLucky;
                 }
             } else {
@@ -3276,7 +3278,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperAny.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getAny(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 anyBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getAny();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperAny;
                 }
             } else {
@@ -3287,7 +3289,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperPlayerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerN(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 playerNBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerN();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperPlayerN;
                 }
             } else {
@@ -3298,7 +3300,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperPerfect.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPerfect(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 perfectBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPerfect();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperPerfect;
                 }
             } else {
@@ -3309,7 +3311,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperBankerN.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerN(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 bankerNBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerN();
-                if (getCurrentBetContent()==1){
+                if (getCurrentBetContent() == 1) {
                     chipHelperCurrent = chipHelperBankerN;
                 }
             } else {
@@ -3320,7 +3322,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperCPlayer.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowPlayer(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 cPlayerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowPlayer();
-                if (getCurrentBetContent()==2){
+                if (getCurrentBetContent() == 2) {
                     chipHelperCurrent = chipHelperCPlayer;
                 }
             } else {
@@ -3331,7 +3333,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperCTie.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 cTieBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowTie();
-                if (getCurrentBetContent()==2){
+                if (getCurrentBetContent() == 2) {
                     chipHelperCurrent = chipHelperCTie;
                 }
             } else {
@@ -3342,7 +3344,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 chipHelperCBanker.showChip(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowBanker(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
                 cBankerBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowBanker();
-                if (getCurrentBetContent()==2){
+                if (getCurrentBetContent() == 2) {
                     chipHelperCurrent = chipHelperCBanker;
                 }
             } else {
@@ -4748,9 +4750,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "Lucky");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_lucky);
             } else {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_lucky);
             }
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -4778,9 +4780,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "Any");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_any);
             } else {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_any);
             }
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -4808,9 +4810,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "PlayerN");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pn);
             } else {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pn);
             }
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -4838,9 +4840,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "Perfect");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_perfect);
             } else {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_perfect);
             }
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -4868,9 +4870,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         betMoney = getBetMoney(betMoney, "BankerN");
         if (betMoney > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bn);
             } else {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_h_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_h_bn);
             }
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -5219,9 +5221,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getLucky6() == 20 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getLucky6() == 1) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_lucky);
             } else {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_lucky);
             }
             if (objectAnimatorLucky.isRunning()) {
                 objectAnimatorLucky.cancel();
@@ -5234,9 +5236,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getAnyPairs() == 20 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getAnyPairs() == 1) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_any);
             } else {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_any);
             }
             if (objectAnimatorAny.isRunning()) {
                 objectAnimatorAny.cancel();
@@ -5249,9 +5251,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getnPlayer() == 20 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getnPlayer() == 1) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pn);
             } else {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pn);
             }
             if (objectAnimatorPN.isRunning()) {
                 objectAnimatorPN.cancel();
@@ -5264,9 +5266,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getPerfectPairs() == 20 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getPerfectPairs() == 1) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_perfect);
             } else {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_perfect);
             }
             if (objectAnimatorPerfect.isRunning()) {
                 objectAnimatorPerfect.cancel();
@@ -5279,9 +5281,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getnBanker() == 20 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().getnBanker() == 1) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bn);
             } else {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_h_bn);
             }
             if (objectAnimatorBN.isRunning()) {
                 objectAnimatorBN.cancel();
@@ -6715,38 +6717,38 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getLucky() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_lucky);
             } else {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_lucky);
             }
         }
 
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_any);
             } else {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_any);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pn);
             } else {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pn);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_perfect);
             } else {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_h_perfect);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bn);
             } else {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_h_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_h_bn);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
@@ -6811,37 +6813,37 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getLucky() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_v_lucky);
             } else {
-                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_lucky.setBackgroundResource(R.mipmap.gd_bet_h_lucky);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getAny() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_v_any);
             } else {
-                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_t);
+                img_bet_bg_any.setBackgroundResource(R.mipmap.gd_bet_h_any);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPlayerN() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_v_pn);
             } else {
-                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pp);
+                img_bet_bg_player_n.setBackgroundResource(R.mipmap.gd_bet_h_pn);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getPerfect() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_perfect);
             } else {
-                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_t);
+                img_bet_bg_perfect.setBackgroundResource(R.mipmap.gd_bet_v_perfect);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getBankerN() > 0) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bn);
             } else {
-                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bp);
+                img_bet_bg_banker_n.setBackgroundResource(R.mipmap.gd_bet_v_bn);
             }
         }
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratRepeatBetInformation().getCowPlayer() > 0) {
@@ -7017,10 +7019,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         contentInfo.setData(updateInfoData());
     }
 
-    @BindView(R.id.tv_niu_p_hint)
-    TextView tv_niu_p_hint;
-    @BindView(R.id.tv_niu_b_hint)
-    TextView tv_niu_b_hint;
+//    @BindView(R.id.tv_niu_p_hint)
+//    TextView tv_niu_p_hint;
+//    @BindView(R.id.tv_niu_b_hint)
+//    TextView tv_niu_b_hint;
 
     @Override
     public void onInGameChooseLanguage() {
@@ -7048,8 +7050,13 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         ((TextView) findViewById(R.id.gd__tv_total)).setText(getString(R.string.total_m));
         tv_player_result_name.setText(getString(R.string.player_home));
         tv_banker_result_name.setText(getString(R.string.banker_home));
-        tv_niu_p_hint.setText(getString(R.string.niu_hint));
-        tv_niu_b_hint.setText(getString(R.string.niu_hint));
+//        tv_niu_p_hint.setText(getString(R.string.niu_hint));
+//        tv_niu_b_hint.setText(getString(R.string.niu_hint));
+        if (getCurrentBetContent() == 1) {
+            tv_change_bet_content.setText(getString(R.string.nn));
+        } else {
+            tv_change_bet_content.setText(getString(R.string.bjl));
+        }
         initResultAnimation();
     }
 
@@ -7062,9 +7069,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (getCurrentBetContent() == 1) {
             fl_bet_content_1.setVisibility(View.INVISIBLE);
             fl_bet_content_2.setVisibility(View.VISIBLE);
+            tv_change_bet_content.setText(getString(R.string.bjl));
         } else {
             fl_bet_content_1.setVisibility(View.VISIBLE);
             fl_bet_content_2.setVisibility(View.INVISIBLE);
+            tv_change_bet_content.setText(getString(R.string.nn));
         }
     }
 

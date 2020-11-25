@@ -16,7 +16,8 @@
             android:layout_width="644px"
             android:layout_height="113px"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="15px">
+            android:layout_marginBottom="15px"
+            android:background="@mipmap/lh">
 
             <FrameLayout
                 android:layout_width="113px"
@@ -714,7 +715,8 @@
             android:layout_width="644px"
             android:layout_height="113px"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="15px">
+            android:layout_marginBottom="15px"
+            android:background="@mipmap/nh">
 
             <FrameLayout
                 android:layout_width="248px"
@@ -787,7 +789,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="5px"
@@ -808,7 +810,8 @@
                         android:layout_gravity="bottom"
                         android:text="@string/niu_hint"
                         android:textColor="@color/white"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
                 </LinearLayout>
             </FrameLayout>
 
@@ -851,7 +854,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="5px"
@@ -872,7 +875,8 @@
                         android:layout_gravity="bottom"
                         android:text="@string/niu_hint"
                         android:textColor="@color/white"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
                 </LinearLayout>
 
             </FrameLayout>

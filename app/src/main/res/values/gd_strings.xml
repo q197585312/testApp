@@ -286,6 +286,8 @@
     <string name="cbanker">BC</string>
     <string name="niu_hint">Win/Loss amount varies based on the end game result</string>
     <string name="Rule">Rule</string>
+    <string name="bjl">BACCARAT</string>
+    <string name="nn">COW</string>
 </resources>
 
 

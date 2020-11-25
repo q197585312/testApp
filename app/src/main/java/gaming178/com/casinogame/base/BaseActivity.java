@@ -176,17 +176,19 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     strRes=tableStrs[2];
                 }
             }*/
-            String[] newSplitArr = strRes.split("\\|");
-            String newData = newSplitArr[0];
-            String[] splitData = newData.split("#");
-            String newFiveResult = splitData[3];
-            String[] split = newFiveResult.split("&");
-            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setLucky6(Integer.parseInt(split[1]));
-            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setAnyPairs(Integer.parseInt(split[2]));
-            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setPerfectPairs(Integer.parseInt(split[3]));
-            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setnBanker(Integer.parseInt(split[4]));
-            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setnPlayer(Integer.parseInt(split[5]));
-            strRes = strRes.replace(splitData[3], split[0]);
+           if (strRes.contains("&")){
+               String[] newSplitArr = strRes.split("\\|");
+               String newData = newSplitArr[0];
+               String[] splitData = newData.split("#");
+               String newFiveResult = splitData[3];
+               String[] split = newFiveResult.split("&");
+               mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setLucky6(Integer.parseInt(split[1]));
+               mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setAnyPairs(Integer.parseInt(split[2]));
+               mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setPerfectPairs(Integer.parseInt(split[3]));
+               mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setnBanker(Integer.parseInt(split[4]));
+               mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setnPlayer(Integer.parseInt(split[5]));
+               strRes = strRes.replace(splitData[3], split[0]);
+           }
             String tableInfo[] = strRes.split("\\|");
             if (tableInfo.length >= 2) {
 
