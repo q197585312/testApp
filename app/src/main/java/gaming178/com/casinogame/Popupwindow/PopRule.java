@@ -2,10 +2,7 @@ package gaming178.com.casinogame.Popupwindow;
 
 import android.content.Context;
 import android.net.http.SslError;
-import android.text.TextUtils;
 import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -14,9 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import gaming178.com.baccaratgame.R;
-import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
@@ -51,14 +46,14 @@ public class PopRule extends BasePopupWindow {
                 closePopupWindow();
             }
         });
-        String language = AppTool.getAppLanguage(context);
-        if ("zh".equals(language)) {
-            language = "cn";
-        } else {
-            language = "en";
-        }
+//        String language = AppTool.getAppLanguage(context);
+//        if ("zh".equals(language)) {
+//            language = "cn";
+//        } else {
+//            language = "en";
+//        }
         activity = (BaseActivity) context;
-        url = "https://www.gd88.org/pc/Rule/" + language + "/index.html";
+        url = "http://www.appgd88.com/api/rule.html";
         webView = (WebView) view.findViewById(R.id.gd__wv_report);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
@@ -82,26 +77,6 @@ public class PopRule extends BasePopupWindow {
                 //handleMessage(Message msg); 其他处理
             }
         });
-        synCookies(url);
         webView.loadUrl(url);
-    }
-
-    public void synCookies(String url) {
-        CookieSyncManager.createInstance(context);
-        CookieManager mCookieManager = CookieManager.getInstance();
-        mCookieManager.setAcceptCookie(true);
-        // 每次移除会有Cookie不一致问题，注释该地方
-        //mCookieManager.removeSessionCookie();// 移除
-        // Cookie是通过我们Volley活着HttpClient获取的
-        //  Log.i(WebSiteUrl.Tag,"cookie="+mAppViewModel.getHttpClient().getCookie());
-        if (activity.getApp() != null) {
-            if (activity.mAppViewModel.getHttpClient() != null) {
-                String cookie = activity.mAppViewModel.getHttpClient().getCookie();
-                if (!TextUtils.isEmpty(cookie)) {
-                    mCookieManager.setCookie(url, cookie);
-                    CookieSyncManager.getInstance().sync();
-                }
-            }
-        }
     }
 }

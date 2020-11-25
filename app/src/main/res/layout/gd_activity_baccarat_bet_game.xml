@@ -666,13 +666,17 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_change_bet_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5px"
-        android:layout_marginTop="225px"
+        android:layout_marginTop="215px"
+        android:background="@mipmap/gd_img_balance_l_bg"
+        android:gravity="center"
         android:onClick="clickChangeBetContent"
-        android:text="切换牛牛"
+        android:padding="5dp"
+        android:text="@string/nn"
         android:textColor="@color/white"
-        android:textSize="20px"></TextView>
+        android:textSize="13sp"></TextView>
 
 </FrameLayout>
