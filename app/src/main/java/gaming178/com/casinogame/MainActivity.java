@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gd_include_baccarat_bet_table);
+        setContentView(R.layout.gd_activity_test);
 //        gridView = (GridView) findViewById(R.id.grid);
 //        LayoutInflater.from(this).inflate(R.layout.gd_activity_baccarat_bet_game)
 
