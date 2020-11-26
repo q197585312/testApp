@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
@@ -46,14 +47,13 @@ public class PopRule extends BasePopupWindow {
                 closePopupWindow();
             }
         });
-//        String language = AppTool.getAppLanguage(context);
-//        if ("zh".equals(language)) {
-//            language = "cn";
-//        } else {
-//            language = "en";
-//        }
+        String language = AppTool.getAppLanguage(context);
+        if ("zh".equals(language)) {
+            url = "http://www.appgd88.com/api/rule_cn.html";
+        } else {
+            url = "http://www.appgd88.com/api/rule.html";
+        }
         activity = (BaseActivity) context;
-        url = "http://www.appgd88.com/api/rule.html";
         webView = (WebView) view.findViewById(R.id.gd__wv_report);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);

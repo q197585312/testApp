@@ -791,8 +791,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="5px"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="42px"
+                    android:layout_marginRight="30px"
                     android:onClick="clickNiuRule"
                     android:orientation="horizontal"
                     android:paddingLeft="15px"
@@ -856,8 +857,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="5px"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="42px"
+                    android:layout_marginRight="55px"
                     android:onClick="clickNiuRule"
                     android:orientation="horizontal"
                     android:paddingLeft="10px"

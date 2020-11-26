@@ -25,6 +25,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -2808,11 +2809,56 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameStatus(-1);
         setAskClick();
         startUpdateStatusThread();
+        lv_user_info.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+        lv_pool.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
     }
+
+    private boolean isSlideInfo = false;
 
     @Override
     public void initBaccarat() {
         tableId = mAppViewModel.getTableId();
+        fl_bet_content_1.setVisibility(View.VISIBLE);
+        fl_bet_content_2.setVisibility(View.INVISIBLE);
+        if (getCurrentBetContent() == 1) {
+            tv_change_bet_content.setText(getString(R.string.nn));
+        } else {
+            tv_change_bet_content.setText(getString(R.string.bjl));
+        }
         clearAllShowChip();
         clearAllChips();
         clearBetBg();
@@ -4891,10 +4937,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperCurrent = chipHelperCPlayer;
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
-        if (cBankerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
-            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
-            return;
-        }
         clickCPlayerCount++;
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowPlayerBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowPlayerBet(), clickCPlayerCount,
@@ -4955,10 +4997,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperCurrent = chipHelperCBanker;
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
-        if (cPlayerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
-            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
-            return;
-        }
         clickCBankerCount++;
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowBankerBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowBankerBet(), clickCBankerCount,
@@ -7087,6 +7125,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     @Override
     public boolean isCanSlideChangeTable() {
+        if (isSlideInfo) {
+            return false;
+        }
         if (mAppViewModel.getTableId() == 71) {
             if (fl_poker_bottom_parent.getVisibility() == View.VISIBLE) {
                 return false;
