@@ -12,6 +12,14 @@
         android:focusable="true">
 
         <FrameLayout
+            android:layout_width="880px"
+            android:layout_height="225px"
+            android:layout_marginTop="61px"
+            android:background="@mipmap/sh">
+
+        </FrameLayout>
+
+        <FrameLayout
             android:id="@+id/gd__sibao_bet_bg"
             android:layout_width="880px"
             android:layout_height="225px"
@@ -24,8 +32,8 @@
                 android:layout_width="100px"
                 android:layout_height="33px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="94px"
-                android:layout_marginRight="54px">
+                android:layout_marginRight="54px"
+                android:layout_marginBottom="94px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_big_bg"
@@ -41,8 +49,8 @@
                 android:layout_width="108px"
                 android:layout_height="33px"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="58px"
-                android:layout_marginLeft="5px">
+                android:layout_marginLeft="5px"
+                android:layout_marginBottom="58px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_even_bg"
@@ -58,8 +66,8 @@
                 android:layout_width="87px"
                 android:layout_height="30px"
                 android:layout_gravity="right"
-                android:layout_marginRight="96px"
                 android:layout_marginTop="31px"
+                android:layout_marginRight="96px"
                 android:onClick="clickTriple6">
 
                 <ImageView
@@ -76,8 +84,8 @@
                 android:layout_width="83px"
                 android:layout_height="30px"
                 android:layout_gravity="right"
-                android:layout_marginRight="169px"
                 android:layout_marginTop="31px"
+                android:layout_marginRight="169px"
                 android:onClick="clickTriple5">
 
                 <ImageView
@@ -94,8 +102,8 @@
                 android:layout_width="79px"
                 android:layout_height="30px"
                 android:layout_gravity="right"
-                android:layout_marginRight="243px"
                 android:layout_marginTop="31px"
+                android:layout_marginRight="243px"
                 android:onClick="clickTriple4">
 
                 <ImageView
@@ -160,8 +168,8 @@
                 android:layout_width="104px"
                 android:layout_height="33px"
                 android:layout_gravity="right|bottom"
-                android:layout_marginBottom="58px"
                 android:layout_marginRight="33px"
+                android:layout_marginBottom="58px"
                 android:onClick="clickOdd">
 
                 <ImageView
@@ -178,8 +186,8 @@
                 android:layout_width="103px"
                 android:layout_height="32px"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="94px"
                 android:layout_marginLeft="32px"
+                android:layout_marginBottom="94px"
                 android:onClick="clickSmall">
 
                 <ImageView
@@ -243,8 +251,8 @@
                 android:id="@+id/gd__fl_sicbo_all_dice"
                 android:layout_width="134px"
                 android:layout_height="33px"
-                android:layout_marginRight="14px"
                 android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginRight="14px"
                 android:layout_marginBottom="58px">
 
                 <ImageView
@@ -306,8 +314,8 @@
                 android:layout_width="56px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="33px"
-                android:layout_marginRight="75px">
+                android:layout_marginRight="75px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points17_bg"
@@ -323,8 +331,8 @@
                 android:layout_width="53px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="33px"
-                android:layout_marginRight="115px">
+                android:layout_marginRight="115px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points16_bg"
@@ -340,8 +348,8 @@
                 android:layout_width="53px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="33px"
-                android:layout_marginRight="153px">
+                android:layout_marginRight="153px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points15_bg"
@@ -357,8 +365,8 @@
                 android:layout_width="49px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="33px"
-                android:layout_marginRight="193px">
+                android:layout_marginRight="193px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points14_bg"
@@ -374,8 +382,8 @@
                 android:layout_width="47px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="33px"
-                android:layout_marginRight="232px">
+                android:layout_marginRight="232px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points13_bg"
@@ -392,8 +400,8 @@
                 android:layout_width="45px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="33px"
-                android:layout_marginRight="271px">
+                android:layout_marginRight="271px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points12_bg"
@@ -409,8 +417,8 @@
                 android:layout_width="43px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|right"
-                android:layout_marginBottom="33px"
-                android:layout_marginRight="310px">
+                android:layout_marginRight="310px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points11_bg"
@@ -426,8 +434,8 @@
                 android:layout_width="49px"
                 android:layout_height="35px"
                 android:layout_gravity="center_vertical|left"
-                android:layout_marginBottom="32px"
-                android:layout_marginLeft="293.5px">
+                android:layout_marginLeft="293.5px"
+                android:layout_marginBottom="32px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points10_bg"
@@ -443,8 +451,8 @@
                 android:layout_width="51px"
                 android:layout_height="35px"
                 android:layout_gravity="center_vertical|left"
-                android:layout_marginBottom="32px"
-                android:layout_marginLeft="254px">
+                android:layout_marginLeft="254px"
+                android:layout_marginBottom="32px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points9_bg"
@@ -460,8 +468,8 @@
                 android:layout_width="53px"
                 android:layout_height="35px"
                 android:layout_gravity="center_vertical|left"
-                android:layout_marginBottom="32px"
-                android:layout_marginLeft="215px">
+                android:layout_marginLeft="215px"
+                android:layout_marginBottom="32px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points8_bg"
@@ -477,8 +485,8 @@
                 android:layout_width="55px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|left"
-                android:layout_marginBottom="33px"
-                android:layout_marginLeft="176px">
+                android:layout_marginLeft="176px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points7_bg"
@@ -494,8 +502,8 @@
                 android:layout_width="57px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|left"
-                android:layout_marginBottom="33px"
-                android:layout_marginLeft="137px">
+                android:layout_marginLeft="137px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points6_bg"
@@ -511,8 +519,8 @@
                 android:layout_width="60px"
                 android:layout_height="33px"
                 android:layout_gravity="center_vertical|left"
-                android:layout_marginBottom="33px"
-                android:layout_marginLeft="98px">
+                android:layout_marginLeft="98px"
+                android:layout_marginBottom="33px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points5_bg"
@@ -528,8 +536,8 @@
                 android:layout_width="62.5px"
                 android:layout_height="35px"
                 android:layout_gravity="center_vertical|left"
-                android:layout_marginBottom="32px"
-                android:layout_marginLeft="59px">
+                android:layout_marginLeft="59px"
+                android:layout_marginBottom="32px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_points4_bg"
@@ -545,8 +553,8 @@
                 android:layout_width="48px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="143.5px">
+                android:layout_marginRight="143.5px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination56_bg"
@@ -562,8 +570,8 @@
                 android:layout_width="48px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="184px">
+                android:layout_marginRight="184px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination46_bg"
@@ -579,8 +587,8 @@
                 android:layout_width="45px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="225px">
+                android:layout_marginRight="225px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination45_bg"
@@ -596,8 +604,8 @@
                 android:layout_width="44px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="266px">
+                android:layout_marginRight="266px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination36_bg"
@@ -613,8 +621,8 @@
                 android:layout_width="42px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="307px">
+                android:layout_marginRight="307px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination35_bg"
@@ -630,8 +638,8 @@
                 android:layout_width="41px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="347.5px">
+                android:layout_marginRight="347.5px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination34_bg"
@@ -647,8 +655,8 @@
                 android:layout_width="41px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center"
-                android:layout_marginBottom="105px"
-                android:layout_marginLeft="32px">
+                android:layout_marginLeft="32px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination26_bg"
@@ -665,8 +673,7 @@
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginRight="9px"
-                android:layout_marginBottom="105px"
-              >
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination25_bg"
@@ -682,8 +689,8 @@
                 android:layout_width="42px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="50.5px">
+                android:layout_marginRight="50.5px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination24_bg"
@@ -699,8 +706,8 @@
                 android:layout_width="45px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="90px">
+                android:layout_marginRight="90px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination23_bg"
@@ -716,8 +723,8 @@
                 android:layout_width="46.5px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="130px">
+                android:layout_marginRight="130px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination16_bg"
@@ -733,8 +740,8 @@
                 android:layout_width="48px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="171px">
+                android:layout_marginRight="171px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination15_bg"
@@ -750,8 +757,8 @@
                 android:layout_width="49px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="210px">
+                android:layout_marginRight="210px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination14_bg"
@@ -767,8 +774,8 @@
                 android:layout_width="51px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="251px">
+                android:layout_marginRight="251px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination13_bg"
@@ -784,8 +791,8 @@
                 android:layout_width="52px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="105px"
-                android:layout_marginRight="291px">
+                android:layout_marginRight="291px"
+                android:layout_marginBottom="105px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_combination12_bg"
@@ -801,8 +808,8 @@
                 android:layout_width="93px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="69px"
-                android:layout_marginRight="127px">
+                android:layout_marginRight="127px"
+                android:layout_marginBottom="69px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_single6_bg"
@@ -818,8 +825,8 @@
                 android:layout_width="90px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="69px"
-                android:layout_marginRight="214px">
+                android:layout_marginRight="214px"
+                android:layout_marginBottom="69px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_single5_bg"
@@ -835,8 +842,8 @@
                 android:layout_width="86.5px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginBottom="69px"
-                android:layout_marginRight="300.5px">
+                android:layout_marginRight="300.5px"
+                android:layout_marginBottom="69px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_single4_bg"
@@ -852,8 +859,8 @@
                 android:layout_width="91px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|left"
-                android:layout_marginBottom="69px"
-                android:layout_marginLeft="273px">
+                android:layout_marginLeft="273px"
+                android:layout_marginBottom="69px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_single3_bg"
@@ -869,8 +876,8 @@
                 android:layout_width="95px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|left"
-                android:layout_marginBottom="69px"
-                android:layout_marginLeft="186px">
+                android:layout_marginLeft="186px"
+                android:layout_marginBottom="69px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_single2_bg"
@@ -886,8 +893,8 @@
                 android:layout_width="97px"
                 android:layout_height="22px"
                 android:layout_gravity="bottom|left"
-                android:layout_marginBottom="69px"
-                android:layout_marginLeft="100px">
+                android:layout_marginLeft="100px"
+                android:layout_marginBottom="69px">
 
                 <ImageView
                     android:id="@+id/gd__iv_sicbo_single1_bg"
@@ -904,21 +911,21 @@
             android:layout_width="87px"
             android:layout_height="60px"
             android:layout_marginLeft="111px"
-            android:layout_marginTop="30px"/>
+            android:layout_marginTop="30px" />
 
         <FrameLayout
             android:id="@+id/gd__fl_sicbo_pairs2"
             android:layout_width="85px"
             android:layout_height="60px"
             android:layout_marginLeft="178px"
-            android:layout_marginTop="30px"/>
+            android:layout_marginTop="30px" />
 
         <FrameLayout
             android:id="@+id/gd__fl_sicbo_pairs3"
             android:layout_width="89px"
             android:layout_height="60px"
             android:layout_marginLeft="250px"
-            android:layout_marginTop="30px"/>
+            android:layout_marginTop="30px" />
 
 
         <FrameLayout
@@ -927,23 +934,23 @@
             android:layout_height="60px"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="143px"
-            android:layout_marginTop="30px"/>
+            android:layout_marginTop="30px" />
 
         <FrameLayout
             android:id="@+id/gd__fl_sicbo_dices2_f1"
             android:layout_width="80px"
             android:layout_height="60px"
             android:layout_gravity="right"
-            android:layout_marginRight="183px"
-            android:layout_marginTop="30px"/>
+            android:layout_marginTop="30px"
+            android:layout_marginRight="183px" />
 
         <FrameLayout
             android:id="@+id/gd__fl_sicbo_dices3_f1"
             android:layout_width="82px"
             android:layout_height="60px"
             android:layout_gravity="right"
-            android:layout_marginRight="114px"
-            android:layout_marginTop="30px"/>
+            android:layout_marginTop="30px"
+            android:layout_marginRight="114px" />
 
     </FrameLayout>
 </FrameLayout>
