@@ -18,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
@@ -2079,7 +2080,45 @@ public class DragonTigerActivity extends BaseActivity {
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().setTiger_odd_even(-100);
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().setTiger_red_black(-100);
         startUpdateStatusThread();
+        lv_user_info.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+        lv_pool.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
     }
+
+    private boolean isSlideInfo = false;
 
     private void initApngList() {
         apngPlayBeanList.clear();
@@ -3993,6 +4032,10 @@ public class DragonTigerActivity extends BaseActivity {
 
     @Override
     public boolean isCanSlideChangeTable() {
-        return true;
+        if (isSlideInfo) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

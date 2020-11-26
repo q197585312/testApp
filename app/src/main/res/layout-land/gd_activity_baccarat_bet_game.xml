@@ -177,15 +177,7 @@
             android:id="@+id/gd__fl_baccarat_parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--
-              <ImageView
-                  android:id="@+id/gd__iv_baccarat_chat_logo"
-                  android:layout_marginRight="55dp"
-                  android:layout_marginTop="5dp"
-                  android:layout_gravity="right"
-                  android:layout_width="25dp"
-                  android:src="@mipmap/oval_blue_light_chat_white"
-                  android:layout_height="25dp" />-->
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -224,23 +216,6 @@
                         android:src="@mipmap/gd_arrow_down_grey_light" />
                 </LinearLayout>
             </LinearLayout>
-
-            <!--<TextView-->
-            <!--android:id="@+id/gd__tv_table_game_number"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom|left"-->
-            <!--android:layout_marginBottom="151px"-->
-            <!--android:layout_marginLeft="170px"-->
-            <!--android:background="@mipmap/gd_image_xue_no"-->
-            <!--android:gravity="center"-->
-            <!--android:paddingBottom="2dp"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:paddingRight="15dp"-->
-            <!--android:paddingTop="2dp"-->
-            <!--android:text="0 - 0"-->
-            <!--android:textColor="@color/yellow_gold"-->
-            <!--android:textSize="12sp" />-->
 
             <TextView
                 android:id="@+id/gd__tv_service_time"
@@ -377,6 +352,20 @@
 
             </FrameLayout>
 
+            <TextView
+                android:id="@+id/tv_change_bet_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="122px"
+                android:layout_marginBottom="186px"
+                android:background="@mipmap/gd_img_balance_l_bg"
+                android:gravity="center"
+                android:onClick="clickChangeBetContent"
+                android:padding="5dp"
+                android:text="@string/nn"
+                android:textColor="@color/white"
+                android:textSize="13sp"></TextView>
 
             <ListView
                 android:id="@+id/gd__lv_person_bet_info"
@@ -777,18 +766,4 @@
 
     </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
 
-    <TextView
-        android:id="@+id/tv_change_bet_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="120px"
-        android:layout_marginBottom="190px"
-        android:background="@mipmap/gd_img_balance_l_bg"
-        android:gravity="center"
-        android:onClick="clickChangeBetContent"
-        android:padding="5dp"
-        android:text="@string/nn"
-        android:textColor="@color/white"
-        android:textSize="13sp"></TextView>
 </FrameLayout>
