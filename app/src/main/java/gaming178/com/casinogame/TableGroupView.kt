@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import gaming178.com.baccaratgame.R
 
 
-class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
+class TableGroupView(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
     companion object {
         const val test = "loanType"
         const val LOAN_TITLE = "loanTitle"
@@ -66,17 +66,17 @@ class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(cont
     fun middleDownRightX_N(n: Int) =
         bottomRightX_N(n) + (topRightX_N(n) - bottomRightX_N(n)) * (verticalEach - verticalSpace) / (bottomY - topY)
 
+    val camera = Camera()
+    val matrixPath = Matrix()
 
     init {
         setWillNotDraw(false)
-
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         initPtah()
         initPaint()
-
     }
 
     val mapData = mutableMapOf<Path, BetInfoData>()
@@ -86,7 +86,6 @@ class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(cont
     fun initPaint() {
 
         mPaint = Paint()
-        mPaint.color = Color.BLUE
         mPaint.isAntiAlias = true
         mPaint.strokeWidth = 3f
         mPaint.style = Paint.Style.STROKE
@@ -119,21 +118,21 @@ class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(cont
 
     private fun initPtah() {
 
-        setPath(playPath, 1, BetInfoData(R.string.player, "1:1", 1f))
-        setPath(bankerPath, 6, BetInfoData(R.string.banker, "1:0.95", 0.95f))
+        setPath(playPath, 1, BetInfoData(R.string.player, "1:1", 1f,))
+        setPath(bankerPath, 6, BetInfoData(R.string.banker, "1:0.95", 0.95f,))
 
-        setMiddlePathUp(playLiePath, 2, BetInfoData(R.string.nplayer, "2:7", 7 / 2f))
-        setMiddlePathDown(playPairPath, 2, BetInfoData(R.string.cplayer, "1:11", 11f))
+        setMiddlePathUp(playLiePath, 2, BetInfoData(R.string.nplayer, "2:7", 7 / 2f,))
+        setMiddlePathDown(playPairPath, 2, BetInfoData(R.string.cplayer, "1:11", 11f,))
 
 
-        setMiddlePathUp(anyPairPath, 3, BetInfoData(R.string.anypairs, "1:5", 5f))
-        setMiddlePathDown(tiePath, 3, BetInfoData(R.string.tie, "1:8", 8f))
+        setMiddlePathUp(anyPairPath, 3, BetInfoData(R.string.anypairs, "1:5", 5f,))
+        setMiddlePathDown(tiePath, 3, BetInfoData(R.string.tie, "1:8", 8f,))
 
-        setMiddlePathUp(perfectPairPath, 4, BetInfoData(R.string.perfectpair, "1:25", 25f))
-        setMiddlePathDown(lucky6Path, 4, BetInfoData(R.string.lucky6, "1:12/1:20", 0f))
+        setMiddlePathUp(perfectPairPath, 4, BetInfoData(R.string.perfectpair, "1:25", 25f,))
+        setMiddlePathDown(lucky6Path, 4, BetInfoData(R.string.lucky6, "1:12/1:20", 0f,))
 
-        setMiddlePathUp(bankerLiePath, 5, BetInfoData(R.string.nbanker, "2:7", 7 / 2f))
-        setMiddlePathDown(bankerPairPath, 5, BetInfoData(R.string.cbanker, "1:11", 11f))
+        setMiddlePathUp(bankerLiePath, 5, BetInfoData(R.string.nbanker, "2:7", 7 / 2f,))
+        setMiddlePathDown(bankerPairPath, 5, BetInfoData(R.string.cbanker, "1:11", 11f,))
 
     }
 
@@ -148,7 +147,7 @@ class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(cont
             topY * height, bottomRightX_N(n) * width,
             bottomY * height, bottomLeftX_N(n) * width, bottomY * height
         )
-        path.close()
+
     }
 
 
@@ -192,6 +191,7 @@ class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(cont
         x3: Float,
         y3: Float
     ) {
+        path.reset()
         path.moveTo(x3 + (x0 - x3) * (1 - quadRatio), y0 + (y3 - y0) * quadRatio)
         path.quadTo(x0, y0, x0 + (x1 - x0) * quadRatio, y0)
         path.lineTo(x0 + (x1 - x0) * (1 - quadRatio), y1)
@@ -211,14 +211,19 @@ class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(cont
 
     private fun verticalCenter(dataBetInfoData: BetInfoData, ratio: Float) =
         PointF(
-            dataBetInfoData.bottomCenter.x + (dataBetInfoData.topCenter.x - dataBetInfoData.bottomCenter.x) * (1-ratio),
+            dataBetInfoData.bottomCenter.x + (dataBetInfoData.topCenter.x - dataBetInfoData.bottomCenter.x) * (1 - ratio),
             dataBetInfoData.topCenter.y + (dataBetInfoData.bottomCenter.y - dataBetInfoData.topCenter.y) * ratio
         )
 
     //画
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawRect(0f, 0f, 400f, 400f, mPaint)
+        matrix.reset();
+        camera.translate(10f, 50f, -180f);
+        camera.getMatrix(matrix);
+        canvas.concat(matrix);
+        canvas.drawCircle(60f, 60f, 60f, mPaint);
+
         drawDataPath(canvas, playPath)
         drawDataPath(canvas, playLiePath)
         drawDataPath(canvas, playPairPath)
@@ -246,11 +251,10 @@ class TableBgGroupView(context: Context, attrs: AttributeSet) : FrameLayout(cont
         val oddsTypeWidth = mPaint.measureText(betInfoData.oddsType)
 
         val xText = (textPoint.x - stringWidth / 2)
-        val yText = (textPoint.y )
+        val yText = (textPoint.y)
 
         val xType = (typePoint.x - oddsTypeWidth / 2)
-        val yType = (typePoint.y )
-
+        val yType = (typePoint.y)
         canvas.drawText(string, xText, yText, mPaint)
         canvas.drawText(betInfoData.oddsType, xType, yType, mPaint)
 
