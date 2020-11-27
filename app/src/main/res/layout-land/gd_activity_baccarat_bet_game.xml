@@ -252,6 +252,21 @@
                 android:textSize="12px"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/tv_change_bet_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="122px"
+                android:layout_marginBottom="186px"
+                android:background="@mipmap/gd_img_balance_l_bg"
+                android:gravity="center"
+                android:onClick="clickChangeBetContent"
+                android:padding="5dp"
+                android:text="@string/nn"
+                android:textColor="@color/white"
+                android:textSize="13sp"></TextView>
+
             <include layout="@layout/gd_include_baccarat_bet_table" />
 
 
@@ -351,21 +366,6 @@
                     app:layout_auto_basewidth="height" />
 
             </FrameLayout>
-
-            <TextView
-                android:id="@+id/tv_change_bet_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="122px"
-                android:layout_marginBottom="186px"
-                android:background="@mipmap/gd_img_balance_l_bg"
-                android:gravity="center"
-                android:onClick="clickChangeBetContent"
-                android:padding="5dp"
-                android:text="@string/nn"
-                android:textColor="@color/white"
-                android:textSize="13sp"></TextView>
 
             <ListView
                 android:id="@+id/gd__lv_person_bet_info"

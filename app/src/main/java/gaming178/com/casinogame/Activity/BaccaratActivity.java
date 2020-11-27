@@ -4096,23 +4096,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 TextView tvValue = helper.retrieveView(R.id.gd__tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
-//                switch (position) {
-//                    case 0:
-//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
-//                        break;
-//                    case 1:
-//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
-//                        break;
-//                    case 2:
-//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.tie_color));
-//                        break;
-//                    case 3:
-//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
-//                        break;
-//                    case 4:
-//                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
-//                        break;
-//                }
             }
         });
 
@@ -4124,49 +4107,50 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     public List<LiveInfoBean> getPoolData() {
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
-        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() > 0)
-            data = new LiveInfoBean(getString(R.string.gd_b), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() + "", "");
-        else
-            data = new LiveInfoBean(getString(R.string.gd_b), "0", "");
-        strData.add(data);
-        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() > 0)
-            data = new LiveInfoBean(getString(R.string.gd_p), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() + "", "");
-        else
-            data = new LiveInfoBean(getString(R.string.gd_p), "0", "");
-        strData.add(data);
-        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() > 0)
-            data = new LiveInfoBean(getString(R.string.tie), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() + "", "");
-        else
-            data = new LiveInfoBean(getString(R.string.tie), "0", "");
-        strData.add(data);
-        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBankerPair() > 0)
-            data = new LiveInfoBean(getString(R.string.BP), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBankerPair() + "", "");
-        else
-            data = new LiveInfoBean(getString(R.string.BP), "0", "");
-        strData.add(data);
-        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayerPair() > 0)
-            data = new LiveInfoBean(getString(R.string.PP), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayerPair() + "", "");
-        else
-            data = new LiveInfoBean(getString(R.string.PP), "0", "");
-        strData.add(data);
-
-        data = new LiveInfoBean(getString(R.string.lucky6), luckySixMoney, "");
-        strData.add(data);
-        data = new LiveInfoBean(getString(R.string.anypairs), anyPairMoney, "");
-        strData.add(data);
-        data = new LiveInfoBean(getString(R.string.nplayer), playerNaturalMoney, "");
-        strData.add(data);
-        data = new LiveInfoBean(getString(R.string.perfectpair), perfectPairMoney, "");
-        strData.add(data);
-        data = new LiveInfoBean(getString(R.string.nbanker), bankerNaturalMoney, "");
-        strData.add(data);
-        data = new LiveInfoBean(getString(R.string.cplayer), cowPlayerMoney, "");
-        strData.add(data);
-        data = new LiveInfoBean(getString(R.string.ctie), cowTieMoney, "");
-        strData.add(data);
-        data = new LiveInfoBean(getString(R.string.cbanker), cowBankerMoney, "");
-        strData.add(data);
-
+        if (getCurrentBetContent() == 1) {
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() > 0)
+                data = new LiveInfoBean(getString(R.string.gd_b), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBanker() + "", "");
+            else
+                data = new LiveInfoBean(getString(R.string.gd_b), "0", "");
+            strData.add(data);
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() > 0)
+                data = new LiveInfoBean(getString(R.string.gd_p), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayer() + "", "");
+            else
+                data = new LiveInfoBean(getString(R.string.gd_p), "0", "");
+            strData.add(data);
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() > 0)
+                data = new LiveInfoBean(getString(R.string.tie), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getTie() + "", "");
+            else
+                data = new LiveInfoBean(getString(R.string.tie), "0", "");
+            strData.add(data);
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBankerPair() > 0)
+                data = new LiveInfoBean(getString(R.string.BP), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getBankerPair() + "", "");
+            else
+                data = new LiveInfoBean(getString(R.string.BP), "0", "");
+            strData.add(data);
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayerPair() > 0)
+                data = new LiveInfoBean(getString(R.string.PP), mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().getPlayerPair() + "", "");
+            else
+                data = new LiveInfoBean(getString(R.string.PP), "0", "");
+            strData.add(data);
+            data = new LiveInfoBean(getString(R.string.lucky6), luckySixMoney, "");
+            strData.add(data);
+            data = new LiveInfoBean(getString(R.string.anypairs), anyPairMoney, "");
+            strData.add(data);
+            data = new LiveInfoBean(getString(R.string.nplayer), playerNaturalMoney, "");
+            strData.add(data);
+            data = new LiveInfoBean(getString(R.string.perfectpair), perfectPairMoney, "");
+            strData.add(data);
+            data = new LiveInfoBean(getString(R.string.nbanker), bankerNaturalMoney, "");
+            strData.add(data);
+        } else {
+            data = new LiveInfoBean(getString(R.string.cplayer), cowPlayerMoney, "");
+            strData.add(data);
+            data = new LiveInfoBean(getString(R.string.ctie), cowTieMoney, "");
+            strData.add(data);
+            data = new LiveInfoBean(getString(R.string.cbanker), cowBankerMoney, "");
+            strData.add(data);
+        }
         return strData;
     }
 
@@ -6991,33 +6975,35 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.LIMIT_POP), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet()) + "-" + mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet()), "");
         strData.add(data);
-        strData.add(new LiveInfoBean(getString(R.string.banker1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
-        strData.add(new LiveInfoBean(getString(R.string.player1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tie1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet())));
-        strData.add(new LiveInfoBean(getString(R.string.PP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
-        strData.add(new LiveInfoBean(getString(R.string.BP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
-
-        strData.add(new LiveInfoBean(getString(R.string.lucky6), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinLuckySixBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxLuckySixBet())));
-        strData.add(new LiveInfoBean(getString(R.string.anypairs), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinAnyPairBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxAnyPairBet())));
-        strData.add(new LiveInfoBean(getString(R.string.nplayer), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPlayerNaturalBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPlayerNaturalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.perfectpair), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPerfectPairBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPerfectPairBet())));
-        strData.add(new LiveInfoBean(getString(R.string.nbanker), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerNaturalBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerNaturalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.cplayer), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowPlayerBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowPlayerBet())));
-        strData.add(new LiveInfoBean(getString(R.string.ctie), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowTieBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowTieBet())));
-        strData.add(new LiveInfoBean(getString(R.string.cbanker), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowBankerBet())
-                , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowBankerBet())));
+        if (getCurrentBetContent() == 1) {
+            strData.add(new LiveInfoBean(getString(R.string.banker1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
+            strData.add(new LiveInfoBean(getString(R.string.player1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet())));
+            strData.add(new LiveInfoBean(getString(R.string.tie1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet())));
+            strData.add(new LiveInfoBean(getString(R.string.PP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
+            strData.add(new LiveInfoBean(getString(R.string.BP1), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet())));
+            strData.add(new LiveInfoBean(getString(R.string.lucky6), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinLuckySixBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxLuckySixBet())));
+            strData.add(new LiveInfoBean(getString(R.string.anypairs), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinAnyPairBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxAnyPairBet())));
+            strData.add(new LiveInfoBean(getString(R.string.nplayer), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPlayerNaturalBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPlayerNaturalBet())));
+            strData.add(new LiveInfoBean(getString(R.string.perfectpair), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPerfectPairBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPerfectPairBet())));
+            strData.add(new LiveInfoBean(getString(R.string.nbanker), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerNaturalBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerNaturalBet())));
+        } else {
+            strData.add(new LiveInfoBean(getString(R.string.cplayer), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowPlayerBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowPlayerBet())));
+            strData.add(new LiveInfoBean(getString(R.string.ctie), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowTieBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowTieBet())));
+            strData.add(new LiveInfoBean(getString(R.string.cbanker), mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowBankerBet())
+                    , mAppViewModel.covertLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowBankerBet())));
+        }
 
         return strData;
     }
