@@ -5663,9 +5663,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             fl_poker_bottom_parent.setVisibility(View.GONE);
             ll_poker_pw.setVisibility(View.GONE);
         }
-        int width = pw_poker_banker3.getWidth();
-        int height = pw_poker_banker3.getHeight();
+        int width = fl_player_pw_parent.getWidth();
+        int height = fl_player_pw_parent.getHeight();
+        int width1 = fl_banker_pw_parent.getWidth();
+        int height1 = fl_banker_pw_parent.getHeight();
         Log.d("dfsfsdfsdf", "width: " + width + "height: " + height);
+        Log.d("dfsfsdfsdf", "width1: " + width1 + "height1: " + height1);
         fl_poker_result.setVisibility(View.VISIBLE);
 //        tv_table_timer.setVisibility(View.GONE);
         tv_point_banker.setVisibility(View.GONE);

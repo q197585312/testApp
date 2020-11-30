@@ -2413,7 +2413,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         logoutTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(BuildConfig.FLAVOR)) {
+                if (TextUtils.isEmpty(BuildConfig.FLAVOR) || WebSiteUrl.PROJECT.contains("kgapi")) {
                     ActivityPageManager.getInstance().finishGd88AllActivity();
                 } else {
                     stopUpdateStatus();
@@ -2448,7 +2448,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         if (mAppViewModel != null)
             mAppViewModel.setbInitLimit(false);
         stopUpdateStatus();
-        if (BuildConfig.FLAVOR.isEmpty()) {
+        if (BuildConfig.FLAVOR.isEmpty() || WebSiteUrl.PROJECT.contains("kgapi")) {
             finish();
             return;
         }
