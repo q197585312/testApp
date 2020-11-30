@@ -5630,6 +5630,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     private void showPoker71() {
+        //最新分支
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 ||
