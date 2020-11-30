@@ -51,8 +51,8 @@ public class PageWidgetT extends ImageView {
 
     private flipCallBack flipCallBack;
     private static final String TAG = "hmg";
-    private static final float PART_PICTURE_HEIGHT = 18 / 32F;
-    private static final float PART_PICTURE_WIDTH = 10F / 34F;
+    private static final float PART_PICTURE_HEIGHT = 28 / 32F;
+    private static final float PART_PICTURE_WIDTH = 18 / 32F;
 
     private static final float PART_PADING_LEFT = 1F / 2F;
     private static final float PART_PADING_RIGHT = 1 - PART_PADING_LEFT;
@@ -302,7 +302,7 @@ public class PageWidgetT extends ImageView {
         } else if (action == MotionEvent.ACTION_POINTER_DOWN) {
             Log.d("FoldView", "ACTION_POINTER_DOWN:" + action);
             float preMove = calSpacing(event);
-          /*  if (*//*preMove > 1F&&*//*!isRotate) {
+            /*  if (*//*preMove > 1F&&*//*!isRotate) {
                 currentMode = MODE_ROTATE;
                 Log.d("Afb88", "setMode:MODE_ROTATE");
                 refresh();
@@ -630,9 +630,11 @@ public class PageWidgetT extends ImageView {
                 mTouch.y = mPicRectF.bottom - 0.1F;
             }
         }
-        if(currentMode==MODE_ROTATE){
-           mTouch.x =0f;mCornerX=0f;
-           mTouch.y =0f;mCornerY=0f;
+        if (currentMode == MODE_ROTATE) {
+            mTouch.x = 0f;
+            mCornerX = 0f;
+            mTouch.y = 0f;
+            mCornerY = 0f;
         }
 
         initPoint();
@@ -775,7 +777,6 @@ public class PageWidgetT extends ImageView {
         picPadingRight = (mWidth - mPicWidth) * PART_PADING_RIGHT;
         picPadingTop = (mHeight - mPicHeight) * PART_PADING_TOP;
         picPadingBottom = (mHeight - mPicHeight) * PART_PADING_BOTTOM;
-
 
 
         mPicRectF = new RectF(picPadingLeft, picPadingTop, mWidth - picPadingRight, mHeight - picPadingBottom);

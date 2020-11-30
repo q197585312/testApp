@@ -5581,7 +5581,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         getBanker2(),
                         getBanker3(),
                         tv_poker_center_right, tv_poker_center_left, getString(banker_home) + " ", getString(player_home) + " ");
-                hidePoker(3);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        hidePoker(3);
+                    }
+                }, 2000);
                 if (timer != null)
                     timer.cancel();
                 timer = null;

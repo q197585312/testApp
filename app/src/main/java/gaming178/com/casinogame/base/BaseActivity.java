@@ -1413,7 +1413,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             width = width / 2;
         }
-        BasePopupWindow pop = new BasePopupWindow(mContext, center, width, ScreenUtil.dip2px(mContext, 200)) {
+        BasePopupWindow pop = new BasePopupWindow(mContext, center, width, ViewGroup.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int getContentViewLayoutRes() {
                 return R.layout.gd_popupwindow_voice_set_layout;
