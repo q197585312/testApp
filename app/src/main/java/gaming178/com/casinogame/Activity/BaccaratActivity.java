@@ -883,10 +883,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
                         }
 
-                        if (!player.equals("0"))
+                        if (!player.equals("0") || !cPlayer.equals("0")) {
                             gameBetMap.put(gameIdNumber, 1);
-                        else if (!banker.equals("0"))
+                        } else if (!banker.equals("0") || !cBanker.equals("0")) {
                             gameBetMap.put(gameIdNumber, 2);
+                        }
+                        if (!player.equals("0") && !cBanker.equals("0")) {
+                            gameBetMap.put(gameIdNumber, 3);
+                        }
+                        if (!banker.equals("0") && !cPlayer.equals("0")) {
+                            gameBetMap.put(gameIdNumber, 3);
+                        }
+                        if (!cPlayer.equals("0") && !cBanker.equals("0")) {
+                            gameBetMap.put(gameIdNumber, 3);
+                        }
                     } else {//提示下注失败
                         handler.sendEmptyMessage(HandlerCode.SHOW_BET_ERROR);
                     }
@@ -5571,6 +5581,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         getBanker2(),
                         getBanker3(),
                         tv_poker_center_right, tv_poker_center_left, getString(banker_home) + " ", getString(player_home) + " ");
+                hidePoker(3);
                 if (timer != null)
                     timer.cancel();
                 timer = null;
@@ -5619,16 +5630,41 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     private void showPoker71() {
-        if (gameBetMap.get(gameIdNumber) != null && gameBetMap.get(gameIdNumber) != 0) {
-            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 ||
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0 ||
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 ||
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 ||
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
                 gameBetMap.put(gameIdNumber, 1);
-            } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
+            } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 ||
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
                 gameBetMap.put(gameIdNumber, 2);
             }
+
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+                gameBetMap.put(gameIdNumber, 3);
+            }
+
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 &&
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
+                gameBetMap.put(gameIdNumber, 3);
+            }
+
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0 &&
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+                gameBetMap.put(gameIdNumber, 3);
+            }
             fl_poker_bottom_parent.setVisibility(View.VISIBLE);
+            ll_poker_pw.setVisibility(View.VISIBLE);
         } else {
             fl_poker_bottom_parent.setVisibility(View.GONE);
+            ll_poker_pw.setVisibility(View.GONE);
         }
+        int width = pw_poker_banker3.getWidth();
+        int height = pw_poker_banker3.getHeight();
+        Log.d("dfsfsdfsdf", "width: " + width + "height: " + height);
         fl_poker_result.setVisibility(View.VISIBLE);
 //        tv_table_timer.setVisibility(View.GONE);
         tv_point_banker.setVisibility(View.GONE);
@@ -5637,7 +5673,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             bottomPanel1.setOpen(true, true);
         }
         ll_poker_parent.setVisibility(View.GONE);
-        ll_poker_pw.setVisibility(View.VISIBLE);
+//        ll_poker_pw.setVisibility(View.VISIBLE);
         if (gamePokerMap.get(gameIdNumber) == null) {
 
             pw_poker_banker1.setImageCurRes(R.mipmap.gd_poker_bg);
@@ -5680,10 +5716,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         if (getBanker1() > 0 && getBanker2() > 0
                 && getPlayer1() > 0 && getPlayer2() > 0) {
-
             if (gamePokerMap.get(gameIdNumber) == null || gamePokerMap.get(gameIdNumber) != 1) {
-                fl_poker_bottom_parent.setVisibility(View.VISIBLE);
-                ll_poker_pw.setVisibility(View.VISIBLE);
+//                fl_poker_bottom_parent.setVisibility(View.VISIBLE);
+//                ll_poker_pw.setVisibility(View.VISIBLE);
                 gamePokerMap.put(gameIdNumber, 1);
                 pw_poker_banker1.setImageNextRes(getPokerResource(getBanker1()));
 
@@ -5797,9 +5832,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     setFlipPlayerEnable(true);
                     setShowFlipPoker(true);
                 } else {
-                    setShowFlipPoker(false);
-                    setFlipBankerEnable(true);
-                    setFlipPlayerEnable(true);
+                    setShowFlipPoker(true);
+                    setFlipBankerEnable(false);
+                    setFlipPlayerEnable(false);
 
                 }
                 pw_poker_player3.setVisibility(View.GONE);
@@ -5812,12 +5847,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             }
             if (hasOtherTwoPoker()) {
                 Log.d("hide", "hideType:" + hideType + ",show2");
-
                 if (gamePokerMap.get(gameIdNumber + "2") == null || gamePokerMap.get(gameIdNumber + "2") != 2) {
                     if (getPlayer3() > 0 && getBanker3() > 0) {
                         hideType = 0;
-                        fl_poker_bottom_parent.setVisibility(View.VISIBLE);
-                        ll_poker_pw.setVisibility(View.VISIBLE);
+//                        fl_poker_bottom_parent.setVisibility(View.VISIBLE);
+//                        ll_poker_pw.setVisibility(View.VISIBLE);
                         setAppImage();
                         gamePokerMap.put(gameIdNumber + "2", 2);
                         pw_poker_player3.setVisibility(View.VISIBLE);
@@ -5882,9 +5916,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                             setFlipPlayerEnable(false);
                             setFlipBankerEnable(true);
                         } else {
-                            setShowFlipPoker(false);
-                            setFlipBankerEnable(true);
-                            setFlipPlayerEnable(true);
+                            setShowFlipPoker(true);
+                            setFlipBankerEnable(false);
+                            setFlipPlayerEnable(false);
                         }
                         pw_poker_banker1.setVisibility(View.GONE);
                         pw_poker_banker2.setVisibility(View.GONE);
@@ -5900,8 +5934,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             } else {
                 if (getBanker3() > 0 && (gamePokerMap.get(gameIdNumber + "0") == null || gamePokerMap.get(gameIdNumber + "0") != 0)) {
                     hideType = 0;
-                    fl_poker_bottom_parent.setVisibility(View.VISIBLE);
-                    ll_poker_pw.setVisibility(View.VISIBLE);
+//                    fl_poker_bottom_parent.setVisibility(View.VISIBLE);
+//                    ll_poker_pw.setVisibility(View.VISIBLE);
                     gamePokerMap.put(gameIdNumber + "0", 0);
                     setAppImage();
                     pw_poker_banker3.setVisibility(View.VISIBLE);
@@ -5934,6 +5968,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         setShowFlipPoker(true);
                         setFlipBankerEnable(false);
                         setFlipPlayerEnable(true);
+                    } else if (gameBetMap.get(gameIdNumber) != null && gameBetMap.get(gameIdNumber) == 3) {
+                        setShowFlipPoker(true);
+                        setFlipBankerEnable(false);
+                        setFlipPlayerEnable(false);
                     } else {
                         setShowFlipPoker(false);
                     }
@@ -5950,8 +5988,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 if (getPlayer3() > 0 && (gamePokerMap.get(gameIdNumber + "1") == null || gamePokerMap.get(gameIdNumber + "1") != 1)) {
 
                     hideType = 0;
-                    fl_poker_bottom_parent.setVisibility(View.VISIBLE);
-                    ll_poker_pw.setVisibility(View.VISIBLE);
+//                    fl_poker_bottom_parent.setVisibility(View.VISIBLE);
+//                    ll_poker_pw.setVisibility(View.VISIBLE);
 
                     gamePokerMap.put(gameIdNumber + "1", 1);
                     setAppImage();
@@ -5989,6 +6027,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         setFlipPlayerEnable(false);
                     } else if (gameBetMap.get(gameIdNumber) != null && gameBetMap.get(gameIdNumber) == 2) {
                         setShowFlipPoker(false);
+                    } else {
+                        setShowFlipPoker(true);
+                        setFlipBankerEnable(false);
+                        setFlipPlayerEnable(false);
                     }
                     pw_poker_banker1.setVisibility(View.GONE);
                     pw_poker_banker2.setVisibility(View.GONE);
@@ -6016,18 +6058,18 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 banker2,
                 banker3,
                 /*tv_point_banker*/tv_banker_result, /*getString(banker)*/"");
-        if (type < 3 && (banker1 == 0 || banker2 == 0)) {
-
-        } else {
-            if (fl_banker_pw_parent.getVisibility() == View.VISIBLE) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        hidePoker(type);
-                    }
-                }, 3000);
-            }
-        }
+//        if (type < 3 && (banker1 == 0 || banker2 == 0)) {
+//
+//        } else {
+//            if (fl_banker_pw_parent.getVisibility() == View.VISIBLE) {
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        hidePoker(type);
+//                    }
+//                }, 3000);
+//            }
+//        }
     }
 
     public void showPlayerPoint(final int type) {
@@ -6038,18 +6080,18 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 player2,
                 player3,
                 /*tv_point_player*/tv_player_result, /*getString(player)*/"");
-        if (type < 3 && (player1 == 0 || player2 == 0)) {
-
-        } else {
-            if (fl_player_pw_parent.getVisibility() == View.VISIBLE) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        hidePoker(type);
-                    }
-                }, 3000);
-            }
-        }
+//        if (type < 3 && (player1 == 0 || player2 == 0)) {
+//
+//        } else {
+//            if (fl_player_pw_parent.getVisibility() == View.VISIBLE) {
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        hidePoker(type);
+//                    }
+//                }, 3000);
+//            }
+//        }
     }
 
     public void setPlayerImageChange() {

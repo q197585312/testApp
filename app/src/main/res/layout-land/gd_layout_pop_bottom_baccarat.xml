@@ -320,46 +320,48 @@
 
         <LinearLayout
             android:id="@+id/gd__ll_poker_pw"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
+            android:layout_width="660px"
+            android:layout_height="280px"
+            android:layout_gravity="bottom|center"
             android:clickable="false"
             android:orientation="horizontal"
             android:visibility="visible">
 
             <FrameLayout
                 android:id="@+id/gd__fl_player_pw_parent"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="3dp"
+                android:layout_weight="1"
                 android:gravity="center_vertical">
 
                 <FrameLayout
                     android:layout_width="30dp"
                     android:layout_height="260px"
-                    android:layout_gravity="left|bottom"
-                    android:layout_marginLeft="110px">
+                    android:layout_gravity="left|bottom">
 
                     <ImageView
                         android:id="@+id/gd__img_left_player_rotate"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
                         android:visibility="gone" />
                 </FrameLayout>
 
                 <gaming178.com.casinogame.Control.PageWidgetT
+                    android:layout_marginLeft="35dp"
                     android:id="@+id/gd__page_widget_poker_player1"
-                    android:layout_width="560px"
+                    android:layout_width="360px"
                     android:layout_height="match_parent"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player2"
-                    android:layout_width="560px"
+                    android:layout_width="360px"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
+                    android:layout_marginRight="35dp"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
@@ -404,9 +406,10 @@
 
             <FrameLayout
                 android:id="@+id/gd__fl_banker_pw_parent"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
+                android:layout_weight="1"
                 android:clickable="false"
 
                 android:gravity="center_vertical">
@@ -423,19 +426,19 @@
                         android:layout_height="35dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
                 </FrameLayout>
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker1"
-                    android:layout_width="560px"
+                    android:layout_width="360px"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="3dp"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker2"
-                    android:layout_width="560px"
+                    android:layout_width="260px"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
                     android:visibility="visible" />

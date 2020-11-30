@@ -10,7 +10,7 @@
     <color name="blue_word">#009fe8</color>
     <color name="blue1">#5a96dd</color>
     <color name="blue_300">#42c6ff</color>
-    <color name="white">#17212B</color>
+    <color name="white">@android:color/white</color>
 
     <!--black-grey-->
     <color name="black">@android:color/black</color>
