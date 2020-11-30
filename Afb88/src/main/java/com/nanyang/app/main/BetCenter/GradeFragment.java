@@ -70,6 +70,8 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
     public int onSetLayoutId() {
         return R.layout.fragment_grade;
     }
+    public void showLoadingDialog() {
+    }
 
     @Override
     public void initData() {

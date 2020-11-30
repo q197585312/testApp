@@ -2626,21 +2626,21 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         super.initToolBar();
     }
 
-    @BindView(R.id.gd__fl_baccarat_table_lucky)
+    @BindView(R2.id.gd__fl_baccarat_table_lucky)
     FrameLayout fl_baccarat_table_lucky;
-    @BindView(R.id.gd__fl_baccarat_table_any)
+    @BindView(R2.id.gd__fl_baccarat_table_any)
     FrameLayout fl_baccarat_table_any;
-    @BindView(R.id.gd__fl_baccarat_table_player_natural)
+    @BindView(R2.id.gd__fl_baccarat_table_player_natural)
     FrameLayout fl_baccarat_table_player_natural;
-    @BindView(R.id.gd__fl_baccarat_table_perfect)
+    @BindView(R2.id.gd__fl_baccarat_table_perfect)
     FrameLayout fl_baccarat_table_perfect;
-    @BindView(R.id.gd__fl_baccarat_table_banker_natural)
+    @BindView(R2.id.gd__fl_baccarat_table_banker_natural)
     FrameLayout fl_baccarat_table_banker_natural;
-    @BindView(R.id.gd__fl_baccarat_table_cow_player)
+    @BindView(R2.id.gd__fl_baccarat_table_cow_player)
     FrameLayout fl_baccarat_table_cow_player;
-    @BindView(R.id.gd__fl_baccarat_table_cow_tie)
+    @BindView(R2.id.gd__fl_baccarat_table_cow_tie)
     FrameLayout fl_baccarat_table_cow_tie;
-    @BindView(R.id.gd__fl_baccarat_table_cow_banker)
+    @BindView(R2.id.gd__fl_baccarat_table_cow_banker)
     FrameLayout gfl_baccarat_table_cow_banker;
 
     FrameLayout fl_baccarat_table_tie;

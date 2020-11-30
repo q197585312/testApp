@@ -52,6 +52,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     public int onSetLayoutId() {
         return R.layout.fragment_statement_new;
     }
+    public void showLoadingDialog() {
+
+    }
 
     @Override
     public void initData() {
