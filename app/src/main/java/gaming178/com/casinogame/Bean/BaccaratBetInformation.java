@@ -3,88 +3,15 @@ package gaming178.com.casinogame.Bean;
 public class BaccaratBetInformation {
 	private String shoeNumber;
 	private String gameNumber;
-
+	
 
 	private int banker;
 	private int player;
 	private int tie;
-	private int lucky;
-	private int any;
-	private int playerN;
-	private int perfect;
-	private int bankerN;
-	private int cowBanker;
-	private int cowTie;
-	private int cowPlayer;
 	private int small;
 	private int big;
 	private int bankerPair;
 	private int allBetMoney;
-
-	public int getLucky() {
-		return lucky;
-	}
-
-	public void setLucky(int lucky) {
-		this.lucky = lucky;
-	}
-
-	public int getAny() {
-		return any;
-	}
-
-	public void setAny(int any) {
-		this.any = any;
-	}
-
-	public int getPlayerN() {
-		return playerN;
-	}
-
-	public void setPlayerN(int playerN) {
-		this.playerN = playerN;
-	}
-
-	public int getPerfect() {
-		return perfect;
-	}
-
-	public void setPerfect(int perfect) {
-		this.perfect = perfect;
-	}
-
-	public int getBankerN() {
-		return bankerN;
-	}
-
-	public void setBankerN(int bankerN) {
-		this.bankerN = bankerN;
-	}
-
-	public int getCowBanker() {
-		return cowBanker;
-	}
-
-	public void setCowBanker(int cowBanker) {
-		this.cowBanker = cowBanker;
-	}
-
-	public int getCowTie() {
-		return cowTie;
-	}
-
-	public void setCowTie(int cowTie) {
-		this.cowTie = cowTie;
-	}
-
-	public int getCowPlayer() {
-		return cowPlayer;
-	}
-
-	public void setCowPlayer(int cowPlayer) {
-		this.cowPlayer = cowPlayer;
-	}
-
 	public int getBankerPair() {
 		return bankerPair;
 	}
@@ -129,7 +56,7 @@ public class BaccaratBetInformation {
 	public void setBig(int big) {
 		this.big = big;
 	}
-
+	
 	public void Init()
 	{
 		banker = 0;
@@ -140,14 +67,6 @@ public class BaccaratBetInformation {
 		big = 0;
 		small = 0;
 		allBetMoney = 0;
-		lucky= 0;
-		any= 0;
-		playerN= 0;
-		perfect= 0;
-		bankerN= 0;
-		cowBanker= 0;
-		cowTie= 0;
-		cowPlayer= 0;
 	}
 	public String getShoeNumber() {
 		return shoeNumber;

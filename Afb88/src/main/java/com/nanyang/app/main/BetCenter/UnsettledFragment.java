@@ -94,9 +94,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         setAdapter();
 
     }
-    public void showLoadingDialog() {
-    }
-
 
     BaseRecyclerAdapter<RunningBean> adapter;
 

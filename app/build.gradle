@@ -42,7 +42,7 @@ android {
         versionCode 1
         versionName '2.40'
         buildConfigField "String", "AppWebServiceNameSpace", '"http://Dig88/"'
-        buildConfigField "String", "AppWebServiceUrl", '"http://www.greendragon88.com/Dig88/GD88digWS?wsdl"'
+        buildConfigField "String", "AppWebServiceUrl", '"http://www.greendragon88.com/kgapi/GD88digWS?wsdl"'
         buildConfigField "String", "loginjsp", '"login.jsp"'
         buildConfigField "String", "Labelid", '"48"'
         if (rootProject.ext.isGd88LibraryModule.toBoolean()) {
@@ -78,7 +78,7 @@ android {
     if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
         productFlavors {
             gd88 {
-                versionName '3.72'
+                versionName '3.73'
                 buildConfigField "String", "Labelid", '"48"'
                 applicationId 'gaming178.com.baccaratgame'
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gd88"]

@@ -128,5 +128,157 @@ LoginKtActivity : BaseKtActivity<LoginModel, GdActivityLoginJetpackBinding>() {
     }
 
 
+    /* private fun initLanguagePop(v: View, weight: Float) {
+         if (popLanguage == null) {
+             popLanguage = object :
+                 PopChoiceLanguage<MenuItemInfo<String?>?>(
+                     this@LoginKtActivity,
+                     v,
+                     DeviceUtils.getScreenPix(this@LoginKtActivity).widthPixels - DeviceUtils.dip2px(
+                         this@LoginKtActivity,
+                         20f
+                     ),
+                     DeviceUtils.dip2px(this@LoginKtActivity, 200f)
+                 ) {
+                 override fun onSetRcItemLayout(): Int {
+                     return R.layout.gd_item_language_selected
+                 }
+
+                 public override fun onConvert(
+                     holder: MyRecyclerViewHolder?,
+                     position: Int,
+                     item: MenuItemInfo<String?>?
+                 ) {
+                     val ivFlag =
+                         holder?.getView<ImageView>(R.id.gd__iv_flag_country)
+                     val tvContent =
+                         holder?.getView<TextView>(R.id.gd__selectable_text_content_tv)
+                     tvContent?.text = item!!.text
+                     ivFlag?.setImageResource(item.res!!)
+                     val itemLanguageSelected =
+                         LanguageHelper(this@LoginKtActivity)
+                             .isItemLanguageSelected(item.type)
+                     if (itemLanguageSelected) {
+                         if (BuildConfig.FLAVOR == "gd88" || BuildConfig.FLAVOR == "liga365") {
+                             tvContent?.setCompoundDrawablesWithIntrinsicBounds(
+                                 0,
+                                 0,
+                                 R.mipmap.oval_blue_point_12,
+                                 0
+                             )
+                         } else {
+                             tvContent?.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                         }
+                     } else {
+                         tvContent?.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                     }
+                 }
+
+                 public override  fun onClickItem(
+                     item: MenuItemInfo<*>?,
+                     position: Int
+                 ) {
+                     closePopupWindow()
+                     if (BuildConfig.FLAVOR == "gd88" || BuildConfig.FLAVOR == "liga365") {
+                         SystemTool.switchLanguage(item.type, this@LoginKtActivity)
+                         recreate()
+                     } else {
+                         val screenWidth =
+                             DeviceUtils.getScreenPix(this@LoginKtActivity).widthPixels
+                         val width = screenWidth / 15 * 14
+                         val type = item.type
+                         val u: User? = mAppViewModel.user.value
+                         when (type) {
+                             "deposit" -> {
+                                 val pop = DepositPop(
+                                     this@LoginKtActivity,
+                                     v,
+                                     width,
+                                     LinearLayout.LayoutParams.WRAP_CONTENT
+                                 )
+                                 pop.setDialog(popLanguage)
+                                 pop.setUser(u)
+                                 pop.showPopupCenterWindow()
+                             }
+                             "withdraw" -> {
+                                 val p = WithdrawPop(
+                                     this@LoginKtActivity,
+                                     v,
+                                     width,
+                                     LinearLayout.LayoutParams.WRAP_CONTENT
+                                 )
+                                 p.setDialog(popLanguage)
+                                 p.setUser(u)
+                                 p.showPopupCenterWindow()
+                             }
+                             "referrer" -> {
+                                 val popReferrer = PopReferrer(
+                                     this@LoginKtActivity,
+                                     v,
+                                     width,
+                                     LinearLayout.LayoutParams.WRAP_CONTENT
+                                 )
+                                 popReferrer.showPopupCenterWindow()
+                             }
+                             "katasandi" -> startActivity(
+                                 Intent(
+                                     this@LoginKtActivity,
+                                     ChangePasswordActivity::class.java
+                                 )
+                             )
+                             "Referral_List" -> {
+                                 val popReferralList =
+                                     PopReferralList(this@LoginKtActivity, v, width, width)
+                                 popReferralList.showPopupCenterWindow()
+                             }
+                         }
+                     }
+                 }
+
+                 override fun initData() {
+                     super.initData()
+                     recyclerView.layoutManager = GridLayoutManager(
+                         this@LoginKtActivity,
+                         2
+                     )
+                 }
+
+                 override fun initView(view: View) {
+                     super.initView(view)
+                     val viewById =
+                         view.findViewById<View>(R.id.gd__view_weight1)
+                     val params =
+                         viewById.layoutParams as LinearLayout.LayoutParams
+                     params.weight = weight
+                     viewById.layoutParams = params
+                 }
+
+                 override fun onCloose() {
+                     super.onCloose()
+                     darkenBackground(1f)
+                 }
+
+                 override fun getContentViewLayoutRes(): Int {
+                     return R.layout.popupwindow_language_select
+                 }
+             }
+             popLanguage.setData(
+                 LanguageHelper(this@LoginKtAcitivity).languageItems
+             )
+         }
+         darkenBackground(0.5f)
+         popLanguage.showPopupWindowUpCenter(
+             v,
+             ScreenUtil.dip2px(this@LoginKtAcitivity, 200f),
+             ScreenUtil.getScreenWidthPix(this@LoginKtAcitivity) - ScreenUtil.dip2px(
+                 this@LoginKtAcitivity,
+                 20f
+             )
+         )
+
+     }
+
+     var popLanguage: PopChoiceLanguage*/
+
 }
 

@@ -34,7 +34,7 @@ public class BaseApplication extends Application implements IViewModelStoreOwner
     private static DisplayImageOptions options;
     private static BaseApplication instance;
     public static Context myContext;
-    public ViewModelStore mAppViewModelStore;
+    private ViewModelStore mAppViewModelStore;
     private ViewModelProvider.AndroidViewModelFactory mFactory;
     /*
      * 是否完成  整个项目

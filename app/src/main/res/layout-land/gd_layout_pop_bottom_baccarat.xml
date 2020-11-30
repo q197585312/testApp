@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     android:onClick="parentClick">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="122px"
-        android:layout_marginBottom="186px"
-        android:gravity="center"
-        android:onClick="clickChangeBetContent"
-        android:padding="5dp"
-        android:text="BACCARAT"
-        android:textColor="#00000000"
-        android:textSize="13sp"></TextView>
-
     <FrameLayout
         android:id="@+id/gd__fl_poker_parent"
         android:layout_width="match_parent"
@@ -150,8 +137,8 @@
                     android:layout_width="80px"
                     android:layout_height="67px"
                     android:layout_gravity="bottom"
-                    android:layout_marginLeft="73px"
                     android:layout_marginBottom="138px"
+                    android:layout_marginLeft="73px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -162,8 +149,8 @@
                     android:layout_width="91px"
                     android:layout_height="53px"
                     android:layout_gravity="bottom"
-                    android:layout_marginLeft="14px"
                     android:layout_marginBottom="72px"
+                    android:layout_marginLeft="14px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -183,8 +170,8 @@
                     android:layout_width="54px"
                     android:layout_height="38px"
                     android:layout_gravity="right"
-                    android:layout_marginTop="160px"
                     android:layout_marginRight="90px"
+                    android:layout_marginTop="160px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -196,8 +183,8 @@
                     android:layout_height="38px"
                     android:layout_gravity="right"
 
-                    android:layout_marginTop="160px"
                     android:layout_marginRight="60px"
+                    android:layout_marginTop="160px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -208,8 +195,8 @@
                     android:layout_width="66px"
                     android:layout_height="32px"
                     android:layout_gravity="right"
-                    android:layout_marginTop="206px"
                     android:layout_marginRight="45px"
+                    android:layout_marginTop="206px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -220,8 +207,8 @@
                     android:layout_width="78px"
                     android:layout_height="67px"
                     android:layout_gravity="bottom|right"
-                    android:layout_marginRight="74px"
                     android:layout_marginBottom="138px"
+                    android:layout_marginRight="74px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -244,8 +231,8 @@
                     android:layout_width="91px"
                     android:layout_height="53px"
                     android:layout_gravity="bottom|right"
-                    android:layout_marginRight="14px"
                     android:layout_marginBottom="72px"
+                    android:layout_marginRight="14px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -281,8 +268,8 @@
                 android:layout_width="32px"
                 android:layout_height="40px"
                 android:layout_gravity="right"
-                android:layout_marginTop="70px"
                 android:layout_marginRight="50px"
+                android:layout_marginTop="70px"
                 android:background="@mipmap/gd_poker_bg_small"
                 android:gravity="center"
                 android:textColor="@color/red"
@@ -320,48 +307,46 @@
 
         <LinearLayout
             android:id="@+id/gd__ll_poker_pw"
-            android:layout_width="660px"
-            android:layout_height="280px"
-            android:layout_gravity="bottom|center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
             android:clickable="false"
             android:orientation="horizontal"
             android:visibility="visible">
 
             <FrameLayout
                 android:id="@+id/gd__fl_player_pw_parent"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
                 android:gravity="center_vertical">
 
                 <FrameLayout
                     android:layout_width="30dp"
                     android:layout_height="260px"
-                    android:layout_gravity="left|bottom">
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="110px">
 
                     <ImageView
                         android:id="@+id/gd__img_left_player_rotate"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
                         android:visibility="gone" />
                 </FrameLayout>
 
                 <gaming178.com.casinogame.Control.PageWidgetT
-                    android:layout_marginLeft="35dp"
                     android:id="@+id/gd__page_widget_poker_player1"
-                    android:layout_width="360px"
+                    android:layout_width="560px"
                     android:layout_height="match_parent"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player2"
-                    android:layout_width="360px"
+                    android:layout_width="560px"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
-                    android:layout_marginRight="35dp"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
@@ -406,10 +391,9 @@
 
             <FrameLayout
                 android:id="@+id/gd__fl_banker_pw_parent"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
-                android:layout_weight="1"
                 android:clickable="false"
 
                 android:gravity="center_vertical">
@@ -426,19 +410,19 @@
                         android:layout_height="35dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
                 </FrameLayout>
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker1"
-                    android:layout_width="360px"
+                    android:layout_width="560px"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="3dp"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker2"
-                    android:layout_width="260px"
+                    android:layout_width="560px"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
                     android:visibility="visible" />

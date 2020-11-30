@@ -1290,6 +1290,8 @@ public class BetPop {
 
         webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
         webView.clearHistory();
+
+        ((ViewGroup) webView.getParent()).removeView(webView);
         webView.destroy();
 
 

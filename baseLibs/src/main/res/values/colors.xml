@@ -61,8 +61,6 @@
     <color name="orange_desktop">#FFFD7E01</color>
     <color name="yellow_light_bg">#fdf1b5</color>
     <color name="yellow_white_bg">#F3F2E3</color>
-    <color name="yellow_white_stroke">#d1e6c0</color>
-    <color name="yellow_stroke">#dbaf6e</color>
 
 
     <!--green-->
@@ -81,9 +79,6 @@
     <color name="green_dark">#FF137D33</color>
     <color name="green_black">#0d5924</color>
 
-    <color name="green_table_light">#2b872f</color>
-    <color name="green_table_dark">#124410</color>
-
     <color name="green_black_word">#006230</color>
     <color name="green_trans">#dd4CAF50</color>
     <color name="green_light">#a3e8ac</color>
@@ -94,7 +89,6 @@
     <color name="green_light_white">#FFC9EBD5</color>
     <color name="green_light_white_low">#FFF3FDF6</color>
     <color name="green_login_btn">#289F45</color>
-
 
     <!--other-->
     <color name="background_tab_pressed">#6633B5E5</color>

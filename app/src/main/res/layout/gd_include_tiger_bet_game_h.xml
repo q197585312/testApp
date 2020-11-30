@@ -4,14 +4,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="247px"
-        android:layout_marginLeft="5px"
-        android:layout_marginTop="224px"
-        android:layout_marginRight="5px"
-        android:background="@mipmap/dv"
-        android:orientation="vertical"></LinearLayout>
 
     <FrameLayout
         android:layout_width="520px"

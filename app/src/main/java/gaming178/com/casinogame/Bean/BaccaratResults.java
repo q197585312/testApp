@@ -6,11 +6,6 @@ public class BaccaratResults {
 	private int bankerPair;
 	private int playerPair;
 	private int big_small;
-	private int lucky6;
-	private int anyPairs;
-	private int perfectPairs;
-	private int nBanker;
-	private int nPlayer;
 
 	public void Init()
 	{
@@ -18,51 +13,6 @@ public class BaccaratResults {
 		bankerPair = 0;
 		playerPair = 0;
 		big_small = 0;
-		lucky6 = 0;
-		anyPairs = 0;
-		perfectPairs = 0;
-		nBanker = 0;
-		nPlayer = 0;
-	}
-
-	public int getLucky6() {
-		return lucky6;
-	}
-
-	public void setLucky6(int lucky6) {
-		this.lucky6 = lucky6;
-	}
-
-	public int getAnyPairs() {
-		return anyPairs;
-	}
-
-	public void setAnyPairs(int anyPairs) {
-		this.anyPairs = anyPairs;
-	}
-
-	public int getPerfectPairs() {
-		return perfectPairs;
-	}
-
-	public void setPerfectPairs(int perfectPairs) {
-		this.perfectPairs = perfectPairs;
-	}
-
-	public int getnBanker() {
-		return nBanker;
-	}
-
-	public void setnBanker(int nBanker) {
-		this.nBanker = nBanker;
-	}
-
-	public int getnPlayer() {
-		return nPlayer;
-	}
-
-	public void setnPlayer(int nPlayer) {
-		this.nPlayer = nPlayer;
 	}
 
 	public int getBanker_palyer_tie() {

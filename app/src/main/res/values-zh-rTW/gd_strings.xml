@@ -201,7 +201,7 @@
     <string name="game_close">已關閉</string>
     <string name="start_bet">開始下注</string>
     <string name="end_bet">結束下注</string>
-    <string name="slots">AFB 遊戲</string>
+    <string name="slots">BG電子遊戲</string>
     <string name="cq">CQ9電子遊戲</string>
     <string name="cock_fighting">鬥雞</string>
     <string name="dragon_tiger_game_number_limit">過了30局只能下注龍、虎、和</string>
@@ -241,8 +241,4 @@
     <string name="gd_confirm_password">確認密碼</string>
     <string name="switch_account">切換賬號</string>
     <string name="member_center">會員中心</string>
-    <string name="niu_hint">贏/輸金額根據最終遊戲結果而異</string>
-    <string name="Rule">規則</string>
-    <string name="bjl">百家樂</string>
-    <string name="nn">牛牛</string>
 </resources>

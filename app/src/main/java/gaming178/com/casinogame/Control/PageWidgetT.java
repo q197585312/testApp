@@ -776,8 +776,6 @@ public class PageWidgetT extends ImageView {
         picPadingTop = (mHeight - mPicHeight) * PART_PADING_TOP;
         picPadingBottom = (mHeight - mPicHeight) * PART_PADING_BOTTOM;
 
-
-
         mPicRectF = new RectF(picPadingLeft, picPadingTop, mWidth - picPadingRight, mHeight - picPadingBottom);
         mPicDropRectF = new RectF(picPadingLeft - 5F, picPadingTop - 5F, mWidth - picPadingRight + 5F, mHeight - picPadingBottom + 5F);
 

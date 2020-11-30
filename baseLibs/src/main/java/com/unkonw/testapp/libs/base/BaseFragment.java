@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -38,7 +37,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     /**
      * Api类的包装 对象
      */
-    /*    public Api mApiWrapper;*/
+/*    public Api mApiWrapper;*/
 
     public T presenter;
     protected BasePopupWindow popWindow;
@@ -62,15 +61,10 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
             gson = new Gson();
         }
         initView();
-
+        initData();
         return mContentView;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initData();
-    }
 
     @Override
     public void onDestroy() {
@@ -96,7 +90,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     public BaseActivity getBaseActivity() {
         return (BaseActivity) this.getActivity();
     }
-    /*    *//**
+/*    *//**
      * 初始化 Api  更具需要初始化
      *//*
     public void initApi() {
@@ -185,7 +179,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     }
 
     public void initWaitData() {
-        LogUtil.d("waitNumber", getClass().getSimpleName() + ":initWaitData");
+        LogUtil.d("waitNumber",getClass().getSimpleName()+":initWaitData");
     }
 
     public void refreshData() {
@@ -197,7 +191,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     }
 
     public void setParentHidden(boolean hidden) {
-        this.parentHidden = hidden;
+        this.parentHidden =hidden;
     }
 
 }

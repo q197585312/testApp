@@ -23,7 +23,6 @@ import androidx.core.content.ContextCompat;
 import com.google.gson.Gson;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.Utils.LogIntervalUtils;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
@@ -366,11 +365,11 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                         HttpUrl url1 = rawRequest.url();
 
                         String url = url1.url().toString();
-                        PersonalInfo info = getApp().getUser();
+                        if (url.contains("login.jsp")) {
 
-                        if (url.contains("login.jsp") && info != null && !StringUtils.isNull(info.getLoginName())) {
-                            SettingAllDataBean bean = getApp().getSettingAllDataBean();
                             Bundle intent = new Bundle();
+                            PersonalInfo info = getApp().getUser();
+                            SettingAllDataBean bean = getApp().getSettingAllDataBean();
                             intent.putString("username", info.getLoginName());
                             intent.putString("password", info.getPassword());
                             intent.putString("language", "en");
