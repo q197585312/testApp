@@ -886,37 +886,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
 
                         }
-
-                        if (!player.equals("0") || !cPlayer.equals("0")) {
-                            gameBetMap.put(gameIdNumber, 1);
-                            setBigPoker(pw_poker_player1, 1);
-                            setBigPoker(pw_poker_player2, 2);
-                        } else if (!banker.equals("0") || !cBanker.equals("0")) {
-                            gameBetMap.put(gameIdNumber, 2);
-                            setBigPoker(pw_poker_banker1, 1);
-                            setBigPoker(pw_poker_banker2, 2);
-                        }
-                        if (!player.equals("0") && !cBanker.equals("0")) {
-                            gameBetMap.put(gameIdNumber, 3);
-                            setSmallPoker(pw_poker_player1, 1);
-                            setSmallPoker(pw_poker_player2, 2);
-                            setSmallPoker(pw_poker_banker1, 1);
-                            setSmallPoker(pw_poker_banker2, 2);
-                        }
-                        if (!banker.equals("0") && !cPlayer.equals("0")) {
-                            gameBetMap.put(gameIdNumber, 3);
-                            setSmallPoker(pw_poker_player1, 1);
-                            setSmallPoker(pw_poker_player2, 2);
-                            setSmallPoker(pw_poker_banker1, 1);
-                            setSmallPoker(pw_poker_banker2, 2);
-                        }
-                        if (!cPlayer.equals("0") && !cBanker.equals("0")) {
-                            gameBetMap.put(gameIdNumber, 3);
-                            setSmallPoker(pw_poker_player1, 1);
-                            setSmallPoker(pw_poker_player2, 2);
-                            setSmallPoker(pw_poker_banker1, 1);
-                            setSmallPoker(pw_poker_banker2, 2);
-                        }
+                        setPokerSize();
                     } else {//提示下注失败
                         handler.sendEmptyMessage(HandlerCode.SHOW_BET_ERROR);
                     }
@@ -5260,7 +5230,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 5) {
             showBetBg();
         }
+        setPokerSize();
+    }
 
+    private void setPokerSize() {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 ||
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
             setBigPoker(pw_poker_player1, 1);
