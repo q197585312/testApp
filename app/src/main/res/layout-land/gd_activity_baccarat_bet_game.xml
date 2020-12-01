@@ -5,6 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/view_small"
+        android:layout_width="220px"
+        android:layout_height="220px"
+        android:layout_marginTop="20px"
+        android:visibility="visible" />
+
+    <View
+        android:id="@+id/view_big"
+        android:layout_width="280px"
+        android:layout_height="280px"
+        android:layout_marginTop="8px"
+        android:visibility="visible" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -765,5 +779,4 @@
             layout="@layout/gd_layout_baccarat_content_panel" />
 
     </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
-
 </FrameLayout>

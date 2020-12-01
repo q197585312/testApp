@@ -386,7 +386,7 @@
                         android:layout_height="25dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -450,7 +450,7 @@
                         android:layout_height="25dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
                 </FrameLayout>
 
                 <FrameLayout

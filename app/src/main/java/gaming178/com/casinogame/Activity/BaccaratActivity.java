@@ -452,6 +452,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     TextView tv_banker_n_bet_money;
     @BindView(R2.id.gd__tv_banker_n_bet_count)
     TextView tv_banker_n_bet_count;
+    @BindView(R2.id.view_small)
+    View view_small;
+    @BindView(R2.id.view_big)
+    View view_big;
 
     private AnimationDrawable animationPlayer;
     private AnimationDrawable animationBanker;
@@ -885,17 +889,33 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
                         if (!player.equals("0") || !cPlayer.equals("0")) {
                             gameBetMap.put(gameIdNumber, 1);
+                            setBigPoker(pw_poker_player1, 1);
+                            setBigPoker(pw_poker_player2, 2);
                         } else if (!banker.equals("0") || !cBanker.equals("0")) {
                             gameBetMap.put(gameIdNumber, 2);
+                            setBigPoker(pw_poker_banker1, 1);
+                            setBigPoker(pw_poker_banker2, 2);
                         }
                         if (!player.equals("0") && !cBanker.equals("0")) {
                             gameBetMap.put(gameIdNumber, 3);
+                            setSmallPoker(pw_poker_player1, 1);
+                            setSmallPoker(pw_poker_player2, 2);
+                            setSmallPoker(pw_poker_banker1, 1);
+                            setSmallPoker(pw_poker_banker2, 2);
                         }
                         if (!banker.equals("0") && !cPlayer.equals("0")) {
                             gameBetMap.put(gameIdNumber, 3);
+                            setSmallPoker(pw_poker_player1, 1);
+                            setSmallPoker(pw_poker_player2, 2);
+                            setSmallPoker(pw_poker_banker1, 1);
+                            setSmallPoker(pw_poker_banker2, 2);
                         }
                         if (!cPlayer.equals("0") && !cBanker.equals("0")) {
                             gameBetMap.put(gameIdNumber, 3);
+                            setSmallPoker(pw_poker_player1, 1);
+                            setSmallPoker(pw_poker_player2, 2);
+                            setSmallPoker(pw_poker_banker1, 1);
+                            setSmallPoker(pw_poker_banker2, 2);
                         }
                     } else {//提示下注失败
                         handler.sendEmptyMessage(HandlerCode.SHOW_BET_ERROR);
@@ -912,6 +932,34 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         }
 
+    }
+
+    private void setBigPoker(PageWidgetT pw_poker, int orientation) {
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(view_big.getWidth(), view_big.getHeight());
+        if (orientation == 1) {
+            layoutParams.gravity = Gravity.LEFT | Gravity.BOTTOM;
+            layoutParams.leftMargin = ll_baccarat_parent.getWidth() / 9;
+        } else {
+            layoutParams.gravity = Gravity.RIGHT | Gravity.BOTTOM;
+            layoutParams.rightMargin = ll_baccarat_parent.getWidth() / 9;
+        }
+        layoutParams.bottomMargin = view_big.getTop();
+        pw_poker.setLayoutParams(layoutParams);
+        pw_poker.setImageCurRes(R.mipmap.gd_poker_bg);
+        pw_poker.coverPic();
+    }
+
+    private void setSmallPoker(PageWidgetT pw_poker, int orientation) {
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(view_small.getWidth(), view_small.getHeight());
+        if (orientation == 1) {
+            layoutParams.gravity = Gravity.LEFT | Gravity.BOTTOM;
+        } else {
+            layoutParams.gravity = Gravity.RIGHT | Gravity.BOTTOM;
+        }
+        layoutParams.bottomMargin = view_small.getTop();
+        pw_poker.setLayoutParams(layoutParams);
+        pw_poker.setImageCurRes(R.mipmap.gd_poker_bg);
+        pw_poker.coverPic();
     }
 
     public enum BaccaratBetType {
@@ -5212,6 +5260,40 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 5) {
             showBetBg();
         }
+
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 ||
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+            setBigPoker(pw_poker_player1, 1);
+            setBigPoker(pw_poker_player2, 2);
+        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 ||
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
+            setBigPoker(pw_poker_banker1, 1);
+            setBigPoker(pw_poker_banker2, 2);
+        }
+
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+            setSmallPoker(pw_poker_player1, 1);
+            setSmallPoker(pw_poker_player2, 2);
+            setSmallPoker(pw_poker_banker1, 1);
+            setSmallPoker(pw_poker_banker2, 2);
+        }
+
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 &&
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
+            setSmallPoker(pw_poker_player1, 1);
+            setSmallPoker(pw_poker_player2, 2);
+            setSmallPoker(pw_poker_banker1, 1);
+            setSmallPoker(pw_poker_banker2, 2);
+        }
+
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0 &&
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+            setSmallPoker(pw_poker_player1, 1);
+            setSmallPoker(pw_poker_player2, 2);
+            setSmallPoker(pw_poker_banker1, 1);
+            setSmallPoker(pw_poker_banker2, 2);
+        }
     }
 
     private void showApng(int position) {
@@ -5668,12 +5750,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             fl_poker_bottom_parent.setVisibility(View.GONE);
             ll_poker_pw.setVisibility(View.GONE);
         }
-        int width = fl_player_pw_parent.getWidth();
-        int height = fl_player_pw_parent.getHeight();
-        int width1 = fl_banker_pw_parent.getWidth();
-        int height1 = fl_banker_pw_parent.getHeight();
-        Log.d("dfsfsdfsdf", "width: " + width + "height: " + height);
-        Log.d("dfsfsdfsdf", "width1: " + width1 + "height1: " + height1);
         fl_poker_result.setVisibility(View.VISIBLE);
 //        tv_table_timer.setVisibility(View.GONE);
         tv_point_banker.setVisibility(View.GONE);
