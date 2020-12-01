@@ -2709,6 +2709,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         initApngList();
         initUserBetMsg();
         initOrientation();
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setAllBetMoney(-1);
         toolbar_right_bottom_tv.setVisibility(View.GONE);
         toolbar_right_top_tv.setVisibility(View.GONE);
         toolbar.setNavigationIcon(null);
@@ -2880,6 +2881,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     @Override
     public void initBaccarat() {
         tableId = mAppViewModel.getTableId();
+        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().setAllBetMoney(-1);
         fl_bet_content_1.setVisibility(View.VISIBLE);
         fl_bet_content_2.setVisibility(View.INVISIBLE);
         if (getCurrentBetContent() == 1) {
@@ -5485,7 +5487,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         isResultEnd = true;
         if (isResultEnd) {
             if (mAppViewModel.getTableId() == 71) {
-                showPoker71();
+                if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAllBetMoney() >= 0) {
+                    showPoker71();
+                }
                 return;
             }
             if (!bottomPanel1.isOpen()) {
@@ -5593,6 +5597,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
     }
 
+    private void showAllPoker(List<PageWidgetT> pws) {
+        for (PageWidgetT pw : pws) {
+            if (!isFinishing() && isAttached && pw.getVisibility() == View.VISIBLE)
+                pw.flipPicAnimation3D();
+        }
+        mAppViewModel.showPoint(getPlayer1(),
+                getPlayer2(),
+                getPlayer3(),
+                getBanker1(),
+                getBanker2(),
+                getBanker3(),
+                tv_poker_center_right, tv_poker_center_left, getString(banker_home) + " ", getString(player_home) + " ");
+    }
+
     private void startTimer(final int duration, final TextView timerTv, final List<PageWidgetT> pws) {
         timerTv.setVisibility(View.VISIBLE);
         tv_table_timer.setVisibility(View.GONE);
@@ -5614,6 +5632,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             @Override
             public void onFinish() {
+                showAllPoker(pws);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        hidePoker(3);
+
+                    }
+                }, 1000);
                 timerTv.setText("0");
                 tv_mi_timer.setText("0");
                 tv_mi_timer.setVisibility(View.GONE);
@@ -5625,23 +5651,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     }
                 }, 1000);
 
-                for (PageWidgetT pw : pws) {
-                    if (!isFinishing() && isAttached && pw.getVisibility() == View.VISIBLE)
-                        pw.flipPicAnimation3D();
-                }
-                mAppViewModel.showPoint(getPlayer1(),
-                        getPlayer2(),
-                        getPlayer3(),
-                        getBanker1(),
-                        getBanker2(),
-                        getBanker3(),
-                        tv_poker_center_right, tv_poker_center_left, getString(banker_home) + " ", getString(player_home) + " ");
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        hidePoker(3);
-                    }
-                }, 2000);
                 if (timer != null)
                     timer.cancel();
                 timer = null;
@@ -5727,8 +5736,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //        tv_table_timer.setVisibility(View.GONE);
         tv_point_banker.setVisibility(View.GONE);
         tv_point_player.setVisibility(View.GONE);
-        if (!bottomPanel1.isOpen()) {
-            bottomPanel1.setOpen(true, true);
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 5) {
+            bottomPanel1.setOpen(false, false);
+        } else {
+            if (!bottomPanel1.isOpen()) {
+                bottomPanel1.setOpen(true, true);
+            }
         }
         ll_poker_parent.setVisibility(View.GONE);
 //        ll_poker_pw.setVisibility(View.VISIBLE);
@@ -5904,9 +5917,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 pokerFlipTimeCount(20, tv_poker_timer, new ArrayList<>(Arrays.asList(pw_poker_player1, pw_poker_player2, pw_poker_banker1, pw_poker_banker2)));
             }
             if (hasOtherTwoPoker()) {
-                Log.d("hide", "hideType:" + hideType + ",show2");
                 if (gamePokerMap.get(gameIdNumber + "2") == null || gamePokerMap.get(gameIdNumber + "2") != 2) {
                     if (getPlayer3() > 0 && getBanker3() > 0) {
+                        timerOnFinish();
+                        if (fl_poker_bottom_parent.getVisibility() == View.VISIBLE){
+                            return;
+                        }
                         hideType = 0;
 //                        fl_poker_bottom_parent.setVisibility(View.VISIBLE);
 //                        ll_poker_pw.setVisibility(View.VISIBLE);
@@ -5991,6 +6007,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }
             } else {
                 if (getBanker3() > 0 && (gamePokerMap.get(gameIdNumber + "0") == null || gamePokerMap.get(gameIdNumber + "0") != 0)) {
+                    timerOnFinish();
+                    if (fl_poker_bottom_parent.getVisibility() == View.VISIBLE) {
+                        return;
+                    }
                     hideType = 0;
 //                    fl_poker_bottom_parent.setVisibility(View.VISIBLE);
 //                    ll_poker_pw.setVisibility(View.VISIBLE);
@@ -6044,7 +6064,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     img_right_banker_rotate.setVisibility(View.GONE);
                 }
                 if (getPlayer3() > 0 && (gamePokerMap.get(gameIdNumber + "1") == null || gamePokerMap.get(gameIdNumber + "1") != 1)) {
-
+                    timerOnFinish();
+                    if (fl_poker_bottom_parent.getVisibility() == View.VISIBLE) {
+                        return;
+                    }
                     hideType = 0;
 //                    fl_poker_bottom_parent.setVisibility(View.VISIBLE);
 //                    ll_poker_pw.setVisibility(View.VISIBLE);

@@ -353,10 +353,10 @@
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player3"
-                    android:layout_width="280px"
-                    android:layout_height="280px"
+                    android:layout_width="260px"
+                    android:layout_height="260px"
                     android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="8px"
+                    android:layout_marginBottom="5px"
                     android:visibility="visible" />
 
                 <FrameLayout
@@ -432,10 +432,10 @@
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker3"
-                    android:layout_width="280px"
-                    android:layout_height="280px"
+                    android:layout_width="260px"
+                    android:layout_height="260px"
                     android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="8px"
+                    android:layout_marginBottom="5px"
                     android:visibility="visible" />
 
                 <FrameLayout
