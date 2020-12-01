@@ -507,8 +507,11 @@ public class PageWidgetT extends ImageView {
     }
 
     private void resetPath() {
+        mCornerX = 0; // 拖拽点对应的页脚
+        mCornerY = 0;
         mTouch.x = mCornerX;
         mTouch.y = mCornerY;
+
         mNextPath1.reset();
         mBackAndNextPath0.reset();
     }

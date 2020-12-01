@@ -242,7 +242,7 @@ class TableBgView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     }
 
     val quadRatio = 0.1f //四条边开始画贝塞尔曲线的比例
-    fun setQuadPath(
+    private fun setQuadPath(
         data: BetInfoData,
         path: Path,
         x0: Float,
