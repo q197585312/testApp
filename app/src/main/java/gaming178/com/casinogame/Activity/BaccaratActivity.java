@@ -1059,6 +1059,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             currentShufflingStatus = 1;
         }
         if (currentShufflingStatus != finalShufflingStatus) {
+            clearAllShowChip();
+            clearAllChips();
             setChip();
             finalShufflingStatus = currentShufflingStatus;
         }
