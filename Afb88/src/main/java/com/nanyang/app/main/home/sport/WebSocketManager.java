@@ -48,6 +48,8 @@ public class WebSocketManager {
 
     public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final BaseActivity context) {
         isRunning = true;
+        Log.e("Socket", "正在连接----------------" + AppConstant.getInstance().WebSocket_HOST);
+
         AsyncHttpClient.getDefaultInstance().websocket(AppConstant.getInstance().WebSocket_HOST, null, new AsyncHttpClient.WebSocketConnectCallback() {
 
             @Override
