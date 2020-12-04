@@ -1247,7 +1247,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     public void onTypeWayClick(MenuItemInfo item, int position) {
-        if (item.getRes() == R.mipmap.sport_game_cup_white) {
+        if (item.getRes() == R.mipmap.sport_game_cup_white||item.getRes() == R.mipmap.sport_cup_yellow) {
             SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
             sportActivity.clickTop();
             return;
@@ -1292,7 +1292,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d4.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d4.split("-")[1])), R.mipmap.date_day_green, d4.split("-")[2], d4);
         MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d5.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
         MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d6.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
-        MenuItemInfo<Integer> itemTop = new MenuItemInfo<>(R.mipmap.sport_game_cup_white, (R.string.TOP), "Top", R.mipmap.sport_game_cup_white);
+        MenuItemInfo<Integer> itemTop = new MenuItemInfo<>(R.mipmap.sport_cup_yellow, (R.string.TOP), "Top", R.mipmap.sport_cup_yellow);
 
         MenuItemInfo<Integer> itemRunning = new MenuItemInfo<>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         itemRunning.setDateParam("");
