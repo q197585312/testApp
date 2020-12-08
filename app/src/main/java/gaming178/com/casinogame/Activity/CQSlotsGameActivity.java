@@ -77,6 +77,7 @@ public class CQSlotsGameActivity extends BaseActivity {
                 return;
             if (msg.what == 1) {
                 CQSlotsGameInfoBean slotsBean = (CQSlotsGameInfoBean) msg.obj;
+                mAppViewModel.setCqSlotsBean(slotsBean);
                 gameCount = slotsBean.getData().size();
                 initUi(slotsBean);
             } else if (msg.what == 2) {
@@ -198,7 +199,7 @@ public class CQSlotsGameActivity extends BaseActivity {
         adapterViewContent.setItemClick(new ItemCLickImp<CQSlotsGameInfoBean.DataBean>() {
             @Override
             public void itemCLick(View view, CQSlotsGameInfoBean.DataBean item, int position) {
-                getUrl(item.getId());
+                getUrl(item.getId(), position);
             }
         });
         return gridView;
@@ -206,7 +207,7 @@ public class CQSlotsGameActivity extends BaseActivity {
 
     private boolean isCanLoad = true;
 
-    private void getUrl(final String gameId) {
+    private void getUrl(final String gameId, final int position) {
         if (isCanLoad) {
             isCanLoad = false;
             new Thread() {
@@ -219,6 +220,8 @@ public class CQSlotsGameActivity extends BaseActivity {
                     if (result.startsWith("Results=ok")) {
                         String[] split = result.split("#");
                         String loadUrl = split[1] + "&" + split[2];
+                        mAppViewModel.setSlideGameType("CQ9");
+                        mAppViewModel.setCqSlotsCurrentIndex(position);
                         Intent i = new Intent(mContext, SlotsWebActivity.class);
                         i.putExtra("url", loadUrl);
                         i.putExtra("gameType", "CQ9");

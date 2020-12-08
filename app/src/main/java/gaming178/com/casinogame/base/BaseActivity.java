@@ -62,6 +62,7 @@ import gaming178.com.casinogame.Activity.LobbySicboActivity;
 import gaming178.com.casinogame.Activity.ReportFormActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
+import gaming178.com.casinogame.Activity.SlotsWebActivity;
 import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Bean.BaccaratOtherUserBetInfomation;
 import gaming178.com.casinogame.Bean.BaccaratPlayer;
@@ -2766,16 +2767,28 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 int offsetY = y - lastY;
                 if (Math.abs(offsetX) > 350 || Math.abs(offsetY) > 350) {
                     if (Math.abs(offsetX) > Math.abs(offsetY)) {
-                        if (offsetX > 0) {
-                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideRight);
+                        if (this instanceof SlotsWebActivity) {
+                            //slots暂时没得左右滑
                         } else {
-                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideLeft);
+                            if (offsetX > 0) {
+                                GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideRight);
+                            } else {
+                                GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideLeft);
+                            }
                         }
                     } else {
-                        if (offsetY > 0) {
-                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideDown);
+                        if (this instanceof SlotsWebActivity) {
+                            if (offsetY > 0) {
+                                GameSlideChangeTableHelper.slotsChangeTable(BaseActivity.this, GameSlideChangeTableHelper.SlideDown);
+                            } else {
+                                GameSlideChangeTableHelper.slotsChangeTable(BaseActivity.this, GameSlideChangeTableHelper.SlideUp);
+                            }
                         } else {
-                            GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideUp);
+                            if (offsetY > 0) {
+                                GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideDown);
+                            } else {
+                                GameSlideChangeTableHelper.changeTable(BaseActivity.this, mAppViewModel.getTableId(), GameSlideChangeTableHelper.SlideUp);
+                            }
                         }
                     }
                     return true;
@@ -2788,17 +2801,39 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     public PopSlideHint popSlideHint;
 
     public void checkSlideHint(View view) {
+        String tag = "";
+        Object tagObject = view.getTag();
+        if (tagObject != null) {
+            tag = tagObject.toString();
+        }
         int orientation = getResources().getConfiguration().orientation;
         Integer times;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            times = (Integer) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_P);
+            String key = AppConfig.ACTION_KEY_SLIDE_HINT_P;
+            if (!TextUtils.isEmpty(tag)) {
+                if (tag.equals("SLOTS")) {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_SLOTS;
+                } else {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_CQ9;
+                }
+            }
+            times = (Integer) AppTool.getObjectData(mContext, key);
         } else {
-            times = (Integer) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_SLIDE_HINT_l);
+            String key = AppConfig.ACTION_KEY_SLIDE_HINT_l;
+            if (!TextUtils.isEmpty(tag)) {
+                if (tag.equals("SLOTS")) {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_SLOTS;
+                } else {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_CQ9;
+                }
+            }
+            times = (Integer) AppTool.getObjectData(mContext, key);
         }
         if (times == null || times < 3) {
             if (popSlideHint == null) {
                 popSlideHint = new PopSlideHint(mContext, view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             }
+            popSlideHint.setTag(tag);
             if (!popSlideHint.isShowing()) {
                 popSlideHint.initOrientation();
                 popSlideHint.showPopupCenterWindow();

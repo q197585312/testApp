@@ -22,6 +22,6 @@
         android:layout_centerHorizontal="true"
         android:textAllCaps="true"
         android:textColor="@color/home_no_select_color"
-        android:textSize="10sp" />
+        android:textSize="9sp" />
 
 </RelativeLayout>

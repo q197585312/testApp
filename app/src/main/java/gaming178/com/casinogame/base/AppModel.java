@@ -31,6 +31,7 @@ import java.util.Map;
 
 import cn.finalteam.toolsfinal.DeviceUtils;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.entity.CQSlotsGameInfoBean;
 import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Bean.BaccaratLimit;
 import gaming178.com.casinogame.Bean.DragonTiger;
@@ -39,6 +40,7 @@ import gaming178.com.casinogame.Bean.Roulette;
 import gaming178.com.casinogame.Bean.RouletteLimit;
 import gaming178.com.casinogame.Bean.Sicbo;
 import gaming178.com.casinogame.Bean.SicboLimit;
+import gaming178.com.casinogame.Bean.SlotsBean;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.FrontMuzicService;
@@ -3768,4 +3770,54 @@ public class AppModel extends ViewModel {
     }
 
     public int homeColor = 0;
+
+    private String slideGameType;
+
+    private int slotsCurrentIndex;
+
+    private int cqSlotsCurrentIndex;
+
+    private SlotsBean slotsBean;
+
+    private CQSlotsGameInfoBean cqSlotsBean;
+
+    public String getSlideGameType() {
+        return slideGameType;
+    }
+
+    public void setSlideGameType(String slideGameType) {
+        this.slideGameType = slideGameType;
+    }
+
+    public SlotsBean getSlotsBean() {
+        return slotsBean;
+    }
+
+    public void setSlotsBean(SlotsBean slotsBean) {
+        this.slotsBean = slotsBean;
+    }
+
+    public CQSlotsGameInfoBean getCqSlotsBean() {
+        return cqSlotsBean;
+    }
+
+    public void setCqSlotsBean(CQSlotsGameInfoBean cqSlotsBean) {
+        this.cqSlotsBean = cqSlotsBean;
+    }
+
+    public int getSlotsCurrentIndex() {
+        return slotsCurrentIndex;
+    }
+
+    public void setSlotsCurrentIndex(int slotsCurrentIndex) {
+        this.slotsCurrentIndex = slotsCurrentIndex;
+    }
+
+    public int getCqSlotsCurrentIndex() {
+        return cqSlotsCurrentIndex;
+    }
+
+    public void setCqSlotsCurrentIndex(int cqSlotsCurrentIndex) {
+        this.cqSlotsCurrentIndex = cqSlotsCurrentIndex;
+    }
 }

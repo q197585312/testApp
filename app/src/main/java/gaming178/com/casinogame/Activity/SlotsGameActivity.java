@@ -74,10 +74,11 @@ public class SlotsGameActivity extends BaseActivity {
                 return;
             if (msg.what == 1) {
                 SlotsBean slotsBean = (SlotsBean) msg.obj;
+                mAppViewModel.setSlotsBean(slotsBean);
                 gameCount = slotsBean.getData().size();
                 initUi(slotsBean);
-            }else if (msg.what==2){
-                Toast.makeText(mContext,"error",Toast.LENGTH_SHORT).show();
+            } else if (msg.what == 2) {
+                Toast.makeText(mContext, "error", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -90,7 +91,7 @@ public class SlotsGameActivity extends BaseActivity {
     private int gameCount;
 
     private void initUi(SlotsBean slotsBean) {
-        if (viewPager==null){
+        if (viewPager == null) {
             return;
         }
         gridViewList = new ArrayList<>();
@@ -188,10 +189,13 @@ public class SlotsGameActivity extends BaseActivity {
             @Override
             public void itemCLick(View view, SlotsBean.DataBean item, int position) {
                 //https://www.slotsgamingonline.com/loader.php?platform=html5&language=en&game=safarisam&id=67&username=username&token=token
+                mAppViewModel.setSlideGameType("SLOTS");
+                mAppViewModel.setSlotsCurrentIndex(position);
                 Intent i = new Intent(mContext, SlotsWebActivity.class);
                 String url = item.getUrl() + "?" + "platform=" + item.getPlatform() + "&language=" + item.getLanguage() + "&game=" + item.getGame() +
                         "&id=" + item.getId() + "&username=" + item.getUsername() + "&token=" + item.getToken();
                 i.putExtra("url", url);
+                i.putExtra("gameType", "SLOTS");
                 startActivity(i);
             }
         });
@@ -210,7 +214,7 @@ public class SlotsGameActivity extends BaseActivity {
                     return;
                 }
                 String result = mAppViewModel.getHttpClient().sendPost(url, "");
-                if (result.equals("netError")||result.contains("=no")){
+                if (result.equals("netError") || result.contains("=no")) {
                     handler.sendEmptyMessage(2);
                     return;
                 }

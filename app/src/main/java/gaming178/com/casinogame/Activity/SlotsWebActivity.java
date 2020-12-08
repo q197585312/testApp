@@ -1,8 +1,10 @@
 package gaming178.com.casinogame.Activity;
 
+import android.content.res.Configuration;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,21 @@ public class SlotsWebActivity extends BaseActivity {
     }
 
     @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        isAttached = true;
+        if (!gameType.equals("CQ9")) {
+            checkSlideHint(webView);
+        }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onAttachedToWindow();
+        isAttached = false;
+    }
+
+    @Override
     protected void initView() {
         super.initView();
         title.setVisibility(View.GONE);
@@ -84,6 +101,7 @@ public class SlotsWebActivity extends BaseActivity {
         super.initData(savedInstanceState);
         url = getIntent().getStringExtra("url");
         gameType = getIntent().getStringExtra("gameType");
+        webView.setTag(gameType);
         if (!TextUtils.isEmpty(url)) {
             load();
         }
@@ -121,6 +139,12 @@ public class SlotsWebActivity extends BaseActivity {
         });
         webView.setWebViewClient(new WebViewClient() {
             @Override
+            public void onLoadResource(WebView view, String url) {
+                super.onLoadResource(view, url);
+                Log.d("onLoadResource", url);
+            }
+
+            @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
@@ -135,5 +159,14 @@ public class SlotsWebActivity extends BaseActivity {
             }
         });
         webView.loadUrl(url);
+    }
+
+    @Override
+    public boolean isCanSlideChangeTable() {
+        if (gameType.equals("CQ9")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

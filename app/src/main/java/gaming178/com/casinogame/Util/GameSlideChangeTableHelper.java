@@ -1,6 +1,7 @@
 package gaming178.com.casinogame.Util;
 
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -12,6 +13,9 @@ import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
+import gaming178.com.casinogame.Activity.SlotsWebActivity;
+import gaming178.com.casinogame.Activity.entity.CQSlotsGameInfoBean;
+import gaming178.com.casinogame.Bean.SlotsBean;
 import gaming178.com.casinogame.base.BaseActivity;
 
 public class GameSlideChangeTableHelper {
@@ -237,4 +241,108 @@ public class GameSlideChangeTableHelper {
         }
     }
 
+    public static void slotsChangeTable(BaseActivity baseActivity, int slideType) {
+        String slideGameType = baseActivity.mAppViewModel.getSlideGameType();
+        if (slideGameType.equals("SLOTS")) {
+            SlotsBean slotsBean = baseActivity.mAppViewModel.getSlotsBean();
+            List<SlotsBean.DataBean> dataList = slotsBean.getData();
+            if (slotsBean != null && slotsBean.getData() != null && slotsBean.getData().size() > 0) {
+                int from = baseActivity.mAppViewModel.getSlotsCurrentIndex();
+                int to = -1;
+                if (slideType == SlideDown) {
+                    to = from - 1;
+                    if (to < 0) {
+                        to = dataList.size() - 1;
+                    }
+                    SlotsBean.DataBean item = dataList.get(to);
+                    baseActivity.mAppViewModel.setSlideGameType("SLOTS");
+                    baseActivity.mAppViewModel.setSlotsCurrentIndex(to);
+                    Bundle bundle = new Bundle();
+                    String url = item.getUrl() + "?" + "platform=" + item.getPlatform() + "&language=" + item.getLanguage() + "&game=" + item.getGame() +
+                            "&id=" + item.getId() + "&username=" + item.getUsername() + "&token=" + item.getToken();
+                    bundle.putString("url", url);
+                    bundle.putString("gameType", "SLOTS");
+                    baseActivity.skipAct(SlotsWebActivity.class, bundle);
+                    baseActivity.overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+                    baseActivity.finish();
+                } else {
+                    to = from + 1;
+                    if (to > dataList.size() - 1) {
+                        to = 0;
+                    }
+                    SlotsBean.DataBean item = dataList.get(to);
+                    baseActivity.mAppViewModel.setSlideGameType("SLOTS");
+                    baseActivity.mAppViewModel.setSlotsCurrentIndex(to);
+                    Bundle bundle = new Bundle();
+                    String url = item.getUrl() + "?" + "platform=" + item.getPlatform() + "&language=" + item.getLanguage() + "&game=" + item.getGame() +
+                            "&id=" + item.getId() + "&username=" + item.getUsername() + "&token=" + item.getToken();
+                    bundle.putString("url", url);
+                    bundle.putString("gameType", "SLOTS");
+                    baseActivity.skipAct(SlotsWebActivity.class, bundle);
+                    baseActivity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+                    baseActivity.finish();
+                }
+            }
+        } else {
+            CQSlotsGameInfoBean cqSlotsBean = baseActivity.mAppViewModel.getCqSlotsBean();
+            List<CQSlotsGameInfoBean.DataBean> dataList = cqSlotsBean.getData();
+            if (cqSlotsBean != null && cqSlotsBean.getData() != null && cqSlotsBean.getData().size() > 0) {
+                int from = baseActivity.mAppViewModel.getCqSlotsCurrentIndex();
+                int to = -1;
+                if (slideType == SlideDown) {
+                    to = from - 1;
+                    if (to < 0) {
+                        to = dataList.size() - 1;
+                    }
+                    CQSlotsGameInfoBean.DataBean item = dataList.get(to);
+                    baseActivity.mAppViewModel.setSlideGameType("CQ9");
+                    baseActivity.mAppViewModel.setCqSlotsCurrentIndex(to);
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            String gameUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "cq9path.jsp";
+                            String param = "game_usid=" + item.getId();
+                            String result = baseActivity.mAppViewModel.getHttpClient().sendPostCQ(gameUrl, param);
+                            if (result.startsWith("Results=ok")) {
+                                String[] split = result.split("#");
+                                String loadUrl = split[1] + "&" + split[2];
+                                Bundle bundle = new Bundle();
+                                bundle.putString("url", loadUrl);
+                                bundle.putString("gameType", "CQ9");
+                                baseActivity.skipAct(SlotsWebActivity.class, bundle);
+                                baseActivity.overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+                                baseActivity.finish();
+                            }
+                        }
+                    }.start();
+                } else {
+                    to = from + 1;
+                    if (to > dataList.size() - 1) {
+                        to = 0;
+                    }
+                    CQSlotsGameInfoBean.DataBean item = dataList.get(to);
+                    baseActivity.mAppViewModel.setSlideGameType("CQ9");
+                    baseActivity.mAppViewModel.setCqSlotsCurrentIndex(to);
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            String gameUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "cq9path.jsp";
+                            String param = "game_usid=" + item.getId();
+                            String result = baseActivity.mAppViewModel.getHttpClient().sendPostCQ(gameUrl, param);
+                            if (result.startsWith("Results=ok")) {
+                                String[] split = result.split("#");
+                                String loadUrl = split[1] + "&" + split[2];
+                                Bundle bundle = new Bundle();
+                                bundle.putString("url", loadUrl);
+                                bundle.putString("gameType", "CQ9");
+                                baseActivity.skipAct(SlotsWebActivity.class, bundle);
+                                baseActivity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+                                baseActivity.finish();
+                            }
+                        }
+                    }.start();
+                }
+            }
+        }
+    }
 }

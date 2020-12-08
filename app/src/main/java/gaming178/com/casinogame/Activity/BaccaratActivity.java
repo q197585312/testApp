@@ -4605,21 +4605,40 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         ppShowChip = 0;
     }
 
+    private int getAllCanBet() {
+        int total = 0;
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxLuckySixBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxAnyPairBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPlayerNaturalBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPerfectPairBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerNaturalBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowPlayerBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowTieBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowBankerBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet();
+        total += mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet();
+
+        return total;
+    }
+
     public void clickBetPlayer(final View fl) {
         if (checkChoose()) return;
         chipHelperCurrent = chipHelperPlayer;
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
-        if (bankerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
-            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
-            return;
-        }
+//        if (bankerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
+//            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
+//            return;
+//        }
         clickPlayerCount++;
 
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickPlayerCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         playerShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "P");
         if (betMoney > 0) {
@@ -4670,16 +4689,16 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 //        ((AnimationDrawable) tableImage2.getBackground()).start();
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
-        if (playerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
-            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
-            return;
-        }
+//        if (playerBet > 0 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
+//            Toast.makeText(mContext, R.string.show_limit_banker_player, Toast.LENGTH_LONG).show();
+//            return;
+//        }
         clickBankerCount++;
 
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerPlayerBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickBankerCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         bankerShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "B");
         if (betMoney > 0) {
@@ -4757,7 +4776,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + ppShowChip + luckyShowChip + anyShowChip + playerNShowChip + perfectShowChip + bankerNShowChip + cPlayerShowChip + cTieShowChip + player + tie + banker + playerPair + bankerPair + lucky + any + playerN + perfect + bankerN + cPlayer + cTie;
                 break;
         }
-        int maxTotalBet = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet();
+        int maxTotalBet = getAllCanBet();
 
         int canBet = maxTotalBet - allShowChip;
         Log.d("getBetMoney", "betMoney: " + betMoney + "----" + "maxTotalBet: " + maxTotalBet + "----" + "allShowChip: " + allShowChip + "----" + "canBet: " + canBet);
@@ -4776,7 +4795,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet(), clickTieCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getTie(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         tieShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "T");
         if (betMoney > 0) {
@@ -4807,7 +4826,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinLuckySixBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxLuckySixBet(), clickLuckyCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getLucky(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         luckyShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "Lucky");
         if (betMoney > 0) {
@@ -4837,7 +4856,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinAnyPairBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxAnyPairBet(), clickAnyCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getAny(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         anyShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "Any");
         if (betMoney > 0) {
@@ -4867,7 +4886,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPlayerNaturalBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPlayerNaturalBet(), clickPlayerNCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerN(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         playerNShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "PlayerN");
         if (betMoney > 0) {
@@ -4897,7 +4916,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPerfectPairBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPerfectPairBet(), clickPerfectCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPerfect(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         perfectShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "Perfect");
         if (betMoney > 0) {
@@ -4927,7 +4946,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinBankerNaturalBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxBankerNaturalBet(), clickBankerNCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerN(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         bankerNShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "BankerN");
         if (betMoney > 0) {
@@ -4957,7 +4976,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowPlayerBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowPlayerBet(), clickCPlayerCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         cPlayerShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "CPlayer");
         if (betMoney > 0) {
@@ -4987,7 +5006,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowTieBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowTieBet(), clickCTieCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowTie(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         cTieShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "CTie");
         if (betMoney > 0) {
@@ -5017,7 +5036,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinCowBankerBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxCowBankerBet(), clickCBankerCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         bankerNShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "CBanker");
         if (betMoney > 0) {
@@ -5047,7 +5066,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet(), clickPlayerPairCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayerPair(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         ppShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "PP");
         if (betMoney > 0) {
@@ -5078,7 +5097,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         int betMoney = mAppViewModel.getBetMoney(chooseChip, mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMinPairBet(),
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxPairBet(), clickBankerPairCount,
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBankerPair(),
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+                getAllCanBet(), mContext, componentFront);
         bbShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "BB");
         if (betMoney > 0) {
@@ -5250,6 +5269,14 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
                 mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) {
+            setSmallPoker(pw_poker_player1, 1);
+            setSmallPoker(pw_poker_player2, 2);
+            setSmallPoker(pw_poker_banker1, 1);
+            setSmallPoker(pw_poker_banker2, 2);
+        }
+
+        if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
+                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
             setSmallPoker(pw_poker_player1, 1);
             setSmallPoker(pw_poker_player2, 2);
             setSmallPoker(pw_poker_banker1, 1);
@@ -5719,6 +5746,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 gameBetMap.put(gameIdNumber, 3);
             }
 
+            if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
+                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
+                gameBetMap.put(gameIdNumber, 3);
+            }
+
             if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 &&
                     mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) {
                 gameBetMap.put(gameIdNumber, 3);
@@ -5922,7 +5954,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 if (gamePokerMap.get(gameIdNumber + "2") == null || gamePokerMap.get(gameIdNumber + "2") != 2) {
                     if (getPlayer3() > 0 && getBanker3() > 0) {
                         timerOnFinish();
-                        if (fl_poker_bottom_parent.getVisibility() == View.VISIBLE){
+                        if (fl_poker_bottom_parent.getVisibility() == View.VISIBLE) {
                             return;
                         }
                         hideType = 0;

@@ -2,6 +2,7 @@ package gaming178.com.casinogame.Util;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.SlotsWebActivity;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
@@ -20,6 +22,12 @@ public class PopSlideHint extends BasePopupWindow {
         super(context, v, width, height);
         baseActivity = (BaseActivity) context;
         initContent();
+    }
+
+    String tag;
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     @Override
@@ -58,21 +66,37 @@ public class PopSlideHint extends BasePopupWindow {
         int orientation = getOrientation();
         Integer times;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            times = (Integer) AppTool.getObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_P);
+            String key = AppConfig.ACTION_KEY_SLIDE_HINT_P;
+            if (!TextUtils.isEmpty(tag)) {
+                if (tag.equals("SLOTS")) {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_SLOTS;
+                } else {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_CQ9;
+                }
+            }
+            times = (Integer) AppTool.getObjectData(context, key);
             if (times == null) {
                 times = 1;
             } else {
                 times++;
             }
-            AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_P, times);
+            AppTool.saveObjectData(context, key, times);
         } else {
-            times = (Integer) AppTool.getObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_l);
+            String key = AppConfig.ACTION_KEY_SLIDE_HINT_l;
+            if (!TextUtils.isEmpty(tag)) {
+                if (tag.equals("SLOTS")) {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_SLOTS;
+                } else {
+                    key = AppConfig.ACTION_KEY_SLIDE_HINT_CQ9;
+                }
+            }
+            times = (Integer) AppTool.getObjectData(context, key);
             if (times == null) {
                 times = 1;
             } else {
                 times++;
             }
-            AppTool.saveObjectData(context, AppConfig.ACTION_KEY_SLIDE_HINT_l, times);
+            AppTool.saveObjectData(context, key, times);
         }
     }
 
@@ -91,18 +115,27 @@ public class PopSlideHint extends BasePopupWindow {
 
     public void initOrientation() {
         int orientation = getOrientation();
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+        AppTool.setAppLanguage(context, AppTool.getAppLanguage(context));
+        if (TextUtils.isEmpty(tag)) {
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_top.setVisibility(View.VISIBLE);
+                img_bottom.setVisibility(View.VISIBLE);
+                img_left.setVisibility(View.GONE);
+                img_right.setVisibility(View.GONE);
+                tv_slide_hint.setText(baseActivity.getString(R.string.slide_top_down));
+            } else {
+                img_top.setVisibility(View.GONE);
+                img_bottom.setVisibility(View.GONE);
+                img_left.setVisibility(View.VISIBLE);
+                img_right.setVisibility(View.VISIBLE);
+                tv_slide_hint.setText(baseActivity.getString(R.string.slide_left_right));
+            }
+        } else {
             img_top.setVisibility(View.VISIBLE);
             img_bottom.setVisibility(View.VISIBLE);
             img_left.setVisibility(View.GONE);
             img_right.setVisibility(View.GONE);
             tv_slide_hint.setText(baseActivity.getString(R.string.slide_top_down));
-        } else {
-            img_top.setVisibility(View.GONE);
-            img_bottom.setVisibility(View.GONE);
-            img_left.setVisibility(View.VISIBLE);
-            img_right.setVisibility(View.VISIBLE);
-            tv_slide_hint.setText(baseActivity.getString(R.string.slide_left_right));
         }
     }
 }
