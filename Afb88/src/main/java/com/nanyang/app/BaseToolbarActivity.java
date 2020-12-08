@@ -236,12 +236,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
     private void checkError() {
         errorCount++;
         if (errorCount > 4) {
-            reLoginPrompt(getString(R.string.failed_to_connect), new SportContract.CallBack() {
-                @Override
-                public void clickCancel(View v) {
-                    errorCount = 0;
-                }
-            });
+            reLogin();
         }
     }
 
@@ -513,6 +508,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                                 Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
                                 onError(exception);
                             } else {
+                                errorCount = 0;
                                 ToastUtils.showLong(R.string.Login_Success);
                             }
 

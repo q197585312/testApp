@@ -49,7 +49,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> imple
     private String getUrl() {
 //        https://www.afb1188.com/pgajaxS.axd?T=MB2&dbid=1&oId=770823&isMobile=1
 
-        String url = AppConstant.getInstance().HOST + "/pgajaxS.axd?T=MB2&dbid=" + dbid + "&oId=" + bean.getSocOddsId() + "&isMobile=1&accType=" + oddsType;
+        String url = AppConstant.getInstance().HOST + "pgajaxS.axd?T=MB2&dbid=" + dbid + "&oId=" + bean.getSocOddsId() + "&isMobile=1&accType=" + oddsType;
         return url;
     }
 

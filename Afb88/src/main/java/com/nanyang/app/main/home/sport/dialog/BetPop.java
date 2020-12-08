@@ -307,6 +307,7 @@ public class BetPop {
     }
 
     public void closePopupWindow() {
+        LogUtil.getMethodName("CloseBetPop");
         if (v != null && v.getVisibility() == View.VISIBLE) {
             v.setVisibility(View.GONE);
             onClose();
@@ -1289,8 +1290,6 @@ public class BetPop {
         objectAnimatorMap.clear();
 
         webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-        webView.clearHistory();
-        webView.destroy();
 
 
     }

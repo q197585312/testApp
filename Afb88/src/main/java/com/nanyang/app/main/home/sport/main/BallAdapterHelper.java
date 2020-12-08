@@ -52,7 +52,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
     public final SportActivity act;
-    private boolean allowedEurope=true;
+    private boolean allowedEurope = true;
     private BaseMixStyleHandler handler;
     private String curCode = "";
     protected Context context;
@@ -727,10 +727,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
                         , additionData.getHHasPar() != null && additionData.getHHasPar().equals("True")
                         , additionData.getHHasPar() != null && additionData.getHHasPar().equals("True")
-                        , additionData.getHOddIsInetBet() == null || additionData.getHOddIsInetBet().equals("True")
-                        , additionData.getHEvenIsInetBet() == null || additionData.getHEvenIsInetBet().equals("True")
-                        , additionData.getHOE_ishowOdds() == null || additionData.getHOE_ishowOdds().equals("True")
-                        , additionData.getHOE_ishowOdds() == null || additionData.getHOE_ishowOdds().equals("True")
+                        , additionData.getHOddIsInetBet() != null && additionData.getHOddIsInetBet().equals("True")
+                        , additionData.getHEvenIsInetBet() != null && additionData.getHEvenIsInetBet().equals("True")
+                        , additionData.getHOE_ishowOdds() != null && additionData.getHOE_ishowOdds().equals("True")
+                        , additionData.getHOE_ishowOdds() != null && additionData.getHOE_ishowOdds().equals("True")
                         , ""
                         , ""
                 );

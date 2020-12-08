@@ -235,39 +235,24 @@ public class AfbUtils {
     }
 
     public static void synCookies(Context context, WebView webView, String url, boolean isZoom, WebViewClient webViewClient) {
-        WebSettings webSettings = webView.getSettings();
-
-        //设置自适应屏幕，两者合用
-        webSettings.setUseWideViewPort(isZoom); //将图片调整到适合webview的大小
-        webSettings.setLoadWithOverviewMode(isZoom); // 缩放至屏幕的大小
+        webView.getSettings().setUseWideViewPort(isZoom);
 //设置可以支持缩放
-        webSettings.setSupportZoom(isZoom);
+        webView.getSettings().setSupportZoom(isZoom);
 //设置出现缩放工具
-        webSettings.setBuiltInZoomControls(false);
+        webView.getSettings().setBuiltInZoomControls(isZoom);
         //设定缩放控件隐藏
         if (isZoom) {
             webView.setInitialScale(100);
         }
-
-// 若加载的 html 里有JS 在执行动画等操作，会造成资源浪费（CPU、电量）
-// 在 onStop 和 onResume 里分别把 setJavaScriptEnabled() 给设置成 false 和 true 即可
-        webSettings.setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false
-//支持插件
-
-
-//其他细节操作
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
-        webSettings.setBlockNetworkImage(false);//解决图片不显示
-        webSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
-        webSettings.setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
-        webSettings.setAppCacheEnabled(true);//是否使用缓存
-        webSettings.setDomStorageEnabled(true);//开启本地DOM存储
-        webSettings.setLoadsImagesAutomatically(true); // 加载图片
-        webSettings.setMediaPlaybackRequiresUserGesture(false);
-
-        webSettings.setDomStorageEnabled(true);//开启本地DOM存储
+        webView.getSettings().setDisplayZoomControls(false);
+        //开启javascript
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
+        webView.getSettings().setJavaScriptEnabled(true);//是否允许执行js，默认为false。设置true时，会提醒可能造成XSS漏洞
+        webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
+        webView.getSettings().setDomStorageEnabled(true);//DOM Storage
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+            webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
         if (webViewClient == null) {
             webView.setWebViewClient(new WebViewClient() {
