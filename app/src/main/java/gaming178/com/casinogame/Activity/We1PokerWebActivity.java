@@ -40,17 +40,6 @@ public class We1PokerWebActivity extends SlotsWebActivity {
         super.finish();
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        try {
-            return super.dispatchTouchEvent(ev);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
 
     @Override
     protected void initData(Bundle savedInstanceState) {

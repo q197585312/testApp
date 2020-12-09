@@ -1,6 +1,5 @@
 package gaming178.com.casinogame.Activity;
 
-import android.content.res.Configuration;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -50,8 +49,10 @@ public class SlotsWebActivity extends BaseActivity {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         isAttached = true;
-        if (!gameType.equals("CQ9")) {
-            checkSlideHint(webView);
+        if (!TextUtils.isEmpty(gameType)) {
+            if (!gameType.equals("CQ9")) {
+                checkSlideHint(webView);
+            }
         }
     }
 
@@ -163,10 +164,10 @@ public class SlotsWebActivity extends BaseActivity {
 
     @Override
     public boolean isCanSlideChangeTable() {
-        if (gameType.equals("CQ9")) {
-            return false;
-        } else {
+        if (!TextUtils.isEmpty(gameType) && gameType.equals("SLOTS")) {
             return true;
+        } else {
+            return false;
         }
     }
 }
