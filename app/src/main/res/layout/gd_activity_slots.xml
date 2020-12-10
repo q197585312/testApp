@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/gd__ll_parent"
-    android:background="@color/black_grey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_grey"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_layout" />
@@ -12,26 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <gaming178.com.casinogame.Util.MyViewPager
-            android:id="@+id/gd__viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="27dp"/>
+        <include layout="@layout/include_gridview"></include>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="27dp"
-            android:layout_gravity="bottom"
-            android:background="#60000000"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/gd__ll_circle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="horizontal"/>
-        </HorizontalScrollView>
     </FrameLayout>
 </LinearLayout>
