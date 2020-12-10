@@ -49,11 +49,11 @@ public class SlotsWebActivity extends BaseActivity {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         isAttached = true;
-        if (!TextUtils.isEmpty(gameType)) {
-            if (!gameType.equals("CQ9")) {
-                checkSlideHint(webView);
-            }
-        }
+//        if (!TextUtils.isEmpty(gameType)) {
+//            if (!gameType.equals("CQ9")) {
+//                checkSlideHint(webView);
+//            }
+//        }
     }
 
     @Override
@@ -142,7 +142,6 @@ public class SlotsWebActivity extends BaseActivity {
             @Override
             public void onLoadResource(WebView view, String url) {
                 super.onLoadResource(view, url);
-                Log.d("onLoadResource", url);
             }
 
             @Override
@@ -162,12 +161,12 @@ public class SlotsWebActivity extends BaseActivity {
         webView.loadUrl(url);
     }
 
-    @Override
-    public boolean isCanSlideChangeTable() {
-        if (!TextUtils.isEmpty(gameType) && gameType.equals("SLOTS")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    @Override
+//    public boolean isCanSlideChangeTable() {
+//        if (!TextUtils.isEmpty(gameType) && gameType.equals("SLOTS")) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 }

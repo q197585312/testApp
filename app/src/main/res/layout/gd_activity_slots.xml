@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.viewpager.widget.ViewPager
+        <gaming178.com.casinogame.Util.MyViewPager
             android:id="@+id/gd__viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

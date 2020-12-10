@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
@@ -27,15 +28,13 @@ import java.util.List;
 
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.entity.CQSlotsGameInfoBean;
+import gaming178.com.casinogame.Bean.SlotsBean;
 import gaming178.com.casinogame.Util.GlideRoundTransform;
+import gaming178.com.casinogame.Util.MyViewPager;
 import gaming178.com.casinogame.Util.MyViewPagerAdapter;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
-import gaming178.com.mylibrary.base.AdapterViewContent;
-import gaming178.com.mylibrary.base.ItemCLickImp;
-import gaming178.com.mylibrary.base.QuickAdapterImp;
-import gaming178.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2018/4/18.
@@ -45,7 +44,7 @@ public class CQSlotsGameActivity extends BaseActivity {
     //    @BindView(R2.id.gd__ll_parent)
     LinearLayout ll_parent;
     //    @BindView(R2.id.gd__viewpager)
-    ViewPager viewPager;
+    MyViewPager viewPager;
     //    @BindView(R2.id.gd__ll_circle)
     LinearLayout ll_circle;
     String lg;
@@ -90,7 +89,7 @@ public class CQSlotsGameActivity extends BaseActivity {
             }
         }
     };
-    private List<GridView> gridViewList;
+    private List<View> gridViewList;
     private List<TextView> tvList;
     private boolean isJust;
     private int pageSize = 6;
@@ -174,40 +173,84 @@ public class CQSlotsGameActivity extends BaseActivity {
         });
     }
 
-    private GridView getGridView(List<CQSlotsGameInfoBean.DataBean> dataBeen) {
-        GridView gridView = (GridView) LayoutInflater.from(mContext).inflate(R.layout.include_gridview, null);
-        gridView.setNumColumns(3);
-        AdapterViewContent<CQSlotsGameInfoBean.DataBean> adapterViewContent = new AdapterViewContent<>(mContext, gridView);
-        adapterViewContent.setBaseAdapter(new QuickAdapterImp<CQSlotsGameInfoBean.DataBean>() {
-            @Override
-            public int getBaseItemResource() {
-                return R.layout.gd_item_slots_game;
+    private View getGridView(List<CQSlotsGameInfoBean.DataBean> dataBeen) {
+        LinearLayout llParent = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.include_ll, null);
+        int height = viewPager.getHeight();
+        int size = dataBeen.size();
+        int count;
+        if (size >= 3) {
+            if (size % 3 == 0) {
+                count = size / 3;
+            } else {
+                count = size / 3 + 1;
             }
-
-            @Override
-            public void convert(ViewHolder helper, CQSlotsGameInfoBean.DataBean item, int position) {
-                ImageView img = helper.retrieveView(R.id.gd__hall_game_pic_iv);
-                Glide.with(mContext).load(item.getImgAddress()).centerCrop().transform(new GlideRoundTransform(mContext, 4)).into(img);
-                if (!TextUtils.isEmpty(lg) && lg.equals("zh")) {
-                    helper.setText(R.id.gd__hall_game_title_tv, item.getCN_name());
+        } else {
+            count = 1;
+        }
+        int orientation = getResources().getConfiguration().orientation;
+        double heightChild;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            heightChild = height / 5.1;
+        } else {
+            heightChild = height / 2.1;
+        }
+        for (int i = 0; i < count; i++) {
+            LinearLayout llChild = new LinearLayout(mContext);
+            llChild.setOrientation(LinearLayout.HORIZONTAL);
+            ViewGroup.LayoutParams layoutParamsChild = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) heightChild);
+            llChild.setLayoutParams(layoutParamsChild);
+            A:
+            for (int j = 0; j < 3; j++) {
+                int index;
+                if (j == 0) {
+                    index = 3 * i;
+                } else if (j == 1) {
+                    index = 3 * i + 1;
                 } else {
-                    helper.setText(R.id.gd__hall_game_title_tv, item.getEN_name());
+                    index = 3 * i + 2;
                 }
+                if (index > size - 1) {
+                    int childCount = llChild.getChildCount();
+                    if (childCount < 3) {
+                        for (int k = childCount; k < 3; k++) {
+                            LinearLayout linearLayout = new LinearLayout(mContext);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                            params.weight = 1;
+                            linearLayout.setLayoutParams(params);
+                            llChild.addView(linearLayout);
+                        }
+                    }
+                    break A;
+                }
+                View view = LayoutInflater.from(mContext).inflate(R.layout.gd_item_slots_game, null);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                params.weight = 1;
+                view.setLayoutParams(params);
+                CQSlotsGameInfoBean.DataBean item = dataBeen.get(index);
+                ImageView img = view.findViewById(R.id.gd__hall_game_pic_iv);
+                Glide.with(mContext).load(item.getImgAddress()).centerCrop().transform(new GlideRoundTransform(mContext, 4)).into(img);
+                TextView tv = view.findViewById(R.id.gd__hall_game_title_tv);
+                if (!TextUtils.isEmpty(lg) && lg.equals("zh")) {
+                    tv.setText(item.getCN_name());
+                } else {
+                    tv.setText(item.getEN_name());
+                }
+                img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getUrl(item.getId());
+                    }
+                });
+                llChild.addView(view);
             }
-        });
-        adapterViewContent.setData(dataBeen);
-        adapterViewContent.setItemClick(new ItemCLickImp<CQSlotsGameInfoBean.DataBean>() {
-            @Override
-            public void itemCLick(View view, CQSlotsGameInfoBean.DataBean item, int position) {
-                getUrl(item.getId(), position);
-            }
-        });
-        return gridView;
+            llParent.addView(llChild);
+        }
+        return llParent;
     }
 
     private boolean isCanLoad = true;
 
-    private void getUrl(final String gameId, final int position) {
+    private void getUrl(final String gameId) {
         if (isCanLoad) {
             isCanLoad = false;
             new Thread() {
@@ -221,7 +264,6 @@ public class CQSlotsGameActivity extends BaseActivity {
                         String[] split = result.split("#");
                         String loadUrl = split[1] + "&" + split[2];
                         mAppViewModel.setSlideGameType("CQ9");
-                        mAppViewModel.setCqSlotsCurrentIndex(position);
                         Intent i = new Intent(mContext, SlotsWebActivity.class);
                         i.putExtra("url", loadUrl);
                         i.putExtra("gameType", "CQ9");
@@ -267,7 +309,7 @@ public class CQSlotsGameActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         ll_parent = (LinearLayout) findViewById(R.id.gd__ll_parent);
-        viewPager = (ViewPager) findViewById(R.id.gd__viewpager);
+        viewPager = (MyViewPager) findViewById(R.id.gd__viewpager);
         ll_circle = (LinearLayout) findViewById(R.id.gd__ll_circle);
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             pageSize = 6;

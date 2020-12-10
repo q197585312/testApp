@@ -3,18 +3,18 @@ package gaming178.com.casinogame.Util;
 import androidx.viewpager.widget.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import java.util.List;
+
 
 /**
  * Created by Administrator on 2017/11/17.
  */
 
 public class MyViewPagerAdapter extends PagerAdapter {
-    private List<GridView> gridViewsList;
+    private List<View> gridViewsList;
 
-    public MyViewPagerAdapter(List<GridView> gridViewsList) {
+    public MyViewPagerAdapter(List<View> gridViewsList) {
         this.gridViewsList = gridViewsList;
     }
 
