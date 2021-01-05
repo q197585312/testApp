@@ -63,6 +63,7 @@ public class CQSlotsGameActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
+        titleTv.setText(getString(R.string.cq));
         gridView = findViewById(R.id.gridview_content_gv);
         lg = AppTool.getAppLanguage(mContext);
         getDataMsg();

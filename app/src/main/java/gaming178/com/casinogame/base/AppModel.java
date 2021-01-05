@@ -1035,7 +1035,7 @@ public class AppModel extends ViewModel {
                 if (waidic == 1) {
                     setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_green_solid_not, textSiae, "" + point);
                     TextView textView = (TextView) viewGroup.getChildAt(0);
-                    textView.setTextColor(ctx.getResources().getColor(R.color.green500));
+                    textView.setTextColor(ctx.getResources().getColor(R.color.gd_green500));
                 } else {
                     setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_red_solid_not, textSiae, "" + point);
                     TextView textView = (TextView) viewGroup.getChildAt(0);
@@ -1048,7 +1048,7 @@ public class AppModel extends ViewModel {
                 if (waidic == 1) {
                     setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_green_solid_not, textSiae, "" + point);
                     TextView textView = (TextView) viewGroup.getChildAt(0);
-                    textView.setTextColor(ctx.getResources().getColor(R.color.green500));
+                    textView.setTextColor(ctx.getResources().getColor(R.color.gd_green500));
                 } else {
                     setTextMarginsBackgroundBig(ctx, viewGroup, density, margins, R.drawable.gd_oval_blue_solid_not, textSiae, "" + point);
                     TextView textViewSmall = (TextView) viewGroup.getChildAt(0);
@@ -1987,7 +1987,7 @@ public class AppModel extends ViewModel {
             return true;
         }
         if (res == 0) {
-            setTextMarginsBackground(ctx, viewGroup, density, 0.5f, R.color.green500, 12, "0");
+            setTextMarginsBackground(ctx, viewGroup, density, 0.5f, R.color.gd_green500, 12, "0");
         } else {
             setTextMarginsBackground(ctx, viewGroup, density, 0.5f, backRes, 12, res + "");
         }

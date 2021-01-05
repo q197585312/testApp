@@ -4057,7 +4057,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         tvType.setTextColor(ContextCompat.getColor(mContext, R.color.blue));
                         break;
                     case 2:
-                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.green500));
+                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.gd_green500));
                         break;
                     case 3:
                         tvType.setTextColor(ContextCompat.getColor(mContext, R.color.orange));

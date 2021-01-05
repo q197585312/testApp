@@ -49,6 +49,7 @@ public class SlotsGameActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
+        titleTv.setText(getString(R.string.slots));
         gridView = findViewById(R.id.gridview_content_gv);
         getDataMsg();
     }
