@@ -77,9 +77,6 @@ public class ApiManager {
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request request = chain.request()
                     .newBuilder()
-                    .addHeader("Content-Type", "application/x-www-form-urlencoded")
-
-//                    .addHeader("Cookie", "add cookies here")
                     .build();
             return chain.proceed(request);
         }

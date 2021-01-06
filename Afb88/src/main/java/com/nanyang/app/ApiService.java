@@ -95,7 +95,6 @@ public interface ApiService {
 
     @Headers({
             "Accept: text/html,application/xhtml+xml,application/xml",
-            "Accept-Language: zh-CN",
             "Content-Type: text/html; charset=utf-8",
             "Connection: keep-alive",
             "Host: "+BuildConfig.HOST

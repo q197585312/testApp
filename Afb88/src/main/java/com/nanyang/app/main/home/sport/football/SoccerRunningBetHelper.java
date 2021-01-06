@@ -1,11 +1,6 @@
 package com.nanyang.app.main.home.sport.football;
 
-import android.view.View;
-
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
-
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/19 0019.
@@ -21,10 +16,4 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
         return "1";
     }
 
-
-    protected void showBetPopView(List<AfbClickBetBean> bean, View v) {
-        super.showBetPopView(bean, v);
-        betPop.setrTMatchInfo(item);
-
-    }
 }

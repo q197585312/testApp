@@ -337,4 +337,16 @@ public class AfbClickBetBean implements Serializable {
         this.hasPar = hasPar;
 
     }
+
+    @Override
+    public String toString() {
+        return "AfbClickBetBean{" +
+                "id='" + id + '\'' +
+                ", League='" + League + '\'' +
+                ", Home='" + Home + '\'' +
+                ", Away='" + Away + '\'' +
+                ", Score='" + Score + '\'' +
+                ", IsRun=" + IsRun +
+                '}';
+    }
 }

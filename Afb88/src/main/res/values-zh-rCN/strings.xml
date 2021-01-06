@@ -39,7 +39,7 @@
     <string name="refresh">刷新</string>
     <string name="collection">收藏</string>
     <string name="menu">菜单</string>
-    <string name="mix">过关</string>
+    <string name="mix">混合过关</string>
     <string name="Soccer">足球</string>
     <string name="Basketball">篮球</string>
     <string name="Volleyball">排球</string>
@@ -467,13 +467,13 @@
     <string name="Muay_Thai_name">泰拳</string>
     <string name="Parlay">过关</string>
     <string name="Parlay1">混合过关</string>
-    <string name="Amt">Amt</string>
-    <string name="WL">W/L</string>
-    <string name="Com">Com</string>
+    <string name="Amt">数额</string>
+    <string name="WL">输赢</string>
+    <string name="Com">佣金</string>
     <string name="Lastweeksummary">本周旧帐</string>
     <string name="Settled">清帐</string>
     <string name="Est_Payout">估计赢得数额</string>
-    <string name="Odds">ODDS</string>
+    <string name="Odds">赔率</string>
     <string name="ID">编号</string>
     <string name="Result">比数</string>
     <string name="CloseDetail">关闭详细信息</string>

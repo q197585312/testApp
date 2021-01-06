@@ -215,7 +215,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d("updateMixListText", "throwable:" + throwable.getCause());
+                        Log.d("updateMixListText", "throwable:" + throwable.getLocalizedMessage());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().getIBaseContext().hideLoadingDialog();
                         LogUtil.d("BetPop", "setBetAfbList:getRefreshOdds错误:" + null);
@@ -257,7 +257,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 boolean deleted = false;
                 while (iterator.hasNext()) {
                     OddsClickBean next = iterator.next();
-                    boolean hasFound = findInBetList(next, betAfbList.getList());
+                    boolean hasFound = findInBetList(next, betAfbList.getList(), false);
                     LogUtil.d("updateMixListText", "hasFound:" + hasFound + ",item:" + next.getItem().getModuleTitle() + "---" + next.getItem().getHome() + "-----" + next.getItem().getAway());
                     if (!hasFound) {
                         iterator.remove();
@@ -269,7 +269,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     updateMixListText();
             }
         } else if (betAfbList != null && !StringUtils.isNull(url) && betAfbList.getList() != null && betAfbList.getList().size() == 1) {
-            boolean hasFound = findInBetList(afbApplication.getSingleBet(), betAfbList.getList());
+            boolean hasFound = findInBetList(afbApplication.getSingleBet(), betAfbList.getList(), true);
             if (!hasFound) {
                 afbApplication.clearMixBetList();
                 updateMixListText();
@@ -278,13 +278,29 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
     }
 
+
     public void updateMixListText() {
         if ((getBaseView().getIBaseContext().getBaseActivity()) != null) {
             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
         }
     }
 
-    private boolean findInBetList(OddsClickBean next, List<AfbClickBetBean> betAfbList) {
+    protected boolean findBetInMaxList(AfbClickBetBean afbClickBetBean, List<OddsClickBean> mixBetList) {
+        String socOddsId = afbClickBetBean.getSocOddsId();
+        String parId = afbClickBetBean.getId();
+        for (OddsClickBean oddsClickBean : mixBetList) {
+            if (oddsClickBean.getBETID().equals(parId) || oddsClickBean.getBETID_PAR().equals(parId) || socOddsId.equals(oddsClickBean.getOid()) || socOddsId.equals(oddsClickBean.getOid_fh())) {
+                if (afbClickBetBean.getIsRun() == 1) {
+                    boolean isSame = isScoreSame(oddsClickBean.getItem(), afbClickBetBean);
+                    return isSame;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean findInBetList(OddsClickBean next, List<AfbClickBetBean> betAfbList, boolean isSingle) {
 
         for (int i = 0; i < betAfbList.size(); i++) {
             String socOddsId = betAfbList.get(i).getSocOddsId();
@@ -295,9 +311,15 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             if (oddsClickBean.getBETID().equals(parId) || oddsClickBean.getBETID_PAR().equals(parId) || socOddsId.equals(oddsClickBean.getOid()) || socOddsId.equals(oddsClickBean.getOid_fh())) {
                 if (betAfbList.get(i).getIsRun() == 1) {
                     boolean isSame = isScoreSame(next.getItem(), betAfbList.get(i));
-                    LogUtil.d("updateMixListText", betAfbList.get(i).getHome() + "---" + betAfbList.get(i).getAway() + "isRun:1" + ",isSame:" + isSame);
+                    if (!isSame) {
+                        LogUtil.d("findInBetList", isSame + " :AfbClickBetBean:" + betAfbList.get(i).toString());
+                    }
                     return isSame;
                 }
+                LogUtil.d("findInBetList", "true :AfbClickBetBean:" + betAfbList.get(i).toString());
+                return true;
+            }
+            if (isSingle && betAfbList.size() == 1) {
                 return true;
             }
         }

@@ -176,14 +176,26 @@
 
         <TextView
 
-            android:id="@+id/tv_com"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:text="@string/Com"
             android:textAllCaps="true"
             android:textColor="@color/black"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_com"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="150"
+            android:textColor="@color/blue2"
             android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>

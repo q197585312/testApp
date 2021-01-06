@@ -39,7 +39,7 @@
     <string name="refresh">刷新</string>
     <string name="collection">收藏</string>
     <string name="menu">菜單</string>
-    <string name="mix">過關</string>
+    <string name="mix">混合過關</string>
     <string name="Soccer">足球</string>
     <string name="Basketball">籃球</string>
     <string name="Volleyball">排球</string>
@@ -460,13 +460,13 @@
     <string name="Muay_Thai_name">泰拳</string>
     <string name="Parlay">過關</string>
     <string name="Parlay1">混合過關</string>
-    <string name="Amt">Amt</string>
-    <string name="WL">W/L</string>
-    <string name="Com">Com</string>
+    <string name="Amt">數额</string>
+    <string name="WL">輸贏</string>
+    <string name="Com">傭金</string>
     <string name="Lastweeksummary">本週舊帳</string>
     <string name="Settled">清帳</string>
     <string name="Est_Payout">估計贏得數額</string>
-    <string name="Odds">ODDS</string>
+    <string name="Odds">賠率</string>
     <string name="ID">編號</string>
     <string name="Result">比數</string>
     <string name="CloseDetail">關閉詳細信息</string>

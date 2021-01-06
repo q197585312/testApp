@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
 import com.nanyang.app.AppConstant;
@@ -56,6 +57,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         CookieManger.getInstance().getCookieStore().removeAll();
         try {
             presenter.checkVersion(new BaseConsumer<CheckVersionBean>(this) {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 protected void onBaseGetData(CheckVersionBean checkVersionBean) {
                     onGetData(checkVersionBean);
@@ -126,6 +128,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
     final int INSTALL_CODE = 102;
     final int INSTALL_AFB_CODE = 109;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onGetData(CheckVersionBean checkVersionBean) {
         String version = checkVersionBean.getData().getVersion();
         String url = checkVersionBean.getData().getUrl();
@@ -234,13 +237,5 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         defaultSkip("SportBook");
         finish();
     }
-
- /*   public void defaultSkip(String type) {
-        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Today));
-        menuItemInfo.setType("Today");
-        menuItemInfo.setParent(type);
-        Bundle b = new Bundle();
-        b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
-        skipAct(SportActivity.class, b);
-    }*/
+    
 }

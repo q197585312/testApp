@@ -451,7 +451,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
-        skipAct(SportActivity.class, b);
+        skipAct(SportActivity.class, b,    Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
     public void switchSkipAct(String gameType) {

@@ -22,6 +22,22 @@ import cn.finalteam.toolsfinal.StringUtils;
 public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     private static final String TAG = "BallInfo";
+
+    @Override
+    public String toString() {
+        return "BallInfo{" +
+                "SocOddsId_FH='" + SocOddsId_FH + '\'' +
+                ", RunHomeScore='" + RunHomeScore + '\'' +
+                ", RunAwayScore='" + RunAwayScore + '\'' +
+                ", RunHomeScore_FH='" + RunHomeScore_FH + '\'' +
+                ", RunAwayScore_FH='" + RunAwayScore_FH + '\'' +
+                ", ModuleTitle='" + ModuleTitle + '\'' +
+                ", SocOddsId='" + SocOddsId + '\'' +
+                ", Home='" + Home + '\'' +
+                ", Away='" + Away + '\'' +
+                '}';
+    }
+
     String hasHdp_FH;
     String hasOU_FH;
     String isHdpNew_FH;
@@ -1057,11 +1073,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
         return repeatRow;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
     public void setIsHomeBigger(int isHomeBiger) {
         this.isHomeBigger = isHomeBiger;
     }
@@ -1137,4 +1148,5 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     public void setIsLast(String isLast) {
         this.isLast = isLast;
     }
+
 }

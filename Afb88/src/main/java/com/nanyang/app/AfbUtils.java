@@ -46,6 +46,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -251,7 +252,7 @@ public class AfbUtils {
         webView.getSettings().setJavaScriptEnabled(true);//是否允许执行js，默认为false。设置true时，会提醒可能造成XSS漏洞
         webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
         webView.getSettings().setDomStorageEnabled(true);//DOM Storage
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
         if (webViewClient == null) {
@@ -519,6 +520,11 @@ public class AfbUtils {
 
     public static String scientificCountingToString(String scientificCounting, String format) {
 
+        return  scientificCountingToString( scientificCounting,  format,null);
+    }
+
+    public static String scientificCountingToString(String scientificCounting, String format, RoundingMode mode) {
+
 
         scientificCounting = scientificCounting.toString().replace(",", "");
         BigDecimal bd = new BigDecimal(scientificCounting);
@@ -527,11 +533,11 @@ public class AfbUtils {
         DecimalFormat df = (DecimalFormat)
                 NumberFormat.getNumberInstance(enlocale);
         df.applyPattern(format);
-
+        if (mode != null)
+            df.setRoundingMode(mode);
         String format1 = df.format(Double.parseDouble(s));
         return format1;
     }
-
 
     public static String scientificCountingToStringNoT(String scientificCounting, String format) {
         scientificCounting = scientificCounting.toString().replace(",", "");

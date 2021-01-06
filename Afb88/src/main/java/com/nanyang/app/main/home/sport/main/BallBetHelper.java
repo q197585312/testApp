@@ -45,7 +45,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
         oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc, item);
 
-
+        LogUtil.d("updateListText", "oddsUrlBean--oid:" + oid + ",item:" + item.getHome() + "-"+item.getAway());
         final boolean typeHasPar = type.equalsIgnoreCase("over")
                 || type.equalsIgnoreCase("under")
                 || type.equalsIgnoreCase("even")
