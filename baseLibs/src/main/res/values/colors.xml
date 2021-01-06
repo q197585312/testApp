@@ -72,6 +72,7 @@
     <color name="green_white_thick_line">#aad6b8</color>
     <color name="green_grey_bg">#A8C0B0</color>
     <color name="green500">#4CAF50</color>
+    <color name="gd_green500">#4CAF50</color>
 
     <color name="green900">#17ae48</color>
     <color name="green900_trans">#6617ae48</color>

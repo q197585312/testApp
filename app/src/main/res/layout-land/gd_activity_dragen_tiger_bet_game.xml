@@ -495,7 +495,7 @@
                     android:gravity="center"
                     android:paddingBottom="20px"
                     android:text="@string/tie_dragon_tiger"
-                    android:textColor="@color/green500"
+                    android:textColor="@color/gd_green500"
                     android:textSize="22px"
                     android:textStyle="bold"
                     android:visibility="gone" />

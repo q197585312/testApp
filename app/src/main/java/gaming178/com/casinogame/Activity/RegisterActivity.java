@@ -1,6 +1,8 @@
 package gaming178.com.casinogame.Activity;
 
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,6 +105,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
         createVerifyCode();
         setLayout.setVisibility(View.GONE);
         titleTv.setText(getString(R.string.register));
+        setEditTextInhibitInputSpace(edtRegisterUsername);
         if (BuildConfig.FLAVOR.equals("mejaemas")) {
             tvRegisterChoiceBank.setVisibility(View.GONE);
             edtRegisterBankAccount.setVisibility(View.GONE);
@@ -452,5 +455,16 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
     public void clickBack(View view) {
         finish();
+    }
+
+    public void setEditTextInhibitInputSpace(EditText editText) {
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals(" ")) return "";
+                else return null;
+            }
+        };
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15), filter});
     }
 }

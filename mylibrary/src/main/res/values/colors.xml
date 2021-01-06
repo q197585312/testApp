@@ -72,6 +72,7 @@
     <color name="trans_white">#66ffffff</color>
     <!--green-->
     <color name="green500">#4CAF50</color>
+    <color name="gd_green500">#4CAF50</color>
     <color name="green_light">#19a890</color>
     <color name="green900">#379e48</color>
     <color name="green_table_dark_bg">#FF01534E</color>
