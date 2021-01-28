@@ -337,11 +337,19 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             return false;
         if (afbClickBetBean.getBeturl().contains("isFH=True")) {
             String runAwayScore_fh = item.getRunAwayScore_FH();
+            if (StringUtils.isNull(runAwayScore_fh))
+                runAwayScore_fh = "0";
             String runHomeScore_fh = item.getRunHomeScore_FH();
+            if (StringUtils.isNull(runHomeScore_fh))
+                runHomeScore_fh = "0";
             return checkSameScore(afbClickBetBean, runAwayScore_fh, runHomeScore_fh);
         } else {
             String runAwayScore_fh = item.getRunAwayScore();
+            if (StringUtils.isNull(runAwayScore_fh))
+                runAwayScore_fh = "0";
             String runHomeScore_fh = item.getRunHomeScore();
+            if (StringUtils.isNull(runHomeScore_fh))
+                runHomeScore_fh = "0";
             return checkSameScore(afbClickBetBean, runAwayScore_fh, runHomeScore_fh);
         }
     }

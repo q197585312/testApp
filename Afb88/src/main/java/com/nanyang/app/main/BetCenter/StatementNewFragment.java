@@ -70,7 +70,14 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     @Override
     public void onResume() {
         super.onResume();
-        getStatementData();
+
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden)
+            getStatementData();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -158,13 +165,13 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         if (wl.startsWith("-")) {
             wl = wl.replace("-", "");
             tvWinLose.setTextColor(Color.RED);
-            tvWinLose.setText(AfbUtils.scientificCountingToString(Float.parseFloat(wl)+"", fmt,RoundingMode.FLOOR) + " ");
+            tvWinLose.setText(AfbUtils.scientificCountingToString(Float.parseFloat(wl) + "", fmt, RoundingMode.FLOOR) + " ");
         } else if (StringUtils.isNull(wl) || wl.trim().equals("0")) {
             tvWinLose.setTextColor(Color.BLACK);
             tvWinLose.setText(wl + " ");
         } else {
             tvWinLose.setTextColor(Color.BLUE);
-            tvWinLose.setText(AfbUtils.scientificCountingToString(Float.parseFloat(wl)+"", fmt,RoundingMode.FLOOR) + " ");
+            tvWinLose.setText(AfbUtils.scientificCountingToString(Float.parseFloat(wl) + "", fmt, RoundingMode.FLOOR) + " ");
         }
     }
 
@@ -258,8 +265,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvOdds.setText(getString(R.string.Odds) + " " + index3);
                 tvType.setText(bean.getIndex17());
                 tvAmt.setText(getString(R.string.Amt) + ": " + index9);
-                setWinLoseText(tvWl,bean.getIndex10(),"#.##");
-                setWinLoseText(tvCom,bean.getIndex18(),"#.##");
+                setWinLoseText(tvWl, bean.getIndex10(), "#.##");
+                setWinLoseText(tvCom, bean.getIndex18(), "#.##");
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -672,8 +679,4 @@ spanFontHtml()         tv_match_at2_1.setText(matchAtStr2);
         presenter.getStatementOpen3Data(id, transType);
     }
 
-    @Override
-    public void refreshData() {
-        getStatementData();
-    }
 }

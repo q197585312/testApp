@@ -145,7 +145,8 @@ public class HomeFragment extends BaseSwitchFragment {
                     iterator.remove();
             }
         }
-        adapter.addAllAndClear(data);
+
+        adapter.addAllAndClear(sortNotEmptyData(data));
 
     }
 

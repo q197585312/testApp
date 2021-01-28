@@ -92,7 +92,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         });
         presenter.getRunningList(type);
         setAdapter();
-
     }
     public void showLoadingDialog() {
     }

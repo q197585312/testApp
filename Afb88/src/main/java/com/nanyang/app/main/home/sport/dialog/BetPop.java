@@ -451,15 +451,18 @@ public class BetPop {
                 s = s.replaceAll(",", "");
                 int betAmount = Integer.parseInt(s);
                 int betChip = item.getBetChip();
-                if (betChip == 0) {
-                    int maxLimit = getMaxLimit();
-                    betChip = maxLimit;
-                } else if (betChip == -1) {
+                if (betChip == -1) {
                     int maxLimit = getMinLimit();
-                    betChip = maxLimit;
+                    betAmount = maxLimit;
+                } else {
+                    if (betChip == 0) {
+                        int maxLimit = getMaxLimit();
+                        betChip = maxLimit;
+
+                    }
+                    betAmount += betChip;
                 }
 
-                betAmount += betChip;
 
                 edt.setText(betAmount + "");
                 edt.setCursorVisible(true);//显示光标
@@ -715,7 +718,7 @@ public class BetPop {
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
             betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
 
-            if (!isRefreshEd && list.size() == 1&& activity != null ) {
+            if (!isRefreshEd && list.size() == 1 && activity != null) {
                 if (afbClickBetBean.getIsRun() == 1) {
                     String id = afbClickBetBean.getSocOddsId();
                     OddsClickBean oddsClickBean = findRTMatchInfo(id);
@@ -1210,8 +1213,7 @@ public class BetPop {
         if (rtsMatchId != null && !oldRtsId.equals(rtsMatchId)) {
             oldRtsId = rtsMatchId;
             isNeedInitWeb = true;
-        }
-        else{
+        } else {
             isNeedInitWeb = false;
         }
         if (activity.getApp().isNoShowRts()) {

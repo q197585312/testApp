@@ -49,7 +49,6 @@ import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.WebSocketManager;
-import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
@@ -785,7 +784,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             dateClickPosition = 1;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
             selectFragmentTag(getString(R.string.Soccer), item.getBaseFragment(), "Running");
-            currentFragment.switchType(type);
+
             return;
         } else if (item.getDbid().equals("1") && item.getTextRes() == R.string.Soccer_Runing) {
             setType("Running");
@@ -812,7 +811,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickSportWayRun(final View view) {
-        if (currentFragment != null && currentFragment instanceof AllRunningFragment || notClickType) {
+        if (currentFragment != null && currentFragment instanceof BaseAllFragment || notClickType) {
             return;
         }
         createPopupWindow(typePop);
@@ -842,7 +841,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     class TypePop extends BasePopupWindow {
-        BaseRecyclerAdapter switchTypeAdapter;
 
         public TypePop(Context context, View v, int width, int height) {
             super(context, v, width, height);
