@@ -2053,7 +2053,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 list.add(diceContentBean);
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         return list;

@@ -79,6 +79,10 @@
             android:configChanges="keyboardHidden|screenSize"
             android:screenOrientation="landscape" />
         <activity
+            android:name="gaming178.com.casinogame.Activity.PragmaticGameActivity"
+            android:configChanges="keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
             android:name="gaming178.com.casinogame.Activity.SlotsWebActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
