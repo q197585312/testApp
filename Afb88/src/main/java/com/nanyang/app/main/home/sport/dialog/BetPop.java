@@ -81,7 +81,6 @@ public class BetPop {
     SportActivity activity;
     AfbApplication afbApplication;
     private int listSize;
-
     @BindView(R.id.ll_bet_title)
     public View ll_bet_title;
     @BindView(R.id.bet_balance_tv)
@@ -155,6 +154,7 @@ public class BetPop {
     private int coupon;
 
     private boolean isRefreshEd;
+    private volatile String oldRtsId = "";
 
     public View getLlSingleMix() {
         return llSingleMix;
@@ -307,7 +307,7 @@ public class BetPop {
     }
 
     public void closePopupWindow() {
-        LogUtil.getMethodName("CloseBetPop");
+
         if (v != null && v.getVisibility() == View.VISIBLE) {
             v.setVisibility(View.GONE);
             onClose();
@@ -451,15 +451,18 @@ public class BetPop {
                 s = s.replaceAll(",", "");
                 int betAmount = Integer.parseInt(s);
                 int betChip = item.getBetChip();
-                if (betChip == 0) {
-                    int maxLimit = getMaxLimit();
-                    betChip = maxLimit;
-                } else if (betChip == -1) {
+                if (betChip == -1) {
                     int maxLimit = getMinLimit();
-                    betChip = maxLimit;
+                    betAmount = maxLimit;
+                } else {
+                    if (betChip == 0) {
+                        int maxLimit = getMaxLimit();
+                        betChip = maxLimit;
+
+                    }
+                    betAmount += betChip;
                 }
 
-                betAmount += betChip;
 
                 edt.setText(betAmount + "");
                 edt.setCursorVisible(true);//显示光标
@@ -715,10 +718,15 @@ public class BetPop {
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
             betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
 
-            if (!isRefreshEd && list.size() == 1 && afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() == 1 && activity != null && activity.getOtType().toLowerCase().startsWith("r")) {
-                OddsClickBean oddsClickBean = afbApplication.getMixBetList().get(0);
-                BallInfo item = oddsClickBean.getItem();
-                setrTMatchInfo(item);
+            if (!isRefreshEd && list.size() == 1 && activity != null) {
+                if (afbClickBetBean.getIsRun() == 1) {
+                    String id = afbClickBetBean.getSocOddsId();
+                    OddsClickBean oddsClickBean = findRTMatchInfo(id);
+                    if (oddsClickBean != null) {
+                        BallInfo item = oddsClickBean.getItem();
+                        setrTMatchInfo(item);
+                    }
+                }
             }
             if (list.get(0).getIsRun() != 1) {
                 webViewPause();
@@ -746,6 +754,18 @@ public class BetPop {
         }
         ll_bet_title.setVisibility((activity.fl_top_video.getVisibility() == View.VISIBLE && activity.onlyShowOne) ? View.GONE : View.VISIBLE);
 
+    }
+
+    private OddsClickBean findRTMatchInfo(String id) {
+        if (afbApplication.getSingleBet() != null && id.equals(afbApplication.getSingleBet().getOid()))
+            return afbApplication.getSingleBet();
+        if (afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() > 0) {
+            for (OddsClickBean oddsClickBean : afbApplication.getMixBetList()) {
+                if (oddsClickBean.getOid().equals(id))
+                    return oddsClickBean;
+            }
+        }
+        return null;
     }
 
     public void refreshChip() {
@@ -983,7 +1003,6 @@ public class BetPop {
                     tvBetAway.setText(item.getAway());
                     String hdp = item.getHdp();
 
-
                     if (hdp.contains("-")) {
                         tvHdp.setTextColor(Color.RED);
                     } else {
@@ -1184,13 +1203,19 @@ public class BetPop {
         }
     }
 
-    public boolean isNeedInitWeb = true;
+    public volatile boolean isNeedInitWeb = true;
 
-    public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
+    public synchronized void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
 
         if (activity == null)
             return;
-
+        String rtsMatchId = rTMatchInfo.getRTSMatchId();
+        if (rtsMatchId != null && !oldRtsId.equals(rtsMatchId)) {
+            oldRtsId = rtsMatchId;
+            isNeedInitWeb = true;
+        } else {
+            isNeedInitWeb = false;
+        }
         if (activity.getApp().isNoShowRts()) {
             webViewPause();
             return;
@@ -1209,13 +1234,15 @@ public class BetPop {
         }
         if (!isNeedInitWeb)
             return;
-        String rtsMatchId = rTMatchInfo.getRTSMatchId();
+
         if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
             String language = new LanguageHelper(activity).getLanguage();
 
             webViewResume();
+            LogUtil.d("updateListText", "webViewResume--oid:" + rTMatchInfo.getSocOddsId() + ",item:" + rTMatchInfo.getHome() + "-" + rTMatchInfo.getAway());
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + language;
             AfbUtils.synCookies(context, webView, gameUrl, false);
+
             LogUtil.d("gameUrl", gameUrl);
         } else {
             webViewPause();

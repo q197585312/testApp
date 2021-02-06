@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:maxWidth="170dp"
+                android:maxWidth="160dp"
                 android:maxLines="2"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
@@ -58,6 +58,7 @@
                 android:id="@+id/bet_away_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxWidth="160dp"
                 android:layout_weight="1"
                 android:maxLines="2"
                 android:textColor="@color/black"

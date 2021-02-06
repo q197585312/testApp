@@ -87,6 +87,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
      */
     public T createPresenter(T presenter) {
         if (presenter != null) {
+            LogUtil.d("createPresenter",getClass().getSimpleName());
             this.presenter = presenter;
         }
         return presenter;

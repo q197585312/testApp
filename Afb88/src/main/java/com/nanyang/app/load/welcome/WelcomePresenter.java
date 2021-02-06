@@ -26,6 +26,7 @@ import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 
@@ -43,6 +44,7 @@ import static com.unkonw.testapp.libs.api.ApiManager.getService;
 class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     private File file;
     LanguageHelper helper;
+
     //构造 （activity implements v, 然后WelcomePresenter(this)构造出来）
     WelcomePresenter(WelcomeActivity view) {
         super(view);
@@ -146,14 +148,21 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(url_login), new BaseConsumer<String>(baseContext) {
                     @Override
                     protected void onBaseGetData(String data) throws Exception {
-                        if (!StringUtils.isNull(data) && data.contains("wfMain")) {
+                        if (!StringUtils.isNull(data) && (data.contains("wfMain") || data.contains("locationUrl "))) {
                             onSkipSucceeded(url_login);
+                        } else if (data.contains("Maintenance")) {
+                            Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
+                            onError(exception);
+                        } else {
+                            Exception exception = new Exception(data);
+                            onError(exception);
                         }
                     }
 
                     @Override
                     protected void onError(Throwable throwable) {
                         super.onError(throwable);
+                        ToastUtils.showLong(throwable.getMessage());
                     }
                 }
         );
@@ -171,10 +180,10 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         app.getUser().setPassword("");
         Iterator<MenuItemInfo<String>> iterator = helper.getLanguageItems().iterator();
         MenuItemInfo<String> en = new MenuItemInfo<>(R.mipmap.lang_en_flag, (R.string.language_en), "en", "EN-US");
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             MenuItemInfo<String> next = iterator.next();
-            if(url_login.contains(next.getParent())){
-                en=next;
+            if (url_login.contains(next.getParent())) {
+                en = next;
                 break;
             }
         }

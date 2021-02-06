@@ -12,6 +12,7 @@ import com.nanyang.app.main.BetCenter.Bean.GradeOpenDataBean;
 import com.nanyang.app.main.BetCenter.GradeFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 
 import org.json.JSONArray;
@@ -199,6 +200,8 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
 
     public void getGradeContentOpenData(String gameType, String data, String LeagueType) {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetDateD", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson();
+
+        LogUtil.d("getGradeContentOpenData",p);
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {

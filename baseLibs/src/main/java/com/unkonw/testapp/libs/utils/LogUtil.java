@@ -2,6 +2,8 @@ package com.unkonw.testapp.libs.utils;
 
 import android.util.Log;
 
+import com.unkonw.testapp.BuildConfig;
+
 /**
  * Log 日志工具类
  *
@@ -10,7 +12,7 @@ import android.util.Log;
 public class LogUtil {
 
     //当前Debug模式
-    public static boolean DE_BUG = true;
+    public static boolean DE_BUG = BuildConfig.DEBUG;
 
     public static void e(String tag, String text) {
         if (DE_BUG) {
@@ -108,8 +110,8 @@ public class LogUtil {
 
     public static void getMethodName(String tag) {
         StackTraceElement[] temp = Thread.currentThread().getStackTrace();
-        if (temp.length > 3) {
-            for (int i = 3; i < (temp.length > 7 ? 7 : temp.length); i++) {
+        if (temp.length > 2) {
+            for (int i = 2; i < (temp.length > 12 ? 12 : temp.length); i++) {
                 StackTraceElement a = temp[i];
                 LogUtil.d(tag, a.getMethodName() + ",class:" + a.getClassName() + ",line:" + a.getLineNumber());
             }

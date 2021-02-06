@@ -49,6 +49,7 @@ import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
 import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.lang.reflect.Constructor;
@@ -76,6 +77,7 @@ public class AfbApplication extends BaseApplication {
     private SettingAllDataBean settingAllDataBean;
 
     private List<OddsClickBean> mixBetList = new ArrayList<>();
+    private List<OddsClickBean> oldSingleList = new ArrayList<>();
 
     public int getDelayBet() {
         return delayBet;
@@ -464,7 +466,7 @@ public class AfbApplication extends BaseApplication {
         return getBetAfbList();
     }
 
-    public void setBetAfbList(AfbClickResponseBean betParList) {
+    public synchronized void setBetAfbList(AfbClickResponseBean betParList) {
         if (betParList != null && betParList.getList() != null && betParList.getList().size() > 0) {
             if (betParList.getList() == null || betParList.getList().size() < 1) {
                 this.betAfbList = null;
@@ -596,8 +598,6 @@ public class AfbApplication extends BaseApplication {
 
     public synchronized boolean saveCurrentBet(OddsClickBean oddsUrlBean) {
 
-        if (mixBetList == null)
-            mixBetList = new ArrayList<>();
         Iterator<OddsClickBean> iterator = mixBetList.iterator();
         while (iterator.hasNext()) {
             OddsClickBean mixBetBean = iterator.next();
@@ -626,7 +626,7 @@ public class AfbApplication extends BaseApplication {
 
 
     public void clearMixBetList() {
-
+        LogUtil.getMethodName("clearMixBetList");
         mixBetList = new ArrayList<>();
         setSingleBet(null);
     }

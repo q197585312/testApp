@@ -74,5 +74,14 @@ public class OddsClickBean<B extends BallInfo> implements Serializable {
     public String getBETID_PAR() {
         return "s|" + (type.endsWith("_par") ? type : (type + "_par")) + "|" + g + "|" + oid + "|" + oid_fh + "|" + sc;
     }
-//    OddsClickBean(type,"9",item.getSocOddsId(),isHf?item.getSocOddsId_FH():"");
+
+    @Override
+    public String toString() {
+        return "OddsClickBean{" +
+                "item=" + item +
+                ", oid='" + oid + '\'' +
+                ", oid_fh='" + oid_fh + '\'' +
+                '}';
+    }
+    //    OddsClickBean(type,"9",item.getSocOddsId(),isHf?item.getSocOddsId_FH():"");
 }

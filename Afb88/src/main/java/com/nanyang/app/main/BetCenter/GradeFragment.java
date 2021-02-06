@@ -70,6 +70,7 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
     public int onSetLayoutId() {
         return R.layout.fragment_grade;
     }
+
     public void showLoadingDialog() {
     }
 
@@ -151,7 +152,7 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
                 clickPosition = position;
                 LinearLayout addView = view.findViewById(R.id.ll_addView);
                 leagueType = normalAdapter.getItem(position).getIndex0() + "";
-                if (addView.getChildCount() < 1) {
+                if (addView != null) {
                     getGradeContentOpenData();
                 } else {
                     int visibility = addView.getVisibility();
@@ -205,9 +206,9 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
             TextView tvHomeL = view.findViewById(R.id.tv_home_l);
             TextView tvAwayF = view.findViewById(R.id.tv_away_f);
             TextView tvAwayL = view.findViewById(R.id.tv_away_l);
-                //  dataFormat = ;
-            String dataFormat = TimeUtils.dateFormatChange(bean.getIndex17(), "yyyy/MM/dd hh:mm:ss a",  "dd/MM/yyyy hh:mm a", Locale.US);
-            tvDate.setText(dataFormat);
+            //  dataFormat = ;    "2020-12-24 00:00:00",
+            String dataFormat = TimeUtils.dateFormatChange(bean.getIndex6(), "yyyy-MM-dd hh:mm:ss", "dd/MM/yyyy ", Locale.US);
+            tvDate.setText(dataFormat + bean.getIndex4());
             tvTeamName1.setText(bean.getIndex8());
             int index14 = bean.getIndex14();
             String homeFOrL1 = getFOrL(index14, true, true);
@@ -245,11 +246,10 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
                     String[] fhArr = index12.split("-");
                     tvFh1.setText(fhArr[0].trim());
                     tvFh2.setText(fhArr[1].trim());
-                } else if(index12.contains("Cancel")){
+                } else if (index12.contains("Cancel")) {
                     tvFh1.setText("C");
                     tvFh2.setText("");
-                }
-                else {
+                } else {
                     tvFh1.setText(index12);
                     tvFh2.setText("");
                 }
@@ -258,11 +258,10 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
                     String[] ftArr = index11.split("-");
                     tvFt1.setText(ftArr[0].trim());
                     tvFt2.setText(ftArr[1].trim());
-                }else if(index11.contains("Cancel")){
+                } else if (index11.contains("Cancel")) {
                     tvFt1.setText("C");
                     tvFt2.setText("");
-                }
-                else {
+                } else {
                     tvFt1.setText(index11);
                     tvFt2.setText("");
                 }

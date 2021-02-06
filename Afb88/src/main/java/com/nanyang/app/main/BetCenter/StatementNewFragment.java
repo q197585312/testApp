@@ -1,5 +1,6 @@
 package com.nanyang.app.main.BetCenter;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.graphics.Color;
 import android.os.Build;
@@ -29,6 +30,7 @@ import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.LogUtil;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import butterknife.BindView;
@@ -52,6 +54,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     public int onSetLayoutId() {
         return R.layout.fragment_statement_new;
     }
+
     public void showLoadingDialog() {
 
     }
@@ -61,7 +64,20 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         super.initData();
         createPresenter(new StatementNewPresenter(this));
         layoutInflater = LayoutInflater.from(mContext);
-        getStatementData();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden)
+            getStatementData();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -105,11 +121,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 view.setTag(2);
             }
             tvDate.setText(date);
-            tvCom.setText(bean.getIndex5() + " ");
+            setWinLoseText(tvCom, bean.getIndex5(), "#.##");
             String wl = bean.getIndex4();
-            setWinLoseText(tvWinLose, wl, "0.00");
-
-
+            setWinLoseText(tvWinLose, wl, "#.##");
             setWinLoseText(tvSettled, bean.getIndex6(), "#,###");
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +139,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                         llAddView.setVisibility(View.VISIBLE);
                     }
                     int requestType = (int) v.getTag();
-                    if (llAddView.getChildCount() < 1) {
+                    if (llAddView != null) {
                         if (requestType == 2) {
                             getStatementOpen1Data(bean.getIndex1());
                         } else {
@@ -146,17 +160,18 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     }
 
     //   String f = "#,###.00";
+    @SuppressLint("SetTextI18n")
     private void setWinLoseText(TextView tvWinLose, String wl, String fmt) {
         if (wl.startsWith("-")) {
             wl = wl.replace("-", "");
             tvWinLose.setTextColor(Color.RED);
-            tvWinLose.setText(AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
+            tvWinLose.setText(AfbUtils.scientificCountingToString(Float.parseFloat(wl) + "", fmt, RoundingMode.FLOOR) + " ");
         } else if (StringUtils.isNull(wl) || wl.trim().equals("0")) {
             tvWinLose.setTextColor(Color.BLACK);
             tvWinLose.setText(wl + " ");
         } else {
             tvWinLose.setTextColor(Color.BLUE);
-            tvWinLose.setText(AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
+            tvWinLose.setText(AfbUtils.scientificCountingToString(Float.parseFloat(wl) + "", fmt, RoundingMode.FLOOR) + " ");
         }
     }
 
@@ -166,6 +181,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     }
 
     public void onGetStatementLastWeekData(List<StatementListDataBean> list) {
+        currentLlAddView.removeAllViews();
         for (int i = 0; i < list.size(); i++) {
             final StatementListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_new, null);
@@ -187,9 +203,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 dateStr = getString(R.string.Lastweeksummary);
             }
             tvDate.setText(dateStr);
-            tvCom.setText(bean.getIndex5() + " ");
+            setWinLoseText(tvCom, bean.getIndex5(), "#.##");
             String wl = bean.getIndex4();
-            setWinLoseText(tvWinLose, wl, "0.00");
+            setWinLoseText(tvWinLose, wl, "#.##");
             setWinLoseText(tvSettled, bean.getIndex6(), "#,###");
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -203,7 +219,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                         imgOpen1.setBackgroundResource(R.mipmap.up_black);
                         llAddView.setVisibility(View.VISIBLE);
                     }
-                    if (llAddView.getChildCount() < 1) {
+                    if (llAddView != null) {
                         getStatementOpen1Data(dateTrue[0]);
                     }
                 }
@@ -218,6 +234,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     }
 
     public void onGetStatementOpen1Data(List<StatementListDataBean> list) {
+        if (currentLlAddView != null)
+            currentLlAddView.removeAllViews();
         for (int i = 0; i < list.size(); i++) {
             final StatementListDataBean bean = list.get(i);
             final String index11 = bean.getIndex11();
@@ -243,23 +261,12 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvMatchType.setText(bean.getIndex1());
                 String end17 = bean.getIndex17();
                 String s = AfbUtils.getPayout(index3, index9, end17);
-                tvEstPayout.setText(getString(R.string.Est_Payout) + " " +s);
+                tvEstPayout.setText(getString(R.string.Est_Payout) + " " + s);
                 tvOdds.setText(getString(R.string.Odds) + " " + index3);
                 tvType.setText(bean.getIndex17());
                 tvAmt.setText(getString(R.string.Amt) + ": " + index9);
-                String winLose = bean.getIndex10();
-
-                if (winLose.startsWith("-")) {
-
-                    tvWl.setTextColor(Color.RED);
-                }else if(winLose.equals("0")){
-                    tvWl.setTextColor(Color.BLACK);
-                }
-                else {
-                    tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
-                }
-                tvWl.setText(" " + winLose.replace("-", ""));
-                tvCom.setText(getString(R.string.Com) + ": " + bean.getIndex18());
+                setWinLoseText(tvWl, bean.getIndex10(), "#.##");
+                setWinLoseText(tvCom, bean.getIndex18(), "#.##");
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -270,8 +277,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                         } else {
                             llAddView1.setVisibility(View.VISIBLE);
                         }
-                        if (llAddView1.getChildCount() < 1) {
-                            getStatementOpen2Data(bean.getIndex22(), index11,bean.getIndex17());
+                        if (llAddView1 != null) {
+                            getStatementOpen2Data(bean.getIndex22(), index11, bean.getIndex17());
                         }
                     }
                 });
@@ -327,7 +334,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvMatchAt3.setVisibility(View.VISIBLE);
 
                 }
-                tvMatchGrade.setText(HtmlTagHandler.spanFontHtml(bean.getIndex5() + bean.getIndex8()+ " " + bean.getIndex20()));
+                tvMatchGrade.setText(HtmlTagHandler.spanFontHtml(bean.getIndex5() + bean.getIndex8() + " " + bean.getIndex20()));
                 tvAmt.setText(getString(R.string.Amt) + " " + index9);
 
                 String odds = AfbUtils.delHTMLTag(index3);
@@ -348,23 +355,22 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
 
                 if (winLose.startsWith("-")) {
                     tvWl.setTextColor(Color.RED);
-                }else if(winLose.equals("0")){
+                } else if (winLose.equals("0")) {
                     tvWl.setTextColor(Color.BLACK);
-                }
-                else {
+                } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
                 String replace = winLose.replace("-", "").trim();
-                tvWl.setText(" " +replace);
-                if(!StringUtils.isNull(replace)&&Float.valueOf(replace)>0f){
+                tvWl.setText(" " + replace);
+                if (!StringUtils.isNull(replace) && Float.valueOf(replace) > 0f) {
                     BigDecimal b = new BigDecimal(replace);
                     //保留2位小数
-                    double f1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
-                    tvWl.setText(" " +f1);
+                    double f1 = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    tvWl.setText(" " + f1);
                 }
 
 
-                if(index11.startsWith("G")){
+                if (index11.startsWith("G")) {
                     tvMatchVs.setVisibility(View.GONE);
                     view.findViewById(R.id.flow_layout).setVisibility(View.GONE);
                     tvMatchGrade.setText(HtmlTagHandler.spanFontHtml(bean.getIndex25()));
@@ -379,8 +385,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     }
 
 
-
     public void onGetStatementOpen2Data(List<StatementOpen2ListDataBean> list, final String id, final String transType, String index17) {
+        if (currentLlAddView != null)
+            currentLlAddView.removeAllViews();
         for (int i = 0; i < list.size(); i++) {
             final StatementOpen2ListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_open2, null);
@@ -511,7 +518,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                             tv.setText(getString(R.string.CloseDetail));
                             llAddView2.setVisibility(View.VISIBLE);
                         }
-                        if (llAddView2.getChildCount() < 1) {
+                        if (llAddView2 != null) {
                             getStatementOpen3Data(id, transType);
                         }
                     }
@@ -522,6 +529,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     }
 
     public void onGetStatementOpen3Data(List<StatementOpen3ListDataBean> list) {
+        if (currentLlAddView != null)
+            currentLlAddView.removeAllViews();
         for (int i = 0; i < list.size(); i++) {
             StatementOpen3ListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_open2, null);
@@ -670,8 +679,4 @@ spanFontHtml()         tv_match_at2_1.setText(matchAtStr2);
         presenter.getStatementOpen3Data(id, transType);
     }
 
-    @Override
-    public void refreshData() {
-        getStatementData();
-    }
 }

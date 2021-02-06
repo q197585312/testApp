@@ -318,7 +318,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         intent.putExtras(bundle);
         intent.putExtra("fromWhere", getClass().getSimpleName());
         intent.setFlags(flags);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
