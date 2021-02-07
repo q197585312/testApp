@@ -243,13 +243,16 @@ public class LobbyActivity extends BaseActivity {
         view_game_parent.post(new Runnable() {
             @Override
             public void run() {
-                if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
-                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                setAdapterData();
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    if (gameCount > 4) {
+                        float weight2 = 4;
+                        weight2 = gameCount + (float) 0.1;
                         LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) fl_my_game.getLayoutParams();
                         LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) gridviewContentGv.getLayoutParams();
                         layoutParams1.weight = 4;
                         fl_my_game.setLayoutParams(layoutParams1);
-                        layoutParams2.weight = (float) 5.1;
+                        layoutParams2.weight = weight2;
                         gridviewContentGv.setLayoutParams(layoutParams2);
                     }
                 }
@@ -331,6 +334,8 @@ public class LobbyActivity extends BaseActivity {
                                     skipAct(DsvCasinoActivity.class);
                                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.we1poker))) {
                                     skipAct(We1PokerWebActivity.class);
+                                } else if (hallGameItemBean.getTitle().equals(getString(R.string.pragmatic))) {
+                                    skipAct(PragmaticGameActivity.class);
                                 }
 
                             }
@@ -522,6 +527,7 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
+    float gameCount;
 
     private void setAdapterData() {
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
@@ -553,10 +559,18 @@ public class LobbyActivity extends BaseActivity {
             if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, getString(R.string.cock_fighting)));
             }
-            adapterViewContent.addAllAndClear(hallGameItemBeenS);
+            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, getString(R.string.pragmatic)));
+            }
+            if (adapterViewContent != null) {
+                adapterViewContent.addAllAndClear(hallGameItemBeenS);
+            }
+            gameCount = hallGameItemBeenS.size();
         }
-        if (adapterViewContent.getItemCount() == 0) {
-            gridviewContentGv.setVisibility(View.GONE);
+        if (adapterViewContent != null) {
+            if (adapterViewContent.getItemCount() == 0) {
+                gridviewContentGv.setVisibility(View.GONE);
+            }
         }
     }
 

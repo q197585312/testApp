@@ -100,6 +100,9 @@
             android:name="gaming178.com.casinogame.Activity.CQSlotsGameActivity"
             android:configChanges="keyboardHidden|screenSize" />
         <activity
+            android:name="gaming178.com.casinogame.Activity.PragmaticGameActivity"
+            android:configChanges="keyboardHidden|screenSize" />
+        <activity
             android:name="gaming178.com.casinogame.Activity.SlotsWebActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
