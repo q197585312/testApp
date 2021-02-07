@@ -190,6 +190,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             parent.setVisibility(View.GONE);
             ll_title_list.setVisibility(View.GONE);
         }
+
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
         onConvertHall(item, ivHall, position);
@@ -529,7 +530,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         , additionData.getG21_ishowOdds().equals("True")
                 );
                 addAdded(additionData.getG6(), additionData.getG16(), additionData.getG22(), additionData.getFCS_SocOddsId(), false, parent, item,
-                        "3:2", "AOS", "2:3", "csr", "csr", "csr", "32", "70", "23", R.layout.addition_cs_sport_item
+                        "3:2", act.getString(R.string.AOS), "2:3", "csr", "csr", "csr", "32", "70", "23", R.layout.addition_cs_sport_item
                         , false
                         , false
                         , false
@@ -643,7 +644,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         , additionData.getHG20_ishowOdds().equals("True")
                 );
                 addAdded(additionData.getHG5(), additionData.getHG16(), additionData.getHG21(), additionData.getHCS_SocOddsId(), true, parent, item,
-                        "3:1", "AOS", "1:3", "csr", "csr", "csr", "31", "80", "13", R.layout.addition_cs_sport_item
+                        "3:1", act.getString(R.string.AOS), "1:3", "csr", "csr", "csr", "31", "80", "13", R.layout.addition_cs_sport_item
                         , false
                         , false
                         , false

@@ -67,7 +67,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
 
         PersonCenter pc = new PersonCenter(getString(R.string.home_user_name), person.getLoginName());
         PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data == null ? "" : data.getNickNameshow());
-        PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2());
+        PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2().replace("MYR", getString(R.string.MYR)));
         PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), AfbUtils.addComma(person.getBalances(), edt_text));
         PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding), AfbUtils.addComma(person.getEtotalstanding(), edt_text));
         PersonCenter pc4 = new PersonCenter(getString(R.string.min_bet_m), person.getMinLimit());
@@ -122,7 +122,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                 if (item.getName().equals(getString(R.string.cash_balance)) && !StringUtils.isNull(item.getValue())) {
                     value.setText(AfbUtils.scientificCountingToString(item.getValue()));
                 }
-                if (item.getValue()!=null&&item.getValue().startsWith("-")) {
+                if (item.getValue() != null && item.getValue().startsWith("-")) {
                     value.setTextColor(Color.RED);
                 } else {
                     value.setTextColor(Color.BLACK);

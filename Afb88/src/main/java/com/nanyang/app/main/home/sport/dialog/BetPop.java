@@ -703,7 +703,7 @@ public class BetPop {
             setEditNum();
         }
 
-        tvCurrency.setText(afbApplication.getUser().getCurCode2());
+        tvCurrency.setText(afbApplication.getUser().getCurCode2().replace("MYR",activity.getString(R.string.MYR)));
         betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getCredit2(), false));
         if (list.size() > 1) {
             tvDelete.setVisibility(View.VISIBLE);

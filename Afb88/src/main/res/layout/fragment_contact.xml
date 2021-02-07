@@ -23,7 +23,7 @@
                 android:background="@color/yellow_white_bg"
                 android:padding="8dp"
 
-                android:text="  Customer Service specialists are available to answer all of your questions, payment or otherwise in English and Chinese."
+                android:text="@string/customer_service_specialists_are_available_to_answer_all_of_your_questions_payment_or_otherwise_in_english_and_chinese"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -45,7 +45,7 @@
                 android:background="@color/yellow_white_bg"
                 android:paddingLeft="8dp"
                 android:paddingTop="10dp"
-                android:text="Customer Service Hotline"
+                android:text="@string/customer_service_hotline"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/yellow_white_bg"
                 android:padding="8dp"
-                android:text="International call charges may apply to you. Phone calls to us may be recorded for customer protection, information verification, quality assurance purposes and regulatory compliance."
+                android:text="@string/international_call_charges_may_apply_to_you_phone_calls_to_us_may_be_recorded_for_customer_protection_information_verification_quality_assurance_purposes_and_regulatory_compliance"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

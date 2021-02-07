@@ -16,11 +16,11 @@ public class SoccerFragment extends BaseSportFragment {
     @Override
     public void initData() {
         super.initData();
-
         String type = ((SportActivity) getActivity()).getType();
         switchType(type);//第一个刷新逻辑
         setTitle(getString(R.string.football));
     }
+
 
     @Override
     public void switchType(String type) {

@@ -9,6 +9,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.VideoHelper;
 
 /**
@@ -157,6 +158,7 @@ public class LivePlayHelper {
     }
 
     public void openRunMatch(IRTMatchInfo itemBall) {
+        LogUtil.getMethodName("IRTMatchInfo:"+itemBall.getHome()+",dbid:"+itemBall.getSocOddsId());
         if (this.itemBall == null || !this.itemBall.getSocOddsId().equals(itemBall.getSocOddsId())) {
             this.itemBall = itemBall;
             webloading = false;
