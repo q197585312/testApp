@@ -190,7 +190,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             if (list != null && list.size() > 0 && list.get(0).getId() != null) {
                                 JSONArray dataListArray1 = jsonArray.getJSONArray(1);
                                 bean = new AfbClickResponseBean(list, dataListArray1);
-                                LogUtil.d("updateMixListText", "setBetAfbList:getRefreshOdds:" + bean);
                                 ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
                             }
                         }
@@ -270,7 +269,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             }
         } else if (betAfbList != null && !StringUtils.isNull(url) && betAfbList.getList() != null && betAfbList.getList().size() == 1) {
             boolean hasFound = findInBetList(afbApplication.getSingleBet(), betAfbList.getList(), true);
-            if (!hasFound) {
+            if (!hasFound && (betAfbList.getList() == null || betAfbList.getList().size() < 1)) {
                 afbApplication.clearMixBetList();
                 updateMixListText();
             }
