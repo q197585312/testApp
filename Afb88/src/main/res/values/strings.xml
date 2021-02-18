@@ -166,12 +166,8 @@
     <string name="reverse_selection">Reverse Selection</string>
     <string name="Huay_Thai">HUAY THAI</string>
     <string name="Myanmar_Odds">Myanmar Odds</string>
-    <string name="FULL_H_A">FT.HDP</string>
-    <string name="FULL_O_U">FT.O/U</string>
-    <string name="HALF_H_A">FH.HDP</string>
-    <string name="HALF_O_U">FH.OU</string>
-    <string name="FULL_O_E">FT.OE</string>
-    <string name="HALF_O_E">FH.OE</string>
+
+
     <string name="HANDICAP">HDP</string>
     <string name="OVER_UNDER">O/U</string>
     <string name="TO_WIN">TO WIN</string>
@@ -658,4 +654,11 @@
     <string name="CQ9_GAME">CQ9 GAME</string>
     <string name="TFG_CASINO">TFG CASINO</string>
     <string name="MK_CASINO">MK CASINO</string>
+    <string name="customer_service_hotline">Customer Service Hotline</string>
+    <string name="customer_service_specialists_are_available_to_answer_all_of_your_questions_payment_or_otherwise_in_english_and_chinese">Customer Service specialists are available to answer all of your questions, payment or otherwise in English and Chinese.</string>
+    <string name="international_call_charges_may_apply_to_you_phone_calls_to_us_may_be_recorded_for_customer_protection_information_verification_quality_assurance_purposes_and_regulatory_compliance">International call charges may apply to you. Phone calls to us may be recorded for customer protection, information verification, quality assurance purposes and regulatory compliance.</string>
+    <string name="hk">HK: </string>
+    <string name="ft">(FT)</string>
+    <string name="gmt_8">GMT+8</string>
+    <string name="MYR">MYR</string>
 </resources>

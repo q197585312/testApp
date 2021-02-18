@@ -90,6 +90,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     private boolean isTop;
     private AdditionPresenter additionPresenter;
 
+    public void refreshType() {
+        switchType(((SportActivity) getActivity()).getType());
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -306,7 +310,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void collection(ImageView tvCollection) {
         checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_white);
     }
-    
+
 
     public void checkBg(ImageView tvMix, boolean isCollection, int sport_oval_u_green, int sport_oval_u_black) {
         if (isCollection)
@@ -360,8 +364,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         } else {
             tvNoGames.setVisibility(View.GONE);
         }
-        if (getBaseActivity().liveMatchHelper != null && getBaseActivity().itemBall != null && getBaseActivity().itemBall instanceof RunMatchInfo && !((RunMatchInfo) getBaseActivity().itemBall).getDbid().equals(getBallDbid())) {
+        if (getBaseActivity().liveMatchHelper != null && getBaseActivity().itemBall != null && getBaseActivity().itemBall instanceof RunMatchInfo && ((RunMatchInfo) getBaseActivity().itemBall).getDbid().equals(getBallDbid())) {
+            LogUtil.d("liveMatchHelper", "000000000");
             getBaseActivity().liveMatchHelper.openRunMatch(getBaseActivity().itemBall);
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
+            adapterHelper.additionMap.put(true, "");
+            clickItemAdd(getBaseActivity().fl_top_video, getBaseActivity().itemBall, getBaseActivity().dateClickPosition);
+
             getBaseActivity().itemBall = null;
         }
     }

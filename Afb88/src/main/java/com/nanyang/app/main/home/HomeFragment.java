@@ -248,8 +248,10 @@ public class HomeFragment extends BaseSwitchFragment {
 
     }
 
+    MenuItemInfo<String> languageItem;
 
     void updateTimer() {
+        languageItem = new LanguageHelper(getActivity()).getLanguageItem();
         updateHandler.post(timeUpdateRunnable);
         updateHandler.post(mainAllDataUpdateRunnable);
     }
@@ -300,8 +302,23 @@ public class HomeFragment extends BaseSwitchFragment {
     Runnable timeUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            String currentTime = "HK: " + TimeUtils.getTime("dd MMM yyyy hh:mm:ss aa", Locale.ENGLISH);
-            ((BaseToolbarActivity) getBaseActivity()).tvTime.setText(currentTime + " GMT+8");
+
+            String currentTime = getString(R.string.hk) + TimeUtils.getTime("dd MMM yyyy hh:mm:ss aa", Locale.ENGLISH);
+
+            String s1 = currentTime.replaceAll("Jan", getString(R.string.Jan))
+                    .replaceAll("Feb", getString(R.string.Feb))
+                    .replaceAll("Mar", getString(R.string.Mar))
+                    .replaceAll("Apr", getString(R.string.Apr))
+                    .replaceAll("May", getString(R.string.May))
+                    .replaceAll("Jun", getString(R.string.Jun))
+                    .replaceAll("Jul", getString(R.string.Jul))
+                    .replaceAll("Aug", getString(R.string.Aug))
+                    .replaceAll("Oct", getString(R.string.Oct))
+                    .replaceAll("Nov", getString(R.string.Nov))
+                    .replaceAll("Dec", getString(R.string.Dec));
+
+            String s = getString(R.string.gmt_8);
+            ((BaseToolbarActivity) getBaseActivity()).tvTime.setText(s1 + " " + s);
             updateHandler.postDelayed(this, 1000);
         }
     };

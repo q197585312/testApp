@@ -534,6 +534,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             setType(stateType.getType());
         } else {
             currentFragment.onResume();
+            currentFragment.refreshType();
         }
         changeFragmentInit(tag, localCurrentFragment);
 //        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
@@ -544,7 +545,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         deleteHeadAndFoot();
         getTvSportSelect.setText(tag);
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
-        currentFragment = localCurrentFragment;
+        if (currentFragment != localCurrentFragment) {
+            currentFragment = localCurrentFragment;
+        } else {
+            currentFragment.refreshType();
+        }
         currentTag = tag;
         tvSportSelect.setText(tag);
     }
@@ -565,7 +570,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void updateBalanceTv(String allData) {
         String s = AfbUtils.addComma(allData, AppConstant.IS_AGENT);
 
-        tvBalance.setText(getApp().getUser().getCurCode2() + ": " + s);
+        tvBalance.setText(getApp().getUser().getCurCode2().replace("MYR",getString(R.string.MYR)) + ": " + s);
     }
 
 
@@ -780,13 +785,21 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (!item.getDbid().startsWith("33"))
             currentIdBean = item;
         if (item.getTextRes() == R.string.Soccer_Runing) {
+            LogUtil.d("Soccer_Runing", "点击1");
             setType("Running");
             dateClickPosition = 1;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
             selectFragmentTag(getString(R.string.Soccer), item.getBaseFragment(), "Running");
+  /*          handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    currentFragment.switchType(type);
+                }
+            }, 1000);*/
 
             return;
         } else if (item.getDbid().equals("1") && item.getTextRes() == R.string.Soccer_Runing) {
+            LogUtil.d("Soccer_Runing", "点击2");
             setType("Running");
             dateClickPosition = 1;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
@@ -1059,6 +1072,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
     }
 
+    public void updateMatchPlay() {
+        clickRunMatchPlay(itemBallAdded, positionBallAdded, onlyShowOne);
+    }
 
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {

@@ -116,7 +116,7 @@
                     android:id="@+id/running_FullTimeId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(FT)"
+                    android:text="@string/ft"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold" />
