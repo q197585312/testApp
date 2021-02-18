@@ -152,142 +152,101 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/view_game_parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3.6"
-        android:orientation="vertical"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"
-        android:paddingRight="8dp">
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/fl_my_game"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioGroup
-                android:id="@+id/rg_home_game"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_baccarat"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_home_game"
-                    android:button="@null"
-                    android:checked="true"
-                    android:gravity="bottom|center"
-                    android:paddingBottom="3dp"
-                    android:text="@string/baccarat"
-                    android:textAllCaps="true"
-                    android:textColor="@drawable/selector_home_text"
-                    android:textSize="11sp"></RadioButton>
-
-                <RadioButton
-                    android:id="@+id/rb_dragon_tiger"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_home_game"
-                    android:button="@null"
-                    android:gravity="bottom|center"
-                    android:paddingBottom="3dp"
-                    android:text="@string/dragon_tiger"
-                    android:textAllCaps="true"
-                    android:textColor="@drawable/selector_home_text"
-                    android:textSize="11sp"></RadioButton>
-
-                <RadioButton
-                    android:id="@+id/rb_roulette"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_home_game"
-                    android:button="@null"
-                    android:gravity="bottom|center"
-                    android:paddingBottom="3dp"
-                    android:text="@string/roulette"
-                    android:textAllCaps="true"
-                    android:textColor="@drawable/selector_home_text"
-                    android:textSize="11sp"></RadioButton>
-
-                <RadioButton
-                    android:id="@+id/rb_sicbo"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_home_game"
-                    android:button="@null"
-                    android:gravity="bottom|center"
-                    android:paddingBottom="3dp"
-                    android:text="@string/sicbo"
-                    android:textAllCaps="true"
-                    android:textColor="@drawable/selector_home_text"
-                    android:textSize="11sp"></RadioButton>
-            </RadioGroup>
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp">
 
             <LinearLayout
-                android:id="@+id/ll_game_pic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:paddingRight="8dp">
 
-                <ImageView
+                <View
+                    android:id="@+id/view_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+
+                <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@mipmap/home_b" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" />
 
-
-                <ImageView
+                <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="@mipmap/home_dt" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" />
 
-                <ImageView
+                <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="@mipmap/home_r" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="@mipmap/home_s" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" />
 
             </LinearLayout>
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/gd__gridview_content_gv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
-            <FrameLayout
-                android:id="@+id/fl_home"
-                android:layout_width="0dp"
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_content_bg"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></FrameLayout>
+                android:background="@drawable/home_show_content_bg"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/tv_home_close_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:drawableRight="@mipmap/xx"
+                    android:gravity="center"
+                    android:text="@string/baccarat"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"></TextView>
+
+                <FrameLayout
+                    android:id="@+id/fl_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"></FrameLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

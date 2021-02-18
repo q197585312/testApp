@@ -5,9 +5,11 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2016/3/22.
  */
-public class HallGameItemBean implements Serializable{
+public class HallGameItemBean implements Serializable {
     String title;
     int ImageRes;
+    int gameType;
+
 
     public String getTitle() {
         return title;
@@ -28,5 +30,19 @@ public class HallGameItemBean implements Serializable{
     public HallGameItemBean(int imageRes, String title) {
         ImageRes = imageRes;
         this.title = title;
+    }
+
+    public HallGameItemBean(int imageRes, String title, int gameType) {
+        ImageRes = imageRes;
+        this.title = title;
+        this.gameType = gameType;
+    }
+
+    public int getGameType() {
+        return gameType;
+    }
+
+    public void setGameType(int gameType) {
+        this.gameType = gameType;
     }
 }

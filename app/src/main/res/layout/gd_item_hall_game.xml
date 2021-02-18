@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginRight="8dp"
     android:layout_marginBottom="8dp"
-    android:background="@mipmap/home_other_bg"
-    android:paddingBottom="3dp">
+    android:paddingBottom="3dp"
+    android:background="@mipmap/home_game_no_select">
 
     <ImageView
         android:id="@+id/gd__hall_game_pic_iv"

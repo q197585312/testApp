@@ -3,8 +3,8 @@
     android:id="@+id/gd_rl_parent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="6dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginBottom="6dp"
     android:background="@mipmap/home_game_no_select"
     android:paddingBottom="3dp">
 

@@ -289,4 +289,10 @@ public class WidgetUtil {
         return true;
     }
 
+    public static void translateAnimation(View view, int from, int to) {
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "translationY", from, to);
+        objectAnimator.setDuration(350);
+        objectAnimator.start();
+    }
+
 }

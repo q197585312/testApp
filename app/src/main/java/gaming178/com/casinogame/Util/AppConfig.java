@@ -15,4 +15,16 @@ public class AppConfig {
     public static final String ACTION_KEY_SLIDE_HINT_CQ9 = "ACTION_KEY_SLIDE_HINT_CQ9";
     public static final String ACTION_KEY_INITENT_DATA_LIST = "ACTION_KEY_INITENT_DATA_LIST";
     public static final String ACTION_KEY_INITENT_DATA_SEAT_MSG = "ACTION_KEY_INITENT_DATA_SEAT_MSG";
+
+    public static final int dsv_casino = -1;
+    public static final int baccarat = 1;
+    public static final int dragon_tiger = 2;
+    public static final int roulette = 3;
+    public static final int sicbo = 4;
+    public static final int slots = 5;
+    public static final int we1poker = 6;
+    public static final int afb1188 = 7;
+    public static final int cq9 = 8;
+    public static final int cockfighting = 9;
+    public static final int pragmatic = 10;
 }
