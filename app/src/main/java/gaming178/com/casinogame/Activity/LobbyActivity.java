@@ -1,6 +1,7 @@
 package gaming178.com.casinogame.Activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -46,12 +47,15 @@ import cn.finalteam.toolsfinal.StringUtils;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
+import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Control.AutoScrollTextView;
 import gaming178.com.casinogame.Fragment.BaseFragment;
 import gaming178.com.casinogame.Fragment.LobbyBaccaratFragment;
 import gaming178.com.casinogame.Fragment.LobbyDragonTigerFragment;
 import gaming178.com.casinogame.Fragment.LobbyRouletteFragment;
 import gaming178.com.casinogame.Fragment.LobbySicboFragment;
+import gaming178.com.casinogame.Popupwindow.DepositPop;
+import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.UIUtil;
@@ -83,6 +87,8 @@ public class LobbyActivity extends BaseActivity {
     AutoScrollTextView hallGameBottomPromptTv;
     @BindView(R2.id.tv_switch_account)
     TextView tv_switch_account;
+    @BindView(R2.id.tv_switch_account_1)
+    TextView tv_switch_account_1;
     @BindView(R2.id.tv_lg)
     TextView tv_lg;
     @BindView(R2.id.tv_set)
@@ -101,7 +107,20 @@ public class LobbyActivity extends BaseActivity {
     LinearLayout ll_content_bg;
     @BindView(R2.id.tv_home_close_game)
     TextView tv_home_close_game;
-    private BlockDialog dialog;
+    @BindView(R2.id.tv_home_home)
+    TextView tv_home_home;
+    @BindView(R2.id.tv_home_deposit)
+    TextView tv_home_deposit;
+    @BindView(R2.id.tv_home_withdraw)
+    TextView tv_home_withdraw;
+    @BindView(R2.id.tv_home_logout)
+    TextView tv_home_logout;
+    @BindView(R2.id.ll_bottom)
+    LinearLayout ll_bottom;
+    @BindView(R2.id.tv_home_deposit_l)
+    TextView tv_home_deposit_l;
+    @BindView(R2.id.tv_home_withdraw_l)
+    TextView tv_home_withdraw_l;
     private String announcement = "";
     private UpdateAnnouncement updateAnnouncement = null;
     private Thread threadAnnouncement = null;
@@ -325,6 +344,8 @@ public class LobbyActivity extends BaseActivity {
                             skipAct(We1PokerWebActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
                             skipAct(PragmaticGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
+                            Toast.makeText(mContext, getString(R.string.gd_coming_soon), Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -335,6 +356,31 @@ public class LobbyActivity extends BaseActivity {
         if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             tv_lg.setText(getString(R.string.member_center));
             tv_lg.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.home_member_center, 0, 0, 0);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                tv_set.setVisibility(View.GONE);
+                tv_home_deposit_l.setVisibility(View.VISIBLE);
+                tv_home_withdraw_l.setVisibility(View.VISIBLE);
+                tv_switch_account.setVisibility(View.GONE);
+                tv_switch_account_1.setVisibility(View.VISIBLE);
+            } else {
+                tv_set.setVisibility(View.GONE);
+                tv_lg.setVisibility(View.GONE);
+                tv_switch_account.setVisibility(View.GONE);
+                ll_bottom.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                tv_set.setVisibility(View.VISIBLE);
+                tv_home_deposit_l.setVisibility(View.GONE);
+                tv_home_withdraw_l.setVisibility(View.GONE);
+                tv_switch_account.setVisibility(View.VISIBLE);
+                tv_switch_account_1.setVisibility(View.GONE);
+            } else {
+                tv_set.setVisibility(View.VISIBLE);
+                tv_lg.setVisibility(View.VISIBLE);
+                tv_switch_account.setVisibility(View.VISIBLE);
+                ll_bottom.setVisibility(View.GONE);
+            }
         }
         if (mAppViewModel.isbLogin()) {
             switchFragment(0);
@@ -358,12 +404,87 @@ public class LobbyActivity extends BaseActivity {
                 logout();
             }
         });
+        tv_switch_account_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
         tv_home_close_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WidgetUtil.translateAnimation(ll_content_bg, -ll_parent.getHeight(), 0);
                 clickItem = -1;
                 adapterViewContent.notifyDataSetChanged();
+            }
+        });
+        tv_home_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
+                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                showLanguagePop(tv_lg, 0.75f);
+            }
+        });
+        tv_home_deposit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
+                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+                int width = screenWidth / 15 * 14;
+                User u = mAppViewModel.getUser();
+                DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                pop.setDialog(dialog);
+                pop.setUser(u);
+                pop.showPopupCenterWindow();
+            }
+        });
+        tv_home_withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
+                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+                int width = screenWidth / 15 * 14;
+                User u = mAppViewModel.getUser();
+                WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                p.setDialog(dialog);
+                p.setUser(u);
+                p.showPopupCenterWindow();
+            }
+        });
+        tv_home_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+        tv_home_deposit_l.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+                int width = screenWidth / 15 * 14;
+                User u = mAppViewModel.getUser();
+                DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                pop.setDialog(dialog);
+                pop.setUser(u);
+                pop.showPopupCenterWindow();
+            }
+        });
+        tv_home_withdraw_l.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+                int width = screenWidth / 15 * 14;
+                User u = mAppViewModel.getUser();
+                WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                p.setDialog(dialog);
+                p.setUser(u);
+                p.showPopupCenterWindow();
             }
         });
     }
@@ -563,7 +684,6 @@ public class LobbyActivity extends BaseActivity {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_s, getString(R.string.sicbo), AppConfig.sicbo));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots), AppConfig.slots));
             if (WebSiteUrl.GameType != 3) {
                 if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_we1poker, getString(R.string.we1poker), AppConfig.we1poker));
@@ -572,12 +692,14 @@ public class LobbyActivity extends BaseActivity {
             if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, getString(R.string.afb1188), AppConfig.afb1188));
             }
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots), AppConfig.slots));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, getString(R.string.cq), AppConfig.cq9));
             if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, getString(R.string.cock_fighting), AppConfig.cockfighting));
             }
             if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, getString(R.string.pragmatic), AppConfig.pragmatic));
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, getString(R.string.king_kong), AppConfig.kingKong));
             }
             if (adapterViewContent != null) {
                 adapterViewContent.addAllAndClear(hallGameItemBeenS);

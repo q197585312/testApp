@@ -1313,6 +1313,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                     PopReferralList popReferralList = new PopReferralList(mContext, v, width, width);
                                     popReferralList.showPopupCenterWindow();
                                     break;
+                                case "setting":
+                                    showSetPop(v, Gravity.TOP);
+                                    break;
+                                case "report":
+                                    PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                    popReport.showPopupCenterWindow();
+                                    break;
                             }
                         }
                     }

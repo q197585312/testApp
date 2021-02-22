@@ -27,4 +27,5 @@ public class AppConfig {
     public static final int cq9 = 8;
     public static final int cockfighting = 9;
     public static final int pragmatic = 10;
+    public static final int kingKong = 11;
 }

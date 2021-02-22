@@ -234,6 +234,7 @@
     <string name="bank_number">Bank Number</string>
     <string name="gd_code">Code</string>
     <string name="gd_deposit">Deposit</string>
+    <string name="gd_home">Home</string>
     <string name="gd_withdrawal">Withdraw</string>
     <string name="gd_Amount">Amount</string>
     <string name="Account_Name">Account Name</string>
@@ -290,6 +291,8 @@
     <string name="Rule">Rule</string>
     <string name="bjl">BACCARAT</string>
     <string name="nn">COW</string>
+    <string name="gd_coming_soon">Coming soon</string>
+    <string name="king_kong">King Kong</string>
 </resources>
 
 

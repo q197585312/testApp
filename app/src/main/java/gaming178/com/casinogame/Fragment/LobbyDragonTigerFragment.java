@@ -350,8 +350,8 @@ public class LobbyDragonTigerFragment extends BaseFragment {
             }
         });
         tv_baccarat_table_name.setText("DT1");
-        ((TextView) rootView.findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dr));
-        ((TextView) rootView.findViewById(R.id.gd__tv_player)).setText(getString(R.string.ti));
+        ((TextView) rootView.findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dragon_dragon_tiger));
+        ((TextView) rootView.findViewById(R.id.gd__tv_player)).setText(getString(R.string.tiger_dragon_tiger));
         ((TextView) rootView.findViewById(R.id.gd__tv_tie)).setText(getString(R.string.tie));
         ((LinearLayout) rootView.findViewById(R.id.gd__ll_bp)).setVisibility(View.GONE);
         ((LinearLayout) rootView.findViewById(R.id.gd__ll_pp)).setVisibility(View.GONE);

@@ -210,6 +210,7 @@
     <string name="bank_number">Nomor rekening</string>
     <string name="gd_code">kode validasi</string>
     <string name="gd_deposit">setoran</string>
+    <string name="gd_home">Beranda</string>
     <string name="gd_withdrawal">Penarikan</string>
     <string name="gd_Referrer">Referensi</string>
     <string name="katasandi">Katasandi</string>

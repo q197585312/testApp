@@ -33,4 +33,5 @@
     <color name="yellow_gold2">#ffc107</color>
     <color name="home_no_select_color">#FFEDB2</color>
     <color name="home_select_color">#460900</color>
+    <color name="home_bottom_color">#34C759</color>
 </resources>
