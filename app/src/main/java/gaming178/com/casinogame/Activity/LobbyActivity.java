@@ -37,6 +37,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,12 +59,15 @@ import gaming178.com.casinogame.Fragment.LobbySicboFragment;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
+import gaming178.com.casinogame.Util.BannerViewPager;
+import gaming178.com.casinogame.Util.BannerViewPagerAdapter;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.UIUtil;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.casinogame.entity.BannerBean;
 import gaming178.com.casinogame.entity.HallGameItemBean;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
@@ -243,7 +248,6 @@ public class LobbyActivity extends BaseActivity {
 //        WindowManager.LayoutParams params = getWindow().getAttributes();
 //        params.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE;
 //        getWindow().setAttributes(params);
-
         AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
         setMoreToolbar(true);
 //        backTv.setText(R.string.back);
@@ -264,95 +268,15 @@ public class LobbyActivity extends BaseActivity {
         fragmentList = Arrays.asList(baccaratFragment, dragonTigerFragment, rouletteFragment, sicboFragment);
 
         //   startUpdateStatus();
-        view_item.post(new Runnable() {
-            @Override
-            public void run() {
-                int dp = 14;
-                int count = 4;
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    count = 8;
-                    dp = 9;
-                }
-                int itemWidth = view_item.getWidth();
-                int contentHeight = view_game_parent.getHeight() - itemWidth - UIUtil.dip2px(mContext, dp);
-                ViewGroup.LayoutParams layoutParams = ll_parent.getLayoutParams();
-                layoutParams.height = contentHeight;
-                ll_parent.setLayoutParams(layoutParams);
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
-                params.topMargin = contentHeight;
-                params.height = contentHeight;
-                ll_content_bg.setLayoutParams(params);
-                ll_content_bg.setVisibility(View.VISIBLE);
-                GridLayoutManager layoutManager = new GridLayoutManager(mContext, count);
-                gridviewContentGv.setLayoutManager(layoutManager);
-                adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
-                    @Override
-                    public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
-                        RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
-                        ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
-                        layoutParams.height = itemWidth;
-                        rl_parent.setLayoutParams(layoutParams);
-                        ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
-                        Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
-                        imageView.setImageBitmap(bitmap);
-                        TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
-                        textView.setText(item.getTitle());
-                        if (position == clickItem) {
-                            rl_parent.setBackgroundResource(R.mipmap.home_game_select);
-                            textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
-                        } else {
-                            rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
-                            textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_no_select_color));
-                        }
-                    }
-                };
-                gridviewContentGv.setAdapter(adapterViewContent);
-                setAdapterData();
-                adapterViewContent.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<HallGameItemBean>() {
-                    @Override
-                    public void onItemClick(View view, HallGameItemBean hallGameItemBean, int position) {
-                        if (position < 4) {
-                            adapterViewContent.notifyDataSetChanged();
-                        }
-                        int count = 3;
-                        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                            count = 7;
-                        }
-                        if (!isCanShowGame() && position > count) {
-                            return;
-                        }
-                        AppTool.setAppLanguage(LobbyActivity.this, AppTool.getAppLanguage(LobbyActivity.this));
-                        if (hallGameItemBean.getGameType() == AppConfig.baccarat) {
-                            showGameContent(0, getString(R.string.baccarat));
-                        } else if (hallGameItemBean.getGameType() == AppConfig.dragon_tiger) {
-                            showGameContent(1, getString(R.string.dragon_tiger));
-                        } else if (hallGameItemBean.getGameType() == AppConfig.roulette) {
-                            showGameContent(2, getString(R.string.roulette));
-                        } else if (hallGameItemBean.getGameType() == AppConfig.sicbo) {
-                            showGameContent(3, getString(R.string.sicbo));
-                        } else if (hallGameItemBean.getGameType() == AppConfig.slots) {
-                            skipAct(SlotsGameActivity.class);
-                        } else if (hallGameItemBean.getGameType() == AppConfig.cq9) {
-                            skipAct(CQSlotsGameActivity.class);
-                        } else if (hallGameItemBean.getGameType() == AppConfig.cockfighting) {
-                            skipAct(CockFightingWebActivity.class);
-                        } else if (hallGameItemBean.getGameType() == AppConfig.afb1188) {
-                            goAfb1188();
-                        } else if (hallGameItemBean.getGameType() == AppConfig.dsv_casino) {
-                            skipAct(DsvCasinoActivity.class);
-                        } else if (hallGameItemBean.getGameType() == AppConfig.we1poker) {
-                            skipAct(We1PokerWebActivity.class);
-                        } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
-                            skipAct(PragmaticGameActivity.class);
-                        } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
-                            Toast.makeText(mContext, getString(R.string.gd_coming_soon), Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-
+        if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                setBanner();
+            } else {
+                setGameContent();
             }
-        });
+        } else {
+            setGameContent();
+        }
         if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             tv_lg.setText(getString(R.string.member_center));
             tv_lg.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.home_member_center, 0, 0, 0);
@@ -487,6 +411,159 @@ public class LobbyActivity extends BaseActivity {
                 p.showPopupCenterWindow();
             }
         });
+    }
+
+    BannerViewPager viewPager;
+
+    private void setBanner() {
+        LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
+        LinearLayout ll_top_1 = findViewById(R.id.ll_top_1);
+        ImageView gd_img_logo = findViewById(R.id.gd_img_logo);
+        if (ll_top_parent != null && ll_top_1 != null && gd_img_logo != null) {
+            ll_top_1.post(new Runnable() {
+                @Override
+                public void run() {
+                    ViewGroup.LayoutParams layoutParams = ll_top_parent.getLayoutParams();
+                    layoutParams.height = ll_top_1.getHeight() * 2;
+                    ll_top_parent.setLayoutParams(layoutParams);
+                    ll_top_1.setVisibility(View.GONE);
+                    gd_img_logo.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+        RelativeLayout relativeLayout = findViewById(R.id.rl_banner);
+        viewPager = findViewById(R.id.auto_viewpager);
+        LinearLayout inLayout = findViewById(R.id.in_layout);
+        if (relativeLayout != null && viewPager != null && inLayout != null) {
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
+                    String result = mAppViewModel.getHttpClient().sendPost(url, "");
+                    BannerBean bannerBean = new Gson().fromJson(result, BannerBean.class);
+                    if (bannerBean.getResult().equals("Success")) {
+                        List<BannerBean.DataBean> data = bannerBean.getData();
+                        if (data != null && data.size() > 0) {
+                            List<String> lists = new ArrayList<>();
+                            for (int i = 0; i < data.size(); i++) {
+                                BannerBean.DataBean dataBean = data.get(i);
+                                lists.add(dataBean.getPath());
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    relativeLayout.setVisibility(View.VISIBLE);
+                                    BannerViewPagerAdapter adapter = new BannerViewPagerAdapter(lists, inLayout, LobbyActivity.this);
+                                    viewPager.setAdapter(adapter);
+                                    viewPager.addOnPageChangeListener(viewPager.listener);
+                                    setGameContent();
+                                }
+                            });
+                        }
+                    }
+                }
+            }.start();
+        }
+    }
+
+    private void setGameContent() {
+        view_item.post(new Runnable() {
+            @Override
+            public void run() {
+                int dp = 14;
+                int count = 4;
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    count = 8;
+                    dp = 9;
+                }
+                int itemWidth = view_item.getWidth();
+                int contentHeight = view_game_parent.getHeight() - itemWidth - UIUtil.dip2px(mContext, dp);
+                ViewGroup.LayoutParams layoutParams = ll_parent.getLayoutParams();
+                layoutParams.height = contentHeight;
+                ll_parent.setLayoutParams(layoutParams);
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
+                params.topMargin = contentHeight;
+                params.height = contentHeight;
+                ll_content_bg.setLayoutParams(params);
+                ll_content_bg.setVisibility(View.VISIBLE);
+                GridLayoutManager layoutManager = new GridLayoutManager(mContext, count);
+                gridviewContentGv.setLayoutManager(layoutManager);
+                adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
+                        RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
+                        ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
+                        layoutParams.height = itemWidth;
+                        rl_parent.setLayoutParams(layoutParams);
+                        ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
+                        Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
+                        imageView.setImageBitmap(bitmap);
+                        TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
+                        textView.setText(item.getTitle());
+                        if (position == clickItem) {
+                            rl_parent.setBackgroundResource(R.mipmap.home_game_select);
+                            textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
+                        } else {
+                            rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
+                            textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_no_select_color));
+                        }
+                    }
+                };
+                gridviewContentGv.setAdapter(adapterViewContent);
+                setAdapterData();
+                adapterViewContent.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<HallGameItemBean>() {
+                    @Override
+                    public void onItemClick(View view, HallGameItemBean hallGameItemBean, int position) {
+                        if (position < 4) {
+                            adapterViewContent.notifyDataSetChanged();
+                        }
+                        int count = 3;
+                        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                            count = 7;
+                        }
+                        if (!isCanShowGame() && position > count) {
+                            return;
+                        }
+                        AppTool.setAppLanguage(LobbyActivity.this, AppTool.getAppLanguage(LobbyActivity.this));
+                        if (hallGameItemBean.getGameType() == AppConfig.baccarat) {
+                            showGameContent(0, getString(R.string.baccarat));
+                        } else if (hallGameItemBean.getGameType() == AppConfig.dragon_tiger) {
+                            showGameContent(1, getString(R.string.dragon_tiger));
+                        } else if (hallGameItemBean.getGameType() == AppConfig.roulette) {
+                            showGameContent(2, getString(R.string.roulette));
+                        } else if (hallGameItemBean.getGameType() == AppConfig.sicbo) {
+                            showGameContent(3, getString(R.string.sicbo));
+                        } else if (hallGameItemBean.getGameType() == AppConfig.slots) {
+                            skipAct(SlotsGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.cq9) {
+                            skipAct(CQSlotsGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.cockfighting) {
+                            skipAct(CockFightingWebActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.afb1188) {
+                            goAfb1188();
+                        } else if (hallGameItemBean.getGameType() == AppConfig.dsv_casino) {
+                            skipAct(DsvCasinoActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.we1poker) {
+                            skipAct(We1PokerWebActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
+                            skipAct(PragmaticGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
+                            Toast.makeText(mContext, getString(R.string.gd_coming_soon), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (viewPager != null) {
+            viewPager.stopTask();
+        }
     }
 
     private boolean isCanShowGame() {
