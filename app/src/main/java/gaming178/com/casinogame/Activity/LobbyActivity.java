@@ -1,7 +1,7 @@
 package gaming178.com.casinogame.Activity;
 
 import android.Manifest;
-import android.app.Activity;
+import android.animation.Animator;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,7 +16,6 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -71,7 +70,6 @@ import gaming178.com.casinogame.entity.BannerBean;
 import gaming178.com.casinogame.entity.HallGameItemBean;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
-import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.UpdateManager;
 import gaming178.com.mylibrary.allinone.util.WidgetUtil;
@@ -337,7 +335,7 @@ public class LobbyActivity extends BaseActivity {
         tv_home_close_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WidgetUtil.translateAnimation(ll_content_bg, -ll_parent.getHeight(), 0);
+                closeGame();
                 clickItem = -1;
                 adapterViewContent.notifyDataSetChanged();
             }
@@ -574,24 +572,65 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
+    private boolean isOpenGame = true;
+
     private boolean isCanShowGame() {
-        int[] location = new int[2];
-        ll_content_bg.getLocationOnScreen(location);
-        int contentY = location[1];
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
-        int screenHeight = outMetrics.heightPixels;
-        if (screenHeight == contentY) {
-            return true;
-        }
-        return false;
+        return isOpenGame;
+    }
+
+    private void openGame() {
+        WidgetUtil.translateAnimation(ll_content_bg, 0, -ll_parent.getHeight(), new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                isOpenGame = false;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+    }
+
+    private void closeGame() {
+        WidgetUtil.translateAnimation(ll_content_bg, -ll_parent.getHeight(), 0, new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                isOpenGame = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
 
     private void showGameContent(int type, String name) {
         clickItem = type;
         if (lastIndex == type) {
             if (isCanShowGame()) {
-                WidgetUtil.translateAnimation(ll_content_bg, 0, -ll_parent.getHeight());
+                openGame();
             }
             return;
         }
@@ -601,7 +640,7 @@ public class LobbyActivity extends BaseActivity {
             @Override
             public void run() {
                 if (isCanShowGame()) {
-                    WidgetUtil.translateAnimation(ll_content_bg, 0, -ll_parent.getHeight());
+                    openGame();
                 }
             }
         }, 100);
