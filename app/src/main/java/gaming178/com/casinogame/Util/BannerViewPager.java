@@ -126,12 +126,6 @@ public class BannerViewPager extends ViewPager {
             task.cancel();
             task = null;
         }
-        if (viewList != null) {
-            viewList.clear();
-        }
-        if (layout != null) {
-            layout.removeAllViews();
-        }
     }
 
     public ViewPager.OnPageChangeListener listener = new ViewPager.OnPageChangeListener() {

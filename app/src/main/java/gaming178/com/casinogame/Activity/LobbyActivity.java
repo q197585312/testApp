@@ -416,49 +416,42 @@ public class LobbyActivity extends BaseActivity {
     BannerViewPager viewPager;
 
     private void setBanner() {
-        LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
-        LinearLayout ll_top_1 = findViewById(R.id.ll_top_1);
-        ImageView gd_img_logo = findViewById(R.id.gd_img_logo);
-        if (ll_top_parent != null && ll_top_1 != null && gd_img_logo != null) {
-            ll_top_1.post(new Runnable() {
-                @Override
-                public void run() {
-                    ViewGroup.LayoutParams layoutParams = ll_top_parent.getLayoutParams();
-                    layoutParams.height = ll_top_1.getHeight() * 2;
-                    ll_top_parent.setLayoutParams(layoutParams);
-                    ll_top_1.setVisibility(View.GONE);
-                    gd_img_logo.setVisibility(View.VISIBLE);
-                }
-            });
-        }
-        RelativeLayout relativeLayout = findViewById(R.id.rl_banner);
+        RelativeLayout rl_banner = findViewById(R.id.rl_banner);
         viewPager = findViewById(R.id.auto_viewpager);
         LinearLayout inLayout = findViewById(R.id.in_layout);
-        if (relativeLayout != null && viewPager != null && inLayout != null) {
+        if (rl_banner != null && viewPager != null && inLayout != null) {
             new Thread() {
                 @Override
                 public void run() {
                     String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
                     String result = mAppViewModel.getHttpClient().sendPost(url, "");
-                    BannerBean bannerBean = new Gson().fromJson(result, BannerBean.class);
-                    if (bannerBean.getResult().equals("Success")) {
-                        List<BannerBean.DataBean> data = bannerBean.getData();
-                        if (data != null && data.size() > 0) {
-                            List<String> lists = new ArrayList<>();
-                            for (int i = 0; i < data.size(); i++) {
-                                BannerBean.DataBean dataBean = data.get(i);
-                                lists.add(dataBean.getPath());
-                            }
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    relativeLayout.setVisibility(View.VISIBLE);
-                                    BannerViewPagerAdapter adapter = new BannerViewPagerAdapter(lists, inLayout, LobbyActivity.this);
-                                    viewPager.setAdapter(adapter);
-                                    viewPager.addOnPageChangeListener(viewPager.listener);
-                                    setGameContent();
+                    if (result.equals("netError")) {
+                        setGameContent();
+                    } else {
+                        BannerBean bannerBean = new Gson().fromJson(result, BannerBean.class);
+                        if (bannerBean.getResult().equals("Success")) {
+                            List<BannerBean.DataBean> data = bannerBean.getData();
+                            if (data != null && data.size() > 0) {
+                                List<String> lists = new ArrayList<>();
+                                for (int i = 0; i < data.size(); i++) {
+                                    BannerBean.DataBean dataBean = data.get(i);
+                                    lists.add(dataBean.getPath());
                                 }
-                            });
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        rl_banner.setVisibility(View.VISIBLE);
+                                        BannerViewPagerAdapter adapter = new BannerViewPagerAdapter(lists, inLayout, LobbyActivity.this);
+                                        viewPager.setAdapter(adapter);
+                                        viewPager.addOnPageChangeListener(viewPager.listener);
+                                        setGameContent();
+                                    }
+                                });
+                            } else {
+                                setGameContent();
+                            }
+                        } else {
+                            setGameContent();
                         }
                     }
                 }
@@ -478,6 +471,21 @@ public class LobbyActivity extends BaseActivity {
                 }
                 int itemWidth = view_item.getWidth();
                 int contentHeight = view_game_parent.getHeight() - itemWidth - UIUtil.dip2px(mContext, dp);
+                if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                    LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
+                    LinearLayout ll_top_1 = findViewById(R.id.ll_top_1);
+                    ImageView gd_img_logo = findViewById(R.id.gd_img_logo);
+                    if (ll_top_parent != null && ll_top_1 != null && gd_img_logo != null) {
+                        ViewGroup.LayoutParams layoutParams = ll_top_parent.getLayoutParams();
+                        layoutParams.height = ll_top_1.getHeight() * 2;
+                        ll_top_parent.setLayoutParams(layoutParams);
+                        ll_top_1.setVisibility(View.GONE);
+                        gd_img_logo.setVisibility(View.VISIBLE);
+                    }
+                    if (ll_top_1 != null) {
+                        contentHeight += ll_top_1.getHeight();
+                    }
+                }
                 ViewGroup.LayoutParams layoutParams = ll_parent.getLayoutParams();
                 layoutParams.height = contentHeight;
                 ll_parent.setLayoutParams(layoutParams);

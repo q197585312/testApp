@@ -71,7 +71,6 @@ public class LoginActivity extends BaseActivity {
     private String version;
     private View ll_language;
     private ImageView iv_language_flag;
-    private View view_bottom_center;
     private TextView tv_register;
     private View llContainer;
     private int[] sc;
@@ -213,7 +212,6 @@ public class LoginActivity extends BaseActivity {
         tv_name = (EditText) this.findViewById(R.id.gd__login_username_edt);
         tv_password = (EditText) this.findViewById(R.id.gd__login_password_edt);
         ll_language = findViewById(R.id.gd__ll_choose_language);
-        view_bottom_center = findViewById(R.id.gd__view_bottom_center);
         iv_language_flag = (ImageView) findViewById(R.id.gd__iv_language_flag);
         if (BuildConfig.FLAVOR.equals("liga365")) {
             ll_liga365.setVisibility(View.VISIBLE);
