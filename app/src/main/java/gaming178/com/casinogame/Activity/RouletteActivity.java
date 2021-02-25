@@ -2882,30 +2882,30 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
             //需要显示关桌
         } else {//显示路子
-            if (roulette.getRoad() != null && !roulette.getRoad().equals(roulette.getRoadOld())) {
-
-                roulette.setRoadOld(roulette.getRoad());
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    mAppViewModel.showRoulette(roulette.getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
-                } else {
-                    String roadDetail[] = roulette.getRoad().split("\\#");
-                    if (roadDetail != null) {
-                        List<String> listItem = new ArrayList<String>();
-                        int n = roadDetail.length;
-                        for (int i = n - 1; i >= n - 22; i--) {
-                            listItem.add(roadDetail[i]);
-                        }
-                        if (contentAdapter != null && listItem != null) {
-                            contentAdapter.addAllAndClear(listItem);
+            if (roulette.getRoad() != null && tv_black_percentage != null) {
+                if (!roulette.getRoad().equals(roulette.getRoadOld()) || TextUtils.isEmpty(tv_black_percentage.getText().toString())) {
+                    roulette.setRoadOld(roulette.getRoad());
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                        mAppViewModel.showRoulette(roulette.getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
+                    } else {
+                        String roadDetail[] = roulette.getRoad().split("\\#");
+                        if (roadDetail != null) {
+                            List<String> listItem = new ArrayList<String>();
+                            int n = roadDetail.length;
+                            for (int i = n - 1; i >= n - 22; i--) {
+                                listItem.add(roadDetail[i]);
+                            }
+                            if (contentAdapter != null && listItem != null) {
+                                contentAdapter.addAllAndClear(listItem);
+                            }
                         }
                     }
+                    //      Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+roulette.getTableName()+",Luzi roads="+roulette.getRoadOld()+ ",Road="+roulette.getRoad()+",roadDetail="+roadDetail.length);
+                    //更新局数
+                    updateGameNumber(mAppViewModel.getRoulette01(), tv_roulette_number, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
+                    updatePercentage();
                 }
-                //      Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+roulette.getTableName()+",Luzi roads="+roulette.getRoadOld()+ ",Road="+roulette.getRoad()+",roadDetail="+roadDetail.length);
-                //更新局数
-                updateGameNumber(mAppViewModel.getRoulette01(), tv_roulette_number, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
-                updatePercentage();
             }
-
         }
     }
 

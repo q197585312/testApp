@@ -71,6 +71,7 @@ import gaming178.com.casinogame.Bean.DragonTiger;
 import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
+import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.PopReferralList;
 import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
@@ -1319,6 +1320,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 case "report":
                                     PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                                     popReport.showPopupCenterWindow();
+                                    break;
+                                case "liveChat":
+                                    PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                    popLiveChat.showPopupCenterWindow();
                                     break;
                             }
                         }
