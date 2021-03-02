@@ -188,13 +188,13 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "idrkasino"]
                 buildConfigField "String", "Labelid", '"45"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.76'
+                versionName '3.77'
             }
             indkasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "indkasino"]
                 buildConfigField "String", "Labelid", '"126"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.76'
+                versionName '3.77'
             }
             juragan {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "juragan"]
@@ -258,7 +258,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "memoricasino"]
                 buildConfigField "String", "Labelid", '"139"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.76'
+                versionName '3.77'
             }
             nagacasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "nagacasino"]
@@ -282,13 +282,13 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rajabakarat"]
                 buildConfigField "String", "Labelid", '"127"'
                 applicationId 'gaming179.com.baccaratgame'
-                versionName '3.76'
+                versionName '3.77'
             }
             rajacasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rajacasino88"]
                 buildConfigField "String", "Labelid", '"25"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.76'
+                versionName '3.77'
                 signingConfig signingConfigs.rajacasino88_key_config
             }
             ratucasino88 {

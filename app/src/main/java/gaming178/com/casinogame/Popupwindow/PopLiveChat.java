@@ -60,6 +60,16 @@ public class PopLiveChat extends BasePopupWindow {
             url = "https://tawk.to/chat/5f5216ebf0e7167d000d68e1/default";
         } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
             url = "https://direct.lc.chat/11150507/3";
+        } else if (BuildConfig.FLAVOR.equals("rajabakarat")) {
+            url = "https://direct.lc.chat/8846269/";
+        } else if (BuildConfig.FLAVOR.equals("idrkasino")) {
+            url = "https://direct.lc.chat/8863379/";
+        } else if (BuildConfig.FLAVOR.equals("rajacasino")) {
+            url = "https://direct.lc.chat/8843331/";
+        } else if (BuildConfig.FLAVOR.equals("memoricasino")) {
+            url = "https://direct.lc.chat/11077682/";
+        } else if (BuildConfig.FLAVOR.equals("indkasino")) {
+            url = "https://direct.lc.chat/8837176/";
         }
         webView = (WebView) view.findViewById(R.id.gd__wv_report);
         webView.getSettings().setJavaScriptEnabled(true);
