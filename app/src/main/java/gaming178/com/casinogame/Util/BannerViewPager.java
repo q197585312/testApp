@@ -49,7 +49,9 @@ public class BannerViewPager extends ViewPager {
     public void setAdapter(BannerViewPagerAdapter arg0) {
         super.setAdapter(arg0);
         tureItemCount = arg0.itemTrueAmount;
-        startTask();
+        if (tureItemCount > 1) {
+            startTask();
+        }
         layout = arg0.layout;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(18, 18);
         params.leftMargin = 7;
@@ -115,7 +117,9 @@ public class BannerViewPager extends ViewPager {
                 } else {
                     index = currentIndex - 1;
                 }
-                startTask();
+                if (tureItemCount > 1) {
+                    startTask();
+                }
                 break;
         }
         return super.onTouchEvent(arg0);

@@ -48,8 +48,18 @@ public class PopLiveChat extends BasePopupWindow {
             }
         });
         activity = (BaseActivity) context;
-        if (BuildConfig.FLAVOR.equals("mainkasino")){
+        if (BuildConfig.FLAVOR.equals("mainkasino")) {
             url = "https://secure.livechatinc.com/licence/11168507/v2/open_chat.cgi?license=11168507";
+        } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
+            url = "https://direct.lc.chat/11977407/1";
+        } else if (BuildConfig.FLAVOR.equals("depocasino")) {
+            url = "https://tawk.to/chat/5a9936514b401e45400d5958/default";
+        } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
+            url = "https://tawk.to/chat/5a9900284b401e45400d57fa/default";
+        } else if (BuildConfig.FLAVOR.equals("oricasino")) {
+            url = "https://tawk.to/chat/5f5216ebf0e7167d000d68e1/default";
+        } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
+            url = "https://direct.lc.chat/11150507/3";
         }
         webView = (WebView) view.findViewById(R.id.gd__wv_report);
         webView.getSettings().setJavaScriptEnabled(true);

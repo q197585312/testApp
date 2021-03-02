@@ -50,7 +50,8 @@ public class LanguageHelper {
                 }
                 languageItems.add(new MenuItemInfo<>(R.mipmap.gd_home_setting, context.getString(R.string.setting), "setting", ""));
                 languageItems.add(new MenuItemInfo<>(R.mipmap.gd_home_report, context.getString(R.string.report), "report", ""));
-                if (BuildConfig.FLAVOR.equals("mainkasino")) {
+                if (BuildConfig.FLAVOR.equals("mainkasino") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") ||
+                        BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("oricasino")|| BuildConfig.FLAVOR.equals("wargacasino")) {
                     languageItems.add(new MenuItemInfo<>(R.mipmap.gd_live_chat, context.getString(R.string.Live_Chat), "liveChat", ""));
                 }
             }
