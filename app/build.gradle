@@ -343,7 +343,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wargacasino"]
                 buildConfigField "String", "Labelid", '"142"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.77'
+                versionName '3.78'
             }
 
 
@@ -413,7 +413,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]
                 buildConfigField "String", "Labelid", '"224"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.77'
+                versionName '3.78'
 
             }
             rajawalicasino {

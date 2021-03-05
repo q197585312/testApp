@@ -9,6 +9,7 @@ public class HallGameItemBean implements Serializable {
     String title;
     int ImageRes;
     int gameType;
+    String browserUrl;
 
 
     public String getTitle() {
@@ -44,5 +45,20 @@ public class HallGameItemBean implements Serializable {
 
     public void setGameType(int gameType) {
         this.gameType = gameType;
+    }
+
+    public String getBrowserUrl() {
+        return browserUrl;
+    }
+
+    public void setBrowserUrl(String browserUrl) {
+        this.browserUrl = browserUrl;
+    }
+
+    public HallGameItemBean(int imageRes, String title, int gameType,String browserUrl) {
+        ImageRes = imageRes;
+        this.title = title;
+        this.gameType = gameType;
+        this.browserUrl = browserUrl;
     }
 }

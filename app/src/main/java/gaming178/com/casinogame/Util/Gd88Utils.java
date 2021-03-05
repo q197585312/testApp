@@ -1,7 +1,9 @@
 package gaming178.com.casinogame.Util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,6 +69,14 @@ public class Gd88Utils {
         return curMap;
 
 
+    }
+
+    public static void goBrowser(Context context, String url) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(url);
+        intent.setData(content_url);
+        context.startActivity(intent);
     }
 
 }

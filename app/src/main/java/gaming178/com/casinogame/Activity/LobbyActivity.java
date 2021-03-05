@@ -60,6 +60,7 @@ import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BannerViewPager;
 import gaming178.com.casinogame.Util.BannerViewPagerAdapter;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.UIUtil;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -555,6 +556,10 @@ public class LobbyActivity extends BaseActivity {
                             skipAct(PragmaticGameActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
                             Toast.makeText(mContext, getString(R.string.gd_coming_soon), Toast.LENGTH_SHORT).show();
+                        } else if (hallGameItemBean.getGameType() == AppConfig.bandarq) {
+                            if (!TextUtils.isEmpty(hallGameItemBean.getBrowserUrl())) {
+                                Gd88Utils.goBrowser(mContext, hallGameItemBean.getBrowserUrl());
+                            }
                         }
 
                     }
@@ -785,8 +790,6 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
-    float gameCount;
-
     private void setAdapterData() {
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
 //            if (WebSiteUrl.GameType == 0) {
@@ -825,10 +828,16 @@ public class LobbyActivity extends BaseActivity {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, getString(R.string.pragmatic), AppConfig.pragmatic));
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, getString(R.string.king_kong), AppConfig.kingKong));
             }
+            if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino")) {
+                if (BuildConfig.FLAVOR.equals("oricasino")) {
+                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.249/"));
+                } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
+                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.248/"));
+                }
+            }
             if (adapterViewContent != null) {
                 adapterViewContent.addAllAndClear(hallGameItemBeenS);
             }
-            gameCount = hallGameItemBeenS.size();
         }
         if (adapterViewContent != null) {
             if (adapterViewContent.getItemCount() == 0) {
