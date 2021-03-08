@@ -254,7 +254,7 @@ public class LobbyActivity extends BaseActivity {
         hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
         hallGameBottomPromptTv.setSelected(true);
         initOrientation();
-        //设置公告
+        //设置公告123
         announcement = "";
         hallGameBottomPromptTv.setText("  ");
 
