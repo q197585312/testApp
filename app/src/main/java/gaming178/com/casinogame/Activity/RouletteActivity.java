@@ -2214,7 +2214,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             listBetDetail.get(i).setClickCount(0);
         }
     }
-//
+
     public void InitButtonClick() {
         flBaccaratParent.setOnClickListener(new View.OnClickListener() {
             @Override
