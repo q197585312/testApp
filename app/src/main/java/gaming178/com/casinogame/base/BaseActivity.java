@@ -2390,6 +2390,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             reportParams.height = ScreenUtil.dip2px(mContext, 27);
             rightReportTv.setLayoutParams(reportParams);
         } else {
+            LinearLayout.LayoutParams tableParams = (LinearLayout.LayoutParams) rightTableTv.getLayoutParams();
+            tableParams.width = ScreenUtil.dip2px(mContext, 24);
+            tableParams.height = ScreenUtil.dip2px(mContext, 24);
+            rightTableTv.setLayoutParams(tableParams);
             LinearLayout.LayoutParams musicParams = (LinearLayout.LayoutParams) rightMusicTv.getLayoutParams();
             musicParams.width = ScreenUtil.dip2px(mContext, 24);
             musicParams.height = ScreenUtil.dip2px(mContext, 24);
@@ -2408,7 +2412,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             logoutParams.width = ScreenUtil.dip2px(mContext, 24);
             logoutParams.height = ScreenUtil.dip2px(mContext, 24);
             logoutTv.setLayoutParams(logoutParams);
-            logoutTv.setVisibility(View.VISIBLE);
+            if (this != null && this instanceof RouletteActivity) {
+                logoutTv.setVisibility(View.GONE);
+            } else {
+                logoutTv.setVisibility(View.VISIBLE);
+            }
         }
         rightReportTv.setVisibility(View.VISIBLE);
         rightReportTv.setBackgroundResource(R.mipmap.gd_report_top);
