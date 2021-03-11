@@ -8,7 +8,7 @@
         android:layout_width="395px"
         android:layout_height="520px"
         android:background="@mipmap/gd_roulette_board_h"
-        android:visibility="gone">
+        android:visibility="invisible">
 
         <FrameLayout
             android:id="@+id/gd__fl_low"
@@ -2786,695 +2786,1037 @@
 
         <ImageView
             android:id="@+id/gd__iv_number05_new"
-            android:layout_width="69px"
-            android:layout_height="79px"
-            android:layout_marginLeft="18px"
-            android:layout_marginTop="18px" />
+            android:layout_width="74px"
+            android:layout_height="74px"
+            android:layout_gravity="right"
+            android:layout_marginTop="6px"
+            android:layout_marginRight="74px"
+            android:background="@mipmap/gd_number_5_new_h" />
 
         <ImageView
             android:id="@+id/gd__iv_number24_new"
-            android:layout_width="55px"
-            android:layout_height="69px"
-            android:layout_marginLeft="63px" />
+            android:layout_width="90px"
+            android:layout_height="70px"
+            android:layout_gravity="right"
+            android:layout_marginTop="24px"
+            android:layout_marginRight="37px"
+            android:background="@mipmap/gd_number_24_new_h" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/gd__iv_number16_new"
+            android:layout_width="100px"
             android:layout_height="58px"
-            android:layout_marginLeft="122px"
-            android:layout_marginTop="1px"
-            android:layout_marginRight="122px"
-            android:orientation="horizontal">
+            android:layout_gravity="right"
+            android:layout_marginTop="52px"
+            android:layout_marginRight="9px"
+            android:background="@mipmap/gd_number_16_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number16_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/gd__iv_number33_new"
+            android:layout_width="95px"
+            android:layout_height="40px"
+            android:layout_gravity="right"
+            android:layout_marginTop="89px"
+            android:background="@mipmap/gd_number_33_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number33_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="43px" />
+        <ImageView
+            android:id="@+id/gd__iv_number01_new"
+            android:layout_width="88px"
+            android:layout_height="27px"
+            android:layout_gravity="right"
+            android:layout_marginTop="131px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number01_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="86px" />
+        <ImageView
+            android:id="@+id/gd__iv_number20_new"
+            android:layout_width="88px"
+            android:layout_height="28px"
+            android:layout_gravity="right"
+            android:layout_marginTop="159px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number20_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="130px" />
+        <ImageView
+            android:id="@+id/gd__iv_number14_new"
+            android:layout_width="88px"
+            android:layout_height="28px"
+            android:layout_gravity="right"
+            android:layout_marginTop="188px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number14_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="173px" />
+        <ImageView
+            android:id="@+id/gd__iv_number31_new"
+            android:layout_width="88px"
+            android:layout_height="27px"
+            android:layout_gravity="right"
+            android:layout_marginTop="218px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number31_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="216px" />
+        <ImageView
+            android:id="@+id/gd__iv_number09_new"
+            android:layout_width="88px"
+            android:layout_height="27px"
+            android:layout_gravity="right"
+            android:layout_marginTop="246px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number09_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="259px" />
+        <ImageView
+            android:id="@+id/gd__iv_number22_new"
+            android:layout_width="88px"
+            android:layout_height="27px"
+            android:layout_gravity="right"
+            android:layout_marginTop="276px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number22_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="302px" />
+        <ImageView
+            android:id="@+id/gd__iv_number18_new"
+            android:layout_width="88px"
+            android:layout_height="27px"
+            android:layout_gravity="right"
+            android:layout_marginTop="305px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number18_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="345px" />
+        <ImageView
+            android:id="@+id/gd__iv_number29_new"
+            android:layout_width="88px"
+            android:layout_height="27px"
+            android:layout_gravity="right"
+            android:layout_marginTop="334px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number29_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="388px" />
+        <ImageView
+            android:id="@+id/gd__iv_number07_new"
+            android:layout_width="88px"
+            android:layout_height="27px"
+            android:layout_gravity="right"
+            android:layout_marginTop="362px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number07_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="431px" />
+        <ImageView
+            android:id="@+id/gd__iv_number28_new"
+            android:layout_width="96px"
+            android:layout_height="46px"
+            android:layout_gravity="right"
+            android:layout_marginTop="390px"
+            android:background="@mipmap/gd_number_28_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number28_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginRight="44px" />
+        <ImageView
+            android:id="@+id/gd__iv_number12_new"
+            android:layout_width="100px"
+            android:layout_height="62px"
+            android:layout_gravity="right"
+            android:layout_marginTop="412px"
+            android:layout_marginRight="12px"
+            android:background="@mipmap/gd_number_12_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number12_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent"
-                android:layout_gravity="right" />
-
-        </FrameLayout>
 
         <ImageView
             android:id="@+id/gd__iv_number35_new"
-            android:layout_width="67px"
+            android:layout_width="88px"
             android:layout_height="74px"
-            android:layout_gravity="right"
+            android:layout_gravity="right|bottom"
             android:layout_marginTop="1px"
-            android:layout_marginRight="51px" />
+            android:layout_marginRight="45px"
+            android:layout_marginBottom="16px"
+            android:background="@mipmap/gd_number_35_new_h" />
 
         <ImageView
             android:id="@+id/gd__iv_number03_new"
-            android:layout_width="74px"
-            android:layout_height="81px"
-            android:layout_gravity="right"
-            android:layout_marginTop="28px"
-            android:layout_marginRight="7px" />
+            android:layout_width="68px"
+            android:layout_height="78px"
+            android:layout_gravity="right|bottom"
+            android:layout_marginTop="1px"
+            android:layout_marginRight="90px"
+            android:background="@mipmap/gd_number_3_new_h" />
 
         <ImageView
             android:id="@+id/gd__iv_number10_new"
-            android:layout_width="64px"
-            android:layout_height="64px"
-            android:layout_marginLeft="1px"
-            android:layout_marginTop="68px" />
+            android:layout_width="50px"
+            android:layout_height="74px"
+            android:layout_gravity="right"
+            android:layout_marginRight="122px"
+            android:background="@mipmap/gd_number_10_new_h" />
 
         <ImageView
             android:id="@+id/gd__iv_number23_new"
-            android:layout_width="65px"
-            android:layout_height="63px"
-            android:layout_marginLeft="1px"
-            android:layout_marginTop="138px" />
+            android:layout_width="50px"
+            android:layout_height="74px"
+            android:layout_gravity="right"
+            android:layout_marginRight="172px"
+            android:background="@mipmap/gd_number_23_new_h" />
 
 
         <ImageView
             android:id="@+id/gd__iv_number26_new"
-            android:layout_width="61px"
-            android:layout_height="75px"
-            android:layout_gravity="right"
-            android:layout_marginTop="97px"
-            android:layout_marginRight="1px" />
+            android:layout_width="54px"
+            android:layout_height="72px"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="146px"
+            android:background="@mipmap/gd_number_26_new_h" />
 
         <ImageView
             android:id="@+id/gd__iv_number08_new"
-            android:layout_width="68px"
-            android:layout_height="78px"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="18px"
-            android:layout_marginBottom="19px" />
+            android:layout_width="73px"
+            android:layout_height="76px"
+            android:layout_gravity="right"
+            android:layout_marginTop="4px"
+            android:layout_marginRight="197px"
+            android:background="@mipmap/gd_number_8_new_h" />
 
         <ImageView
             android:id="@+id/gd__iv_number30_new"
-            android:layout_width="54px"
-            android:layout_height="69px"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="64px"
-            android:layout_marginBottom="1px" />
+            android:layout_width="92px"
+            android:layout_height="70px"
+            android:layout_marginLeft="36px"
+            android:layout_marginTop="24px"
+            android:background="@mipmap/gd_number_30_new_h" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="58px"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="122px"
-            android:layout_marginRight="122px"
-            android:layout_marginBottom="1px">
+        <ImageView
+            android:id="@+id/gd__iv_number11_new"
+            android:layout_width="98px"
+            android:layout_height="60px"
+            android:layout_marginLeft="10px"
+            android:layout_marginTop="51px"
+            android:background="@mipmap/gd_number_11_new_h" />
 
+        <ImageView
+            android:id="@+id/gd__iv_number36_new"
+            android:layout_width="95px"
+            android:layout_height="41px"
+            android:layout_marginTop="89px"
+            android:background="@mipmap/gd_number_36_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number11_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/gd__iv_number13_new"
+            android:layout_width="87px"
+            android:layout_height="28px"
+            android:layout_marginTop="130px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number36_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="43px" />
+        <ImageView
+            android:id="@+id/gd__iv_number27_new"
+            android:layout_width="87px"
+            android:layout_height="28px"
+            android:layout_marginTop="160px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number13_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="86px" />
+        <ImageView
+            android:id="@+id/gd__iv_number06_new"
+            android:layout_width="87px"
+            android:layout_height="28px"
+            android:layout_marginTop="188px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number27_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="129px" />
+        <ImageView
+            android:id="@+id/gd__iv_number34_new"
+            android:layout_width="87px"
+            android:layout_height="28px"
+            android:layout_marginTop="217px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number06_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="172px" />
+        <ImageView
+            android:id="@+id/gd__iv_number17_new"
+            android:layout_width="87px"
+            android:layout_height="27px"
+            android:layout_marginTop="247px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number34_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="216px" />
+        <ImageView
+            android:id="@+id/gd__iv_number25_new"
+            android:layout_width="87px"
+            android:layout_height="27px"
+            android:layout_marginTop="275px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number17_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="259px" />
+        <ImageView
+            android:id="@+id/gd__iv_number02_new"
+            android:layout_width="87px"
+            android:layout_height="27px"
+            android:layout_marginTop="305px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number25_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="302px" />
+        <ImageView
+            android:id="@+id/gd__iv_number21_new"
+            android:layout_width="87px"
+            android:layout_height="27px"
+            android:layout_marginTop="333px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number02_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="345px" />
+        <ImageView
+            android:id="@+id/gd__iv_number04_new"
+            android:layout_width="87px"
+            android:layout_height="27px"
+            android:layout_marginTop="363px"
+            android:background="@mipmap/gd_number_other_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number21_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="388px" />
+        <ImageView
+            android:id="@+id/gd__iv_number19_new"
+            android:layout_width="96px"
+            android:layout_height="46px"
+            android:layout_marginTop="390px"
+            android:background="@mipmap/gd_number_19_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number04_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="431px" />
+        <ImageView
+            android:id="@+id/gd__iv_number15_new"
+            android:layout_width="100px"
+            android:layout_height="62px"
+            android:layout_marginLeft="12px"
+            android:layout_marginTop="412px"
+            android:background="@mipmap/gd_number_15_new_h" />
 
-            <ImageView
-                android:id="@+id/gd__iv_number19_new"
-                android:layout_width="38px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="474px" />
-
-            <ImageView
-                android:id="@+id/gd__iv_number15_new"
-                android:layout_width="39px"
-                android:layout_height="match_parent"
-                android:layout_gravity="right" />
-
-        </FrameLayout>
 
         <ImageView
             android:id="@+id/gd__iv_number32_new"
-            android:layout_width="67px"
-            android:layout_height="75px"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="51px"
-            android:layout_marginBottom="1px" />
+            android:layout_width="88px"
+            android:layout_height="74px"
+            android:layout_gravity="left|bottom"
+            android:layout_marginLeft="45px"
+            android:layout_marginBottom="16px"
+            android:background="@mipmap/gd_number_32_new_h" />
 
         <ImageView
             android:id="@+id/gd__iv_number00_new"
-            android:layout_width="73px"
-            android:layout_height="85px"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="7px"
-            android:layout_marginBottom="28px" />
+            android:layout_width="68px"
+            android:layout_height="78px"
+            android:layout_gravity="left|bottom"
+            android:layout_marginLeft="90px"
+            android:background="@mipmap/gd_number_0_new_h" />
 
         <FrameLayout
             android:id="@+id/gd__fl_number05_new"
-            android:layout_width="67px"
-            android:layout_height="98px"
-            android:layout_marginLeft="19px"
-            android:onClick="clickNumber5"></FrameLayout>
+            android:layout_width="90px"
+            android:layout_height="70px"
+            android:layout_gravity="right"
+            android:layout_marginRight="71px"
+            android:onClick="clickNumber5">
+
+            <Button
+                android:layout_width="45px"
+                android:layout_height="22px"
+                android:layout_gravity="right"
+                android:layout_marginTop="8px"
+                android:layout_marginRight="10px"
+                android:background="@null"
+                android:onClick="clickNumber5" />
+
+            <Button
+                android:layout_width="35px"
+                android:layout_height="25px"
+                android:layout_gravity="center"
+                android:layout_marginTop="3px"
+                android:background="@null"
+                android:onClick="clickNumber5" />
+
+            <Button
+                android:layout_width="25px"
+                android:layout_height="22px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="19px"
+                android:background="@null"
+                android:onClick="clickNumber5" />
+
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/gd__fl_number24_new"
-            android:layout_width="45px"
-            android:layout_height="68px"
-            android:layout_marginLeft="74px"
-            android:onClick="clickNumber24"></FrameLayout>
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="4px"
+            android:layout_marginRight="35px">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="68px"
-            android:layout_marginLeft="120px"
-            android:layout_marginRight="120px"
-            android:orientation="horizontal">
+            <Button
+                android:layout_width="45px"
+                android:layout_height="32px"
+                android:layout_gravity="right"
+                android:layout_marginTop="20px"
+                android:background="@null"
+                android:onClick="clickNumber24" />
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number16_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber16"></FrameLayout>
+            <Button
+                android:layout_width="40px"
+                android:layout_height="22px"
+                android:layout_gravity="center"
+                android:layout_marginTop="8px"
+                android:background="@null"
+                android:onClick="clickNumber24" />
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number33_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber33"></FrameLayout>
+            <Button
+                android:layout_width="25px"
+                android:layout_height="22px"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="8px"
+                android:background="@null"
+                android:onClick="clickNumber24" />
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number01_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber1"></FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number20_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber20"></FrameLayout>
+        </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number14_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber14"></FrameLayout>
+        <FrameLayout
+            android:id="@+id/gd__fl_number16_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="30px"
+            android:layout_marginRight="13px">
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number31_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber31"></FrameLayout>
+            <Button
+                android:layout_width="45px"
+                android:layout_height="32px"
+                android:layout_gravity="right"
+                android:layout_marginTop="27px"
+                android:background="@null"
+                android:onClick="clickNumber16" />
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number09_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber9"></FrameLayout>
+            <Button
+                android:layout_width="40px"
+                android:layout_height="22px"
+                android:layout_gravity="center"
+                android:layout_marginTop="11px"
+                android:background="@null"
+                android:onClick="clickNumber16" />
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number22_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber22"></FrameLayout>
+            <Button
+                android:layout_width="25px"
+                android:layout_height="22px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="11px"
+                android:background="@null"
+                android:onClick="clickNumber16" />
+        </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number18_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber18"></FrameLayout>
+        <FrameLayout
+            android:id="@+id/gd__fl_number33_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="56px">
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number29_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber29"></FrameLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="16px"
+                android:background="@null"
+                android:onClick="clickNumber33" />
+        </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number07_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber7"></FrameLayout>
+        <FrameLayout
+            android:id="@+id/gd__fl_number01_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="88px">
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number28_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber28"></FrameLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber1" />
 
-            <FrameLayout
-                android:id="@+id/gd__fl_number12_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber12"></FrameLayout>
+        </FrameLayout>
 
-        </LinearLayout>
+        <FrameLayout
+            android:id="@+id/gd__fl_number20_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="118px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber20" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number14_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="146px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber14" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number31_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="176px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber31" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number09_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="206px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber9" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number22_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="234px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber22" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number18_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="262px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber18" />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number29_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="292px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber29" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number07_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:layout_marginTop="320px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20px"
+                android:background="@null"
+                android:onClick="clickNumber7" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number28_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="73px">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="28px"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="27px"
+                android:background="@null"
+                android:onClick="clickNumber28" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_number12_new"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="17px"
+            android:layout_marginBottom="50px">
+
+            <Button
+                android:layout_width="35px"
+                android:layout_height="25px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="4px"
+                android:layout_marginBottom="27px"
+                android:background="@null"
+                android:onClick="clickNumber12" />
+
+            <Button
+                android:layout_width="25px"
+                android:layout_height="35px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="28px"
+                android:layout_marginBottom="13px"
+                android:background="@null"
+                android:onClick="clickNumber12" />
+
+
+            <Button
+                android:layout_width="35px"
+                android:layout_height="38px"
+                android:layout_gravity="bottom|right"
+                android:background="@null"
+                android:onClick="clickNumber12" />
+
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/gd__fl_number35_new"
-            android:layout_width="56px"
-            android:layout_height="72px"
-            android:layout_gravity="right"
-            android:layout_marginRight="62px"
-            android:onClick="clickNumber35"></FrameLayout>
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="47px"
+            android:layout_marginBottom="20px">
+
+            <Button
+                android:layout_width="26px"
+                android:layout_height="25px"
+                android:layout_marginLeft="4px"
+                android:layout_marginTop="18px"
+                android:layout_marginBottom="27px"
+                android:background="@null"
+                android:onClick="clickNumber35" />
+
+            <Button
+                android:layout_width="25px"
+                android:layout_height="35px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="28px"
+                android:layout_marginBottom="18px"
+                android:background="@null"
+                android:onClick="clickNumber35" />
+
+
+            <Button
+                android:layout_width="45px"
+                android:layout_height="38px"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="5px"
+                android:background="@null"
+                android:onClick="clickNumber35" />
+
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/gd__fl_number03_new"
-            android:layout_width="52px"
-            android:layout_height="91px"
-            android:layout_gravity="right"
-            android:layout_marginTop="20px"
-            android:layout_marginRight="15px"
-            android:onClick="clickNumber3"></FrameLayout>
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="81px">
+
+            <Button
+                android:layout_width="26px"
+                android:layout_height="25px"
+                android:layout_marginLeft="13px"
+                android:layout_marginTop="16px"
+                android:background="@null"
+                android:onClick="clickNumber3" />
+
+            <Button
+                android:layout_width="25px"
+                android:layout_height="35px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="28px"
+                android:layout_marginBottom="22px"
+                android:background="@null"
+                android:onClick="clickNumber3" />
+
+
+            <Button
+                android:layout_width="52px"
+                android:layout_height="38px"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="13px"
+                android:background="@null"
+                android:onClick="clickNumber3" />
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/gd__fl_number10_new"
-            android:layout_width="62px"
-            android:layout_height="80px"
-            android:layout_marginTop="52px"
-            android:onClick="clickNumber10"></FrameLayout>
+            android:layout_width="90px"
+            android:layout_height="60px"
+            android:layout_gravity="right"
+            android:layout_marginRight="108px">
+
+            <Button
+                android:layout_width="41px"
+                android:layout_height="35px"
+                android:layout_gravity="right"
+                android:layout_marginRight="24px"
+                android:background="@null"
+                android:onClick="clickNumber10" />
+
+            <Button
+                android:layout_width="32px"
+                android:layout_height="35px"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="34px"
+                android:background="@null"
+                android:onClick="clickNumber10" />
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/gd__fl_number23_new"
-            android:layout_width="62px"
-            android:layout_height="80px"
-            android:layout_marginTop="120px"
-            android:onClick="clickNumber23"></FrameLayout>
+            android:layout_width="90px"
+            android:layout_height="60px"
+            android:layout_gravity="right"
+            android:layout_marginRight="146px">
 
+            <Button
+                android:layout_width="41px"
+                android:layout_height="35px"
+                android:layout_gravity="right"
+                android:layout_marginRight="27px"
+                android:background="@null"
+                android:onClick="clickNumber23" />
+
+            <Button
+                android:layout_width="32px"
+                android:layout_height="35px"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="26px"
+                android:background="@null"
+                android:onClick="clickNumber23" />
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/gd__fl_number26_new"
-            android:layout_width="58px"
-            android:layout_height="80px"
-            android:layout_gravity="right"
-            android:layout_marginTop="90px"
+            android:layout_width="40px"
+            android:layout_height="90px"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="153px"
             android:onClick="clickNumber26"></FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/gd__fl_number08_new"
-            android:layout_width="60px"
-            android:layout_height="90px"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="22px"
-            android:layout_marginBottom="18px"
-            android:onClick="clickNumber8"></FrameLayout>
 
         <FrameLayout
-            android:id="@+id/gd__fl_number30_new"
-            android:layout_width="53px"
-            android:layout_height="85px"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="65px"
-            android:onClick="clickNumber30"></FrameLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90px"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="120px"
-            android:layout_marginRight="120px"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
 
             <FrameLayout
-                android:id="@+id/gd__fl_number11_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber11"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number36_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber36"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number13_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber13"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number27_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber27"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number06_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber6"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number34_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber34"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number17_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber17"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number25_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber25"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number02_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber2"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number21_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber21"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number04_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber4"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number19_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber19"></FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/gd__fl_number15_new"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clickNumber15"></FrameLayout>
-
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/gd__fl_number32_new"
-            android:layout_width="55px"
-            android:layout_height="85px"
-            android:layout_gravity="bottom|right"
-            android:layout_marginRight="63px"
-            android:onClick="clickNumber32"></FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/gd__fl_number00_new"
-            android:layout_width="72px"
-            android:layout_height="91px"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="8px"
-            android:layout_marginBottom="30px"
-            android:onClick="clickNumber0"></FrameLayout>
-
-        <FrameLayout
-            android:layout_width="198px"
-            android:layout_height="123px"
-            android:layout_marginLeft="84px"
-            android:layout_marginTop="73px">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/gd__fl_number08_new"
+                android:layout_width="60px"
+                android:layout_height="90px"
                 android:layout_gravity="bottom"
-                android:background="@drawable/gd_table_trans_black_selector"
-                android:onClick="clickCenterSmall" />
+                android:layout_marginLeft="22px"
+                android:layout_marginBottom="18px"
+                android:onClick="clickNumber8"></FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_number30_new"
+                android:layout_width="53px"
+                android:layout_height="85px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="65px"
+                android:onClick="clickNumber30"></FrameLayout>
 
             <LinearLayout
-                android:id="@+id/gd__ll_center_small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="30px"
-                    android:onClick="clickCenterSmallCancel"
-                    android:src="@mipmap/gd_cross_red_oval" />
-
-                <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="30px"
-                    android:onClick="clickCenterSmallSure"
-                    android:src="@mipmap/gd_tick_white_oval" />
-            </LinearLayout>
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="195px"
-            android:layout_height="143px"
-            android:layout_marginLeft="223px"
-            android:layout_marginTop="63px">
-
-            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="90px"
                 android:layout_gravity="bottom"
-                android:background="@drawable/gd_table_trans_black_selector"
-                android:onClick="clickOrphelins" />
+                android:layout_marginLeft="120px"
+                android:layout_marginRight="120px"
+                android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/gd__ll_center_orphelins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:visibility="gone">
 
-                <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="30px"
-                    android:onClick="clickOrphelinsCancel"
-                    android:src="@mipmap/gd_cross_red_oval" />
+                <FrameLayout
+                    android:id="@+id/gd__fl_number11_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber11"></FrameLayout>
 
-                <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="30px"
-                    android:onClick="clickOrphelinsSure"
-                    android:src="@mipmap/gd_tick_white_oval" />
+                <FrameLayout
+                    android:id="@+id/gd__fl_number36_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber36"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number13_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber13"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number27_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber27"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number06_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber6"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number34_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber34"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number17_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber17"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number25_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber25"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number02_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber2"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number21_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber21"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number04_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber4"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number19_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber19"></FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_number15_new"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="clickNumber15"></FrameLayout>
+
+
             </LinearLayout>
-        </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="140px"
-            android:layout_height="143px"
-            android:layout_gravity="right"
-            android:layout_marginTop="63px"
-            android:layout_marginRight="238px">
+            <FrameLayout
+                android:id="@+id/gd__fl_number32_new"
+                android:layout_width="55px"
+                android:layout_height="85px"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="63px"
+                android:onClick="clickNumber32"></FrameLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:background="@drawable/gd_table_trans_black_selector"
-                android:onClick="clickCenterBig" />
+            <FrameLayout
+                android:id="@+id/gd__fl_number00_new"
+                android:layout_width="72px"
+                android:layout_height="91px"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="8px"
+                android:layout_marginBottom="30px"
+                android:onClick="clickNumber0"></FrameLayout>
 
-            <LinearLayout
-                android:id="@+id/gd__ll_center_big"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="30px"
-                    android:onClick="clickCenterBigCancel"
-                    android:src="@mipmap/gd_cross_red_oval" />
+            <FrameLayout
+                android:layout_width="198px"
+                android:layout_height="123px"
+                android:layout_marginLeft="84px"
+                android:layout_marginTop="73px">
 
                 <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="30px"
-                    android:onClick="clickCenterBigSure"
-                    android:src="@mipmap/gd_tick_white_oval" />
-            </LinearLayout>
-        </FrameLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gd_table_trans_black_selector"
+                    android:onClick="clickCenterSmall" />
 
-        <FrameLayout
-            android:layout_width="155px"
-            android:layout_height="121px"
-            android:layout_gravity="right"
-            android:layout_marginTop="74px"
-            android:layout_marginRight="81px">
+                <LinearLayout
+                    android:id="@+id/gd__ll_center_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:background="@drawable/gd_table_trans_black_selector"
-                android:onClick="clickZero" />
+                    <ImageView
+                        android:layout_width="30px"
+                        android:layout_height="30px"
+                        android:onClick="clickCenterSmallCancel"
+                        android:src="@mipmap/gd_cross_red_oval" />
 
-            <LinearLayout
-                android:id="@+id/gd__ll_zero"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                    <ImageView
+                        android:layout_width="30px"
+                        android:layout_height="30px"
+                        android:onClick="clickCenterSmallSure"
+                        android:src="@mipmap/gd_tick_white_oval" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="195px"
+                android:layout_height="143px"
+                android:layout_marginLeft="223px"
+                android:layout_marginTop="63px">
 
                 <ImageView
-                    android:layout_width="20px"
-                    android:layout_height="20px"
-                    android:onClick="clickZeroCancel"
-                    android:src="@mipmap/gd_cross_red_oval" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gd_table_trans_black_selector"
+                    android:onClick="clickOrphelins" />
+
+                <LinearLayout
+                    android:id="@+id/gd__ll_center_orphelins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="30px"
+                        android:layout_height="30px"
+                        android:onClick="clickOrphelinsCancel"
+                        android:src="@mipmap/gd_cross_red_oval" />
+
+                    <ImageView
+                        android:layout_width="30px"
+                        android:layout_height="30px"
+                        android:onClick="clickOrphelinsSure"
+                        android:src="@mipmap/gd_tick_white_oval" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="140px"
+                android:layout_height="143px"
+                android:layout_gravity="right"
+                android:layout_marginTop="63px"
+                android:layout_marginRight="238px">
 
                 <ImageView
-                    android:layout_width="20px"
-                    android:layout_height="20px"
-                    android:onClick="clickZeroSure"
-                    android:src="@mipmap/gd_tick_white_oval" />
-            </LinearLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gd_table_trans_black_selector"
+                    android:onClick="clickCenterBig" />
+
+                <LinearLayout
+                    android:id="@+id/gd__ll_center_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="30px"
+                        android:layout_height="30px"
+                        android:onClick="clickCenterBigCancel"
+                        android:src="@mipmap/gd_cross_red_oval" />
+
+                    <ImageView
+                        android:layout_width="30px"
+                        android:layout_height="30px"
+                        android:onClick="clickCenterBigSure"
+                        android:src="@mipmap/gd_tick_white_oval" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="155px"
+                android:layout_height="121px"
+                android:layout_gravity="right"
+                android:layout_marginTop="74px"
+                android:layout_marginRight="81px">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gd_table_trans_black_selector"
+                    android:onClick="clickZero" />
+
+                <LinearLayout
+                    android:id="@+id/gd__ll_zero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:onClick="clickZeroCancel"
+                        android:src="@mipmap/gd_cross_red_oval" />
+
+                    <ImageView
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:onClick="clickZeroSure"
+                        android:src="@mipmap/gd_tick_white_oval" />
+                </LinearLayout>
+            </FrameLayout>
         </FrameLayout>
 
 
