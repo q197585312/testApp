@@ -7110,8 +7110,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     public void onInGameChooseLanguage() {
         fl_roulette_board_bg.setBackgroundResource(0);
         fl_roulette_board_bg_new.setBackgroundResource(0);
-        fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board);
-        fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board);
+            fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
+        }else {
+            fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board_h);
+            fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1_h);
+        }
         updatePercentage();
     }
 
