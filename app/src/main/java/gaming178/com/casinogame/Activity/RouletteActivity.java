@@ -4813,108 +4813,214 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     return null;
             }
         } else {
-            switch (type) {
-                case "0":
-                    return new ResultHintBean(ivNumber00New, R.mipmap.gd_number_0_new);
-                case "1":
-                    return new ResultHintBean(ivNumber01New, R.mipmap.gd_number_other_new);
-                case "2":
-                    return new ResultHintBean(ivNumber02New, R.mipmap.gd_number_other_new);
-                case "3":
-                    return new ResultHintBean(ivNumber03New, R.mipmap.gd_number_3_new);
-                case "4":
-                    return new ResultHintBean(ivNumber04New, R.mipmap.gd_number_other_new);
-                case "5":
-                    return new ResultHintBean(ivNumber05New, R.mipmap.gd_number_5_new);
-                case "6":
-                    return new ResultHintBean(ivNumber06New, R.mipmap.gd_number_other_new);
-                case "7":
-                    return new ResultHintBean(ivNumber07New, R.mipmap.gd_number_other_new);
-                case "8":
-                    return new ResultHintBean(ivNumber08New, R.mipmap.gd_number_8_new);
-                case "9":
-                    return new ResultHintBean(ivNumber09New, R.mipmap.gd_number_other_new);
-                case "10":
-                    return new ResultHintBean(ivNumber10New, R.mipmap.gd_number_10_new);
-                case "11":
-                    return new ResultHintBean(ivNumber11New, R.mipmap.gd_number_other_new);
-                case "12":
-                    return new ResultHintBean(ivNumber12New, R.mipmap.gd_number_other_new);
-                case "13":
-                    return new ResultHintBean(ivNumber13New, R.mipmap.gd_number_other_new);
-                case "14":
-                    return new ResultHintBean(ivNumber14New, R.mipmap.gd_number_other_new);
-                case "15":
-                    return new ResultHintBean(ivNumber15New, R.mipmap.gd_number_other_new);
-                case "16":
-                    return new ResultHintBean(ivNumber16New, R.mipmap.gd_number_other_new);
-                case "17":
-                    return new ResultHintBean(ivNumber17New, R.mipmap.gd_number_other_new);
-                case "18":
-                    return new ResultHintBean(ivNumber18New, R.mipmap.gd_number_other_new);
-                case "19":
-                    return new ResultHintBean(ivNumber19New, R.mipmap.gd_number_other_new);
-                case "20":
-                    return new ResultHintBean(ivNumber20New, R.mipmap.gd_number_other_new);
-                case "21":
-                    return new ResultHintBean(ivNumber21New, R.mipmap.gd_number_other_new);
-                case "22":
-                    return new ResultHintBean(ivNumber22New, R.mipmap.gd_number_other_new);
-                case "23":
-                    return new ResultHintBean(ivNumber23New, R.mipmap.gd_number_23_new);
-                case "24":
-                    return new ResultHintBean(ivNumber24New, R.mipmap.gd_number_24_new);
-                case "25":
-                    return new ResultHintBean(ivNumber25New, R.mipmap.gd_number_other_new);
-                case "26":
-                    return new ResultHintBean(ivNumber26New, R.mipmap.gd_number_26_new);
-                case "27":
-                    return new ResultHintBean(ivNumber27New, R.mipmap.gd_number_other_new);
-                case "28":
-                    return new ResultHintBean(ivNumber28New, R.mipmap.gd_number_other_new);
-                case "29":
-                    return new ResultHintBean(ivNumber29New, R.mipmap.gd_number_other_new);
-                case "30":
-                    return new ResultHintBean(ivNumber30New, R.mipmap.gd_number_30_new);
-                case "31":
-                    return new ResultHintBean(ivNumber31New, R.mipmap.gd_number_other_new);
-                case "32":
-                    return new ResultHintBean(ivNumber32New, R.mipmap.gd_number_32_new);
-                case "33":
-                    return new ResultHintBean(ivNumber33New, R.mipmap.gd_number_other_new);
-                case "34":
-                    return new ResultHintBean(ivNumber34New, R.mipmap.gd_number_other_new);
-                case "35":
-                    return new ResultHintBean(ivNumber35New, R.mipmap.gd_number_35_new);
-                case "36":
-                    return new ResultHintBean(ivNumber36New, R.mipmap.gd_number_other_new);
-                case "Low":
-                    return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
-                case "High":
-                    return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
-                case "Red":
-                    return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
-                case "Black":
-                    return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
-                case "Odd":
-                    return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
-                case "Even":
-                    return new ResultHintBean(ivEven, R.mipmap.gd_genap);
-                case "Row1":
-                    return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
-                case "Row2":
-                    return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
-                case "Row3":
-                    return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
-                case "Col1":
-                    return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
-                case "Col2":
-                    return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
-                case "Col3":
-                    return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
-                default:
-                    return null;
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                switch (type) {
+                    case "0":
+                        return new ResultHintBean(ivNumber00New, R.mipmap.gd_number_0_new);
+                    case "1":
+                        return new ResultHintBean(ivNumber01New, R.mipmap.gd_number_other_new);
+                    case "2":
+                        return new ResultHintBean(ivNumber02New, R.mipmap.gd_number_other_new);
+                    case "3":
+                        return new ResultHintBean(ivNumber03New, R.mipmap.gd_number_3_new);
+                    case "4":
+                        return new ResultHintBean(ivNumber04New, R.mipmap.gd_number_other_new);
+                    case "5":
+                        return new ResultHintBean(ivNumber05New, R.mipmap.gd_number_5_new);
+                    case "6":
+                        return new ResultHintBean(ivNumber06New, R.mipmap.gd_number_other_new);
+                    case "7":
+                        return new ResultHintBean(ivNumber07New, R.mipmap.gd_number_other_new);
+                    case "8":
+                        return new ResultHintBean(ivNumber08New, R.mipmap.gd_number_8_new);
+                    case "9":
+                        return new ResultHintBean(ivNumber09New, R.mipmap.gd_number_other_new);
+                    case "10":
+                        return new ResultHintBean(ivNumber10New, R.mipmap.gd_number_10_new);
+                    case "11":
+                        return new ResultHintBean(ivNumber11New, R.mipmap.gd_number_other_new);
+                    case "12":
+                        return new ResultHintBean(ivNumber12New, R.mipmap.gd_number_other_new);
+                    case "13":
+                        return new ResultHintBean(ivNumber13New, R.mipmap.gd_number_other_new);
+                    case "14":
+                        return new ResultHintBean(ivNumber14New, R.mipmap.gd_number_other_new);
+                    case "15":
+                        return new ResultHintBean(ivNumber15New, R.mipmap.gd_number_other_new);
+                    case "16":
+                        return new ResultHintBean(ivNumber16New, R.mipmap.gd_number_other_new);
+                    case "17":
+                        return new ResultHintBean(ivNumber17New, R.mipmap.gd_number_other_new);
+                    case "18":
+                        return new ResultHintBean(ivNumber18New, R.mipmap.gd_number_other_new);
+                    case "19":
+                        return new ResultHintBean(ivNumber19New, R.mipmap.gd_number_other_new);
+                    case "20":
+                        return new ResultHintBean(ivNumber20New, R.mipmap.gd_number_other_new);
+                    case "21":
+                        return new ResultHintBean(ivNumber21New, R.mipmap.gd_number_other_new);
+                    case "22":
+                        return new ResultHintBean(ivNumber22New, R.mipmap.gd_number_other_new);
+                    case "23":
+                        return new ResultHintBean(ivNumber23New, R.mipmap.gd_number_23_new);
+                    case "24":
+                        return new ResultHintBean(ivNumber24New, R.mipmap.gd_number_24_new);
+                    case "25":
+                        return new ResultHintBean(ivNumber25New, R.mipmap.gd_number_other_new);
+                    case "26":
+                        return new ResultHintBean(ivNumber26New, R.mipmap.gd_number_26_new);
+                    case "27":
+                        return new ResultHintBean(ivNumber27New, R.mipmap.gd_number_other_new);
+                    case "28":
+                        return new ResultHintBean(ivNumber28New, R.mipmap.gd_number_other_new);
+                    case "29":
+                        return new ResultHintBean(ivNumber29New, R.mipmap.gd_number_other_new);
+                    case "30":
+                        return new ResultHintBean(ivNumber30New, R.mipmap.gd_number_30_new);
+                    case "31":
+                        return new ResultHintBean(ivNumber31New, R.mipmap.gd_number_other_new);
+                    case "32":
+                        return new ResultHintBean(ivNumber32New, R.mipmap.gd_number_32_new);
+                    case "33":
+                        return new ResultHintBean(ivNumber33New, R.mipmap.gd_number_other_new);
+                    case "34":
+                        return new ResultHintBean(ivNumber34New, R.mipmap.gd_number_other_new);
+                    case "35":
+                        return new ResultHintBean(ivNumber35New, R.mipmap.gd_number_35_new);
+                    case "36":
+                        return new ResultHintBean(ivNumber36New, R.mipmap.gd_number_other_new);
+                    case "Low":
+                        return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
+                    case "High":
+                        return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
+                    case "Red":
+                        return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
+                    case "Black":
+                        return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
+                    case "Odd":
+                        return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
+                    case "Even":
+                        return new ResultHintBean(ivEven, R.mipmap.gd_genap);
+                    case "Row1":
+                        return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
+                    case "Row2":
+                        return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
+                    case "Row3":
+                        return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
+                    case "Col1":
+                        return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
+                    case "Col2":
+                        return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
+                    case "Col3":
+                        return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
+                    default:
+                        return null;
+                }
+            } else {
+                switch (type) {
+                    case "0":
+                        return new ResultHintBean(ivNumber00New, R.mipmap.gd_number_0_new_h);
+                    case "1":
+                        return new ResultHintBean(ivNumber01New, R.mipmap.gd_number_other_new_h);
+                    case "2":
+                        return new ResultHintBean(ivNumber02New, R.mipmap.gd_number_other_new_h);
+                    case "3":
+                        return new ResultHintBean(ivNumber03New, R.mipmap.gd_number_3_new_h);
+                    case "4":
+                        return new ResultHintBean(ivNumber04New, R.mipmap.gd_number_other_new_h);
+                    case "5":
+                        return new ResultHintBean(ivNumber05New, R.mipmap.gd_number_5_new_h);
+                    case "6":
+                        return new ResultHintBean(ivNumber06New, R.mipmap.gd_number_other_new_h);
+                    case "7":
+                        return new ResultHintBean(ivNumber07New, R.mipmap.gd_number_other_new_h);
+                    case "8":
+                        return new ResultHintBean(ivNumber08New, R.mipmap.gd_number_8_new_h);
+                    case "9":
+                        return new ResultHintBean(ivNumber09New, R.mipmap.gd_number_other_new_h);
+                    case "10":
+                        return new ResultHintBean(ivNumber10New, R.mipmap.gd_number_10_new_h);
+                    case "11":
+                        return new ResultHintBean(ivNumber11New, R.mipmap.gd_number_11_new_h);
+                    case "12":
+                        return new ResultHintBean(ivNumber12New, R.mipmap.gd_number_12_new_h);
+                    case "13":
+                        return new ResultHintBean(ivNumber13New, R.mipmap.gd_number_other_new_h);
+                    case "14":
+                        return new ResultHintBean(ivNumber14New, R.mipmap.gd_number_other_new_h);
+                    case "15":
+                        return new ResultHintBean(ivNumber15New, R.mipmap.gd_number_15_new_h);
+                    case "16":
+                        return new ResultHintBean(ivNumber16New, R.mipmap.gd_number_16_new_h);
+                    case "17":
+                        return new ResultHintBean(ivNumber17New, R.mipmap.gd_number_other_new_h);
+                    case "18":
+                        return new ResultHintBean(ivNumber18New, R.mipmap.gd_number_other_new_h);
+                    case "19":
+                        return new ResultHintBean(ivNumber19New, R.mipmap.gd_number_19_new_h);
+                    case "20":
+                        return new ResultHintBean(ivNumber20New, R.mipmap.gd_number_other_new_h);
+                    case "21":
+                        return new ResultHintBean(ivNumber21New, R.mipmap.gd_number_other_new_h);
+                    case "22":
+                        return new ResultHintBean(ivNumber22New, R.mipmap.gd_number_other_new_h);
+                    case "23":
+                        return new ResultHintBean(ivNumber23New, R.mipmap.gd_number_23_new_h);
+                    case "24":
+                        return new ResultHintBean(ivNumber24New, R.mipmap.gd_number_24_new_h);
+                    case "25":
+                        return new ResultHintBean(ivNumber25New, R.mipmap.gd_number_other_new_h);
+                    case "26":
+                        return new ResultHintBean(ivNumber26New, R.mipmap.gd_number_26_new_h);
+                    case "27":
+                        return new ResultHintBean(ivNumber27New, R.mipmap.gd_number_other_new_h);
+                    case "28":
+                        return new ResultHintBean(ivNumber28New, R.mipmap.gd_number_28_new_h);
+                    case "29":
+                        return new ResultHintBean(ivNumber29New, R.mipmap.gd_number_other_new_h);
+                    case "30":
+                        return new ResultHintBean(ivNumber30New, R.mipmap.gd_number_30_new_h);
+                    case "31":
+                        return new ResultHintBean(ivNumber31New, R.mipmap.gd_number_other_new_h);
+                    case "32":
+                        return new ResultHintBean(ivNumber32New, R.mipmap.gd_number_32_new_h);
+                    case "33":
+                        return new ResultHintBean(ivNumber33New, R.mipmap.gd_number_33_new_h);
+                    case "34":
+                        return new ResultHintBean(ivNumber34New, R.mipmap.gd_number_other_new_h);
+                    case "35":
+                        return new ResultHintBean(ivNumber35New, R.mipmap.gd_number_35_new_h);
+                    case "36":
+                        return new ResultHintBean(ivNumber36New, R.mipmap.gd_number_36_new_h);
+                    case "Low":
+                        return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
+                    case "High":
+                        return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
+                    case "Red":
+                        return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
+                    case "Black":
+                        return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
+                    case "Odd":
+                        return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
+                    case "Even":
+                        return new ResultHintBean(ivEven, R.mipmap.gd_genap);
+                    case "Row1":
+                        return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
+                    case "Row2":
+                        return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
+                    case "Row3":
+                        return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
+                    case "Col1":
+                        return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
+                    case "Col2":
+                        return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
+                    case "Col3":
+                        return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
+                    default:
+                        return null;
+                }
             }
+
         }
 
     }
