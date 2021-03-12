@@ -3,12 +3,19 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Afb88/Afb88.iml" filepath="$PROJECT_DIR$/Afb88/Afb88.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android_studio_new-testApp.iml" filepath="$PROJECT_DIR$/.idea/modules/android_studio_new-testApp.iml" group="testApp" />
       <module fileurl="file://$PROJECT_DIR$/baseLibs/baseLibs.iml" filepath="$PROJECT_DIR$/baseLibs/baseLibs.iml" />
       <module fileurl="file://$PROJECT_DIR$/dongnao/dongnao.iml" filepath="$PROJECT_DIR$/dongnao/dongnao.iml" />
       <module fileurl="file://$PROJECT_DIR$/skinbluepackage/skinbluepackage.iml" filepath="$PROJECT_DIR$/skinbluepackage/skinbluepackage.iml" />
       <module fileurl="file://$PROJECT_DIR$/skinlibrary/skinlibrary.iml" filepath="$PROJECT_DIR$/skinlibrary/skinlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/skinpackage/skinpackage.iml" filepath="$PROJECT_DIR$/skinpackage/skinpackage.iml" />
       <module fileurl="file://$PROJECT_DIR$/testApp.iml" filepath="$PROJECT_DIR$/testApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Afb88/testApp-Afb88.iml" filepath="$PROJECT_DIR$/.idea/modules/Afb88/testApp-Afb88.iml" group="testApp/Afb88" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/baseLibs/testApp-baseLibs.iml" filepath="$PROJECT_DIR$/.idea/modules/baseLibs/testApp-baseLibs.iml" group="testApp/baseLibs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dongnao/testApp-dongnao.iml" filepath="$PROJECT_DIR$/.idea/modules/dongnao/testApp-dongnao.iml" group="testApp/dongnao" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skinbluepackage/testApp-skinbluepackage.iml" filepath="$PROJECT_DIR$/.idea/modules/skinbluepackage/testApp-skinbluepackage.iml" group="testApp/skinbluepackage" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skinlibrary/testApp-skinlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/skinlibrary/testApp-skinlibrary.iml" group="testApp/skinlibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skinpackage/testApp-skinpackage.iml" filepath="$PROJECT_DIR$/.idea/modules/skinpackage/testApp-skinpackage.iml" group="testApp/skinpackage" />
     </modules>
   </component>
 </project>
