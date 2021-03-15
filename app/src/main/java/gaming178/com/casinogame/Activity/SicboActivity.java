@@ -116,11 +116,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     FrameLayout fl_baccarat_parent;
 
     @BindView(R2.id.gd__tv_table_bet_replay)
-    TextView tvTableBetReplay;
+    ImageView tvTableBetReplay;
     @BindView(R2.id.gd__tv_table_bet_sure)
-    TextView tvTableBetSure;
+    ImageView tvTableBetSure;
     @BindView(R2.id.gd__tv_table_bet_cancel)
-    TextView tvTableBetCancel;
+    ImageView tvTableBetCancel;
 
     @BindView(R2.id.gd__leftPanel1)
     Panel leftPanel1;
@@ -2233,10 +2233,12 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
                 helper.setText(R.id.gd__tv_chip_amount, item.getName());
-                if (item.getValue() == -1) {
-                    currentSure = imgChip;
-                } else if (item.getValue() == -2) {
-                    currentCancel = imgChip;
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    if (item.getValue() == -1) {
+                        currentSure = imgChip;
+                    } else if (item.getValue() == -2) {
+                        currentCancel = imgChip;
+                    }
                 }
             }
         });
@@ -2785,11 +2787,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             chipHelper.clearAllChips();
         }
         chipHelper.setOperationButtonDisplay(operationDisplay);
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        showBetChipOld(f, isShow, money);
 
-        } else {
-            showBetChipOld(f, isShow, money);
-        }
     }
 
     public FrameLayout getFrameLayout(SbBetType f) {
@@ -4779,12 +4778,12 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         showBetChip(flSicboOddF1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getOdd(), false);
         showBetChip(flSicboEvenF1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getEven(), false);
 
-        showBetChip(flSicboDices6F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("1,1,1"), false);
-        showBetChip(flSicboDices5F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("2,2,2"), false);
-        showBetChip(flSicboDices4F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("3,3,3"), false);
-        showBetChip(flSicboDices3F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("4,4,4"), false);
-        showBetChip(flSicboDices2F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("5,5,5"), false);
-        showBetChip(flSicboDices1F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("6,6,6"), false);
+        showBetChip(flSicboDices1F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("1,1,1"), false);
+        showBetChip(flSicboDices2F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("2,2,2"), false);
+        showBetChip(flSicboDices3F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("3,3,3"), false);
+        showBetChip(flSicboDices4F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("4,4,4"), false);
+        showBetChip(flSicboDices5F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("5,5,5"), false);
+        showBetChip(flSicboDices6F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("6,6,6"), false);
 
         showBetChip(flSicboAlldice, true, mAppViewModel.getSicbo01().getSicboBetInformation().getAllDices(), false);
 
@@ -4832,6 +4831,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         showBetChip(flSicboSingle4, true, mAppViewModel.getSicbo01().getSicboBetInformation().getThreeforceBetMoney("4"), false);
         showBetChip(flSicboSingle5, true, mAppViewModel.getSicbo01().getSicboBetInformation().getThreeforceBetMoney("5"), false);
         showBetChip(flSicboSingle6, true, mAppViewModel.getSicbo01().getSicboBetInformation().getThreeforceBetMoney("6"), false);
+        int sure = R.mipmap.gd_sureimg;
+        if (currentSure != null && sure != 0) {
+            currentSure.setBackgroundResource(sure);
+        }
+        int no = R.mipmap.gd_noimg;
+        if (currentCancel != null && no != 0) {
+            currentCancel.setBackgroundResource(no);
+        }
     }
 
     public void gotoLobby() {
@@ -4853,6 +4860,10 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         tvTableBetReplay.setOnClickListener(new ButtonClick());
         tvTableBetSure.setOnClickListener(new ButtonClick());
         tvTableBetCancel.setOnClickListener(new ButtonClick());
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            currentSure = tvTableBetSure;
+            currentCancel = tvTableBetCancel;
+        }
     }
 
     class ButtonClick implements View.OnClickListener {

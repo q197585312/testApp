@@ -90,14 +90,14 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"></View>
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/gd__tv_table_bet_cancel"
                         android:layout_width="60dp"
                         android:layout_height="30dp"
                         android:background="@mipmap/gd_noimg"
                         android:clickable="true" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/gd__tv_table_bet_replay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -106,7 +106,7 @@
                         android:background="@mipmap/gd_replayimg"
                         android:clickable="true" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/gd__tv_table_bet_sure"
                         android:layout_width="60dp"
                         android:layout_height="30dp"
