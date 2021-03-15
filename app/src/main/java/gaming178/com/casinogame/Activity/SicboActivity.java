@@ -1,7 +1,6 @@
 package gaming178.com.casinogame.Activity;
 
 import android.animation.Animator;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -10,8 +9,8 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -569,6 +568,10 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     private boolean bGetStatus = true;
     private VideoHelper videoHelper;
     private boolean stateInit = false;
+
+    FrameLayout fl_vedio_location_parent;
+    FrameLayout fl_vedio_parent;
+    FrameLayout fl_surface_parent;
 
     public void clickLeftPanel(View view) {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -1274,6 +1277,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 threadUpdateWonMoney = new Thread(updateWonMoney);
                 threadUpdateWonMoney.start();
             }
+            if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+                if (!isNeedBigVedio && fl_vedio_parent.getHeight() > fl_vedio_location_parent.getHeight()) {
+                    isNeedBigVedio = true;
+                    closeBigVedio();
+                } else {
+                    isNeedBigVedio = true;
+                }
+            }
+
 //            if(updateGameNumber == null){
 //                updateGameNumber = new UpdateGameNumber();
 //                threadUpdateGameNumber = new Thread(updateGameNumber);
@@ -1338,6 +1350,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             //通过发消息的方式解决Activity还没有显示的时候，弹出结果窗口出现异常的问题
             handler.sendEmptyMessageDelayed(HandlerCode.SHOW_POPUP_RESULTS_WINDOW, 0);
 //            tablePop.setTablesData(afbApp, games);
+            if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+                if (isNeedBigVedio && fl_vedio_parent.getHeight() <= fl_vedio_location_parent.getHeight()) {
+                    isNeedBigVedio = false;
+                    openBigVedio();
+                } else {
+                    isNeedBigVedio = false;
+                }
+            }
+
         } else if (mAppViewModel.getSicbo01().getGameStatus() == 2) {
             if (bigBet > 0 || smallBet > 0 || oddBet > 0 || evenBet > 0 || alldiceBet > 0 || waidiceBet1 > 0 || waidiceBet2 > 0 || waidiceBet3 > 0 || waidiceBet4 > 0 || waidiceBet5 > 0
                     || waidiceBet6 > 0 || pairsBet1 > 0 || pairsBet2 > 0 || pairsBet3 > 0 || pairsBet4 > 0 || pairsBet5 > 0 || pairsBet6 > 0
@@ -1361,6 +1382,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
             //需要隐藏下注区域，看到视频里出结果
 //            hideBetPanel();
+            if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+                if (isNeedBigVedio && fl_vedio_parent.getHeight() <= fl_vedio_location_parent.getHeight()) {
+                    isNeedBigVedio = false;
+                    openBigVedio();
+                } else {
+                    isNeedBigVedio = false;
+                }
+            }
+
         }
      /*   if (!gameNumber.equals(mAppViewModel.getSicbo01().getGameNumber())) {
             clearAllChips();
@@ -1782,6 +1812,73 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         initUI();
         startUpdateStatusThread();
         setPercentageData(lv_percentage);
+        fl_vedio_location_parent = findViewById(R.id.gd__fl_vedio_location_parent);
+        fl_vedio_parent = findViewById(R.id.gd__fl_vedio_parent);
+        fl_surface_parent = findViewById(R.id.gd__fl_surface_parent);
+        if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+            fl_vedio_location_parent.post(new Runnable() {
+                @Override
+                public void run() {
+                    int height = fl_vedio_location_parent.getHeight();
+                    ViewGroup.LayoutParams layoutParams = fl_vedio_parent.getLayoutParams();
+                    layoutParams.width = fl_vedio_location_parent.getWidth();
+                    layoutParams.height = height;
+                    fl_vedio_parent.setLayoutParams(layoutParams);
+                    fl_vedio_parent.setVisibility(View.VISIBLE);
+                }
+            });
+            fl_vedio_parent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (fl_vedio_parent.getHeight() <= fl_vedio_location_parent.getHeight()) {
+                        openBigVedio();
+                    } else {
+                        closeBigVedio();
+                    }
+                }
+            });
+        }
+    }
+
+    private boolean isCanClickVedio = true;
+    private boolean isNeedBigVedio = true;
+
+    private void closeBigVedio() {
+        if (isCanClickVedio) {
+            isCanClickVedio = false;
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_vedio_parent.getLayoutParams();
+            layoutParams.width = fl_vedio_location_parent.getWidth();
+            layoutParams.height = fl_vedio_location_parent.getHeight();
+            fl_vedio_parent.setLayoutParams(layoutParams);
+            FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
+            mPreviewLayoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            mPreviewLayoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            mPreviewLayoutParams.topMargin = 0;
+            fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
+            fl_vedio_parent.setBackgroundResource(0);
+            isCanClickVedio = true;
+        }
+    }
+
+    private void openBigVedio() {
+        if (isCanClickVedio) {
+            isCanClickVedio = false;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_vedio_parent.getLayoutParams();
+                    FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
+                    mPreviewLayoutParams.width = (int) (layoutParams.width * 2.8);
+                    mPreviewLayoutParams.height = (int) (layoutParams.height * 2.8);
+                    fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
+                    layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                    fl_vedio_parent.setLayoutParams(layoutParams);
+                    fl_vedio_parent.setBackgroundResource(R.drawable.gd_rectangle_trans_stroke_roulette_black);
+                    isCanClickVedio = true;
+                }
+            }, 500);
+        }
     }
 
     private void setPlayVideo() {
