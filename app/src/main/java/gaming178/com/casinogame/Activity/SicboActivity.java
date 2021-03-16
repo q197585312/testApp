@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
@@ -1815,6 +1816,44 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         fl_vedio_location_parent = findViewById(R.id.gd__fl_vedio_location_parent);
         fl_vedio_parent = findViewById(R.id.gd__fl_vedio_parent);
         fl_surface_parent = findViewById(R.id.gd__fl_surface_parent);
+
+        lv_user_info.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+        lv_pool.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+
         if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
             fl_vedio_location_parent.post(new Runnable() {
                 @Override
@@ -1839,6 +1878,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             });
         }
     }
+
+    private boolean isSlideInfo = false;
 
     private boolean isCanClickVedio = true;
     private boolean isNeedBigVedio = true;
@@ -5964,6 +6005,9 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
     @Override
     public boolean isCanSlideChangeTable() {
+        if (isSlideInfo) {
+            return false;
+        }
         return true;
     }
 }
