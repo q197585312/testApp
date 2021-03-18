@@ -498,7 +498,11 @@ public class LobbyActivity extends BaseActivity {
                     ll_content_bg.setBackgroundResource(0);
                     tv_home_close_game.setVisibility(View.GONE);
                     if (count == 4) {
-                        params.height = contentHeight - itemWidth;
+                        int w = itemWidth;
+                        if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
+                            w = -UIUtil.dip2px(mContext, dp) / 2;
+                        }
+                        params.height = contentHeight - w;
                     }
                 }
                 ll_content_bg.setLayoutParams(params);
@@ -805,22 +809,13 @@ public class LobbyActivity extends BaseActivity {
     }
 
     private void setAdapterData() {
+        ArrayList<HallGameItemBean> hallGameItemBeenS = new ArrayList<>();
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
-//            if (WebSiteUrl.GameType == 0) {
-//                if (WebSiteUrl.HEADER.equals("http://202.178.114.15/")) {
-//                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
-//                } else {
-//                    adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)),
-//                            new HallGameItemBean(R.mipmap.gd_longhu, getString(R.string.dragon_tiger)),
-//                            new HallGameItemBean(R.mipmap.gd_lunpan, getString(R.string.roulette)),
-//                            new HallGameItemBean(R.mipmap.gd_toubao, getString(R.string.sicbo))
-//                    )));
-//                }
-//            } else {
-//                adapterViewContent.addAllAndClear(new ArrayList<>(Arrays.asList(new HallGameItemBean(R.mipmap.gd_ba1, getString(R.string.baccarat)))));
-//            }
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_b, getString(R.string.baccarat), AppConfig.baccarat));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_s, getString(R.string.sicbo), AppConfig.sicbo));
         } else {
-            ArrayList<HallGameItemBean> hallGameItemBeenS = new ArrayList<>();
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_b, getString(R.string.baccarat), AppConfig.baccarat));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
@@ -849,9 +844,9 @@ public class LobbyActivity extends BaseActivity {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.248/"));
                 }
             }
-            if (adapterViewContent != null) {
-                adapterViewContent.addAllAndClear(hallGameItemBeenS);
-            }
+        }
+        if (adapterViewContent != null) {
+            adapterViewContent.addAllAndClear(hallGameItemBeenS);
         }
         if (adapterViewContent != null) {
             if (adapterViewContent.getItemCount() == 0) {
