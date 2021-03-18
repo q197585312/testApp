@@ -4747,12 +4747,12 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         showBetChip(flSicboOddF1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getOdd(), false);
         showBetChip(flSicboEvenF1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getEven(), false);
 
-        showBetChip(flSicboDices6F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("1,1,1"), false);
-        showBetChip(flSicboDices5F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("2,2,2"), false);
-        showBetChip(flSicboDices4F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("3,3,3"), false);
-        showBetChip(flSicboDices3F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("4,4,4"), false);
-        showBetChip(flSicboDices2F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("5,5,5"), false);
-        showBetChip(flSicboDices1F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("6,6,6"), false);
+        showBetChip(flSicboDices1F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("1,1,1"), false);
+        showBetChip(flSicboDices2F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("2,2,2"), false);
+        showBetChip(flSicboDices3F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("3,3,3"), false);
+        showBetChip(flSicboDices4F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("4,4,4"), false);
+        showBetChip(flSicboDices5F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("5,5,5"), false);
+        showBetChip(flSicboDices6F1, true, mAppViewModel.getSicbo01().getSicboBetInformation().getWaidicesBetMoney("6,6,6"), false);
 
         showBetChip(flSicboAlldice, true, mAppViewModel.getSicbo01().getSicboBetInformation().getAllDices(), false);
 
