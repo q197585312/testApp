@@ -246,7 +246,7 @@ public class LobbyActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        if (BuildConfig.FLAVOR.equals("rolet303")) {
+        if (BuildConfig.FLAVOR.equals("rolet303") || BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188")) {
             tv_home_live_chat.setVisibility(View.VISIBLE);
         }
         AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
