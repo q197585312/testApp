@@ -56,6 +56,7 @@ import gaming178.com.casinogame.Fragment.LobbyDragonTigerFragment;
 import gaming178.com.casinogame.Fragment.LobbyRouletteFragment;
 import gaming178.com.casinogame.Fragment.LobbySicboFragment;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
+import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BannerViewPager;
@@ -117,6 +118,8 @@ public class LobbyActivity extends BaseActivity {
     TextView tv_home_deposit;
     @BindView(R2.id.tv_home_withdraw)
     TextView tv_home_withdraw;
+    @BindView(R2.id.tv_home_live_chat)
+    TextView tv_home_live_chat;
     @BindView(R2.id.tv_home_logout)
     TextView tv_home_logout;
     @BindView(R2.id.ll_bottom)
@@ -243,10 +246,9 @@ public class LobbyActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
-//        WindowManager.LayoutParams params = getWindow().getAttributes();
-//        params.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE;
-//        getWindow().setAttributes(params);
+        if (BuildConfig.FLAVOR.equals("rolet303")) {
+            tv_home_live_chat.setVisibility(View.VISIBLE);
+        }
         AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
         setMoreToolbar(true);
 //        backTv.setText(R.string.back);
@@ -254,7 +256,7 @@ public class LobbyActivity extends BaseActivity {
         hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
         hallGameBottomPromptTv.setSelected(true);
         initOrientation();
-        //设置公告123
+        //设置公告
         announcement = "";
         hallGameBottomPromptTv.setText("  ");
 
@@ -347,6 +349,7 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
                 tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 showLanguagePop(tv_lg, 0.75f);
             }
         });
@@ -356,6 +359,7 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
                 tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
                 int width = screenWidth / 15 * 14;
                 User u = mAppViewModel.getUser();
@@ -371,6 +375,7 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
+                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
                 int width = screenWidth / 15 * 14;
                 User u = mAppViewModel.getUser();
@@ -378,6 +383,17 @@ public class LobbyActivity extends BaseActivity {
                 p.setDialog(dialog);
                 p.setUser(u);
                 p.showPopupCenterWindow();
+            }
+        });
+        tv_home_live_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
+                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
+                PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                popLiveChat.showPopupCenterWindow();
             }
         });
         tv_home_logout.setOnClickListener(new View.OnClickListener() {

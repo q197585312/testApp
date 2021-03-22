@@ -357,6 +357,19 @@
             android:textSize="14sp"></TextView>
 
         <TextView
+            android:id="@+id/tv_home_live_chat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/gd_home_live_chat"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="@string/Live_Chat"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="13sp"></TextView>
+
+        <TextView
             android:id="@+id/tv_home_logout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
