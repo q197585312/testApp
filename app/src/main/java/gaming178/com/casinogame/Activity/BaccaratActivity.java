@@ -2736,9 +2736,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             });
         }
 
-        if (tableId == 71) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             chipY = AutoUtils.getPercentHeightSize(50);
             chipPlayerBankerY = AutoUtils.getPercentHeightSize(50);
@@ -2927,11 +2924,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         videoHelper.stopVideo();
         stopUpdateStatusThread();
         initUI();
-        if (tableId == 71) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-        }
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             shufflingTv.post(new Runnable() {
                 @Override

@@ -2291,7 +2291,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             toolbar.setNavigationIcon(R.mipmap.roulette_p_back);
             toolbar.setBackgroundResource(R.mipmap.roulette_p_title);
-            tv_change_bet_ui_tv.setVisibility(View.VISIBLE);
+//            tv_change_bet_ui_tv.setVisibility(View.VISIBLE);
             rightTableTv.setVisibility(View.VISIBLE);
         } else {
             toolbar.setNavigationIcon(null);

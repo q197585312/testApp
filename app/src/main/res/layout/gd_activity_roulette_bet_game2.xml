@@ -66,6 +66,7 @@
                 android:layout_weight="1"></View>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_change_bet_ui_tv"
                 android:layout_width="70dp"
                 android:layout_height="32dp"

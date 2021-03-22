@@ -5996,7 +5996,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     @Override
     public void onInGameChooseLanguage() {
         sibao_bet_bg.setBackgroundResource(0);
-        sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg);
+        }else {
+            sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg_h);
+        }
         contentPercentage.setData(updatePercentageData());
         contentPercentage.notifyDataSetChanged();
         contentResults.setData(getResultsData());
