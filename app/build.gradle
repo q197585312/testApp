@@ -407,7 +407,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rolet303"]
                 buildConfigField "String", "Labelid", '"223"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.76'
+                versionName '3.77'
             }
             oricasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]

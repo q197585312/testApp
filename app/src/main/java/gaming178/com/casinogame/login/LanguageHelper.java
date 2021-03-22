@@ -53,7 +53,7 @@ public class LanguageHelper {
                 if (BuildConfig.FLAVOR.equals("mainkasino") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") ||
                         BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
                         BuildConfig.FLAVOR.equals("rajabakarat") || BuildConfig.FLAVOR.equals("idrkasino") || BuildConfig.FLAVOR.equals("rajacasino") ||
-                        BuildConfig.FLAVOR.equals("memoricasino") || BuildConfig.FLAVOR.equals("indkasino")) {
+                        BuildConfig.FLAVOR.equals("memoricasino") || BuildConfig.FLAVOR.equals("indkasino") || BuildConfig.FLAVOR.equals("rolet303")) {
                     languageItems.add(new MenuItemInfo<>(R.mipmap.gd_live_chat, context.getString(R.string.Live_Chat), "liveChat", ""));
                 }
             }

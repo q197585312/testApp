@@ -70,6 +70,8 @@ public class PopLiveChat extends BasePopupWindow {
             url = "https://direct.lc.chat/11077682/";
         } else if (BuildConfig.FLAVOR.equals("indkasino")) {
             url = "https://direct.lc.chat/8837176/";
+        } else if (BuildConfig.FLAVOR.equals("rolet303")) {
+            url = "https://direct.lc.chat/12113850/";
         }
         webView = (WebView) view.findViewById(R.id.gd__wv_report);
         webView.getSettings().setJavaScriptEnabled(true);
