@@ -135,7 +135,6 @@
         </activity>
         <activity
             android:name="gaming178.com.casinogame.Activity.HomeGuideActivity"
-            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name="gaming178.com.casinogame.Activity.SicboActivity"
