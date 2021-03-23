@@ -18,12 +18,13 @@
             android:orientation="vertical">
 
             <EditText
+                android:digits="qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM0123456789_-"
                 android:id="@+id/gd__edt_register_username"
                 android:layout_width="match_parent"
                 android:layout_height="38dip"
                 android:background="@drawable/rectangle_gray_graystroke_radius5"
                 android:hint="@string/gd_username"
-                android:maxLength="15"
+                android:maxLength="25"
                 android:maxLines="1"
                 android:padding="8dp"
                 android:singleLine="true"
