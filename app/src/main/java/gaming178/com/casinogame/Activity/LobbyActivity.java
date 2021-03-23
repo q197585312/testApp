@@ -70,6 +70,7 @@ import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.casinogame.entity.BannerBean;
 import gaming178.com.casinogame.entity.HallGameItemBean;
+import gaming178.com.casinogame.login.MenuItemInfo;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
@@ -246,7 +247,11 @@ public class LobbyActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        if (BuildConfig.FLAVOR.equals("rolet303") || BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188")) {
+        if (BuildConfig.FLAVOR.equals("mainkasino") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") ||
+                BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
+                BuildConfig.FLAVOR.equals("rajabakarat") || BuildConfig.FLAVOR.equals("idrkasino") || BuildConfig.FLAVOR.equals("rajacasino") ||
+                BuildConfig.FLAVOR.equals("memoricasino") || BuildConfig.FLAVOR.equals("indkasino") || BuildConfig.FLAVOR.equals("rolet303") ||
+                BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188") || BuildConfig.FLAVOR.equals("ezykasino")) {
             tv_home_live_chat.setVisibility(View.VISIBLE);
         }
         AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
