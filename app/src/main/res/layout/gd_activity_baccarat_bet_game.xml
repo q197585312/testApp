@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/table_color">
+
     <View
         android:id="@+id/view_small"
-        android:layout_width="220px"
-        android:layout_height="220px"
-        android:layout_marginTop="20px"
+        android:layout_width="210px"
+        android:layout_height="165px"
         android:visibility="visible" />
 
     <View
         android:id="@+id/view_big"
-        android:layout_width="280px"
-        android:layout_height="280px"
-        android:layout_marginTop="8px"
+        android:layout_width="210px"
+        android:layout_height="165px"
         android:visibility="visible" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="250px"
@@ -433,13 +433,13 @@
                 android:id="@+id/gd__bottomPanel1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|center_horizontal"
+                android:layout_gravity="bottom|center_horizontal"
                 android:clickable="false"
                 app:closedHandle="@drawable/rectangle_transparent"
                 app:content="@+id/gd__content2"
                 app:handle="@+id/gd__handle2"
                 app:openedHandle="@drawable/rectangle_transparent"
-                app:position="top">
+                app:position="bottom">
 
                 <ImageView
                     android:id="@+id/gd__handle2"
@@ -682,8 +682,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginRight="5px"
         android:layout_marginTop="215px"
+        android:layout_marginRight="5px"
         android:background="@mipmap/gd_img_balance_l_bg"
         android:gravity="center"
         android:onClick="clickChangeBetContent"

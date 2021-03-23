@@ -487,4 +487,12 @@
 
     </FrameLayout>
 
+    <View
+        android:id="@+id/view_poker_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="225px"
+        android:background="#656262"
+        android:visibility="gone"></View>
 </FrameLayout>
