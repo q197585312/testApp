@@ -456,8 +456,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     View view_small;
     @BindView(R2.id.view_big)
     View view_big;
-    @BindView(R2.id.view_poker_line)
-    View view_poker_line;
 
     private AnimationDrawable animationPlayer;
     private AnimationDrawable animationBanker;
@@ -5271,18 +5269,18 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         setSmallPoker(pw_poker_player2, 2);
         setSmallPoker(pw_poker_banker1, 1);
         setSmallPoker(pw_poker_banker2, 2);
-        if ((mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) ||
-                (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) ||
-                (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 &&
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) ||
-                (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0 &&
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0)) {
-            view_poker_line.setVisibility(View.VISIBLE);
-        } else {
-            view_poker_line.setVisibility(View.GONE);
-        }
+//        if ((mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
+//                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0) ||
+//                (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getBanker() > 0 &&
+//                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0) ||
+//                (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getPlayer() > 0 &&
+//                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0) ||
+//                (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowBanker() > 0 &&
+//                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratBetInformation().getCowPlayer() > 0)) {
+//
+//        } else {
+//
+//        }
     }
 
     private void setPokerSize() {

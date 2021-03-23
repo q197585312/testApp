@@ -8,14 +8,16 @@
 
     <View
         android:id="@+id/view_small"
-        android:layout_width="210px"
-        android:layout_height="165px"
+        android:layout_width="280px"
+        android:layout_height="210px"
+        android:layout_marginTop="12px"
         android:visibility="visible" />
 
     <View
         android:id="@+id/view_big"
-        android:layout_width="210px"
-        android:layout_height="165px"
+        android:layout_width="280px"
+        android:layout_height="210px"
+        android:layout_marginTop="12px"
         android:visibility="visible" />
 
     <FrameLayout

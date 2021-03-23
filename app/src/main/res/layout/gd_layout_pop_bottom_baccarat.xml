@@ -25,68 +25,6 @@
         android:layout_height="match_parent"
         android:clickable="false">
 
-        <FrameLayout
-            android:id="@+id/gd__fl_poker_bottom_parent"
-            android:layout_width="match_parent"
-            android:layout_height="470px"
-            android:layout_gravity="bottom|center_horizontal"
-            android:clickable="false"
-            android:visibility="gone">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="450px"
-                android:layout_gravity="bottom|center_horizontal"
-                android:clickable="false"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="false"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:id="@+id/gd__v_background_player"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/trans_black_dark" />
-
-                    <View
-                        android:id="@+id/gd__v_background_banker"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/trans_black_dark"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-
-            </FrameLayout>
-
-            <View
-                android:id="@+id/view_poker_line"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="225px"
-                android:background="#656262"></View>
-
-            <TextView
-                android:id="@+id/gd__tv_poker_timer"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/gd_oval_black_solid"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/red_background"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-        </FrameLayout>
-
 
         <FrameLayout
             android:id="@+id/gd__ll_poker_parent_a"
@@ -321,7 +259,7 @@
         <LinearLayout
             android:id="@+id/gd__ll_poker_pw"
             android:layout_width="match_parent"
-            android:layout_height="450px"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:clickable="false"
             android:orientation="vertical"
@@ -330,32 +268,30 @@
             <FrameLayout
                 android:id="@+id/gd__fl_player_pw_parent"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gd_mi_bg"
                 android:gravity="center_vertical">
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player1"
-                    android:layout_width="210px"
-                    android:layout_height="165px"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
                     android:layout_gravity="left|center_vertical"
-                    android:layout_marginBottom="10px"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player2"
-                    android:layout_width="210px"
-                    android:layout_height="165px"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
                     android:layout_gravity="right|center_vertical"
-                    android:layout_marginBottom="10px"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player3"
-                    android:layout_width="210px"
-                    android:layout_height="165px"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
                     android:layout_gravity="center|center_vertical"
-                    android:layout_marginBottom="10px"
+                    android:layout_marginBottom="12px"
                     android:visibility="visible" />
 
                 <FrameLayout
@@ -405,33 +341,31 @@
             <FrameLayout
                 android:id="@+id/gd__fl_banker_pw_parent"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gd_mi_bg"
                 android:clickable="false"
                 android:gravity="center_vertical">
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker1"
-                    android:layout_width="210px"
-                    android:layout_height="165px"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
                     android:layout_gravity="left|center_vertical"
-                    android:layout_marginBottom="10px"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker2"
-                    android:layout_width="210px"
-                    android:layout_height="165px"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
                     android:layout_gravity="right|center_vertical"
-                    android:layout_marginBottom="10px"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker3"
-                    android:layout_width="210px"
-                    android:layout_height="165px"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
                     android:layout_gravity="center|center_vertical"
-                    android:layout_marginBottom="10px"
+                    android:layout_marginBottom="12px"
                     android:visibility="visible" />
 
                 <FrameLayout
@@ -478,6 +412,59 @@
             </FrameLayout>
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_poker_bottom_parent"
+            android:layout_width="match_parent"
+            android:layout_height="470px"
+            android:layout_gravity="bottom|center_horizontal"
+            android:clickable="false"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="450px"
+                android:layout_gravity="bottom|center_horizontal"
+                android:clickable="false"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/gd__v_background_player"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <View
+                        android:id="@+id/gd__v_background_banker"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/gd__tv_poker_timer"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="203px"
+                android:background="@drawable/gd_oval_black_solid"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/red_background"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </FrameLayout>
 
     </FrameLayout>
 
