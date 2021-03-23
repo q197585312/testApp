@@ -170,7 +170,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ezykasino"]
                 buildConfigField "String", "Labelid", '"140"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.76'
+                versionName '3.77'
             }
             hobi {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "hobi"]
