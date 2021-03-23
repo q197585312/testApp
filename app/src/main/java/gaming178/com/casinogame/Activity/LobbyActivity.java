@@ -571,7 +571,7 @@ public class LobbyActivity extends BaseActivity {
                         } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
                             skipAct(PragmaticGameActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
-                            Toast.makeText(mContext, getString(R.string.gd_coming_soon), Toast.LENGTH_SHORT).show();
+                            skipAct(KingKongGameActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.bandarq) {
                             if (!TextUtils.isEmpty(hallGameItemBean.getBrowserUrl())) {
                                 Gd88Utils.goBrowser(mContext, hallGameItemBean.getBrowserUrl());

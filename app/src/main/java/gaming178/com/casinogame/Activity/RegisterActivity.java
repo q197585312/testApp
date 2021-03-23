@@ -105,7 +105,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
         createVerifyCode();
         setLayout.setVisibility(View.GONE);
         titleTv.setText(getString(R.string.register));
-        setEditTextInhibitInputSpace(edtRegisterUsername);
+//        setEditTextInhibitInputSpace(edtRegisterUsername);
         if (BuildConfig.FLAVOR.equals("mejaemas")) {
             tvRegisterChoiceBank.setVisibility(View.GONE);
             edtRegisterBankAccount.setVisibility(View.GONE);
@@ -282,16 +282,16 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
         useNameStr = edtRegisterUsername.getText().toString().trim();
         tvRegisterUsernameHint.setVisibility(View.VISIBLE);
         if (useNameStr.isEmpty()) {
-            tvRegisterUsernameHint.setText("UserName empty.Please check!");
-            hintStr = "UserName empty.Please check!";
+            tvRegisterUsernameHint.setText(getString(R.string.user_limit));
+            hintStr = getString(R.string.user_limit);
             return false;
         } else if (useNameStr.length() < 4) {
-            tvRegisterUsernameHint.setText("UserName must be at least 4 character!");
-            hintStr = "UserName must be at least 4 character!";
+            tvRegisterUsernameHint.setText(getString(R.string.user_limit));
+            hintStr = getString(R.string.user_limit);
             return false;
         } else if (!isUserNameOK()) {
-            tvRegisterUsernameHint.setText("Username cannot contain special characters!");
-            hintStr = "Username cannot contain special characters!";
+            tvRegisterUsernameHint.setText(getString(R.string.user_limit));
+            hintStr = getString(R.string.user_limit);
             return false;
         } else {
             hintStr = "";
