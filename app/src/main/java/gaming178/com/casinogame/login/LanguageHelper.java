@@ -54,7 +54,14 @@ public class LanguageHelper {
                         BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
                         BuildConfig.FLAVOR.equals("rajabakarat") || BuildConfig.FLAVOR.equals("idrkasino") || BuildConfig.FLAVOR.equals("rajacasino") ||
                         BuildConfig.FLAVOR.equals("memoricasino") || BuildConfig.FLAVOR.equals("indkasino") || BuildConfig.FLAVOR.equals("rolet303") ||
-                        BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188") || BuildConfig.FLAVOR.equals("ezykasino")) {
+                        BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188") || BuildConfig.FLAVOR.equals("ezykasino") ||
+                        BuildConfig.FLAVOR.equals("ahlicasino") || BuildConfig.FLAVOR.equals("cahaya") || BuildConfig.FLAVOR.equals("palapacasino") ||
+                        BuildConfig.FLAVOR.equals("juragan") || BuildConfig.FLAVOR.equals("pelangi") || BuildConfig.FLAVOR.equals("hokicasino88") ||
+                        BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("mandiricasino") || BuildConfig.FLAVOR.equals("nagacasino") ||
+                        BuildConfig.FLAVOR.equals("pemain") || BuildConfig.FLAVOR.equals("serbacasino") || BuildConfig.FLAVOR.equals("dkicasino") ||
+                        BuildConfig.FLAVOR.equals("w99casino") || BuildConfig.FLAVOR.equals("hobi") || BuildConfig.FLAVOR.equals("istanacasino") ||
+                        BuildConfig.FLAVOR.equals("livecasino338") || BuildConfig.FLAVOR.equals("casino388") || BuildConfig.FLAVOR.equals("rentalbaccarat") ||
+                        BuildConfig.FLAVOR.equals("marina118") || BuildConfig.FLAVOR.equals("winnicasino")) {
                     languageItems.add(new MenuItemInfo<>(R.mipmap.gd_live_chat, context.getString(R.string.Live_Chat), "liveChat", ""));
                 }
             }
