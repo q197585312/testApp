@@ -182,7 +182,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "idolcasino"]
                 buildConfigField "String", "Labelid", '"113"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.79'
+                versionName '3.80'
             }
             idrkasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "idrkasino"]

@@ -61,7 +61,7 @@ public class LanguageHelper {
                         BuildConfig.FLAVOR.equals("pemain") || BuildConfig.FLAVOR.equals("serbacasino") || BuildConfig.FLAVOR.equals("dkicasino") ||
                         BuildConfig.FLAVOR.equals("w99casino") || BuildConfig.FLAVOR.equals("hobi") || BuildConfig.FLAVOR.equals("istanacasino") ||
                         BuildConfig.FLAVOR.equals("livecasino338") || BuildConfig.FLAVOR.equals("casino388") || BuildConfig.FLAVOR.equals("rentalbaccarat") ||
-                        BuildConfig.FLAVOR.equals("marina118") || BuildConfig.FLAVOR.equals("winnicasino")) {
+                        BuildConfig.FLAVOR.equals("marina118") || BuildConfig.FLAVOR.equals("winnicasino") || BuildConfig.FLAVOR.equals("idolcasino")) {
                     languageItems.add(new MenuItemInfo<>(R.mipmap.gd_live_chat, context.getString(R.string.Live_Chat), "liveChat", ""));
                 }
             }
