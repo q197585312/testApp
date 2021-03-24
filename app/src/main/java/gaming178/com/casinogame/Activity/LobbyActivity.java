@@ -70,7 +70,6 @@ import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.casinogame.entity.BannerBean;
 import gaming178.com.casinogame.entity.HallGameItemBean;
-import gaming178.com.casinogame.login.MenuItemInfo;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
@@ -251,7 +250,15 @@ public class LobbyActivity extends BaseActivity {
                 BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
                 BuildConfig.FLAVOR.equals("rajabakarat") || BuildConfig.FLAVOR.equals("idrkasino") || BuildConfig.FLAVOR.equals("rajacasino") ||
                 BuildConfig.FLAVOR.equals("memoricasino") || BuildConfig.FLAVOR.equals("indkasino") || BuildConfig.FLAVOR.equals("rolet303") ||
-                BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188") || BuildConfig.FLAVOR.equals("ezykasino")) {
+                BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188") || BuildConfig.FLAVOR.equals("ezykasino") ||
+                BuildConfig.FLAVOR.equals("ahlicasino") || BuildConfig.FLAVOR.equals("cahaya") || BuildConfig.FLAVOR.equals("palapacasino") ||
+                BuildConfig.FLAVOR.equals("juragan") || BuildConfig.FLAVOR.equals("pelangi") || BuildConfig.FLAVOR.equals("hokicasino88") ||
+                BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("mandiricasino") || BuildConfig.FLAVOR.equals("nagacasino") ||
+                BuildConfig.FLAVOR.equals("pemain") || BuildConfig.FLAVOR.equals("serbacasino") || BuildConfig.FLAVOR.equals("dkicasino") ||
+                BuildConfig.FLAVOR.equals("w99casino") || BuildConfig.FLAVOR.equals("hobi") || BuildConfig.FLAVOR.equals("istanacasino") ||
+                BuildConfig.FLAVOR.equals("livecasino338") || BuildConfig.FLAVOR.equals("casino388") || BuildConfig.FLAVOR.equals("rentalbaccarat") ||
+                BuildConfig.FLAVOR.equals("marina118") || BuildConfig.FLAVOR.equals("winnicasino") || BuildConfig.FLAVOR.equals("idolcasino") ||
+                BuildConfig.FLAVOR.equals("kasino365")) {
             tv_home_live_chat.setVisibility(View.VISIBLE);
         }
         AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
@@ -590,7 +597,7 @@ public class LobbyActivity extends BaseActivity {
                         } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
                             skipAct(PragmaticGameActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
-                            Toast.makeText(mContext, getString(R.string.gd_coming_soon), Toast.LENGTH_SHORT).show();
+                            skipAct(KingKongGameActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.bandarq) {
                             if (!TextUtils.isEmpty(hallGameItemBean.getBrowserUrl())) {
                                 Gd88Utils.goBrowser(mContext, hallGameItemBean.getBrowserUrl());
