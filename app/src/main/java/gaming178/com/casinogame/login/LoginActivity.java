@@ -533,6 +533,19 @@ public class LoginActivity extends BaseActivity {
         WebSiteUrl.setNormal(result);
     }
 
+    public void getLiveChat() {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            String liveChatUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getLiveChat.jsp";
+            String liveChatResult = mAppViewModel.getHttpClient().sendPost(liveChatUrl, "");
+            if (liveChatResult.startsWith("Results=ok")) {
+                String[] split = liveChatResult.split("#");
+                mAppViewModel.setLiveChatStr(split[1]);
+            } else {
+                mAppViewModel.setLiveChatStr("");
+            }
+        }
+    }
+
     private Handler handler = new Handler() {
 
         @Override
@@ -645,6 +658,7 @@ public class LoginActivity extends BaseActivity {
             mAppViewModel.splitTimer(strRes);
             mAppViewModel.setbLogin(true);
             mAppViewModel.setbLobby(true);
+            getLiveChat();
             handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
         }
 
