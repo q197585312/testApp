@@ -538,8 +538,8 @@ public class LoginActivity extends BaseActivity {
             String liveChatUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getLiveChat.jsp";
             String liveChatResult = mAppViewModel.getHttpClient().sendPost(liveChatUrl, "");
             if (liveChatResult.startsWith("Results=ok")) {
-                String[] split = liveChatResult.split("#");
-                mAppViewModel.setLiveChatStr(split[1]);
+                String url = liveChatResult.replace("Results=ok#", "");
+                mAppViewModel.setLiveChatStr(url);
             } else {
                 mAppViewModel.setLiveChatStr("");
             }
