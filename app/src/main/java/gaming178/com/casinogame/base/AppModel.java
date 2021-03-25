@@ -3820,4 +3820,14 @@ public class AppModel extends ViewModel {
     public void setCqSlotsCurrentIndex(int cqSlotsCurrentIndex) {
         this.cqSlotsCurrentIndex = cqSlotsCurrentIndex;
     }
+
+    private String liveChatStr;
+
+    public String getLiveChatStr() {
+        return liveChatStr;
+    }
+
+    public void setLiveChatStr(String liveChatStr) {
+        this.liveChatStr = liveChatStr;
+    }
 }
