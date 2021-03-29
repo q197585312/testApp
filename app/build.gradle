@@ -437,6 +437,13 @@ android {
                 versionName '3.80'
 
             }
+            rascasino {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rascasino"]
+                buildConfigField "String", "Labelid", '"26"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.80'
+
+            }
         }
 
         applicationVariants.all { variant ->
