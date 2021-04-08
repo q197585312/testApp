@@ -225,6 +225,7 @@
     <string name="member_center">Pusat Anggota</string>
     <string name="Live_Chat">Obrolan Langsung</string>
     <string name="user_limit">akun harus menggunakan karakter:a-z A-Z 0-9 _- dan panjang 4-25</string>
+    <string name="search_game">Cari Game</string>
 </resources>
 
 

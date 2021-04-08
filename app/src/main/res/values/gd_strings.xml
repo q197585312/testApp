@@ -296,6 +296,7 @@
     <string name="Live_Chat">LiveChat</string>
     <string name="bandarq">BANDARQ</string>
     <string name="user_limit">Account must use the following characters:a-z A-Z 0-9 _- and length 4~25</string>
+    <string name="search_game">Search Game</string>
 </resources>
 
 

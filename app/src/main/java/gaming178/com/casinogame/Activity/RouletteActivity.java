@@ -970,6 +970,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     TextView tv_roulette_number_tv;
     private boolean limitRedShowAble = false;
     private boolean betInfoShowAble = false;
+    int bigVideoTop;
 
     AdapterViewContent<LiveInfoBean> contentPool = null;
     AdapterViewContent<LiveInfoBean> contentInfo = null;
@@ -1861,7 +1862,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
                     mPreviewLayoutParams.width = (int) (layoutParams.width * 2.2);
                     mPreviewLayoutParams.height = (int) (layoutParams.height * 2.2);
-                    mPreviewLayoutParams.topMargin = fl_vedio_location_parent.getHeight() + ((int) (AutoUtils.getPercentHeight1px() * 10));
+                    mPreviewLayoutParams.topMargin = fl_vedio_location_parent.getHeight() + ((int) (AutoUtils.getPercentHeight1px() * bigVideoTop));
                     fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
                     layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -2289,11 +2290,21 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void initData(Bundle savedInstanceState) {
         mAppViewModel.getRoulette01().setResult("");
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            toolbar.setNavigationIcon(R.mipmap.roulette_p_back);
+            bigVideoTop = 170;
+            toolbar.setNavigationIcon(R.mipmap.gd_back_black);
             toolbar.setBackgroundResource(R.mipmap.roulette_p_title);
 //            tv_change_bet_ui_tv.setVisibility(View.VISIBLE);
             rightTableTv.setVisibility(View.VISIBLE);
+            imgBack.setBackgroundResource(R.mipmap.roulette_p_back);
+            imgBack.setVisibility(View.VISIBLE);
+            imgBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    leftClick();
+                }
+            });
         } else {
+            bigVideoTop = 10;
             toolbar.setNavigationIcon(null);
             toolbar.setBackgroundResource(R.color.transparent);
             rouletteNumberTv.setVisibility(View.VISIBLE);
@@ -4712,103 +4723,107 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (fl_roulette_board_bg.getVisibility() == View.VISIBLE && fl_roulette_board_bg_new.getVisibility() == View.INVISIBLE) {
             switch (type) {
                 case "0":
-                    return new ResultHintBean(ivNumber00, R.mipmap.gd_number_0_trans);
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        return new ResultHintBean(ivNumber00, R.mipmap.r_v_zero);
+                    } else {
+                        return new ResultHintBean(ivNumber00, R.mipmap.r_h_zero);
+                    }
                 case "1":
-                    return new ResultHintBean(ivNumber01, R.mipmap.gd_r2);
+                    return new ResultHintBean(ivNumber01, R.mipmap.r_all);
                 case "2":
-                    return new ResultHintBean(ivNumber02, R.mipmap.gd_r2);
+                    return new ResultHintBean(ivNumber02, R.mipmap.r_all);
                 case "3":
-                    return new ResultHintBean(ivNumber03, R.mipmap.gd_r2);
+                    return new ResultHintBean(ivNumber03, R.mipmap.r_all);
                 case "4":
-                    return new ResultHintBean(ivNumber04, R.mipmap.gd_r5);
+                    return new ResultHintBean(ivNumber04, R.mipmap.r_all);
                 case "5":
-                    return new ResultHintBean(ivNumber05, R.mipmap.gd_r5);
+                    return new ResultHintBean(ivNumber05, R.mipmap.r_all);
                 case "6":
-                    return new ResultHintBean(ivNumber06, R.mipmap.gd_r5);
+                    return new ResultHintBean(ivNumber06, R.mipmap.r_all);
                 case "7":
-                    return new ResultHintBean(ivNumber07, R.mipmap.gd_r8);
+                    return new ResultHintBean(ivNumber07, R.mipmap.r_all);
                 case "8":
-                    return new ResultHintBean(ivNumber08, R.mipmap.gd_r8);
+                    return new ResultHintBean(ivNumber08, R.mipmap.r_all);
                 case "9":
-                    return new ResultHintBean(ivNumber09, R.mipmap.gd_r8);
+                    return new ResultHintBean(ivNumber09, R.mipmap.r_all);
                 case "10":
-                    return new ResultHintBean(ivNumber10, R.mipmap.gd_r11);
+                    return new ResultHintBean(ivNumber10, R.mipmap.r_all);
                 case "11":
-                    return new ResultHintBean(ivNumber11, R.mipmap.gd_r11);
+                    return new ResultHintBean(ivNumber11, R.mipmap.r_all);
                 case "12":
-                    return new ResultHintBean(ivNumber12, R.mipmap.gd_r11);
+                    return new ResultHintBean(ivNumber12, R.mipmap.r_all);
                 case "13":
-                    return new ResultHintBean(ivNumber13, R.mipmap.gd_r14);
+                    return new ResultHintBean(ivNumber13, R.mipmap.r_all);
                 case "14":
-                    return new ResultHintBean(ivNumber14, R.mipmap.gd_r14);
+                    return new ResultHintBean(ivNumber14, R.mipmap.r_all);
                 case "15":
-                    return new ResultHintBean(ivNumber15, R.mipmap.gd_r14);
+                    return new ResultHintBean(ivNumber15, R.mipmap.r_all);
                 case "16":
-                    return new ResultHintBean(ivNumber16, R.mipmap.gd_r17);
+                    return new ResultHintBean(ivNumber16, R.mipmap.r_all);
                 case "17":
-                    return new ResultHintBean(ivNumber17, R.mipmap.gd_r17);
+                    return new ResultHintBean(ivNumber17, R.mipmap.r_all);
                 case "18":
-                    return new ResultHintBean(ivNumber18, R.mipmap.gd_r17);
+                    return new ResultHintBean(ivNumber18, R.mipmap.r_all);
                 case "19":
-                    return new ResultHintBean(ivNumber19, R.mipmap.gd_r20);
+                    return new ResultHintBean(ivNumber19, R.mipmap.r_all);
                 case "20":
-                    return new ResultHintBean(ivNumber20, R.mipmap.gd_r20);
+                    return new ResultHintBean(ivNumber20, R.mipmap.r_all);
                 case "21":
-                    return new ResultHintBean(ivNumber21, R.mipmap.gd_r20);
+                    return new ResultHintBean(ivNumber21, R.mipmap.r_all);
                 case "22":
-                    return new ResultHintBean(ivNumber22, R.mipmap.gd_r23);
+                    return new ResultHintBean(ivNumber22, R.mipmap.r_all);
                 case "23":
-                    return new ResultHintBean(ivNumber23, R.mipmap.gd_r23);
+                    return new ResultHintBean(ivNumber23, R.mipmap.r_all);
                 case "24":
-                    return new ResultHintBean(ivNumber24, R.mipmap.gd_r23);
+                    return new ResultHintBean(ivNumber24, R.mipmap.r_all);
                 case "25":
-                    return new ResultHintBean(ivNumber25, R.mipmap.gd_r26);
+                    return new ResultHintBean(ivNumber25, R.mipmap.r_all);
                 case "26":
-                    return new ResultHintBean(ivNumber26, R.mipmap.gd_r26);
+                    return new ResultHintBean(ivNumber26, R.mipmap.r_all);
                 case "27":
-                    return new ResultHintBean(ivNumber27, R.mipmap.gd_r26);
+                    return new ResultHintBean(ivNumber27, R.mipmap.r_all);
                 case "28":
-                    return new ResultHintBean(ivNumber28, R.mipmap.gd_r29);
+                    return new ResultHintBean(ivNumber28, R.mipmap.r_all);
                 case "29":
-                    return new ResultHintBean(ivNumber29, R.mipmap.gd_r29);
+                    return new ResultHintBean(ivNumber29, R.mipmap.r_all);
                 case "30":
-                    return new ResultHintBean(ivNumber30, R.mipmap.gd_r29);
+                    return new ResultHintBean(ivNumber30, R.mipmap.r_all);
                 case "31":
-                    return new ResultHintBean(ivNumber31, R.mipmap.gd_r32);
+                    return new ResultHintBean(ivNumber31, R.mipmap.r_all);
                 case "32":
-                    return new ResultHintBean(ivNumber32, R.mipmap.gd_r32);
+                    return new ResultHintBean(ivNumber32, R.mipmap.r_all);
                 case "33":
-                    return new ResultHintBean(ivNumber33, R.mipmap.gd_r32);
+                    return new ResultHintBean(ivNumber33, R.mipmap.r_all);
                 case "34":
-                    return new ResultHintBean(ivNumber34, R.mipmap.gd_r35);
+                    return new ResultHintBean(ivNumber34, R.mipmap.r_all);
                 case "35":
-                    return new ResultHintBean(ivNumber35, R.mipmap.gd_r35);
+                    return new ResultHintBean(ivNumber35, R.mipmap.r_all);
                 case "36":
-                    return new ResultHintBean(ivNumber36, R.mipmap.gd_r35);
+                    return new ResultHintBean(ivNumber36, R.mipmap.r_all);
                 case "Low":
-                    return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
+                    return new ResultHintBean(ivLow, R.mipmap.r_all);
                 case "High":
-                    return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
+                    return new ResultHintBean(ivHigh, R.mipmap.r_all);
                 case "Red":
-                    return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
+                    return new ResultHintBean(ivRed, R.mipmap.r_all);
                 case "Black":
-                    return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
+                    return new ResultHintBean(ivBlack, R.mipmap.r_all);
                 case "Odd":
-                    return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
+                    return new ResultHintBean(ivOdd, R.mipmap.r_all);
                 case "Even":
-                    return new ResultHintBean(ivEven, R.mipmap.gd_genap);
+                    return new ResultHintBean(ivEven, R.mipmap.r_all);
                 case "Row1":
-                    return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
+                    return new ResultHintBean(iv1row1x2, R.mipmap.r_all);
                 case "Row2":
-                    return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
+                    return new ResultHintBean(iv2row1x2, R.mipmap.r_all);
                 case "Row3":
-                    return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
+                    return new ResultHintBean(iv3row1x2, R.mipmap.r_all);
                 case "Col1":
-                    return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
+                    return new ResultHintBean(ivDozen1, R.mipmap.r_all);
                 case "Col2":
-                    return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
+                    return new ResultHintBean(ivDozen2, R.mipmap.r_all);
                 case "Col3":
-                    return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
+                    return new ResultHintBean(ivDozen3, R.mipmap.r_all);
                 default:
                     return null;
             }
@@ -7113,7 +7128,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board);
             fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
-        }else {
+        } else {
             fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board_h);
             fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1_h);
         }

@@ -2275,7 +2275,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             list.add(new ChipBean(R.mipmap.gd_replayimg, "", -3));
             list.add(new ChipBean(R.mipmap.gd_sureimg, "", -1));
         }
-        return list;
+        if (this != null && this instanceof RouletteActivity && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            List<ChipBean> listNew = new ArrayList<>();
+            for (int i = list.size() - 1; i >= 0; i--) {
+                listNew.add(list.get(i));
+            }
+            return listNew;
+        } else {
+            return list;
+        }
     }
 
     public void initBetImg() {

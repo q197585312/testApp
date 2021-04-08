@@ -1,24 +1,20 @@
 package gaming178.com.casinogame.Activity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -28,10 +24,7 @@ import java.util.List;
 
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.entity.CQSlotsGameInfoBean;
-import gaming178.com.casinogame.Bean.SlotsBean;
 import gaming178.com.casinogame.Util.GlideRoundTransform;
-import gaming178.com.casinogame.Util.MyViewPager;
-import gaming178.com.casinogame.Util.MyViewPagerAdapter;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
@@ -47,6 +40,10 @@ import gaming178.com.mylibrary.base.ViewHolder;
 public class CQSlotsGameActivity extends BaseActivity {
     String lg;
     GridView gridView;
+    EditText edtSearch;
+    ImageView imgClear;
+    List<CQSlotsGameInfoBean.DataBean> allGameList;
+    AdapterViewContent<CQSlotsGameInfoBean.DataBean> adapterViewContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +60,59 @@ public class CQSlotsGameActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-        titleTv.setText(getString(R.string.cq));
+//        titleTv.setText(getString(R.string.cq));
+        initSearch();
         gridView = findViewById(R.id.gridview_content_gv);
         lg = AppTool.getAppLanguage(mContext);
         getDataMsg();
+    }
+
+    private void initSearch() {
+        edtSearch = findViewById(R.id.edt_search);
+        imgClear = findViewById(R.id.img_clear);
+        imgClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtSearch.setText("");
+            }
+        });
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (allGameList != null && allGameList.size() > 0) {
+                    String text = s.toString();
+                    if (!TextUtils.isEmpty(text)) {
+                        imgClear.setVisibility(View.VISIBLE);
+                        List<CQSlotsGameInfoBean.DataBean> list = new ArrayList<>();
+                        for (int i = 0; i < allGameList.size(); i++) {
+                            CQSlotsGameInfoBean.DataBean dataBean = allGameList.get(i);
+                            String name = dataBean.getEN_name();
+                            if (!TextUtils.isEmpty(lg) && lg.equals("zh")) {
+                                name = dataBean.getCN_name();
+                            }
+                            if (name.contains(text)) {
+                                list.add(dataBean);
+                            }
+                        }
+                        adapterViewContent.setData(list);
+                    } else {
+                        imgClear.setVisibility(View.GONE);
+                        adapterViewContent.setData(allGameList);
+                    }
+                    adapterViewContent.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     private Handler handler = new Handler() {
@@ -77,6 +123,7 @@ public class CQSlotsGameActivity extends BaseActivity {
                 return;
             if (msg.what == 1) {
                 CQSlotsGameInfoBean slotsBean = (CQSlotsGameInfoBean) msg.obj;
+                allGameList = slotsBean.getData();
                 mAppViewModel.setCqSlotsBean(slotsBean);
                 initUi(slotsBean);
             } else if (msg.what == 2) {
@@ -92,7 +139,7 @@ public class CQSlotsGameActivity extends BaseActivity {
 
     private void initUi(CQSlotsGameInfoBean slotsBean) {
         gridView.setNumColumns(3);
-        AdapterViewContent<CQSlotsGameInfoBean.DataBean> adapterViewContent = new AdapterViewContent<>(mContext, gridView);
+        adapterViewContent = new AdapterViewContent<>(mContext, gridView);
         adapterViewContent.setBaseAdapter(new QuickAdapterImp<CQSlotsGameInfoBean.DataBean>() {
             @Override
             public int getBaseItemResource() {
@@ -173,5 +220,15 @@ public class CQSlotsGameActivity extends BaseActivity {
                 }
             }
         }.start();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+//        if (!WidgetUtil.isRunBackground(this)) {
+//            if (currentFragment != null) {
+//                getSupportFragmentManager().beginTransaction().remove(currentFragment).commitAllowingStateLoss();
+//            }
+//        }
+//        super.onSaveInstanceState(outState);
     }
 }

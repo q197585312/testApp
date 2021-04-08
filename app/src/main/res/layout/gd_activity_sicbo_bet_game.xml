@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_layout" />
+        <include layout="@layout/toolbar_layout_r_s" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -77,11 +77,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></View>
 
                     <ImageView
                         android:id="@+id/gd__tv_table_bet_cancel"

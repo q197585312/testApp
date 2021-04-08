@@ -1775,17 +1775,18 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             toolbar.setNavigationIcon(R.mipmap.roulette_p_back);
             toolbar.setBackgroundResource(R.mipmap.roulette_p_title);
             rightTableTv.setVisibility(View.VISIBLE);
+            imgBack.setBackgroundResource(R.mipmap.roulette_p_back);
         } else {
             toolbar.setNavigationIcon(null);
             toolbar.setBackgroundResource(R.color.transparent);
             rouletteNumberTv.setVisibility(View.VISIBLE);
             changeBetUiTv.setVisibility(View.VISIBLE);
+            imgBack.setBackgroundResource(R.mipmap.gd_back_black);
         }
         rightBetTv.setVisibility(View.VISIBLE);
         rightWinLoseTv.setVisibility(View.VISIBLE);
         rightBalanceTv.setVisibility(View.VISIBLE);
         limitPop = getIntent().getStringExtra("limit");
-        imgBack.setBackgroundResource(R.mipmap.gd_back_black);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1932,7 +1933,9 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         };
 
         String path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getSicbo01().getVideoUrlIndex() + "/DX";
-//        path = "rtmp://202.36.58.169/live/LT01";
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            path = mAppViewModel.getUser().getVideoUrl() + "/" + "live/DXshu";
+        }
         videoHelper.setPlayUrl(path);
     }
 
@@ -5998,7 +6001,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         sibao_bet_bg.setBackgroundResource(0);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg);
-        }else {
+        } else {
             sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg_h);
         }
         contentPercentage.setData(updatePercentageData());
