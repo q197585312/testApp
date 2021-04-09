@@ -29,11 +29,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
-
-class HomeFragment_1 : BaseSwitchFragment<Any?>() {
-    @BindView(R.id.rv_content)
-    var rvContent: RecyclerView? = null
-
+ q
     @BindView(R.id.in_layout)
     var inLayout: LinearLayout? = null
     private var jsonObjectNum: JSONObject? = null
