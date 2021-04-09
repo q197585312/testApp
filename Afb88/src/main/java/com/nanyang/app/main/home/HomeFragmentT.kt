@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import com.nanyang.app.*
 import com.nanyang.app.Utils.StringUtils
@@ -21,16 +21,24 @@ import com.nanyang.app.common.MainPresenter
 import com.nanyang.app.load.login.LoginInfo.LanguageWfBean
 import com.nanyang.app.load.welcome.AllBannerImagesBean
 import com.nanyang.app.load.welcome.AllBannerImagesBean.MainBannersBean
+import com.nanyang.app.main.home.HomeFragment_ViewBinding
+import com.nanyang.app.main.home.HomeViewModel
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder
+import com.unkonw.testapp.libs.base.BaseApplication
+import com.unkonw.testapp.libs.presenter.IBasePresenter
 import com.unkonw.testapp.libs.utils.LogUtil
 import com.unkonw.testapp.libs.utils.TimeUtils
 import com.unkonw.testapp.libs.utils.ToastUtils
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
- q
-    @BindView(R.id.in_layout)
+
+class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
+    override fun onSetLayoutId(): Int {
+        TODO("Not yet implemented")
+    }
+    /*@BindView(R.id.in_layout)
     var inLayout: LinearLayout? = null
     private var jsonObjectNum: JSONObject? = null
     private var lastAllMainData: String? = null
@@ -38,9 +46,30 @@ import java.util.*
         null
     private var language: String? = null
     private var mainList: List<MainBannersBean>? = null
-    private var binding: ViewDataBinding? = null
+    lateinit var binding: HomeFragment_ViewBinding
     override fun onSetLayoutId(): Int {
-        return R.layout.fragment_home
+        return R.layout.fragment_home_t
+    }
+
+    lateinit var viewModel: HomeViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        mContentView = inflater
+            .inflate(onSetLayoutId(), container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_home_t,
+            container,
+            false
+        )
+        initView()
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        binding.(viewModel)
+        return binding.getRoot()
     }
 
     override fun initData() {
@@ -50,32 +79,17 @@ import java.util.*
         loadAllPic()
     }
 
-    override fun onCreateView( 
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mContentView = inflater
-            .inflate(onSetLayoutId(), container, false)
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_home_1,
-            container,
-            false
-        )
-        initView()
-        mSearchViewModel = getFragmentViewModelProvider(this).get(SearchViewModel::class.java)
-        binding.setVm(mSearchViewModel)
-        return binding.getRoot()
-    }
-
     protected val appViewModelProvider: ViewModelProvider
         protected get() = (mActivity.getApplicationContext() as App).getAppViewModelProvider(
             mActivity
         )
 
     protected fun getFragmentViewModelProvider(fragment: Fragment): ViewModelProvider {
-        return ViewModelProvider(fragment, fragment.getDefaultViewModelProviderFactory())
+        return ViewModelProvider(
+            fragment, ViewModelProvider.AndroidViewModelFactory.getInstance(
+                BaseApplication.getInstance()
+            )
+        )
     }
 
     protected fun getActivityViewModelProvider(activity: AppCompatActivity): ViewModelProvider {
@@ -326,5 +340,5 @@ import java.util.*
             updateHandler.postDelayed(this, 1000)
         }
     }
-    var updateHandler = Handler()
+    var updateHandler = Handler()*/
 }
