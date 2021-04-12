@@ -362,7 +362,7 @@
         android:layout_height="0dp"
         android:layout_gravity="left"
         android:layout_marginTop="37dp"
-        android:background="@drawable/gd_bg_slide"
+        android:background="@drawable/gd_bg_slide_r_s"
         android:orientation="horizontal">
 
         <LinearLayout

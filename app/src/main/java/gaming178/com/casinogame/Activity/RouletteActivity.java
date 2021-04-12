@@ -1916,6 +1916,34 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         }
                     });
                 }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] >= portraitScreenWidth && isCanShowChip) {
+                    isCanShowChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, ScreenUtil.dip2px(mContext, 55), 0, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
             }
             rouletteTimer--;
 
@@ -1945,6 +1973,34 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 if (location2[1] < heightPixels && isCanHideChip) {
                     isCanHideChip = false;
                     WidgetUtil.chipTranslateAnimation(ll_chip, ScreenUtil.dip2px(mContext, -43), 0, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] <= portraitScreenWidth && isCanHideChip) {
+                    isCanHideChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, 0, ScreenUtil.dip2px(mContext, 55), new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
 
@@ -2295,7 +2351,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             toolbar.setBackgroundResource(R.mipmap.roulette_p_title);
 //            tv_change_bet_ui_tv.setVisibility(View.VISIBLE);
             rightTableTv.setVisibility(View.VISIBLE);
-            imgBack.setBackgroundResource(R.mipmap.roulette_p_back);
+            imgBack.setBackgroundResource(R.mipmap.gd_back_black);
             imgBack.setVisibility(View.VISIBLE);
             imgBack.setOnClickListener(new View.OnClickListener() {
                 @Override

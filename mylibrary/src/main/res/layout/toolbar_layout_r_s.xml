@@ -49,8 +49,7 @@
 
             <FrameLayout
                 android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:background="@mipmap/roulette_p_left">
+                android:layout_height="38dp">
 
                 <ImageView
                     android:id="@+id/img_back"

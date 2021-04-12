@@ -1443,6 +1443,34 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                         }
                     });
                 }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] >= portraitScreenWidth && isCanShowChip) {
+                    isCanShowChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, portraitScreenWidth, 0, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
             }
             sicboTimer--;
             tv_table_timer.setText("" + sicboTimer);
@@ -1488,6 +1516,35 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                         }
                     });
                 }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] == 0 && isCanHideChip) {
+                    isCanHideChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, 0, portraitScreenWidth, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
+
             }
 //            ll_bet_btn_parent.setVisibility(View.GONE);
             sicboTimer = 0;
@@ -1775,7 +1832,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             toolbar.setNavigationIcon(R.mipmap.roulette_p_back);
             toolbar.setBackgroundResource(R.mipmap.roulette_p_title);
             rightTableTv.setVisibility(View.VISIBLE);
-            imgBack.setBackgroundResource(R.mipmap.roulette_p_back);
+            imgBack.setBackgroundResource(R.mipmap.gd_back_black);
         } else {
             toolbar.setNavigationIcon(null);
             toolbar.setBackgroundResource(R.color.transparent);
@@ -1911,7 +1968,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_vedio_parent.getLayoutParams();
                     FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
                     mPreviewLayoutParams.width = (int) (layoutParams.width * 2.8);
-                    mPreviewLayoutParams.height = (int) (layoutParams.height * 2.8);
+                    mPreviewLayoutParams.height = (int) (layoutParams.height * 2.3);
                     fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
                     layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
