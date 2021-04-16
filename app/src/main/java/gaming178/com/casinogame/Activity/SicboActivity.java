@@ -1968,7 +1968,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_vedio_parent.getLayoutParams();
                     FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
                     mPreviewLayoutParams.width = (int) (layoutParams.width * 2.8);
-                    mPreviewLayoutParams.height = (int) (layoutParams.height * 2.3);
+                    mPreviewLayoutParams.height = (int) (layoutParams.height * 2.8);
+                    mPreviewLayoutParams.topMargin = ((int) (AutoUtils.getPercentHeight1px() * 40));
                     fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
                     layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;

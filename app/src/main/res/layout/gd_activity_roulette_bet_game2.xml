@@ -519,6 +519,34 @@
             layout="@layout/gd_layout_roulette_left_content_panel" />
     </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
 
+    <FrameLayout
+        android:id="@+id/gd__fl_vedio_parent"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="11px"
+        android:layout_marginTop="46dp"
+        android:onClick="clickLimitList"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <FrameLayout
+            android:id="@+id/gd__fl_surface_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@drawable/gd_rectangle_trans_stroke_yellow"
+            android:padding="2dp">
+
+            <cn.nodemedia.NodePlayerView
+                android:id="@+id/gd__surface"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/gd__ll_info"
         android:layout_width="240dp"
@@ -631,34 +659,6 @@
 
     </LinearLayout>
 
-
-    <FrameLayout
-        android:id="@+id/gd__fl_vedio_parent"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:layout_gravity="left"
-        android:layout_marginLeft="11px"
-        android:layout_marginTop="46dp"
-        android:onClick="clickLimitList"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <FrameLayout
-            android:id="@+id/gd__fl_surface_parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="top|center_horizontal"
-            android:background="@drawable/gd_rectangle_trans_stroke_yellow"
-            android:padding="2dp">
-
-            <cn.nodemedia.NodePlayerView
-                android:id="@+id/gd__surface"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center" />
-        </FrameLayout>
-
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/gd__fl_roulette_result"
