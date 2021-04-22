@@ -100,7 +100,7 @@ public class CQSlotsGameActivity extends BaseActivity {
                             if (!TextUtils.isEmpty(lg) && lg.equals("zh")) {
                                 name = dataBean.getCN_name();
                             }
-                            if (name.contains(text)) {
+                            if (name.toLowerCase().contains(text.toLowerCase())) {
                                 list.add(dataBean);
                             }
                         }

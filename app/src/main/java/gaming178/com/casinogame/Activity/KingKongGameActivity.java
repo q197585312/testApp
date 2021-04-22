@@ -97,7 +97,7 @@ public class KingKongGameActivity extends BaseActivity {
                         for (int i = 0; i < allGameList.size(); i++) {
                             KingKongGameBean.DataBean dataBean = allGameList.get(i);
                             String name = dataBean.getGame();
-                            if (name.contains(text)) {
+                            if (name.toLowerCase().contains(text.toLowerCase())) {
                                 list.add(dataBean);
                             }
                         }
