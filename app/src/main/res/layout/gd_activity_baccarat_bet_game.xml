@@ -34,7 +34,7 @@
             android:id="@+id/gd__fl_poker_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginTop="38dp"
             android:visibility="gone">
 
             <include layout="@layout/gd_layout_pop_center_baccarat" />

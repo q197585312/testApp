@@ -4271,7 +4271,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 localPath = "/L063";
                 break;
         }
-        path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getVideoUrlIndex() + localPath;
+        if (tableId == 71) {
+            path = mAppViewModel.getUser().getVideoUrl() + "/live/M01";
+        } else {
+            path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getVideoUrlIndex() + localPath;
+        }
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             switch (tableId) {
                 case 1:
@@ -4291,6 +4295,9 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     break;
                 case 63:
                     path = mAppViewModel.getUser().getVideoUrl() + "/live/L08new";
+                    break;
+                case 71:
+                    path = mAppViewModel.getUser().getVideoUrl() + "/live/M01new";
                     break;
             }
         }
