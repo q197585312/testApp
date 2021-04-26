@@ -159,8 +159,8 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.83'
             }
-            dompetcasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "dompetcasino"]
+            slotku {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "slotku"]
                 buildConfigField "String", "Labelid", '"91"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.83'
