@@ -124,7 +124,7 @@
     <string name="choose_language">Choose Language</string>
 
     <string name="language">Bahasa</string>
-    <string name="report">Taruhan </string>
+    <string name="report">Laporan</string>
     <string name="setting">Setting</string>
     <string name="logout">Keluar</string>
 
@@ -213,7 +213,7 @@
     <string name="gd_home">Beranda</string>
     <string name="gd_withdrawal">Penarikan</string>
     <string name="gd_Referrer">Referensi</string>
-    <string name="katasandi">Katasandi</string>
+    <string name="katasandi">Kata Sandi</string>
     <string name="gd_cancel">Cancel</string>
     <string name="Copy_Address">Salin Link Referral Anda</string>
     <string name="Copy_Success">Salin Sukses</string>

@@ -4823,9 +4823,6 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     public void clickCombination16(View iv) {
         if (checkChoose())
             return;
-        if (animationDrawableNineway16.isRunning())
-            animationDrawableNineway16.stop();
-        animationDrawableNineway16.start();
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
         clickNinewayCount16++;

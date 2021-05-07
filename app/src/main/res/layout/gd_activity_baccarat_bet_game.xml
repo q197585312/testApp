@@ -30,16 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <FrameLayout
-            android:id="@+id/gd__fl_poker_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
-            android:visibility="gone">
-
-            <include layout="@layout/gd_layout_pop_center_baccarat" />
-        </FrameLayout>
-
     </FrameLayout>
 
     <LinearLayout
@@ -678,6 +668,16 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/gd__fl_poker_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:visibility="gone">
+
+        <include layout="@layout/gd_layout_pop_center_baccarat" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_change_bet_content"

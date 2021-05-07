@@ -214,11 +214,11 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.83'
             }
-            m99casino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "m99casino"]
+            casinoraja88 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casinoraja88"]
                 buildConfigField "String", "Labelid", '"162"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.83'
+                versionName '3.84'
             }
 
             mainkasino {
