@@ -653,8 +653,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         + "&Xhid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getShoeNumber() + "&Blid=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber() +
                         "&Xh=" + mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratLimit(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet();
                 String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_BET_MONEY_URL, params);
-                Log.i(WebSiteUrl.Tag, "UpdateBetMoney params= " + params);
-                Log.i("dfsafa", "UpdateBetMoney = " + strRes);
+                Log.i("qwert1234", "UpdateBetMoney params= " + params);
+                Log.i("qwert1234", "UpdateBetMoney = " + strRes);
 
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
@@ -3704,6 +3704,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 public void itemCLick(View view, ChipBean chipBean, int position) {
                     if (chipBean.getValue() != -101) {
                         chooseChip = chipBean.getValue();
+                        setGameChooseChip(chooseChip);
                         selectedMap.put(true, position);
                         chips.notifyDataSetChanged();
                         initClickCount();

@@ -169,7 +169,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().add(baccaratOtherUserBetInformation);
     }
 
-    public void getBaccaratStatus(String strRes) {
+    public void getBaccaratStatus(String strRes, int tableId) {
         if (!strResultsOld.equals(strRes)) {
             strResultsOld = strRes;
            /* if(WebSiteUrl.isDomain&&WebSiteUrl.GameType==1){
@@ -184,11 +184,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 String[] splitData = newData.split("#");
                 String newFiveResult = splitData[3];
                 String[] split = newFiveResult.split("&");
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setLucky6(Integer.parseInt(split[1]));
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setAnyPairs(Integer.parseInt(split[2]));
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setPerfectPairs(Integer.parseInt(split[3]));
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setnBanker(Integer.parseInt(split[4]));
-                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setnPlayer(Integer.parseInt(split[5]));
+                mAppViewModel.getBaccarat(tableId).getBaccaratResults().setLucky6(Integer.parseInt(split[1]));
+                mAppViewModel.getBaccarat(tableId).getBaccaratResults().setAnyPairs(Integer.parseInt(split[2]));
+                mAppViewModel.getBaccarat(tableId).getBaccaratResults().setPerfectPairs(Integer.parseInt(split[3]));
+                mAppViewModel.getBaccarat(tableId).getBaccaratResults().setnBanker(Integer.parseInt(split[4]));
+                mAppViewModel.getBaccarat(tableId).getBaccaratResults().setnPlayer(Integer.parseInt(split[5]));
                 strRes = strRes.replace(splitData[3], split[0]);
             }
             String tableInfo[] = strRes.split("\\|");
@@ -203,7 +203,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     for (int i = 1; i < tableDetailTemp.length; i++) {
                         tableDetail[i + 1] = tableDetailTemp[i];
                     }
-                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().Init();
+                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().Init();
 
                 } else if (tableDetailTemp.length == 17) {
                     tableDetail = new String[tableDetail.length + 1];
@@ -217,11 +217,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 if (tableDetail.length >= 14) {
                     // 第0个数据还要根据^拆分得到用户的下注信息
                     String betDetail[] = tableDetail[0].split("\\^");
-                    if (tableDetail[0].length() > 12 && !mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetString().equals(tableDetail[0]) && betDetail.length > 1) {
+                    if (tableDetail[0].length() > 12 && !mAppViewModel.getBaccarat(tableId).getOtherUserBetString().equals(tableDetail[0]) && betDetail.length > 1) {
                         //     Log.i(WebSiteUrl.Tag,"User BetInfo = "+betDetail[1]);
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setOtherUserBetString(tableDetail[0]);
+                        mAppViewModel.getBaccarat(tableId).setOtherUserBetString(tableDetail[0]);
 
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getOtherUserBetInfomation().clear();
+                        mAppViewModel.getBaccarat(tableId).getOtherUserBetInfomation().clear();
 
                         for (int j = 0; j < betDetail.length; j++) {
                             if (j == 0)
@@ -338,10 +338,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
                     }
                     ///////////第1个数据是次桌会员信息
-                    if (!mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayerString().equals(tableDetail[1])) {
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBaccaratPlayerString(tableDetail[1]);
+                    if (!mAppViewModel.getBaccarat(tableId).getBaccaratPlayerString().equals(tableDetail[1])) {
+                        mAppViewModel.getBaccarat(tableId).setBaccaratPlayerString(tableDetail[1]);
                         String playerDetail[] = tableDetail[1].split("\\^");
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayer().clear();
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPlayer().clear();
                         for (int i = 0; i < playerDetail.length; i++) {
                             if (playerDetail[i] != null && !"".equals(playerDetail[i])) {
                                 String detail[] = playerDetail[i].split(":");
@@ -349,7 +349,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                     BaccaratPlayer baccaratPlayer = new BaccaratPlayer();
                                     baccaratPlayer.setName(detail[1]);
                                     baccaratPlayer.setNumber(detail[0]);
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPlayer().add(baccaratPlayer);
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPlayer().add(baccaratPlayer);
                                 }
 
                             }
@@ -357,68 +357,68 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     }
 
                     ///////////第2个数据是游戏状态
-                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameStatus(Integer.parseInt(tableDetail[2]));
+                    mAppViewModel.getBaccarat(tableId).setGameStatus(Integer.parseInt(tableDetail[2]));
                     ///////////第3个数据是倒计时
                     //   Log.i(WebSiteUrl.Tag,"baccaratTimer Base= "+tableDetail[3]);
-                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setTimer(Integer.parseInt(tableDetail[3]));
+                    mAppViewModel.getBaccarat(tableId).setTimer(Integer.parseInt(tableDetail[3]));
                     ///////////第4个数据是结果,将结果拆分好，放到路子信息里面
                     if (!"".equals(tableDetail[4]) && !"0".equals(tableDetail[4]) && tableDetail[4].length() == 4) {
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setBanker_palyer_tie(Integer.parseInt(tableDetail[4].substring(0, 1)));
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setBankerPair(Integer.parseInt(tableDetail[4].substring(1, 2)));
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setPlayerPair(Integer.parseInt(tableDetail[4].substring(2, 3)));
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratResults().setBig_small(Integer.parseInt(tableDetail[4].substring(3, 4)));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratResults().setBanker_palyer_tie(Integer.parseInt(tableDetail[4].substring(0, 1)));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratResults().setBankerPair(Integer.parseInt(tableDetail[4].substring(1, 2)));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratResults().setPlayerPair(Integer.parseInt(tableDetail[4].substring(2, 3)));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratResults().setBig_small(Integer.parseInt(tableDetail[4].substring(3, 4)));
                         //   String road = mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBigRoad();
                         //  mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setBigRoad(road+tableDetail[4]);
                     }
                     ///////////第5个数据是庄下注
                     //    Log.i(WebSiteUrl.Tag,"BankerPool = "+Integer.parseInt(tableDetail[5]));
-                    if (!mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getPoolString().equals(tableDetail[5] + tableDetail[6] + tableDetail[7]
+                    if (!mAppViewModel.getBaccarat(tableId).getPoolString().equals(tableDetail[5] + tableDetail[6] + tableDetail[7]
                             + tableDetail[8] + tableDetail[9] + tableDetail[10] + tableDetail[11])) {
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setPoolString(tableDetail[5] + tableDetail[6] + tableDetail[7]
+                        mAppViewModel.getBaccarat(tableId).setPoolString(tableDetail[5] + tableDetail[6] + tableDetail[7]
                                 + tableDetail[8] + tableDetail[9] + tableDetail[10] + tableDetail[11]);
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setBanker(Integer.parseInt(tableDetail[5]));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPool().setBanker(Integer.parseInt(tableDetail[5]));
                         ///////////第6个数据是闲下注
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setPlayer(Integer.parseInt(tableDetail[6]));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPool().setPlayer(Integer.parseInt(tableDetail[6]));
                         ///////////第7个数据是和下注
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setTie(Integer.parseInt(tableDetail[7]));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPool().setTie(Integer.parseInt(tableDetail[7]));
                         ///////////第8个数据是庄对下注
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setBankerPair(Integer.parseInt(tableDetail[8]));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPool().setBankerPair(Integer.parseInt(tableDetail[8]));
                         ///////////第9个数据是闲对下注
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setPlayerPair(Integer.parseInt(tableDetail[9]));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPool().setPlayerPair(Integer.parseInt(tableDetail[9]));
                         ///////////第10个数据是大下注
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setBig(Integer.parseInt(tableDetail[10]));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPool().setBig(Integer.parseInt(tableDetail[10]));
                         ///////////第11个数据是小下注
-                        mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPool().setSmall(Integer.parseInt(tableDetail[11]));
+                        mAppViewModel.getBaccarat(tableId).getBaccaratPool().setSmall(Integer.parseInt(tableDetail[11]));
                     }
 
 
                     ///////////第12个数据是系统时间
-                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setServerTime(tableDetail[12].substring(0, tableDetail[12].length() - 3));
+                    mAppViewModel.getBaccarat(tableId).setServerTime(tableDetail[12].substring(0, tableDetail[12].length() - 3));
 
-                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().Init();
+                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().Init();
                     Log.d("GameStatus123", "Banker: " + tableDetail[15] + "-" + tableDetail[16] + "-" + tableDetail[17]);
                     if (tableDetail.length > 15) {
                         if (!"null".equals(tableDetail[15]))
-                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker1(Integer.parseInt(tableDetail[15]));
+                            mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setBanker1(Integer.parseInt(tableDetail[15]));
                         if (!"null".equals(tableDetail[16]))
-                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker2(Integer.parseInt(tableDetail[16]));
+                            mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setBanker2(Integer.parseInt(tableDetail[16]));
                         if (!"null".equals(tableDetail[17]))
-                            mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker3(Integer.parseInt(tableDetail[17]));
+                            mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setBanker3(Integer.parseInt(tableDetail[17]));
                         //拆分扑克牌信息
                         if (tableInfo.length >= 2) {
                             String pokerDetailPlayer[] = tableInfo[1].split("#");
                             Log.d("GameStatus123", "Player: " + tableInfo[1]);
                             if (pokerDetailPlayer.length > 3) {
                                 if (!"null".equals(pokerDetailPlayer[0]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
                                 if (!"null".equals(pokerDetailPlayer[1]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
                                 if (!"null".equals(pokerDetailPlayer[2]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
 
-                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setShoeNumber(pokerDetailPlayer[3]);
+                                mAppViewModel.getBaccarat(tableId).setShoeNumber(pokerDetailPlayer[3]);
                                 LogUtil.d("tv_baccarat_shoe_number", "getBaccaratStatus,setShoeNumber:" + pokerDetailPlayer[3] + "," + pokerDetailPlayer[4]);
-                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameNumber(pokerDetailPlayer[4]);
+                                mAppViewModel.getBaccarat(tableId).setGameNumber(pokerDetailPlayer[4]);
 
                             }
 
@@ -429,26 +429,26 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             String pokerDetailBanker[] = tableInfo[1].split("#");
                             if (pokerDetailBanker.length == 3) {
                                 if (!"null".equals(pokerDetailBanker[0]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker1(Integer.parseInt(pokerDetailBanker[0]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setBanker1(Integer.parseInt(pokerDetailBanker[0]));
                                 if (!"null".equals(pokerDetailBanker[1]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker2(Integer.parseInt(pokerDetailBanker[1]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setBanker2(Integer.parseInt(pokerDetailBanker[1]));
                                 if (!"null".equals(pokerDetailBanker[2]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setBanker3(Integer.parseInt(pokerDetailBanker[2]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setBanker3(Integer.parseInt(pokerDetailBanker[2]));
 
                             }
                             Log.d("GameStatus123", "Player: " + tableInfo[2]);
                             String pokerDetailPlayer[] = tableInfo[2].split("#");
                             if (pokerDetailPlayer.length > 3) {
                                 if (!"null".equals(pokerDetailPlayer[0]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setPlayer1(Integer.parseInt(pokerDetailPlayer[0]));
                                 if (!"null".equals(pokerDetailPlayer[1]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setPlayer2(Integer.parseInt(pokerDetailPlayer[1]));
                                 if (!"null".equals(pokerDetailPlayer[2]))
-                                    mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
+                                    mAppViewModel.getBaccarat(tableId).getBaccaratPoker().setPlayer3(Integer.parseInt(pokerDetailPlayer[2]));
 
-                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setShoeNumber(pokerDetailPlayer[3]);
+                                mAppViewModel.getBaccarat(tableId).setShoeNumber(pokerDetailPlayer[3]);
                                 LogUtil.d("tv_baccarat_shoe_number", "getBaccaratStatus,setShoeNumber:" + pokerDetailPlayer[3] + "," + pokerDetailPlayer[4]);
-                                mAppViewModel.getBaccarat(mAppViewModel.getTableId()).setGameNumber(pokerDetailPlayer[4]);
+                                mAppViewModel.getBaccarat(tableId).setGameNumber(pokerDetailPlayer[4]);
 
                             }
 
@@ -658,6 +658,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     public void refreshUserBetMsg(String str) {
     }
 
+    private String getParam(int tableId) {
+        String param = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
+                + "&Serial=" + mAppViewModel.getSerialId() + "&Areaid=" + mAppViewModel.getAreaId();
+        return param;
+    }
+
     public class UpdateGameStatus implements Runnable {
         int iError = 0;
 
@@ -736,8 +742,89 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 postUrl = WebSiteUrl.LH_TABLE_STATUS_URL;
                                 break;
                         }
-                        String strRes = mAppViewModel.getHttpClient().sendPost(postUrl, "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
-                                + "&Serial=" + mAppViewModel.getSerialId() + "&Areaid=" + mAppViewModel.getAreaId());
+                        String param = getParam(mAppViewModel.getTableId());
+                        String strRes = mAppViewModel.getHttpClient().sendPost(postUrl, param);
+                        Log.d("shangpeisheng1212", "bjlRes=" + strRes);
+                        if (mAppViewModel.isOpenChangeTable()) {
+                            String bjlUrl = WebSiteUrl.BJL_TABLE_STATUS_URL;
+                            String sicboUrl = WebSiteUrl.SICBO_TABLE_STATUS_URL;
+                            String lpUrl = WebSiteUrl.LP_TABLE_STATUS_URL;
+                            String lhUrl = WebSiteUrl.LH_TABLE_STATUS_URL;
+                            if (postUrl.equals(bjlUrl)) {
+                                if (mAppViewModel.isClickBaccarat1() && mAppViewModel.getTableId() != 1) {
+                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(1));
+                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                    if (bjlRes.startsWith("Results=ok")) {
+                                        getBaccaratStatus(bjlRes, 1);
+                                    }
+                                }
+                                if (mAppViewModel.isClickBaccarat2() && mAppViewModel.getTableId() != 2) {
+                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(2));
+                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                    if (bjlRes.startsWith("Results=ok")) {
+                                        getBaccaratStatus(bjlRes, 2);
+                                    }
+                                }
+
+                                if (mAppViewModel.isClickBaccarat3() && mAppViewModel.getTableId() != 3) {
+                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(3));
+                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                    if (bjlRes.startsWith("Results=ok")) {
+                                        getBaccaratStatus(bjlRes, 3);
+                                    }
+                                }
+                                if (mAppViewModel.isClickBaccarat5() && mAppViewModel.getTableId() != 61) {
+                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(61));
+                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                    if (bjlRes.startsWith("Results=ok")) {
+                                        getBaccaratStatus(bjlRes, 61);
+                                    }
+                                }
+                                if (mAppViewModel.isClickBaccarat6() && mAppViewModel.getTableId() != 62) {
+                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(62));
+                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                    if (bjlRes.startsWith("Results=ok")) {
+                                        getBaccaratStatus(bjlRes, 62);
+                                    }
+                                }
+                                if (mAppViewModel.isClickBaccarat7() && mAppViewModel.getTableId() != 63) {
+                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(63));
+                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                    if (bjlRes.startsWith("Results=ok")) {
+                                        getBaccaratStatus(bjlRes, 63);
+                                    }
+                                }
+                                if (mAppViewModel.isClickBaccaratMi() && mAppViewModel.getTableId() != 71) {
+                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(71));
+                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                    if (bjlRes.startsWith("Results=ok")) {
+                                        getBaccaratStatus(bjlRes, 71);
+                                    }
+                                }
+
+                            }
+                            if (mAppViewModel.isClickSicbo() && !postUrl.equals(sicboUrl)) {
+                                String sicboRes = mAppViewModel.getHttpClient().sendPost(sicboUrl, getParam(31));
+                                Log.d("shangpeisheng1212", "sicboRes=" + sicboRes);
+                                if (sicboRes.startsWith("Results=ok")) {
+                                    getSicboStatus(sicboRes);
+                                }
+                            }
+                            if (mAppViewModel.isClickRoulette() && !postUrl.equals(lpUrl)) {
+                                String lpRes = mAppViewModel.getHttpClient().sendPost(lpUrl, getParam(21));
+                                Log.d("shangpeisheng1212", "lpRes=" + lpRes);
+                                if (lpRes.startsWith("Results=ok")) {
+                                    getRouletteStatus(lpRes);
+                                }
+                            }
+                            if (mAppViewModel.isClickDragonTiger() && !postUrl.equals(lhUrl)) {
+                                String lhRes = mAppViewModel.getHttpClient().sendPost(lhUrl, getParam(5));
+                                Log.d("shangpeisheng1212", "lhRes=" + lhRes);
+                                if (lhRes.startsWith("Results=ok")) {
+                                    getDragonTigerStatus(lhRes);
+                                }
+                            }
+                        }
                         Log.d("shangpeisheng", strRes);
                         refreshUserBetMsg(strRes);
                         Log.i(WebSiteUrl.Tag, strRes);
@@ -763,7 +850,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 case 83:
                                 case 84:
                                 case 71:
-                                    getBaccaratStatus(strRes);
+                                    getBaccaratStatus(strRes, mAppViewModel.getTableId());
                                     break;
                                 case 31:
                                     getSicboStatus(strRes);
@@ -853,7 +940,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 break;
                         }
                         String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-                        Log.d("Afb88", strRes);
+                        Log.d("Afb8821", strRes);
                         if (strRes.equals("netError") || strRes.equals("Results=no")) {//连续10次拿不到数据就退出，返回到登录界面
                             iError++;
                             Log.d("Afb88", "netError:--------" + statusUrl);
@@ -1741,8 +1828,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     protected void showChangeTable(View v) {
         initOldBigRoad();
-        tablePop.setPopTopContent();
+        tablePop.setPopTopContent(getGameChooseChip());
         if (tablePop.getParentCount() > 0) {
+            mAppViewModel.setOpenChangeTable(true);
             tablePop.showPopupGravityWindow(Gravity.RIGHT, 0, 0);
         }
     }
@@ -1854,7 +1942,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
 
         }
-        int with = ScreenUtil.dip2px(mContext, 150);
+        int with = ScreenUtil.dip2px(mContext, 250);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             with = with * 2;
         }
@@ -1866,206 +1954,246 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     Toast.makeText(mContext, getString(R.string.your_here), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                tablePop.closePopupWindow();
-                if (mAppViewModel.getTableId() == 1 || mAppViewModel.getTableId() == 2 || mAppViewModel.getTableId() == 3 ||
-                        mAppViewModel.getTableId() == 71 || mAppViewModel.getTableId() == 61 || mAppViewModel.getTableId() == 62 || mAppViewModel.getTableId() == 63) {
-                    if (gameMenuItem.getDrawableRes() == 1 || gameMenuItem.getDrawableRes() == 2 || gameMenuItem.getDrawableRes() == 3 ||
-                            gameMenuItem.getDrawableRes() == 71 || gameMenuItem.getDrawableRes() == 61 || gameMenuItem.getDrawableRes() == 62 ||
-                            gameMenuItem.getDrawableRes() == 63) {
-                        if (mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).getStatus() != 1) {
-                            Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        } else {
-                            mAppViewModel.setTableId(gameMenuItem.getDrawableRes());
-                            tableId = gameMenuItem.getDrawableRes();
-                            initBaccarat();
-                        }
-                        return;
-                    }
-                }
-                String menuStr = gameMenuItem.getTitle();
-                if (menuStr.equals("LB1")) {
-                    if (mAppViewModel.getBaccarat(1).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    mAppViewModel.setTableId(1);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getBaccarat01().getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getBaccarat01().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    tableId = 1;
-                    goBaccarat(1);
-                } else if (menuStr.equals("LB2")) {
-                    if (mAppViewModel.getBaccarat(2).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 2;
-                    mAppViewModel.setTableId(2);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getBaccarat02().getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getBaccarat02().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    goBaccarat(2);
-                } else if (menuStr.equals("LB3")) {
-                    if (mAppViewModel.getBaccarat(3).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 3;
-                    mAppViewModel.setTableId(3);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getBaccarat03().getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getBaccarat03().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    goBaccarat(3);
-                } else if (menuStr.equals("BM1")) {
-                    if (mAppViewModel.getBaccarat(71).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 71;
-                    mAppViewModel.setTableId(71);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getBaccarat71().getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getBaccarat71().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    goBaccarat(71);
-                } else if (menuStr.equals("RL1")) {
-                    if (mAppViewModel.getRoulette01().getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    showBlockDialog();
-                    tableId = 21;
-                    Bundle bundle = new Bundle();
-                    bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "21");
-                    mAppViewModel.setTableId(21);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getRoulette01().getRouletteLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getRoulette01().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    skipAct(RouletteActivity.class, bundle);
-                    finish();
-                } else if (menuStr.equals("SB1")) {
-                    if (mAppViewModel.getSicbo01().getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 31;
-                    showBlockDialog();
-                    Bundle bundle = new Bundle();
-                    bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "31");
-                    mAppViewModel.setTableId(31);
-                    String s = "";
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getSicbo01().getSicboLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getSicbo01().setLimitIndex(i);
-                            if (i == 1) {
-                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMaxTotalBet();
-                            } else if (i == 2) {
-                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMaxTotalBet();
-                            } else if (i == 3) {
-                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMaxTotalBet();
-                            } else {
-                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMaxTotalBet();
-                            }
-                            break;
-                        }
-                    }
-                    bundle.putString("limit", s);
-                    skipAct(SicboActivity.class, bundle);
-                    finish();
-                } else if (menuStr.equals("DT1")) {
-                    if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 5;
-                    showBlockDialog();
-                    Bundle bundle = new Bundle();
-                    bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "5");
-                    mAppViewModel.setTableId(5);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getDragonTiger01().getDragonTigerLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getDragonTiger01().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    skipAct(DragonTigerActivity.class, bundle);
-                    finish();
-                } else if (menuStr.equals("LB5")) {
-                    if (mAppViewModel.getBaccarat(61).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 61;
-                    mAppViewModel.setTableId(61);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getBaccarat61().getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getBaccarat61().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    goBaccarat(61);
-                } else if (menuStr.equals("LB6")) {
-                    if (mAppViewModel.getBaccarat(62).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 62;
-                    mAppViewModel.setTableId(62);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getBaccarat62().getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getBaccarat62().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    goBaccarat(62);
-                } else if (menuStr.equals("LB7")) {
-                    if (mAppViewModel.getBaccarat(63).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    tableId = 63;
-                    mAppViewModel.setTableId(63);
-                    for (int i = 1; i <= 4; i++) {
-                        if (mAppViewModel.getBaccarat63().getBaccaratLimit(i).getMaxTotalBet() > 0) {
-                            mAppViewModel.getBaccarat63().setLimitIndex(i);
-                            break;
-                        }
-                    }
-                    goBaccarat(63);
-                } else if (menuStr.equals("B04")) {
-                    if (mAppViewModel.getBaccarat(64).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    changeSeatGame(64);
-                } else if (menuStr.equals("B05")) {
-                    if (mAppViewModel.getBaccarat(65).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    changeSeatGame(65);
-                } else if (menuStr.equals("B06")) {
-                    if (mAppViewModel.getBaccarat(66).getStatus() != 1) {
-                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    changeSeatGame(66);
+                switch (gameMenuItem.getDrawableRes()) {
+                    case 1:
+                        mAppViewModel.setClickBaccarat1(true);
+                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        mAppViewModel.setClickBaccarat2(true);
+                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        break;
+                    case 3:
+                        mAppViewModel.setClickBaccarat3(true);
+                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        break;
+                    case 61:
+                        mAppViewModel.setClickBaccarat5(true);
+                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        break;
+                    case 62:
+                        mAppViewModel.setClickBaccarat6(true);
+                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        break;
+                    case 63:
+                        mAppViewModel.setClickBaccarat7(true);
+                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        break;
+                    case 71:
+                        mAppViewModel.setClickBaccaratMi(true);
+                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        break;
+                    case 5:
+                        mAppViewModel.setClickDragonTiger(true);
+                        break;
+                    case 21:
+                        mAppViewModel.setClickRoulette(true);
+                        break;
+                    case 31:
+                        mAppViewModel.setClickSicbo(true);
+                        break;
                 }
 
+//                tablePop.closePopupWindow();
+//                if (mAppViewModel.getTableId() == 1 || mAppViewModel.getTableId() == 2 || mAppViewModel.getTableId() == 3 ||
+//                        mAppViewModel.getTableId() == 71 || mAppViewModel.getTableId() == 61 || mAppViewModel.getTableId() == 62 || mAppViewModel.getTableId() == 63) {
+//                    if (gameMenuItem.getDrawableRes() == 1 || gameMenuItem.getDrawableRes() == 2 || gameMenuItem.getDrawableRes() == 3 ||
+//                            gameMenuItem.getDrawableRes() == 71 || gameMenuItem.getDrawableRes() == 61 || gameMenuItem.getDrawableRes() == 62 ||
+//                            gameMenuItem.getDrawableRes() == 63) {
+//                        if (mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).getStatus() != 1) {
+//                            Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            mAppViewModel.setTableId(gameMenuItem.getDrawableRes());
+//                            tableId = gameMenuItem.getDrawableRes();
+//                            initBaccarat();
+//                        }
+//                        return;
+//                    }
+//                }
+//                String menuStr = gameMenuItem.getTitle();
+//                if (menuStr.equals("LB1")) {
+//                    if (mAppViewModel.getBaccarat(1).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    mAppViewModel.setTableId(1);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getBaccarat01().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getBaccarat01().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    tableId = 1;
+//                    goBaccarat(1);
+//                } else if (menuStr.equals("LB2")) {
+//                    if (mAppViewModel.getBaccarat(2).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 2;
+//                    mAppViewModel.setTableId(2);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getBaccarat02().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getBaccarat02().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    goBaccarat(2);
+//                } else if (menuStr.equals("LB3")) {
+//                    if (mAppViewModel.getBaccarat(3).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 3;
+//                    mAppViewModel.setTableId(3);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getBaccarat03().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getBaccarat03().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    goBaccarat(3);
+//                } else if (menuStr.equals("BM1")) {
+//                    if (mAppViewModel.getBaccarat(71).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 71;
+//                    mAppViewModel.setTableId(71);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getBaccarat71().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getBaccarat71().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    goBaccarat(71);
+//                } else if (menuStr.equals("RL1")) {
+//                    if (mAppViewModel.getRoulette01().getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    showBlockDialog();
+//                    tableId = 21;
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "21");
+//                    mAppViewModel.setTableId(21);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getRoulette01().getRouletteLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getRoulette01().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    skipAct(RouletteActivity.class, bundle);
+//                    finish();
+//                } else if (menuStr.equals("SB1")) {
+//                    if (mAppViewModel.getSicbo01().getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 31;
+//                    showBlockDialog();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "31");
+//                    mAppViewModel.setTableId(31);
+//                    String s = "";
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getSicbo01().getSicboLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getSicbo01().setLimitIndex(i);
+//                            if (i == 1) {
+//                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMaxTotalBet();
+//                            } else if (i == 2) {
+//                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMaxTotalBet();
+//                            } else if (i == 3) {
+//                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMaxTotalBet();
+//                            } else {
+//                                s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMaxTotalBet();
+//                            }
+//                            break;
+//                        }
+//                    }
+//                    bundle.putString("limit", s);
+//                    skipAct(SicboActivity.class, bundle);
+//                    finish();
+//                } else if (menuStr.equals("DT1")) {
+//                    if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 5;
+//                    showBlockDialog();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "5");
+//                    mAppViewModel.setTableId(5);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getDragonTiger01().getDragonTigerLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getDragonTiger01().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    skipAct(DragonTigerActivity.class, bundle);
+//                    finish();
+//                } else if (menuStr.equals("LB5")) {
+//                    if (mAppViewModel.getBaccarat(61).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 61;
+//                    mAppViewModel.setTableId(61);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getBaccarat61().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getBaccarat61().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    goBaccarat(61);
+//                } else if (menuStr.equals("LB6")) {
+//                    if (mAppViewModel.getBaccarat(62).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 62;
+//                    mAppViewModel.setTableId(62);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getBaccarat62().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getBaccarat62().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    goBaccarat(62);
+//                } else if (menuStr.equals("LB7")) {
+//                    if (mAppViewModel.getBaccarat(63).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    tableId = 63;
+//                    mAppViewModel.setTableId(63);
+//                    for (int i = 1; i <= 4; i++) {
+//                        if (mAppViewModel.getBaccarat63().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+//                            mAppViewModel.getBaccarat63().setLimitIndex(i);
+//                            break;
+//                        }
+//                    }
+//                    goBaccarat(63);
+//                } else if (menuStr.equals("B04")) {
+//                    if (mAppViewModel.getBaccarat(64).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    changeSeatGame(64);
+//                } else if (menuStr.equals("B05")) {
+//                    if (mAppViewModel.getBaccarat(65).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    changeSeatGame(65);
+//                } else if (menuStr.equals("B06")) {
+//                    if (mAppViewModel.getBaccarat(66).getStatus() != 1) {
+//                        Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    changeSeatGame(66);
+//                }
+//
             }
         });
         tablePop.setTablesData(mAppViewModel, games);
@@ -2864,5 +2992,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 popSlideHint.showPopupCenterWindow();
             }
         }
+    }
+
+    private int gameChooseChip;
+
+    public int getGameChooseChip() {
+        return gameChooseChip;
+    }
+
+    public void setGameChooseChip(int gameChooseChip) {
+        this.gameChooseChip = gameChooseChip;
     }
 }

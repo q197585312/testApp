@@ -2446,6 +2446,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             public void itemCLick(View view, ChipBean chipBean, int position) {
                 if (chipBean.getValue() > 0) {
                     chooseChip = chipBean.getValue();
+                    setGameChooseChip(chooseChip);
                     selectedMap.put(true, position);
                     chips.notifyDataSetChanged();
                     initClickCount();
