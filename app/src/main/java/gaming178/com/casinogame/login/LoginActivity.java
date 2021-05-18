@@ -3,12 +3,14 @@ package gaming178.com.casinogame.login;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -79,13 +83,17 @@ public class LoginActivity extends BaseActivity {
     private HashMap<String, String> siteMap;
     private ImageView imgOpen;
     private ImageView img_gif;
-    private ImageView img_login_title;
+    private ImageView img_login_title, img_login_title_main;
     private LinearLayout ll_liga365;
     private LinearLayout ll_remember_me;
     private CheckBox cb_remember_me;
     private WebView webView;
     private ImageView img_exit;
     private RelativeLayout rl_webview;
+    private LinearLayout ll_lang, ll_lg_and_remember;
+    private ImageView img_in;
+    private ImageView img_en;
+    private TextView tv_user_name, tv_password_name;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -162,7 +170,44 @@ public class LoginActivity extends BaseActivity {
         }
         img_gif = findViewById(R.id.gd_img_gif);
         imgOpen = findViewById(R.id.gd_img_open);
+        btn_login = (Button) findViewById(R.id.gd__login_login_btn);
         if (BuildConfig.FLAVOR.equals("mainkasino")) {
+            tv_user_name = findViewById(R.id.tv_user_name);
+            tv_password_name = findViewById(R.id.tv_password_name);
+            tv_user_name.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.gd_user_img, 0, 0, 0);
+            tv_password_name.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.gd_password_img, 0, 0, 0);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tv_register.getLayoutParams();
+            layoutParams.topMargin = layoutParams.topMargin / 2;
+            tv_register.setLayoutParams(layoutParams);
+            cb_remember_me.setChecked(true);
+            btn_login.setBackgroundResource(R.drawable.gd_login_button_bg_blue);
+            tv_register.setBackgroundResource(R.drawable.gd_login_button_bg_red);
+            btn_login.setTextColor(Color.WHITE);
+            tv_register.setTextColor(Color.WHITE);
+            img_login_title.setVisibility(View.GONE);
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            img_login_title_main.setVisibility(View.VISIBLE);
+            ll_lg_and_remember = findViewById(R.id.ll_lg_and_remember);
+            ll_lg_and_remember.setVisibility(View.GONE);
+            ll_lang = findViewById(R.id.ll_lang);
+            ll_lang.setVisibility(View.VISIBLE);
+            img_in = findViewById(R.id.img_in);
+            img_en = findViewById(R.id.img_en);
+            img_in.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppTool.setAppLanguage(LoginActivity.this, "my");
+                    recreate();
+                }
+            });
+            img_en.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppTool.setAppLanguage(LoginActivity.this, "en");
+                    recreate();
+                }
+            });
+
             img_gif.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -218,7 +263,7 @@ public class LoginActivity extends BaseActivity {
             initSiteMap();
         }
 
-        btn_login = (Button) findViewById(R.id.gd__login_login_btn);
+
         //    tv_name.setText("T0000000301");
         //   tv_password.setText("111111");
         dialog = new BlockDialog(mContext, getString(R.string.logining));
@@ -259,7 +304,9 @@ public class LoginActivity extends BaseActivity {
             if (viewById != null)
                 viewById.setText(objectData.getSite());
         } else {
-            cb_remember_me.setChecked(false);
+            if (!BuildConfig.FLAVOR.equals("mainkasino")) {
+                cb_remember_me.setChecked(false);
+            }
         }
 
     }
