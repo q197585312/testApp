@@ -1958,30 +1958,37 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     case 1:
                         mAppViewModel.setClickBaccarat1(true);
                         tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 2:
                         mAppViewModel.setClickBaccarat2(true);
                         tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 3:
                         mAppViewModel.setClickBaccarat3(true);
                         tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 61:
                         mAppViewModel.setClickBaccarat5(true);
                         tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 62:
                         mAppViewModel.setClickBaccarat6(true);
                         tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 63:
                         mAppViewModel.setClickBaccarat7(true);
                         tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 71:
                         mAppViewModel.setClickBaccaratMi(true);
                         tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 5:
                         mAppViewModel.setClickDragonTiger(true);

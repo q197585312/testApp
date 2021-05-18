@@ -1,12 +1,11 @@
 package gaming178.com.casinogame.Util;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +39,6 @@ import gaming178.com.casinogame.base.AppModel;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
-import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.base.ItemCLickImp;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
@@ -157,6 +153,7 @@ public class TableChangePop extends BasePopupWindow {
             hereList.get(i).setText(context.getString(R.string.your_here));
         }
         refreshTimer((BaseActivity) context);
+        initAllGame();
     }
 
     private void refreshTimer(final BaseActivity baseActivity) {
@@ -232,6 +229,48 @@ public class TableChangePop extends BasePopupWindow {
                 }
             }
         }.start();
+    }
+
+    private void initAllGame() {
+        for (int i = 0; i < baccaratBetContentList.size(); i++) {
+            BaccaratTableBetContentBean contentBean = baccaratBetContentList.get(i);
+            initBaccaratGame(contentBean);
+        }
+    }
+
+    private void initBaccaratGame(BaccaratTableBetContentBean contentBean) {
+        clearBaccaratResultView(contentBean.getTableId());
+        contentBean.getContentView().setVisibility(View.GONE);
+        contentBean.getFlTablePlayer().removeAllViews();
+        contentBean.getFlTableBanker().removeAllViews();
+        contentBean.getFlTableTie().removeAllViews();
+        contentBean.getFlTablePP().removeAllViews();
+        contentBean.getFlTableBP().removeAllViews();
+        contentBean.setBaccaratGameNumber("");
+        contentBean.setBaccaratOpenPoker(true);
+        contentBean.setBaccaratGetResult(true);
+        for (int i = 0; i < baccaratTableBetBeanList.size(); i++) {
+            int tableId = baccaratTableBetBeanList.get(i).getTableId();
+            if (tableId == contentBean.getTableId()) {
+                BaccaratTableBetBean bean = baccaratTableBetBeanList.get(i);
+                bean.setPlayerCurrentBet(0);
+                bean.setPlayerAlreadyBet(0);
+                bean.setPlayerRepeatBet(0);
+                bean.setBankerCurrentBet(0);
+                bean.setBankerAlreadyBet(0);
+                bean.setBankerRepeatBet(0);
+                bean.setTieCurrentBet(0);
+                bean.setTieAlreadyBet(0);
+                bean.setTieRepeatBet(0);
+                bean.setPpCurrentBet(0);
+                bean.setPpAlreadyBet(0);
+                bean.setPpRepeatBet(0);
+                bean.setBpCurrentBet(0);
+                bean.setBpAlreadyBet(0);
+                bean.setBpRepeatBet(0);
+                break;
+            }
+        }
     }
 
     @Override
@@ -400,7 +439,7 @@ public class TableChangePop extends BasePopupWindow {
             if (item.getDrawableRes() < 4 || item.getDrawableRes() > 60) {
 
                 aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_brccarat, null);
-                initBaccarat(aB1, item.getDrawableRes());
+                initBaccaratContent(aB1, item.getDrawableRes());
                 textView = (TextView) aB1.findViewById(R.id.gd__tv_table_title);
                 GridLayout layout = (GridLayout) aB1.findViewById(R.id.gd__baccarat_gridlayout2);
 
@@ -615,7 +654,6 @@ public class TableChangePop extends BasePopupWindow {
 
     private List<BaccaratTableBetContentBean> baccaratBetContentList;
     private List<BaccaratTableBetBean> baccaratTableBetBeanList;
-    String gameNumber1, gameNumber2, gameNumber3, gameNumber5, gameNumber6, gameNumber7, gameNumberMi;
 
     public BaccaratTableBetContentBean getBaccaratBetContentBean(int tableId) {
         BaccaratTableBetContentBean contentBean = null;
@@ -630,7 +668,20 @@ public class TableChangePop extends BasePopupWindow {
         return contentBean;
     }
 
-    private void initBaccarat(View view, int tableId) {
+    public BaccaratTableBetBean getBaccaratBetBean(int tableId) {
+        BaccaratTableBetBean contentBean = null;
+        for (int i = 0; i < baccaratTableBetBeanList.size(); i++) {
+            BaccaratTableBetBean bean = baccaratTableBetBeanList.get(i);
+            int id = bean.getTableId();
+            if (tableId == id) {
+                contentBean = bean;
+                break;
+            }
+        }
+        return contentBean;
+    }
+
+    private void initBaccaratContent(View view, int tableId) {
         BaccaratTableBetBean baccaratTableBetBean = new BaccaratTableBetBean();
         baccaratTableBetBean.setTableId(tableId);
         baccaratTableBetBeanList.add(baccaratTableBetBean);
@@ -655,11 +706,13 @@ public class TableChangePop extends BasePopupWindow {
         flTablePlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chooseChip < 1) {
-                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
-                    return;
+                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "P", false);
                 }
-                TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "P");
 
             }
         });
@@ -669,12 +722,13 @@ public class TableChangePop extends BasePopupWindow {
         flTableBanker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chooseChip < 1) {
-                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
-                    return;
+                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "B", false);
                 }
-                TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "B");
-
             }
         });
 
@@ -683,11 +737,13 @@ public class TableChangePop extends BasePopupWindow {
         flTableTie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chooseChip < 1) {
-                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
-                    return;
+                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "T", false);
                 }
-                TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "T");
 
             }
         });
@@ -697,11 +753,13 @@ public class TableChangePop extends BasePopupWindow {
         flTablePP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chooseChip < 1) {
-                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
-                    return;
+                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "PP", false);
                 }
-                TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "PP");
 
             }
         });
@@ -711,11 +769,13 @@ public class TableChangePop extends BasePopupWindow {
         flTableBP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chooseChip < 1) {
-                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
-                    return;
+                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "BP", false);
                 }
-                TableBetUtils.baccaratBet(tableId, baccaratTableBetBean, getBaccaratBetContentBean(tableId), mAppViewModel, context, chooseChip, "BP");
 
             }
         });
@@ -724,8 +784,7 @@ public class TableChangePop extends BasePopupWindow {
         imgCloseBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                betContent.setVisibility(View.GONE);
-                clearBaccarat(tableId);
+                initBaccaratGame(getBaccaratBetContentBean(tableId));
                 switch (tableId) {
                     case 1:
                         mAppViewModel.setClickBaccarat1(false);
@@ -754,7 +813,7 @@ public class TableChangePop extends BasePopupWindow {
         baccaratBetContentList.add(contentBean);
     }
 
-    private void clearBaccarat(int tableId) {
+    private void clearBaccaratResultView(int tableId) {
         getBaccaratBetContentBean(tableId).getLlResult().setVisibility(View.GONE);
         getBaccaratBetContentBean(tableId).getImgBanker1().setVisibility(View.GONE);
         getBaccaratBetContentBean(tableId).getImgBanker2().setVisibility(View.GONE);
@@ -771,13 +830,34 @@ public class TableChangePop extends BasePopupWindow {
             if (getBaccaratBetContentBean(tableId).getResultWinView() != null && getBaccaratBetContentBean(tableId).getResultWinView().getBackground() != null) {
                 getBaccaratBetContentBean(tableId).getResultWinView().setBackgroundResource(0);
             }
-            clearBaccarat(tableId);
+            clearBaccaratResultView(tableId);
+            if (!getBaccaratBetContentBean(tableId).getBaccaratGameNumber().equals(mAppViewModel.getBaccarat(tableId).getGameNumber())) {
+                TableBetUtils.clearAllChip(getBaccaratBetBean(tableId), getBaccaratBetContentBean(tableId));
+                getBaccaratBetContentBean(tableId).setBaccaratGameNumber(mAppViewModel.getBaccarat(tableId).getGameNumber());
+                getBaccaratBetContentBean(tableId).setBaccaratOpenPoker(true);
+                getBaccaratBetContentBean(tableId).setBaccaratGetResult(true);
+                BaccaratTableBetBean baccaratBetBean = getBaccaratBetBean(tableId);
+                baccaratBetBean.setPlayerAlreadyBet(0);
+                baccaratBetBean.setBankerAlreadyBet(0);
+                baccaratBetBean.setTieAlreadyBet(0);
+                baccaratBetBean.setPpAlreadyBet(0);
+                baccaratBetBean.setBpAlreadyBet(0);
+            }
         } else if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 2) {
             getBaccaratBetContentBean(tableId).getLlResult().setVisibility(View.VISIBLE);
             showBaccaratPoint(tableId);
+            if (getBaccaratBetContentBean(tableId).isBaccaratOpenPoker()) {
+                getBaccaratBetContentBean(tableId).setBaccaratOpenPoker(false);
+                TableBetUtils.clearNoBetChip(getBaccaratBetBean(tableId), getBaccaratBetContentBean(tableId), context);
+            }
         } else if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 5) {
             showBaccaratPoint(tableId);
             showBaccaratResult(tableId);
+            if (getBaccaratBetContentBean(tableId).isBaccaratGetResult()) {
+                getBaccaratBetContentBean(tableId).setBaccaratGetResult(false);
+                TableBetUtils.clearAllChip(getBaccaratBetBean(tableId), getBaccaratBetContentBean(tableId));
+            }
+
         }
 
     }
@@ -883,28 +963,71 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    public void updateBaccaratBetMoney(int tableId) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
+                            + "&Xhid=" + mAppViewModel.getBaccarat(tableId).getShoeNumber() + "&Blid=" + mAppViewModel.getBaccarat(tableId).getGameNumber() +
+                            "&Xh=" + mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxTotalBet();
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_BET_MONEY_URL, params);
+                    String strInfo[] = strRes.split("#");
+                    if (strRes.startsWith("Results=ok")) {
+                        if (strInfo.length >= 10) {
+                            if (!TextUtils.isEmpty(strInfo[4])) {
+                                getBaccaratBetBean(tableId).setBankerAlreadyBet((int) Double.parseDouble(strInfo[4]));
+                            }
+                            if (!TextUtils.isEmpty(strInfo[3])) {
+                                getBaccaratBetBean(tableId).setPlayerAlreadyBet((int) Double.parseDouble(strInfo[3]));
+                            }
+                            if (!TextUtils.isEmpty(strInfo[5])) {
+                                getBaccaratBetBean(tableId).setTieAlreadyBet((int) Double.parseDouble(strInfo[5]));
+                            }
+                            if (!TextUtils.isEmpty(strInfo[6])) {
+                                getBaccaratBetBean(tableId).setBpAlreadyBet((int) Double.parseDouble(strInfo[6]));
+                            }
+                            if (!TextUtils.isEmpty(strInfo[7])) {
+                                getBaccaratBetBean(tableId).setPpAlreadyBet((int) Double.parseDouble(strInfo[7]));
+                            }
+                            BaseActivity baseActivity = (BaseActivity) context;
+                            baseActivity.getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    BaccaratTableBetBean baccaratBetBean = getBaccaratBetBean(tableId);
+                                    int playerAlreadyBet = baccaratBetBean.getPlayerAlreadyBet();
+                                    int bankerAlreadyBet = baccaratBetBean.getBankerAlreadyBet();
+                                    int tieAlreadyBet = baccaratBetBean.getTieAlreadyBet();
+                                    int ppAlreadyBet = baccaratBetBean.getPpAlreadyBet();
+                                    int bpAlreadyBet = baccaratBetBean.getBpAlreadyBet();
+                                    if (playerAlreadyBet > 0) {
+                                        TableBetUtils.addChip(getBaccaratBetContentBean(tableId).getFlTablePlayer(), playerAlreadyBet, playerAlreadyBet, context);
+                                    }
+                                    if (bankerAlreadyBet > 0) {
+                                        TableBetUtils.addChip(getBaccaratBetContentBean(tableId).getFlTableBanker(), bankerAlreadyBet, bankerAlreadyBet, context);
+                                    }
+                                    if (tieAlreadyBet > 0) {
+                                        TableBetUtils.addChip(getBaccaratBetContentBean(tableId).getFlTableTie(), tieAlreadyBet, tieAlreadyBet, context);
+                                    }
+                                    if (ppAlreadyBet > 0) {
+                                        TableBetUtils.addChip(getBaccaratBetContentBean(tableId).getFlTablePP(), ppAlreadyBet, ppAlreadyBet, context);
+                                    }
+                                    if (bpAlreadyBet > 0) {
+                                        TableBetUtils.addChip(getBaccaratBetContentBean(tableId).getFlTableBP(), bpAlreadyBet, bpAlreadyBet, context);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
     private void updateGame() {
-//        String gameNumber1 = mAppViewModel.getBaccarat(1).getGameNumber();
-//        String gameNumber2 = mAppViewModel.getBaccarat(2).getGameNumber();
-//        String gameNumber3 = mAppViewModel.getBaccarat(3).getGameNumber();
-//        String gameNumber5 = mAppViewModel.getBaccarat(61).getGameNumber();
-//        String gameNumber6 = mAppViewModel.getBaccarat(62).getGameNumber();
-//        String gameNumber7 = mAppViewModel.getBaccarat(63).getGameNumber();
-//        String gameNumberMi = mAppViewModel.getBaccarat(71).getGameNumber();
-//        String gameNumber1 = mAppViewModel.getBaccarat(1).getShoeNumber();
-//        String gameNumber2 = mAppViewModel.getBaccarat(2).getShoeNumber();
-//        String gameNumber3 = mAppViewModel.getBaccarat(3).getShoeNumber();
-//        String gameNumber5 = mAppViewModel.getBaccarat(61).getShoeNumber();
-//        String gameNumber6 = mAppViewModel.getBaccarat(62).getShoeNumber();
-//        String gameNumber7 = mAppViewModel.getBaccarat(63).getShoeNumber();
-//        String gameNumberMi = mAppViewModel.getBaccarat(71).getShoeNumber();
-//        Log.d("qwer1234", "gameNumber1: "+gameNumber1);
-//        Log.d("qwer1234", "gameNumber2: "+gameNumber2);
-//        Log.d("qwer1234", "gameNumber3: "+gameNumber3);
-//        Log.d("qwer1234", "gameNumber5: "+gameNumber5);
-//        Log.d("qwer1234", "gameNumber6: "+gameNumber6);
-//        Log.d("qwer1234", "gameNumber7: "+gameNumber7);
-//        Log.d("qwer1234", "gameNumberMi: "+gameNumberMi);
         if (mAppViewModel.isClickBaccarat1()) {
             updateBaccarat(1);
         }

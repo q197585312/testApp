@@ -26,6 +26,9 @@ public class BaccaratTableBetContentBean {
     private FrameLayout flTableTie;
     private FrameLayout flTablePP;
     private FrameLayout flTableBP;
+    private String BaccaratGameNumber;
+    private boolean isBaccaratOpenPoker;
+    private boolean isBaccaratGetResult;
 
     public int getTableId() {
         return tableId;
@@ -177,5 +180,29 @@ public class BaccaratTableBetContentBean {
 
     public void setFlTableBP(FrameLayout flTableBP) {
         this.flTableBP = flTableBP;
+    }
+
+    public String getBaccaratGameNumber() {
+        return BaccaratGameNumber;
+    }
+
+    public void setBaccaratGameNumber(String baccaratGameNumber) {
+        BaccaratGameNumber = baccaratGameNumber;
+    }
+
+    public boolean isBaccaratOpenPoker() {
+        return isBaccaratOpenPoker;
+    }
+
+    public void setBaccaratOpenPoker(boolean baccaratOpenPoker) {
+        isBaccaratOpenPoker = baccaratOpenPoker;
+    }
+
+    public boolean isBaccaratGetResult() {
+        return isBaccaratGetResult;
+    }
+
+    public void setBaccaratGetResult(boolean baccaratGetResult) {
+        isBaccaratGetResult = baccaratGetResult;
     }
 }

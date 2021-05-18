@@ -12,6 +12,11 @@ public class BaccaratTableBetBean {
     private int ppCurrentBet;
     private int bpAlreadyBet;
     private int bpCurrentBet;
+    private int playerRepeatBet;
+    private int bankerRepeatBet;
+    private int tieRepeatBet;
+    private int ppRepeatBet;
+    private int bpRepeatBet;
 
     public int getTableId() {
         return tableId;
@@ -99,5 +104,45 @@ public class BaccaratTableBetBean {
 
     public void setBpCurrentBet(int bpCurrentBet) {
         this.bpCurrentBet = bpCurrentBet;
+    }
+
+    public int getPlayerRepeatBet() {
+        return playerRepeatBet;
+    }
+
+    public void setPlayerRepeatBet(int playerRepeatBet) {
+        this.playerRepeatBet = playerRepeatBet;
+    }
+
+    public int getBankerRepeatBet() {
+        return bankerRepeatBet;
+    }
+
+    public void setBankerRepeatBet(int bankerRepeatBet) {
+        this.bankerRepeatBet = bankerRepeatBet;
+    }
+
+    public int getTieRepeatBet() {
+        return tieRepeatBet;
+    }
+
+    public void setTieRepeatBet(int tieRepeatBet) {
+        this.tieRepeatBet = tieRepeatBet;
+    }
+
+    public int getPpRepeatBet() {
+        return ppRepeatBet;
+    }
+
+    public void setPpRepeatBet(int ppRepeatBet) {
+        this.ppRepeatBet = ppRepeatBet;
+    }
+
+    public int getBpRepeatBet() {
+        return bpRepeatBet;
+    }
+
+    public void setBpRepeatBet(int bpRepeatBet) {
+        this.bpRepeatBet = bpRepeatBet;
     }
 }

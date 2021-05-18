@@ -28,72 +28,92 @@ import gaming178.com.casinogame.base.AppModel;
 public class TableBetUtils {
 
 
-    public static void baccaratBet(int tableId, BaccaratTableBetBean baccaratTableBetBean, BaccaratTableBetContentBean contentBean, AppModel mAppViewModel, Context context, int chooseChip, String betType) {
+    public static void baccaratBet(int tableId, BaccaratTableBetBean baccaratTableBetBean, BaccaratTableBetContentBean contentBean, AppModel mAppViewModel, Context context, int chooseChip, String betType, boolean isRepeat) {
         int currentBet = 0;
         int alreadyBet = 0;
-        int min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinBankerPlayerBet();
-        int max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxBankerPlayerBet();
-        switch (betType) {
-            case "P":
-                currentBet = baccaratTableBetBean.getPlayerCurrentBet();
-                alreadyBet = baccaratTableBetBean.getPlayerAlreadyBet();
-                min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinBankerPlayerBet();
-                max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxBankerPlayerBet();
-                break;
-            case "B":
-                currentBet = baccaratTableBetBean.getBankerCurrentBet();
-                alreadyBet = baccaratTableBetBean.getBankerAlreadyBet();
-                min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinBankerPlayerBet();
-                max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxBankerPlayerBet();
-                break;
-            case "T":
-                currentBet = baccaratTableBetBean.getTieCurrentBet();
-                alreadyBet = baccaratTableBetBean.getTieAlreadyBet();
-                min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinTieBet();
-                max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxTieBet();
-                break;
-            case "PP":
-                currentBet = baccaratTableBetBean.getPpCurrentBet();
-                alreadyBet = baccaratTableBetBean.getPpAlreadyBet();
-                min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinPairBet();
-                max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxPairBet();
-                break;
-            case "BP":
-                currentBet = baccaratTableBetBean.getBpCurrentBet();
-                alreadyBet = baccaratTableBetBean.getBpAlreadyBet();
-                min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinPairBet();
-                max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxPairBet();
-                break;
-        }
-        if (alreadyBet == 0) {
-            if (currentBet == 0) {
-                if (chooseChip < min) {
-                    currentBet = min;
-                } else if (chooseChip > max) {
-                    currentBet = max;
+        if (!isRepeat) {
+            int min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinBankerPlayerBet();
+            int max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxBankerPlayerBet();
+            switch (betType) {
+                case "P":
+                    currentBet = baccaratTableBetBean.getPlayerCurrentBet();
+                    alreadyBet = baccaratTableBetBean.getPlayerAlreadyBet();
+                    min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinBankerPlayerBet();
+                    max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxBankerPlayerBet();
+                    break;
+                case "B":
+                    currentBet = baccaratTableBetBean.getBankerCurrentBet();
+                    alreadyBet = baccaratTableBetBean.getBankerAlreadyBet();
+                    min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinBankerPlayerBet();
+                    max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxBankerPlayerBet();
+                    break;
+                case "T":
+                    currentBet = baccaratTableBetBean.getTieCurrentBet();
+                    alreadyBet = baccaratTableBetBean.getTieAlreadyBet();
+                    min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinTieBet();
+                    max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxTieBet();
+                    break;
+                case "PP":
+                    currentBet = baccaratTableBetBean.getPpCurrentBet();
+                    alreadyBet = baccaratTableBetBean.getPpAlreadyBet();
+                    min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinPairBet();
+                    max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxPairBet();
+                    break;
+                case "BP":
+                    currentBet = baccaratTableBetBean.getBpCurrentBet();
+                    alreadyBet = baccaratTableBetBean.getBpAlreadyBet();
+                    min = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMinPairBet();
+                    max = mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxPairBet();
+                    break;
+            }
+            if (alreadyBet == 0) {
+                if (currentBet == 0) {
+                    if (chooseChip < min) {
+                        currentBet = min;
+                    } else if (chooseChip > max) {
+                        currentBet = max;
+                    } else {
+                        currentBet = chooseChip;
+                    }
                 } else {
-                    currentBet = chooseChip;
+                    if (currentBet + chooseChip > max) {
+                        currentBet = max;
+                    } else {
+                        currentBet = currentBet + chooseChip;
+                    }
                 }
             } else {
-                if (currentBet + chooseChip > max) {
-                    currentBet = max;
+                if (currentBet == 0) {
+                    if (chooseChip + alreadyBet > max) {
+                        currentBet = max - alreadyBet;
+                    } else {
+                        currentBet = chooseChip;
+                    }
                 } else {
-                    currentBet = currentBet + chooseChip;
+                    if (chooseChip + alreadyBet + currentBet > max) {
+                        currentBet = max - alreadyBet;
+                    } else {
+                        currentBet = currentBet + chooseChip;
+                    }
                 }
             }
         } else {
-            if (currentBet == 0) {
-                if (chooseChip + alreadyBet > max) {
-                    currentBet = max - alreadyBet;
-                } else {
-                    currentBet = chooseChip;
-                }
-            } else {
-                if (chooseChip + alreadyBet + currentBet > max) {
-                    currentBet = max - alreadyBet;
-                } else {
-                    currentBet = currentBet + chooseChip;
-                }
+            switch (betType) {
+                case "P":
+                    currentBet = baccaratTableBetBean.getPlayerRepeatBet();
+                    break;
+                case "B":
+                    currentBet = baccaratTableBetBean.getBankerRepeatBet();
+                    break;
+                case "T":
+                    currentBet = baccaratTableBetBean.getTieRepeatBet();
+                    break;
+                case "PP":
+                    currentBet = baccaratTableBetBean.getPpRepeatBet();
+                    break;
+                case "BP":
+                    currentBet = baccaratTableBetBean.getBpRepeatBet();
+                    break;
             }
         }
         if (currentBet > 0) {
@@ -155,13 +175,13 @@ public class TableBetUtils {
                             imgCancel.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    clearAllChip(baccaratTableBetBean, contentBean, context);
+                                    clearNoBetChip(baccaratTableBetBean, contentBean, context);
                                 }
                             });
                             imgRepeat.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-
+                                    RepeatBet(mAppViewModel, tableId, baccaratTableBetBean, context, contentBean, chooseChip);
                                 }
                             });
                             imgSure.setOnClickListener(new View.OnClickListener() {
@@ -200,21 +220,26 @@ public class TableBetUtils {
 
                         double resMoney = Double.parseDouble(strInfo[4]);
                         baccaratTableBetBean.setBankerAlreadyBet((int) resMoney);
+                        baccaratTableBetBean.setBankerRepeatBet((int) resMoney);
                         baccaratTableBetBean.setBankerCurrentBet(0);
 
                         resMoney = Double.parseDouble(strInfo[3]);
                         baccaratTableBetBean.setPlayerAlreadyBet((int) resMoney);
+                        baccaratTableBetBean.setPlayerRepeatBet((int) resMoney);
                         baccaratTableBetBean.setPlayerCurrentBet(0);
 
                         resMoney = Double.parseDouble(strInfo[5]);
                         baccaratTableBetBean.setTieAlreadyBet((int) resMoney);
+                        baccaratTableBetBean.setTieRepeatBet((int) resMoney);
                         baccaratTableBetBean.setTieCurrentBet(0);
 
                         resMoney = Double.parseDouble(strInfo[6]);
                         baccaratTableBetBean.setBpAlreadyBet((int) resMoney);
+                        baccaratTableBetBean.setBpRepeatBet((int) resMoney);
                         baccaratTableBetBean.setBpCurrentBet(0);
 
                         resMoney = Double.parseDouble(strInfo[7]);
+                        baccaratTableBetBean.setPpAlreadyBet((int) resMoney);
                         baccaratTableBetBean.setPpAlreadyBet((int) resMoney);
                         baccaratTableBetBean.setPpCurrentBet(0);
                     }
@@ -222,7 +247,7 @@ public class TableBetUtils {
                         @Override
                         public void run() {
                             Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
-                            clearAllChip(baccaratTableBetBean, contentBean, context);
+                            clearNoBetChip(baccaratTableBetBean, contentBean, context);
                         }
                     });
                 } else {
@@ -237,7 +262,39 @@ public class TableBetUtils {
         }.start();
     }
 
-    private static void clearAllChip(BaccaratTableBetBean baccaratTableBetBean, BaccaratTableBetContentBean contentBean, Context context) {
+    private static void RepeatBet(AppModel mAppViewModel, int tableId, BaccaratTableBetBean baccaratTableBetBean, Context context, BaccaratTableBetContentBean contentBean, int chooseChip) {
+        int playerRepeatBet = baccaratTableBetBean.getPlayerRepeatBet();
+        int bankerRepeatBet = baccaratTableBetBean.getBankerRepeatBet();
+        int tieRepeatBet = baccaratTableBetBean.getTieRepeatBet();
+        int ppRepeatBet = baccaratTableBetBean.getPpRepeatBet();
+        int bpRepeatBet = baccaratTableBetBean.getBpRepeatBet();
+        int playerAlreadyBet = baccaratTableBetBean.getPlayerAlreadyBet();
+        int bankerAlreadyBet = baccaratTableBetBean.getBankerAlreadyBet();
+        int tieAlreadyBet = baccaratTableBetBean.getTieAlreadyBet();
+        int ppAlreadyBet = baccaratTableBetBean.getPpAlreadyBet();
+        int bpAlreadyBet = baccaratTableBetBean.getBpAlreadyBet();
+        if (playerAlreadyBet == 0 && bankerAlreadyBet == 0 && tieAlreadyBet == 0 && ppAlreadyBet == 0 && bpAlreadyBet == 0) {
+            clearAllChip(baccaratTableBetBean, contentBean);
+            if (playerRepeatBet > 0) {
+                baccaratBet(tableId, baccaratTableBetBean, contentBean, mAppViewModel, context, chooseChip, "P", true);
+            }
+            if (bankerRepeatBet > 0) {
+                baccaratBet(tableId, baccaratTableBetBean, contentBean, mAppViewModel, context, chooseChip, "B", true);
+            }
+            if (tieRepeatBet > 0) {
+                baccaratBet(tableId, baccaratTableBetBean, contentBean, mAppViewModel, context, chooseChip, "T", true);
+            }
+            if (ppRepeatBet > 0) {
+                baccaratBet(tableId, baccaratTableBetBean, contentBean, mAppViewModel, context, chooseChip, "PP", true);
+            }
+            if (bpRepeatBet > 0) {
+                baccaratBet(tableId, baccaratTableBetBean, contentBean, mAppViewModel, context, chooseChip, "BP ", true);
+            }
+        }
+
+    }
+
+    public static void clearNoBetChip(BaccaratTableBetBean baccaratTableBetBean, BaccaratTableBetContentBean contentBean, Context context) {
         int playerAlreadyBet = baccaratTableBetBean.getPlayerAlreadyBet();
         int bankerAlreadyBet = baccaratTableBetBean.getBankerAlreadyBet();
         int tieAlreadyBet = baccaratTableBetBean.getTieAlreadyBet();
@@ -263,9 +320,33 @@ public class TableBetUtils {
         if (bpAlreadyBet > 0) {
             addChip(contentBean.getFlTableBP(), bpAlreadyBet, bpAlreadyBet, context);
         }
+        baccaratTableBetBean.setPlayerCurrentBet(0);
+        baccaratTableBetBean.setBankerCurrentBet(0);
+        baccaratTableBetBean.setTieCurrentBet(0);
+        baccaratTableBetBean.setPpCurrentBet(0);
+        baccaratTableBetBean.setBpCurrentBet(0);
     }
 
-    private static void addChip(FrameLayout fl, int money, int betMoney, Context context) {
+    public static void clearAllChip(BaccaratTableBetBean baccaratTableBetBean, BaccaratTableBetContentBean contentBean) {
+        contentBean.getFlTablePlayer().removeAllViews();
+        contentBean.getFlTableBanker().removeAllViews();
+        contentBean.getFlTableTie().removeAllViews();
+        contentBean.getFlTablePP().removeAllViews();
+        contentBean.getFlTableBP().removeAllViews();
+        baccaratTableBetBean.setPlayerCurrentBet(0);
+        baccaratTableBetBean.setBankerCurrentBet(0);
+        baccaratTableBetBean.setTieCurrentBet(0);
+        baccaratTableBetBean.setPpCurrentBet(0);
+        baccaratTableBetBean.setBpCurrentBet(0);
+        baccaratTableBetBean.setPlayerAlreadyBet(0);
+        baccaratTableBetBean.setBankerAlreadyBet(0);
+        baccaratTableBetBean.setTieAlreadyBet(0);
+        baccaratTableBetBean.setPpAlreadyBet(0);
+        baccaratTableBetBean.setBpAlreadyBet(0);
+
+    }
+
+    public static void addChip(FrameLayout fl, int money, int betMoney, Context context) {
         List<ChipBean> chipList = getChipList();
         fl.removeAllViews();
         int bottomMargin = 0;
