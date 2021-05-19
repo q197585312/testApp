@@ -241,6 +241,8 @@
 
         <include layout="@layout/gd_include_baccarat_bet_table_table_change"></include>
 
+        <include layout="@layout/gd_include_dragon_tiger_bet_table_table_change"></include>
+
         <include layout="@layout/gd_good_road_bg"></include>
 
         <include

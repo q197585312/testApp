@@ -19,6 +19,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.zhy.autolayout.utils.AutoUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,8 @@ import gaming178.com.casinogame.Activity.entity.BaccaratTableBetContentBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableChangeViewBean;
 import gaming178.com.casinogame.Activity.entity.DiceBean;
 import gaming178.com.casinogame.Activity.entity.DiceContentBean;
+import gaming178.com.casinogame.Activity.entity.DragonTigerTableBetBean;
+import gaming178.com.casinogame.Activity.entity.DragonTigerTableContentBean;
 import gaming178.com.casinogame.Activity.entity.RouletteTableChangeViewBean;
 import gaming178.com.casinogame.Activity.entity.SicboTableChangeViewBean;
 import gaming178.com.casinogame.Activity.entity.TableTimerBean;
@@ -39,6 +43,7 @@ import gaming178.com.casinogame.base.AppModel;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
+import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.base.ItemCLickImp;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
@@ -87,6 +92,8 @@ public class TableChangePop extends BasePopupWindow {
         baccaratTableChangeViewBeenList = new ArrayList<>();
         baccaratBetContentList = new ArrayList<>();
         baccaratTableBetBeanList = new ArrayList<>();
+        dragonTigerTableBetBean = new DragonTigerTableBetBean();
+        dragonTigerTableContentBean = new DragonTigerTableContentBean();
         list = new ArrayList<>();
         parent = (LinearLayout) view.findViewById(R.id.gd__ll_change_table_parent);
         view.setOnClickListener(new View.OnClickListener() {
@@ -236,6 +243,7 @@ public class TableChangePop extends BasePopupWindow {
             BaccaratTableBetContentBean contentBean = baccaratBetContentList.get(i);
             initBaccaratGame(contentBean);
         }
+        initDragonTigerGame();
     }
 
     private void initBaccaratGame(BaccaratTableBetContentBean contentBean) {
@@ -271,6 +279,17 @@ public class TableChangePop extends BasePopupWindow {
                 break;
             }
         }
+    }
+
+    private void initDragonTigerGame() {
+        clearDragonTigerResultView();
+        dragonTigerTableContentBean.getContentView().setVisibility(View.GONE);
+        dragonTigerTableContentBean.getFlTableDragon().removeAllViews();
+        dragonTigerTableContentBean.getFlTableTiger().removeAllViews();
+        dragonTigerTableContentBean.getFlTableTie().removeAllViews();
+        dragonTigerTableContentBean.setDragonTigerGameNumber("");
+        dragonTigerTableContentBean.setDragonTigerOpenPoker(true);
+        dragonTigerTableContentBean.setDragonTigerGetResult(true);
     }
 
     @Override
@@ -580,6 +599,7 @@ public class TableChangePop extends BasePopupWindow {
                 sicboTableChangeViewBean.setView_Parent(aB1);
             } else if (item.getDrawableRes() == 5) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_brccarat, null);
+                initDragonTigerContent(aB1, item.getDrawableRes());
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
                 if (!isHaveThisTableId(item.getDrawableRes() + "")) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
@@ -652,8 +672,75 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void initDragonTigerContent(View view, int tableId) {
+        dragonTigerTableBetBean.setTableId(tableId);
+        dragonTigerTableContentBean.setTableId(tableId);
+        View betContent = view.findViewById(R.id.gd_dragon_tiger_bet_table_change);
+        dragonTigerTableContentBean.setContentView(betContent);
+        dragonTigerTableContentBean.setTvDragonPoint(view.findViewById(R.id.tv_dragon));
+        dragonTigerTableContentBean.setTvTigerPoint(view.findViewById(R.id.tv_tiger));
+        ImageView imgCloseBet = view.findViewById(R.id.gd_img_close_bet);
+        dragonTigerTableContentBean.setLlResult(view.findViewById(R.id.ll_dragon_tiger_result));
+        dragonTigerTableContentBean.setImgDragon(view.findViewById(R.id.img_tiger_poker_1));
+        dragonTigerTableContentBean.setImgTiger(view.findViewById(R.id.img_dragon_poker_1));
+        dragonTigerTableContentBean.setLlDragonParent(view.findViewById(R.id.ll_dragon_parent));
+        dragonTigerTableContentBean.setLlTigerParent(view.findViewById(R.id.ll_tiger_parent));
+        FrameLayout flTableDragon = view.findViewById(R.id.fl_dragon);
+        dragonTigerTableContentBean.setFlTableDragon(flTableDragon);
+        flTableDragon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "D", false);
+                }
+            }
+        });
+        FrameLayout flTableTie = view.findViewById(R.id.fl_dragon_tiger_tie);
+        dragonTigerTableContentBean.setFlTableTie(flTableTie);
+        flTableTie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "Tie", false);
+                }
+            }
+        });
+        FrameLayout flTableTiger = view.findViewById(R.id.fl_tiger);
+        dragonTigerTableContentBean.setFlTableTiger(flTableTiger);
+        flTableTiger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
+                    if (chooseChip < 1) {
+                        Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "T", false);
+                }
+            }
+        });
+
+        imgCloseBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDragonTigerGame();
+                mAppViewModel.setClickDragonTiger(false);
+            }
+        });
+    }
+
     private List<BaccaratTableBetContentBean> baccaratBetContentList;
     private List<BaccaratTableBetBean> baccaratTableBetBeanList;
+    private DragonTigerTableBetBean dragonTigerTableBetBean;
+    private DragonTigerTableContentBean dragonTigerTableContentBean;
 
     public BaccaratTableBetContentBean getBaccaratBetContentBean(int tableId) {
         BaccaratTableBetContentBean contentBean = null;
@@ -666,6 +753,10 @@ public class TableChangePop extends BasePopupWindow {
             }
         }
         return contentBean;
+    }
+
+    public DragonTigerTableContentBean getDragonTigerContentBean() {
+        return dragonTigerTableContentBean;
     }
 
     public BaccaratTableBetBean getBaccaratBetBean(int tableId) {
@@ -825,6 +916,14 @@ public class TableChangePop extends BasePopupWindow {
         getBaccaratBetContentBean(tableId).getTvPlayerPoint().setText("");
     }
 
+    private void clearDragonTigerResultView() {
+        dragonTigerTableContentBean.getLlResult().setVisibility(View.GONE);
+        dragonTigerTableContentBean.getImgDragon().setVisibility(View.GONE);
+        dragonTigerTableContentBean.getImgTiger().setVisibility(View.GONE);
+        dragonTigerTableContentBean.getTvDragonPoint().setText("");
+        dragonTigerTableContentBean.getTvTigerPoint().setText("");
+    }
+
     private void updateBaccarat(int tableId) {
         if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
             if (getBaccaratBetContentBean(tableId).getResultWinView() != null && getBaccaratBetContentBean(tableId).getResultWinView().getBackground() != null) {
@@ -859,7 +958,41 @@ public class TableChangePop extends BasePopupWindow {
             }
 
         }
+    }
 
+    private void updateDragonTiger(int tableId) {
+        if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
+            if (dragonTigerTableContentBean.getResultWinView() != null && dragonTigerTableContentBean.getResultWinView().getBackground() != null) {
+                dragonTigerTableContentBean.getResultWinView().setBackgroundResource(0);
+            }
+            clearDragonTigerResultView();
+            if (!dragonTigerTableContentBean.getDragonTigerGameNumber().equals(mAppViewModel.getDragonTiger(tableId).getGameNumber())) {
+                mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().setDragon(0);
+                mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().setTiger(0);
+                TableBetUtils.clearDragonTigerAllChip(dragonTigerTableBetBean, dragonTigerTableContentBean);
+                dragonTigerTableContentBean.setDragonTigerGameNumber(mAppViewModel.getDragonTiger(tableId).getGameNumber());
+                dragonTigerTableContentBean.setDragonTigerOpenPoker(true);
+                dragonTigerTableContentBean.setDragonTigerOpenPoker(true);
+                dragonTigerTableBetBean.setDragonAlreadyBet(0);
+                dragonTigerTableBetBean.setTigerAlreadyBet(0);
+                dragonTigerTableBetBean.setTieAlreadyBet(0);
+            }
+        } else if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 2) {
+            dragonTigerTableContentBean.getLlResult().setVisibility(View.VISIBLE);
+            showDragonTigerPoint(tableId);
+            if (dragonTigerTableContentBean.isDragonTigerOpenPoker()) {
+                dragonTigerTableContentBean.setDragonTigerOpenPoker(false);
+                TableBetUtils.clearDragonTigerNoBetChip(dragonTigerTableBetBean, dragonTigerTableContentBean, context);
+            }
+        } else if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 5) {
+            showDragonTigerPoint(tableId);
+            showDragonTigerResult(tableId);
+            if (dragonTigerTableContentBean.isDragonTigerGetResult()) {
+                dragonTigerTableContentBean.setDragonTigerGetResult(false);
+                TableBetUtils.clearDragonTigerAllChip(dragonTigerTableBetBean, dragonTigerTableContentBean);
+            }
+
+        }
     }
 
     private int getBanker3(int tableId) {
@@ -944,6 +1077,28 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void showDragonTigerPoint(int tableId) {
+        mAppViewModel.showPoint(mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().getDragon(),
+                mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().getTiger(),
+                dragonTigerTableContentBean.getTvDragonPoint(), dragonTigerTableContentBean.getTvTigerPoint(), "", "");
+
+        if (mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().getDragon() > 0) {
+            if (dragonTigerTableContentBean.getImgDragon().getVisibility() == View.GONE) {
+                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), getPokerResource(mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().getDragon()));
+                dragonTigerTableContentBean.getImgDragon().setVisibility(View.VISIBLE);
+                dragonTigerTableContentBean.getImgDragon().setImageBitmap(BitmapTool.skewBitmap(bitmap, 0, 0f));
+            }
+        }
+
+        if (mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().getTiger() > 0) {
+            if (dragonTigerTableContentBean.getImgTiger().getVisibility() == View.GONE) {
+                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), getPokerResource(mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().getTiger()));
+                dragonTigerTableContentBean.getImgTiger().setVisibility(View.VISIBLE);
+                dragonTigerTableContentBean.getImgTiger().setImageBitmap(BitmapTool.skewBitmap(bitmap, 0, 0f));
+            }
+        }
+    }
+
 
     private void showBaccaratResult(int tableId) {
         View winView = null;
@@ -953,6 +1108,24 @@ public class TableChangePop extends BasePopupWindow {
             winView = getBaccaratBetContentBean(tableId).getLlPlayerParent();
         }
         getBaccaratBetContentBean(tableId).setResultWinView(winView);
+        if (winView != null) {
+            if (winView.getBackground() == null) {
+                winView.setBackgroundResource(R.drawable.shape_table_win_b_dt);
+            } else {
+                winView.setBackgroundResource(0);
+            }
+
+        }
+    }
+
+    private void showDragonTigerResult(int tableId) {
+        View winView = null;
+        if (mAppViewModel.getDragonTiger(tableId).getDragonTigerResults().getDragon_tiger_tie() == 1) {
+            winView = dragonTigerTableContentBean.getLlDragonParent();
+        } else if (mAppViewModel.getDragonTiger(tableId).getDragonTigerResults().getDragon_tiger_tie() == 2) {
+            winView = dragonTigerTableContentBean.getLlTigerParent();
+        }
+        dragonTigerTableContentBean.setResultWinView(winView);
         if (winView != null) {
             if (winView.getBackground() == null) {
                 winView.setBackgroundResource(R.drawable.shape_table_win_b_dt);
@@ -1027,6 +1200,55 @@ public class TableChangePop extends BasePopupWindow {
         }.start();
     }
 
+    public void updateDragonTigerBetMoney(int tableId) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
+                            + "&Xhid=" + mAppViewModel.getDragonTiger(tableId).getShoeNumber() + "&Blid=" + mAppViewModel.getDragonTiger(tableId).getGameNumber() +
+                            "&Xh=" + mAppViewModel.getDragonTiger(tableId).getDragonTigerLimit(mAppViewModel.getDragonTiger(tableId).getLimitIndex()).getMaxTotalBet();
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LH_BET_MONEY_URL, params);
+                    String strInfo[] = strRes.split("#");
+                    if (strRes.startsWith("Results=ok")) {
+                        if (strInfo.length >= 10) {
+                            if (!TextUtils.isEmpty(strInfo[4])) {
+                                dragonTigerTableBetBean.setDragonAlreadyBet((int) Double.parseDouble(strInfo[4]));
+                            }
+                            if (!TextUtils.isEmpty(strInfo[3])) {
+                                dragonTigerTableBetBean.setTigerAlreadyBet((int) Double.parseDouble(strInfo[3]));
+                            }
+                            if (!TextUtils.isEmpty(strInfo[5])) {
+                                dragonTigerTableBetBean.setTieAlreadyBet((int) Double.parseDouble(strInfo[5]));
+                            }
+                            BaseActivity baseActivity = (BaseActivity) context;
+                            baseActivity.getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    int dragonAlreadyBet = dragonTigerTableBetBean.getDragonAlreadyBet();
+                                    int tigerAlreadyBet = dragonTigerTableBetBean.getTigerAlreadyBet();
+                                    int tieAlreadyBet = dragonTigerTableBetBean.getTieAlreadyBet();
+                                    if (dragonAlreadyBet > 0) {
+                                        TableBetUtils.addChip(dragonTigerTableContentBean.getFlTableDragon(), dragonAlreadyBet, dragonAlreadyBet, context);
+                                    }
+                                    if (tigerAlreadyBet > 0) {
+                                        TableBetUtils.addChip(dragonTigerTableContentBean.getFlTableTiger(), tigerAlreadyBet, tigerAlreadyBet, context);
+                                    }
+                                    if (tieAlreadyBet > 0) {
+                                        TableBetUtils.addChip(dragonTigerTableContentBean.getFlTableTie(), tieAlreadyBet, tieAlreadyBet, context);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
     private void updateGame() {
         if (mAppViewModel.isClickBaccarat1()) {
             updateBaccarat(1);
@@ -1048,6 +1270,9 @@ public class TableChangePop extends BasePopupWindow {
         }
         if (mAppViewModel.isClickBaccaratMi()) {
             updateBaccarat(71);
+        }
+        if (mAppViewModel.isClickDragonTiger()) {
+            updateDragonTiger(5);
         }
     }
 
