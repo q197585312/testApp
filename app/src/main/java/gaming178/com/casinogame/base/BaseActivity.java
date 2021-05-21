@@ -641,11 +641,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 String pokerDetail[] = tableDetail[8].split("\\|");
                 if (pokerDetail.length == 3) {
 
-                    if (!"null".equals(pokerDetail[1])){
+                    if (!"null".equals(pokerDetail[1])) {
                         Log.d("shangpeisheng12121", "Dragon=" + Integer.parseInt(pokerDetail[1]));
                         mAppViewModel.getDragonTiger01().getDragonTigerPoker().setDragon(Integer.parseInt(pokerDetail[1]));
                     }
-                    if (!"null".equals(pokerDetail[2])){
+                    if (!"null".equals(pokerDetail[2])) {
                         Log.d("shangpeisheng12121", "Tiger=" + Integer.parseInt(pokerDetail[2]));
                         mAppViewModel.getDragonTiger01().getDragonTigerPoker().setTiger(Integer.parseInt(pokerDetail[2]));
                     }
@@ -749,9 +749,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         String param = getParam(mAppViewModel.getTableId());
                         String strRes = mAppViewModel.getHttpClient().sendPost(postUrl, param);
                         Log.d("shangpeisheng1212", "bjlRes=" + strRes);
-                        if (BaseActivity.this instanceof DragonTigerActivity){
-                            Log.d("shangpeisheng12121", "bjlRes=" + strRes);
-                        }
                         if (mAppViewModel.isOpenChangeTable()) {
                             String bjlUrl = WebSiteUrl.BJL_TABLE_STATUS_URL;
                             String sicboUrl = WebSiteUrl.SICBO_TABLE_STATUS_URL;
@@ -2007,6 +2004,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         break;
                     case 31:
                         mAppViewModel.setClickSicbo(true);
+                        tablePop.getSicboContentBean().getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateSicboBetMoney(gameMenuItem.getDrawableRes());
                         break;
                 }
 

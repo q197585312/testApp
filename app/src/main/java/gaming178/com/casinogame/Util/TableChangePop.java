@@ -33,8 +33,11 @@ import gaming178.com.casinogame.Activity.entity.DiceContentBean;
 import gaming178.com.casinogame.Activity.entity.DragonTigerTableBetBean;
 import gaming178.com.casinogame.Activity.entity.DragonTigerTableContentBean;
 import gaming178.com.casinogame.Activity.entity.RouletteTableChangeViewBean;
+import gaming178.com.casinogame.Activity.entity.SicboTableBetBean;
 import gaming178.com.casinogame.Activity.entity.SicboTableChangeViewBean;
+import gaming178.com.casinogame.Activity.entity.SicboTableContentBean;
 import gaming178.com.casinogame.Activity.entity.TableTimerBean;
+import gaming178.com.casinogame.Bean.BetDetail;
 import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.TableMaintenanceBean;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
@@ -94,6 +97,8 @@ public class TableChangePop extends BasePopupWindow {
         baccaratTableBetBeanList = new ArrayList<>();
         dragonTigerTableBetBean = new DragonTigerTableBetBean();
         dragonTigerTableContentBean = new DragonTigerTableContentBean();
+        sicboTableBetBean = new SicboTableBetBean();
+        sicboTableContentBean = new SicboTableContentBean();
         list = new ArrayList<>();
         parent = (LinearLayout) view.findViewById(R.id.gd__ll_change_table_parent);
         view.setOnClickListener(new View.OnClickListener() {
@@ -244,6 +249,7 @@ public class TableChangePop extends BasePopupWindow {
             initBaccaratGame(contentBean);
         }
         initDragonTigerGame();
+        initSicboGame();
     }
 
     private void initBaccaratGame(BaccaratTableBetContentBean contentBean) {
@@ -290,6 +296,23 @@ public class TableChangePop extends BasePopupWindow {
         dragonTigerTableContentBean.setDragonTigerGameNumber("");
         dragonTigerTableContentBean.setDragonTigerOpenPoker(true);
         dragonTigerTableContentBean.setDragonTigerGetResult(true);
+    }
+
+    private void initSicboGame() {
+        sicboTableContentBean.getFlResult().setVisibility(View.GONE);
+        sicboTableContentBean.getContentView().setVisibility(View.INVISIBLE);
+        sicboTableContentBean.getFlBig().removeAllViews();
+        sicboTableContentBean.getFlAny().removeAllViews();
+        sicboTableContentBean.getFlSmall().removeAllViews();
+        sicboTableContentBean.getFlSingle1().removeAllViews();
+        sicboTableContentBean.getFlSingle2().removeAllViews();
+        sicboTableContentBean.getFlSingle3().removeAllViews();
+        sicboTableContentBean.getFlSingle4().removeAllViews();
+        sicboTableContentBean.getFlSingle5().removeAllViews();
+        sicboTableContentBean.getFlSingle6().removeAllViews();
+        sicboTableContentBean.setSicboGameNumber("");
+        sicboTableContentBean.setSicboOpenResult(true);
+        sicboTableContentBean.setSicboGetResult(true);
     }
 
     @Override
@@ -567,6 +590,7 @@ public class TableChangePop extends BasePopupWindow {
                 rouletteTableChangeViewBean.setView_Parent(aB1);
             } else if (item.getDrawableRes() == 31) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_scibao, null);
+                initSicboGameContent(aB1, item.getDrawableRes());
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
                 if (!isHaveThisTableId(item.getDrawableRes() + "")) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
@@ -672,6 +696,170 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void initSicboGameContent(View view, int tableId) {
+        sicboTableBetBean.setTableId(tableId);
+        sicboTableContentBean.setTableId(tableId);
+        View betContent = view.findViewById(R.id.gd_sicbo_bet_table_change);
+        sicboTableContentBean.setContentView(betContent);
+        FrameLayout flBig = view.findViewById(R.id.fl_big);
+        FrameLayout flAny = view.findViewById(R.id.fl_any);
+        FrameLayout flSmall = view.findViewById(R.id.fl_small);
+        ImageView imgSingle6 = view.findViewById(R.id.img_single_6);
+        ImageView imgSingle5 = view.findViewById(R.id.img_single_5);
+        ImageView imgSingle4 = view.findViewById(R.id.img_single_4);
+        ImageView imgSingle3 = view.findViewById(R.id.img_single_3);
+        ImageView imgSingle2 = view.findViewById(R.id.img_single_2);
+        ImageView imgSingle1 = view.findViewById(R.id.img_single_1);
+        flBig.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (sicboTableBetBean.getSmallCurrentBet() > 0 || sicboTableBetBean.getSmallAlreadyBet() > 0) {
+                    Toast.makeText(context, R.string.show_limit_big_small, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "B", false);
+                }
+            }
+        });
+        flAny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "A", false);
+                }
+            }
+        });
+        flSmall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (sicboTableBetBean.getBigCurrentBet() > 0 || sicboTableBetBean.getBigAlreadyBet() > 0) {
+                    Toast.makeText(context, R.string.show_limit_big_small, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "S", false);
+                }
+            }
+        });
+        imgSingle6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "6", false);
+                }
+            }
+        });
+        imgSingle5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "5", false);
+                }
+            }
+        });
+        imgSingle4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "4", false);
+                }
+            }
+        });
+        imgSingle3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "3", false);
+                }
+            }
+        });
+        imgSingle2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "2", false);
+                }
+            }
+        });
+        imgSingle1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                    TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "1", false);
+                }
+            }
+        });
+        sicboTableContentBean.setFlSingle6(view.findViewById(R.id.fl_single_6));
+        sicboTableContentBean.setFlSingle5(view.findViewById(R.id.fl_single_5));
+        sicboTableContentBean.setFlSingle4(view.findViewById(R.id.fl_single_4));
+        sicboTableContentBean.setFlSingle3(view.findViewById(R.id.fl_single_3));
+        sicboTableContentBean.setFlSingle2(view.findViewById(R.id.fl_single_2));
+        sicboTableContentBean.setFlSingle1(view.findViewById(R.id.fl_single_1));
+        sicboTableContentBean.setFlBig(flBig);
+        sicboTableContentBean.setFlAny(flAny);
+        sicboTableContentBean.setFlSmall(flSmall);
+        sicboTableContentBean.setImgSingle6(imgSingle6);
+        sicboTableContentBean.setImgSingle5(imgSingle5);
+        sicboTableContentBean.setImgSingle4(imgSingle4);
+        sicboTableContentBean.setImgSingle3(imgSingle3);
+        sicboTableContentBean.setImgSingle2(imgSingle2);
+        sicboTableContentBean.setImgSingle1(imgSingle1);
+        sicboTableContentBean.setFlBetButton(view.findViewById(R.id.fl_bet_button));
+        sicboTableContentBean.setFlResult(view.findViewById(R.id.fl_result));
+        sicboTableContentBean.setImgResult1(view.findViewById(R.id.gd__iv_dice_1));
+        sicboTableContentBean.setImgResult2(view.findViewById(R.id.gd__iv_dice_2));
+        sicboTableContentBean.setImgResult3(view.findViewById(R.id.gd__iv_dice_3));
+        sicboTableContentBean.setTvResultPoint(view.findViewById(R.id.gd__iv_dice_tv));
+        sicboTableContentBean.setTvResultBigSmall(view.findViewById(R.id.gd__tv_big_small));
+        sicboTableContentBean.setTvResultOddEven(view.findViewById(R.id.gd__tv_odd_even));
+        ImageView imgCloseBet = view.findViewById(R.id.gd_img_close_bet);
+        imgCloseBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initSicboGame();
+                mAppViewModel.setClickSicbo(false);
+            }
+        });
+
+    }
+
     private void initDragonTigerContent(View view, int tableId) {
         dragonTigerTableBetBean.setTableId(tableId);
         dragonTigerTableContentBean.setTableId(tableId);
@@ -741,6 +929,8 @@ public class TableChangePop extends BasePopupWindow {
     private List<BaccaratTableBetBean> baccaratTableBetBeanList;
     private DragonTigerTableBetBean dragonTigerTableBetBean;
     private DragonTigerTableContentBean dragonTigerTableContentBean;
+    private SicboTableBetBean sicboTableBetBean;
+    private SicboTableContentBean sicboTableContentBean;
 
     public BaccaratTableBetContentBean getBaccaratBetContentBean(int tableId) {
         BaccaratTableBetContentBean contentBean = null;
@@ -757,6 +947,10 @@ public class TableChangePop extends BasePopupWindow {
 
     public DragonTigerTableContentBean getDragonTigerContentBean() {
         return dragonTigerTableContentBean;
+    }
+
+    public SicboTableContentBean getSicboContentBean() {
+        return sicboTableContentBean;
     }
 
     public BaccaratTableBetBean getBaccaratBetBean(int tableId) {
@@ -960,6 +1154,30 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void updateSicbo(int tableId) {
+        if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+            if (!sicboTableContentBean.getSicboGameNumber().equals(mAppViewModel.getSicbo01().getGameNumber())) {
+                mAppViewModel.getSicbo01().setResult("");
+                sicboTableContentBean.getFlResult().setVisibility(View.GONE);
+                TableBetUtils.clearSicboAllChip(sicboTableBetBean, sicboTableContentBean);
+                sicboTableContentBean.setSicboGameNumber(mAppViewModel.getSicbo01().getGameNumber());
+                sicboTableContentBean.setSicboOpenResult(true);
+                sicboTableContentBean.setSicboGetResult(true);
+            }
+        } else if (mAppViewModel.getSicbo01().getGameStatus() == 2) {
+            if (sicboTableContentBean.isSicboOpenResult()) {
+                sicboTableContentBean.setSicboOpenResult(false);
+                TableBetUtils.clearSicboNoBetChip(sicboTableBetBean, sicboTableContentBean, context);
+            }
+        } else if (mAppViewModel.getSicbo01().getGameStatus() == 5) {
+            if (sicboTableContentBean.isSicboGetResult()) {
+                showSicboResult();
+                sicboTableContentBean.setSicboGetResult(false);
+                TableBetUtils.clearSicboAllChip(sicboTableBetBean, sicboTableContentBean);
+            }
+        }
+    }
+
     private void updateDragonTiger(int tableId) {
         if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
             if (dragonTigerTableContentBean.getResultWinView() != null && dragonTigerTableContentBean.getResultWinView().getBackground() != null) {
@@ -991,7 +1209,6 @@ public class TableChangePop extends BasePopupWindow {
                 dragonTigerTableContentBean.setDragonTigerGetResult(false);
                 TableBetUtils.clearDragonTigerAllChip(dragonTigerTableBetBean, dragonTigerTableContentBean);
             }
-
         }
     }
 
@@ -1136,6 +1353,44 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void showSicboResult() {
+        FrameLayout flResult = sicboTableContentBean.getFlResult();
+        ImageView iv1 = flResult.findViewById(R.id.gd__iv_dice_1);
+        ImageView iv2 = flResult.findViewById(R.id.gd__iv_dice_2);
+        ImageView iv3 = flResult.findViewById(R.id.gd__iv_dice_3);
+        TextView tv = flResult.findViewById(R.id.gd__iv_dice_tv);
+        TextView tv_big_small = flResult.findViewById(R.id.gd__tv_big_small);
+        TextView tv_odd_even = flResult.findViewById(R.id.gd__tv_odd_even);
+        if (mAppViewModel.getSicbo01().getResult() != null && !"".equals(mAppViewModel.getSicbo01().getResult()) && !"0".equals(mAppViewModel.getSicbo01().getResult())
+                && mAppViewModel.getSicbo01().getResult().length() == 3) {
+            int dices1 = Integer.parseInt(mAppViewModel.getSicbo01().getResult().substring(0, 1));
+            int dices2 = Integer.parseInt(mAppViewModel.getSicbo01().getResult().substring(1, 2));
+            int dices3 = Integer.parseInt(mAppViewModel.getSicbo01().getResult().substring(2, 3));
+            int point = dices1 + dices2 + dices3;
+            iv1.setImageResource(getMipmap(dices1));
+            iv2.setImageResource(getMipmap(dices2));
+            iv3.setImageResource(getMipmap(dices3));
+            tv.setText("" + point);
+            if (point > 10) {
+                tv_big_small.setBackgroundResource(R.drawable.rectangle_sicbo_blue);
+                tv_big_small.setText(context.getString(R.string.gd_B));
+            } else {
+                tv_big_small.setBackgroundResource(R.drawable.rectangle_sicbo_red);
+                tv_big_small.setText(context.getString(R.string.gd_S));
+            }
+            if (point % 2 == 0) {
+                tv_odd_even.setBackgroundResource(R.drawable.rectangle_sicbo_red);
+                tv_odd_even.setText(context.getString(R.string.gd_E));
+            } else {
+                tv_odd_even.setBackgroundResource(R.drawable.rectangle_sicbo_blue);
+                tv_odd_even.setText(context.getString(R.string.gd_O));
+            }
+            flResult.setVisibility(View.VISIBLE);
+        } else {
+            flResult.setVisibility(View.GONE);
+        }
+    }
+
     public void updateBaccaratBetMoney(int tableId) {
         new Thread() {
             @Override
@@ -1249,6 +1504,98 @@ public class TableChangePop extends BasePopupWindow {
         }.start();
     }
 
+    public void updateSicboBetMoney(int tableId) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
+                            + "&Bl=" + mAppViewModel.getSicbo01().getGameNumber() +
+                            "&Xh=" + mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxTotalBet();
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.SICBO_BET_MONEY_URL, params);
+                    String strInfo[] = strRes.split("\\^");
+                    if (strRes.startsWith("Results=ok")) {
+                        if (strInfo.length >= 10) {
+                            sicboTableBetBean.setBigAlreadyBet((int) Double.parseDouble(strInfo[3]));
+                            sicboTableBetBean.setSmallAlreadyBet((int) Double.parseDouble(strInfo[4]));
+                            sicboTableBetBean.setAnyAlreadyBet((int) Double.parseDouble(strInfo[7]));
+                            if (!"0".equals(strInfo[8])) {//1#2|2#2|6#2|
+                                String strThree[] = strInfo[8].split("\\|");
+                                for (int i = 0; i < strThree.length; i++) {
+                                    String strThreeDetail[] = strThree[i].split("#");
+                                    if (strThreeDetail != null && strThreeDetail.length == 2) {
+                                        String point = strThreeDetail[0];
+                                        int betMoney = (int) Double.parseDouble(strThreeDetail[1]);
+                                        if (point.equals("1")) {
+                                            sicboTableBetBean.setSingle1AlreadyBet(betMoney);
+                                        } else if (point.equals("2")) {
+                                            sicboTableBetBean.setSingle2AlreadyBet(betMoney);
+                                        } else if (point.equals("3")) {
+                                            sicboTableBetBean.setSingle3AlreadyBet(betMoney);
+                                        } else if (point.equals("4")) {
+                                            sicboTableBetBean.setSingle4AlreadyBet(betMoney);
+                                        } else if (point.equals("5")) {
+                                            sicboTableBetBean.setSingle5AlreadyBet(betMoney);
+                                        } else if (point.equals("6")) {
+                                            sicboTableBetBean.setSingle6AlreadyBet(betMoney);
+                                        }
+                                    }
+
+                                }
+                            }
+                            BaseActivity baseActivity = (BaseActivity) context;
+                            baseActivity.getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    int bigAlreadyBet = sicboTableBetBean.getBigAlreadyBet();
+                                    int anyAlreadyBet = sicboTableBetBean.getAnyAlreadyBet();
+                                    int smallAlreadyBet = sicboTableBetBean.getSmallAlreadyBet();
+                                    int single1AlreadyBet = sicboTableBetBean.getSingle1AlreadyBet();
+                                    int single2AlreadyBet = sicboTableBetBean.getSingle2AlreadyBet();
+                                    int single3AlreadyBet = sicboTableBetBean.getSingle3AlreadyBet();
+                                    int single4AlreadyBet = sicboTableBetBean.getSingle4AlreadyBet();
+                                    int single5AlreadyBet = sicboTableBetBean.getSingle5AlreadyBet();
+                                    int single6AlreadyBet = sicboTableBetBean.getSingle6AlreadyBet();
+                                    if (bigAlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlBig(), bigAlreadyBet, bigAlreadyBet, context);
+                                    }
+                                    if (anyAlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlAny(), anyAlreadyBet, anyAlreadyBet, context);
+                                    }
+                                    if (smallAlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlSmall(), smallAlreadyBet, smallAlreadyBet, context);
+                                    }
+                                    if (single1AlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlSingle1(), single1AlreadyBet, single1AlreadyBet, context);
+                                    }
+                                    if (single2AlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlSingle2(), single2AlreadyBet, single2AlreadyBet, context);
+                                    }
+                                    if (single3AlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlSingle3(), single3AlreadyBet, single3AlreadyBet, context);
+                                    }
+                                    if (single4AlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlSingle4(), single4AlreadyBet, single4AlreadyBet, context);
+                                    }
+                                    if (single5AlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlSingle5(), single5AlreadyBet, single5AlreadyBet, context);
+                                    }
+                                    if (single6AlreadyBet > 0) {
+                                        TableBetUtils.addChip(sicboTableContentBean.getFlSingle6(), single6AlreadyBet, single6AlreadyBet, context);
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
     private void updateGame() {
         if (mAppViewModel.isClickBaccarat1()) {
             updateBaccarat(1);
@@ -1273,6 +1620,9 @@ public class TableChangePop extends BasePopupWindow {
         }
         if (mAppViewModel.isClickDragonTiger()) {
             updateDragonTiger(5);
+        }
+        if (mAppViewModel.isClickSicbo()) {
+            updateSicbo(31);
         }
     }
 

@@ -20,10 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.SicboActivity;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetContentBean;
 import gaming178.com.casinogame.Activity.entity.DragonTigerTableBetBean;
 import gaming178.com.casinogame.Activity.entity.DragonTigerTableContentBean;
+import gaming178.com.casinogame.Activity.entity.SicboTableBetBean;
+import gaming178.com.casinogame.Activity.entity.SicboTableContentBean;
+import gaming178.com.casinogame.Bean.BetDetail;
 import gaming178.com.casinogame.Bean.ChipBean;
 import gaming178.com.casinogame.base.AppModel;
 
@@ -350,6 +354,225 @@ public class TableBetUtils {
         }
     }
 
+    public static void sicboBet(int tableId, SicboTableBetBean betBean, SicboTableContentBean contentBean, AppModel mAppViewModel, Context context, int chooseChip, String betType, boolean isRepeat) {
+        int currentBet = 0;
+        int alreadyBet = 0;
+        if (!isRepeat) {
+            int min = 0;
+            int max = 0;
+            switch (betType) {
+                case "B":
+                    currentBet = betBean.getBigCurrentBet();
+                    alreadyBet = betBean.getBigAlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinBigSmallBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxBigSmallBet();
+                    break;
+                case "S":
+                    currentBet = betBean.getSmallCurrentBet();
+                    alreadyBet = betBean.getSmallAlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinBigSmallBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxBigSmallBet();
+                    break;
+                case "A":
+                    currentBet = betBean.getAnyCurrentBet();
+                    alreadyBet = betBean.getAnyAlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinAlldiceBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxAlldiceBet();
+                    break;
+                case "1":
+                    currentBet = betBean.getSingle1CurrentBet();
+                    alreadyBet = betBean.getSingle1AlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinThreeforcesBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxThreeforcesBet();
+                    break;
+                case "2":
+                    currentBet = betBean.getSingle2CurrentBet();
+                    alreadyBet = betBean.getSingle2AlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinThreeforcesBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxThreeforcesBet();
+                    break;
+                case "3":
+                    currentBet = betBean.getSingle3CurrentBet();
+                    alreadyBet = betBean.getSingle3AlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinThreeforcesBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxThreeforcesBet();
+                    break;
+                case "4":
+                    currentBet = betBean.getSingle4CurrentBet();
+                    alreadyBet = betBean.getSingle4AlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinThreeforcesBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxThreeforcesBet();
+                    break;
+                case "5":
+                    currentBet = betBean.getSingle5CurrentBet();
+                    alreadyBet = betBean.getSingle5AlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinThreeforcesBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxThreeforcesBet();
+                    break;
+                case "6":
+                    currentBet = betBean.getSingle6CurrentBet();
+                    alreadyBet = betBean.getSingle6AlreadyBet();
+                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinThreeforcesBet();
+                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxThreeforcesBet();
+                    break;
+            }
+            if (alreadyBet == 0) {
+                if (currentBet == 0) {
+                    if (chooseChip < min) {
+                        currentBet = min;
+                    } else if (chooseChip > max) {
+                        currentBet = max;
+                    } else {
+                        currentBet = chooseChip;
+                    }
+                } else {
+                    if (currentBet + chooseChip > max) {
+                        currentBet = max;
+                    } else {
+                        currentBet = currentBet + chooseChip;
+                    }
+                }
+            } else {
+                if (currentBet == 0) {
+                    if (chooseChip + alreadyBet > max) {
+                        currentBet = max - alreadyBet;
+                    } else {
+                        currentBet = chooseChip;
+                    }
+                } else {
+                    if (chooseChip + alreadyBet + currentBet > max) {
+                        currentBet = max - alreadyBet;
+                    } else {
+                        currentBet = currentBet + chooseChip;
+                    }
+                }
+            }
+        } else {
+            switch (betType) {
+                case "B":
+                    currentBet = betBean.getBigRepeatBet();
+                    break;
+                case "S":
+                    currentBet = betBean.getSmallRepeatBet();
+                    break;
+                case "A":
+                    currentBet = betBean.getAnyRepeatBet();
+                    break;
+                case "1":
+                    currentBet = betBean.getSingle1RepeatBet();
+                    break;
+                case "2":
+                    currentBet = betBean.getSingle2RepeatBet();
+                    break;
+                case "3":
+                    currentBet = betBean.getSingle3RepeatBet();
+                    break;
+                case "4":
+                    currentBet = betBean.getSingle4RepeatBet();
+                    break;
+                case "5":
+                    currentBet = betBean.getSingle5RepeatBet();
+                    break;
+                case "6":
+                    currentBet = betBean.getSingle6RepeatBet();
+                    break;
+            }
+        }
+        if (currentBet > 0) {
+            FrameLayout fl = null;
+            int betMoney = 0;
+            int money = 0;
+            switch (betType) {
+                case "B":
+                    betBean.setBigCurrentBet(currentBet);
+                    fl = contentBean.getFlBig();
+                    betMoney = betBean.getBigCurrentBet() + betBean.getBigAlreadyBet();
+                    money = betBean.getBigCurrentBet() + betBean.getBigAlreadyBet();
+                    break;
+                case "S":
+                    betBean.setSmallCurrentBet(currentBet);
+                    fl = contentBean.getFlSmall();
+                    betMoney = betBean.getSmallCurrentBet() + betBean.getSmallAlreadyBet();
+                    money = betBean.getSmallCurrentBet() + betBean.getSmallAlreadyBet();
+                    break;
+                case "A":
+                    betBean.setAnyCurrentBet(currentBet);
+                    fl = contentBean.getFlAny();
+                    betMoney = betBean.getAnyCurrentBet() + betBean.getAnyAlreadyBet();
+                    money = betBean.getAnyCurrentBet() + betBean.getAnyAlreadyBet();
+                    break;
+                case "1":
+                    betBean.setSingle1CurrentBet(currentBet);
+                    fl = contentBean.getFlSingle1();
+                    betMoney = betBean.getSingle1CurrentBet() + betBean.getSingle1AlreadyBet();
+                    money = betBean.getSingle1CurrentBet() + betBean.getSingle1AlreadyBet();
+                    break;
+                case "2":
+                    betBean.setSingle2CurrentBet(currentBet);
+                    fl = contentBean.getFlSingle2();
+                    betMoney = betBean.getSingle2CurrentBet() + betBean.getSingle2AlreadyBet();
+                    money = betBean.getSingle2CurrentBet() + betBean.getSingle2AlreadyBet();
+                    break;
+                case "3":
+                    betBean.setSingle3CurrentBet(currentBet);
+                    fl = contentBean.getFlSingle3();
+                    betMoney = betBean.getSingle3CurrentBet() + betBean.getSingle3AlreadyBet();
+                    money = betBean.getSingle3CurrentBet() + betBean.getSingle3AlreadyBet();
+                    break;
+                case "4":
+                    betBean.setSingle4CurrentBet(currentBet);
+                    fl = contentBean.getFlSingle4();
+                    betMoney = betBean.getSingle4CurrentBet() + betBean.getSingle4AlreadyBet();
+                    money = betBean.getSingle4CurrentBet() + betBean.getSingle4AlreadyBet();
+                    break;
+                case "5":
+                    betBean.setSingle5CurrentBet(currentBet);
+                    fl = contentBean.getFlSingle5();
+                    betMoney = betBean.getSingle5CurrentBet() + betBean.getSingle5AlreadyBet();
+                    money = betBean.getSingle5CurrentBet() + betBean.getSingle5AlreadyBet();
+                    break;
+                case "6":
+                    betBean.setSingle6CurrentBet(currentBet);
+                    fl = contentBean.getFlSingle6();
+                    betMoney = betBean.getSingle6CurrentBet() + betBean.getSingle6AlreadyBet();
+                    money = betBean.getSingle6CurrentBet() + betBean.getSingle6AlreadyBet();
+                    break;
+            }
+            if (fl != null) {
+                addChip(fl, money, betMoney, context);
+                View viewBetButton = contentBean.getFlBetButton().findViewById(R.id.ll_bet_button);
+                if (viewBetButton == null) {
+                    View betView = LayoutInflater.from(context).inflate(R.layout.include_bet_ui, null);
+                    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams.gravity = Gravity.CENTER;
+                    betView.setLayoutParams(layoutParams);
+                    ImageView imgCancel = betView.findViewById(R.id.gd__tv_table_bet_cancel);
+                    ImageView imgRepeat = betView.findViewById(R.id.gd__tv_table_bet_replay);
+                    ImageView imgSure = betView.findViewById(R.id.gd__tv_table_bet_sure);
+                    imgCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            clearSicboNoBetChip(betBean, contentBean, context);
+                        }
+                    });
+                    imgRepeat.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            sicboRepeatBet(mAppViewModel, tableId, betBean, context, contentBean, chooseChip);
+                        }
+                    });
+                    imgSure.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            sicboBetAll(mAppViewModel, tableId, betBean, context, contentBean);
+                        }
+                    });
+                    contentBean.getFlBetButton().addView(betView);
+                }
+            }
+        }
+    }
+
     private static void baccaratBetAll(AppModel mAppViewModel, int tableId, BaccaratTableBetBean baccaratTableBetBean, Context context, BaccaratTableBetContentBean contentBean) {
         new Thread() {
             @Override
@@ -449,6 +672,84 @@ public class TableBetUtils {
 
     }
 
+    private static void sicboBetAll(AppModel mAppViewModel, int tableId, SicboTableBetBean betBean, Context context, SicboTableContentBean contentBean) {
+        new Thread() {
+            @Override
+            public void run() {
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.SICBO_BET_URL, getSicboBetParam(tableId, betBean, mAppViewModel));
+                Log.d("getSicboBetParam", getSicboBetParam(tableId, betBean, mAppViewModel));
+                Log.d("getSicboBetParam", strRes);
+                String strInfo[] = strRes.split("\\^");
+                if (strRes.startsWith("Results=ok")) {
+                    if (strInfo.length >= 10) {
+                        mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
+                        double resMoney = Double.parseDouble(strInfo[3]);
+                        betBean.setBigAlreadyBet((int) resMoney);
+                        betBean.setBigRepeatBet((int) resMoney);
+                        betBean.setBigCurrentBet(0);
+                        resMoney = Double.parseDouble(strInfo[4]);
+                        betBean.setSmallAlreadyBet((int) resMoney);
+                        betBean.setSmallRepeatBet((int) resMoney);
+                        betBean.setSmallCurrentBet(0);
+                        resMoney = Double.parseDouble(strInfo[7]);
+                        betBean.setAnyAlreadyBet((int) resMoney);
+                        betBean.setAnyRepeatBet((int) resMoney);
+                        betBean.setAnyCurrentBet(0);
+                        if (!"0".equals(strInfo[8])) {
+                            String strThree[] = strInfo[8].split("\\|");
+                            for (int i = 0; i < strThree.length; i++) {
+                                String strThreeDetail[] = strThree[i].split("#");
+                                if (strThreeDetail != null && strThreeDetail.length == 2) {
+                                    String point = strThreeDetail[0];
+                                    int betMoney = (int) Double.parseDouble(strThreeDetail[1]);
+                                    if (point.equals("1")) {
+                                        betBean.setSingle1AlreadyBet(betMoney);
+                                        betBean.setSingle1RepeatBet(betMoney);
+                                        betBean.setSingle1CurrentBet(0);
+                                    } else if (point.equals("2")) {
+                                        betBean.setSingle2AlreadyBet(betMoney);
+                                        betBean.setSingle2RepeatBet(betMoney);
+                                        betBean.setSingle2CurrentBet(0);
+                                    } else if (point.equals("3")) {
+                                        betBean.setSingle3AlreadyBet(betMoney);
+                                        betBean.setSingle3RepeatBet(betMoney);
+                                        betBean.setSingle3CurrentBet(0);
+                                    } else if (point.equals("4")) {
+                                        betBean.setSingle4AlreadyBet(betMoney);
+                                        betBean.setSingle4RepeatBet(betMoney);
+                                        betBean.setSingle4CurrentBet(0);
+                                    } else if (point.equals("5")) {
+                                        betBean.setSingle5AlreadyBet(betMoney);
+                                        betBean.setSingle5RepeatBet(betMoney);
+                                        betBean.setSingle5CurrentBet(0);
+                                    } else if (point.equals("6")) {
+                                        betBean.setSingle6AlreadyBet(betMoney);
+                                        betBean.setSingle6RepeatBet(betMoney);
+                                        betBean.setSingle6CurrentBet(0);
+                                    }
+                                }
+                            }
+                        }
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
+                                clearSicboNoBetChip(betBean, contentBean, context);
+                            }
+                        });
+                    }
+                } else {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        }.start();
+    }
+
     private static void RepeatBet(AppModel mAppViewModel, int tableId, BaccaratTableBetBean baccaratTableBetBean, Context context, BaccaratTableBetContentBean contentBean, int chooseChip) {
         int playerRepeatBet = baccaratTableBetBean.getPlayerRepeatBet();
         int bankerRepeatBet = baccaratTableBetBean.getBankerRepeatBet();
@@ -497,6 +798,57 @@ public class TableBetUtils {
             }
             if (tigerRepeatBet > 0) {
                 dragonTigerBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "T", true);
+            }
+        }
+    }
+
+    private static void sicboRepeatBet(AppModel mAppViewModel, int tableId, SicboTableBetBean betBean, Context context, SicboTableContentBean contentBean, int chooseChip) {
+        int bigRepeatBet = betBean.getBigRepeatBet();
+        int smallRepeatBet = betBean.getSmallRepeatBet();
+        int anyRepeatBet = betBean.getAnyRepeatBet();
+        int single1RepeatBet = betBean.getSingle1RepeatBet();
+        int single2RepeatBet = betBean.getSingle2RepeatBet();
+        int single3RepeatBet = betBean.getSingle3RepeatBet();
+        int single4RepeatBet = betBean.getSingle4RepeatBet();
+        int single5RepeatBet = betBean.getSingle5RepeatBet();
+        int single6RepeatBet = betBean.getSingle6RepeatBet();
+        int bigAlreadyBet = betBean.getBigAlreadyBet();
+        int smallAlreadyBet = betBean.getSmallAlreadyBet();
+        int anyAlreadyBet = betBean.getAnyAlreadyBet();
+        int single1AlreadyBet = betBean.getSingle1AlreadyBet();
+        int single2AlreadyBet = betBean.getSingle2AlreadyBet();
+        int single3AlreadyBet = betBean.getSingle3AlreadyBet();
+        int single4AlreadyBet = betBean.getSingle4AlreadyBet();
+        int single5AlreadyBet = betBean.getSingle5AlreadyBet();
+        int single6AlreadyBet = betBean.getSingle6AlreadyBet();
+        if (bigAlreadyBet == 0 && smallAlreadyBet == 0 && anyAlreadyBet == 0 && single1AlreadyBet == 0 && single2AlreadyBet == 0 && single3AlreadyBet == 0 && single4AlreadyBet == 0 && single5AlreadyBet == 0 && single6AlreadyBet == 0) {
+            clearSicboAllChip(betBean, contentBean);
+            if (bigRepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "B", true);
+            }
+            if (smallRepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "S", true);
+            }
+            if (anyRepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "A", true);
+            }
+            if (single1RepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "1", true);
+            }
+            if (single2RepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "2", true);
+            }
+            if (single3RepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "3", true);
+            }
+            if (single4RepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "4", true);
+            }
+            if (single5RepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "5", true);
+            }
+            if (single6RepeatBet > 0) {
+                sicboBet(tableId, betBean, contentBean, mAppViewModel, context, chooseChip, "6", true);
             }
         }
     }
@@ -555,6 +907,64 @@ public class TableBetUtils {
         betBean.setTieCurrentBet(0);
     }
 
+    public static void clearSicboNoBetChip(SicboTableBetBean betBean, SicboTableContentBean contentBean, Context context) {
+        int bigAlreadyBet = betBean.getBigAlreadyBet();
+        int smallAlreadyBet = betBean.getSmallAlreadyBet();
+        int anyAlreadyBet = betBean.getAnyAlreadyBet();
+        int single1AlreadyBet = betBean.getSingle1AlreadyBet();
+        int single2AlreadyBet = betBean.getSingle2AlreadyBet();
+        int single3AlreadyBet = betBean.getSingle3AlreadyBet();
+        int single4AlreadyBet = betBean.getSingle4AlreadyBet();
+        int single5AlreadyBet = betBean.getSingle5AlreadyBet();
+        int single6AlreadyBet = betBean.getSingle6AlreadyBet();
+        contentBean.getFlBig().removeAllViews();
+        if (bigAlreadyBet > 0) {
+            addChip(contentBean.getFlBig(), bigAlreadyBet, bigAlreadyBet, context);
+        }
+        contentBean.getFlSmall().removeAllViews();
+        if (smallAlreadyBet > 0) {
+            addChip(contentBean.getFlSmall(), smallAlreadyBet, smallAlreadyBet, context);
+        }
+        contentBean.getFlAny().removeAllViews();
+        if (anyAlreadyBet > 0) {
+            addChip(contentBean.getFlAny(), anyAlreadyBet, anyAlreadyBet, context);
+        }
+        contentBean.getFlSingle1().removeAllViews();
+        if (single1AlreadyBet > 0) {
+            addChip(contentBean.getFlSingle1(), single1AlreadyBet, single1AlreadyBet, context);
+        }
+        contentBean.getFlSingle2().removeAllViews();
+        if (single2AlreadyBet > 0) {
+            addChip(contentBean.getFlSingle2(), single2AlreadyBet, single2AlreadyBet, context);
+        }
+        contentBean.getFlSingle3().removeAllViews();
+        if (single3AlreadyBet > 0) {
+            addChip(contentBean.getFlSingle3(), single3AlreadyBet, single3AlreadyBet, context);
+        }
+        contentBean.getFlSingle4().removeAllViews();
+        if (single4AlreadyBet > 0) {
+            addChip(contentBean.getFlSingle4(), single4AlreadyBet, single4AlreadyBet, context);
+        }
+        contentBean.getFlSingle5().removeAllViews();
+        if (single5AlreadyBet > 0) {
+            addChip(contentBean.getFlSingle5(), single5AlreadyBet, single5AlreadyBet, context);
+        }
+        contentBean.getFlSingle6().removeAllViews();
+        if (single6AlreadyBet > 0) {
+            addChip(contentBean.getFlSingle6(), single6AlreadyBet, single6AlreadyBet, context);
+        }
+        betBean.setBigCurrentBet(0);
+        betBean.setSmallCurrentBet(0);
+        betBean.setAnyCurrentBet(0);
+        betBean.setSingle1CurrentBet(0);
+        betBean.setSingle2CurrentBet(0);
+        betBean.setSingle3CurrentBet(0);
+        betBean.setSingle4CurrentBet(0);
+        betBean.setSingle5CurrentBet(0);
+        betBean.setSingle6CurrentBet(0);
+        contentBean.getFlBetButton().removeAllViews();
+    }
+
     public static void clearAllChip(BaccaratTableBetBean baccaratTableBetBean, BaccaratTableBetContentBean contentBean) {
         contentBean.getFlTablePlayer().removeAllViews();
         contentBean.getFlTableBanker().removeAllViews();
@@ -583,6 +993,37 @@ public class TableBetUtils {
         betBean.setDragonAlreadyBet(0);
         betBean.setTigerAlreadyBet(0);
         betBean.setTieAlreadyBet(0);
+    }
+
+    public static void clearSicboAllChip(SicboTableBetBean betBean, SicboTableContentBean contentBean) {
+        contentBean.getFlBig().removeAllViews();
+        contentBean.getFlSmall().removeAllViews();
+        contentBean.getFlAny().removeAllViews();
+        contentBean.getFlSingle1().removeAllViews();
+        contentBean.getFlSingle2().removeAllViews();
+        contentBean.getFlSingle3().removeAllViews();
+        contentBean.getFlSingle4().removeAllViews();
+        contentBean.getFlSingle5().removeAllViews();
+        contentBean.getFlSingle6().removeAllViews();
+        betBean.setBigCurrentBet(0);
+        betBean.setSmallCurrentBet(0);
+        betBean.setAnyCurrentBet(0);
+        betBean.setSingle1CurrentBet(0);
+        betBean.setSingle2CurrentBet(0);
+        betBean.setSingle3CurrentBet(0);
+        betBean.setSingle4CurrentBet(0);
+        betBean.setSingle5CurrentBet(0);
+        betBean.setSingle6CurrentBet(0);
+        betBean.setBigAlreadyBet(0);
+        betBean.setSmallAlreadyBet(0);
+        betBean.setAnyAlreadyBet(0);
+        betBean.setSingle1AlreadyBet(0);
+        betBean.setSingle2AlreadyBet(0);
+        betBean.setSingle3AlreadyBet(0);
+        betBean.setSingle4AlreadyBet(0);
+        betBean.setSingle5AlreadyBet(0);
+        betBean.setSingle6AlreadyBet(0);
+        contentBean.getFlBetButton().removeAllViews();
     }
 
     public static void addChip(FrameLayout fl, int money, int betMoney, Context context) {
@@ -646,6 +1087,45 @@ public class TableBetUtils {
                 + "&DragonRed=" + 0 + "&DragonBlack=" + 0
                 + "&TigerRed=" + 0 + "&TigerBlack=" + 0
                 + "&TigerOdd=" + 0 + "&TigerEven=" + 0;
+        return params;
+    }
+
+    private static String getSicboBetParam(int tableId, SicboTableBetBean betBean, AppModel mAppViewModel) {
+        String odd = "0";
+        String even = "0";
+        String threeForces = "";
+        String nineWayGards = "0";
+        String pairs = "0";
+        String waiDices = "0";
+        String points = "0";
+
+        if (betBean.getSingle1CurrentBet() > 0) {
+            threeForces += "1#" + betBean.getSingle1CurrentBet() + "|";
+        }
+        if (betBean.getSingle2CurrentBet() > 0) {
+            threeForces += "2#" + betBean.getSingle2CurrentBet() + "|";
+        }
+        if (betBean.getSingle3CurrentBet() > 0) {
+            threeForces += "3#" + betBean.getSingle3CurrentBet() + "|";
+        }
+        if (betBean.getSingle4CurrentBet() > 0) {
+            threeForces += "4#" + betBean.getSingle4CurrentBet() + "|";
+        }
+        if (betBean.getSingle5CurrentBet() > 0) {
+            threeForces += "5#" + betBean.getSingle5CurrentBet() + "|";
+        }
+        if (betBean.getSingle6CurrentBet() > 0) {
+            threeForces += "6#" + betBean.getSingle6CurrentBet() + "|";
+        }
+        if (threeForces.equals("")) {
+            threeForces = "0";
+        }
+        String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
+                + "&Bl=" + mAppViewModel.getSicbo01().getGameNumber()
+                + "&Xh=" + mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxTotalBet()
+                + "&Hl=1"
+                + "&Big=" + betBean.getBigCurrentBet() + "&Small=" + betBean.getSmallCurrentBet() + "&Odd=" + odd + "&Even=" + even + "&AllDices=" + betBean.getAnyCurrentBet()
+                + "&ThreeForces=" + threeForces + "&NineWayGards=" + nineWayGards + "&Pairs=" + pairs + "&SurroundDices=" + waiDices + "&Points=" + points;
         return params;
     }
 
