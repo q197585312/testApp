@@ -22,15 +22,34 @@
 
             <TextView
                 android:id="@+id/gd__tv_table_title"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="BM1"
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gd__tv_timer"
+                android:layout_width="18dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:background="@color/timer_color"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/yellow_brown_a3721a"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/gd_img_close_bet"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:background="@mipmap/gd_close_bet_table"></ImageView>
 
             <TextView
                 android:id="@+id/gd__text_shoe_game_number"
@@ -230,18 +249,6 @@
                 android:layout_weight="1"
                 android:visibility="gone"></View>
 
-            <TextView
-                android:id="@+id/gd__tv_timer"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/timer_color"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="0"
-                android:textColor="@color/yellow_brown_a3721a"
-                android:textSize="11sp"
-                android:textStyle="bold" />
         </LinearLayout>
 
         <gaming178.com.casinogame.Control.ParentClickHorizontalScrollView
@@ -267,6 +274,8 @@
             </LinearLayout>
         </gaming178.com.casinogame.Control.ParentClickHorizontalScrollView>
     </LinearLayout>
+
+    <include layout="@layout/gd_include_roulette_bet_table_table_change"></include>
 
     <include
         layout="@layout/gd_table_close_bg"

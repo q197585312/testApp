@@ -32,7 +32,9 @@ import gaming178.com.casinogame.Activity.entity.DiceBean;
 import gaming178.com.casinogame.Activity.entity.DiceContentBean;
 import gaming178.com.casinogame.Activity.entity.DragonTigerTableBetBean;
 import gaming178.com.casinogame.Activity.entity.DragonTigerTableContentBean;
+import gaming178.com.casinogame.Activity.entity.RouletteTableBetBean;
 import gaming178.com.casinogame.Activity.entity.RouletteTableChangeViewBean;
+import gaming178.com.casinogame.Activity.entity.RouletteTableContentBean;
 import gaming178.com.casinogame.Activity.entity.SicboTableBetBean;
 import gaming178.com.casinogame.Activity.entity.SicboTableChangeViewBean;
 import gaming178.com.casinogame.Activity.entity.SicboTableContentBean;
@@ -99,6 +101,8 @@ public class TableChangePop extends BasePopupWindow {
         dragonTigerTableContentBean = new DragonTigerTableContentBean();
         sicboTableBetBean = new SicboTableBetBean();
         sicboTableContentBean = new SicboTableContentBean();
+        rouletteTableBetBean = new RouletteTableBetBean();
+        rouletteTableContentBean = new RouletteTableContentBean();
         list = new ArrayList<>();
         parent = (LinearLayout) view.findViewById(R.id.gd__ll_change_table_parent);
         view.setOnClickListener(new View.OnClickListener() {
@@ -250,6 +254,7 @@ public class TableChangePop extends BasePopupWindow {
         }
         initDragonTigerGame();
         initSicboGame();
+        initRouletteGame();
     }
 
     private void initBaccaratGame(BaccaratTableBetContentBean contentBean) {
@@ -313,6 +318,24 @@ public class TableChangePop extends BasePopupWindow {
         sicboTableContentBean.setSicboGameNumber("");
         sicboTableContentBean.setSicboOpenResult(true);
         sicboTableContentBean.setSicboGetResult(true);
+    }
+
+    private void initRouletteGame() {
+        rouletteTableContentBean.getFlResult().setVisibility(View.GONE);
+        rouletteTableContentBean.getContentView().setVisibility(View.GONE);
+        rouletteTableContentBean.getFlEven().removeAllViews();
+        rouletteTableContentBean.getFlZero().removeAllViews();
+        rouletteTableContentBean.getFlOdd().removeAllViews();
+        rouletteTableContentBean.getFlSingle1_12().removeAllViews();
+        rouletteTableContentBean.getFlSingle13_24().removeAllViews();
+        rouletteTableContentBean.getFlSingle25_36().removeAllViews();
+        rouletteTableContentBean.getFlSingle1_18().removeAllViews();
+        rouletteTableContentBean.getFlSingle19_36().removeAllViews();
+        rouletteTableContentBean.getFlRed().removeAllViews();
+        rouletteTableContentBean.getFlBlack().removeAllViews();
+        rouletteTableContentBean.setRouletteGameNumber("");
+        rouletteTableContentBean.setRouletteOpenResult(true);
+        rouletteTableContentBean.setRouletteGetResult(true);
     }
 
     @Override
@@ -519,6 +542,7 @@ public class TableChangePop extends BasePopupWindow {
                 baccaratTableChangeViewBeenList.add(bean);
             } else if (item.getDrawableRes() == 21) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.gd_layout_scrollview_h_table_roultette, null);
+                initRouletteContent(aB1, item.getDrawableRes());
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.gd__tv_timer);
                 if (!isHaveThisTableId(item.getDrawableRes() + "")) {
                     list.add(new TableTimerBean(tv_timer, item.getDrawableRes() + ""));
@@ -694,6 +718,209 @@ public class TableChangePop extends BasePopupWindow {
             }
             i++;
         }
+    }
+
+    private void initRouletteContent(View view, int tableId) {
+        rouletteTableBetBean.setTableId(tableId);
+        rouletteTableContentBean.setTableId(tableId);
+        View betContent = view.findViewById(R.id.gd_roulette_bet_table_change);
+        rouletteTableContentBean.setContentView(betContent);
+        FrameLayout flEven = view.findViewById(R.id.fl_even);
+        FrameLayout flZero = view.findViewById(R.id.fl_zero);
+        FrameLayout flOdd = view.findViewById(R.id.fl_odd);
+        ImageView imgSingle1_12 = view.findViewById(R.id.img_1_12);
+        ImageView imgSingle13_24 = view.findViewById(R.id.img_13_24);
+        ImageView imgSingle25_36 = view.findViewById(R.id.img_25_36);
+        ImageView imgSingle1_18 = view.findViewById(R.id.img_1_18);
+        ImageView imgSingle19_36 = view.findViewById(R.id.img_19_36);
+        ImageView imgSingleRed = view.findViewById(R.id.img_red);
+        ImageView imgSingleBlack = view.findViewById(R.id.img_black);
+        flEven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (rouletteTableBetBean.getOddCurrentBet() > 0 || rouletteTableBetBean.getOddAlreadyBet() > 0) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_odd_even), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Even", false);
+                }
+            }
+        });
+        flZero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "0", false);
+                }
+            }
+        });
+        flOdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (rouletteTableBetBean.getEvenCurrentBet() > 0 || rouletteTableBetBean.getEvenAlreadyBet() > 0) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_odd_even), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Odd", false);
+                }
+            }
+        });
+        imgSingle1_12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if ((rouletteTableBetBean.getSingle13_24CurrentBet() > 0 || rouletteTableBetBean.getSingle13_24AlreadyBet() > 0) && (rouletteTableBetBean.getSingle25_36CurrentBet() > 0 || rouletteTableBetBean.getSingle25_36AlreadyBet() > 0)) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_column), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "1_12", false);
+                }
+            }
+        });
+        imgSingle13_24.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if ((rouletteTableBetBean.getSingle1_12CurrentBet() > 0 || rouletteTableBetBean.getSingle1_12AlreadyBet() > 0) && (rouletteTableBetBean.getSingle25_36CurrentBet() > 0 || rouletteTableBetBean.getSingle25_36AlreadyBet() > 0)) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_column), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "13_24", false);
+                }
+            }
+        });
+        imgSingle25_36.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if ((rouletteTableBetBean.getSingle1_12CurrentBet() > 0 || rouletteTableBetBean.getSingle1_12AlreadyBet() > 0) && (rouletteTableBetBean.getSingle13_24CurrentBet() > 0 || rouletteTableBetBean.getSingle13_24AlreadyBet() > 0)) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_column), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "25_36", false);
+                }
+            }
+        });
+        imgSingle1_18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (rouletteTableBetBean.getSingle19_36CurrentBet() > 0 || rouletteTableBetBean.getSingle19_36AlreadyBet() > 0) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_big_small), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "1_18", false);
+                }
+            }
+        });
+        imgSingle19_36.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (rouletteTableBetBean.getSingle1_18CurrentBet() > 0 || rouletteTableBetBean.getSingle1_18AlreadyBet() > 0) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_big_small), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "19_36", false);
+                }
+            }
+        });
+        imgSingleRed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (rouletteTableBetBean.getBlackCurrentBet() > 0 || rouletteTableBetBean.getBlackAlreadyBet() > 0) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_red_black), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Red", false);
+                }
+            }
+        });
+        imgSingleBlack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chooseChip < 1) {
+                    Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (rouletteTableBetBean.getRedCurrentBet() > 0 || rouletteTableBetBean.getRedAlreadyBet() > 0) {
+                    Toast.makeText(context, context.getString(R.string.show_limit_red_black), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                    TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Black", false);
+                }
+            }
+        });
+        rouletteTableContentBean.setFlSingle1_12(view.findViewById(R.id.fl_1_12));
+        rouletteTableContentBean.setFlSingle13_24(view.findViewById(R.id.fl_13_24));
+        rouletteTableContentBean.setFlSingle25_36(view.findViewById(R.id.fl_25_36));
+        rouletteTableContentBean.setFlSingle1_18(view.findViewById(R.id.fl_1_18));
+        rouletteTableContentBean.setFlSingle19_36(view.findViewById(R.id.fl_19_36));
+        rouletteTableContentBean.setFlRed(view.findViewById(R.id.fl_red));
+        rouletteTableContentBean.setFlBlack(view.findViewById(R.id.fl_black));
+        rouletteTableContentBean.setFlEven(flEven);
+        rouletteTableContentBean.setFlZero(flZero);
+        rouletteTableContentBean.setFlOdd(flOdd);
+        rouletteTableContentBean.setImgSingle1_12(imgSingle1_12);
+        rouletteTableContentBean.setImgSingle13_24(imgSingle13_24);
+        rouletteTableContentBean.setImgSingle25_36(imgSingle25_36);
+        rouletteTableContentBean.setImgSingle1_18(imgSingle1_18);
+        rouletteTableContentBean.setImgSingle19_36(imgSingle19_36);
+        rouletteTableContentBean.setImgSingleRed(imgSingleRed);
+        rouletteTableContentBean.setImgSingleBlack(imgSingleBlack);
+        rouletteTableContentBean.setFlBetButton(view.findViewById(R.id.fl_bet_button));
+        rouletteTableContentBean.setFlResult(view.findViewById(R.id.fl_result));
+        rouletteTableContentBean.setTvNumber(view.findViewById(R.id.gd__tv_pop_number));
+        rouletteTableContentBean.setTvRedBlack(view.findViewById(R.id.gd__tv_red_black));
+        rouletteTableContentBean.setTvOddEven(view.findViewById(R.id.gd__tv_odd_even));
+        ImageView imgCloseBet = view.findViewById(R.id.gd_img_close_bet);
+        imgCloseBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initRouletteGame();
+                mAppViewModel.setClickRoulette(false);
+            }
+        });
     }
 
     private void initSicboGameContent(View view, int tableId) {
@@ -931,6 +1158,8 @@ public class TableChangePop extends BasePopupWindow {
     private DragonTigerTableContentBean dragonTigerTableContentBean;
     private SicboTableBetBean sicboTableBetBean;
     private SicboTableContentBean sicboTableContentBean;
+    private RouletteTableBetBean rouletteTableBetBean;
+    private RouletteTableContentBean rouletteTableContentBean;
 
     public BaccaratTableBetContentBean getBaccaratBetContentBean(int tableId) {
         BaccaratTableBetContentBean contentBean = null;
@@ -951,6 +1180,10 @@ public class TableChangePop extends BasePopupWindow {
 
     public SicboTableContentBean getSicboContentBean() {
         return sicboTableContentBean;
+    }
+
+    public RouletteTableContentBean getRouletteContentBean() {
+        return rouletteTableContentBean;
     }
 
     public BaccaratTableBetBean getBaccaratBetBean(int tableId) {
@@ -1178,6 +1411,30 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void updateRoulette(int tableId) {
+        if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+            if (!rouletteTableContentBean.getRouletteGameNumber().equals(mAppViewModel.getRoulette01().getGameNumber())) {
+                mAppViewModel.getRoulette01().setResult("");
+                rouletteTableContentBean.getFlResult().setVisibility(View.GONE);
+                TableBetUtils.clearRouletteAllChip(rouletteTableBetBean, rouletteTableContentBean);
+                rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
+                rouletteTableContentBean.setRouletteOpenResult(true);
+                rouletteTableContentBean.setRouletteGetResult(true);
+            }
+        } else if (mAppViewModel.getRoulette01().getGameStatus() == 2) {
+            if (rouletteTableContentBean.isRouletteOpenResult()) {
+                rouletteTableContentBean.setRouletteOpenResult(false);
+                TableBetUtils.clearRouletteNoBetChip(rouletteTableBetBean, rouletteTableContentBean, context);
+            }
+        } else if (mAppViewModel.getRoulette01().getGameStatus() == 5) {
+            if (rouletteTableContentBean.isRouletteGetResult()) {
+                showRouletteResult();
+                rouletteTableContentBean.setRouletteGetResult(false);
+                TableBetUtils.clearRouletteAllChip(rouletteTableBetBean, rouletteTableContentBean);
+            }
+        }
+    }
+
     private void updateDragonTiger(int tableId) {
         if (mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
             if (dragonTigerTableContentBean.getResultWinView() != null && dragonTigerTableContentBean.getResultWinView().getBackground() != null) {
@@ -1391,6 +1648,59 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void showRouletteResult() {
+        FrameLayout flResult = rouletteTableContentBean.getFlResult();
+        TextView tv_pop_number = flResult.findViewById(R.id.gd__tv_pop_number);
+        TextView tv_red_black = flResult.findViewById(R.id.gd__tv_red_black);
+        TextView tv_odd_even = flResult.findViewById(R.id.gd__tv_odd_even);
+        if (mAppViewModel.getRoulette01().getResult() != null && !"".equals(mAppViewModel.getRoulette01().getResult())) {
+            switch (mAppViewModel.getRoulette01().getResult()) {
+                case "2":
+                case "4":
+                case "6":
+                case "8":
+                case "10":
+                case "11":
+                case "13":
+                case "15":
+                case "17":
+                case "20":
+                case "22":
+                case "24":
+                case "26":
+                case "28":
+                case "29":
+                case "31":
+                case "33":
+                case "35":
+                    tv_red_black.setBackgroundResource(R.drawable.gd_shape_roulette_black_bg);
+                    tv_red_black.setText(context.getString(R.string.black_acronym));
+                    break;
+                case "0":
+                    tv_red_black.setBackgroundResource(R.drawable.gd_shape_roulette_zero_bg);
+                    tv_red_black.setText(context.getString(R.string.zero_acronym));
+                    break;
+                default:
+                    tv_red_black.setBackgroundResource(R.drawable.gd_shape_roulette_red_bg);
+                    tv_red_black.setText(context.getString(R.string.red_acronym));
+                    break;
+            }
+            String resultStr = mAppViewModel.getRoulette01().getResult();
+            tv_pop_number.setText(resultStr);
+            int result = Integer.parseInt(resultStr);
+            if (result % 2 == 0) {
+                tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_red_bg);
+                tv_odd_even.setText(context.getString(R.string.gd_E));
+            } else {
+                tv_odd_even.setBackgroundResource(R.drawable.gd_shape_roulette_black_bg);
+                tv_odd_even.setText(context.getString(R.string.gd_O));
+            }
+            flResult.setVisibility(View.VISIBLE);
+        } else {
+            flResult.setVisibility(View.GONE);
+        }
+    }
+
     public void updateBaccaratBetMoney(int tableId) {
         new Thread() {
             @Override
@@ -1596,6 +1906,98 @@ public class TableChangePop extends BasePopupWindow {
         }.start();
     }
 
+    public void updateRouletteBetMoney(int tableId) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
+                            + "&Blid=" + mAppViewModel.getRoulette01().getGameNumber() +
+                            "&Xh=" + mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet();
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LP_BET_MONEY_URL, params);
+                    String strInfo[] = strRes.split("\\^");
+                    if (strRes.startsWith("Results=ok")) {
+                        if (strInfo.length >= 10) {
+                            if (!"0".equals(strInfo[3])) {//09#1|06#1|00#1|
+                                String direct[] = strInfo[3].split("\\|");
+                                for (int i = 0; i < direct.length; i++) {
+                                    String strDirectDetail[] = direct[i].split("#");
+                                    if (strDirectDetail != null && strDirectDetail.length == 2) {
+                                        String point = strDirectDetail[0];
+                                        int betMoney = (int) Double.parseDouble(strDirectDetail[1]);
+                                        if (point.equals("00")) {
+                                            rouletteTableBetBean.setZeroAlreadyBet(betMoney);
+                                            break;
+                                        }
+                                    }
+
+                                }
+                            }
+                            rouletteTableBetBean.setSingle1_12AlreadyBet(Integer.parseInt(strInfo[13]));
+                            rouletteTableBetBean.setSingle13_24AlreadyBet(Integer.parseInt(strInfo[14]));
+                            rouletteTableBetBean.setSingle25_36AlreadyBet(Integer.parseInt(strInfo[15]));
+                            rouletteTableBetBean.setRedAlreadyBet(Integer.parseInt(strInfo[16]));
+                            rouletteTableBetBean.setBlackAlreadyBet(Integer.parseInt(strInfo[17]));
+                            rouletteTableBetBean.setOddAlreadyBet(Integer.parseInt(strInfo[18]));
+                            rouletteTableBetBean.setEvenAlreadyBet(Integer.parseInt(strInfo[19]));
+                            rouletteTableBetBean.setSingle1_18AlreadyBet(Integer.parseInt(strInfo[20]));
+                            rouletteTableBetBean.setSingle19_36AlreadyBet(Integer.parseInt(strInfo[21]));
+                            BaseActivity baseActivity = (BaseActivity) context;
+                            baseActivity.getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    int evenAlreadyBet = rouletteTableBetBean.getEvenAlreadyBet();
+                                    int zeroAlreadyBet = rouletteTableBetBean.getZeroAlreadyBet();
+                                    int oddAlreadyBet = rouletteTableBetBean.getOddAlreadyBet();
+                                    int single1_12AlreadyBet = rouletteTableBetBean.getSingle1_12AlreadyBet();
+                                    int single13_24AlreadyBet = rouletteTableBetBean.getSingle13_24AlreadyBet();
+                                    int single25_36AlreadyBet = rouletteTableBetBean.getSingle25_36AlreadyBet();
+                                    int single1_18AlreadyBet = rouletteTableBetBean.getSingle1_18AlreadyBet();
+                                    int single19_36AlreadyBet = rouletteTableBetBean.getSingle19_36AlreadyBet();
+                                    int redAlreadyBet = rouletteTableBetBean.getRedAlreadyBet();
+                                    int blackAlreadyBet = rouletteTableBetBean.getBlackAlreadyBet();
+                                    if (evenAlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlEven(), evenAlreadyBet, evenAlreadyBet, context);
+                                    }
+                                    if (zeroAlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlZero(), zeroAlreadyBet, zeroAlreadyBet, context);
+                                    }
+                                    if (oddAlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlOdd(), oddAlreadyBet, oddAlreadyBet, context);
+                                    }
+                                    if (single1_12AlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlSingle1_12(), single1_12AlreadyBet, single1_12AlreadyBet, context);
+                                    }
+                                    if (single13_24AlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlSingle13_24(), single13_24AlreadyBet, single13_24AlreadyBet, context);
+                                    }
+                                    if (single25_36AlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlSingle25_36(), single25_36AlreadyBet, single25_36AlreadyBet, context);
+                                    }
+                                    if (single1_18AlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlSingle1_18(), single1_18AlreadyBet, single1_18AlreadyBet, context);
+                                    }
+                                    if (single19_36AlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlSingle19_36(), single19_36AlreadyBet, single19_36AlreadyBet, context);
+                                    }
+                                    if (redAlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlRed(), redAlreadyBet, redAlreadyBet, context);
+                                    }
+                                    if (blackAlreadyBet > 0) {
+                                        TableBetUtils.addChip(rouletteTableContentBean.getFlBlack(), blackAlreadyBet, blackAlreadyBet, context);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
     private void updateGame() {
         if (mAppViewModel.isClickBaccarat1()) {
             updateBaccarat(1);
@@ -1623,6 +2025,9 @@ public class TableChangePop extends BasePopupWindow {
         }
         if (mAppViewModel.isClickSicbo()) {
             updateSicbo(31);
+        }
+        if (mAppViewModel.isClickRoulette()) {
+            updateRoulette(21);
         }
     }
 

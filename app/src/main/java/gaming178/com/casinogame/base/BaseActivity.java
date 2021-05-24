@@ -2001,6 +2001,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         break;
                     case 21:
                         mAppViewModel.setClickRoulette(true);
+                        tablePop.getRouletteContentBean().getContentView().setVisibility(View.VISIBLE);
+                        tablePop.updateRouletteBetMoney(gameMenuItem.getDrawableRes());
                         break;
                     case 31:
                         mAppViewModel.setClickSicbo(true);
