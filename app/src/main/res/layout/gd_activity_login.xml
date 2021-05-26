@@ -16,11 +16,9 @@
 
         <ImageView
             android:id="@+id/gd_img_open"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="-8dp"
-            android:layout_marginTop="-8dp"
-            android:background="@mipmap/gd_menu"
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:src="@mipmap/gd_menu"
             android:visibility="gone"></ImageView>
 
         <ImageView
