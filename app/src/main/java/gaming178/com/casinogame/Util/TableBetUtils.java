@@ -3,6 +3,7 @@ package gaming178.com.casinogame.Util;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -173,7 +174,11 @@ public class TableBetUtils {
                     View viewBetButton = frameLayout.findViewById(R.id.ll_bet_button);
                     if (frameLayout.equals(fl)) {
                         if (viewBetButton == null) {
-                            View betView = LayoutInflater.from(context).inflate(R.layout.include_bet_ui, null);
+                            int layout = R.layout.include_bet_ui;
+                            if (betType.equals("T") || betType.equals("PP") || betType.equals("BP")) {
+                                layout = R.layout.include_bet_ui_small;
+                            }
+                            View betView = LayoutInflater.from(context).inflate(layout, null);
                             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                             layoutParams.gravity = Gravity.CENTER;
                             betView.setLayoutParams(layoutParams);
@@ -317,9 +322,10 @@ public class TableBetUtils {
                     View viewBetButton = frameLayout.findViewById(R.id.ll_bet_button);
                     if (frameLayout.equals(fl)) {
                         if (viewBetButton == null) {
-                            View betView = LayoutInflater.from(context).inflate(R.layout.include_bet_ui, null);
+                            View betView = LayoutInflater.from(context).inflate(R.layout.include_bet_ui_small, null);
                             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                            layoutParams.gravity = Gravity.CENTER;
+                            layoutParams.gravity = Gravity.TOP;
+                            layoutParams.topMargin = fl.getHeight() / 4;
                             betView.setLayoutParams(layoutParams);
                             ImageView imgCancel = betView.findViewById(R.id.gd__tv_table_bet_cancel);
                             ImageView imgRepeat = betView.findViewById(R.id.gd__tv_table_bet_replay);
@@ -1493,7 +1499,11 @@ public class TableBetUtils {
     public static void addChip(FrameLayout fl, int money, int betMoney, Context context) {
         List<ChipBean> chipList = getChipList();
         fl.removeAllViews();
+        String tag = (String) fl.getTag();
         int bottomMargin = 0;
+        if (!TextUtils.isEmpty(tag) && tag.equals("DT")) {
+            bottomMargin = fl.getHeight() / 4;
+        }
         while (money > 0) {
             A:
             for (int i = chipList.size() - 1; i >= 0; i--) {
@@ -1515,15 +1525,27 @@ public class TableBetUtils {
         if (betMoney > 0) {
             TextView moneyTv = new TextView(context);
             FrameLayout.LayoutParams params = new AutoFrameLayout.LayoutParams(AutoUtils.getPercentHeightSize(22), AutoUtils.getPercentHeightSize(12));
-            params.gravity = Gravity.BOTTOM | Gravity.RIGHT;
-            params.rightMargin = AutoUtils.getPercentHeightSize(5);
-            params.bottomMargin = AutoUtils.getPercentHeightSize(2);
+            if (!TextUtils.isEmpty(tag)) {
+                if (tag.equals("Top")) {
+                    params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+                    bottomMargin = bottomMargin + AutoUtils.getPercentHeightSize(12);
+                    params.bottomMargin = bottomMargin;
+                } else if (tag.equals("DT")) {
+                    params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+                    params.leftMargin = AutoUtils.getPercentHeightSize(27);
+                    params.bottomMargin = fl.getHeight() / 4 + AutoUtils.getPercentHeightSize(4);
+                }
+            } else {
+                params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+                params.leftMargin = AutoUtils.getPercentHeightSize(27);
+                params.bottomMargin = AutoUtils.getPercentHeightSize(2);
+            }
             moneyTv.setLayoutParams(params);
             moneyTv.setText(betMoney + "");
             moneyTv.setTextSize(6);
             moneyTv.setGravity(Gravity.CENTER);
             moneyTv.setTextColor(Color.WHITE);
-            moneyTv.setBackgroundResource(R.drawable.gd_rectangle_trans_chip_tips);
+            moneyTv.setBackgroundResource(R.mipmap.gd_show_chip_bg);
             fl.addView(moneyTv);
         }
 

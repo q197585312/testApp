@@ -35,6 +35,7 @@ public class SicboTableContentBean {
     private String sicboGameNumber;
     private boolean isSicboOpenResult;
     private boolean isSicboGetResult;
+    private boolean isCanBet;
 
     public int getTableId() {
         return tableId;
@@ -258,5 +259,13 @@ public class SicboTableContentBean {
 
     public void setSicboGetResult(boolean sicboGetResult) {
         isSicboGetResult = sicboGetResult;
+    }
+
+    public boolean isCanBet() {
+        return isCanBet;
+    }
+
+    public void setCanBet(boolean canBet) {
+        isCanBet = canBet;
     }
 }

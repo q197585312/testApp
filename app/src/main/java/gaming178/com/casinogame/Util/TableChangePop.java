@@ -258,6 +258,7 @@ public class TableChangePop extends BasePopupWindow {
     }
 
     private void initBaccaratGame(BaccaratTableBetContentBean contentBean) {
+        contentBean.setCanBet(false);
         clearBaccaratResultView(contentBean.getTableId());
         contentBean.getContentView().setVisibility(View.GONE);
         contentBean.getFlTablePlayer().removeAllViews();
@@ -293,6 +294,7 @@ public class TableChangePop extends BasePopupWindow {
     }
 
     private void initDragonTigerGame() {
+        dragonTigerTableContentBean.setCanBet(false);
         clearDragonTigerResultView();
         dragonTigerTableContentBean.getContentView().setVisibility(View.GONE);
         dragonTigerTableContentBean.getFlTableDragon().removeAllViews();
@@ -304,6 +306,7 @@ public class TableChangePop extends BasePopupWindow {
     }
 
     private void initSicboGame() {
+        sicboTableContentBean.setCanBet(false);
         sicboTableContentBean.getFlResult().setVisibility(View.GONE);
         sicboTableContentBean.getContentView().setVisibility(View.INVISIBLE);
         sicboTableContentBean.getFlBig().removeAllViews();
@@ -321,6 +324,7 @@ public class TableChangePop extends BasePopupWindow {
     }
 
     private void initRouletteGame() {
+        rouletteTableContentBean.setCanBet(false);
         rouletteTableContentBean.getFlResult().setVisibility(View.GONE);
         rouletteTableContentBean.getContentView().setVisibility(View.GONE);
         rouletteTableContentBean.getFlEven().removeAllViews();
@@ -746,7 +750,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_odd_even), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Even", false);
                 }
             }
@@ -758,7 +762,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "0", false);
                 }
             }
@@ -774,7 +778,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_odd_even), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Odd", false);
                 }
             }
@@ -790,7 +794,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_column), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "1_12", false);
                 }
             }
@@ -806,7 +810,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_column), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "13_24", false);
                 }
             }
@@ -822,7 +826,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_column), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "25_36", false);
                 }
             }
@@ -838,7 +842,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_big_small), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "1_18", false);
                 }
             }
@@ -854,7 +858,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_big_small), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "19_36", false);
                 }
             }
@@ -870,7 +874,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_red_black), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Red", false);
                 }
             }
@@ -886,7 +890,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.show_limit_red_black), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
+                if (rouletteTableContentBean.isCanBet() && mAppViewModel.getRoulette01().getGameStatus() == 1) {
                     TableBetUtils.RouletteBet(tableId, rouletteTableBetBean, rouletteTableContentBean, mAppViewModel, context, chooseChip, "Black", false);
                 }
             }
@@ -948,7 +952,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, R.string.show_limit_big_small, Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "B", false);
                 }
             }
@@ -960,7 +964,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "A", false);
                 }
             }
@@ -976,7 +980,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, R.string.show_limit_big_small, Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "S", false);
                 }
             }
@@ -988,7 +992,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "6", false);
                 }
             }
@@ -1000,7 +1004,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "5", false);
                 }
             }
@@ -1012,7 +1016,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "4", false);
                 }
             }
@@ -1024,7 +1028,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "3", false);
                 }
             }
@@ -1036,7 +1040,7 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "2", false);
                 }
             }
@@ -1048,17 +1052,29 @@ public class TableChangePop extends BasePopupWindow {
                     Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
+                if (sicboTableContentBean.isCanBet() && mAppViewModel.getSicbo01().getGameStatus() == 1) {
                     TableBetUtils.sicboBet(tableId, sicboTableBetBean, sicboTableContentBean, mAppViewModel, context, chooseChip, "1", false);
                 }
             }
         });
-        sicboTableContentBean.setFlSingle6(view.findViewById(R.id.fl_single_6));
-        sicboTableContentBean.setFlSingle5(view.findViewById(R.id.fl_single_5));
-        sicboTableContentBean.setFlSingle4(view.findViewById(R.id.fl_single_4));
-        sicboTableContentBean.setFlSingle3(view.findViewById(R.id.fl_single_3));
-        sicboTableContentBean.setFlSingle2(view.findViewById(R.id.fl_single_2));
-        sicboTableContentBean.setFlSingle1(view.findViewById(R.id.fl_single_1));
+        FrameLayout flSingle6 = view.findViewById(R.id.fl_single_6);
+        flSingle6.setTag("Top");
+        FrameLayout flSingle5 = view.findViewById(R.id.fl_single_5);
+        flSingle5.setTag("Top");
+        FrameLayout flSingle4 = view.findViewById(R.id.fl_single_4);
+        flSingle4.setTag("Top");
+        FrameLayout flSingle3 = view.findViewById(R.id.fl_single_3);
+        flSingle3.setTag("Top");
+        FrameLayout flSingle2 = view.findViewById(R.id.fl_single_2);
+        flSingle2.setTag("Top");
+        FrameLayout flSingle1 = view.findViewById(R.id.fl_single_1);
+        flSingle1.setTag("Top");
+        sicboTableContentBean.setFlSingle6(flSingle6);
+        sicboTableContentBean.setFlSingle5(flSingle5);
+        sicboTableContentBean.setFlSingle4(flSingle4);
+        sicboTableContentBean.setFlSingle3(flSingle3);
+        sicboTableContentBean.setFlSingle2(flSingle2);
+        sicboTableContentBean.setFlSingle1(flSingle1);
         sicboTableContentBean.setFlBig(flBig);
         sicboTableContentBean.setFlAny(flAny);
         sicboTableContentBean.setFlSmall(flSmall);
@@ -1101,6 +1117,7 @@ public class TableChangePop extends BasePopupWindow {
         dragonTigerTableContentBean.setLlDragonParent(view.findViewById(R.id.ll_dragon_parent));
         dragonTigerTableContentBean.setLlTigerParent(view.findViewById(R.id.ll_tiger_parent));
         FrameLayout flTableDragon = view.findViewById(R.id.fl_dragon);
+        flTableDragon.setTag("DT");
         dragonTigerTableContentBean.setFlTableDragon(flTableDragon);
         flTableDragon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1110,11 +1127,18 @@ public class TableChangePop extends BasePopupWindow {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "D", false);
+                    if (dragonTigerTableBetBean.getTigerCurrentBet() > 0 || dragonTigerTableBetBean.getTigerAlreadyBet() > 0) {
+                        Toast.makeText(context, context.getString(R.string.show_limit_dragon_tiger), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (dragonTigerTableContentBean.isCanBet() && mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
+                        TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "D", false);
+                    }
                 }
             }
         });
         FrameLayout flTableTie = view.findViewById(R.id.fl_dragon_tiger_tie);
+        flTableTie.setTag("DT");
         dragonTigerTableContentBean.setFlTableTie(flTableTie);
         flTableTie.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1124,11 +1148,14 @@ public class TableChangePop extends BasePopupWindow {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "Tie", false);
+                    if (dragonTigerTableContentBean.isCanBet() && mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
+                        TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "Tie", false);
+                    }
                 }
             }
         });
         FrameLayout flTableTiger = view.findViewById(R.id.fl_tiger);
+        flTableTiger.setTag("DT");
         dragonTigerTableContentBean.setFlTableTiger(flTableTiger);
         flTableTiger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1138,7 +1165,13 @@ public class TableChangePop extends BasePopupWindow {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "T", false);
+                    if (dragonTigerTableBetBean.getDragonCurrentBet() > 0 || dragonTigerTableBetBean.getDragonAlreadyBet() > 0) {
+                        Toast.makeText(context, context.getString(R.string.show_limit_dragon_tiger), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (dragonTigerTableContentBean.isCanBet() && mAppViewModel.getDragonTiger(tableId).getGameStatus() == 1) {
+                        TableBetUtils.dragonTigerBet(tableId, dragonTigerTableBetBean, dragonTigerTableContentBean, mAppViewModel, context, chooseChip, "T", false);
+                    }
                 }
             }
         });
@@ -1224,7 +1257,7 @@ public class TableChangePop extends BasePopupWindow {
         flTablePlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                if (contentBean.isCanBet() && mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
                     if (chooseChip < 1) {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
@@ -1240,7 +1273,7 @@ public class TableChangePop extends BasePopupWindow {
         flTableBanker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                if (contentBean.isCanBet() && mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
                     if (chooseChip < 1) {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
@@ -1255,7 +1288,7 @@ public class TableChangePop extends BasePopupWindow {
         flTableTie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                if (contentBean.isCanBet() && mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
                     if (chooseChip < 1) {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
@@ -1271,7 +1304,7 @@ public class TableChangePop extends BasePopupWindow {
         flTablePP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                if (contentBean.isCanBet() && mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
                     if (chooseChip < 1) {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
@@ -1287,7 +1320,7 @@ public class TableChangePop extends BasePopupWindow {
         flTableBP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
+                if (contentBean.isCanBet() && mAppViewModel.getBaccarat(tableId).getGameStatus() == 1) {
                     if (chooseChip < 1) {
                         Toast.makeText(context, context.getString(R.string.please_select_chips), Toast.LENGTH_SHORT).show();
                         return;
@@ -1706,7 +1739,6 @@ public class TableChangePop extends BasePopupWindow {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
                     String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
                             + "&Xhid=" + mAppViewModel.getBaccarat(tableId).getShoeNumber() + "&Blid=" + mAppViewModel.getBaccarat(tableId).getGameNumber() +
                             "&Xh=" + mAppViewModel.getBaccarat(tableId).getBaccaratLimit(mAppViewModel.getBaccarat(tableId).getLimitIndex()).getMaxTotalBet();
@@ -1754,6 +1786,7 @@ public class TableChangePop extends BasePopupWindow {
                                     if (bpAlreadyBet > 0) {
                                         TableBetUtils.addChip(getBaccaratBetContentBean(tableId).getFlTableBP(), bpAlreadyBet, bpAlreadyBet, context);
                                     }
+                                    getBaccaratBetContentBean(tableId).setCanBet(true);
                                 }
                             });
                         }
@@ -1770,7 +1803,6 @@ public class TableChangePop extends BasePopupWindow {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
                     String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
                             + "&Xhid=" + mAppViewModel.getDragonTiger(tableId).getShoeNumber() + "&Blid=" + mAppViewModel.getDragonTiger(tableId).getGameNumber() +
                             "&Xh=" + mAppViewModel.getDragonTiger(tableId).getDragonTigerLimit(mAppViewModel.getDragonTiger(tableId).getLimitIndex()).getMaxTotalBet();
@@ -1803,6 +1835,7 @@ public class TableChangePop extends BasePopupWindow {
                                     if (tieAlreadyBet > 0) {
                                         TableBetUtils.addChip(dragonTigerTableContentBean.getFlTableTie(), tieAlreadyBet, tieAlreadyBet, context);
                                     }
+                                    dragonTigerTableContentBean.setCanBet(true);
                                 }
                             });
                         }
@@ -1819,7 +1852,6 @@ public class TableChangePop extends BasePopupWindow {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
                     String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
                             + "&Bl=" + mAppViewModel.getSicbo01().getGameNumber() +
                             "&Xh=" + mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxTotalBet();
@@ -1894,6 +1926,7 @@ public class TableChangePop extends BasePopupWindow {
                                     if (single6AlreadyBet > 0) {
                                         TableBetUtils.addChip(sicboTableContentBean.getFlSingle6(), single6AlreadyBet, single6AlreadyBet, context);
                                     }
+                                    sicboTableContentBean.setCanBet(true);
                                 }
                             });
 
@@ -1911,7 +1944,6 @@ public class TableChangePop extends BasePopupWindow {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
                     String params = "GameType=11&Tbid=" + tableId + "&Usid=" + mAppViewModel.getUser().getName()
                             + "&Blid=" + mAppViewModel.getRoulette01().getGameNumber() +
                             "&Xh=" + mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxTotalBet();
@@ -1987,6 +2019,7 @@ public class TableChangePop extends BasePopupWindow {
                                     if (blackAlreadyBet > 0) {
                                         TableBetUtils.addChip(rouletteTableContentBean.getFlBlack(), blackAlreadyBet, blackAlreadyBet, context);
                                     }
+                                    rouletteTableContentBean.setCanBet(true);
                                 }
                             });
                         }

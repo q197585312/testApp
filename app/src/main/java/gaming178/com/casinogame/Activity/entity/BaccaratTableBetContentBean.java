@@ -29,6 +29,7 @@ public class BaccaratTableBetContentBean {
     private String BaccaratGameNumber;
     private boolean isBaccaratOpenPoker;
     private boolean isBaccaratGetResult;
+    private boolean isCanBet;
 
     public int getTableId() {
         return tableId;
@@ -204,5 +205,13 @@ public class BaccaratTableBetContentBean {
 
     public void setBaccaratGetResult(boolean baccaratGetResult) {
         isBaccaratGetResult = baccaratGetResult;
+    }
+
+    public boolean isCanBet() {
+        return isCanBet;
+    }
+
+    public void setCanBet(boolean canBet) {
+        isCanBet = canBet;
     }
 }

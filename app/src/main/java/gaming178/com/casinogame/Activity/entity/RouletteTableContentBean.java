@@ -33,6 +33,7 @@ public class RouletteTableContentBean {
     private String rouletteGameNumber;
     private boolean rouletteOpenResult;
     private boolean rouletteGetResult;
+    private boolean isCanBet;
 
     public int getTableId() {
         return tableId;
@@ -248,5 +249,13 @@ public class RouletteTableContentBean {
 
     public void setFlBlack(FrameLayout flBlack) {
         this.flBlack = flBlack;
+    }
+
+    public boolean isCanBet() {
+        return isCanBet;
+    }
+
+    public void setCanBet(boolean canBet) {
+        isCanBet = canBet;
     }
 }

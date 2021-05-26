@@ -23,6 +23,7 @@ public class DragonTigerTableContentBean {
     private String DragonTigerGameNumber;
     private boolean isDragonTigerOpenPoker;
     private boolean isDragonTigerGetResult;
+    private boolean isCanBet;
 
     public int getTableId() {
         return tableId;
@@ -150,5 +151,13 @@ public class DragonTigerTableContentBean {
 
     public void setDragonTigerGetResult(boolean dragonTigerGetResult) {
         isDragonTigerGetResult = dragonTigerGetResult;
+    }
+
+    public boolean isCanBet() {
+        return isCanBet;
+    }
+
+    public void setCanBet(boolean canBet) {
+        isCanBet = canBet;
     }
 }
