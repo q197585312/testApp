@@ -242,6 +242,31 @@ public class LoginActivity extends BaseActivity {
                 }
             }.start();
         }
+        if (BuildConfig.FLAVOR.equals("sbocasino77")) {
+            btn_login.setTextColor(Color.BLACK);
+            tv_register.setTextColor(Color.BLACK);
+            cb_remember_me.setChecked(true);
+            ll_lg_and_remember = findViewById(R.id.ll_lg_and_remember);
+            ll_lg_and_remember.setVisibility(View.GONE);
+            ll_lang = findViewById(R.id.ll_lang);
+            ll_lang.setVisibility(View.VISIBLE);
+            img_in = findViewById(R.id.img_in);
+            img_en = findViewById(R.id.img_en);
+            img_in.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppTool.setAppLanguage(LoginActivity.this, "my");
+                    recreate();
+                }
+            });
+            img_en.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppTool.setAppLanguage(LoginActivity.this, "en");
+                    recreate();
+                }
+            });
+        }
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
             imgOpen.setVisibility(View.VISIBLE);
@@ -304,7 +329,7 @@ public class LoginActivity extends BaseActivity {
             if (viewById != null)
                 viewById.setText(objectData.getSite());
         } else {
-            if (!BuildConfig.FLAVOR.equals("mainkasino")) {
+            if (!BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("sbocasino77")) {
                 cb_remember_me.setChecked(false);
             }
         }
