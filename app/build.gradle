@@ -123,11 +123,11 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.83'
             }
-            coklatcasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "coklatcasino"]
+            indocasino338 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "indocasino338"]
                 buildConfigField "String", "Labelid", '"110"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.83'
+                versionName '3.84'
             }
             depocasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "depocasino"]
@@ -214,11 +214,11 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '3.83'
             }
-            casinoraja {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casinoraja"]
+            casinodewa88 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casinodewa88"]
                 buildConfigField "String", "Labelid", '"162"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.85'
+                versionName '3.86'
             }
 
             mainkasino {
