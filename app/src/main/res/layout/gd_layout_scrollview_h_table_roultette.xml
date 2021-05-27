@@ -248,7 +248,13 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="gone"></View>
+                android:visibility="visible"></View>
+
+            <ImageView
+                android:id="@+id/img_table"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:background="@mipmap/gd_table_p"></ImageView>
 
         </LinearLayout>
 

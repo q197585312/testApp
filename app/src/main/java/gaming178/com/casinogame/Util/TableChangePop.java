@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.DragonTigerActivity;
+import gaming178.com.casinogame.Activity.RouletteActivity;
+import gaming178.com.casinogame.Activity.SicboActivity;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetContentBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableChangeViewBean;
@@ -347,6 +351,10 @@ public class TableChangePop extends BasePopupWindow {
         rouletteTableContentBean.setRouletteGameNumber("");
         rouletteTableContentBean.setRouletteOpenResult(true);
         rouletteTableContentBean.setRouletteGetResult(true);
+        for (int i = 0; i < rouletteTableContentBean.getAnimationList().size(); i++) {
+            rouletteTableContentBean.getAnimationList().get(i).stop();
+            rouletteTableContentBean.getAnimationList().get(i).selectDrawable(0);
+        }
     }
 
     @Override
@@ -749,7 +757,36 @@ public class TableChangePop extends BasePopupWindow {
         ImageView imgSingle19_36 = view.findViewById(R.id.img_19_36);
         ImageView imgSingleRed = view.findViewById(R.id.img_red);
         ImageView imgSingleBlack = view.findViewById(R.id.img_black);
-
+        AnimationDrawable animationEven = (AnimationDrawable) imgEven.getBackground();
+        AnimationDrawable animationZero = (AnimationDrawable) imgZero.getBackground();
+        AnimationDrawable animationOdd = (AnimationDrawable) imgOdd.getBackground();
+        AnimationDrawable animation1_12 = (AnimationDrawable) imgSingle1_12.getBackground();
+        AnimationDrawable animation13_24 = (AnimationDrawable) imgSingle13_24.getBackground();
+        AnimationDrawable animation25_36 = (AnimationDrawable) imgSingle25_36.getBackground();
+        AnimationDrawable animation1_18 = (AnimationDrawable) imgSingle1_18.getBackground();
+        AnimationDrawable animation19_36 = (AnimationDrawable) imgSingle19_36.getBackground();
+        AnimationDrawable animationRed = (AnimationDrawable) imgSingleRed.getBackground();
+        AnimationDrawable animationBlack = (AnimationDrawable) imgSingleBlack.getBackground();
+        rouletteTableContentBean.setAnimationEven(animationEven);
+        rouletteTableContentBean.setAnimationZero(animationZero);
+        rouletteTableContentBean.setAnimationOdd(animationOdd);
+        rouletteTableContentBean.setAnimation1_12(animation1_12);
+        rouletteTableContentBean.setAnimation13_24(animation13_24);
+        rouletteTableContentBean.setAnimation25_36(animation25_36);
+        rouletteTableContentBean.setAnimation1_18(animation1_18);
+        rouletteTableContentBean.setAnimation19_36(animation19_36);
+        rouletteTableContentBean.setAnimationRed(animationRed);
+        rouletteTableContentBean.setAnimationBlack(animationBlack);
+        rouletteTableContentBean.getAnimationList().add(animationEven);
+        rouletteTableContentBean.getAnimationList().add(animationZero);
+        rouletteTableContentBean.getAnimationList().add(animationOdd);
+        rouletteTableContentBean.getAnimationList().add(animation1_12);
+        rouletteTableContentBean.getAnimationList().add(animation13_24);
+        rouletteTableContentBean.getAnimationList().add(animation25_36);
+        rouletteTableContentBean.getAnimationList().add(animation1_18);
+        rouletteTableContentBean.getAnimationList().add(animation19_36);
+        rouletteTableContentBean.getAnimationList().add(animationRed);
+        rouletteTableContentBean.getAnimationList().add(animationBlack);
         flEven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -934,6 +971,13 @@ public class TableChangePop extends BasePopupWindow {
             public void onClick(View v) {
                 initRouletteGame();
                 mAppViewModel.setClickRoulette(false);
+            }
+        });
+        ImageView imgTable = view.findViewById(R.id.img_table);
+        imgTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goOtherGame(tableId);
             }
         });
     }
@@ -1144,7 +1188,13 @@ public class TableChangePop extends BasePopupWindow {
                 mAppViewModel.setClickSicbo(false);
             }
         });
-
+        ImageView imgTable = view.findViewById(R.id.img_table);
+        imgTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goOtherGame(tableId);
+            }
+        });
     }
 
     private void initDragonTigerContent(View view, int tableId) {
@@ -1225,6 +1275,13 @@ public class TableChangePop extends BasePopupWindow {
             public void onClick(View v) {
                 initDragonTigerGame();
                 mAppViewModel.setClickDragonTiger(false);
+            }
+        });
+        ImageView imgTable = view.findViewById(R.id.img_table);
+        imgTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goOtherGame(tableId);
             }
         });
     }
@@ -1406,6 +1463,13 @@ public class TableChangePop extends BasePopupWindow {
             }
         });
         baccaratBetContentList.add(contentBean);
+        ImageView imgTable = view.findViewById(R.id.img_table);
+        imgTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goOtherGame(tableId);
+            }
+        });
     }
 
     private void clearBaccaratResultView(int tableId) {
@@ -1494,6 +1558,10 @@ public class TableChangePop extends BasePopupWindow {
         if (mAppViewModel.getRoulette01().getGameStatus() == 1) {
             if (!rouletteTableContentBean.getRouletteGameNumber().equals(mAppViewModel.getRoulette01().getGameNumber())) {
                 mAppViewModel.getRoulette01().setResult("");
+                for (int i = 0; i < rouletteTableContentBean.getAnimationList().size(); i++) {
+                    rouletteTableContentBean.getAnimationList().get(i).stop();
+                    rouletteTableContentBean.getAnimationList().get(i).selectDrawable(0);
+                }
                 rouletteTableContentBean.getFlResult().setVisibility(View.GONE);
                 rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
                 rouletteTableContentBean.setRouletteOpenResult(true);
@@ -1826,6 +1894,84 @@ public class TableChangePop extends BasePopupWindow {
                 tv_odd_even.setText(context.getString(R.string.gd_O));
             }
             flResult.setVisibility(View.VISIBLE);
+
+            if (mAppViewModel.getRoulette01().getResult().equals("0")) {
+                if (rouletteTableContentBean.getAnimationZero().isRunning()) {
+                    rouletteTableContentBean.getAnimationZero().stop();
+                }
+                rouletteTableContentBean.getAnimationZero().start();
+            }
+            if (!"0".equals(mAppViewModel.getRoulette01().getResult())) {
+                switch (mAppViewModel.getRoulette01().getResult()) {
+                    case "2":
+                    case "4":
+                    case "6":
+                    case "8":
+                    case "10":
+                    case "11":
+                    case "13":
+                    case "15":
+                    case "17":
+                    case "20":
+                    case "22":
+                    case "24":
+                    case "26":
+                    case "28":
+                    case "29":
+                    case "31":
+                    case "33":
+                    case "35":
+                        if (rouletteTableContentBean.getAnimationBlack().isRunning()) {
+                            rouletteTableContentBean.getAnimationBlack().stop();
+                        }
+                        rouletteTableContentBean.getAnimationBlack().start();
+                        break;
+                    default:
+                        if (rouletteTableContentBean.getAnimationRed().isRunning()) {
+                            rouletteTableContentBean.getAnimationRed().stop();
+                        }
+                        rouletteTableContentBean.getAnimationRed().start();
+                        break;
+                }
+                if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) % 2 == 0) {
+                    if (rouletteTableContentBean.getAnimationEven().isRunning()) {
+                        rouletteTableContentBean.getAnimationEven().stop();
+                    }
+                    rouletteTableContentBean.getAnimationEven().start();
+                } else {
+                    if (rouletteTableContentBean.getAnimationOdd().isRunning()) {
+                        rouletteTableContentBean.getAnimationOdd().stop();
+                    }
+                    rouletteTableContentBean.getAnimationOdd().start();
+                }
+                if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) > 18) {
+                    if (rouletteTableContentBean.getAnimation19_36().isRunning()) {
+                        rouletteTableContentBean.getAnimation19_36().stop();
+                    }
+                    rouletteTableContentBean.getAnimation19_36().start();
+                } else {
+                    if (rouletteTableContentBean.getAnimation1_18().isRunning()) {
+                        rouletteTableContentBean.getAnimation1_18().stop();
+                    }
+                    rouletteTableContentBean.getAnimation1_18().start();
+                }
+                if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) > 0 && Integer.parseInt(mAppViewModel.getRoulette01().getResult()) <= 12) {
+                    if (rouletteTableContentBean.getAnimation1_12().isRunning()) {
+                        rouletteTableContentBean.getAnimation1_12().stop();
+                    }
+                    rouletteTableContentBean.getAnimation1_12().start();
+                } else if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) >= 13 && Integer.parseInt(mAppViewModel.getRoulette01().getResult()) <= 24) {
+                    if (rouletteTableContentBean.getAnimation13_24().isRunning()) {
+                        rouletteTableContentBean.getAnimation13_24().stop();
+                    }
+                    rouletteTableContentBean.getAnimation13_24().start();
+                } else if (Integer.parseInt(mAppViewModel.getRoulette01().getResult()) >= 25 && Integer.parseInt(mAppViewModel.getRoulette01().getResult()) <= 36) {
+                    if (rouletteTableContentBean.getAnimation25_36().isRunning()) {
+                        rouletteTableContentBean.getAnimation25_36().stop();
+                    }
+                    rouletteTableContentBean.getAnimation25_36().start();
+                }
+            }
         } else {
             flResult.setVisibility(View.GONE);
         }
@@ -2161,6 +2307,221 @@ public class TableChangePop extends BasePopupWindow {
         }
     }
 
+    private void goOtherGame(int tableId) {
+        String menuStr = "";
+        switch (tableId) {
+            case 1:
+                menuStr = "LB1";
+                break;
+            case 2:
+                menuStr = "LB2";
+                break;
+            case 3:
+                menuStr = "LB3";
+                break;
+            case 61:
+                menuStr = "LB5";
+                break;
+            case 62:
+                menuStr = "LB6";
+                break;
+            case 63:
+                menuStr = "LB7";
+                break;
+            case 71:
+                menuStr = "BM1";
+                break;
+            case 5:
+                menuStr = "DT1";
+                break;
+            case 21:
+                menuStr = "RL1";
+                break;
+            case 31:
+                menuStr = "SB1";
+                break;
+        }
+        BaseActivity baseActivity = (BaseActivity) context;
+        if (mAppViewModel.getTableId() == tableId) {
+            Toast.makeText(context, context.getString(R.string.your_here), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        closePopupWindow();
+        if (mAppViewModel.getTableId() == 1 || mAppViewModel.getTableId() == 2 || mAppViewModel.getTableId() == 3 ||
+                mAppViewModel.getTableId() == 71 || mAppViewModel.getTableId() == 61 || mAppViewModel.getTableId() == 62 || mAppViewModel.getTableId() == 63) {
+            if (tableId == 1 || tableId == 2 || tableId == 3 || tableId == 71 || tableId == 61 || tableId == 62 || tableId == 63) {
+                if (mAppViewModel.getBaccarat(tableId).getStatus() != 1) {
+                    Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                } else {
+                    mAppViewModel.setTableId(tableId);
+                    baseActivity.tableId = tableId;
+                    baseActivity.initBaccarat();
+                }
+                return;
+            }
+        }
+        if (menuStr.equals("LB1")) {
+            if (mAppViewModel.getBaccarat(1).getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            mAppViewModel.setTableId(1);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getBaccarat01().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getBaccarat01().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.tableId = 1;
+            baseActivity.goBaccarat(1);
+        } else if (menuStr.equals("LB2")) {
+            if (mAppViewModel.getBaccarat(2).getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 2;
+            mAppViewModel.setTableId(2);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getBaccarat02().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getBaccarat02().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.goBaccarat(2);
+        } else if (menuStr.equals("LB3")) {
+            if (mAppViewModel.getBaccarat(3).getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 3;
+            mAppViewModel.setTableId(3);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getBaccarat03().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getBaccarat03().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.goBaccarat(3);
+        } else if (menuStr.equals("BM1")) {
+            if (mAppViewModel.getBaccarat(71).getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 71;
+            mAppViewModel.setTableId(71);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getBaccarat71().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getBaccarat71().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.goBaccarat(71);
+        } else if (menuStr.equals("RL1")) {
+            if (mAppViewModel.getRoulette01().getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 21;
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "21");
+            mAppViewModel.setTableId(21);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getRoulette01().getRouletteLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getRoulette01().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.skipAct(RouletteActivity.class, bundle);
+            baseActivity.finish();
+        } else if (menuStr.equals("SB1")) {
+            if (mAppViewModel.getSicbo01().getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 31;
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "31");
+            mAppViewModel.setTableId(31);
+            String s = "";
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getSicbo01().getSicboLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getSicbo01().setLimitIndex(i);
+                    if (i == 1) {
+                        s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMaxTotalBet();
+                    } else if (i == 2) {
+                        s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMaxTotalBet();
+                    } else if (i == 3) {
+                        s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMaxTotalBet();
+                    } else {
+                        s = "" + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMaxTotalBet();
+                    }
+                    break;
+                }
+            }
+            bundle.putString("limit", s);
+            baseActivity.skipAct(SicboActivity.class, bundle);
+            baseActivity.finish();
+        } else if (menuStr.equals("DT1")) {
+            if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 5;
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "5");
+            mAppViewModel.setTableId(5);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getDragonTiger01().getDragonTigerLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getDragonTiger01().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.skipAct(DragonTigerActivity.class, bundle);
+            baseActivity.finish();
+        } else if (menuStr.equals("LB5")) {
+            if (mAppViewModel.getBaccarat(61).getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 61;
+            mAppViewModel.setTableId(61);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getBaccarat61().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getBaccarat61().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.goBaccarat(61);
+        } else if (menuStr.equals("LB6")) {
+            if (mAppViewModel.getBaccarat(62).getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 62;
+            mAppViewModel.setTableId(62);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getBaccarat62().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getBaccarat62().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.goBaccarat(62);
+        } else if (menuStr.equals("LB7")) {
+            if (mAppViewModel.getBaccarat(63).getStatus() != 1) {
+                Toast.makeText(context, context.getString(R.string.game_close), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            baseActivity.tableId = 63;
+            mAppViewModel.setTableId(63);
+            for (int i = 1; i <= 4; i++) {
+                if (mAppViewModel.getBaccarat63().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                    mAppViewModel.getBaccarat63().setLimitIndex(i);
+                    break;
+                }
+            }
+            baseActivity.goBaccarat(63);
+        }
+    }
 
     public int getPokerResource(int poker) {
         int poker_res = 0;

@@ -189,6 +189,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"></View>
 
+        <ImageView
+            android:id="@+id/img_table"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:background="@mipmap/gd_table_p"></ImageView>
+
     </LinearLayout>
 
     <gaming178.com.casinogame.Control.ParentClickHorizontalScrollView

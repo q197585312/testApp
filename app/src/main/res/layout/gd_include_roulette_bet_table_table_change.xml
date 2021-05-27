@@ -6,7 +6,7 @@
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="20dp"
     android:background="#006E09"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <FrameLayout
         android:layout_width="match_parent"
