@@ -739,6 +739,9 @@ public class TableChangePop extends BasePopupWindow {
         FrameLayout flEven = view.findViewById(R.id.fl_even);
         FrameLayout flZero = view.findViewById(R.id.fl_zero);
         FrameLayout flOdd = view.findViewById(R.id.fl_odd);
+        ImageView imgEven = view.findViewById(R.id.img_even);
+        ImageView imgZero = view.findViewById(R.id.img_even);
+        ImageView imgOdd = view.findViewById(R.id.img_even);
         ImageView imgSingle1_12 = view.findViewById(R.id.img_1_12);
         ImageView imgSingle13_24 = view.findViewById(R.id.img_13_24);
         ImageView imgSingle25_36 = view.findViewById(R.id.img_25_36);
@@ -746,6 +749,7 @@ public class TableChangePop extends BasePopupWindow {
         ImageView imgSingle19_36 = view.findViewById(R.id.img_19_36);
         ImageView imgSingleRed = view.findViewById(R.id.img_red);
         ImageView imgSingleBlack = view.findViewById(R.id.img_black);
+
         flEven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

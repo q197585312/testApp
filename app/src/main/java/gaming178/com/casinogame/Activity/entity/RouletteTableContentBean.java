@@ -1,9 +1,13 @@
 package gaming178.com.casinogame.Activity.entity;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RouletteTableContentBean {
     private int tableId;
@@ -34,6 +38,17 @@ public class RouletteTableContentBean {
     private boolean rouletteOpenResult;
     private boolean rouletteGetResult;
     private boolean isCanBet;
+    private AnimationDrawable AnimationEven;
+    private AnimationDrawable AnimationZero;
+    private AnimationDrawable AnimationOdd;
+    private AnimationDrawable Animation1_12;
+    private AnimationDrawable Animation13_24;
+    private AnimationDrawable Animation25_36;
+    private AnimationDrawable Animation1_18;
+    private AnimationDrawable Animation19_36;
+    private AnimationDrawable AnimationRed;
+    private AnimationDrawable AnimationBlack;
+    private List<AnimationDrawable> animationList = new ArrayList<>();
 
     public int getTableId() {
         return tableId;
@@ -257,5 +272,89 @@ public class RouletteTableContentBean {
 
     public void setCanBet(boolean canBet) {
         isCanBet = canBet;
+    }
+
+    public AnimationDrawable getAnimationEven() {
+        return AnimationEven;
+    }
+
+    public void setAnimationEven(AnimationDrawable animationEven) {
+        AnimationEven = animationEven;
+    }
+
+    public AnimationDrawable getAnimationZero() {
+        return AnimationZero;
+    }
+
+    public void setAnimationZero(AnimationDrawable animationZero) {
+        AnimationZero = animationZero;
+    }
+
+    public AnimationDrawable getAnimationOdd() {
+        return AnimationOdd;
+    }
+
+    public void setAnimationOdd(AnimationDrawable animationOdd) {
+        AnimationOdd = animationOdd;
+    }
+
+    public AnimationDrawable getAnimation1_12() {
+        return Animation1_12;
+    }
+
+    public void setAnimation1_12(AnimationDrawable animation1_12) {
+        Animation1_12 = animation1_12;
+    }
+
+    public AnimationDrawable getAnimation13_24() {
+        return Animation13_24;
+    }
+
+    public void setAnimation13_24(AnimationDrawable animation13_24) {
+        Animation13_24 = animation13_24;
+    }
+
+    public AnimationDrawable getAnimation25_36() {
+        return Animation25_36;
+    }
+
+    public void setAnimation25_36(AnimationDrawable animation25_36) {
+        Animation25_36 = animation25_36;
+    }
+
+    public AnimationDrawable getAnimation1_18() {
+        return Animation1_18;
+    }
+
+    public void setAnimation1_18(AnimationDrawable animation1_18) {
+        Animation1_18 = animation1_18;
+    }
+
+    public AnimationDrawable getAnimation19_36() {
+        return Animation19_36;
+    }
+
+    public void setAnimation19_36(AnimationDrawable animation19_36) {
+        Animation19_36 = animation19_36;
+    }
+
+    public AnimationDrawable getAnimationRed() {
+        return AnimationRed;
+    }
+
+    public void setAnimationRed(AnimationDrawable animationRed) {
+        AnimationRed = animationRed;
+    }
+
+    public AnimationDrawable getAnimationBlack() {
+        return AnimationBlack;
+    }
+
+    public void setAnimationBlack(AnimationDrawable animationBlack) {
+        AnimationBlack = animationBlack;
+    }
+
+    public List<AnimationDrawable> getAnimationList() {
+        return animationList;
     }
 }
