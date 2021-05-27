@@ -1,10 +1,14 @@
 package gaming178.com.casinogame.Activity.entity;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SicboTableContentBean {
     private int tableId;
@@ -12,6 +16,9 @@ public class SicboTableContentBean {
     private FrameLayout flBig;
     private FrameLayout flAny;
     private FrameLayout flSmall;
+    private ImageView imgBig;
+    private ImageView imgAny;
+    private ImageView imgSmall;
     private ImageView imgSingle1;
     private ImageView imgSingle2;
     private ImageView imgSingle3;
@@ -36,6 +43,16 @@ public class SicboTableContentBean {
     private boolean isSicboOpenResult;
     private boolean isSicboGetResult;
     private boolean isCanBet;
+    private AnimationDrawable AnimationBig;
+    private AnimationDrawable AnimationAny;
+    private AnimationDrawable AnimationSmall;
+    private AnimationDrawable Animation1;
+    private AnimationDrawable Animation2;
+    private AnimationDrawable Animation3;
+    private AnimationDrawable Animation4;
+    private AnimationDrawable Animation5;
+    private AnimationDrawable Animation6;
+    private List<AnimationDrawable> animationList = new ArrayList<>();
 
     public int getTableId() {
         return tableId;
@@ -267,5 +284,105 @@ public class SicboTableContentBean {
 
     public void setCanBet(boolean canBet) {
         isCanBet = canBet;
+    }
+
+    public ImageView getImgBig() {
+        return imgBig;
+    }
+
+    public void setImgBig(ImageView imgBig) {
+        this.imgBig = imgBig;
+    }
+
+    public ImageView getImgAny() {
+        return imgAny;
+    }
+
+    public void setImgAny(ImageView imgAny) {
+        this.imgAny = imgAny;
+    }
+
+    public ImageView getImgSmall() {
+        return imgSmall;
+    }
+
+    public void setImgSmall(ImageView imgSmall) {
+        this.imgSmall = imgSmall;
+    }
+
+    public List<AnimationDrawable> getAnimationList() {
+        return animationList;
+    }
+
+    public AnimationDrawable getAnimationBig() {
+        return AnimationBig;
+    }
+
+    public void setAnimationBig(AnimationDrawable animationBig) {
+        AnimationBig = animationBig;
+    }
+
+    public AnimationDrawable getAnimationAny() {
+        return AnimationAny;
+    }
+
+    public void setAnimationAny(AnimationDrawable animationAny) {
+        AnimationAny = animationAny;
+    }
+
+    public AnimationDrawable getAnimationSmall() {
+        return AnimationSmall;
+    }
+
+    public void setAnimationSmall(AnimationDrawable animationSmall) {
+        AnimationSmall = animationSmall;
+    }
+
+    public AnimationDrawable getAnimation1() {
+        return Animation1;
+    }
+
+    public void setAnimation1(AnimationDrawable animation1) {
+        Animation1 = animation1;
+    }
+
+    public AnimationDrawable getAnimation2() {
+        return Animation2;
+    }
+
+    public void setAnimation2(AnimationDrawable animation2) {
+        Animation2 = animation2;
+    }
+
+    public AnimationDrawable getAnimation3() {
+        return Animation3;
+    }
+
+    public void setAnimation3(AnimationDrawable animation3) {
+        Animation3 = animation3;
+    }
+
+    public AnimationDrawable getAnimation4() {
+        return Animation4;
+    }
+
+    public void setAnimation4(AnimationDrawable animation4) {
+        Animation4 = animation4;
+    }
+
+    public AnimationDrawable getAnimation5() {
+        return Animation5;
+    }
+
+    public void setAnimation5(AnimationDrawable animation5) {
+        Animation5 = animation5;
+    }
+
+    public AnimationDrawable getAnimation6() {
+        return Animation6;
+    }
+
+    public void setAnimation6(AnimationDrawable animation6) {
+        Animation6 = animation6;
     }
 }

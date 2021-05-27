@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -318,9 +319,14 @@ public class TableChangePop extends BasePopupWindow {
         sicboTableContentBean.getFlSingle4().removeAllViews();
         sicboTableContentBean.getFlSingle5().removeAllViews();
         sicboTableContentBean.getFlSingle6().removeAllViews();
+        sicboTableContentBean.getFlBetButton().removeAllViews();
         sicboTableContentBean.setSicboGameNumber("");
         sicboTableContentBean.setSicboOpenResult(true);
         sicboTableContentBean.setSicboGetResult(true);
+        for (int i = 0; i < sicboTableContentBean.getAnimationList().size(); i++) {
+            sicboTableContentBean.getAnimationList().get(i).stop();
+            sicboTableContentBean.getAnimationList().get(i).selectDrawable(0);
+        }
     }
 
     private void initRouletteGame() {
@@ -337,6 +343,7 @@ public class TableChangePop extends BasePopupWindow {
         rouletteTableContentBean.getFlSingle19_36().removeAllViews();
         rouletteTableContentBean.getFlRed().removeAllViews();
         rouletteTableContentBean.getFlBlack().removeAllViews();
+        rouletteTableContentBean.getFlBetButton().removeAllViews();
         rouletteTableContentBean.setRouletteGameNumber("");
         rouletteTableContentBean.setRouletteOpenResult(true);
         rouletteTableContentBean.setRouletteGetResult(true);
@@ -935,12 +942,45 @@ public class TableChangePop extends BasePopupWindow {
         FrameLayout flBig = view.findViewById(R.id.fl_big);
         FrameLayout flAny = view.findViewById(R.id.fl_any);
         FrameLayout flSmall = view.findViewById(R.id.fl_small);
+        ImageView imgBig = view.findViewById(R.id.img_big);
+        ImageView imgAny = view.findViewById(R.id.img_any);
+        ImageView imgSmall = view.findViewById(R.id.img_small);
         ImageView imgSingle6 = view.findViewById(R.id.img_single_6);
         ImageView imgSingle5 = view.findViewById(R.id.img_single_5);
         ImageView imgSingle4 = view.findViewById(R.id.img_single_4);
         ImageView imgSingle3 = view.findViewById(R.id.img_single_3);
         ImageView imgSingle2 = view.findViewById(R.id.img_single_2);
         ImageView imgSingle1 = view.findViewById(R.id.img_single_1);
+        sicboTableContentBean.setImgBig(imgBig);
+        sicboTableContentBean.setImgAny(imgAny);
+        sicboTableContentBean.setImgSmall(imgSmall);
+        AnimationDrawable AnimationBig = (AnimationDrawable) imgBig.getBackground();
+        AnimationDrawable AnimationAny = (AnimationDrawable) imgAny.getBackground();
+        AnimationDrawable AnimationSmall = (AnimationDrawable) imgSmall.getBackground();
+        AnimationDrawable Animation1 = (AnimationDrawable) imgSingle1.getBackground();
+        AnimationDrawable Animation2 = (AnimationDrawable) imgSingle2.getBackground();
+        AnimationDrawable Animation3 = (AnimationDrawable) imgSingle3.getBackground();
+        AnimationDrawable Animation4 = (AnimationDrawable) imgSingle4.getBackground();
+        AnimationDrawable Animation5 = (AnimationDrawable) imgSingle5.getBackground();
+        AnimationDrawable Animation6 = (AnimationDrawable) imgSingle6.getBackground();
+        sicboTableContentBean.setAnimationBig(AnimationBig);
+        sicboTableContentBean.setAnimationAny(AnimationAny);
+        sicboTableContentBean.setAnimationSmall(AnimationSmall);
+        sicboTableContentBean.setAnimation1(Animation1);
+        sicboTableContentBean.setAnimation2(Animation2);
+        sicboTableContentBean.setAnimation3(Animation3);
+        sicboTableContentBean.setAnimation4(Animation4);
+        sicboTableContentBean.setAnimation5(Animation5);
+        sicboTableContentBean.setAnimation6(Animation6);
+        sicboTableContentBean.getAnimationList().add(AnimationBig);
+        sicboTableContentBean.getAnimationList().add(AnimationAny);
+        sicboTableContentBean.getAnimationList().add(AnimationSmall);
+        sicboTableContentBean.getAnimationList().add(Animation1);
+        sicboTableContentBean.getAnimationList().add(Animation2);
+        sicboTableContentBean.getAnimationList().add(Animation3);
+        sicboTableContentBean.getAnimationList().add(Animation4);
+        sicboTableContentBean.getAnimationList().add(Animation5);
+        sicboTableContentBean.getAnimationList().add(Animation6);
         flBig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1391,7 +1431,6 @@ public class TableChangePop extends BasePopupWindow {
             }
             clearBaccaratResultView(tableId);
             if (!getBaccaratBetContentBean(tableId).getBaccaratGameNumber().equals(mAppViewModel.getBaccarat(tableId).getGameNumber())) {
-                TableBetUtils.clearAllChip(getBaccaratBetBean(tableId), getBaccaratBetContentBean(tableId));
                 getBaccaratBetContentBean(tableId).setBaccaratGameNumber(mAppViewModel.getBaccarat(tableId).getGameNumber());
                 getBaccaratBetContentBean(tableId).setBaccaratOpenPoker(true);
                 getBaccaratBetContentBean(tableId).setBaccaratGetResult(true);
@@ -1424,8 +1463,11 @@ public class TableChangePop extends BasePopupWindow {
         if (mAppViewModel.getSicbo01().getGameStatus() == 1) {
             if (!sicboTableContentBean.getSicboGameNumber().equals(mAppViewModel.getSicbo01().getGameNumber())) {
                 mAppViewModel.getSicbo01().setResult("");
+                for (int i = 0; i < sicboTableContentBean.getAnimationList().size(); i++) {
+                    sicboTableContentBean.getAnimationList().get(i).stop();
+                    sicboTableContentBean.getAnimationList().get(i).selectDrawable(0);
+                }
                 sicboTableContentBean.getFlResult().setVisibility(View.GONE);
-                TableBetUtils.clearSicboAllChip(sicboTableBetBean, sicboTableContentBean);
                 sicboTableContentBean.setSicboGameNumber(mAppViewModel.getSicbo01().getGameNumber());
                 sicboTableContentBean.setSicboOpenResult(true);
                 sicboTableContentBean.setSicboGetResult(true);
@@ -1449,7 +1491,6 @@ public class TableChangePop extends BasePopupWindow {
             if (!rouletteTableContentBean.getRouletteGameNumber().equals(mAppViewModel.getRoulette01().getGameNumber())) {
                 mAppViewModel.getRoulette01().setResult("");
                 rouletteTableContentBean.getFlResult().setVisibility(View.GONE);
-                TableBetUtils.clearRouletteAllChip(rouletteTableBetBean, rouletteTableContentBean);
                 rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
                 rouletteTableContentBean.setRouletteOpenResult(true);
                 rouletteTableContentBean.setRouletteGetResult(true);
@@ -1477,7 +1518,6 @@ public class TableChangePop extends BasePopupWindow {
             if (!dragonTigerTableContentBean.getDragonTigerGameNumber().equals(mAppViewModel.getDragonTiger(tableId).getGameNumber())) {
                 mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().setDragon(0);
                 mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().setTiger(0);
-                TableBetUtils.clearDragonTigerAllChip(dragonTigerTableBetBean, dragonTigerTableContentBean);
                 dragonTigerTableContentBean.setDragonTigerGameNumber(mAppViewModel.getDragonTiger(tableId).getGameNumber());
                 dragonTigerTableContentBean.setDragonTigerOpenPoker(true);
                 dragonTigerTableContentBean.setDragonTigerOpenPoker(true);
@@ -1676,6 +1716,59 @@ public class TableChangePop extends BasePopupWindow {
                 tv_odd_even.setText(context.getString(R.string.gd_O));
             }
             flResult.setVisibility(View.VISIBLE);
+
+            int allDices = 0;
+            if ((dices1 == dices2) && (dices1 == dices3))
+                allDices = 1;
+            int bigSmall = 0;
+            if (point > 10) {
+                bigSmall = 1;//big
+            } else
+                bigSmall = 0;
+            if (bigSmall == 1) {
+                if (sicboTableContentBean.getAnimationBig().isRunning())
+                    sicboTableContentBean.getAnimationBig().stop();
+                sicboTableContentBean.getAnimationBig().start();
+            } else {
+                if (sicboTableContentBean.getAnimationSmall().isRunning())
+                    sicboTableContentBean.getAnimationSmall().stop();
+                sicboTableContentBean.getAnimationSmall().start();
+            }
+            if (allDices == 1) {
+                if (sicboTableContentBean.getAnimationAny().isRunning())
+                    sicboTableContentBean.getAnimationAny().stop();
+                sicboTableContentBean.getAnimationAny().start();
+            }
+            if (mAppViewModel.getSicbo01().getResult().contains("1")) {
+                if (sicboTableContentBean.getAnimation1().isRunning())
+                    sicboTableContentBean.getAnimation1().stop();
+                sicboTableContentBean.getAnimation1().start();
+            }
+            if (mAppViewModel.getSicbo01().getResult().contains("2")) {
+                if (sicboTableContentBean.getAnimation2().isRunning())
+                    sicboTableContentBean.getAnimation2().stop();
+                sicboTableContentBean.getAnimation2().start();
+            }
+            if (mAppViewModel.getSicbo01().getResult().contains("3")) {
+                if (sicboTableContentBean.getAnimation3().isRunning())
+                    sicboTableContentBean.getAnimation3().stop();
+                sicboTableContentBean.getAnimation3().start();
+            }
+            if (mAppViewModel.getSicbo01().getResult().contains("4")) {
+                if (sicboTableContentBean.getAnimation4().isRunning())
+                    sicboTableContentBean.getAnimation4().stop();
+                sicboTableContentBean.getAnimation4().start();
+            }
+            if (mAppViewModel.getSicbo01().getResult().contains("5")) {
+                if (sicboTableContentBean.getAnimation5().isRunning())
+                    sicboTableContentBean.getAnimation5().stop();
+                sicboTableContentBean.getAnimation5().start();
+            }
+            if (mAppViewModel.getSicbo01().getResult().contains("6")) {
+                if (sicboTableContentBean.getAnimation6().isRunning())
+                    sicboTableContentBean.getAnimation6().stop();
+                sicboTableContentBean.getAnimation6().start();
+            }
         } else {
             flResult.setVisibility(View.GONE);
         }

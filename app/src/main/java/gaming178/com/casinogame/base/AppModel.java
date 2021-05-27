@@ -2210,13 +2210,13 @@ public class AppModel extends ViewModel {
                               TextView tv_shoe, TextView tv_total, TextView tv_banker, TextView tv_player, TextView tv_tie, TextView tv_bp, TextView tv_pp, View ll_parent, TextView tvName) {
         if (baccarat.getBigRoad() != null && !baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) && !baccarat.getGameNumber().equals("0")) {
             baccarat.setBigRoadOld(baccarat.getBigRoad());
-            String s = updateGoodRoad(mContext, baccarat.getBigRoad());
-            if (!TextUtils.isEmpty(s)) {
-                tvName.setText(s);
-                ll_parent.setVisibility(View.VISIBLE);
-            } else {
-                ll_parent.setVisibility(View.GONE);
-            }
+//            String s = updateGoodRoad(mContext, baccarat.getBigRoad());
+//            if (!TextUtils.isEmpty(s)) {切桌那注释掉好路显示
+//                tvName.setText(s);
+//                ll_parent.setVisibility(View.VISIBLE);
+//            } else {
+//                ll_parent.setVisibility(View.GONE);
+//            }
             //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
             baccarat.setBigRoadOld(baccarat.getBigRoad());
 

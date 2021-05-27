@@ -18,31 +18,71 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_weight="1">
 
-                <FrameLayout
-                    android:id="@+id/fl_big"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"></FrameLayout>
+                    android:orientation="horizontal">
 
-                <FrameLayout
-                    android:id="@+id/fl_any"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:id="@+id/img_big"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
+
+                    <ImageView
+                        android:id="@+id/img_any"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
+
+                    <ImageView
+                        android:id="@+id/img_small"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"></FrameLayout>
+                    android:orientation="horizontal">
 
-                <FrameLayout
-                    android:id="@+id/fl_small"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"></FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/fl_big"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/fl_any"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/fl_small"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,37 +99,43 @@
                         android:id="@+id/img_single_6"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"></ImageView>
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
 
                     <ImageView
                         android:id="@+id/img_single_5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"></ImageView>
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
 
                     <ImageView
                         android:id="@+id/img_single_4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"></ImageView>
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
 
                     <ImageView
                         android:id="@+id/img_single_3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"></ImageView>
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
 
                     <ImageView
                         android:id="@+id/img_single_2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"></ImageView>
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
 
                     <ImageView
                         android:id="@+id/img_single_1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"></ImageView>
+                        android:layout_weight="1"
+                        android:background="@drawable/gd_table_sicbo_p_all"></ImageView>
 
 
                 </LinearLayout>
