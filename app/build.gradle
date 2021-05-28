@@ -218,7 +218,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casinodewa88"]
                 buildConfigField "String", "Labelid", '"162"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.86'
+                versionName '3.87'
             }
 
             mainkasino {
