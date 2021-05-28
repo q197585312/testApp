@@ -1,6 +1,6 @@
 package com.nanyang.app.main.BetCenter.Presenter;
 
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementFirstBean;
@@ -18,8 +18,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * Created by Administrator on 2019/4/4.
@@ -39,7 +37,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
     }
 
     public void getStatementData() {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTT", "wfStatement2H50").getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTT", "wfStatement2H50").getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
 //                String updateString = AfbUtils.delHTMLTag(data);
@@ -65,7 +63,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
     }
 
     public void getStatementLastWeekData(String startDate, String endDate) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableT", "wfStatement2H50", endDate, startDate, "", "").getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableT", "wfStatement2H50", endDate, startDate, "", "").getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = data.replace("&nbsp;", " ");
@@ -89,7 +87,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
     }
 
     public void getStatemenOpen1Data(String date) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableD", "wfStatement2H50", date, "", "").getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableD", "wfStatement2H50", date, "", "").getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 LogUtil.d("data----------",data);
@@ -118,7 +116,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
     }
 
     public void getStatementOpen2Data(final String id, final String transType, String index17) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetMatch", "wfRunningH50", id, "", "", -1).getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetMatch", "wfRunningH50", id, "", "", -1).getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 LogUtil.d("data----------",data);
@@ -147,7 +145,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
     }
 
     public void getStatementOpen3Data(String id, String transType) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetMatchDetail", "wfRunningH50", id, transType, "", "", -1).getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetMatchDetail", "wfRunningH50", id, transType, "", "", -1).getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 LogUtil.d("data----------",data);

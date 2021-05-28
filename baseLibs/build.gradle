@@ -69,6 +69,7 @@ dependencies {
     // Java8 support for Lifecycles
     api 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
 
+    api rootProject.ext.dependencies.glide
     api rootProject.ext.dependencies.bdclta
     api rootProject.ext.dependencies.bdclta_rv
     implementation rootProject.ext.dependencies.butterknife

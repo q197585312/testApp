@@ -559,4 +559,6 @@
     <string name="ft">(ต.ว.ล)</string>
     <string name="gmt_8">GMT+8</string>
     <string name="MYR">มาเลย์</string>
+    <string name="placing_a_bet">You can view the video after placing a bet</string>
+    <string name="prompt">Prompt</string>
 </resources>

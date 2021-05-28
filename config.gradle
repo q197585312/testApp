@@ -1,6 +1,6 @@
 ext {
-//    isGd88LibraryModule = true
-    isGd88LibraryModule = false
+    isGd88LibraryModule = true
+//    isGd88LibraryModule = false
     android = [
             compileSdkVersion: 28,
             buildToolsVersion: '29.0.2',
@@ -24,10 +24,12 @@ ext {
             rxlifecycle         : 'com.trello.rxlifecycle2:rxlifecycle:2.1.0',
             logger              : 'com.orhanobut:logger:2.2.0',
             takephoto_library   : 'com.jph.takephoto:takephoto_library:4.0.3',
-            glide               : 'com.github.bumptech.glide:glide:3.7.0',
+            glide               : 'com.github.bumptech.glide:glide:4.11.0',
             gradle_kapt          : 'com.android.databinding:compiler:4.0.1',
             bga_swipebacklayout : 'cn.bingoogolapple:bga-swipebacklayout:1.2.0@aar',
-            bdclta              : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0',
-            bdclta_rv           : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
+            bdclta              : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0',
+            bdclta_rv           : 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0'
+
+
     ]
 }

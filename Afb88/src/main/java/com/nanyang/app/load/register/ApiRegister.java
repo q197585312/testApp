@@ -1,7 +1,7 @@
 package com.nanyang.app.load.register;
 
 
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.load.UserInfo;
 import com.unkonw.testapp.libs.api.ApiManager;
 
@@ -19,11 +19,11 @@ public class ApiRegister extends ApiManager {
      * strRes = getApp().getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);
      */
     public Flowable<String> getPersonalInfo(UserInfo mLoginParams) {
-        return applySchedulers(getService(ApiService.class).getPersonalInfo(mLoginParams.getMap()));
+        return applySchedulers(ApiServiceKt.Companion.getInstance().getPersonalInfo(mLoginParams.getMap()));
     }
 
     public Flowable<String> getData(UserInfo mLoginParams) {
-        return applySchedulers(getService(ApiService.class).getUserInfo(mLoginParams.getTxtLang()
+        return applySchedulers(ApiServiceKt.Companion.getInstance().getUserInfo(mLoginParams.getTxtLang()
                 , mLoginParams.getTxtAcctid()
                 , mLoginParams.getTxtPwd()
                 , mLoginParams.getOsType()
@@ -32,7 +32,7 @@ public class ApiRegister extends ApiManager {
     }
 
     public Call<String> getData(Map<String, String> params) {
-        return getService(ApiService.class).getData(params);
+        return ApiServiceKt.Companion.getInstance().getData(params);
 
     }
 }

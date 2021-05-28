@@ -9,15 +9,16 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.Been.CheckVersionBean;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
+import com.nanyang.app.data.CheckVersionBean;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
@@ -34,12 +35,12 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     private File file;
@@ -53,7 +54,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
 
 
     public void checkVersion(BaseConsumer<CheckVersionBean> baseConsumer) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).checkVersion(BuildConfig.CHECK_VERSION), baseConsumer);
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().checkVersion(BuildConfig.CHECK_VERSION), baseConsumer);
     }
 
 
@@ -61,7 +62,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         String path = Environment.getExternalStorageDirectory().getPath();
         file = new File(path, "afb88.apk");
         file.deleteOnExit();
-        doRetrofitApiOnDefaultThread(getService(ApiService.class).updateVersion(url), new BaseConsumer<ResponseBody>(baseContext) {
+        doRetrofitApiOnDefaultThread(ApiServiceKt.Companion.getInstance().updateVersion(url), new BaseConsumer<ResponseBody>(baseContext) {
             @Override
             protected void onBaseGetData(ResponseBody response) throws Exception {
                 long contentLength;
@@ -129,7 +130,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         String obj = gson.toJson(info);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), obj);
 
-        doRetrofitApiOnUiThread(getService(ApiService.class).doPostJson(ckAccUrl, body)
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().doPostJson(ckAccUrl, body)
                 , new BaseConsumer<String>(baseContext) {
                     @Override
                     protected void onBaseGetData(final String data) {
@@ -145,10 +146,10 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     }
 
     private void skipMain(final String url_login) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(url_login), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(url_login), new BaseConsumer<String>(baseContext) {
                     @Override
                     protected void onBaseGetData(String data) throws Exception {
-                        if (!StringUtils.isNull(data) && (data.contains("wfMain") || data.contains("locationUrl "))) {
+                        if (!StringUtils.isNull(data) && (data.contains("wfMain") || data.contains("locationUrl"))) {
                             onSkipSucceeded(url_login);
                         } else if (data.contains("Maintenance")) {
                             Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
@@ -193,6 +194,10 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
             public void onBack(SettingAllDataBean data) throws JSONException {
                 String language = helper.getLanguage();
                 LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+                String authorization = ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getAuthorization();
+                Map<String, String> headers = new HashMap<>();
+                headers.put("isios", "true");
+                headers.put("Authorization", authorization);
                 helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
                     @Override
                     public void onBack(String data) {
@@ -202,7 +207,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                         ((AfbApplication) baseContext.getBaseActivity().getApplication()).setUser(personalInfo);
                         WelcomePresenter.this.baseContext.onLanguageSwitchSucceed(data);
                     }
-                });
+                }, "");
             }
         });
     }

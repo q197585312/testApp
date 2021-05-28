@@ -1,4 +1,4 @@
-package com.nanyang.app.Been;
+package com.nanyang.app.data;
 
 /**
  * Created by Administrator on 2019/3/18.

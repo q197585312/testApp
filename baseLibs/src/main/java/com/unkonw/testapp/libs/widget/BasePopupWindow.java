@@ -14,6 +14,8 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import androidx.annotation.NonNull;
+
 import com.unkonw.testapp.libs.utils.LogUtil;
 
 import butterknife.ButterKnife;
@@ -81,11 +83,11 @@ public abstract class BasePopupWindow {
 
     protected abstract int onSetLayoutRes();
 
-    private void initPop() {
+    protected void initPop() {
         int layoutId = onSetLayoutRes();
         contentView = inflater.inflate(layoutId, null);
         ButterKnife.bind(this, contentView);
-        initView(contentView);
+
 
         popWindow = new PopupWindow(contentView, width, height, true);
         // 设置动画效果
@@ -108,6 +110,7 @@ public abstract class BasePopupWindow {
         popWindow.setOutsideTouchable(true);
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setOnDismissListener(new popDismissListener());
+        initView(contentView);
     }
 
     public void setSoftInputMode(int softInputMode) {
@@ -161,7 +164,7 @@ public abstract class BasePopupWindow {
         }
     }
 
-    protected void initView(View view) {
+    protected void initView( @NonNull View view) {
 
     }
 

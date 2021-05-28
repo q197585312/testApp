@@ -131,22 +131,6 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
         };
     }
 
-   /* @NonNull
-    private BaseRecyclerAdapter<MenuItemInfo> bottomAdapter() {
-        return new BaseRecyclerAdapter<MenuItemInfo>(context, new ArrayList<MenuItemInfo>(), R.layout.text_base_item) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView view = holder.getView(R.id.item_text_tv);
-                view.setBackgroundResource(R.color.transparent);
-                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                view.setText(item.getText());
-                view.setTextColor(context.getResources().getColor(R.color.black_grey));
-                view.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
-            }
-        };
-    }*/
 
     @OnClick({R.id.tv_submit
             , R.id.tv_all_cancel

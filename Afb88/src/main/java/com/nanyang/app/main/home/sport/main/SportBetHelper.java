@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
@@ -39,8 +39,6 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -88,7 +86,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
         url = url.trim() + "&_=" + System.currentTimeMillis();
         Log.d("betUrl", url);
-        Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
+        Disposable subscription = ApiServiceKt.Companion.getInstance().getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
@@ -167,7 +165,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     public Disposable getRefreshOdds(final String urlBet) {
         final String url = urlBet.trim() + "&_=" + System.currentTimeMillis();
         Log.d("updateMixListText", "betUrl:" + url);
-        Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
+        Disposable subscribe = ApiServiceKt.Companion.getInstance().getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
                     @Override
                     public AfbClickResponseBean apply(String s) throws Exception {

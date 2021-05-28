@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class MenuItemInfo<P> implements Serializable, IString {
     int res;
+    public int bottomRes;
     int text;
     String day;
     String dateParam;

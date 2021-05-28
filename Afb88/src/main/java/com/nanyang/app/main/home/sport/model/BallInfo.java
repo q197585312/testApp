@@ -22,6 +22,7 @@ import cn.finalteam.toolsfinal.StringUtils;
 public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     private static final String TAG = "BallInfo";
+    public boolean outShow=true;
 
     @Override
     public String toString() {

@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -39,6 +39,7 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.ApiManager;
@@ -73,8 +74,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * sport页面球加载、分页、更新、显示的adapter的逻辑实现
@@ -1247,7 +1246,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     public void onTypeWayClick(MenuItemInfo item, int position) {
-        if (item.getRes() == R.mipmap.sport_game_cup_white||item.getRes() == R.mipmap.sport_cup_yellow) {
+        if (item.getRes() == R.mipmap.sport_game_cup_white || item.getRes() == R.mipmap.sport_cup_yellow) {
             SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
             sportActivity.clickTop();
             return;
@@ -1256,8 +1255,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
         if (item.getRes() == R.mipmap.date_day_grey) {
             sportActivity.setType("Early");
-            onTypeClick(new MenuItemInfo<>(R.mipmap.date_early_grey, (R.string.Early)
-                    , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam()), position);
+            MenuItemInfo<Integer> early = new MenuItemInfo<>(R.mipmap.date_early_grey, (R.string.Early)
+                    , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam());
+            early.bottomRes=R.mipmap.date_early_white;
+            onTypeClick(early, position);
         } else {
             sportActivity.setType(item.getType());
             onTypeClick(item, position);
@@ -1293,17 +1294,25 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d5.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
         MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d6.split("-")[1]), baseActivity.getString(AfbUtils.getLangMonth(d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
         MenuItemInfo<Integer> itemTop = new MenuItemInfo<>(R.mipmap.sport_cup_yellow, (R.string.Five_Major_Match), "Top", R.mipmap.sport_cup_yellow);
-
+        item1.bottomRes = R.mipmap.date_day_white;
+        item2.bottomRes = R.mipmap.date_day_white;
+        item3.bottomRes = R.mipmap.date_day_white;
+        item4.bottomRes = R.mipmap.date_day_white;
+        item5.bottomRes = R.mipmap.date_day_white;
+        item6.bottomRes = R.mipmap.date_day_white;
         MenuItemInfo<Integer> itemRunning = new MenuItemInfo<>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
+        itemRunning.bottomRes= R.mipmap.date_running_white;
+
         itemRunning.setDateParam("");
 
 
         MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);
         itemToday.setDateParam("");
-
+        itemToday.bottomRes=R.mipmap.date_today_white;
         MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey,
                 R.string.Early_All
                 , "Early", R.mipmap.date_early_green, "", "7");
+        itemEarly.bottomRes=R.mipmap.date_early_white;
 
         List<MenuItemInfo<Integer>> types = new ArrayList<>();
         types.add(itemTop);
@@ -1337,13 +1346,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
 
-        Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
+        Disposable subscription = ApiServiceKt.Companion.getInstance().doPostMap(AppConstant.getInstance().URL_LOGIN, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 /*     .flatMap(new Function<String, Flowable<String>>() {
                          @Override
                          public Flowable<String> apply(String s) throws Exception {
-                             return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
+                             return ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
                          }
                      })*/
                 .subscribe(new Consumer<String>() {//onNext
@@ -1600,6 +1609,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected void clickHallBtn(View v, BallInfo item, int position) {
+
         getBaseView().onWebShow(0, position, item, v);
     }
+
+    public boolean checkWebRtsVisible(IRTMatchInfo itemBall) {
+        return (itemBall != null && !StringUtils.isNull(itemBall.getRTSMatchId()) && !itemBall.getRTSMatchId().equals("0"));
+    }
+
+    public boolean checkLivePlayVisible(IRTMatchInfo itemBall) {
+        return (itemBall != null && (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")));
+    }
+
+
 }

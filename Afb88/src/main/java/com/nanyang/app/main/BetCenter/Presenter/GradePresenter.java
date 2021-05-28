@@ -1,7 +1,7 @@
 package com.nanyang.app.main.BetCenter.Presenter;
 
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.DateUtils;
@@ -24,8 +24,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 
 /**
@@ -138,7 +136,7 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
 
 
     public void getAllMatchDataList(String gameType, String data, String LeagueType) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableL", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableL", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);
@@ -177,7 +175,7 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
 
     public void getGradeData(String gameType, String data, String LeagueType) {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetDate", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson();
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);
@@ -202,7 +200,7 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetDateD", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson();
 
         LogUtil.d("getGradeContentOpenData",p);
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);

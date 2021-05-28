@@ -1,8 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 android {
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
     dexOptions {
         jumboMode true
@@ -25,8 +28,8 @@ android {
         applicationId "com.nanyang.app"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.com"'
-        buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
+        buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com"'
+        buildConfigField "String", "HOST_SPORT", '"https://wsapp.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
         flavorDimensions "versionCode"
 
@@ -58,17 +61,17 @@ android {
 //            ]
 //            applicationId 'com.nanyang.app'
 //            versionName '1.75'
-//            buildConfigField "String", "HOST_AFB", '"http://main55.afb88.com/"'
+//            buildConfigField "String", "HOST_AFB", '"https://main55.afb88.com/"'
 //        }
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.92'
+            versionName '2.95'
             buildConfigField "String", "Domain", '".afb1188.net"'
-            buildConfigField "String", "H5_URL", '"http://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
-            buildConfigField "String", "PC_URL", '"http://wsapp.afb1188.net/W0/Pub/wfMain0.html"'
+            buildConfigField "String", "H5_URL", '"https://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
+            buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.net/W0/Pub/wfMain0.html"'
 //https://wsapp.afb1188.net/W0/Pub/wfMain0.html
-            buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.net/"' //app专用服务器
+            buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.net/"' //app专用服务器
             buildConfigField "String", "HOST", '"wsapp.afb1188.net"' //app专用服务器
             buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/afb1188.php"'
@@ -81,7 +84,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '2.92'
+            versionName '2.95'
             buildConfigField "String", "Domain", '".i1bet99.com"'
             buildConfigField "String", "H5_URL", '"https://www.i1bet99.com/H52/Pub/wfLoginH50.html"'
             buildConfigField "String", "PC_URL", '"https://www.i1bet99.com/W2/Pub/wfMain.html"'
@@ -127,9 +130,12 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    kapt rootProject.ext.dependencies.butterknife_compiler
+    //版本要与gradle版本一致
+    kapt rootProject.ext.dependencies.gradle_kapt
     if (rootProject.ext.isGd88LibraryModule.toBoolean()) {
         implementation project(':app')
     }

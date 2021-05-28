@@ -4,13 +4,19 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.europe.BallState;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.unkonw.testapp.libs.widget.PopOneBtn;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -58,7 +64,39 @@ public abstract class SoccerCommonState extends BallState {
                         collectionLeagueCommon(item);
                         break;
                     case R.id.module_right_mark_tv:
-                        clickAdd(v, item, position);
+                        boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
+
+                        boolean hasBet = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet;
+                        if (getStateType().getType().toLowerCase().startsWith("r") && visible && hasBet) {
+                            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).clickRunMatchPlay(item, position, false);
+                        } else {
+                            String s = getAdapterHelper().additionMap.get(true);
+                            if (StringUtils.isNull(s) && !hasBet) {
+                                PopOneBtn popOneBtn = new PopOneBtn(getBaseView().getIBaseContext().getBaseActivity(), v) {
+                                    @Override
+                                    protected void initView(@NotNull View view) {
+                                        super.initView(view);
+                                        chooseMessage.setText(R.string.placing_a_bet);
+                                    }
+
+                                    @Override
+                                    protected int onSetLayoutRes() {
+                                        return R.layout.popupwindow_base_one_btn;
+
+                                    }
+
+                                    @Override
+                                    protected void clickSure(@Nullable View v) {
+                                        super.clickSure(v);
+                                        getBaseView().clickItemAdd(v, item, position);
+                                    }
+                                };
+                                popOneBtn.showPopupCenterWindow();
+
+                            } else {
+                                getBaseView().clickItemAdd(v, item, position);
+                            }
+                        }
                         break;
                     case R.id.iv_hall_btn:
                         clickHallBtn(v, item, position);
@@ -69,11 +107,6 @@ public abstract class SoccerCommonState extends BallState {
         };
     }
 
-
-
-    private void clickAdd(View v, BallInfo item, int position) {
-        getBaseView().clickItemAdd(v, item, position);
-    }
 
     @Override
     public IBetHelper onSetBetHelper() {

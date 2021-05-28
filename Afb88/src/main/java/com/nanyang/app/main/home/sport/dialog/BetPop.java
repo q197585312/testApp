@@ -82,8 +82,9 @@ public class BetPop {
     SportActivity activity;
     AfbApplication afbApplication;
     private int listSize;
+
     @BindView(R.id.ll_bet_title)
-    public View ll_bet_title;
+    View ll_bet_title;
     @BindView(R.id.bet_balance_tv)
     TextView betBalanceTv;
     @BindView(R.id.bet_amount_edt)
@@ -116,12 +117,11 @@ public class BetPop {
     TextView tv1x2Odds;
     @BindView(R.id.tv_single_bet)
     TextView tvSingleBet;
-    @BindView(R.id.ll_single_mix)
-    View llSingleMix;
+
     @BindView(R.id.tv_mix_bet)
     TextView tvMixBet;
     @BindView(R.id.tv_delete)
-    TextView tvDelete;
+    ImageView tvDelete;
     @BindView(R.id.ll_back_title_line)
     ImageView llBack;
     @BindView(R.id.ll_1x2)
@@ -154,12 +154,10 @@ public class BetPop {
     private SportBetHelper presenter;
     private int coupon;
 
-    private boolean isRefreshEd;
+    private boolean isRefreshEd = false;
     private volatile String oldRtsId = "";
+    private volatile String refreshCurrentOddsUrl = "";
 
-    public View getLlSingleMix() {
-        return llSingleMix;
-    }
 
     public BetPop(Context context, View v) {
         this.context = context;
@@ -266,14 +264,12 @@ public class BetPop {
         tvMixBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                closePopupWindow();
 
-                if (afbApplication.getMixBetList().size() == 1) {
-                    goMixAndClose();
-                } else {
+                if (afbApplication.getMixBetList().size() > 1) {
                     goChooseBetSingle(false);
                 }
-           /*     stopUpdateOdds();
-                closePopupWindow();*/
+
             }
         });
         betSureBtn.setOnClickListener(new View.OnClickListener() {
@@ -286,7 +282,7 @@ public class BetPop {
         betCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goCancel();
+                closePopupWindow();
             }
         });
         betSureBtn.setEnabled(true);
@@ -303,7 +299,7 @@ public class BetPop {
     private void goMixAndClose() {
         if (afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() > 0)
             afbApplication.isSingleBet = false;
-        stopUpdateOdds();
+//        stopUpdateOdds();
         closePopupWindow();
     }
 
@@ -712,16 +708,15 @@ public class BetPop {
             setEditNum();
         }
 
-        tvCurrency.setText(afbApplication.getUser().getCurCode2().replace("MYR",activity.getString(R.string.MYR)));
+        tvCurrency.setText(afbApplication.getUser().getCurCode2().replace("MYR", activity.getString(R.string.MYR)));
         betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getCredit2(), false));
         if (list.size() > 1) {
-            tvDelete.setVisibility(View.VISIBLE);
+
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(list.get(0).getMatchLimit() + ""));
             betMaxWinTv.setText(betAfbList.getMinLimit());
             betMaxBetTv.setText(AfbUtils.addComma(betAfbList.getMaxLimit(), betMaxBetTv));
         } else {
-            tvDelete.setVisibility(View.GONE);
             AfbClickBetBean afbClickBetBean = list.get(0);
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
@@ -761,7 +756,7 @@ public class BetPop {
         if (list.size() > 1) {
             webViewPause();
         }
-        ll_bet_title.setVisibility((activity.fl_top_video.getVisibility() == View.VISIBLE && activity.onlyShowOne) ? View.GONE : View.VISIBLE);
+        ll_bet_title.setVisibility(View.VISIBLE);
 
     }
 
@@ -876,7 +871,7 @@ public class BetPop {
                     View vLine = holder.getView(R.id.v_line);
                     View ll_second = holder.getView(R.id.ll_second);
                     String typeOdds = item.getOddsType();
-                    if (typeOdds != null && typeOdds.toLowerCase().contains("home") || typeOdds.toLowerCase().contains("away")) {
+                    if (list.size() < 2 && typeOdds != null && (typeOdds.toLowerCase().contains("home") || typeOdds.toLowerCase().contains("away") || typeOdds.toLowerCase().contains("over") || typeOdds.toLowerCase().contains("under"))) {
                         tv_vs.setVisibility(View.GONE);
                         tvBetHome.setVisibility(View.GONE);
                         tvBetAway.setVisibility(View.GONE);
@@ -1014,6 +1009,8 @@ public class BetPop {
 
                     if (hdp.contains("-")) {
                         tvHdp.setTextColor(Color.RED);
+                    } else if (item.getId().toLowerCase().contains("over") || item.getId().toLowerCase().contains("under")) {
+                        tvHdp.setTextColor(Color.BLUE);
                     } else {
                         tvHdp.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
                     }
@@ -1052,6 +1049,11 @@ public class BetPop {
                         tvBetHome.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
                     }
                     String typeId = item.getOddsType().toLowerCase();
+                    if (!StringUtils.isEmpty(typeId) && (typeId.contains("home") || typeId.contains("away"))) {
+                        tvBetHdp.setTextColor(ContextCompat.getColor(activity, R.color.black_grey));
+                        String btt = "HDP " + item.getBTT();
+                        tvBetHdp.setText(btt);
+                    }
                     LogUtil.d("itemid", "itemid:" + typeId);
                     if (StringUtils.isEmpty(typeId) || (!typeId.contains("home")
                             && !typeId.contains("away")
@@ -1080,6 +1082,11 @@ public class BetPop {
                     }
 
                     objectAnimatorMap.put(position, objectAnimator);
+                    if (contentAdapter.getItemCount() < 2) {
+                        imgDelete.setVisibility(View.GONE);
+                    } else {
+                        imgDelete.setVisibility(View.VISIBLE);
+                    }
                     imgDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -1219,7 +1226,7 @@ public class BetPop {
         if (activity == null)
             return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
-        if (rtsMatchId != null && !oldRtsId.equals(rtsMatchId)) {
+        if (rtsMatchId != null && (!oldRtsId.equals(rtsMatchId) || !isRefreshEd)) {
             oldRtsId = rtsMatchId;
             isNeedInitWeb = true;
         } else {
@@ -1336,13 +1343,21 @@ public class BetPop {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (StringUtils.isEmpty(afbApplication.getRefreshCurrentOddsUrl())) {
+                String refreshCurrentOddsUrl = afbApplication.getRefreshCurrentOddsUrl();
+
+                if (StringUtils.isEmpty(refreshCurrentOddsUrl)) {
                     stopUpdateOdds();
                     goCancel();
                     return;
                 }
-                presenter.getRefreshOdds(afbApplication.getRefreshCurrentOddsUrl());
-                isRefreshEd = true;
+
+                presenter.getRefreshOdds(refreshCurrentOddsUrl);
+                if (!BetPop.this.refreshCurrentOddsUrl.equals(refreshCurrentOddsUrl)) {
+                    BetPop.this.refreshCurrentOddsUrl = refreshCurrentOddsUrl;
+                    isRefreshEd = false;
+                } else {
+                    isRefreshEd = true;
+                }
                 handler.postDelayed(this, 3000);
             }
         }, delayedTime);

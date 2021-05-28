@@ -37,6 +37,8 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import org.json.JSONException;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -132,7 +134,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (act.onlyShowOne) {
             ll_match_outside.setVisibility(View.GONE);
         } else {
-            ll_match_outside.setVisibility(View.VISIBLE);
+            if (!StringUtils.isNull(additionMap.get(true)) && !item.outShow && act.hasBet) {
+                ll_match_outside.setVisibility(View.GONE);
+            } else {
+                ll_match_outside.setVisibility(View.VISIBLE);
+            }
+
         }
         if (contractedMatch) {
             parent.setVisibility(View.GONE);
@@ -141,6 +148,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             return;
         }
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
+
             ll_title_list.setVisibility(View.VISIBLE);
             liveSelectedHelper.iniSelectedHelper(rv_title_list, context, new MainPresenter.CallBack<MenuItemInfo>() {
                 @Override
@@ -2180,7 +2188,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
 
-    public void changeAdded(IRTMatchInfo item) {
+    public void changeAdded(IRTMatchInfo item, boolean r) {
         String id = additionMap.get(true);
         if (!StringUtils.isNull(id) && id.trim().equals(item.getSocOddsId().trim())) {
             LogUtil.d("additionMap", additionMap.get(true) + ",点击两次关闭");
@@ -2189,6 +2197,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             liveSelectedHelper.putIndex(0);
             LogUtil.d("additionMap", additionMap.get(true) + ",点击1次打开");
             additionMap.put(true, item.getSocOddsId().trim());
+            List<I> is = baseRecyclerAdapter.getmDatas();
+            Iterator<I> iterator = is.iterator();
+            if (r) {
+                boolean outShow = false;
+                while (iterator.hasNext()) {
+                    I next = iterator.next();
+                    next.outShow = outShow;
+                    if (next.getSocOddsId().equals(item.getSocOddsId())) {
+                        outShow = true;
+                    }
+                }
+            }
+
         }
 
         getBaseRecyclerAdapter().notifyDataSetChanged();

@@ -490,4 +490,6 @@
     <string name="single">@string/single_bet</string>
     <string name="HDP">HDP</string>
     <string name="FH_">FT.</string>
+    <string name="placing_a_bet">You can view the video after placing a bet</string>
+    <string name="prompt">Prompt</string>
 </resources>

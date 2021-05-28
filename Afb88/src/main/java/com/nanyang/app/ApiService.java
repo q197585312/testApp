@@ -1,7 +1,7 @@
 package com.nanyang.app;
 
 
-import com.nanyang.app.Been.CheckVersionBean;
+import com.nanyang.app.data.CheckVersionBean;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
@@ -24,6 +24,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -78,6 +79,9 @@ public interface ApiService {
     @POST
     Flowable<String> doPostJson(@Url String url, @Body RequestBody info);
 
+
+    @POST
+    Flowable<String> getDataHeader(@Url String url,@HeaderMap Map<String, String> headers);
     @GET
     Flowable<String> getData(@Url String url);
 

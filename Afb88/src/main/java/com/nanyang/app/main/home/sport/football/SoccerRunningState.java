@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/13.
  */
 
-public class SoccerRunningState extends SoccerCommonState {
+public class SoccerRunningState extends  SoccerCommonState {
     public SoccerRunningState(SportContract.View baseView) {
         super(baseView);
     }
@@ -67,10 +67,6 @@ public class SoccerRunningState extends SoccerCommonState {
         return new SoccerRunningBetHelper(getBaseView());
     }
 
-/*    protected void clickHallBtn(View v, BallInfo item, int position) {
-       *//* int nextNotRepeat = ((SoccerRunningAdapterHelper) getAdapterHelper()).getNextNotRepeat(position);*//*
-        getBaseView().onWebShow(0, position, item, v);
-    }*/
 
     @Override
     public int getTitleContentColor() {

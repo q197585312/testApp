@@ -6,47 +6,46 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import butterknife.BindView
 import com.nanyang.app.*
+import com.nanyang.app.data.GamesData
+import com.nanyang.app.data.Left
+import com.nanyang.app.data.Main
 import com.nanyang.app.Utils.StringUtils
 import com.nanyang.app.common.LanguageHelper
 import com.nanyang.app.common.MainPresenter
+import com.nanyang.app.databinding.FragmentHomeTBinding
 import com.nanyang.app.load.login.LoginInfo.LanguageWfBean
 import com.nanyang.app.load.welcome.AllBannerImagesBean
 import com.nanyang.app.load.welcome.AllBannerImagesBean.MainBannersBean
-import com.nanyang.app.main.home.HomeFragment_ViewBinding
 import com.nanyang.app.main.home.HomeViewModel
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder
+import com.nanyang.app.main.home.OnItemClickListener
 import com.unkonw.testapp.libs.base.BaseApplication
+
 import com.unkonw.testapp.libs.presenter.IBasePresenter
 import com.unkonw.testapp.libs.utils.LogUtil
 import com.unkonw.testapp.libs.utils.TimeUtils
 import com.unkonw.testapp.libs.utils.ToastUtils
+import kotlinx.android.synthetic.main.activity_sport.view.*
+import kotlinx.android.synthetic.main.fragment_home_t.view.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
 class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
-    override fun onSetLayoutId(): Int {
-        TODO("Not yet implemented")
-    }
-    /*@BindView(R.id.in_layout)
-    var inLayout: LinearLayout? = null
+
+    private lateinit var binding: FragmentHomeTBinding
+
+    /*    @JvmField
+        @BindView(R.id.in_layout)
+        var inLayout: LinearLayout? = null*/
     private var jsonObjectNum: JSONObject? = null
     private var lastAllMainData: String? = null
-    private var adapter: BaseRecyclerAdapter<MainBannersBean?>? =
-        null
+
     private var language: String? = null
-    private var mainList: List<MainBannersBean>? = null
-    lateinit var binding: HomeFragment_ViewBinding
+
     override fun onSetLayoutId(): Int {
         return R.layout.fragment_home_t
     }
@@ -58,9 +57,7 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mContentView = inflater
-            .inflate(onSetLayoutId(), container, false)
-        binding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate<FragmentHomeTBinding>(
             inflater,
             R.layout.fragment_home_t,
             container,
@@ -68,56 +65,121 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         )
         initView()
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        binding.(viewModel)
-        return binding.getRoot()
+        binding.viewModel = viewModel
+        binding.rvHead.layoutManager = GridLayoutManager(BaseApplication.getInstance(), 3)
+        viewModel.setItemClick(onItemClick())
+        viewModel.setLeftItemClick(onLeftItemClick())
+        viewModel.heightLeft = 90f
+        viewModel.selectedType.observe(viewLifecycleOwner, {
+            var index = 0
+            viewModel.left.map { itMap ->
+                itMap.isSelected = itMap.type == it
+                viewModel.left.set(index, itMap)
+                index++
+            }
+        })
+
+
+
+        return binding.root
+    }
+
+    private fun onLeftItemClick(): OnItemClickListener<Left> {
+        return object : OnItemClickListener<Left> {
+            override fun onItemClick(m: Left) {
+                println("点几了$m")
+                if (binding.rvContentDetail.visibility == View.VISIBLE) {
+                    if (m.type == viewModel.selectedType.value) {
+                        binding.rvContentDetail.visibility = View.GONE
+                        viewModel.heightLeft = 120f
+                        binding.rvContentType.adapter?.notifyDataSetChanged()
+                    } else {
+                        viewModel.selectedType.postValue(m.type)
+                        viewModel.loadMainGame(m.type)
+                    }
+                } else {
+                    binding.rvContentDetail.visibility = View.VISIBLE
+                    viewModel.heightLeft = 90f
+                    viewModel.selectedType.postValue(m.type)
+                    viewModel.loadMainGame(m.type)
+                    binding.rvContentType.adapter?.notifyDataSetChanged()
+                }
+            }
+
+        }
+    }
+
+    private fun onItemClick(): OnItemClickListener<Main> {
+        return object : OnItemClickListener<Main> {
+            override fun onItemClick(item: Main) {
+
+                val g = item.g
+                if (getBaseToolbarActivity().app.updateOtherMap().containsKey(g)) {
+                    (baseActivity.presenter as MainPresenter).clickGdGameItem(g)
+                    return
+                }
+                val sportIdBean = getBaseToolbarActivity().app.getSportByG(g) ?: return
+                var menuItemInfo =
+                    MenuItemInfo<String?>(0, R.string.running)
+                menuItemInfo.type = "Running"
+                if (jsonObjectNum != null) {
+                    if (!StringUtils.isNull(jsonObjectNum!!.optString("M_RAm" + item.dbid))) {
+                        menuItemInfo =
+                            MenuItemInfo(0, R.string.running)
+                        menuItemInfo.setType("Running")
+                    } else if (!StringUtils.isNull(jsonObjectNum!!.optString("M_TAm" + item.dbid))) {
+                        menuItemInfo =
+                            MenuItemInfo(0, R.string.Today)
+                        menuItemInfo.setType("Today")
+                    } else if (!StringUtils.isNull(jsonObjectNum!!.optString("M_EAm" + item.dbid))) {
+                        menuItemInfo =
+                            MenuItemInfo(0, R.string.Early_All)
+                        menuItemInfo.type = "Early"
+                    }
+                }
+                if (sportIdBean == null) {
+                    ToastUtils.showLong("Server Error, wrong game GId")
+                    return
+                }
+                menuItemInfo.setParent(sportIdBean.type)
+                val b1 = Bundle()
+                b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo)
+                skipAct(sportIdBean.cls, b1)
+            }
+
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadAllPic(::loadAllUi)
+        updateTimer()
+        initHomeToolBar()
+    }
+
+    fun loadAllUi(allBannerImagesBean: GamesData) {
+        println("loadAllUi:" + allBannerImagesBean.toString())
     }
 
     override fun initData() {
         super.initData()
         language = LanguageHelper(mContext).language
-        initContentAdapter(ArrayList())
-        loadAllPic()
     }
 
-    protected val appViewModelProvider: ViewModelProvider
-        protected get() = (mActivity.getApplicationContext() as App).getAppViewModelProvider(
-            mActivity
-        )
-
-    protected fun getFragmentViewModelProvider(fragment: Fragment): ViewModelProvider {
-        return ViewModelProvider(
-            fragment, ViewModelProvider.AndroidViewModelFactory.getInstance(
-                BaseApplication.getInstance()
-            )
-        )
-    }
-
-    protected fun getActivityViewModelProvider(activity: AppCompatActivity): ViewModelProvider {
-        return ViewModelProvider(activity, activity.getDefaultViewModelProviderFactory())
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if ((baseActivity.application as AfbApplication).listMainBanners != null) loadUi() else {
-            loadAllPic()
-        }
-        updateTimer()
-        initHomeToolBar()
-    }
 
     private fun loadAllPic() {
         (getBaseToolbarActivity() as MainActivity).loadingUrlPics(object :
             MainPresenter.CallBack<AllBannerImagesBean?> {
             @Throws(JSONException::class)
-            override fun onBack(data: AllBannerImagesBean) {
+            override fun onBack(data: AllBannerImagesBean?) {
                 loadUi()
             }
         })
     }
 
     private fun loadUi() {
-        initViewPager((baseActivity.application as AfbApplication).listMainBanners)
-        updateContent((baseActivity.application as AfbApplication).listMainPictures)
+        /*initViewPager((baseActivity.application as AfbApplication).listMainBanners)
+        updateContent((baseActivity.application as AfbApplication).listMainPictures)*/
     }
 
     private fun initHomeToolBar() {
@@ -136,19 +198,9 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         }
     }
 
-    private fun updateContent(data: MutableList<MainBannersBean>) {
-        mainList = data
-        val iterator = data.iterator()
-        if (AppConstant.IS_AGENT) {
-            while (iterator.hasNext()) {
-                val next = iterator.next()
-                if (StringUtils.isNull(next.dbid)) iterator.remove()
-            }
-        }
-        adapter!!.addAllAndClear(sortNotEmptyData(data))
-    }
 
     private fun initContentAdapter(data: List<MainBannersBean>) {
+/*
         val layoutManager = GridLayoutManager(mContext, 3) //设置为一个3列的纵向网格布局
         rvContent!!.layoutManager = layoutManager
         adapter = object : BaseRecyclerAdapter<MainBannersBean?>(
@@ -230,33 +282,43 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
                 skipAct(sportIdBean.cls, b1)
             }
         })
+*/
     }
 
-    private fun sortNotEmptyData(data: List<MainBannersBean>?): List<MainBannersBean?> {
-        val iterator = data!!.iterator()
-        val hasData: MutableList<MainBannersBean> =
-            ArrayList()
-        val noData: MutableList<MainBannersBean> =
-            ArrayList()
-        while (iterator.hasNext()) {
-            val next = iterator.next()
-            if (hasData("M_RAm", next) || hasData("M_TAm", next) || hasData("M_EAm", next)) {
-                hasData.add(next)
-            } else {
-                noData.add(next)
-            }
+    var hasInitNum = false
+    private fun sortNotEmptyData() {
+        if (!viewModel.selectedType.value.equals("sport"))
+            return
+        var hasNum = false
+        viewModel.mainContent.forEach() {
+            hasNum = (hasData("M_RAm", it, true) || hasData("M_TAm", it, true) || hasData(
+                "M_EAm",
+                it,
+                true
+            )) || hasNum
         }
-        val allData: MutableList<MainBannersBean?> =
-            ArrayList()
-        allData.addAll(hasData)
-        allData.addAll(noData)
-        return allData
+        viewModel.mainContent.sort()
+        viewModel.mainContent.sort()
+        if (!hasInitNum && hasNum) {
+            /*     viewModel.mainContent.clear()
+                 viewModel.mainContent.addAll(temp)*/
+        }
+//        println("temp:$temp")
+
+        binding.rvContentDetail.adapter?.notifyDataSetChanged()
     }
 
-    private fun hasData(m_rAm: String, next: MainBannersBean): Boolean {
-        if (jsonObjectNum == null) return false
+    private fun hasData(m_rAm: String, next: Main, changeNum: Boolean): Boolean {
+        if (jsonObjectNum == null)
+            return false
         val string = jsonObjectNum!!.optString(m_rAm + next.dbid)
-        return !StringUtils.isNull(string) && string != "0"
+        var haNum = !StringUtils.isNull(string) && string != "0"
+        if (haNum && changeNum)
+            next.number = string
+        else {
+            next.number = "0"
+        }
+        return haNum
     }
 
     var languageItem: MenuItemInfo<String>? = null
@@ -266,9 +328,6 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         updateHandler.post(mainAllDataUpdateRunnable)
     }
 
-    override fun onStop() {
-        super.onStop()
-    }
 
     override fun onPause() {
         super.onPause()
@@ -285,7 +344,8 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
                     language,
                     AppConstant.wfMain
                 ), object : MainPresenter.CallBack<String?> {
-                    override fun onBack(data: String) {
+
+                    override fun onBack(data: String?) {
                         LogUtil.d(
                             "mainAllDataUpdateRunnable",
                             "得到数据——$data"
@@ -305,13 +365,12 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
                                 "不同——刷新"
                             )
                             jsonObjectNum = JSONObject(data)
-                            val list =
-                                sortNotEmptyData(mainList)
-                            adapter!!.addAllAndClear(list)
+                            sortNotEmptyData()
                             lastAllMainData = data
                         } catch (e: JSONException) {
                             e.printStackTrace()
                         }
+
                     }
                 })
             updateHandler.postDelayed(this, 10000)
@@ -340,5 +399,5 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
             updateHandler.postDelayed(this, 1000)
         }
     }
-    var updateHandler = Handler()*/
+    var updateHandler = Handler()
 }

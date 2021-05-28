@@ -50,8 +50,10 @@ import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -65,7 +67,6 @@ import okhttp3.Request;
 import retrofit2.Response;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> extends BaseActivity<T> implements IGetRefreshMenu {
     public BetGoalWindowUtils BetGoalWindowUtils = new BetGoalWindowUtils();
@@ -182,7 +183,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
     Runnable dataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            Disposable subscribe = getService(ApiService.class).getData(AppConstant.getInstance().URL_UPDATE_STATE)
+            Disposable subscribe = ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_UPDATE_STATE)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .takeWhile(new Predicate<String>() {
@@ -235,7 +236,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
 
     private void checkError() {
         errorCount++;
-        if (errorCount > 4) {
+        if (errorCount > 4 || StringUtils.isNull(getApp().getUser().getLoginName()) || getApp().getUser().getLoginName().equals("@@@AFB88###")) {
             reLogin();
         }
     }
@@ -262,6 +263,10 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
     public void updateBalance() {
         String language = new LanguageHelper(getBaseActivity()).getLanguage();
         LoadMainDataHelper helper = new LoadMainDataHelper(new ApiManager(), getBaseActivity(), mCompositeSubscription);
+        Map<String, String> headers = new HashMap<String, String>();
+        String authorization = ((BaseToolbarActivity) (getBaseActivity())).getApp().getAuthorization();
+        headers.put("isios", "true");
+        headers.put("Authorization", authorization);
         helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
@@ -271,7 +276,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                 ((AfbApplication) getBaseActivity().getApplication()).setUser(personalInfo);
                 updateBalanceTv(personalInfo.getCredit2());
             }
-        });
+        }, "");
     }
 
     protected void updateBalanceTv(String allData) {
@@ -349,7 +354,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         LogIntervalUtils.logTime("请求数据" + BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
 //        https://www.i1bet99.com/_View/LiveDealerGDC.aspx
 //        https://www.i1bet99.com/_View/LiveDealerGDC.aspx
-        Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
+        Disposable subscription = ApiServiceKt.Companion.getInstance().getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response>() {
                     @Override
@@ -375,7 +380,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                             intent.putString("curCode", bean.getCurCode());
                             LogIntervalUtils.logTime("请求数据完成开始跳转");
                             getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyActivity");
-                        } else if (code == 200 && body.contains("not online")) {
+                        } else if (code == 200 && body.contains("not online")|| StringUtils.isNull(getApp().getUser().getLoginName()) || getApp().getUser().getLoginName().equals("@@@AFB88###")) {
                             ToastUtils.showShort("User not online");
                             reLogin();
 
@@ -451,7 +456,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
-        skipAct(SportActivity.class, b,    Intent.FLAG_ACTIVITY_NEW_TASK);
+        skipAct(SportActivity.class, b, Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
     public void switchSkipAct(String gameType) {
@@ -500,7 +505,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
     public void reLogin() {
         if (presenter != null && getApp().getUser() != null &&
                 getApp().getUser().getLoginUrl() != null) {
-            presenter.doRetrofitApiOnUiThread(getService(ApiService.class).getData(getApp().getUser().getLoginUrl())
+            presenter.doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(getApp().getUser().getLoginUrl())
                     , new BaseConsumer<String>(this) {
                         @Override
                         protected void onBaseGetData(String s) throws JSONException {

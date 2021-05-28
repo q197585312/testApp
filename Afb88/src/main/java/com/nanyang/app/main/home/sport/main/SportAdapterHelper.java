@@ -27,7 +27,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         return baseRecyclerAdapter;
     }
 
-    private BaseRecyclerAdapter<B> baseRecyclerAdapter;
+    public BaseRecyclerAdapter<B> baseRecyclerAdapter;
 
     public ItemCallBack<B> getBack() {
         return back;

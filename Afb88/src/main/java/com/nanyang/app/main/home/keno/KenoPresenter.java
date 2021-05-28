@@ -2,11 +2,10 @@ package com.nanyang.app.main.home.keno;
 
 import android.os.Handler;
 
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
-import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -38,21 +37,21 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoActivity> {
 
         @Override
         public void run() {
-            doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getKenoData(AppConstant.getInstance().URL_KENO_DATA), consumer);
+            doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getKenoData(AppConstant.getInstance().URL_KENO_DATA), consumer);
             handler.postDelayed(this, countdownTime);
         }
     }
 
     public void getBetStatus(final String p, BaseConsumer<KenoBetLimitBean> consumer) {
-        doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getKenoBetStatusData(AppConstant.getInstance().URL_KENO_STATU_DATA + p), consumer);
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getKenoBetStatusData(AppConstant.getInstance().URL_KENO_STATU_DATA + p), consumer);
     }
 
     public void kenoBet(String params, BaseConsumer<String> consumer) {
-        doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getData(AppConstant.getInstance().URL_KENO_BET + params), consumer);
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_KENO_BET + params), consumer);
     }
 
     public void KenoBetSuccessMsg(BaseConsumer<String> consumer) {
-        doRetrofitApiOnUiThread(ApiManager.getService(ApiService.class).getData(AppConstant.getInstance().URL_STAKE), consumer);
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_STAKE), consumer);
     }
 
 

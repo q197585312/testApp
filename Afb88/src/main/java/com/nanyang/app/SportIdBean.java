@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 
 public class SportIdBean implements Serializable {
+
     private Class<? extends BaseToolbarActivity> cls;
     private int textColor;
 
@@ -60,6 +61,7 @@ public class SportIdBean implements Serializable {
     int textRes;
     int sportCount;
     int sportPic;
+    public int picSmall;
 
     public int getSportPic() {
         return sportPic;
@@ -103,6 +105,18 @@ public class SportIdBean implements Serializable {
         this.baseFragment = baseFragment;
         this.textColor = textColor;
         this.sportPic = sportPic;
+    }
+
+    public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor, int sportPic,int picSmall) {
+        this.dbid = dbid;
+        this.id = g;
+        this.textRes = textRes;
+        this.type = type;
+        this.cls = cls;
+        this.baseFragment = baseFragment;
+        this.textColor = textColor;
+        this.sportPic = sportPic;
+        this.picSmall = picSmall;
     }
 
     public String getId() {

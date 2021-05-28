@@ -14,7 +14,7 @@
     <string name="Loading">Yükleniyor...</string>
     <string name="Account_empty">Hesap boşaltılabilir!</string>
     <string name="Password_empty">Şifre boş olamaz</string>
-    <string name="SportBook">SportsBook</string>
+    <string name="SportBook">SportBook</string>
     <string name="Live_Casino">Canlı Casino</string>
     <string name="Games">Oyun</string>
     <string name="Keno">Keno</string>
@@ -488,4 +488,6 @@
     <string name="single">@string/single_bet</string>
     <string name="HDP">HDP</string>
     <string name="FH_">FT.</string>
+    <string name="placing_a_bet">You can view the video after placing a bet</string>
+    <string name="prompt">Prompt</string>
 </resources>

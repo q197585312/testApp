@@ -1,7 +1,7 @@
 package com.nanyang.app.load.register;
 
 
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -14,8 +14,6 @@ import java.util.Map;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 public class RegisterPresenter extends BaseRetrofitPresenter<RegisterActivity> implements RegisterContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
@@ -56,7 +54,7 @@ public class RegisterPresenter extends BaseRetrofitPresenter<RegisterActivity> i
 
     @Override
     public void register(RegisterInfo info) {
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).Register(info.getRegisterMap()))
+        Disposable subscription = mApiWrapper.applySchedulers(ApiServiceKt.Companion.getInstance().Register(info.getRegisterMap()))
 //                mApiWrapper.getPersonalInfo(info)
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
@@ -87,7 +85,7 @@ public class RegisterPresenter extends BaseRetrofitPresenter<RegisterActivity> i
 
     @Override
     public void checkUserName(RegisterInfo info) {
-        Disposable disposable = mApiWrapper.applySchedulers(getService(ApiService.class).checkUserName(info.getCheckUserMap()))
+        Disposable disposable = mApiWrapper.applySchedulers(ApiServiceKt.Companion.getInstance().checkUserName(info.getCheckUserMap()))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

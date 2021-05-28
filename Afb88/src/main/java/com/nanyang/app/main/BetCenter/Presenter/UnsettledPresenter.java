@@ -2,7 +2,7 @@ package com.nanyang.app.main.BetCenter.Presenter;
 
 import android.os.Handler;
 
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
 import com.nanyang.app.main.BetCenter.Bean.RunningBean;
@@ -18,8 +18,6 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * Created by 47184 on 2019/4/7.
@@ -48,7 +46,7 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
 
     private void settledData() {
         BaseParamBean bean = new BaseParamBean("GetTable", "wfRunningH50", type, "1");
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 LogUtil.d("onBaseGetData", "GetTable:" + data);
@@ -87,12 +85,12 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
 
     public void getParList(String id, BaseConsumer<String> baseConsumer) {
         BaseParamBean bean = new BaseParamBean("GetMatch", "wfRunningH50", id, "2");
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
     }
 
     public void getParList2(String socTransId, String type, BaseConsumer<String> baseConsumer) {
         BaseParamBean bean = new BaseParamBean("GetMatchDetail", "wfRunningH50", socTransId, type, "", "", 0);
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
     }
 
     public List<StatementOpen2ListDataBean> getBeanList2(JSONArray jsonArray) throws JSONException {

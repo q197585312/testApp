@@ -4,7 +4,7 @@ package com.nanyang.app.main.home.sport.additional;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
@@ -17,8 +17,6 @@ import org.json.JSONException;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> implements IBasePresenter {
     private IRTMatchInfo bean;
@@ -81,7 +79,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> imple
                 public void run() {
                     if (bean == null || StringUtils.isNull(dbid) || dbid.equals("0"))
                         return;
-                    doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<String>(baseContext) {
+                    doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getAdditionData(getUrl()), new BaseConsumer<String>(baseContext) {
                         @Override
                         protected void onBaseGetData(String data) throws JSONException {
                             Gson gson = new Gson();

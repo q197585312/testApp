@@ -10,13 +10,13 @@ import androidx.annotation.NonNull;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
+import com.nanyang.app.data.AppVersionBean;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -52,8 +52,6 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.unkonw.testapp.libs.api.ApiManager.getService;
 
 /**
  * Created by Administrator on 2017/4/19.
@@ -159,7 +157,7 @@ public class MainPresenter extends BaseSwitchPresenter {
 
     public void downloadGd88() {
         String url = "http://www.appgd88.com/api/gd88AndroidVersion.php?Labelid=48";
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(url), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(url), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) {
                 AppVersionBean appVersionBean = gson.fromJson(data, AppVersionBean.class);
@@ -186,7 +184,7 @@ public class MainPresenter extends BaseSwitchPresenter {
 
     public void login(final LoginInfo info, final BaseConsumer<String> baseConsumer) {
 
-        doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login", getLanguage()))
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login", getLanguage()))
 
                 .flatMap(new Function<String, Flowable<String>>() {
                     @Override
@@ -195,7 +193,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                         Pattern p = Pattern.compile(regex);
                         Matcher m = p.matcher(s);
                         if (m.find()) {
-                            return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
+                            return ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_LOGIN);
                         }
                         Exception exception1 = new Exception("Server Error");
                         throw exception1;
@@ -212,7 +210,7 @@ public class MainPresenter extends BaseSwitchPresenter {
         LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
-        Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
+        Disposable subscription = ApiServiceKt.Companion.getInstance().doPostMap(AppConstant.getInstance().URL_LOGIN, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
 
@@ -253,17 +251,17 @@ public class MainPresenter extends BaseSwitchPresenter {
         LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean(getLanguage());
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
-        doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map).flatMap(new Function<String, Flowable<String>>() {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().doPostMap(AppConstant.getInstance().URL_LOGIN, map).flatMap(new Function<String, Flowable<String>>() {
             @Override
             public Flowable<String> apply(String s) throws Exception {
-                return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
+                return ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
             }
         }), consumer);*/
     }
 
     public void refreshMenu(LinkedHashMap<String, String> paramMap) {
         String p = AfbUtils.getJsonParam(paramMap);
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + p), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 JSONArray jsonArray = new JSONArray(data);
@@ -304,10 +302,16 @@ public class MainPresenter extends BaseSwitchPresenter {
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         helper.doRetrofitApiOnUiThread(languageWfBean, back);
     }
+    public void loadAllMainDataHeaders(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back,Map<String,String>headers) {
+        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        helper.doRetrofitApiOnUiThreadHeaders(languageWfBean, back,"",headers);
+    }
+
+
 
     public void loadAllImages(final CallBack<AllBannerImagesBean> back) {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
-        doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData(BuildConfig.ImgConfig_URL), new BaseConsumer<AllBannerImagesBean>(baseContext) {
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getAllImagesData(BuildConfig.ImgConfig_URL), new BaseConsumer<AllBannerImagesBean>(baseContext) {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) throws JSONException {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
@@ -327,7 +331,7 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     public void oddsType() {
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + "MY").subscribeOn(Schedulers.io())
+        Disposable subscription = ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_ODDS_TYPE + "MY").subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(new Consumer<String>() {//onNext
                     @Override

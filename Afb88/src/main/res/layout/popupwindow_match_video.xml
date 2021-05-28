@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/fl_top_video"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_top_video"
     android:layout_width="match_parent"
     android:layout_height="255dp"
     android:orientation="vertical"
-    android:visibility="gone"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:visibility="gone">
 
     <LinearLayout
         android:id="@+id/ll_back_title_line"
@@ -40,12 +40,12 @@
             android:id="@+id/iv_title_live_stream"
             android:layout_width="30dp"
             android:layout_height="28dp"
+            android:layout_gravity="center"
             android:layout_marginRight="12dp"
             android:background="@mipmap/rectangle_bg_shadow"
-            android:layout_gravity="center"
-            android:padding="5dp"
-
             android:gravity="center"
+
+            android:padding="5dp"
             android:src="@mipmap/tv_play_2"
             android:text="@string/live_stream"
             android:textAllCaps="true"
@@ -56,11 +56,11 @@
             android:id="@+id/iv_title_live_center"
             android:layout_width="30dp"
             android:layout_height="28dp"
+            android:layout_gravity="center"
             android:layout_marginRight="12dp"
             android:background="@mipmap/rectangle_bg_shadow"
-            android:layout_gravity="center"
-            android:padding="5dp"
             android:gravity="center"
+            android:padding="5dp"
             android:src="@mipmap/soccer_hall_2"
             android:text="@string/live_center"
             android:textAllCaps="true"
@@ -71,12 +71,12 @@
             android:id="@+id/iv_bet_list"
             android:layout_width="30dp"
             android:layout_height="28dp"
+            android:layout_gravity="center"
             android:layout_marginRight="12dp"
             android:background="@mipmap/rectangle_bg_shadow"
-            android:layout_gravity="center"
-            android:padding="5dp"
             android:gravity="center"
             android:onClick="clickBets"
+            android:padding="5dp"
             android:src="@mipmap/sport_bet_list" />
     </LinearLayout>
 
@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="16dp"
         android:background="@color/black"
-        android:onClick="clickRunTitle">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/ll_run_match_title"

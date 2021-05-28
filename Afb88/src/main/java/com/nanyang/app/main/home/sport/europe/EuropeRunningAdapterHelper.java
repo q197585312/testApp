@@ -30,7 +30,7 @@ public class EuropeRunningAdapterHelper extends EuropeCommonAdapter {
 
         liveTv.setVisibility(View.GONE);
         dateTv.setVisibility(View.GONE);
-        handleLiveTimeTv(item, timeTv);
+
         if (item.getLive().contains("HT")) {
             timeTv.setText("HT");
         } else {
@@ -66,6 +66,7 @@ public class EuropeRunningAdapterHelper extends EuropeCommonAdapter {
                 timeTv.setText("");
             }
         }
+        handleLiveTimeTv(item, timeTv);
         dateTv.setTextColor(Color.RED);
     }
 }

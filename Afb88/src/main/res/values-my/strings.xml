@@ -15,7 +15,7 @@
     <string name="Loading">Loading ...</string>
     <string name="Account_empty">Akaun tidak boleh kosong!</string>
     <string name="Password_empty">Kata laluan tidak boleh kosong</string>
-    <string name="SportBook">SportsBook</string>
+    <string name="SportBook">SportBook</string>
     <string name="Live_Casino">Live Casino</string>
     <string name="Games">Games</string>
     <string name="Keno">Keno</string>
@@ -603,4 +603,6 @@
     <string name="min">m</string>
     <string name="dd">DD</string>
     <string name="O">O</string>
+    <string name="placing_a_bet">You can view the video after placing a bet</string>
+    <string name="prompt">Prompt</string>
 </resources>

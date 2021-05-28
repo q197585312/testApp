@@ -20,7 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.Been.HomePopItemBeen;
+import com.nanyang.app.data.HomePopItemBeen;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
@@ -31,7 +31,6 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
-import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 
@@ -103,7 +102,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         }
     }
 
-    private BaseSwitchFragment homeFragment = new HomeFragment();
+    private BaseSwitchFragment homeFragment = new HomeFragmentT();
     MyGoHomeBroadcastReceiver myGoHomeBroadcastReceiver;
 
     @Override

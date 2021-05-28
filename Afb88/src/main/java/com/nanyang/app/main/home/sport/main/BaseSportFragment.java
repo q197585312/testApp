@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.main;
+    package com.nanyang.app.main.home.sport.main;
 
 import android.app.Activity;
 import android.content.Context;
@@ -48,6 +48,9 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+import com.unkonw.testapp.libs.widget.PopOneBtn;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -69,6 +72,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     protected RecyclerView rvContent;
     @BindView(R.id.tv_no_games)
     protected TextView tvNoGames;
+    public String type = "";
 
     //    @BindView(R.id.tv_mix_parlay_order)
 //    protected TextView tvMixParlayOrder;
@@ -189,7 +193,24 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Override
     public void onWebShow(int nextNotRepeat, int position, BallInfo item, View view) {
         if (presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r")) {
-            getBaseActivity().clickRunMatchPlay(item, position, true);
+            if (!getBaseActivity().hasBet) {
+                PopOneBtn popOneBtn = new PopOneBtn(getBaseActivity(), view) {
+                    @Override
+                    protected void initView(@NotNull View view) {
+                        super.initView(view);
+                        chooseMessage.setText(R.string.placing_a_bet);
+                    }
+
+                    @Override
+                    protected int onSetLayoutRes() {
+                        return R.layout.popupwindow_base_one_btn;
+
+                    }
+                };
+                popOneBtn.showPopupCenterWindow();
+            } else {
+                getBaseActivity().clickRunMatchPlay(item, position, true);
+            }
         }
     }
 
@@ -533,7 +554,11 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
 
-    public abstract void switchType(String type);
+    public void switchType(String type) {
+        if (this.type == null || !this.type.equals(type)) {
+            this.type = type;
+        }
+    }
 
     @Override
     public void reLoginPrompt(String str, SportContract.CallBack back) {
@@ -546,6 +571,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void clickItemAdd(View v, IRTMatchInfo item, int position) {
         String dbid = getSportDbid();
 
+/*        if (presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r")) {
+            ((SportActivity) getBaseActivity()).clickRunMatchPlay(item, position, true, false);
+        }*/
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             String type = getBaseActivity().getOtType();
             AddedParamsInfo info = new AddedParamsInfo(item, dbid, type);
@@ -556,8 +584,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 }
             });
             if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+                boolean isRun = presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r");
+                boolean visible = (presenter.getStateHelper().checkLivePlayVisible(item) || presenter.getStateHelper().checkWebRtsVisible(item));
                 BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-                adapterHelper.changeAdded(item);
+                adapterHelper.changeAdded(item, isRun && visible);
             }
 
         }
@@ -596,10 +626,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         LogUtil.d("getMethodName", getClass().getSimpleName() + ",onlyShowAdded:" + getBaseActivity().onlyShowOne);
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().cl_sport_head.setVisibility(View.VISIBLE);
+        getBaseActivity().list_top.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
         if (getBaseActivity().fl_top_video.getVisibility() == View.GONE) {
             getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
+            getBaseActivity().list_top.setVisibility(View.VISIBLE);
             getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
         } else {
             getBaseActivity().liveMatchHelper.onResumePlay();

@@ -34,21 +34,17 @@
             android:textSize="17sp"
             android:visibility="gone" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.8dp"
-            android:background="@color/grey_light" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.8dp"
-            android:background="@color/grey_light" />
+            android:layout_height="0.5dp"
+            android:background="@color/trans_black_light" />
 
         <LinearLayout
             android:id="@+id/ll_tab_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey_default_bg"
+            android:background="@color/green"
             android:baselineAligned="false"
             android:orientation="horizontal"
            >
@@ -69,7 +65,7 @@
                     android:paddingTop="4dp"
                     android:text="@string/balances"
                     android:textAllCaps="true"
-                    android:textColor="@color/black_grey"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
@@ -86,9 +82,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:drawableTop="@mipmap/main_statement"
+                    android:drawableTop="@mipmap/sport_botton_teb_statement"
                     android:text="@string/statement"
-                    android:textColor="@color/black_grey"
+                    android:textColor="@color/white"
                     android:textAllCaps="true"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -108,7 +104,7 @@
                     android:layout_gravity="center"
                     android:drawableTop="@mipmap/main_contactus"
                     android:text="@string/contact"
-                    android:textColor="@color/black_grey"
+                    android:textColor="@color/white"
                     android:textAllCaps="true"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -136,7 +132,7 @@
                     android:drawableTop="@mipmap/main_more"
                     android:textAllCaps="true"
                     android:text="@string/more"
-                    android:textColor="@color/black_grey"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 

@@ -99,6 +99,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     @BindView(R.id.cl_sport_head)
     public View cl_sport_head;
+    @BindView(R.id.list_top)
+    public View list_top;
     @BindView(R.id.ll_line1)
     public View ll_line1;
     @BindView(R.id.ll_line2)
@@ -111,6 +113,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     @BindView(R.id.rc_sport_list)
     RecyclerView rc_sport_list;
+    @BindView(R.id.rc_sport_list_top)
+    RecyclerView rc_sport_list_top;
     @BindView(R.id.bet_pop_parent_ll)
     public View bet_pop_parent_ll;
 
@@ -144,8 +148,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     FrameLayout flContent;
     @BindView(R.id.tv_record)
     TextView tvRecord;
-    @BindView(R.id.tv_sport_select)
-    TextView tvSportSelect;
+
     @BindView(R.id.iv_order_top)
     ImageView ivOrderTop;
     @BindView(R.id.tv_mix)
@@ -155,6 +158,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.tv_mix_count)
     TextView tvMixCount;
 
+    @BindView(R.id.mix_count)
+    TextView MixCount;
 
     @BindView(R.id.tv_way_run)
     public TextView tvMatchType;
@@ -209,6 +214,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private volatile boolean isOther;
     private int matchRes;
     private int sportIdText;
+    public boolean hasBet;
 
 
     public TextView getIvAllAdd() {
@@ -244,6 +250,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
         updateMixOrderCount();
+        hasBet = false;
     }
 
 
@@ -293,6 +300,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
             initFragment(item.getParent());
             int res = R.mipmap.date_running_green;
+            int bottomRes = R.mipmap.date_running_white;
             dateClickPosition = 1;
             String day = "", dateParam = "";
             switch (type) {
@@ -300,13 +308,17 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     res = R.mipmap.date_early_grey;
                     dateClickPosition = 2;
                     dateParam = "7";
+                    bottomRes = R.mipmap.date_early_white;
                     break;
                 case "Today":
                     dateClickPosition = 1;
                     res = R.mipmap.date_today_grey;
+                    bottomRes = R.mipmap.date_today_white;
                     break;
             }
-            runWayItem(new MenuItemInfo<>(res, item.getText(), type, res, day, dateParam));
+            MenuItemInfo<Integer> integerMenuItemInfo = new MenuItemInfo<>(res, item.getText(), type, res, day, dateParam);
+            integerMenuItemInfo.bottomRes = bottomRes;
+            runWayItem(integerMenuItemInfo);
 
         }
         videoHolder = new ViewHolder(fl_top_video);
@@ -335,6 +347,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     BaseRecyclerAdapter<SportIdBean> leftSportAdapter;
+    BaseRecyclerAdapter<SportIdBean> topSportAdapter;
 
     private void initLeftMenu() {
 
@@ -360,14 +373,40 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     tvGameCount.setVisibility(View.VISIBLE);
 
                 }
-                if (tvSportSelect.getText().toString().equals(getString(item.getTextRes())) || (type.equals("Running") && item.getTextRes() == R.string.Soccer_Runing && tvSportSelect.getText().toString().equals(getString(R.string.Soccer)))) {
+                if (type.equals("Running") && item.getTextRes() == R.string.Soccer_Runing) {
                     tvGameName.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
                     llContent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
                 }
             }
         };
+        topSportAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.item_sport_top) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, final SportIdBean item) {
+                TextView tvGameName = holder.getView(R.id.tv_game_name);
+                ImageView img_game_pic = holder.getView(R.id.img_game_pic);
+                tvGameName.setText(item.getTextRes());
+                img_game_pic.setImageResource(item.picSmall);
+
+            }
+        };
         rc_sport_list.setAdapter(leftSportAdapter);
+        rc_sport_list_top.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rc_sport_list_top.setAdapter(topSportAdapter);
         leftSportAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
+            @Override
+            public void onItemClick(View view, SportIdBean item, int position) {
+                String g = item.getId();
+                if (getApp().updateOtherMap().containsKey(g)) {
+                    (getBaseActivity().presenter).clickGdGameItem(g);
+                    return;
+                } else {
+                    initSportFragment(item, null);
+                    tvLeagueMain.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+                }
+                ll_home_left.setVisibility(View.GONE);
+            }
+        });
+        topSportAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
             @Override
             public void onItemClick(View view, SportIdBean item, int position) {
                 String g = item.getId();
@@ -475,17 +514,15 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvOrderCount.setVisibility(View.VISIBLE);
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_white);
             tvMixCount.setText("" + getApp().getMixBetList().size());
+            MixCount.setText("" + getApp().getMixBetList().size());
             tvOrderCount.setText("" + getApp().getMixBetList().size());
-            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping, 0, 0);
-            tvMix.setTextColor(ContextCompat.getColor(mContext, R.color.grey_dark));
         } else {
-            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping_null, 0, 0);
             ivOrderTop.setImageResource(R.mipmap.sport_bottom_teb_shopping_white);
             tvMixCount.setVisibility(View.GONE);
             tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");
+            MixCount.setText("0");
             tvOrderCount.setText("0");
-            tvMix.setTextColor(ContextCompat.getColor(mContext, R.color.grey_light));
             if (betPop != null && betPop.v.getVisibility() == View.VISIBLE)
                 betPop.closePopupWindow();
         }
@@ -551,7 +588,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             currentFragment.refreshType();
         }
         currentTag = tag;
-        tvSportSelect.setText(tag);
     }
 
     public void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment, String type) {
@@ -570,15 +606,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void updateBalanceTv(String allData) {
         String s = AfbUtils.addComma(allData, AppConstant.IS_AGENT);
 
-        tvBalance.setText(getApp().getUser().getCurCode2().replace("MYR",getString(R.string.MYR)) + ": " + s);
+        tvBalance.setText(getApp().getUser().getCurCode2().replace("MYR", getString(R.string.MYR)) + ": " + s);
     }
 
 
     @Override
     public void onBackCLick(View v) {
         afbDrawerViewHolder.isBack(false);
-        tvSportSelect.setText(currentIdBean.getTextRes());
-        tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, currentIdBean.getSportPic(), 0, 0);
     }
 
     @Override
@@ -709,8 +743,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private void loadLeftMenuSports() {
         LogUtil.d("type", "--->>" + type);
         isOther = false;
-        if (listSport != null)
+        if (listSport != null) {
             leftSportAdapter.addAllAndClear(listSport);
+            topSportAdapter.addAllAndClear(listSport);
+        }
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
@@ -758,8 +794,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                             listSport.add(next);
                     }*/
                     SportActivity.this.listSport = listSport;
-                    if (!isOther)
+                    if (!isOther) {
                         leftSportAdapter.addAllAndClear(listSport);
+                        topSportAdapter.addAllAndClear(listSport);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -771,6 +809,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         setType("Running");
         dateClickPosition = 1;
         MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
+        item.bottomRes = R.mipmap.date_running_white;
         runWayItem(item);
         SportIdBean sportIdBean = getApp().sportMap.get("1,9,21,29,51,182");
         sportIdText = sportIdBean.getTextRes();
@@ -778,31 +817,25 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     private void initSportFragment(SportIdBean item, IRTMatchInfo itemBall) {
-        tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
-        tvSportSelect.setText(getString(item.getTextRes()));
         notClickType = false;
 
         if (!item.getDbid().startsWith("33"))
             currentIdBean = item;
+        MenuItemInfo<Integer> running = new MenuItemInfo<>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
+        running.bottomRes = R.mipmap.date_running_white;
         if (item.getTextRes() == R.string.Soccer_Runing) {
             LogUtil.d("Soccer_Runing", "点击1");
             setType("Running");
             dateClickPosition = 1;
-            runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
-            selectFragmentTag(getString(R.string.Soccer), item.getBaseFragment(), "Running");
-  /*          handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    currentFragment.switchType(type);
-                }
-            }, 1000);*/
 
+            runWayItem(running);
+            selectFragmentTag(getString(R.string.Soccer), item.getBaseFragment(), "Running");
             return;
         } else if (item.getDbid().equals("1") && item.getTextRes() == R.string.Soccer_Runing) {
             LogUtil.d("Soccer_Runing", "点击2");
             setType("Running");
             dateClickPosition = 1;
-            runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
+            runWayItem(running);
         } else if (item.getDbid().startsWith("33")) {
             MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, (R.string.game1d), item.getDbid(), "1");
             if (item.getDbid().equals("33_19")) {
@@ -845,6 +878,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             }
 
         });
+        if (!isOther)
+            loadLeftMenuSports();
     }
 
     TypePop typePop;
@@ -1026,7 +1061,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             matchRes = item.getText();
             tvMatchType.setText(item.getText());
         }
-        tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
+        tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.bottomRes, 0, 0);
         wd = item.getDateParam();
     }
 
@@ -1063,6 +1098,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void resumeCurrent() {
         if (currentFragment.isVisible()) {
             cl_sport_head.setVisibility(View.VISIBLE);
+            list_top.setVisibility(View.VISIBLE);
             ll_line1.setVisibility(View.VISIBLE);
             ll_line2.setVisibility(View.VISIBLE);
 
@@ -1072,9 +1108,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
     }
 
-    public void updateMatchPlay() {
-        clickRunMatchPlay(itemBallAdded, positionBallAdded, onlyShowOne);
-    }
 
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
@@ -1100,9 +1133,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 llSportMenuBottom.setVisibility(View.VISIBLE);
             }
             currentFragment.presenter.getStateHelper().getAdapterHelper().additionMap.put(true, "");
+
             currentFragment.clickItemAdd(fl_top_video, itemBall, positionBall);
+
             ll_line1.setVisibility(View.GONE);
             ll_line2.setVisibility(View.GONE);
+            list_top.setVisibility(View.GONE);
             collectionNumTv.setVisibility(View.GONE);
             ll_header_sport.setVisibility(View.GONE);
             LogUtil.d("xiao",
@@ -1229,6 +1265,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void onBetSuccess(String betResult) {
+        hasBet = true;
         super.onBetSuccess(betResult);
         if (betPop != null)
             betPop.closePopupWindow();

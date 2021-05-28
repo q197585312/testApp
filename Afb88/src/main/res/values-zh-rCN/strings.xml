@@ -50,7 +50,7 @@
     <string name="Odds_Type">盘口种类</string>
     <string name="AOS">AOS</string>
     <string name="Matchs">比赛</string>
-    <string name="running">滚球</string>
+    <string name="running">现场</string>
     <string name="not_allowed_to_bet">不能下注</string>
     <string name="no_records">没有记录</string>
     <string name="ORDER">注单</string>
@@ -614,4 +614,6 @@
     <string name="single">@string/single_bet</string>
     <string name="HDP">让球</string>
     <string name="FH_">半场.</string>
+    <string name="placing_a_bet">You can view the video after placing a bet</string>
+    <string name="prompt">Prompt</string>
 </resources>

@@ -3,7 +3,7 @@ package com.nanyang.app.main.home;
 import android.util.Log;
 
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.ApiService;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.MainPresenter;
@@ -47,7 +47,7 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
             p = url + languageWfBean.getJson();
         }
 
-        Disposable disposable = mApiWrapper.applyDisposable(ApiManager.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
+        Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);
@@ -77,7 +77,7 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
         }
         HashMap<String, String> map = languageWfBean.getMap();
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), languageWfBean.getJson());
-        Disposable disposable = mApiWrapper.applyDisposable(ApiManager.getService(ApiService.class).doPostJson(p, body), new BaseConsumer<String>(baseContext) {
+        Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().doPostJson(p, body), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 onSuccessPost(data, matches, back);
@@ -98,7 +98,7 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
         }
         String json = languageWfBean.getJson();
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json);
-        Disposable disposable = mApiWrapper.applyDisposable(ApiManager.getService(ApiService.class).doPostJson(p, body), new BaseConsumer<String>(baseContext) {
+        Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().doPostJson(p, body), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 onSuccessPost(data, matches, back);

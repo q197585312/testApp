@@ -77,8 +77,5 @@ public class BasketballRunningState extends BasketballCommonState {
         return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 
-  /*  protected void clickHallBtn(View v, BallInfo item, int position) {
 
-        getBaseView().onWebShow(0, position, item, v);
-    }*/
 }

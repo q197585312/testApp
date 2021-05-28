@@ -1,25 +1,25 @@
-package com.nanyang.app.Been;
+package com.nanyang.app.data;
 
 /**
- * Created by Administrator on 2019/5/6.
+ * Created by Administrator on 2019/3/6.
  */
 
-public class CheckVersionBean {
+public class AppVersionBean {
 
     /**
-     * appName : afb1188
-     * data : {"version":"1.69","url":"http://www.appgd88.com/androidAppDownload/afb1188.apk"}
+     * Labelid : 48
+     * data : {"version":"3.08","url":"http://www.appgd88.com/androidDownload/gd88.apk"}
      */
 
-    private String appName;
+    private String Labelid;
     private DataBean data;
 
-    public String getAppName() {
-        return appName;
+    public String getLabelid() {
+        return Labelid;
     }
 
-    public void setAppName(String appName) {
-        this.appName = appName;
+    public void setLabelid(String Labelid) {
+        this.Labelid = Labelid;
     }
 
     public DataBean getData() {
@@ -32,8 +32,8 @@ public class CheckVersionBean {
 
     public static class DataBean {
         /**
-         * version : 1.69
-         * url : http://www.appgd88.com/androidAppDownload/afb1188.apk
+         * version : 3.08
+         * url : http://www.appgd88.com/androidDownload/gd88.apk
          */
 
         private String version;

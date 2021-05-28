@@ -6,7 +6,7 @@
     android:id="@+id/drawer_more"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/green_dark"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,6 +15,34 @@
         android:orientation="vertical">
 
         <include layout="@layout/toolbar_layout_1188" />
+
+        <LinearLayout
+            android:id="@+id/list_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_sport_list_top"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/green_black_shadow_bottom"
+                android:paddingTop="2dp" />
+
+            <View
+                android:id="@+id/line_shadow_top"
+                android:layout_width="match_parent"
+                android:layout_height="2.5dp"
+                android:background="@mipmap/shadow_line_bg"
+                app:layout_constraintTop_toBottomOf="@+id/ll_line1" />
+
+            <View
+                android:id="@+id/guideline_top"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/ll_line1" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,9 +147,9 @@
                             android:paddingLeft="3dp"
                             android:paddingRight="3dp"
                             android:text="@string/Five_Major_Match"
+                            android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="13sp"
-                            android:textAllCaps="true"
                             app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
                             app:layout_constraintEnd_toEndOf="@+id/ll_line1"
                             app:layout_constraintLeft_toRightOf="@+id/iv_sort_time"
@@ -377,9 +405,7 @@
 
                         <include layout="@layout/popupwindow_match_video" />
 
-                        <include
-                            layout="@layout/popupwindow_match_betting"
-                            android:visibility="gone" />
+
                     </LinearLayout>
 
 
@@ -391,7 +417,10 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@color/grey_background" />
-
+                <include
+                    layout="@layout/popupwindow_match_betting"
+                    android:visibility="gone"
+                    />
                 <LinearLayout
                     android:id="@+id/ll_footer_sport"
                     android:layout_width="match_parent"
@@ -401,12 +430,12 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.8dp"
-                    android:background="@color/grey_light" />
+                    android:background="@color/trans_black_light" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/white" />
+                    android:background="@color/trans_black" />
             </LinearLayout>
         </LinearLayout>
 
@@ -414,7 +443,7 @@
             android:id="@+id/ll_sport_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey_dialog_background"
+            android:background="@color/green"
             android:orientation="horizontal"
             android:paddingBottom="2dp">
 
@@ -435,7 +464,7 @@
                     android:onClick="clickBets"
                     android:text="@string/TabMyBets"
                     android:textAllCaps="true"
-                    android:textColor="@color/gray_dark"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -453,23 +482,6 @@
                     android:visibility="gone" />
 
             </FrameLayout>
-
-            <TextView
-                android:id="@+id/tv_sport_select"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@mipmap/sport_botton_teb_soccer"
-                android:drawablePadding="2dp"
-                android:gravity="center"
-                android:onClick="clickSportSelect"
-                android:paddingTop="5dp"
-                android:text="@string/Soccer"
-                android:textAllCaps="true"
-                android:textColor="@color/gray_dark"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -491,7 +503,7 @@
                     android:onClick="clickOrder"
                     android:text="@string/bet_slip"
                     android:textAllCaps="true"
-                    android:textColor="@color/grey_light"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -525,7 +537,7 @@
                 android:singleLine="true"
                 android:text="@string/running"
                 android:textAllCaps="true"
-                android:textColor="@color/grey_dark"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -536,6 +548,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -553,7 +566,7 @@
                     android:paddingTop="5dp"
                     android:text="@string/more"
                     android:textAllCaps="true"
-                    android:textColor="@color/grey_dark"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
