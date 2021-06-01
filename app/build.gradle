@@ -441,7 +441,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sbocasino77"]
                 buildConfigField "String", "Labelid", '"174"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.84'
+                versionName '3.85'
 
             }
             dewacasino168 {

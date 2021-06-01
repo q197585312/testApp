@@ -83,14 +83,14 @@ public class LoginActivity extends BaseActivity {
     private HashMap<String, String> siteMap;
     private ImageView imgOpen;
     private ImageView img_gif;
-    private ImageView img_login_title, img_login_title_main;
+    private ImageView img_login_title, img_login_title_main,gd_img_login_title_main_sbocasino77;
     private LinearLayout ll_liga365;
     private LinearLayout ll_remember_me;
     private CheckBox cb_remember_me;
     private WebView webView;
     private ImageView img_exit;
     private RelativeLayout rl_webview;
-    private LinearLayout ll_lang, ll_lg_and_remember;
+    private LinearLayout ll_lang, ll_lg_and_remember, ll_sbocasino77;
     private ImageView img_in;
     private ImageView img_en;
     private TextView tv_user_name, tv_password_name;
@@ -243,6 +243,11 @@ public class LoginActivity extends BaseActivity {
             }.start();
         }
         if (BuildConfig.FLAVOR.equals("sbocasino77")) {
+            img_login_title.setVisibility(View.GONE);
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.setVisibility(View.VISIBLE);
+            ll_sbocasino77 = findViewById(R.id.ll_sbocasino77);
+            ll_sbocasino77.setVisibility(View.VISIBLE);
             btn_login.setTextColor(Color.BLACK);
             tv_register.setTextColor(Color.BLACK);
             cb_remember_me.setChecked(true);
