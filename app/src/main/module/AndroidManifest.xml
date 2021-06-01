@@ -38,13 +38,12 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name="gaming178.com.casinogame.load.LoginKtActivity" >
+        <activity android:name="gaming178.com.casinogame.load.LoginKtActivity">
 
         </activity>
         <activity
             android:name="gaming178.com.casinogame.MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:exported="true">
             <!-- <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
                  <category android:name="android.intent.category.LAUNCHER" />
@@ -52,8 +51,7 @@
         </activity>
         <activity
             android:name="gaming178.com.casinogame.Activity.LobbyActivity"
-            android:configChanges="keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
+            android:configChanges="keyboardHidden|screenSize" />
         <activity
             android:name="gaming178.com.casinogame.Activity.RegisterActivity"
             android:configChanges="keyboardHidden|screenSize"
@@ -80,10 +78,19 @@
             android:name="gaming178.com.casinogame.Activity.CQSlotsGameActivity"
             android:configChanges="keyboardHidden|screenSize" />
         <activity
+            android:name="gaming178.com.casinogame.Activity.PragmaticGameActivity"
+            android:configChanges="keyboardHidden|screenSize" />
+        <activity
+            android:name="gaming178.com.casinogame.Activity.KingKongGameActivity"
+            android:configChanges="keyboardHidden|screenSize" />
+        <activity
             android:name="gaming178.com.casinogame.Activity.SlotsWebActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name="gaming178.com.casinogame.Activity.CockFightingWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="gaming178.com.casinogame.Activity.We1PokerWebActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="gaming178.com.casinogame.Activity.DsvCasinoActivity"
@@ -110,18 +117,15 @@
         </activity>
         <activity
             android:name="gaming178.com.casinogame.Activity.HomeGuideActivity"
-            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name="gaming178.com.casinogame.Activity.SicboActivity"
-
-            android:screenOrientation="landscape">
+            android:configChanges="keyboardHidden|screenSize">
 
         </activity>
         <activity
             android:name="gaming178.com.casinogame.Activity.RouletteActivity"
-            android:configChanges="keyboardHidden|screenSize|orientation"
-            android:screenOrientation="landscape">
+            android:configChanges="keyboardHidden|screenSize">
             <!-- <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
 
@@ -129,7 +133,6 @@
              </intent-filter>-->
 
         </activity>
-
 
 
         <meta-data
@@ -142,6 +145,7 @@
         <service android:name="gaming178.com.casinogame.Util.BackgroudMuzicService" />
         <service android:name="gaming178.com.casinogame.Util.FrontMuzicService" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
