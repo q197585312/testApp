@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.outRight;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
@@ -26,10 +25,6 @@ public class OutRightEarlyState extends OutRightState {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_POOL_EARLY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.darts;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -22,10 +21,6 @@ public class DartsOutRightState extends OutRightState {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_DARTS_OUTRIGHT + "&ot=e";
-    }
 
     @Override
     public IBetHelper onSetBetHelper() {

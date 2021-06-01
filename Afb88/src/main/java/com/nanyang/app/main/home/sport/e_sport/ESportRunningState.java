@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.e_sport;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OtherRunningDoubleAdapterHelper;
@@ -20,10 +19,6 @@ public class ESportRunningState extends ESportState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_E_SPORT_RUNNING;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

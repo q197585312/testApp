@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.football.SoccerRunningAdapterHelper;
@@ -23,10 +22,7 @@ public class BasketballRunningState extends BasketballCommonState {
         super(baseView);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_BASKETBALL_RUNNING;
-    }
+
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

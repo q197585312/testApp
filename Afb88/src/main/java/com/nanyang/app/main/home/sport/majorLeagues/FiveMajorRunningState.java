@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.majorLeagues;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -16,10 +15,7 @@ public class FiveMajorRunningState extends FiveMajorState {
         super(baseView);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FIVE_MAJOR_RUNNING;
-    }
+
 
     @Override
     public MenuItemInfo getStateType() {

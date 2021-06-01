@@ -74,6 +74,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import cn.finalteam.toolsfinal.DeviceUtils;
@@ -213,7 +214,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private List<SportIdBean> listSport;
     private volatile boolean isOther;
     private int matchRes;
-    private int sportIdText;
+    public int sportIdText;
     public boolean hasBet;
 
 
@@ -773,12 +774,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     while (iterator.hasNext()) {
                         SportIdBean next = iterator.next();
 
-                        String num = jsonObjectNum.optString(typeStr + next.getDbid());
+                        String num = jsonObjectNum.optString(typeStr + next.getKey());
                         if (next.getTextRes() == R.string.Soccer_Runing || next.getTextRes() == R.string.all_running) {
                             num = jsonObjectNum.optString("M_RAm" + next.getDbid());
                         }
+
                         numMap.put(next.getKey(), num);
-                        if (next.getId().equals("1,9,21,29,51,182") || (next.getId().equals("1") && next.getTextRes() == R.string.Soccer_Runing) || (!StringUtils.isNull(num) && Integer.valueOf(num) > 0)) {
+                        if (next.getId().equals("1,9,21,29,51,182") || (next.getId().equals("1") && next.getTextRes() == R.string.Euro_2020) || (next.getId().equals("1") && next.getTextRes() == R.string.Soccer_Runing) || (!StringUtils.isNull(num) && Integer.valueOf(num) > 0)) {
                             if (type.equals("Running") && next.getTextRes() == R.string.Soccer) {
 
                             } else {
@@ -823,19 +825,36 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             currentIdBean = item;
         MenuItemInfo<Integer> running = new MenuItemInfo<>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         running.bottomRes = R.mipmap.date_running_white;
+
         if (item.getTextRes() == R.string.Soccer_Runing) {
+            sportIdText = item.getTextRes();
             LogUtil.d("Soccer_Runing", "点击1");
             setType("Running");
             dateClickPosition = 1;
 
             runWayItem(running);
             selectFragmentTag(getString(R.string.Soccer), item.getBaseFragment(), "Running");
+
             return;
+        } else if (item.getDbid().equals("1") && item.getTextRes() == R.string.Euro_2020) {
+            if (StringUtils.isNull(numMap.get(item.getKey())) || Integer.parseInt(Objects.requireNonNull(numMap.get(item.getKey()))) == 0) {
+                setType("Early");
+                MenuItemInfo<Integer> early = new MenuItemInfo<>(R.mipmap.date_early_green, (R.string.Early), "Early", R.mipmap.date_early_green);
+                early.bottomRes = R.mipmap.date_early_white;
+                dateClickPosition = 3;
+                runWayItem(early);
+            }
+            sportIdText = item.getTextRes();
+            selectFragmentTag(getString(R.string.Euro_2020), item.getBaseFragment(), type);
+            return;
+
         } else if (item.getDbid().equals("1") && item.getTextRes() == R.string.Soccer_Runing) {
             LogUtil.d("Soccer_Runing", "点击2");
+            sportIdText = item.getTextRes();
             setType("Running");
             dateClickPosition = 1;
             runWayItem(running);
+
         } else if (item.getDbid().startsWith("33")) {
             MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, (R.string.game1d), item.getDbid(), "1");
             if (item.getDbid().equals("33_19")) {

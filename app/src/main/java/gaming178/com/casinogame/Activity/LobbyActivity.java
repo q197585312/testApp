@@ -507,8 +507,22 @@ public class LobbyActivity extends BaseActivity {
                 layoutParams.height = contentHeight;
                 ll_parent.setLayoutParams(layoutParams);
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
-                params.topMargin = contentHeight;
-                params.height = contentHeight;
+                if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                    params.topMargin = contentHeight;
+                    params.height = contentHeight;
+                } else {
+                    ll_parent.setGravity(Gravity.BOTTOM);
+                    clickItem = 0;
+                    ll_content_bg.setBackgroundResource(0);
+                    tv_home_close_game.setVisibility(View.GONE);
+                    if (count == 4) {
+                        int w = itemWidth;
+                        if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
+                            w = -UIUtil.dip2px(mContext, dp) / 2;
+                        }
+                        params.height = contentHeight - w;
+                    }
+                }
                 ll_content_bg.setLayoutParams(params);
                 ll_content_bg.setVisibility(View.VISIBLE);
                 GridLayoutManager layoutManager = new GridLayoutManager(mContext, count);
@@ -652,21 +666,25 @@ public class LobbyActivity extends BaseActivity {
     private void showGameContent(int type, String name) {
         clickItem = type;
         if (lastIndex == type) {
-            if (isCanShowGame()) {
-                openGame();
+            if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                if (isCanShowGame()) {
+                    openGame();
+                }
             }
             return;
         }
         tv_home_close_game.setText(name);
         switchFragment(type);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (isCanShowGame()) {
-                    openGame();
+        if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (isCanShowGame()) {
+                        openGame();
+                    }
                 }
-            }
-        }, 100);
+            }, 100);
+        }
     }
 
     @Override

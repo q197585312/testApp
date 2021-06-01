@@ -3,74 +3,34 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <FrameLayout
-        android:onClick="parentClick"
-        android:layout_width="match_parent"
-        android:layout_height="250px"/>
+    android:layout_height="match_parent"
+    android:onClick="parentClick">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="122px"
+        android:layout_marginBottom="186px"
+        android:gravity="center"
+        android:onClick="clickChangeBetContent"
+        android:padding="5dp"
+        android:text="BACCARAT"
+        android:textColor="#00000000"
+        android:textSize="13sp"></TextView>
+
     <FrameLayout
         android:id="@+id/gd__fl_poker_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="false">
 
-        <FrameLayout
-            android:id="@+id/gd__fl_poker_bottom_parent"
-            android:layout_width="450px"
-            android:layout_height="280px"
-            android:layout_marginTop="150px"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone">
-
-            <FrameLayout
-                android:layout_width="440px"
-                android:layout_height="266px"
-                android:layout_gravity="bottom|center_horizontal"
-                android:background="@color/trans_black_dark"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:id="@+id/gd__v_background_player"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/gd_rectangle_trans_stroke_yellow_corner4_right" />
-
-                    <View
-                        android:id="@+id/gd__v_background_banker"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/gd_rectangle_trans_stroke_yellow_corner4_right"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/gd__tv_poker_timer"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/gd_oval_black_solid"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/red_background"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/gd__ll_poker_parent_a"
             android:layout_width="450px"
-            android:layout_height="490px"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="460px"
+            android:layout_gravity="bottom|center_horizontal"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -108,23 +68,20 @@
                     android:layout_width="74px"
                     android:layout_height="80px"
                     android:layout_marginLeft="37px"
-                    android:layout_marginTop="295px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/gd__iv_poker_player2_a1"
                     android:layout_width="74px"
                     android:layout_height="80px"
                     android:layout_marginLeft="131px"
-                    android:layout_marginTop="295px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
-                    android:visibility="gone"  />
-
+                    android:visibility="gone" />
 
 
                 <ImageView
@@ -143,23 +100,20 @@
                     android:id="@+id/gd__iv_poker_player3_a1"
                     android:layout_width="100px"
                     android:layout_height="60px"
+                    android:layout_gravity="left"
                     android:layout_marginLeft="70px"
-                    android:layout_gravity="left|bottom"
+                    android:layout_marginTop="102px"
                     android:adjustViewBounds="true"
-                    android:layout_marginBottom="33px"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </FrameLayout>
 
             <FrameLayout
                 android:layout_width="263px"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
-               >
-
-
+                android:layout_gravity="right">
 
 
                 <ImageView
@@ -167,8 +121,8 @@
                     android:layout_width="42px"
                     android:layout_height="52px"
                     android:layout_gravity="right"
-                    android:layout_marginRight="74px"
                     android:layout_marginTop="355px"
+                    android:layout_marginRight="74px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -179,8 +133,8 @@
                     android:layout_width="42px"
                     android:layout_height="52px"
                     android:layout_gravity="right"
-                    android:layout_marginRight="14px"
                     android:layout_marginTop="355px"
+                    android:layout_marginRight="14px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -192,7 +146,6 @@
                     android:layout_height="80px"
                     android:layout_gravity="right"
                     android:layout_marginRight="131px"
-                    android:layout_marginTop="295px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -204,20 +157,19 @@
                     android:layout_height="80px"
                     android:layout_gravity="right"
                     android:layout_marginRight="37px"
-                    android:layout_marginTop="295px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
 
                 <ImageView
                     android:id="@+id/gd__iv_poker_banker3_a1"
                     android:layout_width="100px"
                     android:layout_height="60px"
-                    android:layout_gravity="right|bottom"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="102px"
                     android:layout_marginRight="70px"
-                    android:layout_marginBottom="33px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -228,8 +180,8 @@
                     android:layout_width="56px"
                     android:layout_height="40px"
                     android:layout_gravity="right"
-                    android:layout_marginRight="45px"
                     android:layout_marginTop="420px"
+                    android:layout_marginRight="45px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/gd_pk_1"
@@ -237,126 +189,134 @@
 
             </FrameLayout>
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="275px"
-            android:layout_marginTop="130px"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="130px"
             android:orientation="horizontal">
-        <TextView
-            android:background="@mipmap/gd_poker_bg_small"
-            android:id="@+id/gd__tv_bottom_panel_left_a"
-            android:layout_width="24px"
-            android:layout_height="32px"
-            android:textSize="21px"
-            android:layout_marginLeft="2px"
-            android:visibility="gone"
-
-            android:layout_gravity="left"
-            android:layout_marginTop="190px"
-            android:gravity="center"
-            android:textColor="#0000FF"
-            app:layout_auto_basewidth="height" />
 
             <TextView
+                android:id="@+id/gd__tv_bottom_panel_left_a"
+                android:layout_width="24px"
+                android:layout_height="32px"
+                android:layout_gravity="left"
+                android:layout_marginLeft="2px"
+                android:layout_marginTop="190px"
                 android:background="@mipmap/gd_poker_bg_small"
+
+                android:gravity="center"
+                android:textColor="#0000FF"
+                android:textSize="21px"
                 android:visibility="gone"
+                app:layout_auto_basewidth="height" />
+
+            <TextView
                 android:id="@+id/gd__tv_bottom_panel_left_b"
                 android:layout_width="24px"
                 android:layout_height="32px"
-                android:textSize="21px"
-                android:layout_marginLeft="2px"
                 android:layout_gravity="left"
+                android:layout_marginLeft="2px"
                 android:layout_marginTop="190px"
+                android:background="@mipmap/gd_poker_bg_small"
                 android:gravity="center"
                 android:textColor="#0000FF"
-                app:layout_auto_basewidth="height"  />
-            <TextView
-                android:background="@mipmap/gd_poker_bg_small"
-                android:visibility="gone"
-                android:id="@+id/gd__tv_bottom_panel_right_b"
-                android:layout_marginRight="2px"
-                android:layout_width="24px"
-                android:layout_height="32px"
                 android:textSize="21px"
-                android:layout_gravity="right"
-                android:layout_marginTop="190px"
-                android:gravity="center"
-                android:textColor="@color/red"
-                app:layout_auto_basewidth="height"/>
+                android:visibility="gone"
+                app:layout_auto_basewidth="height" />
 
             <TextView
-                android:background="@mipmap/gd_poker_bg_small"
-                android:id="@+id/gd__tv_bottom_panel_right_a"
-                android:layout_marginRight="2px"
-                android:visibility="gone"
+                android:id="@+id/gd__tv_bottom_panel_right_b"
                 android:layout_width="24px"
                 android:layout_height="32px"
-                android:textSize="21px"
                 android:layout_gravity="right"
                 android:layout_marginTop="190px"
+                android:layout_marginRight="2px"
+                android:background="@mipmap/gd_poker_bg_small"
                 android:gravity="center"
                 android:textColor="@color/red"
+                android:textSize="21px"
+                android:visibility="gone"
+                app:layout_auto_basewidth="height" />
+
+            <TextView
+                android:id="@+id/gd__tv_bottom_panel_right_a"
+                android:layout_width="24px"
+                android:layout_height="32px"
+                android:layout_gravity="right"
+                android:layout_marginTop="190px"
+                android:layout_marginRight="2px"
+                android:background="@mipmap/gd_poker_bg_small"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="21px"
+                android:visibility="gone"
                 app:layout_auto_basewidth="height" />
         </FrameLayout>
+
+
         <LinearLayout
             android:id="@+id/gd__ll_poker_pw"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:orientation="horizontal"
+            android:clickable="false"
+            android:orientation="vertical"
             android:visibility="visible">
 
             <FrameLayout
                 android:id="@+id/gd__fl_player_pw_parent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="3dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gd_mi_bg"
                 android:gravity="center_vertical">
-                <FrameLayout
-                    android:layout_width="30dp"
-                    android:layout_height="260px"
-                    android:layout_gravity="left|bottom"
-                    android:layout_marginLeft="110px">
-
-                    <ImageView
-                        android:id="@+id/gd__img_left_player_rotate"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="left|center_vertical"
-                        android:src="@mipmap/gd_img_rotate"
-                        android:visibility="gone" />
-                </FrameLayout>
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player1"
-                    android:layout_width="560px"
-                    android:layout_height="match_parent"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
+                    android:layout_gravity="left|center_vertical"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player2"
-                    android:layout_width="560px"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
+                    android:layout_gravity="right|center_vertical"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_player3"
-                    android:layout_width="560px"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginBottom="12px"
                     android:visibility="visible" />
+
                 <FrameLayout
                     android:layout_width="30dp"
-                    android:layout_height="260px"
-                    android:layout_gravity="right|bottom"
-                    android:layout_marginRight="110px">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|bottom">
+
+                    <ImageView
+                        android:id="@+id/gd__img_left_player_rotate"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:src="@mipmap/gd_img_rotate"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|bottom">
 
                     <ImageView
                         android:id="@+id/gd__img_right_player_rotate"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
                         android:visibility="gone" />
@@ -364,73 +324,59 @@
 
                 <FrameLayout
                     android:layout_width="30dp"
-                    android:layout_height="260px"
-                    android:layout_gravity="right|bottom"
-                    android:layout_marginRight="110px">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|bottom">
 
                     <ImageView
                         android:id="@+id/gd__img_center_player_rotate"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
                         android:visibility="gone" />
                 </FrameLayout>
-            </FrameLayout>
 
+            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_banker_pw_parent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="3dp"
-
+                android:layout_height="wrap_content"
+                android:background="@drawable/gd_mi_bg"
+                android:clickable="false"
                 android:gravity="center_vertical">
-                <FrameLayout
-                    android:layout_width="30dp"
-                    android:layout_height="260px"
-                    android:layout_gravity="left|bottom"
-                    android:layout_marginLeft="110px">
-
-                    <ImageView
-                        android:id="@+id/gd__img_left_banker_rotate"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="left|center_vertical"
-                        android:src="@mipmap/gd_img_rotate"
-                        android:visibility="gone" />
-                </FrameLayout>
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker1"
-                    android:layout_width="560px"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
+                    android:layout_gravity="left|center_vertical"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker2"
-                    android:layout_width="560px"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
+                    android:layout_gravity="right|center_vertical"
                     android:visibility="visible" />
 
                 <gaming178.com.casinogame.Control.PageWidgetT
                     android:id="@+id/gd__page_widget_poker_banker3"
-                    android:layout_width="560px"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_width="280px"
+                    android:layout_height="210px"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginBottom="12px"
                     android:visibility="visible" />
+
                 <FrameLayout
                     android:layout_width="30dp"
-                    android:layout_height="260px"
-                    android:layout_gravity="right|bottom"
-                    android:layout_marginRight="110px">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|bottom">
 
                     <ImageView
-                        android:id="@+id/gd__img_right_banker_rotate"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:id="@+id/gd__img_left_banker_rotate"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
                         android:visibility="gone" />
@@ -438,14 +384,27 @@
 
                 <FrameLayout
                     android:layout_width="30dp"
-                    android:layout_height="260px"
-                    android:layout_gravity="right|bottom"
-                    android:layout_marginRight="110px">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|bottom">
+
+                    <ImageView
+                        android:id="@+id/gd__img_right_banker_rotate"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:src="@mipmap/gd_img_rotate"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|bottom">
 
                     <ImageView
                         android:id="@+id/gd__img_center_banker_rotate"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="left|center_vertical"
                         android:src="@mipmap/gd_img_rotate"
                         android:visibility="gone" />
@@ -453,6 +412,59 @@
             </FrameLayout>
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_poker_bottom_parent"
+            android:layout_width="match_parent"
+            android:layout_height="470px"
+            android:layout_gravity="bottom|center_horizontal"
+            android:clickable="false"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="450px"
+                android:layout_gravity="bottom|center_horizontal"
+                android:clickable="false"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/gd__v_background_player"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <View
+                        android:id="@+id/gd__v_background_banker"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/gd__tv_poker_timer"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="203px"
+                android:background="@drawable/gd_oval_black_solid"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/red_background"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </FrameLayout>
 
     </FrameLayout>
 

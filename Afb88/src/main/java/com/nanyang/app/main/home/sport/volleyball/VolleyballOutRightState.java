@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.volleyball;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -19,10 +18,6 @@ public class VolleyballOutRightState extends OutRightState {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Volleyball);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_VOLLEYBALL_OUTRIGHT + "&ot=e";
-    }
 
 
 }

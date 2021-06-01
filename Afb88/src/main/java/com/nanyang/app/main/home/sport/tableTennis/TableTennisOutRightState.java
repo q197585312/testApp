@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.tableTennis;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -17,10 +16,6 @@ public class TableTennisOutRightState extends OutRightState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_TABLE_TENNIS_OUTRIGHT + "&ot=e";
-    }
 
     @Override
     protected String getSportName() {

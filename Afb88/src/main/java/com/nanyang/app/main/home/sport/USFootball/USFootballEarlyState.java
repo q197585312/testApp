@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.USFootball;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballEarlyState;
@@ -21,11 +20,6 @@ public class USFootballEarlyState extends BasketballEarlyState {
     @Override
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
-    }
-
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_US_FOOTBALL_EARLY;
     }
 
     @Override

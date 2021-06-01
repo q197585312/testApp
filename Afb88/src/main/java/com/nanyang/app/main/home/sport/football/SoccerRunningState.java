@@ -24,11 +24,6 @@ public class SoccerRunningState extends  SoccerCommonState {
 
 
     @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FOOTBALL_RUNNING;
-    }
-
-    @Override
     protected String getAllOddsUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
         return AppConstant.getInstance().HOST + "_view/OddsPageSetting.aspx?ot=r&ov=0&wd=" + tfDate + "&tf=-1&isPageSingDouble=RMOdds1&m=save";

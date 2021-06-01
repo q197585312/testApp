@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.game4d;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -19,10 +18,6 @@ public class Game4dEarlyState extends Game4dState {
         return new MenuItemInfo<String>(0, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Specials_4D));
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_4D_SPECIAL_EARLY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

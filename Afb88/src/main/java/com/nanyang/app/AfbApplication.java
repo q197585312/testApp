@@ -38,7 +38,6 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.motorSport.MotorFragment;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
-import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.outRight.OutRightFragment;
 import com.nanyang.app.main.home.sport.poll.PoolSnookerFragment;
 import com.nanyang.app.main.home.sport.rugby.RugbyFragment;
@@ -254,8 +253,14 @@ public class AfbApplication extends BaseApplication {
         beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright,R.mipmap.white_soccer_small));
         SportIdBean soccerRunning = new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small);
         soccerRunning.setKey("-1");
+
+        SportIdBean soccerEuro_2020= new SportIdBean("1", "1", R.string.Euro_2020, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small);
+        soccerEuro_2020.setKey("122");
+
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running,R.mipmap.white_soccer_small));
         sportMap.put("-1", soccerRunning);
+        sportMap.put("122", soccerEuro_2020);
+
         sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small));
         sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small));
         sportMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball,R.mipmap.white_basketball2));

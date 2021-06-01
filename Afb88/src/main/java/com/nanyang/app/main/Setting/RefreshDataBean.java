@@ -105,6 +105,16 @@ public class RefreshDataBean implements Serializable {
 
     String FAV = "";// "",
     String SL = "";// "",
+
+    public String getWc() {
+        return wc;
+    }
+
+    public void setWc(String wc) {
+        this.wc = wc;
+    }
+
+    String wc = "";// "",
     boolean fh = false;// false,
 
     public void setFh(boolean fh) {

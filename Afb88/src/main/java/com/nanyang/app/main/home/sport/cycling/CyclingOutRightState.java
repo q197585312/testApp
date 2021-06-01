@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.cycling;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -21,9 +20,5 @@ public class CyclingOutRightState extends OutRightState {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Cycling);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_CYCLING_OUTRIGHT + "&ot=e";
-    }
 
 }

@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.formula;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
@@ -26,8 +25,5 @@ public class FormulaOutRightState extends OutRightState {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Formula1);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FORMULA_OUTRIGHT + "&ot=e";
-    }
+
 }

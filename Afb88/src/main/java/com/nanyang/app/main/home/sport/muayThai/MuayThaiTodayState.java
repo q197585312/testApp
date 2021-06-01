@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.muayThai;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -14,11 +13,6 @@ public class MuayThaiTodayState extends MuayThaiState {
         super(baseView);
     }
 
-
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_MUAY_THAI_TODAY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

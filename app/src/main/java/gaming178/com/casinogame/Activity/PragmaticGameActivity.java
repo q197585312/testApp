@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -15,8 +18,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gaming178.com.baccaratgame.R;
-import gaming178.com.casinogame.Activity.entity.CQSlotsGameInfoBean;
 import gaming178.com.casinogame.Activity.entity.PragmaticGameBean;
 import gaming178.com.casinogame.Util.GlideRoundTransform;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -34,6 +39,10 @@ import gaming178.com.mylibrary.base.ViewHolder;
 public class PragmaticGameActivity extends BaseActivity {
     String lg;
     GridView gridView;
+    EditText edtSearch;
+    ImageView imgClear;
+    List<PragmaticGameBean.DataBean> allGameList;
+    AdapterViewContent<PragmaticGameBean.DataBean> adapterViewContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +59,56 @@ public class PragmaticGameActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-        titleTv.setText(getString(R.string.pragmatic));
+//        titleTv.setText(getString(R.string.pragmatic));
+        initSearch();
         gridView = findViewById(R.id.gridview_content_gv);
         lg = AppTool.getAppLanguage(mContext);
         getDataMsg();
+    }
+
+    private void initSearch() {
+        edtSearch = findViewById(R.id.edt_search);
+        imgClear = findViewById(R.id.img_clear);
+        imgClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtSearch.setText("");
+            }
+        });
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (allGameList != null && allGameList.size() > 0) {
+                    String text = s.toString();
+                    if (!TextUtils.isEmpty(text)) {
+                        imgClear.setVisibility(View.VISIBLE);
+                        List<PragmaticGameBean.DataBean> list = new ArrayList<>();
+                        for (int i = 0; i < allGameList.size(); i++) {
+                            PragmaticGameBean.DataBean dataBean = allGameList.get(i);
+                            String name = dataBean.getGame();
+                            if (name.toLowerCase().contains(text.toLowerCase())) {
+                                list.add(dataBean);
+                            }
+                        }
+                        adapterViewContent.setData(list);
+                    } else {
+                        imgClear.setVisibility(View.GONE);
+                        adapterViewContent.setData(allGameList);
+                    }
+                    adapterViewContent.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     private Handler handler = new Handler() {
@@ -64,6 +119,7 @@ public class PragmaticGameActivity extends BaseActivity {
                 return;
             if (msg.what == 1) {
                 PragmaticGameBean slotsBean = (PragmaticGameBean) msg.obj;
+                allGameList = slotsBean.getData();
                 initUi(slotsBean);
             } else if (msg.what == 2) {
                 Toast.makeText(mContext, "error", Toast.LENGTH_SHORT).show();
@@ -78,7 +134,7 @@ public class PragmaticGameActivity extends BaseActivity {
 
     private void initUi(PragmaticGameBean slotsBean) {
         gridView.setNumColumns(3);
-        AdapterViewContent<PragmaticGameBean.DataBean> adapterViewContent = new AdapterViewContent<>(mContext, gridView);
+        adapterViewContent = new AdapterViewContent<>(mContext, gridView);
         adapterViewContent.setBaseAdapter(new QuickAdapterImp<PragmaticGameBean.DataBean>() {
             @Override
             public int getBaseItemResource() {
@@ -152,5 +208,15 @@ public class PragmaticGameActivity extends BaseActivity {
                 }
             }
         }.start();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+//        if (!WidgetUtil.isRunBackground(this)) {
+//            if (currentFragment != null) {
+//                getSupportFragmentManager().beginTransaction().remove(currentFragment).commitAllowingStateLoss();
+//            }
+//        }
+//        super.onSaveInstanceState(outState);
     }
 }

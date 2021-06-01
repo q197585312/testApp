@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.WaterSport;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OtherRunningDoubleAdapterHelper;
@@ -19,11 +18,6 @@ public class WaterSportRunningState extends WaterSportState {
         super(baseView);
     }
 
-
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_WATER_SPORT_RUNING;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

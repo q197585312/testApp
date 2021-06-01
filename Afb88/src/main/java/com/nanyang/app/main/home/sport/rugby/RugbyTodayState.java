@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.rugby;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -15,10 +14,6 @@ public class RugbyTodayState extends RugbyState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_RUGBY_TODAY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

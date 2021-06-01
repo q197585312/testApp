@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.text.Html;
@@ -172,12 +171,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-    Context activity;
+    SportActivity activity;
 
     public SportState(V baseView) {
         setBaseView(baseView);
         handleAdapter();
-        activity = BaseApplication.getInstance();
+        activity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
         switchTypeAdapter = new BaseRecyclerAdapter<MenuItemInfo<Integer>>(activity, getTypes(), R.layout.item_sport_switch) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<Integer> item) {
@@ -209,10 +208,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     return;
                 String type = item.getType();
                 Log.d("getType", "dbid:" + dBId + ",currentIdBean.getDbid()" + dBId + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum);
+                if (activity.sportIdText == R.string.Euro_2020) {
+                    dBId = "122";
+                }
                 String runningStr = "M_RAm" + dBId;
                 String todayStr = "M_TAm" + dBId;
                 String earlyStr = "M_EAm" + dBId;
                 String numGame = "";
+
                 if (jsonObjectNum != null) {
                     if (type.equals("Running")) {
                         if (!TextUtils.isEmpty(jsonObjectNum.optString(runningStr))) {
@@ -299,7 +302,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         RefreshDataBean refreshDataBean = application.getRefreshDataBean();
         if (refreshDataBean == null)
             return;
-        MenuItemInfo oddsType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
+        SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
+        MenuItemInfo oddsType = sportActivity.getOddsType();
         if (oddsType != null)
             refreshDataBean.setAccType(oddsType.getType());
         if (StringUtils.isNull(dBId))
@@ -307,10 +311,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String t = (getStateType().getType().charAt(0) + "").toLowerCase();
         refreshDataBean.setDBID(dBId);
         refreshDataBean.setOt(t);
-        refreshDataBean.setOv(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType());
-        refreshDataBean.setMt(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType());
-        refreshDataBean.setTimess(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
-        if (((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd != null && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd.equals("7"))
+        refreshDataBean.setOv(sportActivity.getSortType());
+        refreshDataBean.setMt(sportActivity.getMarketType().getType());
+        refreshDataBean.setTimess(sportActivity.wd);
+
+        refreshDataBean.setTimess(sportActivity.wd);
+        if (sportActivity.sportIdText == R.string.Euro_2020) {
+            refreshDataBean.setWc("1");
+        } else {
+            refreshDataBean.setWc("");
+        }
+        if (sportActivity.wd != null && sportActivity.wd.equals("7"))
             refreshDataBean.setIa(1);
         else {
             refreshDataBean.setIa(0);
@@ -425,7 +436,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return null;
     }
 
-    protected abstract String getRefreshUrl();
 
     public void initAllData(List<TableSportInfo<B>> allData) {
         if (!isHide)
@@ -1257,7 +1267,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             sportActivity.setType("Early");
             MenuItemInfo<Integer> early = new MenuItemInfo<>(R.mipmap.date_early_grey, (R.string.Early)
                     , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam());
-            early.bottomRes=R.mipmap.date_early_white;
+            early.bottomRes = R.mipmap.date_early_white;
             onTypeClick(early, position);
         } else {
             sportActivity.setType(item.getType());
@@ -1301,18 +1311,18 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         item5.bottomRes = R.mipmap.date_day_white;
         item6.bottomRes = R.mipmap.date_day_white;
         MenuItemInfo<Integer> itemRunning = new MenuItemInfo<>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
-        itemRunning.bottomRes= R.mipmap.date_running_white;
+        itemRunning.bottomRes = R.mipmap.date_running_white;
 
         itemRunning.setDateParam("");
 
 
         MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);
         itemToday.setDateParam("");
-        itemToday.bottomRes=R.mipmap.date_today_white;
+        itemToday.bottomRes = R.mipmap.date_today_white;
         MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey,
                 R.string.Early_All
                 , "Early", R.mipmap.date_early_green, "", "7");
-        itemEarly.bottomRes=R.mipmap.date_early_white;
+        itemEarly.bottomRes = R.mipmap.date_early_white;
 
         List<MenuItemInfo<Integer>> types = new ArrayList<>();
         types.add(itemTop);

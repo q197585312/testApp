@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.beachSport;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -19,10 +18,6 @@ public class BeachSportEarlyState extends BeachSportState {
         return new MenuItemInfo<String>(0, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Beach_Soccer));
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_BEACH_EARLY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -123,8 +124,6 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     TextView tvMenu;
     @BindView(R2.id.gd__ll_chip)
     LinearLayout ll_chip;
-    @BindView(R2.id.gd__bottonPanel1)
-    FrameLayout bottonPanel1;
     @BindView(R2.id.gd__iv_roulette_road_handle)
     View iv_roulette_road_handle;
     @BindView(R2.id.gd__btn_table_limit_red_title)
@@ -965,8 +964,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     TextView tv_even_percentage;
     @BindView(R2.id.gd__rc_road)
     RecyclerView rc_road;
+    @BindView(R2.id.tv_change_bet_ui_tv)
+    TextView tv_change_bet_ui_tv;
+    @BindView(R2.id.tv_roulette_number_tv)
+    TextView tv_roulette_number_tv;
     private boolean limitRedShowAble = false;
     private boolean betInfoShowAble = false;
+    int bigVideoTop;
 
     AdapterViewContent<LiveInfoBean> contentPool = null;
     AdapterViewContent<LiveInfoBean> contentInfo = null;
@@ -1043,12 +1047,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             return;
 //        ll_center_small.setVisibility(View.VISIBLE);
         int sure = R.mipmap.gd_sureimg_light;
+        int sureP = R.mipmap.r_go_p_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
+        if (currentTvSure != null && sureP != 0) {
+            currentTvSure.setBackgroundResource(sureP);
+        }
         int no = R.mipmap.gd_noimg_light;
+        int noP = R.mipmap.r_no_p_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
+        }
+        if (currentTvCancel != null && noP != 0) {
+            currentTvCancel.setBackgroundResource(noP);
         }
         for (String s : smallList) {
             clickNumber(s);
@@ -1083,12 +1095,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             return;
 //        ll_center_orphelins.setVisibility(View.VISIBLE);
         int sure = R.mipmap.gd_sureimg_light;
+        int sureP = R.mipmap.r_go_p_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
+        if (currentTvSure != null && sureP != 0) {
+            currentTvSure.setBackgroundResource(sureP);
+        }
         int no = R.mipmap.gd_noimg_light;
+        int noP = R.mipmap.r_no_p_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
+        }
+        if (currentTvCancel != null && noP != 0) {
+            currentTvCancel.setBackgroundResource(noP);
         }
         for (String s : orphelinsList) {
             clickNumber(s);
@@ -1123,12 +1143,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             return;
 //        ll_zero.setVisibility(View.VISIBLE);
         int sure = R.mipmap.gd_sureimg_light;
+        int sureP = R.mipmap.r_go_p_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
+        if (currentTvSure != null && sureP != 0) {
+            currentTvSure.setBackgroundResource(sureP);
+        }
         int no = R.mipmap.gd_noimg_light;
+        int noP = R.mipmap.r_no_p_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
+        }
+        if (currentTvCancel != null && noP != 0) {
+            currentTvCancel.setBackgroundResource(noP);
         }
         for (String s : zeroList) {
             clickNumber(s);
@@ -1172,12 +1200,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             return;
 //        ll_center_big.setVisibility(View.VISIBLE);
         int sure = R.mipmap.gd_sureimg_light;
+        int sureP = R.mipmap.r_go_p_light;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
         }
+        if (currentTvSure != null && sureP != 0) {
+            currentTvSure.setBackgroundResource(sureP);
+        }
         int no = R.mipmap.gd_noimg_light;
+        int noP = R.mipmap.r_no_p_light;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
+        }
+        if (currentTvCancel != null && noP != 0) {
+            currentTvCancel.setBackgroundResource(noP);
         }
         for (String s : bigList) {
             clickNumber(s);
@@ -1606,6 +1642,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 gameNumber = mAppViewModel.getRoulette01().getGameNumber();
                 tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
                 rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+                tv_roulette_number_tv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
                 stateInit = true;
                 mAppViewModel.getRoulette01().Init();
                 clearAllChips();
@@ -1783,7 +1820,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     with = rc_ice.getWidth() / 5;
                 }
                 layoutParams.width = with;
-                layoutParams.height = with;
+                layoutParams.height = rc_hot.getHeight();
                 tvContent.setLayoutParams(layoutParams);
                 tvContent.setText(item);
                 if (type == 1) {
@@ -1825,7 +1862,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
                     mPreviewLayoutParams.width = (int) (layoutParams.width * 2.2);
                     mPreviewLayoutParams.height = (int) (layoutParams.height * 2.2);
-                    mPreviewLayoutParams.topMargin = fl_vedio_location_parent.getHeight() + ((int) (AutoUtils.getPercentHeight1px() * 10));
+                    mPreviewLayoutParams.topMargin = fl_vedio_location_parent.getHeight() + ((int) (AutoUtils.getPercentHeight1px() * bigVideoTop));
                     fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
                     layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -1879,6 +1916,34 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                         }
                     });
                 }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] >= portraitScreenWidth && isCanShowChip) {
+                    isCanShowChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, ScreenUtil.dip2px(mContext, 55), 0, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
             }
             rouletteTimer--;
 
@@ -1897,6 +1962,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             if (showRoad) {
                 tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
                 rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+                tv_roulette_number_tv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
             }
 
         } else {
@@ -1907,6 +1973,34 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 if (location2[1] < heightPixels && isCanHideChip) {
                     isCanHideChip = false;
                     WidgetUtil.chipTranslateAnimation(ll_chip, ScreenUtil.dip2px(mContext, -43), 0, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] <= portraitScreenWidth && isCanHideChip) {
+                    isCanHideChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, 0, ScreenUtil.dip2px(mContext, 55), new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
 
@@ -1983,6 +2077,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     //      if (showRoad)
                     tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
                     rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+                    tv_roulette_number_tv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
                     tv_game_number.setText(mAppViewModel.getRoulette01().getGameNumber());
                     if (!gameNumber.equals(mAppViewModel.getRoulette01().getGameNumber())) {
                         clearAllChips();
@@ -2154,12 +2249,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
         }
         int sure = R.mipmap.gd_sureimg;
+        int sureP = R.mipmap.r_go_p;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
+        }
+        if (currentTvSure != null && sureP != 0) {
+            currentTvSure.setBackgroundResource(sureP);
         }
         int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
+        }
+        int noP = R.mipmap.r_no_p;
+        if (currentTvCancel != null && noP != 0) {
+            currentTvCancel.setBackgroundResource(noP);
         }
     }
 
@@ -2183,6 +2286,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         tvTableBetReplay.setOnClickListener(new ButtonClick());
         tvTableBetSure.setOnClickListener(new ButtonClick());
         tvTableBetCancel.setOnClickListener(new ButtonClick());
+        currentTvSure = tvTableBetSure;
+        currentTvCancel = tvTableBetCancel;
     }
 
     class ButtonClick implements View.OnClickListener {
@@ -2220,16 +2325,15 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            AutoLayoutConifg.getInstance().setmDesignHeight(420);
+        } else {
+            AutoLayoutConifg.getInstance().setmDesignWidth(420);
+        }
     }
 
     private void initSize() {
-        int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation != Configuration.ORIENTATION_LANDSCAPE) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
-            AutoLayoutConifg.getInstance().setSize(this);
-        }
+        AutoLayoutConifg.getInstance().setSize(this);
     }
 
     @Override
@@ -2241,9 +2345,32 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void initData(Bundle savedInstanceState) {
         mAppViewModel.getRoulette01().setResult("");
-        rouletteNumberTv.setVisibility(View.VISIBLE);
-        changeBetUiTv.setVisibility(View.VISIBLE);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bigVideoTop = 170;
+            toolbar.setNavigationIcon(R.mipmap.gd_back_black);
+            toolbar.setBackgroundResource(R.mipmap.roulette_p_title);
+//            tv_change_bet_ui_tv.setVisibility(View.VISIBLE);
+            rightTableTv.setVisibility(View.VISIBLE);
+            imgBack.setBackgroundResource(R.mipmap.gd_back_black);
+            imgBack.setVisibility(View.VISIBLE);
+            imgBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    leftClick();
+                }
+            });
+        } else {
+            bigVideoTop = 10;
+            toolbar.setNavigationIcon(null);
+            toolbar.setBackgroundResource(R.color.transparent);
+            rouletteNumberTv.setVisibility(View.VISIBLE);
+            changeBetUiTv.setVisibility(View.VISIBLE);
+        }
+        rightBetTv.setVisibility(View.VISIBLE);
+        rightWinLoseTv.setVisibility(View.VISIBLE);
+        rightBalanceTv.setVisibility(View.VISIBLE);
         changeBetUiTv.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
+        tv_change_bet_ui_tv.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
         changeBetUiTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -2255,6 +2382,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     fl_roulette_board_bg.setVisibility(View.VISIBLE);
                     fl_roulette_board_bg_new.setVisibility(View.INVISIBLE);
                     changeBetUiTv.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
+                }
+            }
+        });
+        tv_change_bet_ui_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fl_roulette_board_bg.getVisibility() == View.VISIBLE && fl_roulette_board_bg_new.getVisibility() == View.INVISIBLE) {
+                    fl_roulette_board_bg.setVisibility(View.INVISIBLE);
+                    fl_roulette_board_bg_new.setVisibility(View.VISIBLE);
+                    tv_change_bet_ui_tv.setBackgroundResource(R.mipmap.gd_roulette_board);
+                } else {
+                    fl_roulette_board_bg.setVisibility(View.VISIBLE);
+                    fl_roulette_board_bg_new.setVisibility(View.INVISIBLE);
+                    tv_change_bet_ui_tv.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
                 }
             }
         });
@@ -2278,13 +2419,9 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 }
             }
         });
-        toolbar.setNavigationIcon(null);
         initControl();
-
         serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
-
         rightTv.setTextColor(getResources().getColor(R.color.white));
-        toolbar.setBackgroundResource(R.color.transparent);
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
 //        setTableBetPool(lv_person_bet_info,1);
@@ -2312,11 +2449,71 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         btn_game_number.setText(getString(R.string.number) + ":" + mAppViewModel.getRoulette01().getGameNumber());
         tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
         rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+        tv_roulette_number_tv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
         initArcMenu(tvMenu, "RL1", 1);
         setChip();
         initUI();
         startUpdateStatusThread();
+        lv_user_info.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+        lv_pool.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+        if (lvBaccaratChips != null && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            ListView listView = (ListView) lvBaccaratChips;
+            listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
+                    switch (scrollState) {
+                        case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                            isSlideInfo = false;
+                            break;
+                        case SCROLL_STATE_TOUCH_SCROLL:
+                        case SCROLL_STATE_FLING:
+                            isSlideInfo = true;
+                            break;
+                    }
+                }
+
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                }
+            });
+        }
     }
+
+    private boolean isSlideInfo = false;
 
     private void setPlayVideo() {
 
@@ -2332,53 +2529,54 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     }
 
     private void setLeftPanel() {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            rc_road.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            contentAdapter = new BaseRecyclerAdapter<String>(mContext, new ArrayList<>(Collections.nCopies(22, "10")), R.layout.gd_item_roulette_road_content) {
-                @Override
-                public void convert(MyRecyclerViewHolder helper, int position, String item) {
-                    int height = tv_black_percentage.getHeight();
-                    TextView roulette_title_tv = helper.getView(R.id.gd__roulette_title_tv);
-                    ViewGroup.LayoutParams layoutParams = roulette_title_tv.getLayoutParams();
-                    layoutParams.width = height;
-                    layoutParams.height = height;
-                    roulette_title_tv.setLayoutParams(layoutParams);
-                    switch (item) {
-                        case "2":
-                        case "4":
-                        case "6":
-                        case "8":
-                        case "10":
-                        case "11":
-                        case "13":
-                        case "15":
-                        case "17":
-                        case "20":
-                        case "22":
-                        case "24":
-                        case "26":
-                        case "28":
-                        case "29":
-                        case "31":
-                        case "33":
-                        case "35":
-                            helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_black_bg);
-                            break;
-                        case "0":
-                            helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_zero_bg);
-                            break;
-                        default:
-                            helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_red_bg);
-                            break;
-                    }
-                    helper.setText(R.id.gd__roulette_title_tv, item);
+        rc_road.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        contentAdapter = new BaseRecyclerAdapter<String>(mContext, new ArrayList<>(Collections.nCopies(22, "10")), R.layout.gd_item_roulette_road_content) {
+            @Override
+            public void convert(MyRecyclerViewHolder helper, int position, String item) {
+                int height = tv_black_percentage.getHeight();
+                TextView roulette_title_tv = helper.getView(R.id.gd__roulette_title_tv);
+                ViewGroup.LayoutParams layoutParams = roulette_title_tv.getLayoutParams();
+                layoutParams.width = height;
+                layoutParams.height = height;
+                roulette_title_tv.setLayoutParams(layoutParams);
+                switch (item) {
+                    case "2":
+                    case "4":
+                    case "6":
+                    case "8":
+                    case "10":
+                    case "11":
+                    case "13":
+                    case "15":
+                    case "17":
+                    case "20":
+                    case "22":
+                    case "24":
+                    case "26":
+                    case "28":
+                    case "29":
+                    case "31":
+                    case "33":
+                    case "35":
+                        helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_black_bg);
+                        break;
+                    case "0":
+                        helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_zero_bg);
+                        break;
+                    default:
+                        helper.setBackgroundRes(R.id.gd__roulette_title_tv, R.drawable.gd_shape_roulette_red_bg);
+                        break;
                 }
-            };
-            rc_road.setAdapter(contentAdapter);
-        } else {
-            if (mAppViewModel.getRoulette01().getRoad() != null && !mAppViewModel.getRoulette01().getRoad().equals(""))
-                mAppViewModel.showRoulette(mAppViewModel.getRoulette01().getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
-        }
+                helper.setText(R.id.gd__roulette_title_tv, item);
+            }
+        };
+        rc_road.setAdapter(contentAdapter);
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//
+//        } else {
+//            if (mAppViewModel.getRoulette01().getRoad() != null && !mAppViewModel.getRoulette01().getRoad().equals(""))
+//                mAppViewModel.showRoulette(mAppViewModel.getRoulette01().getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
+//        }
     }
 
     private void setLiveList() {
@@ -2465,6 +2663,8 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     ImageView currentSure;
     ImageView currentCancel;
+    TextView currentTvSure;
+    TextView currentTvCancel;
 
     @Override
     public void onSwitchChipFinish() {
@@ -2487,6 +2687,13 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
                 final LinearLayout llParent = helper.retrieveView(R.id.gd__ll_chip_parent);
                 ImageView imgChip = helper.retrieveView(R.id.gd__iv_chip_pic);
+                int w = 40;
+                int h = 40;
+                if (position == 7 || position == 9) {
+                    w = 60;
+                    h = 30;
+                }
+                int m = 3;
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     if (position == 0) {
                         llParent.post(new Runnable() {
@@ -2503,52 +2710,61 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                             }
                         });
                     }
-                    int w = 40;
-                    int h = 40;
+                } else {
+                    w = 43;
+                    h = 43;
                     if (position == 7 || position == 9) {
-                        w = 60;
-                        h = 30;
+                        w = 30;
+                        h = 60;
                     }
-                    int m = 3;
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, w);
-                    layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                    if (position == 7) {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
-                    } else if (position == 8) {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
-                    } else if (position == 9) {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
-                    } else {
-                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
-                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
-                    }
-                    llParent.setLayoutParams(layoutParams);
-                    LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams1.width = ScreenUtil.dip2px(mContext, w);
-                    layoutParams1.height = ScreenUtil.dip2px(mContext, h);
-                    imgChip.setLayoutParams(layoutParams1);
+                    m = 0;
                 }
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
+                layoutParams.width = ScreenUtil.dip2px(mContext, w);
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 40);
+                } else {
+                    layoutParams.height = ScreenUtil.dip2px(mContext, h);
+                    layoutParams.bottomMargin = ScreenUtil.dip2px(mContext, 6);
+                }
+                if (position == 7) {
+                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
+                    layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                } else if (position == 8) {
+                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                    layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                } else if (position == 9) {
+                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                    layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
+                } else {
+                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
+                    layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
+                }
+                llParent.setLayoutParams(layoutParams);
+                LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                layoutParams1.width = ScreenUtil.dip2px(mContext, w);
+                layoutParams1.height = ScreenUtil.dip2px(mContext, h);
+                imgChip.setLayoutParams(layoutParams1);
+
+                LinearLayout.LayoutParams layoutParams2;
                 if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams.width = (int) (layoutParams.width * 1.2);
-                    layoutParams.height = (int) (layoutParams.height * 1.2);
-                    imgChip.setLayoutParams(layoutParams);
+                    layoutParams2 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                    layoutParams2.width = (int) (layoutParams2.width * 1.2);
+                    layoutParams2.height = (int) (layoutParams2.height * 1.2);
+                    imgChip.setLayoutParams(layoutParams2);
                     helper.setBackgroundRes(R.id.gd__ll_chip_parent, R.drawable.gd_rectangle_trans_stroke_yellow);
                 } else {
                     if (position == 7 || position == 9) {
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                        layoutParams.height = ScreenUtil.dip2px(mContext, 30);
-                        imgChip.setLayoutParams(layoutParams);
+                        layoutParams2 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams2.width = ScreenUtil.dip2px(mContext, w);
+                        layoutParams2.height = ScreenUtil.dip2px(mContext, h);
+                        imgChip.setLayoutParams(layoutParams2);
                     } else {
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 40);
-                        layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                        imgChip.setLayoutParams(layoutParams);
+                        layoutParams2 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams2.width = ScreenUtil.dip2px(mContext, w);
+                        layoutParams2.height = ScreenUtil.dip2px(mContext, h);
+                        imgChip.setLayoutParams(layoutParams2);
+                        helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                     }
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
@@ -2589,7 +2805,12 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                 }
             }
         });
-        chips.setData(getCurrentChip(true));
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            chips.setData(getCurrentChip(true));
+        } else {
+            chips.setData(getCurrentChip(false));
+        }
+
     }
 
 
@@ -2709,6 +2930,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         tv_table_timer.setText("0");
         tv_game_number01.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
         rouletteNumberTv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
+        tv_roulette_number_tv.setText("RL1:" + mAppViewModel.getRoulette01().getGameNumber());
     }
 
     @Override
@@ -2885,19 +3107,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             if (roulette.getRoad() != null && tv_black_percentage != null) {
                 if (!roulette.getRoad().equals(roulette.getRoadOld()) || TextUtils.isEmpty(tv_black_percentage.getText().toString())) {
                     roulette.setRoadOld(roulette.getRoad());
-                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                        mAppViewModel.showRoulette(roulette.getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
-                    } else {
-                        String roadDetail[] = roulette.getRoad().split("\\#");
-                        if (roadDetail != null) {
-                            List<String> listItem = new ArrayList<String>();
-                            int n = roadDetail.length;
-                            for (int i = n - 1; i >= n - 22; i--) {
-                                listItem.add(roadDetail[i]);
-                            }
-                            if (contentAdapter != null && listItem != null) {
-                                contentAdapter.addAllAndClear(listItem);
-                            }
+//                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//                        mAppViewModel.showRoulette(roulette.getRoad(), mContext, bigGradLayout, 6, ScreenUtil.getDisplayMetrics(mContext).density);
+//                    } else {
+//
+//                    }
+                    String roadDetail[] = roulette.getRoad().split("\\#");
+                    if (roadDetail != null) {
+                        List<String> listItem = new ArrayList<String>();
+                        int n = roadDetail.length;
+                        for (int i = n - 1; i >= n - 22; i--) {
+                            listItem.add(roadDetail[i]);
+                        }
+                        if (contentAdapter != null && listItem != null) {
+                            contentAdapter.addAllAndClear(listItem);
                         }
                     }
                     //      Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+roulette.getTableName()+",Luzi roads="+roulette.getRoadOld()+ ",Road="+roulette.getRoad()+",roadDetail="+roadDetail.length);
@@ -3108,7 +3331,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             //超过了最大的值，要提醒
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         } else {
-            showBetChip(fl_chip, true, betMoney, true);
+            showBetChip(fl_chip, true, betMoney, false);
         }
 
 
@@ -4157,12 +4380,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             betDetails = mAppViewModel.getRoulette01().getRouletteBetRepeatInformation().getBetDetail();
             if (betDetails.size() > 0) {
                 int sure = R.mipmap.gd_sureimg_light;
+                int sureP = R.mipmap.r_go_p_light;
                 if (currentSure != null && sure != 0) {
                     currentSure.setBackgroundResource(sure);
                 }
+                if (currentTvSure != null && sureP != 0) {
+                    currentTvSure.setBackgroundResource(sureP);
+                }
                 int no = R.mipmap.gd_noimg_light;
+                int noP = R.mipmap.r_no_p_light;
                 if (currentCancel != null && no != 0) {
                     currentCancel.setBackgroundResource(no);
+                }
+                if (currentTvCancel != null && noP != 0) {
+                    currentTvCancel.setBackgroundResource(noP);
                 }
                 mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
@@ -4176,12 +4407,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         }
         if (!bRepeat) {
             int sure = R.mipmap.gd_sureimg;
+            int sureP = R.mipmap.r_go_p;
             if (currentSure != null && sure != 0) {
                 currentSure.setBackgroundResource(sure);
+            }
+            if (currentTvSure != null && sureP != 0) {
+                currentTvSure.setBackgroundResource(sureP);
             }
             int no = R.mipmap.gd_noimg;
             if (currentCancel != null && no != 0) {
                 currentCancel.setBackgroundResource(no);
+            }
+            int noP = R.mipmap.r_no_p;
+            if (currentTvCancel != null && noP != 0) {
+                currentTvCancel.setBackgroundResource(noP);
             }
         }
 
@@ -4204,12 +4443,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     private void clearBetChip(String type) {
         int sure = R.mipmap.gd_sureimg;
+        int sureP = R.mipmap.r_go_p;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
+        }
+        if (currentTvSure != null && sureP != 0) {
+            currentTvSure.setBackgroundResource(sureP);
         }
         int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
+        }
+        int noP = R.mipmap.r_no_p;
+        if (currentTvCancel != null && noP != 0) {
+            currentTvCancel.setBackgroundResource(noP);
         }
         if (type.equals("all")) {
             List<BetDetail> betDetails = mAppViewModel.getRoulette01().getRouletteBetInformation().getBetDetail();
@@ -4289,12 +4536,20 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
     public void clearAllChips() {
         int sure = R.mipmap.gd_sureimg;
+        int sureP = R.mipmap.r_go_p;
         if (currentSure != null && sure != 0) {
             currentSure.setBackgroundResource(sure);
+        }
+        if (currentTvSure != null && sureP != 0) {
+            currentTvSure.setBackgroundResource(sureP);
         }
         int no = R.mipmap.gd_noimg;
         if (currentCancel != null && no != 0) {
             currentCancel.setBackgroundResource(no);
+        }
+        int noP = R.mipmap.r_no_p;
+        if (currentTvCancel != null && noP != 0) {
+            currentTvCancel.setBackgroundResource(noP);
         }
         showBetChipOld(flNumber00, false, 0);
         showBetChipOld(flNumber00New, false, 0);
@@ -4524,209 +4779,319 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
         if (fl_roulette_board_bg.getVisibility() == View.VISIBLE && fl_roulette_board_bg_new.getVisibility() == View.INVISIBLE) {
             switch (type) {
                 case "0":
-                    return new ResultHintBean(ivNumber00, R.mipmap.gd_number_0_trans);
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        return new ResultHintBean(ivNumber00, R.mipmap.r_v_zero);
+                    } else {
+                        return new ResultHintBean(ivNumber00, R.mipmap.r_h_zero);
+                    }
                 case "1":
-                    return new ResultHintBean(ivNumber01, R.mipmap.gd_r2);
+                    return new ResultHintBean(ivNumber01, R.mipmap.r_all);
                 case "2":
-                    return new ResultHintBean(ivNumber02, R.mipmap.gd_r2);
+                    return new ResultHintBean(ivNumber02, R.mipmap.r_all);
                 case "3":
-                    return new ResultHintBean(ivNumber03, R.mipmap.gd_r2);
+                    return new ResultHintBean(ivNumber03, R.mipmap.r_all);
                 case "4":
-                    return new ResultHintBean(ivNumber04, R.mipmap.gd_r5);
+                    return new ResultHintBean(ivNumber04, R.mipmap.r_all);
                 case "5":
-                    return new ResultHintBean(ivNumber05, R.mipmap.gd_r5);
+                    return new ResultHintBean(ivNumber05, R.mipmap.r_all);
                 case "6":
-                    return new ResultHintBean(ivNumber06, R.mipmap.gd_r5);
+                    return new ResultHintBean(ivNumber06, R.mipmap.r_all);
                 case "7":
-                    return new ResultHintBean(ivNumber07, R.mipmap.gd_r8);
+                    return new ResultHintBean(ivNumber07, R.mipmap.r_all);
                 case "8":
-                    return new ResultHintBean(ivNumber08, R.mipmap.gd_r8);
+                    return new ResultHintBean(ivNumber08, R.mipmap.r_all);
                 case "9":
-                    return new ResultHintBean(ivNumber09, R.mipmap.gd_r8);
+                    return new ResultHintBean(ivNumber09, R.mipmap.r_all);
                 case "10":
-                    return new ResultHintBean(ivNumber10, R.mipmap.gd_r11);
+                    return new ResultHintBean(ivNumber10, R.mipmap.r_all);
                 case "11":
-                    return new ResultHintBean(ivNumber11, R.mipmap.gd_r11);
+                    return new ResultHintBean(ivNumber11, R.mipmap.r_all);
                 case "12":
-                    return new ResultHintBean(ivNumber12, R.mipmap.gd_r11);
+                    return new ResultHintBean(ivNumber12, R.mipmap.r_all);
                 case "13":
-                    return new ResultHintBean(ivNumber13, R.mipmap.gd_r14);
+                    return new ResultHintBean(ivNumber13, R.mipmap.r_all);
                 case "14":
-                    return new ResultHintBean(ivNumber14, R.mipmap.gd_r14);
+                    return new ResultHintBean(ivNumber14, R.mipmap.r_all);
                 case "15":
-                    return new ResultHintBean(ivNumber15, R.mipmap.gd_r14);
+                    return new ResultHintBean(ivNumber15, R.mipmap.r_all);
                 case "16":
-                    return new ResultHintBean(ivNumber16, R.mipmap.gd_r17);
+                    return new ResultHintBean(ivNumber16, R.mipmap.r_all);
                 case "17":
-                    return new ResultHintBean(ivNumber17, R.mipmap.gd_r17);
+                    return new ResultHintBean(ivNumber17, R.mipmap.r_all);
                 case "18":
-                    return new ResultHintBean(ivNumber18, R.mipmap.gd_r17);
+                    return new ResultHintBean(ivNumber18, R.mipmap.r_all);
                 case "19":
-                    return new ResultHintBean(ivNumber19, R.mipmap.gd_r20);
+                    return new ResultHintBean(ivNumber19, R.mipmap.r_all);
                 case "20":
-                    return new ResultHintBean(ivNumber20, R.mipmap.gd_r20);
+                    return new ResultHintBean(ivNumber20, R.mipmap.r_all);
                 case "21":
-                    return new ResultHintBean(ivNumber21, R.mipmap.gd_r20);
+                    return new ResultHintBean(ivNumber21, R.mipmap.r_all);
                 case "22":
-                    return new ResultHintBean(ivNumber22, R.mipmap.gd_r23);
+                    return new ResultHintBean(ivNumber22, R.mipmap.r_all);
                 case "23":
-                    return new ResultHintBean(ivNumber23, R.mipmap.gd_r23);
+                    return new ResultHintBean(ivNumber23, R.mipmap.r_all);
                 case "24":
-                    return new ResultHintBean(ivNumber24, R.mipmap.gd_r23);
+                    return new ResultHintBean(ivNumber24, R.mipmap.r_all);
                 case "25":
-                    return new ResultHintBean(ivNumber25, R.mipmap.gd_r26);
+                    return new ResultHintBean(ivNumber25, R.mipmap.r_all);
                 case "26":
-                    return new ResultHintBean(ivNumber26, R.mipmap.gd_r26);
+                    return new ResultHintBean(ivNumber26, R.mipmap.r_all);
                 case "27":
-                    return new ResultHintBean(ivNumber27, R.mipmap.gd_r26);
+                    return new ResultHintBean(ivNumber27, R.mipmap.r_all);
                 case "28":
-                    return new ResultHintBean(ivNumber28, R.mipmap.gd_r29);
+                    return new ResultHintBean(ivNumber28, R.mipmap.r_all);
                 case "29":
-                    return new ResultHintBean(ivNumber29, R.mipmap.gd_r29);
+                    return new ResultHintBean(ivNumber29, R.mipmap.r_all);
                 case "30":
-                    return new ResultHintBean(ivNumber30, R.mipmap.gd_r29);
+                    return new ResultHintBean(ivNumber30, R.mipmap.r_all);
                 case "31":
-                    return new ResultHintBean(ivNumber31, R.mipmap.gd_r32);
+                    return new ResultHintBean(ivNumber31, R.mipmap.r_all);
                 case "32":
-                    return new ResultHintBean(ivNumber32, R.mipmap.gd_r32);
+                    return new ResultHintBean(ivNumber32, R.mipmap.r_all);
                 case "33":
-                    return new ResultHintBean(ivNumber33, R.mipmap.gd_r32);
+                    return new ResultHintBean(ivNumber33, R.mipmap.r_all);
                 case "34":
-                    return new ResultHintBean(ivNumber34, R.mipmap.gd_r35);
+                    return new ResultHintBean(ivNumber34, R.mipmap.r_all);
                 case "35":
-                    return new ResultHintBean(ivNumber35, R.mipmap.gd_r35);
+                    return new ResultHintBean(ivNumber35, R.mipmap.r_all);
                 case "36":
-                    return new ResultHintBean(ivNumber36, R.mipmap.gd_r35);
+                    return new ResultHintBean(ivNumber36, R.mipmap.r_all);
                 case "Low":
-                    return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
+                    return new ResultHintBean(ivLow, R.mipmap.r_all);
                 case "High":
-                    return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
+                    return new ResultHintBean(ivHigh, R.mipmap.r_all);
                 case "Red":
-                    return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
+                    return new ResultHintBean(ivRed, R.mipmap.r_all);
                 case "Black":
-                    return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
+                    return new ResultHintBean(ivBlack, R.mipmap.r_all);
                 case "Odd":
-                    return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
+                    return new ResultHintBean(ivOdd, R.mipmap.r_all);
                 case "Even":
-                    return new ResultHintBean(ivEven, R.mipmap.gd_genap);
+                    return new ResultHintBean(ivEven, R.mipmap.r_all);
                 case "Row1":
-                    return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
+                    return new ResultHintBean(iv1row1x2, R.mipmap.r_all);
                 case "Row2":
-                    return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
+                    return new ResultHintBean(iv2row1x2, R.mipmap.r_all);
                 case "Row3":
-                    return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
+                    return new ResultHintBean(iv3row1x2, R.mipmap.r_all);
                 case "Col1":
-                    return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
+                    return new ResultHintBean(ivDozen1, R.mipmap.r_all);
                 case "Col2":
-                    return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
+                    return new ResultHintBean(ivDozen2, R.mipmap.r_all);
                 case "Col3":
-                    return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
+                    return new ResultHintBean(ivDozen3, R.mipmap.r_all);
                 default:
                     return null;
             }
         } else {
-            switch (type) {
-                case "0":
-                    return new ResultHintBean(ivNumber00New, R.mipmap.gd_number_0_new);
-                case "1":
-                    return new ResultHintBean(ivNumber01New, R.mipmap.gd_number_other_new);
-                case "2":
-                    return new ResultHintBean(ivNumber02New, R.mipmap.gd_number_other_new);
-                case "3":
-                    return new ResultHintBean(ivNumber03New, R.mipmap.gd_number_3_new);
-                case "4":
-                    return new ResultHintBean(ivNumber04New, R.mipmap.gd_number_other_new);
-                case "5":
-                    return new ResultHintBean(ivNumber05New, R.mipmap.gd_number_5_new);
-                case "6":
-                    return new ResultHintBean(ivNumber06New, R.mipmap.gd_number_other_new);
-                case "7":
-                    return new ResultHintBean(ivNumber07New, R.mipmap.gd_number_other_new);
-                case "8":
-                    return new ResultHintBean(ivNumber08New, R.mipmap.gd_number_8_new);
-                case "9":
-                    return new ResultHintBean(ivNumber09New, R.mipmap.gd_number_other_new);
-                case "10":
-                    return new ResultHintBean(ivNumber10New, R.mipmap.gd_number_10_new);
-                case "11":
-                    return new ResultHintBean(ivNumber11New, R.mipmap.gd_number_other_new);
-                case "12":
-                    return new ResultHintBean(ivNumber12New, R.mipmap.gd_number_other_new);
-                case "13":
-                    return new ResultHintBean(ivNumber13New, R.mipmap.gd_number_other_new);
-                case "14":
-                    return new ResultHintBean(ivNumber14New, R.mipmap.gd_number_other_new);
-                case "15":
-                    return new ResultHintBean(ivNumber15New, R.mipmap.gd_number_other_new);
-                case "16":
-                    return new ResultHintBean(ivNumber16New, R.mipmap.gd_number_other_new);
-                case "17":
-                    return new ResultHintBean(ivNumber17New, R.mipmap.gd_number_other_new);
-                case "18":
-                    return new ResultHintBean(ivNumber18New, R.mipmap.gd_number_other_new);
-                case "19":
-                    return new ResultHintBean(ivNumber19New, R.mipmap.gd_number_other_new);
-                case "20":
-                    return new ResultHintBean(ivNumber20New, R.mipmap.gd_number_other_new);
-                case "21":
-                    return new ResultHintBean(ivNumber21New, R.mipmap.gd_number_other_new);
-                case "22":
-                    return new ResultHintBean(ivNumber22New, R.mipmap.gd_number_other_new);
-                case "23":
-                    return new ResultHintBean(ivNumber23New, R.mipmap.gd_number_23_new);
-                case "24":
-                    return new ResultHintBean(ivNumber24New, R.mipmap.gd_number_24_new);
-                case "25":
-                    return new ResultHintBean(ivNumber25New, R.mipmap.gd_number_other_new);
-                case "26":
-                    return new ResultHintBean(ivNumber26New, R.mipmap.gd_number_26_new);
-                case "27":
-                    return new ResultHintBean(ivNumber27New, R.mipmap.gd_number_other_new);
-                case "28":
-                    return new ResultHintBean(ivNumber28New, R.mipmap.gd_number_other_new);
-                case "29":
-                    return new ResultHintBean(ivNumber29New, R.mipmap.gd_number_other_new);
-                case "30":
-                    return new ResultHintBean(ivNumber30New, R.mipmap.gd_number_30_new);
-                case "31":
-                    return new ResultHintBean(ivNumber31New, R.mipmap.gd_number_other_new);
-                case "32":
-                    return new ResultHintBean(ivNumber32New, R.mipmap.gd_number_32_new);
-                case "33":
-                    return new ResultHintBean(ivNumber33New, R.mipmap.gd_number_other_new);
-                case "34":
-                    return new ResultHintBean(ivNumber34New, R.mipmap.gd_number_other_new);
-                case "35":
-                    return new ResultHintBean(ivNumber35New, R.mipmap.gd_number_35_new);
-                case "36":
-                    return new ResultHintBean(ivNumber36New, R.mipmap.gd_number_other_new);
-                case "Low":
-                    return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
-                case "High":
-                    return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
-                case "Red":
-                    return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
-                case "Black":
-                    return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
-                case "Odd":
-                    return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
-                case "Even":
-                    return new ResultHintBean(ivEven, R.mipmap.gd_genap);
-                case "Row1":
-                    return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
-                case "Row2":
-                    return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
-                case "Row3":
-                    return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
-                case "Col1":
-                    return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
-                case "Col2":
-                    return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
-                case "Col3":
-                    return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
-                default:
-                    return null;
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                switch (type) {
+                    case "0":
+                        return new ResultHintBean(ivNumber00New, R.mipmap.gd_number_0_new);
+                    case "1":
+                        return new ResultHintBean(ivNumber01New, R.mipmap.gd_number_other_new);
+                    case "2":
+                        return new ResultHintBean(ivNumber02New, R.mipmap.gd_number_other_new);
+                    case "3":
+                        return new ResultHintBean(ivNumber03New, R.mipmap.gd_number_3_new);
+                    case "4":
+                        return new ResultHintBean(ivNumber04New, R.mipmap.gd_number_other_new);
+                    case "5":
+                        return new ResultHintBean(ivNumber05New, R.mipmap.gd_number_5_new);
+                    case "6":
+                        return new ResultHintBean(ivNumber06New, R.mipmap.gd_number_other_new);
+                    case "7":
+                        return new ResultHintBean(ivNumber07New, R.mipmap.gd_number_other_new);
+                    case "8":
+                        return new ResultHintBean(ivNumber08New, R.mipmap.gd_number_8_new);
+                    case "9":
+                        return new ResultHintBean(ivNumber09New, R.mipmap.gd_number_other_new);
+                    case "10":
+                        return new ResultHintBean(ivNumber10New, R.mipmap.gd_number_10_new);
+                    case "11":
+                        return new ResultHintBean(ivNumber11New, R.mipmap.gd_number_other_new);
+                    case "12":
+                        return new ResultHintBean(ivNumber12New, R.mipmap.gd_number_other_new);
+                    case "13":
+                        return new ResultHintBean(ivNumber13New, R.mipmap.gd_number_other_new);
+                    case "14":
+                        return new ResultHintBean(ivNumber14New, R.mipmap.gd_number_other_new);
+                    case "15":
+                        return new ResultHintBean(ivNumber15New, R.mipmap.gd_number_other_new);
+                    case "16":
+                        return new ResultHintBean(ivNumber16New, R.mipmap.gd_number_other_new);
+                    case "17":
+                        return new ResultHintBean(ivNumber17New, R.mipmap.gd_number_other_new);
+                    case "18":
+                        return new ResultHintBean(ivNumber18New, R.mipmap.gd_number_other_new);
+                    case "19":
+                        return new ResultHintBean(ivNumber19New, R.mipmap.gd_number_other_new);
+                    case "20":
+                        return new ResultHintBean(ivNumber20New, R.mipmap.gd_number_other_new);
+                    case "21":
+                        return new ResultHintBean(ivNumber21New, R.mipmap.gd_number_other_new);
+                    case "22":
+                        return new ResultHintBean(ivNumber22New, R.mipmap.gd_number_other_new);
+                    case "23":
+                        return new ResultHintBean(ivNumber23New, R.mipmap.gd_number_23_new);
+                    case "24":
+                        return new ResultHintBean(ivNumber24New, R.mipmap.gd_number_24_new);
+                    case "25":
+                        return new ResultHintBean(ivNumber25New, R.mipmap.gd_number_other_new);
+                    case "26":
+                        return new ResultHintBean(ivNumber26New, R.mipmap.gd_number_26_new);
+                    case "27":
+                        return new ResultHintBean(ivNumber27New, R.mipmap.gd_number_other_new);
+                    case "28":
+                        return new ResultHintBean(ivNumber28New, R.mipmap.gd_number_other_new);
+                    case "29":
+                        return new ResultHintBean(ivNumber29New, R.mipmap.gd_number_other_new);
+                    case "30":
+                        return new ResultHintBean(ivNumber30New, R.mipmap.gd_number_30_new);
+                    case "31":
+                        return new ResultHintBean(ivNumber31New, R.mipmap.gd_number_other_new);
+                    case "32":
+                        return new ResultHintBean(ivNumber32New, R.mipmap.gd_number_32_new);
+                    case "33":
+                        return new ResultHintBean(ivNumber33New, R.mipmap.gd_number_other_new);
+                    case "34":
+                        return new ResultHintBean(ivNumber34New, R.mipmap.gd_number_other_new);
+                    case "35":
+                        return new ResultHintBean(ivNumber35New, R.mipmap.gd_number_35_new);
+                    case "36":
+                        return new ResultHintBean(ivNumber36New, R.mipmap.gd_number_other_new);
+                    case "Low":
+                        return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
+                    case "High":
+                        return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
+                    case "Red":
+                        return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
+                    case "Black":
+                        return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
+                    case "Odd":
+                        return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
+                    case "Even":
+                        return new ResultHintBean(ivEven, R.mipmap.gd_genap);
+                    case "Row1":
+                        return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
+                    case "Row2":
+                        return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
+                    case "Row3":
+                        return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
+                    case "Col1":
+                        return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
+                    case "Col2":
+                        return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
+                    case "Col3":
+                        return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
+                    default:
+                        return null;
+                }
+            } else {
+                switch (type) {
+                    case "0":
+                        return new ResultHintBean(ivNumber00New, R.mipmap.gd_number_0_new_h);
+                    case "1":
+                        return new ResultHintBean(ivNumber01New, R.mipmap.gd_number_other_new_h);
+                    case "2":
+                        return new ResultHintBean(ivNumber02New, R.mipmap.gd_number_other_new_h);
+                    case "3":
+                        return new ResultHintBean(ivNumber03New, R.mipmap.gd_number_3_new_h);
+                    case "4":
+                        return new ResultHintBean(ivNumber04New, R.mipmap.gd_number_other_new_h);
+                    case "5":
+                        return new ResultHintBean(ivNumber05New, R.mipmap.gd_number_5_new_h);
+                    case "6":
+                        return new ResultHintBean(ivNumber06New, R.mipmap.gd_number_other_new_h);
+                    case "7":
+                        return new ResultHintBean(ivNumber07New, R.mipmap.gd_number_other_new_h);
+                    case "8":
+                        return new ResultHintBean(ivNumber08New, R.mipmap.gd_number_8_new_h);
+                    case "9":
+                        return new ResultHintBean(ivNumber09New, R.mipmap.gd_number_other_new_h);
+                    case "10":
+                        return new ResultHintBean(ivNumber10New, R.mipmap.gd_number_10_new_h);
+                    case "11":
+                        return new ResultHintBean(ivNumber11New, R.mipmap.gd_number_11_new_h);
+                    case "12":
+                        return new ResultHintBean(ivNumber12New, R.mipmap.gd_number_12_new_h);
+                    case "13":
+                        return new ResultHintBean(ivNumber13New, R.mipmap.gd_number_other_new_h);
+                    case "14":
+                        return new ResultHintBean(ivNumber14New, R.mipmap.gd_number_other_new_h);
+                    case "15":
+                        return new ResultHintBean(ivNumber15New, R.mipmap.gd_number_15_new_h);
+                    case "16":
+                        return new ResultHintBean(ivNumber16New, R.mipmap.gd_number_16_new_h);
+                    case "17":
+                        return new ResultHintBean(ivNumber17New, R.mipmap.gd_number_other_new_h);
+                    case "18":
+                        return new ResultHintBean(ivNumber18New, R.mipmap.gd_number_other_new_h);
+                    case "19":
+                        return new ResultHintBean(ivNumber19New, R.mipmap.gd_number_19_new_h);
+                    case "20":
+                        return new ResultHintBean(ivNumber20New, R.mipmap.gd_number_other_new_h);
+                    case "21":
+                        return new ResultHintBean(ivNumber21New, R.mipmap.gd_number_other_new_h);
+                    case "22":
+                        return new ResultHintBean(ivNumber22New, R.mipmap.gd_number_other_new_h);
+                    case "23":
+                        return new ResultHintBean(ivNumber23New, R.mipmap.gd_number_23_new_h);
+                    case "24":
+                        return new ResultHintBean(ivNumber24New, R.mipmap.gd_number_24_new_h);
+                    case "25":
+                        return new ResultHintBean(ivNumber25New, R.mipmap.gd_number_other_new_h);
+                    case "26":
+                        return new ResultHintBean(ivNumber26New, R.mipmap.gd_number_26_new_h);
+                    case "27":
+                        return new ResultHintBean(ivNumber27New, R.mipmap.gd_number_other_new_h);
+                    case "28":
+                        return new ResultHintBean(ivNumber28New, R.mipmap.gd_number_28_new_h);
+                    case "29":
+                        return new ResultHintBean(ivNumber29New, R.mipmap.gd_number_other_new_h);
+                    case "30":
+                        return new ResultHintBean(ivNumber30New, R.mipmap.gd_number_30_new_h);
+                    case "31":
+                        return new ResultHintBean(ivNumber31New, R.mipmap.gd_number_other_new_h);
+                    case "32":
+                        return new ResultHintBean(ivNumber32New, R.mipmap.gd_number_32_new_h);
+                    case "33":
+                        return new ResultHintBean(ivNumber33New, R.mipmap.gd_number_33_new_h);
+                    case "34":
+                        return new ResultHintBean(ivNumber34New, R.mipmap.gd_number_other_new_h);
+                    case "35":
+                        return new ResultHintBean(ivNumber35New, R.mipmap.gd_number_35_new_h);
+                    case "36":
+                        return new ResultHintBean(ivNumber36New, R.mipmap.gd_number_36_new_h);
+                    case "Low":
+                        return new ResultHintBean(ivLow, R.mipmap.gd_table_roulette_1_18);
+                    case "High":
+                        return new ResultHintBean(ivHigh, R.mipmap.gd_table_roulette_19_36);
+                    case "Red":
+                        return new ResultHintBean(ivRed, R.mipmap.gd_table_roulette_red);
+                    case "Black":
+                        return new ResultHintBean(ivBlack, R.mipmap.gd_table_roulette_black);
+                    case "Odd":
+                        return new ResultHintBean(ivOdd, R.mipmap.gd_ganjil);
+                    case "Even":
+                        return new ResultHintBean(ivEven, R.mipmap.gd_genap);
+                    case "Row1":
+                        return new ResultHintBean(iv1row1x2, R.mipmap.gd_row_1x2);
+                    case "Row2":
+                        return new ResultHintBean(iv2row1x2, R.mipmap.gd_row_1x2);
+                    case "Row3":
+                        return new ResultHintBean(iv3row1x2, R.mipmap.gd_row_1x2);
+                    case "Col1":
+                        return new ResultHintBean(ivDozen1, R.mipmap.gd_table_roulette_1_12);
+                    case "Col2":
+                        return new ResultHintBean(ivDozen2, R.mipmap.gd_table_roulette_13_24);
+                    case "Col3":
+                        return new ResultHintBean(ivDozen3, R.mipmap.gd_table_roulette_25_36);
+                    default:
+                        return null;
+                }
             }
+
         }
 
     }
@@ -6484,15 +6849,24 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
         }
         if (isShow && money > 0) {
-            if (operationDisplay) {
-                int sure = R.mipmap.gd_sureimg_light;
-                if (currentSure != null && sure != 0) {
-                    currentSure.setBackgroundResource(sure);
-                }
-                int no = R.mipmap.gd_noimg_light;
-                if (currentCancel != null && no != 0) {
-                    currentCancel.setBackgroundResource(no);
-                }
+//            if (operationDisplay) {
+//
+//            }
+            int sure = R.mipmap.gd_sureimg_light;
+            int sureP = R.mipmap.r_go_p_light;
+            if (currentSure != null && sure != 0) {
+                currentSure.setBackgroundResource(sure);
+            }
+            if (currentTvSure != null && sureP != 0) {
+                currentTvSure.setBackgroundResource(sureP);
+            }
+            int no = R.mipmap.gd_noimg_light;
+            int noP = R.mipmap.r_no_p_light;
+            if (currentCancel != null && no != 0) {
+                currentCancel.setBackgroundResource(no);
+            }
+            if (currentTvCancel != null && noP != 0) {
+                currentTvCancel.setBackgroundResource(noP);
             }
             chipHelper.showChip(money, 0, AutoUtils.getPercentHeightSize(12), AutoUtils.getPercentHeightSize(34), AutoUtils.getPercentHeightSize(17), 0, AutoUtils.getPercentHeightSize(17), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(16));
             if (chipHelperNew != null) {
@@ -6611,10 +6985,12 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
 
 
     private void displayAll(boolean b) {
-        if (b) {
-            toolbar.setNavigationIcon(R.mipmap.gd_back_black);
-        } else {
-            toolbar.setNavigationIcon(null);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (b) {
+                toolbar.setNavigationIcon(R.mipmap.gd_back_black);
+            } else {
+                toolbar.setNavigationIcon(null);
+            }
         }
         showHideUserInfo();
     }
@@ -6647,7 +7023,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     protected void initOrientation() {
         super.initOrientation();
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            lvBaccaratChips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
+            lvBaccaratChips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_l);
             roulette_content_fgv = (RecyclerView) findViewById(R.id.roulette_content_fgv);
         } else {
             if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -6805,13 +7181,21 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     public void onInGameChooseLanguage() {
         fl_roulette_board_bg.setBackgroundResource(0);
         fl_roulette_board_bg_new.setBackgroundResource(0);
-        fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board);
-        fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board);
+            fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1);
+        } else {
+            fl_roulette_board_bg.setBackgroundResource(R.mipmap.gd_roulette_board_h);
+            fl_roulette_board_bg_new.setBackgroundResource(R.mipmap.gd_roulette_board_new1_h);
+        }
         updatePercentage();
     }
 
     @Override
     public boolean isCanSlideChangeTable() {
+        if (isSlideInfo) {
+            return false;
+        }
         return true;
     }
 }

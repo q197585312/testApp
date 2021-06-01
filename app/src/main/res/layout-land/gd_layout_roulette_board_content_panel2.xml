@@ -12,9 +12,10 @@
 
         <FrameLayout
             android:id="@+id/gd__fl_number00"
-            android:layout_width="48px"
+            android:layout_width="58px"
             android:layout_height="179px"
-            android:layout_marginTop="3px">
+            android:layout_marginLeft="2px"
+            android:layout_marginTop="6px">
 
             <ImageView
                 android:id="@+id/gd__iv_number00"
@@ -26,25 +27,23 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="55.5px"
-            android:layout_marginTop="3dp">
+            android:layout_height="57px"
+            android:layout_marginTop="7px">
 
             <ImageView
                 android:id="@+id/gd__iv_number03"
-                android:layout_width="52px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="53px"
-                android:background="@drawable/gd_table_roulette_2row1_trans_black_selector"
+                android:layout_marginLeft="62px"
                 android:onClick="clickNumber3" />
 
             <ImageView
                 android:id="@+id/gd__iv_number06"
-                android:layout_width="51px"
+                android:layout_width="54px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="112px"
-                android:background="@drawable/gd_table_roulette_2row2_trans_black_selector"
+                android:layout_marginLeft="116px"
                 android:onClick="clickNumber6" />
 
             <ImageView
@@ -52,105 +51,94 @@
                 android:layout_width="54px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="169px"
-                android:background="@drawable/gd_table_roulette_2row3_trans_black_selector"
+                android:layout_marginLeft="171px"
                 android:onClick="clickNumber9" />
 
             <ImageView
                 android:id="@+id/gd__iv_number12"
-                android:layout_width="52px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="228px"
-                android:background="@drawable/gd_table_roulette_2row4_trans_black_selector"
+                android:layout_marginLeft="226px"
                 android:onClick="clickNumber12" />
 
             <ImageView
                 android:id="@+id/gd__iv_number15"
-                android:layout_width="52px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="286.5px"
-                android:background="@drawable/gd_table_roulette_2row5_trans_black_selector"
+                android:layout_marginLeft="281px"
                 android:onClick="clickNumber15" />
 
             <ImageView
                 android:id="@+id/gd__iv_number18"
-                android:layout_width="52px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="345px"
-                android:background="@drawable/gd_table_roulette_2row6_trans_black_selector"
+                android:layout_marginLeft="335px"
                 android:onClick="clickNumber18" />
 
             <ImageView
                 android:id="@+id/gd__iv_number21"
-                android:layout_width="52px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="403px"
-                android:background="@drawable/gd_table_roulette_2row7_trans_black_selector"
+                android:layout_marginLeft="390px"
                 android:onClick="clickNumber21" />
 
             <ImageView
                 android:id="@+id/gd__iv_number24"
-                android:layout_width="51px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="462px"
-                android:background="@drawable/gd_table_roulette_2row8_trans_black_selector"
+                android:layout_marginLeft="444px"
                 android:onClick="clickNumber24" />
 
             <ImageView
                 android:id="@+id/gd__iv_number27"
-                android:layout_width="52px"
+                android:layout_width="54px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="520px"
-                android:background="@drawable/gd_table_roulette_2row9_trans_black_selector"
+                android:layout_marginLeft="498px"
                 android:onClick="clickNumber27" />
 
             <ImageView
                 android:id="@+id/gd__iv_number30"
-                android:layout_width="52px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="577px"
-                android:background="@drawable/gd_table_roulette_2row10_trans_black_selector"
+                android:layout_marginLeft="554px"
                 android:onClick="clickNumber30" />
 
             <ImageView
                 android:id="@+id/gd__iv_number33"
-                android:layout_width="51px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="637px"
-                android:background="@drawable/gd_table_roulette_2row11_trans_black_selector"
+                android:layout_marginLeft="608px"
                 android:onClick="clickNumber33" />
 
             <ImageView
                 android:id="@+id/gd__iv_number36"
-                android:layout_width="52px"
+                android:layout_width="53px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="695px"
-                android:background="@drawable/gd_table_roulette_2row12_trans_black_selector"
+                android:layout_marginLeft="663px"
                 android:onClick="clickNumber36" />
 
             <ImageView
                 android:id="@+id/gd__iv_1row1x2"
-                android:layout_width="44px"
+                android:layout_width="79px"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="753px"
-                android:background="@drawable/gd_table_roulette_1row_1x2_trans_black_selector"
+                android:layout_marginLeft="717px"
                 android:onClick="click1Row1x2" />
 
             <FrameLayout
                 android:id="@+id/gd__fl_split0003"
                 android:layout_width="42px"
                 android:layout_height="35px"
-                android:layout_marginLeft="30px">
+                android:layout_marginLeft="40px">
 
                 <Button
                     android:id="@+id/gd__btn_split0003"
@@ -164,7 +152,7 @@
                 android:id="@+id/gd__fl_number03"
                 android:layout_width="30px"
                 android:layout_height="48px"
-                android:layout_marginLeft="64px"
+                android:layout_marginLeft="74px"
 
                 ></FrameLayout>
 
@@ -172,7 +160,7 @@
                 android:id="@+id/gd__fl_split0306"
                 android:layout_width="42px"
                 android:layout_height="35px"
-                android:layout_marginLeft="89px"
+                android:layout_marginLeft="95px"
 
                 >
 
@@ -188,7 +176,7 @@
                 android:id="@+id/gd__fl_number06"
                 android:layout_width="30px"
                 android:layout_height="47px"
-                android:layout_marginLeft="123px"
+                android:layout_marginLeft="128px"
 
                 >
 
@@ -198,7 +186,7 @@
                 android:id="@+id/gd__fl_split0609"
                 android:layout_width="42px"
                 android:layout_height="35px"
-                android:layout_marginLeft="146px"
+                android:layout_marginLeft="149px"
 
                 >
 
@@ -214,7 +202,7 @@
                 android:id="@+id/gd__fl_number09"
                 android:layout_width="30px"
                 android:layout_height="47px"
-                android:layout_marginLeft="182px"
+                android:layout_marginLeft="184px"
 
                 ></FrameLayout>
 
@@ -238,7 +226,7 @@
                 android:id="@+id/gd__fl_number12"
                 android:layout_width="30px"
                 android:layout_height="47px"
-                android:layout_marginLeft="240px"
+                android:layout_marginLeft="238px"
 
                 ></FrameLayout>
 
@@ -247,7 +235,7 @@
                 android:layout_width="42px"
                 android:layout_height="35px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="116px">
+                android:layout_marginRight="118px">
 
                 <Button
                     android:id="@+id/gd__btn_split1215"
@@ -264,14 +252,14 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="87px"></FrameLayout>
+                android:layout_marginRight="92px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split1518"
                 android:layout_width="42px"
                 android:layout_height="35px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="58px">
+                android:layout_marginRight="63px">
 
                 <Button
                     android:id="@+id/gd__btn_split1518"
@@ -288,14 +276,14 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="29px"></FrameLayout>
+                android:layout_marginRight="38px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split1821"
                 android:layout_width="42px"
                 android:layout_height="35px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="1px">
+                android:layout_marginRight="9px">
 
                 <Button
                     android:id="@+id/gd__btn_split1821"
@@ -312,14 +300,14 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="30px"></FrameLayout>
+                android:layout_marginLeft="17px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2124"
                 android:layout_width="42px"
                 android:layout_height="35px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="59px">
+                android:layout_marginLeft="44px">
 
                 <Button
                     android:id="@+id/gd__btn_split2124"
@@ -336,14 +324,14 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="88px"></FrameLayout>
+                android:layout_marginLeft="72px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2427"
                 android:layout_width="42px"
                 android:layout_height="35px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="117px">
+                android:layout_marginLeft="100px">
 
                 <Button
                     android:id="@+id/gd__btn_split2427"
@@ -360,14 +348,14 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="147px"></FrameLayout>
+                android:layout_marginLeft="126px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2730"
                 android:layout_width="42px"
                 android:layout_height="37px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="176px">
+                android:layout_marginLeft="153px">
 
                 <Button
                     android:id="@+id/gd__btn_split2730"
@@ -384,14 +372,14 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="205px"></FrameLayout>
+                android:layout_marginLeft="181px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split3033"
                 android:layout_width="42px"
                 android:layout_height="37px"
                 android:layout_gravity="right"
-                android:layout_marginRight="144px">
+                android:layout_marginRight="170px">
 
                 <Button
                     android:id="@+id/gd__btn_split3033"
@@ -408,14 +396,14 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="right"
-                android:layout_marginRight="121px"></FrameLayout>
+                android:layout_marginRight="151px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split3336"
                 android:layout_width="42px"
                 android:layout_height="37px"
                 android:layout_gravity="right"
-                android:layout_marginRight="87px">
+                android:layout_marginRight="117px">
 
                 <Button
                     android:id="@+id/gd__btn_split3336"
@@ -432,26 +420,27 @@
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="right"
-                android:layout_marginRight="64px"></FrameLayout>
+                android:layout_marginRight="98px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_1row1x2"
                 android:layout_width="30px"
                 android:layout_height="47px"
                 android:layout_gravity="right"
-                android:layout_marginRight="11px"></FrameLayout>
+                android:layout_marginRight="31px"></FrameLayout>
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="99px"
+            android:layout_marginTop="3px"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:id="@+id/gd__fl_street000203"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="34px"
+                android:layout_marginLeft="44px"
 
                 >
 
@@ -502,7 +491,7 @@
                 android:id="@+id/gd__fl_split0506"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-10px">
 
                 <Button
                     android:id="@+id/gd__btn_split0506"
@@ -534,7 +523,7 @@
                 android:id="@+id/gd__fl_split0809"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-7px"
+                android:layout_marginLeft="-10px"
 
                 >
 
@@ -552,7 +541,7 @@
                 android:id="@+id/gd__fl_corner08091112"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-7px">
+                android:layout_marginLeft="-10px">
 
                 <Button
                     android:id="@+id/gd__btn_corner08091112"
@@ -568,7 +557,7 @@
                 android:id="@+id/gd__fl_split1112"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split1112"
@@ -585,7 +574,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-8px">
 
                 <Button
                     android:id="@+id/gd__btn_corner11121415"
@@ -619,7 +608,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-7px">
 
                 <Button
                     android:id="@+id/gd__btn_corner14151718"
@@ -637,7 +626,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-7px">
 
                 <Button
                     android:id="@+id/gd__btn_split1718"
@@ -654,7 +643,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_corner17182021"
@@ -671,7 +660,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split2021"
@@ -688,7 +677,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-7px">
 
                 <Button
                     android:id="@+id/gd__btn_corner20212324"
@@ -705,7 +694,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-8px">
 
                 <Button
                     android:id="@+id/gd__btn_split2324"
@@ -722,7 +711,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-7px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_corner23242627"
@@ -739,7 +728,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-7px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split2627"
@@ -756,7 +745,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-7px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_corner26272930"
@@ -790,7 +779,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-10px">
 
                 <Button
                     android:id="@+id/gd__btn_corner29303233"
@@ -807,7 +796,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginLeft="-13px">
+                android:layout_marginLeft="-11px">
 
                 <Button
                     android:id="@+id/gd__btn_split3233"
@@ -840,7 +829,7 @@
                 android:id="@+id/gd__fl_split3536"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-7px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split3536"
@@ -856,136 +845,124 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="94px"
-            android:layout_marginTop="26px">
+            android:layout_marginTop="29px">
 
             <ImageView
                 android:id="@+id/gd__iv_number02"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="53px"
+                android:layout_marginLeft="62px"
                 android:onClick="clickNumber2" />
 
             <ImageView
                 android:id="@+id/gd__iv_number05"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="55px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="111.5px"
-                android:background="@drawable/gd_table_roulette_2row2_trans_black_selector"
+                android:layout_marginLeft="115px"
                 android:onClick="clickNumber5" />
 
             <ImageView
                 android:id="@+id/gd__iv_number08"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="55px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="170px"
-                android:background="@drawable/gd_table_roulette_2row3_trans_black_selector"
                 android:onClick="clickNumber8" />
 
             <ImageView
                 android:id="@+id/gd__iv_number11"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="228px"
-                android:background="@drawable/gd_table_roulette_2row4_trans_black_selector"
+                android:layout_marginLeft="226px"
                 android:onClick="clickNumber11" />
 
             <ImageView
                 android:id="@+id/gd__iv_number14"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="286.5px"
-                android:background="@drawable/gd_table_roulette_2row5_trans_black_selector"
+                android:layout_marginLeft="281px"
                 android:onClick="clickNumber14" />
 
             <ImageView
                 android:id="@+id/gd__iv_number17"
-                android:layout_width="51px"
-                android:layout_height="54px"
+                android:layout_width="55px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="345px"
-                android:background="@drawable/gd_table_roulette_2row6_trans_black_selector"
+                android:layout_marginLeft="333px"
                 android:onClick="clickNumber17" />
 
             <ImageView
                 android:id="@+id/gd__iv_number20"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="403px"
-                android:background="@drawable/gd_table_roulette_2row7_trans_black_selector"
+                android:layout_marginLeft="390px"
                 android:onClick="clickNumber20" />
 
             <ImageView
                 android:id="@+id/gd__iv_number23"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="54px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="461px"
-                android:background="@drawable/gd_table_roulette_2row8_trans_black_selector"
+                android:layout_marginLeft="443px"
                 android:onClick="clickNumber23" />
 
             <ImageView
                 android:id="@+id/gd__iv_number26"
-                android:layout_width="51px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="520px"
-                android:background="@drawable/gd_table_roulette_2row9_trans_black_selector"
+                android:layout_marginLeft="499px"
                 android:onClick="clickNumber26" />
 
             <ImageView
                 android:id="@+id/gd__iv_number29"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="578px"
-                android:background="@drawable/gd_table_roulette_2row10_trans_black_selector"
+                android:layout_marginLeft="554px"
                 android:onClick="clickNumber29" />
 
             <ImageView
                 android:id="@+id/gd__iv_number32"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="636px"
-                android:background="@drawable/gd_table_roulette_2row11_trans_black_selector"
+                android:layout_marginLeft="608px"
                 android:onClick="clickNumber32" />
 
             <ImageView
                 android:id="@+id/gd__iv_number35"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="55px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="695px"
-                android:background="@drawable/gd_table_roulette_2row12_trans_black_selector"
+                android:layout_marginLeft="661px"
                 android:onClick="clickNumber35" />
 
             <ImageView
                 android:id="@+id/gd__iv_2row1x2"
-                android:layout_width="42px"
-                android:layout_height="54px"
+                android:layout_width="80px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom|right"
-                android:layout_marginRight="5px"
-                android:background="@drawable/gd_table_roulette_1row_1x2_trans_black_selector"
+                android:layout_marginRight="3px"
                 android:onClick="click2Row1x2" />
 
             <FrameLayout
                 android:id="@+id/gd__fl_split0002"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="30px">
+                android:layout_marginLeft="40px">
 
                 <Button
                     android:id="@+id/gd__btn_split0002"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="26px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0002" />
             </FrameLayout>
@@ -994,13 +971,13 @@
                 android:id="@+id/gd__fl_number02"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="65px" />
+                android:layout_marginLeft="73px" />
 
             <FrameLayout
                 android:id="@+id/gd__fl_split0205"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="88px"
+                android:layout_marginLeft="95px"
 
                 >
 
@@ -1018,7 +995,7 @@
                 android:id="@+id/gd__fl_number05"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="124px"
+                android:layout_marginLeft="128px"
 
                 ></FrameLayout>
 
@@ -1026,7 +1003,7 @@
                 android:id="@+id/gd__fl_split0508"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="148px"
+                android:layout_marginLeft="150px"
 
                 >
 
@@ -1035,7 +1012,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="26px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0508" />
             </FrameLayout>
@@ -1044,7 +1021,7 @@
                 android:id="@+id/gd__fl_number08"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="182px"></FrameLayout>
+                android:layout_marginLeft="184px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split0811"
@@ -1068,7 +1045,7 @@
                 android:id="@+id/gd__fl_number11"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="240px"
+                android:layout_marginLeft="237px"
 
                 ></FrameLayout>
 
@@ -1077,14 +1054,14 @@
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="116px">
+                android:layout_marginRight="120px">
 
                 <Button
                     android:id="@+id/gd__btn_split1114"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="26px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1114" />
             </FrameLayout>
@@ -1094,21 +1071,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="87px"></FrameLayout>
+                android:layout_marginRight="93px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split1417"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="58px">
+                android:layout_marginRight="66px">
 
                 <Button
                     android:id="@+id/gd__btn_split1417"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="26px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1417" />
             </FrameLayout>
@@ -1118,21 +1095,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="29px"></FrameLayout>
+                android:layout_marginRight="38px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split1720"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="1px">
+                android:layout_marginRight="11px">
 
                 <Button
                     android:id="@+id/gd__btn_split1720"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="26px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1720" />
             </FrameLayout>
@@ -1142,21 +1119,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="30px"></FrameLayout>
+                android:layout_marginLeft="17px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2023"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="59px">
+                android:layout_marginLeft="44px">
 
                 <Button
                     android:id="@+id/gd__btn_split2023"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="25px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2023" />
             </FrameLayout>
@@ -1166,21 +1143,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="89px"></FrameLayout>
+                android:layout_marginLeft="72px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2326"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="118px">
+                android:layout_marginLeft="100px">
 
                 <Button
                     android:id="@+id/gd__btn_split2326"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="25px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2326" />
             </FrameLayout>
@@ -1190,21 +1167,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="146px"></FrameLayout>
+                android:layout_marginLeft="125px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2629"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="175px">
+                android:layout_marginLeft="155px">
 
                 <Button
                     android:id="@+id/gd__btn_split2629"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="25px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2629" />
             </FrameLayout>
@@ -1214,21 +1191,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="205px"></FrameLayout>
+                android:layout_marginLeft="179px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2932"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="145px">
+                android:layout_marginRight="172px">
 
                 <Button
                     android:id="@+id/gd__btn_split2932"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="25px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2932" />
             </FrameLayout>
@@ -1238,21 +1215,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="122px"></FrameLayout>
+                android:layout_marginRight="150px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split3235"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="87px">
+                android:layout_marginRight="117px">
 
                 <Button
                     android:id="@+id/gd__btn_split3235"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="25px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit3235" />
             </FrameLayout>
@@ -1262,14 +1239,14 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="64px"></FrameLayout>
+                android:layout_marginRight="96px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_2row1x2"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="11px"></FrameLayout>
+                android:layout_marginRight="31px"></FrameLayout>
         </FrameLayout>
 
         <LinearLayout
@@ -1282,7 +1259,7 @@
                 android:id="@+id/gd__fl_street000102"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="34px"
+                android:layout_marginLeft="44px"
 
                 >
 
@@ -1307,7 +1284,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0102" />
             </FrameLayout>
@@ -1316,7 +1293,7 @@
                 android:id="@+id/gd__fl_corner01020405"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-6px"
+                android:layout_marginLeft="-7px"
 
                 >
 
@@ -1325,7 +1302,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner01020405" />
             </FrameLayout>
@@ -1334,14 +1311,14 @@
                 android:id="@+id/gd__fl_split0405"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-8px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split0405"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0405" />
             </FrameLayout>
@@ -1350,7 +1327,7 @@
                 android:id="@+id/gd__fl_corner04050708"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-7px"
+                android:layout_marginLeft="-9px"
 
                 >
 
@@ -1359,7 +1336,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner04050708" />
             </FrameLayout>
@@ -1368,7 +1345,7 @@
                 android:id="@+id/gd__fl_split0708"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-6px"
+                android:layout_marginLeft="-7px"
 
                 >
 
@@ -1377,7 +1354,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0708" />
             </FrameLayout>
@@ -1386,7 +1363,7 @@
                 android:id="@+id/gd__fl_corner07081011"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-7px"
+                android:layout_marginLeft="-10px"
 
                 >
 
@@ -1395,7 +1372,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner07081011" />
             </FrameLayout>
@@ -1404,7 +1381,7 @@
                 android:id="@+id/gd__fl_split1011"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-7px"
+                android:layout_marginLeft="-10px"
 
                 >
 
@@ -1413,7 +1390,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1011" />
             </FrameLayout>
@@ -1423,7 +1400,7 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-7px"
+                android:layout_marginLeft="-8px"
 
                 >
 
@@ -1432,7 +1409,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner10111314" />
 
@@ -1442,14 +1419,14 @@
                 android:id="@+id/gd__fl_split1314"
                 android:layout_width="35px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split1314"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1314" />
             </FrameLayout>
@@ -1466,7 +1443,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner13141617" />
             </FrameLayout>
@@ -1476,14 +1453,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-7px">
+                android:layout_marginLeft="-10px">
 
                 <Button
                     android:id="@+id/gd__btn_split1617"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1617" />
             </FrameLayout>
@@ -1493,14 +1470,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-7px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_corner16171920"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner16171920" />
             </FrameLayout>
@@ -1510,14 +1487,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-8px">
 
                 <Button
                     android:id="@+id/gd__btn_split1920"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1920" />
             </FrameLayout>
@@ -1527,14 +1504,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_corner19202223"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner19202223" />
             </FrameLayout>
@@ -1544,14 +1521,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split2223"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2223" />
             </FrameLayout>
@@ -1561,14 +1538,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-8px">
 
                 <Button
                     android:id="@+id/gd__btn_corner22232526"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner22232526" />
             </FrameLayout>
@@ -1578,14 +1555,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split2526"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2526" />
             </FrameLayout>
@@ -1595,14 +1572,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_corner25262829"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner25262829" />
             </FrameLayout>
@@ -1612,14 +1589,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_split2829"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2829" />
             </FrameLayout>
@@ -1629,14 +1606,14 @@
                 android:layout_width="35px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginLeft="-6px">
+                android:layout_marginLeft="-9px">
 
                 <Button
                     android:id="@+id/gd__btn_corner28293132"
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner28293132" />
             </FrameLayout>
@@ -1653,7 +1630,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit3132" />
             </FrameLayout>
@@ -1670,7 +1647,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickCorner31323435" />
             </FrameLayout>
@@ -1687,7 +1664,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="21px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit3435" />
             </FrameLayout>
@@ -1696,136 +1673,124 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="94px"
-            android:layout_marginTop="87px">
+            android:layout_marginTop="88px">
 
             <ImageView
                 android:id="@+id/gd__iv_number01"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="53px"
+                android:layout_marginLeft="62px"
                 android:onClick="clickNumber1" />
 
             <ImageView
                 android:id="@+id/gd__iv_number04"
-                android:layout_width="51px"
-                android:layout_height="54px"
+                android:layout_width="55px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="112px"
-                android:background="@drawable/gd_table_roulette_2row2_trans_black_selector"
+                android:layout_marginLeft="115px"
                 android:onClick="clickNumber4" />
 
             <ImageView
                 android:id="@+id/gd__iv_number07"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="55px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="170px"
-                android:background="@drawable/gd_table_roulette_2row3_trans_black_selector"
                 android:onClick="clickNumber7" />
 
             <ImageView
                 android:id="@+id/gd__iv_number10"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="228px"
-                android:background="@drawable/gd_table_roulette_2row4_trans_black_selector"
+                android:layout_marginLeft="226px"
                 android:onClick="clickNumber10" />
 
             <ImageView
                 android:id="@+id/gd__iv_number13"
-                android:layout_width="51px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="287px"
-                android:background="@drawable/gd_table_roulette_2row5_trans_black_selector"
+                android:layout_marginLeft="281px"
                 android:onClick="clickNumber13" />
 
             <ImageView
                 android:id="@+id/gd__iv_number16"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="345px"
-                android:background="@drawable/gd_table_roulette_2row6_trans_black_selector"
+                android:layout_marginLeft="335px"
                 android:onClick="clickNumber16" />
 
             <ImageView
                 android:id="@+id/gd__iv_number19"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="55px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="403px"
-                android:background="@drawable/gd_table_roulette_2row7_trans_black_selector"
+                android:layout_marginLeft="388px"
                 android:onClick="clickNumber19" />
 
             <ImageView
                 android:id="@+id/gd__iv_number22"
-                android:layout_width="51px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="462px"
-                android:background="@drawable/gd_table_roulette_2row8_trans_black_selector"
+                android:layout_marginLeft="444px"
                 android:onClick="clickNumber22" />
 
             <ImageView
                 android:id="@+id/gd__iv_number25"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="520px"
-                android:background="@drawable/gd_table_roulette_2row9_trans_black_selector"
+                android:layout_marginLeft="499px"
                 android:onClick="clickNumber25" />
 
             <ImageView
                 android:id="@+id/gd__iv_number28"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="578px"
-                android:background="@drawable/gd_table_roulette_2row10_trans_black_selector"
+                android:layout_marginLeft="554px"
                 android:onClick="clickNumber28" />
 
             <ImageView
                 android:id="@+id/gd__iv_number31"
-                android:layout_width="51px"
-                android:layout_height="54px"
+                android:layout_width="53px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="637px"
-                android:background="@drawable/gd_table_roulette_2row11_trans_black_selector"
+                android:layout_marginLeft="608px"
                 android:onClick="clickNumber31" />
 
             <ImageView
                 android:id="@+id/gd__iv_number34"
-                android:layout_width="52px"
-                android:layout_height="54px"
+                android:layout_width="54px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="695px"
-                android:background="@drawable/gd_table_roulette_2row12_trans_black_selector"
+                android:layout_marginLeft="662px"
                 android:onClick="clickNumber34" />
 
             <ImageView
                 android:id="@+id/gd__iv_3row1x2"
-                android:layout_width="42px"
-                android:layout_height="54px"
+                android:layout_width="80px"
+                android:layout_height="58px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="753px"
-                android:background="@drawable/gd_table_roulette_1row_1x2_trans_black_selector"
+                android:layout_marginLeft="716px"
                 android:onClick="click3Row1x2" />
 
             <FrameLayout
                 android:id="@+id/gd__fl_split0001"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="30px">
+                android:layout_marginLeft="40px">
 
                 <Button
                     android:id="@+id/gd__btn_split0001"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0001" />
             </FrameLayout>
@@ -1834,7 +1799,7 @@
                 android:id="@+id/gd__fl_number01"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="64px"
+                android:layout_marginLeft="74px"
 
                 ></FrameLayout>
 
@@ -1842,7 +1807,7 @@
                 android:id="@+id/gd__fl_split0104"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="88px"
+                android:layout_marginLeft="98px"
 
                 >
 
@@ -1851,7 +1816,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0104" />
             </FrameLayout>
@@ -1860,7 +1825,7 @@
                 android:id="@+id/gd__fl_number04"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="123px"
+                android:layout_marginLeft="128px"
 
                 ></FrameLayout>
 
@@ -1868,7 +1833,7 @@
                 android:id="@+id/gd__fl_split0407"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="147px"
+                android:layout_marginLeft="149px"
 
                 >
 
@@ -1877,7 +1842,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0407" />
             </FrameLayout>
@@ -1886,7 +1851,7 @@
                 android:id="@+id/gd__fl_number07"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="182px"
+                android:layout_marginLeft="183px"
 
                 ></FrameLayout>
 
@@ -1903,7 +1868,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit0710" />
             </FrameLayout>
@@ -1912,7 +1877,7 @@
                 android:id="@+id/gd__fl_number10"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="240px"
+                android:layout_marginLeft="238px"
 
                 ></FrameLayout>
 
@@ -1921,14 +1886,14 @@
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="116px">
+                android:layout_marginRight="120px">
 
                 <Button
                     android:id="@+id/gd__btn_split1013"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1013" />
             </FrameLayout>
@@ -1938,21 +1903,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="87px"></FrameLayout>
+                android:layout_marginRight="94px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split1316"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="58px">
+                android:layout_marginRight="66px">
 
                 <Button
                     android:id="@+id/gd__btn_split1316"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1316" />
             </FrameLayout>
@@ -1962,21 +1927,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="29px"></FrameLayout>
+                android:layout_marginRight="38px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split1619"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="1px">
+                android:layout_marginRight="11px">
 
                 <Button
                     android:id="@+id/gd__btn_split1619"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1619" />
             </FrameLayout>
@@ -1986,21 +1951,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="30px"></FrameLayout>
+                android:layout_marginLeft="17px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split1922"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="59px">
+                android:layout_marginLeft="43px">
 
                 <Button
                     android:id="@+id/gd__btn_split1922"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit1922" />
             </FrameLayout>
@@ -2010,21 +1975,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="87px"></FrameLayout>
+                android:layout_marginLeft="72px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2225"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="117px">
+                android:layout_marginLeft="100px">
 
                 <Button
                     android:id="@+id/gd__btn_split2225"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2225" />
             </FrameLayout>
@@ -2034,21 +1999,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="147px"></FrameLayout>
+                android:layout_marginLeft="124px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2528"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="176px">
+                android:layout_marginLeft="153px">
 
                 <Button
                     android:id="@+id/gd__btn_split2528"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2528" />
             </FrameLayout>
@@ -2058,21 +2023,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="205px"></FrameLayout>
+                android:layout_marginLeft="180px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split2831"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="145px">
+                android:layout_marginRight="172px">
 
                 <Button
                     android:id="@+id/gd__btn_split2831"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit2831" />
             </FrameLayout>
@@ -2082,21 +2047,21 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="122px"></FrameLayout>
+                android:layout_marginRight="150px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_split3134"
                 android:layout_width="42px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="87px">
+                android:layout_marginRight="117px">
 
                 <Button
                     android:id="@+id/gd__btn_split3134"
                     android:layout_width="match_parent"
                     android:layout_height="23px"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14px"
+                    android:layout_marginTop="15px"
                     android:background="@drawable/rectangle_transparent"
                     android:onClick="clickSplit3134" />
             </FrameLayout>
@@ -2106,14 +2071,14 @@
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="63px"></FrameLayout>
+                android:layout_marginRight="96px"></FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_3row1x2"
                 android:layout_width="30px"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="10px"></FrameLayout>
+                android:layout_marginRight="30px"></FrameLayout>
         </FrameLayout>
 
         <LinearLayout
@@ -2125,7 +2090,7 @@
                 android:id="@+id/gd__fl_corner00010203"
                 android:layout_width="35px"
                 android:layout_height="77px"
-                android:layout_marginLeft="34px"
+                android:layout_marginLeft="44px"
 
                 >
 
@@ -2143,8 +2108,7 @@
                 android:id="@+id/gd__fl_street010203"
                 android:layout_width="25px"
                 android:layout_height="77px"
-
-                >
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_street010203"
@@ -2177,8 +2141,7 @@
                 android:id="@+id/gd__fl_street040506"
                 android:layout_width="32px"
                 android:layout_height="77px"
-
-                >
+                android:layout_marginLeft="-3px">
 
                 <Button
                     android:id="@+id/gd__btn_street040506"
@@ -2195,8 +2158,7 @@
 
                 android:layout_width="27px"
                 android:layout_height="77px"
-
-                >
+                android:layout_marginLeft="-2px">
 
                 <Button
                     android:id="@+id/gd__btn_line040506070809"
@@ -2229,8 +2191,7 @@
                 android:id="@+id/gd__fl_line070809101112"
                 android:layout_width="25px"
                 android:layout_height="77px"
-
-                >
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_line070809101112"
@@ -2246,8 +2207,7 @@
                 android:id="@+id/gd__fl_street101112"
                 android:layout_width="33px"
                 android:layout_height="77px"
-
-                >
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_street101112"
@@ -2280,7 +2240,8 @@
                 android:id="@+id/gd__fl_street131415"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_street131415"
@@ -2296,7 +2257,8 @@
                 android:id="@+id/gd__fl_line131415161718"
                 android:layout_width="26px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-3px">
 
                 <Button
                     android:id="@+id/gd__btn_line131415161718"
@@ -2312,7 +2274,8 @@
                 android:id="@+id/gd__fl_street161718"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-2px">
 
                 <Button
                     android:id="@+id/gd__btn_street161718"
@@ -2328,7 +2291,8 @@
                 android:id="@+id/gd__fl_line161718192021"
                 android:layout_width="25px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-2px">
 
                 <Button
                     android:id="@+id/gd__btn_line161718192021"
@@ -2344,7 +2308,8 @@
                 android:id="@+id/gd__fl_street192021"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-2px">
 
                 <Button
                     android:id="@+id/gd__btn_street192021"
@@ -2360,7 +2325,8 @@
                 android:id="@+id/gd__fl_line192021222324"
                 android:layout_width="26px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-2px">
 
                 <Button
                     android:id="@+id/gd__btn_line192021222324"
@@ -2376,7 +2342,8 @@
                 android:id="@+id/gd__fl_street222324"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-2px">
 
                 <Button
                     android:id="@+id/gd__btn_street222324"
@@ -2392,7 +2359,8 @@
                 android:id="@+id/gd__fl_line222324252627"
                 android:layout_width="25px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-3px">
 
                 <Button
                     android:id="@+id/gd__btn_line222324252627"
@@ -2408,7 +2376,8 @@
                 android:id="@+id/gd__fl_street252627"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-3px">
 
                 <Button
                     android:id="@+id/gd__btn_street252627"
@@ -2440,7 +2409,8 @@
                 android:id="@+id/gd__fl_street282930"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="-3px">
 
                 <Button
                     android:id="@+id/gd__btn_street282930"
@@ -2456,7 +2426,8 @@
                 android:id="@+id/gd__fl_line282930313233"
                 android:layout_width="26px"
                 android:layout_height="77px"
-                android:layout_gravity="right">
+                android:layout_gravity="right"
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_line282930313233"
@@ -2472,7 +2443,8 @@
                 android:id="@+id/gd__fl_street313233"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="right">
+                android:layout_gravity="right"
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_street313233"
@@ -2488,7 +2460,8 @@
                 android:id="@+id/gd__fl_line313233343536"
                 android:layout_width="26px"
                 android:layout_height="77px"
-                android:layout_gravity="right">
+                android:layout_gravity="right"
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_line313233343536"
@@ -2504,7 +2477,8 @@
                 android:id="@+id/gd__fl_street343536"
                 android:layout_width="33px"
                 android:layout_height="77px"
-                android:layout_gravity="right">
+                android:layout_gravity="right"
+                android:layout_marginLeft="-4px">
 
                 <Button
                     android:id="@+id/gd__btn_street343536"
@@ -2525,52 +2499,50 @@
 
             <FrameLayout
                 android:id="@+id/gd__fl_dozen1"
-                android:layout_width="229px"
+                android:layout_width="218px"
                 android:layout_height="87px"
-                android:layout_marginLeft="52px">
+                android:layout_marginLeft="61px">
 
                 <ImageView
                     android:id="@+id/gd__iv_dozen1"
                     android:layout_width="match_parent"
-                    android:layout_height="37px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="20px"
-                    android:background="@drawable/gd_table_roulette_dozen_1_12_trans_black_selector"
                     android:clickable="true"
                     android:onClick="clickDozen1" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_dozen2"
-                android:layout_width="228px"
+                android:layout_width="218px"
                 android:layout_height="87px"
-                android:layout_gravity="bottom|center_horizontal">
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginRight="11px">
 
                 <ImageView
                     android:id="@+id/gd__iv_dozen2"
                     android:layout_width="match_parent"
-                    android:layout_height="37px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="20px"
-                    android:background="@drawable/gd_table_roulette_dozen_13_24_trans_black_selector"
                     android:clickable="true"
                     android:onClick="clickDozen2" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_dozen3"
-                android:layout_width="229px"
+                android:layout_width="218px"
                 android:layout_height="87px"
                 android:layout_gravity="right|bottom"
-                android:layout_marginRight="53px">
+                android:layout_marginRight="83px">
 
                 <ImageView
                     android:id="@+id/gd__iv_dozen3"
                     android:layout_width="match_parent"
-                    android:layout_height="37px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="20px"
-                    android:background="@drawable/gd_table_roulette_dozen_25_36_trans_black_selector"
                     android:clickable="true"
                     android:onClick="clickDozen3" />
             </FrameLayout>
@@ -2584,109 +2556,103 @@
 
             <FrameLayout
                 android:id="@+id/gd__fl_low"
-                android:layout_width="112px"
+                android:layout_width="108px"
                 android:layout_height="80px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="53px">
+                android:layout_marginLeft="62px">
 
                 <ImageView
                     android:id="@+id/gd__iv_low"
                     android:layout_width="match_parent"
-                    android:layout_height="37px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="4px"
-                    android:background="@drawable/gd_table_roulette_1_18_trans_black_selector"
+                    android:layout_marginBottom="5px"
                     android:clickable="true"
                     android:onClick="clickLow" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_even"
-                android:layout_width="112px"
+                android:layout_width="108px"
                 android:layout_height="80px"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="169px">
+                android:layout_marginLeft="171px">
 
                 <ImageView
                     android:id="@+id/gd__iv_even"
                     android:layout_width="match_parent"
-                    android:layout_height="37px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="4px"
-                    android:background="@drawable/gd_table_roulette_genap_trans_black_selector"
+                    android:layout_marginBottom="5px"
                     android:clickable="true"
                     android:onClick="clickEven" />
             </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/gd__fl_black"
-                android:layout_width="110px"
-                android:layout_height="80px"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginRight="58px">
-
-                <ImageView
-                    android:id="@+id/gd__iv_black"
-                    android:layout_width="match_parent"
-                    android:layout_height="36px"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="4px"
-                    android:background="@drawable/gd_table_roulette_black2_trans_black_selector"
-                    android:clickable="true"
-                    android:onClick="clickBlack" />
-            </FrameLayout>
 
             <FrameLayout
-
                 android:id="@+id/gd__fl_red"
-                android:layout_width="111px"
+                android:layout_width="108px"
                 android:layout_height="80px"
                 android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginLeft="59px">
+                android:layout_marginRight="65px">
 
                 <ImageView
                     android:id="@+id/gd__iv_red"
                     android:layout_width="match_parent"
-                    android:layout_height="36px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="4px"
-                    android:background="@drawable/gd_table_roulette_red2_trans_black_selector"
+                    android:layout_marginBottom="5px"
                     android:clickable="true"
                     android:onClick="clickRed" />
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/gd__fl_black"
+                android:layout_width="108px"
+                android:layout_height="80px"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginLeft="44px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="40px"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5px"
+                    android:clickable="true"
+                    android:onClick="clickBlack" />
+            </FrameLayout>
+
+            <FrameLayout
                 android:id="@+id/gd__fl_odd"
-                android:layout_width="112px"
+                android:layout_width="108px"
                 android:layout_height="80px"
                 android:layout_gravity="right|bottom"
-                android:layout_marginRight="169px">
+                android:layout_marginRight="192px">
 
                 <ImageView
                     android:id="@+id/gd__iv_odd"
                     android:layout_width="match_parent"
-                    android:layout_height="36px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="4px"
-                    android:background="@drawable/gd_table_roulette_ganjil_trans_black_selector"
+                    android:layout_marginBottom="5px"
                     android:clickable="true"
                     android:onClick="clickOdd" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/gd__fl_high"
-                android:layout_width="112px"
+                android:layout_width="108px"
                 android:layout_height="80px"
                 android:layout_gravity="right|bottom"
-                android:layout_marginRight="52px">
+                android:layout_marginRight="84px">
 
                 <ImageView
                     android:id="@+id/gd__iv_high"
                     android:layout_width="match_parent"
-                    android:layout_height="37px"
+                    android:layout_height="40px"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="4px"
-                    android:background="@drawable/gd_table_roulette_19_36_trans_black_selector"
+                    android:layout_marginBottom="5px"
                     android:clickable="true"
                     android:onClick="clickHigh" />
             </FrameLayout>
@@ -2718,8 +2684,8 @@
             android:layout_width="match_parent"
             android:layout_height="58px"
             android:layout_marginLeft="122px"
-            android:layout_marginRight="122px"
             android:layout_marginTop="1px"
+            android:layout_marginRight="122px"
             android:orientation="horizontal">
 
             <ImageView
@@ -2807,16 +2773,16 @@
             android:layout_width="67px"
             android:layout_height="74px"
             android:layout_gravity="right"
-            android:layout_marginRight="51px"
-            android:layout_marginTop="1px" />
+            android:layout_marginTop="1px"
+            android:layout_marginRight="51px" />
 
         <ImageView
             android:id="@+id/gd__iv_number03_new"
             android:layout_width="74px"
             android:layout_height="81px"
             android:layout_gravity="right"
-            android:layout_marginRight="7px"
-            android:layout_marginTop="28px" />
+            android:layout_marginTop="28px"
+            android:layout_marginRight="7px" />
 
         <ImageView
             android:id="@+id/gd__iv_number10_new"
@@ -2838,32 +2804,32 @@
             android:layout_width="61px"
             android:layout_height="75px"
             android:layout_gravity="right"
-            android:layout_marginRight="1px"
-            android:layout_marginTop="97px" />
+            android:layout_marginTop="97px"
+            android:layout_marginRight="1px" />
 
         <ImageView
             android:id="@+id/gd__iv_number08_new"
             android:layout_width="68px"
             android:layout_height="78px"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="19px"
-            android:layout_marginLeft="18px" />
+            android:layout_marginLeft="18px"
+            android:layout_marginBottom="19px" />
 
         <ImageView
             android:id="@+id/gd__iv_number30_new"
             android:layout_width="54px"
             android:layout_height="69px"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="1px"
-            android:layout_marginLeft="64px" />
+            android:layout_marginLeft="64px"
+            android:layout_marginBottom="1px" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="58px"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="1px"
             android:layout_marginLeft="122px"
-            android:layout_marginRight="122px">
+            android:layout_marginRight="122px"
+            android:layout_marginBottom="1px">
 
 
             <ImageView
@@ -2950,16 +2916,16 @@
             android:layout_width="67px"
             android:layout_height="75px"
             android:layout_gravity="right|bottom"
-            android:layout_marginBottom="1px"
-            android:layout_marginRight="51px" />
+            android:layout_marginRight="51px"
+            android:layout_marginBottom="1px" />
 
         <ImageView
             android:id="@+id/gd__iv_number00_new"
             android:layout_width="73px"
             android:layout_height="85px"
             android:layout_gravity="right|bottom"
-            android:layout_marginBottom="28px"
-            android:layout_marginRight="7px" />
+            android:layout_marginRight="7px"
+            android:layout_marginBottom="28px" />
 
         <FrameLayout
             android:id="@+id/gd__fl_number05_new"
@@ -3088,8 +3054,8 @@
             android:layout_width="52px"
             android:layout_height="91px"
             android:layout_gravity="right"
-            android:layout_marginRight="15px"
             android:layout_marginTop="20px"
+            android:layout_marginRight="15px"
             android:onClick="clickNumber3"></FrameLayout>
 
         <FrameLayout
@@ -3120,8 +3086,8 @@
             android:layout_width="60px"
             android:layout_height="90px"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="18px"
             android:layout_marginLeft="22px"
+            android:layout_marginBottom="18px"
             android:onClick="clickNumber8"></FrameLayout>
 
         <FrameLayout
@@ -3248,8 +3214,8 @@
             android:layout_width="72px"
             android:layout_height="91px"
             android:layout_gravity="right|bottom"
-            android:layout_marginBottom="30px"
             android:layout_marginRight="8px"
+            android:layout_marginBottom="30px"
             android:onClick="clickNumber0"></FrameLayout>
 
         <FrameLayout
@@ -3326,8 +3292,8 @@
             android:layout_width="140px"
             android:layout_height="143px"
             android:layout_gravity="right"
-            android:layout_marginRight="238px"
-            android:layout_marginTop="63px">
+            android:layout_marginTop="63px"
+            android:layout_marginRight="238px">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -3362,8 +3328,8 @@
             android:layout_width="155px"
             android:layout_height="121px"
             android:layout_gravity="right"
-            android:layout_marginRight="81px"
-            android:layout_marginTop="74px">
+            android:layout_marginTop="74px"
+            android:layout_marginRight="81px">
 
             <ImageView
                 android:layout_width="match_parent"

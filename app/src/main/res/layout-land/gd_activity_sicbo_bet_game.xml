@@ -194,7 +194,7 @@
                 android:divider="@null"
                 android:scrollbars="none" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/gd__tv_table_bet_sure"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
@@ -202,7 +202,7 @@
                 android:clickable="true"
                 android:visibility="gone" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/gd__tv_table_bet_cancel"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
@@ -211,7 +211,7 @@
                 android:clickable="true"
                 android:visibility="gone" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/gd__tv_table_bet_replay"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
@@ -362,7 +362,7 @@
         android:layout_height="0dp"
         android:layout_gravity="left"
         android:layout_marginTop="37dp"
-        android:background="@drawable/gd_bg_slide"
+        android:background="@drawable/gd_bg_slide_r_s"
         android:orientation="horizontal">
 
         <LinearLayout

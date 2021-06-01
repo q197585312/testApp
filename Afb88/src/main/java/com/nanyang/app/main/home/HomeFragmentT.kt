@@ -167,20 +167,8 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
     }
 
 
-    private fun loadAllPic() {
-        (getBaseToolbarActivity() as MainActivity).loadingUrlPics(object :
-            MainPresenter.CallBack<AllBannerImagesBean?> {
-            @Throws(JSONException::class)
-            override fun onBack(data: AllBannerImagesBean?) {
-                loadUi()
-            }
-        })
-    }
 
-    private fun loadUi() {
-        /*initViewPager((baseActivity.application as AfbApplication).listMainBanners)
-        updateContent((baseActivity.application as AfbApplication).listMainPictures)*/
-    }
+
 
     private fun initHomeToolBar() {
         (baseActivity as BaseToolbarActivity<*>).toolbar!!.navigationIcon = null
@@ -195,95 +183,10 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         super.onHiddenChanged(hidden)
         if (!hidden) {
             initHomeToolBar()
+            updateTimer()
         }
     }
 
-
-    private fun initContentAdapter(data: List<MainBannersBean>) {
-/*
-        val layoutManager = GridLayoutManager(mContext, 3) //设置为一个3列的纵向网格布局
-        rvContent!!.layoutManager = layoutManager
-        adapter = object : BaseRecyclerAdapter<MainBannersBean?>(
-            mContext,
-            data,
-            R.layout.home_sport_item_image_text
-        ) {
-            override fun convert(
-                holder: MyRecyclerViewHolder,
-                position: Int,
-                item: MainBannersBean
-            ) {
-                val tv = holder.getView<TextView>(R.id.tv_text)
-                val tv_num = holder.getView<TextView>(R.id.tv_num)
-                holder.setImageByUrl(R.id.iv_pic, item.img)
-                val sportIdBean =
-                    getBaseToolbarActivity().app.getSportByG(item.g)
-                if (sportIdBean != null && sportIdBean.textRes > 0) {
-                    tv.text = getString(sportIdBean.textRes) //M_RAm1
-                    val textColor = sportIdBean.textColor
-                    tv.setTextColor(textColor)
-                } else {
-                    tv.text = "gd88Casino"
-                }
-                tv_num.visibility = View.GONE
-                if (jsonObjectNum != null) {
-                    if (!StringUtils.isNull(jsonObjectNum!!.optString("M_RAm" + item.dbid))) {
-                        tv_num.text = jsonObjectNum!!.optString("M_RAm" + item.dbid)
-                        tv_num.visibility = View.VISIBLE
-                    } else if (!StringUtils.isNull(jsonObjectNum!!.optString("M_TAm" + item.dbid))) {
-                        tv_num.text = jsonObjectNum!!.optString("M_TAm" + item.dbid)
-                        tv_num.visibility = View.VISIBLE
-                    } else if (!StringUtils.isNull(jsonObjectNum!!.optString("M_EAm" + item.dbid))) {
-                        tv_num.text = jsonObjectNum!!.optString("M_EAm" + item.dbid)
-                        tv_num.visibility = View.VISIBLE
-                    }
-                }
-            }
-        }
-        rvContent!!.adapter = adapter
-        adapter.setOnItemClickListener(object :
-            BaseRecyclerAdapter.OnItemClickListener<MainBannersBean?> {
-            override fun onItemClick(
-                view: View,
-                item: MainBannersBean,
-                position: Int
-            ) {
-                val g = item.g
-                if (getBaseToolbarActivity().app.updateOtherMap().containsKey(g)) {
-                    (baseActivity.presenter as MainPresenter).clickGdGameItem(g)
-                    return
-                }
-                val sportIdBean = getBaseToolbarActivity().app.getSportByG(g)
-                var menuItemInfo =
-                    MenuItemInfo<String?>(0, R.string.running)
-                menuItemInfo.type = "Running"
-                if (jsonObjectNum != null) {
-                    if (!StringUtils.isNull(jsonObjectNum!!.optString("M_RAm" + item.dbid))) {
-                        menuItemInfo =
-                            MenuItemInfo(0, R.string.running)
-                        menuItemInfo.setType("Running")
-                    } else if (!StringUtils.isNull(jsonObjectNum!!.optString("M_TAm" + item.dbid))) {
-                        menuItemInfo =
-                            MenuItemInfo(0, R.string.Today)
-                        menuItemInfo.setType("Today")
-                    } else if (!StringUtils.isNull(jsonObjectNum!!.optString("M_EAm" + item.dbid))) {
-                        menuItemInfo =
-                            MenuItemInfo(0, R.string.Early_All)
-                        menuItemInfo.type = "Early"
-                    }
-                }
-                if (sportIdBean == null) {
-                    ToastUtils.showLong("Server Error, wrong game GId")
-                    return
-                }
-                menuItemInfo.setParent(sportIdBean.type)
-                val b1 = Bundle()
-                b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo)
-                skipAct(sportIdBean.cls, b1)
-            }
-        })
-*/
-    }
 
     var hasInitNum = false
     private fun sortNotEmptyData() {

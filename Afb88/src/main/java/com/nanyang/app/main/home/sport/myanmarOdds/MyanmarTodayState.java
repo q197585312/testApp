@@ -24,10 +24,6 @@ public class MyanmarTodayState extends MyanmarState {
         return AppConstant.getInstance().HOST + "_view/MOddsGen2.ashx?ot=t&update=true&r=1425931029&ov=0&LID=";
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_SOCCER_MYANMAR_TODAY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

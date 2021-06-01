@@ -7,19 +7,15 @@ import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 
-import java.util.HashMap;
-
 /**
  * Created by ASUS on 2019/3/26.
  */
 
 public abstract class FiveMajorState extends SoccerCommonState {
-    HashMap<String, FiveMajorState> majorStateHashMap = new HashMap<>();
 
 
     public FiveMajorState(SportContract.View baseView) {
         super(baseView);
-//        majorStateHashMap.put()
     }
 
     @Override

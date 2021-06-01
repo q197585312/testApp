@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.poll;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -16,11 +15,6 @@ public class PoolRunningState extends PoolState {
         super(baseView);
     }
 
-
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_POOL_RUNING;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

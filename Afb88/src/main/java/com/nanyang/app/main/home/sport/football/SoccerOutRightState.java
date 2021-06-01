@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.football;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -21,9 +20,6 @@ public class SoccerOutRightState extends OutRightState {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.football);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FOOTBALL_OUT_RIGHT + "&ot=e";
-    }
+
 
 }

@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.game4d;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -17,10 +16,6 @@ public class Game4dRunningState extends Game4dState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_4D_SPECIAL_RUNNING;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

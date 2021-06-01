@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.USFootball;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballRunningState;
@@ -21,10 +20,7 @@ public class USFootballRunningState extends BasketballRunningState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_US_FOOTBALL_RUNNING;
-    }
+
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.golf;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -15,10 +14,7 @@ public class GolfTodayState extends GolfState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_GOLF_TODAY;
-    }
+
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

@@ -1,7 +1,6 @@
 package gaming178.com.casinogame.Activity;
 
 import android.animation.Animator;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -10,12 +9,13 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
@@ -116,11 +116,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     FrameLayout fl_baccarat_parent;
 
     @BindView(R2.id.gd__tv_table_bet_replay)
-    TextView tvTableBetReplay;
+    ImageView tvTableBetReplay;
     @BindView(R2.id.gd__tv_table_bet_sure)
-    TextView tvTableBetSure;
+    ImageView tvTableBetSure;
     @BindView(R2.id.gd__tv_table_bet_cancel)
-    TextView tvTableBetCancel;
+    ImageView tvTableBetCancel;
 
     @BindView(R2.id.gd__leftPanel1)
     Panel leftPanel1;
@@ -569,6 +569,10 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     private boolean bGetStatus = true;
     private VideoHelper videoHelper;
     private boolean stateInit = false;
+
+    FrameLayout fl_vedio_location_parent;
+    FrameLayout fl_vedio_parent;
+    FrameLayout fl_surface_parent;
 
     public void clickLeftPanel(View view) {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -1274,6 +1278,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 threadUpdateWonMoney = new Thread(updateWonMoney);
                 threadUpdateWonMoney.start();
             }
+            if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+                if (!isNeedBigVedio && fl_vedio_parent.getHeight() > fl_vedio_location_parent.getHeight()) {
+                    isNeedBigVedio = true;
+                    closeBigVedio();
+                } else {
+                    isNeedBigVedio = true;
+                }
+            }
+
 //            if(updateGameNumber == null){
 //                updateGameNumber = new UpdateGameNumber();
 //                threadUpdateGameNumber = new Thread(updateGameNumber);
@@ -1338,6 +1351,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             //通过发消息的方式解决Activity还没有显示的时候，弹出结果窗口出现异常的问题
             handler.sendEmptyMessageDelayed(HandlerCode.SHOW_POPUP_RESULTS_WINDOW, 0);
 //            tablePop.setTablesData(afbApp, games);
+            if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+                if (isNeedBigVedio && fl_vedio_parent.getHeight() <= fl_vedio_location_parent.getHeight()) {
+                    isNeedBigVedio = false;
+                    openBigVedio();
+                } else {
+                    isNeedBigVedio = false;
+                }
+            }
+
         } else if (mAppViewModel.getSicbo01().getGameStatus() == 2) {
             if (bigBet > 0 || smallBet > 0 || oddBet > 0 || evenBet > 0 || alldiceBet > 0 || waidiceBet1 > 0 || waidiceBet2 > 0 || waidiceBet3 > 0 || waidiceBet4 > 0 || waidiceBet5 > 0
                     || waidiceBet6 > 0 || pairsBet1 > 0 || pairsBet2 > 0 || pairsBet3 > 0 || pairsBet4 > 0 || pairsBet5 > 0 || pairsBet6 > 0
@@ -1361,6 +1383,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
             //需要隐藏下注区域，看到视频里出结果
 //            hideBetPanel();
+            if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+                if (isNeedBigVedio && fl_vedio_parent.getHeight() <= fl_vedio_location_parent.getHeight()) {
+                    isNeedBigVedio = false;
+                    openBigVedio();
+                } else {
+                    isNeedBigVedio = false;
+                }
+            }
+
         }
      /*   if (!gameNumber.equals(mAppViewModel.getSicbo01().getGameNumber())) {
             clearAllChips();
@@ -1391,6 +1422,34 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 if (location2[1] >= heightPixels && isCanShowChip) {
                     isCanShowChip = false;
                     WidgetUtil.chipTranslateAnimation(ll_chip, 0, ScreenUtil.dip2px(mContext, -44), new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanShowChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] >= portraitScreenWidth && isCanShowChip) {
+                    isCanShowChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
 
@@ -1457,6 +1516,35 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                         }
                     });
                 }
+            } else {
+                int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
+                int[] location2 = new int[2];
+                ll_chip.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
+                if (location2[0] == 0 && isCanHideChip) {
+                    isCanHideChip = false;
+                    WidgetUtil.chipPortraitTranslateAnimation(ll_chip, 0, portraitScreenWidth, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            isCanHideChip = true;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }
+
             }
 //            ll_bet_btn_parent.setVisibility(View.GONE);
             sicboTimer = 0;
@@ -1681,12 +1769,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
     public void initAutoSize() {
         int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation != Configuration.ORIENTATION_LANDSCAPE) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             AutoLayoutConifg.getInstance().setSize(this);
             AutoLayoutConifg.getInstance().setmDesignWidth(880);
             AutoLayoutConifg.getInstance().setmDesignHeight(450);
+        } else {
+            AutoLayoutConifg.getInstance().setSize(this);
+            AutoLayoutConifg.getInstance().setmDesignWidth(450);
+            AutoLayoutConifg.getInstance().setmDesignHeight(880);
         }
     }
 
@@ -1737,9 +1827,23 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void initData(Bundle savedInstanceState) {
         mAppViewModel.getSicbo01().setResult("");
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            toolbar.setNavigationIcon(R.mipmap.roulette_p_back);
+            toolbar.setBackgroundResource(R.mipmap.roulette_p_title);
+            rightTableTv.setVisibility(View.VISIBLE);
+            imgBack.setBackgroundResource(R.mipmap.gd_back_black);
+        } else {
+            toolbar.setNavigationIcon(null);
+            toolbar.setBackgroundResource(R.color.transparent);
+            rouletteNumberTv.setVisibility(View.VISIBLE);
+            changeBetUiTv.setVisibility(View.VISIBLE);
+            imgBack.setBackgroundResource(R.mipmap.gd_back_black);
+        }
+        rightBetTv.setVisibility(View.VISIBLE);
+        rightWinLoseTv.setVisibility(View.VISIBLE);
+        rightBalanceTv.setVisibility(View.VISIBLE);
         limitPop = getIntent().getStringExtra("limit");
-        toolbar.setNavigationIcon(null);
-        imgBack.setBackgroundResource(R.mipmap.gd_back_black);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1751,7 +1855,6 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
         serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
         rightTv.setTextColor(getResources().getColor(R.color.white));
-        toolbar.setBackgroundResource(R.color.transparent);
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
         mPreview = findViewById(R.id.gd__surface);
@@ -1768,6 +1871,114 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         initUI();
         startUpdateStatusThread();
         setPercentageData(lv_percentage);
+        fl_vedio_location_parent = findViewById(R.id.gd__fl_vedio_location_parent);
+        fl_vedio_parent = findViewById(R.id.gd__fl_vedio_parent);
+        fl_surface_parent = findViewById(R.id.gd__fl_surface_parent);
+
+        lv_user_info.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+        lv_pool.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        isSlideInfo = false;
+                        break;
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                    case SCROLL_STATE_FLING:
+                        isSlideInfo = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+
+        if (fl_vedio_location_parent != null && fl_vedio_parent != null && fl_surface_parent != null) {
+            fl_vedio_location_parent.post(new Runnable() {
+                @Override
+                public void run() {
+                    int height = fl_vedio_location_parent.getHeight();
+                    ViewGroup.LayoutParams layoutParams = fl_vedio_parent.getLayoutParams();
+                    layoutParams.width = fl_vedio_location_parent.getWidth();
+                    layoutParams.height = height;
+                    fl_vedio_parent.setLayoutParams(layoutParams);
+                    fl_vedio_parent.setVisibility(View.VISIBLE);
+                }
+            });
+            fl_vedio_parent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (fl_vedio_parent.getHeight() <= fl_vedio_location_parent.getHeight()) {
+                        openBigVedio();
+                    } else {
+                        closeBigVedio();
+                    }
+                }
+            });
+        }
+    }
+
+    private boolean isSlideInfo = false;
+
+    private boolean isCanClickVedio = true;
+    private boolean isNeedBigVedio = true;
+
+    private void closeBigVedio() {
+        if (isCanClickVedio) {
+            isCanClickVedio = false;
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_vedio_parent.getLayoutParams();
+            layoutParams.width = fl_vedio_location_parent.getWidth();
+            layoutParams.height = fl_vedio_location_parent.getHeight();
+            fl_vedio_parent.setLayoutParams(layoutParams);
+            FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
+            mPreviewLayoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            mPreviewLayoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            mPreviewLayoutParams.topMargin = 0;
+            fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
+            fl_vedio_parent.setBackgroundResource(0);
+            isCanClickVedio = true;
+        }
+    }
+
+    private void openBigVedio() {
+        if (isCanClickVedio) {
+            isCanClickVedio = false;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_vedio_parent.getLayoutParams();
+                    FrameLayout.LayoutParams mPreviewLayoutParams = (FrameLayout.LayoutParams) fl_surface_parent.getLayoutParams();
+                    mPreviewLayoutParams.width = (int) (layoutParams.width * 2.8);
+                    mPreviewLayoutParams.height = (int) (layoutParams.height * 2.8);
+                    mPreviewLayoutParams.topMargin = ((int) (AutoUtils.getPercentHeight1px() * 40));
+                    fl_surface_parent.setLayoutParams(mPreviewLayoutParams);
+                    layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                    fl_vedio_parent.setLayoutParams(layoutParams);
+                    fl_vedio_parent.setBackgroundResource(R.drawable.gd_rectangle_trans_stroke_roulette_black);
+                    isCanClickVedio = true;
+                }
+            }, 500);
+        }
     }
 
     private void setPlayVideo() {
@@ -1780,7 +1991,9 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         };
 
         String path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getSicbo01().getVideoUrlIndex() + "/DX";
-//        path = "rtmp://202.36.58.169/live/LT01";
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            path = mAppViewModel.getUser().getVideoUrl() + "/" + "live/DXshu";
+        }
         videoHelper.setPlayUrl(path);
     }
 
@@ -2079,8 +2292,6 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         fl_baccarat_parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(mAppViewModel.getSicbo01().getGameStatus() == 2 ||mAppViewModel.getSicbo01().getGameStatus() == 5)
-//                    return;
                 parentClick();
             }
         });
@@ -2106,10 +2317,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     boolean isFirst = true;
 
     public void parentClick() {
-        if (imgBack.getVisibility() == View.VISIBLE)
-            displayAll(false);
-        else
-            displayAll(true);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (imgBack.getVisibility() == View.VISIBLE) {
+                displayAll(false);
+            } else {
+                displayAll(true);
+            }
+        } else {
+            showHideUserInfo();
+        }
     }
 
     ImageView currentSure;
@@ -2136,6 +2352,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
                 final LinearLayout llParent = helper.retrieveView(R.id.gd__ll_chip_parent);
                 ImageView imgChip = helper.retrieveView(R.id.gd__iv_chip_pic);
+                int w = 48;
+                int h = 48;
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     if (position == 0) {
                         llParent.post(new Runnable() {
@@ -2152,8 +2370,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                             }
                         });
                     }
-                    int w = 39;
-                    int h = 39;
+                    w = 39;
+                    h = 39;
                     if (position == 7 || position == 9) {
                         w = 60;
                         h = 30;
@@ -2179,6 +2397,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
                     layoutParams.width = ScreenUtil.dip2px(mContext, w);
                     layoutParams.height = ScreenUtil.dip2px(mContext, h);
+                } else {
+                    int screenWidth = WidgetUtil.getPortraitScreenWidth(SicboActivity.this);
+                    int margin = (screenWidth / 7 - ScreenUtil.dip2px(mContext, w)) / 2;
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
+                    layoutParams.width = ScreenUtil.dip2px(mContext, w);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, h);
+                    layoutParams.leftMargin = margin;
+                    layoutParams.rightMargin = margin;
+                    llParent.setLayoutParams(layoutParams);
                 }
                 if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
@@ -2189,15 +2416,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 } else {
                     if (position == 7 || position == 9) {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                        layoutParams.height = ScreenUtil.dip2px(mContext, 30);
+                        layoutParams.width = ScreenUtil.dip2px(mContext, w);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, h);
                         imgChip.setLayoutParams(layoutParams);
                         imgChip.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
                     } else {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                        layoutParams.width = ScreenUtil.dip2px(mContext, 39);
-                        layoutParams.height = ScreenUtil.dip2px(mContext, 39);
+                        layoutParams.width = ScreenUtil.dip2px(mContext, w);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, h);
                         imgChip.setLayoutParams(layoutParams);
                         imgChip.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.gd__ll_chip_parent, 0);
@@ -2205,10 +2432,12 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
                 helper.setText(R.id.gd__tv_chip_amount, item.getName());
-                if (item.getValue() == -1) {
-                    currentSure = imgChip;
-                } else if (item.getValue() == -2) {
-                    currentCancel = imgChip;
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    if (item.getValue() == -1) {
+                        currentSure = imgChip;
+                    } else if (item.getValue() == -2) {
+                        currentCancel = imgChip;
+                    }
                 }
             }
         });
@@ -2239,7 +2468,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 }
             }
         });
-        chips.setData(getCurrentChip(true));
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            chips.setData(getCurrentChip(true));
+        } else {
+            chips.setData(getCurrentChip(false));
+        }
     }
 
     public void setTableLimit() {
@@ -2753,11 +2986,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             chipHelper.clearAllChips();
         }
         chipHelper.setOperationButtonDisplay(operationDisplay);
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        showBetChipOld(f, isShow, money);
 
-        } else {
-            showBetChipOld(f, isShow, money);
-        }
     }
 
     public FrameLayout getFrameLayout(SbBetType f) {
@@ -4593,9 +4823,6 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     public void clickCombination16(View iv) {
         if (checkChoose())
             return;
-        if (animationDrawableNineway16.isRunning())
-            animationDrawableNineway16.stop();
-        animationDrawableNineway16.start();
         if (mAppViewModel.getSicbo01().getGameStatus() != 1)
             return;
         clickNinewayCount16++;
@@ -4800,6 +5027,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         showBetChip(flSicboSingle4, true, mAppViewModel.getSicbo01().getSicboBetInformation().getThreeforceBetMoney("4"), false);
         showBetChip(flSicboSingle5, true, mAppViewModel.getSicbo01().getSicboBetInformation().getThreeforceBetMoney("5"), false);
         showBetChip(flSicboSingle6, true, mAppViewModel.getSicbo01().getSicboBetInformation().getThreeforceBetMoney("6"), false);
+        int sure = R.mipmap.gd_sureimg;
+        if (currentSure != null && sure != 0) {
+            currentSure.setBackgroundResource(sure);
+        }
+        int no = R.mipmap.gd_noimg;
+        if (currentCancel != null && no != 0) {
+            currentCancel.setBackgroundResource(no);
+        }
     }
 
     public void gotoLobby() {
@@ -4821,6 +5056,10 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         tvTableBetReplay.setOnClickListener(new ButtonClick());
         tvTableBetSure.setOnClickListener(new ButtonClick());
         tvTableBetCancel.setOnClickListener(new ButtonClick());
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            currentSure = tvTableBetSure;
+            currentCancel = tvTableBetCancel;
+        }
     }
 
     class ButtonClick implements View.OnClickListener {
@@ -5468,24 +5707,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         }
     }
 
-    public void hideBetPanel() {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            if (isBottomOpen) {
-                isBottomOpen = !isBottomOpen;
-                bottonPanel1.setOpen(isBottomOpen, true);
-            }
-        }
-
-    }
-
     public void showBetPanel() {
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-            if (isBottomOpen == false) {
-                isBottomOpen = !isBottomOpen;
-                bottonPanel1.setOpen(isBottomOpen, true);
-            }
-
-
+        if (isBottomOpen == false) {
+            isBottomOpen = !isBottomOpen;
+            bottonPanel1.setOpen(isBottomOpen, false);
+        }
     }
 
     public void initPopResultsWindows() {
@@ -5624,25 +5850,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         super.initOrientation();
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         lv_baccarat_chips = (AdapterView) findViewById(R.id.gd__lv_baccarat_chips_h);
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            lv_table_results = (AdapterView) findViewById(R.id.lv_table_results);
-//            toolbar.post(new Runnable() {
-//                @Override
-//                public void run() {
-//                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) toolbar.getLayoutParams();
-//                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 12);
-//                    toolbar.setLayoutParams(layoutParams);
-//                }
-//            });
-        } else {
-            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                lv_table_results = (AdapterView) findViewById(R.id.gd__lv_table_results_h);
-                leftPanel1.setOpen(true, true);
-                bottonPanel1.setOpen(true, true);
-
-            }
-            ll_bet_btn_parent.setVisibility(View.GONE);
-        }
+        lv_table_results = (AdapterView) findViewById(R.id.lv_table_results);
     }
 
     @BindView(R2.id.gd__ll_info)
@@ -5846,7 +6054,11 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     @Override
     public void onInGameChooseLanguage() {
         sibao_bet_bg.setBackgroundResource(0);
-        sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg);
+        } else {
+            sibao_bet_bg.setBackgroundResource(R.mipmap.gd_sicbo_bet_bg_h);
+        }
         contentPercentage.setData(updatePercentageData());
         contentPercentage.notifyDataSetChanged();
         contentResults.setData(getResultsData());
@@ -5855,6 +6067,9 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
     @Override
     public boolean isCanSlideChangeTable() {
+        if (isSlideInfo) {
+            return false;
+        }
         return true;
     }
 }

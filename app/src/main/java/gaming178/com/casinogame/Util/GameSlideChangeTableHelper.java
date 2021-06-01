@@ -1,7 +1,6 @@
 package gaming178.com.casinogame.Util;
 
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -36,7 +35,10 @@ public class GameSlideChangeTableHelper {
             portraitList.add(61);
             portraitList.add(62);
             portraitList.add(63);
+            portraitList.add(71);
             portraitList.add(5);
+            portraitList.add(21);
+            portraitList.add(31);
         }
         if (landscapeList == null) {
             landscapeList = new ArrayList<>();
@@ -182,7 +184,7 @@ public class GameSlideChangeTableHelper {
                 while (gameStatus == -1) {
                     myIndex--;
                     if (myIndex < 0) {
-                        myIndex = 6;
+                        myIndex = 9;
                     }
                     gameStatus = getGameStatus(slideList.get(myIndex), baseActivity);
                     if (gameStatus != 1) {
@@ -192,7 +194,7 @@ public class GameSlideChangeTableHelper {
             } else {
                 while (gameStatus == -1) {
                     myIndex++;
-                    if (myIndex > 6) {
+                    if (myIndex > 9) {
                         myIndex = 0;
                     }
                     gameStatus = getGameStatus(slideList.get(myIndex), baseActivity);

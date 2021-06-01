@@ -134,10 +134,7 @@ public class AllRunningCommonState extends OutRightState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return null;
-    }
+
 
     /*    @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {

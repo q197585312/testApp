@@ -61,7 +61,7 @@ public class AppConstant {
     // &mt=0
     // &FAV=&SL=&LSL=undefined
 
-
+//11[{"token":"vvt4bkm5b5kae4lnpoe3vgyd","um":"","delay":"0","pn":"1","tf":"-1","betable":true,"lang":"ZH-CN","LangCol":"C","accType":"HK","CTOddsDiff":"-0.2","CTSpreadDiff":"-1","oddsDiff":"0","spreadDiff":"0","ACT":"LOS","DBID":"1","ot":"e","timess":"7","ia":1,"ov":0,"mt":"1","TransMax":50,"FAV":"","SL":"","fh":false,"isToday":false,"tp":1,"wc":"1"}]
     public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
 

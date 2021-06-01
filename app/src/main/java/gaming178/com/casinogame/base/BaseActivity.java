@@ -2275,7 +2275,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             list.add(new ChipBean(R.mipmap.gd_replayimg, "", -3));
             list.add(new ChipBean(R.mipmap.gd_sureimg, "", -1));
         }
-        return list;
+        if (this != null && this instanceof RouletteActivity && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            List<ChipBean> listNew = new ArrayList<>();
+            for (int i = list.size() - 1; i >= 0; i--) {
+                listNew.add(list.get(i));
+            }
+            return listNew;
+        } else {
+            return list;
+        }
     }
 
     public void initBetImg() {
@@ -2361,11 +2369,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     public void setToolbarAndSet(String up, String down) {
         llCenter.setVisibility(View.VISIBLE);
-//        toolbar_right_top_tv.setText(up);
-//        toolbar_right_top_tv.setTextColor(Color.parseColor("#ffffff"));
-//        toolbar_right_bottom_tv.setText(down);
-//        toolbar_right_bottom_tv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-//        toolbar_right_bottom_tv.setTextColor(Color.parseColor("#ffffff"));
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             LinearLayout.LayoutParams tableParams = (LinearLayout.LayoutParams) rightTableTv.getLayoutParams();
             tableParams.width = ScreenUtil.dip2px(mContext, 27);
@@ -2390,6 +2393,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             reportParams.height = ScreenUtil.dip2px(mContext, 27);
             rightReportTv.setLayoutParams(reportParams);
         } else {
+            LinearLayout.LayoutParams tableParams = (LinearLayout.LayoutParams) rightTableTv.getLayoutParams();
+            tableParams.width = ScreenUtil.dip2px(mContext, 24);
+            tableParams.height = ScreenUtil.dip2px(mContext, 24);
+            rightTableTv.setLayoutParams(tableParams);
             LinearLayout.LayoutParams musicParams = (LinearLayout.LayoutParams) rightMusicTv.getLayoutParams();
             musicParams.width = ScreenUtil.dip2px(mContext, 24);
             musicParams.height = ScreenUtil.dip2px(mContext, 24);
@@ -2408,7 +2415,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             logoutParams.width = ScreenUtil.dip2px(mContext, 24);
             logoutParams.height = ScreenUtil.dip2px(mContext, 24);
             logoutTv.setLayoutParams(logoutParams);
-            logoutTv.setVisibility(View.VISIBLE);
+            if (this != null) {
+                if (this instanceof RouletteActivity || this instanceof SicboActivity) {
+                    logoutTv.setVisibility(View.GONE);
+                } else {
+                    logoutTv.setVisibility(View.VISIBLE);
+                }
+            }
         }
         rightReportTv.setVisibility(View.VISIBLE);
         rightReportTv.setBackgroundResource(R.mipmap.gd_report_top);

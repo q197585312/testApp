@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.majorLeagues;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -15,10 +14,6 @@ public class FiveMajorEarlyState extends FiveMajorState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FIVE_MAJOR_EARLY;
-    }
 
     @Override
     public MenuItemInfo getStateType() {

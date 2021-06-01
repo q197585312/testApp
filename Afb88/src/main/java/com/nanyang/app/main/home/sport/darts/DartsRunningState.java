@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.darts;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballRunningState;
@@ -19,10 +18,7 @@ public class DartsRunningState extends BasketballRunningState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_DARTS_RUNNING;
-    }
+
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

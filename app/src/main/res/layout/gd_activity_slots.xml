@@ -6,7 +6,49 @@
     android:background="@color/black_grey"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_layout" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <include layout="@layout/toolbar_layout" />
+
+        <LinearLayout
+            android:layout_width="195dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_search_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/gd_search"></ImageView>
+
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="135dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="@string/search_game"
+                android:textColor="@color/white"
+                android:textColorHint="#707070"
+                android:textSize="12sp"></EditText>
+
+            <ImageView
+                android:id="@+id/img_clear"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/gd_xx"
+                android:visibility="gone"></ImageView>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
 
     <FrameLayout
         android:layout_width="match_parent"

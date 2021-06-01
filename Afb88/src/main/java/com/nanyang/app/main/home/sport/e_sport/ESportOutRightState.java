@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.e_sport;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -21,9 +20,6 @@ public class ESportOutRightState extends OutRightState {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.E_Sport);
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_E_SPORT_OUTRIGHT + "&ot=e";
-    }
+
 
 }

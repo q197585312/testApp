@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.e_sport;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -19,10 +18,6 @@ public class ESportEarlyState extends ESportState {
         return new MenuItemInfo<String>(0, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.E_Sport));
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_E_SPORT_EARLY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

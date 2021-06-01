@@ -15,7 +15,7 @@
     <string name="remember_me">Remember me</string>
     <string name="error_site">Wrong site!</string>
     <!--afb88跳转-->
-    <string name="SportBook">SportBook</string>
+    <string name="SportBook">SportsBook</string>
     <string name="Live_Casino">Live Casino</string>
     <string name="Financial">Financial</string>
     <string name="Europe_View">Europe View</string>
@@ -296,6 +296,7 @@
     <string name="Live_Chat">LiveChat</string>
     <string name="bandarq">BANDARQ</string>
     <string name="user_limit">Account must use the following characters:a-z A-Z 0-9 _- and length 4~25</string>
+    <string name="search_game">Search Game</string>
 </resources>
 
 

@@ -12,7 +12,7 @@
     <string name="logining">Masuk.....</string>
     <string name="afb88_right">Copyright © gd88.org  2014   Powered only receive aged 18 players</string>
     <!--afb88跳转-->
-    <string name="SportBook">SportBook</string>
+    <string name="SportBook">SportsBook</string>
     <string name="Live_Casino">Live Casino</string>
     <string name="Financial">Financial</string>
     <string name="Europe_View">Europe View</string>
@@ -124,7 +124,7 @@
     <string name="choose_language">Choose Language</string>
 
     <string name="language">Bahasa</string>
-    <string name="report">Taruhan </string>
+    <string name="report">Laporan</string>
     <string name="setting">Setting</string>
     <string name="logout">Keluar</string>
 
@@ -213,7 +213,7 @@
     <string name="gd_home">Beranda</string>
     <string name="gd_withdrawal">Penarikan</string>
     <string name="gd_Referrer">Referensi</string>
-    <string name="katasandi">Katasandi</string>
+    <string name="katasandi">Kata Sandi</string>
     <string name="gd_cancel">Cancel</string>
     <string name="Copy_Address">Salin Link Referral Anda</string>
     <string name="Copy_Success">Salin Sukses</string>
@@ -225,6 +225,7 @@
     <string name="member_center">Pusat Anggota</string>
     <string name="Live_Chat">Obrolan Langsung</string>
     <string name="user_limit">akun harus menggunakan karakter:a-z A-Z 0-9 _- dan panjang 4-25</string>
+    <string name="search_game">Cari Game</string>
 </resources>
 
 

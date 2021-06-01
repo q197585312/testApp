@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.speedWay;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -19,10 +18,7 @@ public class SpeedWayEarlyState extends SpeedWayState {
         return new MenuItemInfo<String>(0, (R.string.Early), "Early", "SPEEDWAY");
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_BEACH_EARLY;
-    }
+
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

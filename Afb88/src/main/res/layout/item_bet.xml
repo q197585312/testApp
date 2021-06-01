@@ -7,8 +7,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="horizontal"
-    android:paddingLeft="2dp"
->
+    android:paddingLeft="2dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -22,9 +21,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="1dp"
-            android:paddingTop="1dp">
-
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp">
 
 
             <TextView
@@ -51,8 +49,8 @@
                 android:id="@+id/bet_away_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="160dp"
                 android:layout_weight="1"
+                android:maxWidth="160dp"
                 android:maxLines="2"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
@@ -70,64 +68,60 @@
                 android:background="@drawable/rectangle_edt_white"
                 android:gravity="center"
                 android:hint="@string/single"
-                android:textColorHint="@color/grey_light"
                 android:imeOptions="flagNoExtractUi"
                 android:inputType="number|numberDecimal"
                 android:padding="2dp"
                 android:textColor="@color/black_grey"
+                android:textColorHint="@color/grey_light"
                 android:textSize="13sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <com.nanyang.app.Utils.FlowLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="1dp"
-            android:paddingTop="1dp">
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp">
+
             <TextView
                 android:id="@+id/tv_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="5dp"
                 android:textColor="@color/black_grey"
                 android:textSize="13sp"
-                android:paddingRight="5dp"
                 android:textStyle="bold" />
-            <LinearLayout
-                android:layout_width="0dp"
+
+
+            <TextView
+                android:id="@+id/bet_name_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:maxLines="1"
+                android:textColor="@color/grey_dark"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/bet_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:textStyle="bold"
-                    android:textColor="@color/grey_dark" />
+            <TextView
+                android:id="@+id/tv_hdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:maxLines="1"
+                android:textColor="@color/grey_dark"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_hdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:maxLines="1"
-                    android:textColor="@color/grey_dark"
-                    android:textStyle="bold" />
+            <View
+                android:layout_width="5dp"
+                android:layout_height="1dp" />
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="1dp"
-                    />
+            <TextView
+                android:id="@+id/bet_hdp_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/bet_hdp_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -157,7 +151,7 @@
                     android:textColor="@color/black"
                     android:textSize="13sp" />
             </RelativeLayout>
-        </LinearLayout>
+        </com.nanyang.app.Utils.FlowLayout>
 
         <LinearLayout
             android:id="@+id/ll_bottom"
@@ -165,8 +159,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="1dp"
             android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             android:visibility="visible">
 
             <TextView

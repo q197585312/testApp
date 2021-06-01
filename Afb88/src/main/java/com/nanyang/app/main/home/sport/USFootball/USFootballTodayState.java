@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.USFootball;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballTodayState;
@@ -19,10 +18,6 @@ public class USFootballTodayState extends BasketballTodayState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_US_FOOTBALL_TODAY;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

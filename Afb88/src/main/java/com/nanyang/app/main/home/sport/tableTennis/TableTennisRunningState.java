@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.tableTennis;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OtherRunningDoubleAdapterHelper;
@@ -17,12 +16,6 @@ import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 public class TableTennisRunningState extends TableTennisState {
     public TableTennisRunningState(SportContract.View baseView) {
         super(baseView);
-    }
-
-
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_TABLE_TENNIS_RUNING;
     }
 
     @Override

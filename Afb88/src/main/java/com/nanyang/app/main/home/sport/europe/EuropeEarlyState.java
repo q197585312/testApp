@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.europe;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -19,10 +18,6 @@ public class EuropeEarlyState extends EuropeState {
         return new MenuItemInfo<String>(0, (R.string.Early), "Early", getParentText());
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_EUROPE_EARLY;
-    }
 
 
     @Override

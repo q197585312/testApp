@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.cycling;
 
 import androidx.core.content.ContextCompat;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OtherRunningDoubleAdapterHelper;
@@ -20,10 +19,6 @@ public class CyclingRunningState extends CyclingState {
     }
 
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_CYCLING_RUNING;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {
