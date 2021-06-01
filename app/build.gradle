@@ -444,6 +444,13 @@ android {
                 versionName '3.84'
 
             }
+            dewacasino168 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "dewacasino168"]
+                buildConfigField "String", "Labelid", '"66"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.84'
+
+            }
         }
 
         applicationVariants.all { variant ->
