@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nanyang.app.ApiServiceKt
 import com.nanyang.app.BR
+import com.nanyang.app.BuildConfig
 import com.nanyang.app.data.GamesData
 import com.nanyang.app.data.Left
 import com.nanyang.app.data.Main
@@ -18,7 +19,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.OnItemBind
 
 public class HomeViewModel : BaseViewModel() {
-    val headerBgUrl = "http://wsapp.afb1188.net/H50/Img/view2.png"
+    val headerBgUrl = BuildConfig.ImgHeader_URL
     private lateinit var onItemClick: OnItemClickListener<Main>
     private lateinit var onLeftItemClick: OnItemClickListener<Left>
     var heightLeft = 90f
@@ -63,7 +64,7 @@ public class HomeViewModel : BaseViewModel() {
 
     fun loadAllPic(loadAllUi: (m: GamesData) -> Unit) {
         launchGo(block = {
-            val agentUrl = "http://www.appgd88.com/app/afb1188_game.php"
+            val agentUrl =BuildConfig.H5_URL
             val allImage = ApiServiceKt.instance.getAllImage(agentUrl)
             println("allImage.status:" + allImage.status)
             if (allImage.status == "0") {

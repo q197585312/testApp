@@ -9,6 +9,7 @@
     <color name="green_thick_line">#3A59A7</color>
     <color name="keno_grenn">#1E45A8</color>
     <color name="green">#3357B2</color>
+    <color name="green_bottom">@color/grey_light</color>
     <color name="green1">#B0C6FF</color>
     <color name="green3">#92AEF6</color>
     <color name="google_green">#416DDE</color>
