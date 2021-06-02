@@ -29,6 +29,9 @@
     <color name="grey_button_grey">#B0BFBF</color>
     <color name="grey_line_button">#9f9f9f</color>
     <color name="grey_dark_word">#616161</color>
+
+    <color name="grey_hdp_ou">#616161</color>
+
     <color name="grey_trans">#554c4c4c</color>
     <color name="grey_dialog_background">#f0f0f0</color>
     <color name="grey_default_bg">#ecebf1</color>

@@ -26,4 +26,6 @@
     <color name="green900_trans">#661768AE</color>
     <color name="app_title_color" >@color/green_word</color>
     <color name="white_bottom">@color/black_grey</color>
+    <color name="red_background">@color/bet_rectangle_bg</color>
+    <color name="grey_hdp_ou">@color/bet_rectangle_bg</color>
 </resources>

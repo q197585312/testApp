@@ -1998,7 +1998,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String ouf = upDown;
                     upStr = ouf;
                     downStr = "";
-                    upTextTv.setTextColor(ContextCompat.getColor(context, R.color.grey_dark_word));
+                    upTextTv.setTextColor(ContextCompat.getColor(context, R.color.grey_hdp_ou));
                     resUp = getResUpdate(item.isOverBigger, isFh);
                     break;
 
@@ -2020,7 +2020,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     break;
                 case "under":
                 case "mmunder":
-                    downTextTv.setTextColor(ContextCompat.getColor(context, R.color.grey_dark_word));
+                    downTextTv.setTextColor(ContextCompat.getColor(context, R.color.grey_hdp_ou));
                     resDown = getResUpdate(item.isUnderBigger, isFh);
                     break;
             }
