@@ -55,7 +55,7 @@ public class Contact {
             this.icon_type = icon_type;
         }
 
-        public String getLayout_type() {
+        public String  getLayout_type() {
             return layout_type;
         }
 

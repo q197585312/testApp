@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -70,24 +69,24 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
         MyLinearLayoutManager mLayoutManager1 = new MyLinearLayoutManager(mContext);
         rvContent2.setLayoutManager(mLayoutManager1);
         ll_parent_content.setVisibility(View.GONE);
-        if (BuildConfig.FLAVOR.equals("afb1188")) {
-            ll_parent_content.setVisibility(View.VISIBLE);
-            presenter.getContactData(new BaseConsumer<Contact>(mContext) {
-                @Override
-                protected void onBaseGetData(Contact data) {
-                    for (Contact.ContactBean contactBean : data.getContact()) {
-                        if (contactBean.getLayout_type().equals("1")) {
-                            dataList.add(contactBean);
-                        } else {
-                            dataList1.add(contactBean);
-                        }
-                    }
 
-                    adapter.setData(dataList);
-                    adapter1.setData(dataList1);
+        ll_parent_content.setVisibility(View.VISIBLE);
+        presenter.getContactData(new BaseConsumer<Contact>(mContext) {
+            @Override
+            protected void onBaseGetData(Contact data) {
+                for (Contact.ContactBean contactBean : data.getContact()) {
+                    if (contactBean.getLayout_type().equals("1")) {
+                        dataList.add(contactBean);
+                    } else {
+                        dataList1.add(contactBean);
+                    }
                 }
-            });
-        }
+
+                adapter.setData(dataList);
+                adapter1.setData(dataList1);
+            }
+        });
+
         adapter = new BaseRecyclerAdapter<Contact.ContactBean>(mContext, dataList, R.layout.item_contact) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, Contact.ContactBean item) {
@@ -146,6 +145,8 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
                     ivLeft.setImageResource(R.mipmap.email);
                     break;
                 default:
+                    ivLeft.setImageResource(R.mipmap.whats_app);
+                    break;
             }
         } else {
             LinearLayout ll = holder.getLinearLayout(R.id.content_line);

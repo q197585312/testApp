@@ -64,7 +64,7 @@ public class HomeViewModel : BaseViewModel() {
 
     fun loadAllPic(loadAllUi: (m: GamesData) -> Unit) {
         launchGo(block = {
-            val agentUrl =BuildConfig.H5_URL
+            val agentUrl = BuildConfig.ImgConfig_URL
             val allImage = ApiServiceKt.instance.getAllImage(agentUrl)
             println("allImage.status:" + allImage.status)
             if (allImage.status == "0") {
@@ -85,7 +85,8 @@ public class HomeViewModel : BaseViewModel() {
                         }
                     }
                     left.addAll(allImage.left)
-                    headers.addAll(allImage.header)
+                    if (allImage.header.isNullOrEmpty())
+                        headers.addAll(allImage.header)
                     selectedType.value = "sport"
                     mainList = allImage.main
                     loadMainGame(selectedType.value!!)

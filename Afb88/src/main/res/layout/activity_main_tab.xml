@@ -65,7 +65,7 @@
                     android:paddingTop="4dp"
                     android:text="@string/balances"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_bottom"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
@@ -84,7 +84,7 @@
                     android:layout_gravity="center"
                     android:drawableTop="@mipmap/sport_botton_teb_statement"
                     android:text="@string/statement"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_bottom"
                     android:textAllCaps="true"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -104,7 +104,7 @@
                     android:layout_gravity="center"
                     android:drawableTop="@mipmap/main_contactus"
                     android:text="@string/contact"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_bottom"
                     android:textAllCaps="true"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -132,7 +132,7 @@
                     android:drawableTop="@mipmap/main_more"
                     android:textAllCaps="true"
                     android:text="@string/more"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_bottom"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 

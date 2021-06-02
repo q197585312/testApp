@@ -443,7 +443,7 @@
             android:id="@+id/ll_sport_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/green"
+            android:background="@color/green_bottom"
             android:orientation="horizontal"
             android:paddingBottom="2dp">
 
@@ -464,7 +464,7 @@
                     android:onClick="clickBets"
                     android:text="@string/TabMyBets"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_bottom"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -503,7 +503,7 @@
                     android:onClick="clickOrder"
                     android:text="@string/bet_slip"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_bottom"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -537,7 +537,7 @@
                 android:singleLine="true"
                 android:text="@string/running"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/white_bottom"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -559,14 +559,14 @@
                     android:id="@+id/tv_menu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:drawableTop="@mipmap/sport_botton_teb_more_menu"
+                    android:drawableTop="@mipmap/main_more"
                     android:drawablePadding="2dp"
                     android:gravity="center"
                     android:onClick="clickMoreMenu"
                     android:paddingTop="5dp"
                     android:text="@string/more"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_bottom"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>

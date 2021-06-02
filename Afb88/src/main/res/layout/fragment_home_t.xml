@@ -20,6 +20,7 @@
             imgUrl="@{viewModel.headerBgUrl}"
             android:layout_width="match_parent"
             android:layout_height="172dp"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -60,8 +61,8 @@
             android:id="@+id/rv_content_detail"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             app:itemBinding="@{viewModel.mainItemBinding}"
             app:items="@{viewModel.mainContent}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

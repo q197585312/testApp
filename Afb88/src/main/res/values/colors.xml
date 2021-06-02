@@ -44,7 +44,7 @@
     <color name="green500_word">#4CAF50</color>
     <color name="bet_window_bg">#ECF7E4</color>
     <color name="green_light_button">#FFA5FDCA</color>
-
     <color name="green_afb">#0d5924</color>
-    <color name="app_title_color" >#ffffff</color>
+    <color name="app_title_color">#ffffff</color>
+    <color name="white_bottom">@color/white</color>
 </resources>

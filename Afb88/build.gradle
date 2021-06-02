@@ -76,6 +76,7 @@ android {
             buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/afb1188_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
+            buildConfigField "String", "Contact_URL", '"http://www.appgd88.com/api/afb1188_contact.php"'
 //ws://wsapp.afb1188.com:8888/fnOddsGen
 //            buildConfigField "String", "HOST_AFB", '"http://13.112.86.40/"'//h5正式机
 //            buildConfigField "String", "HOST_SPORT", '"ws://13.112.86.40:8888/fnOddsGen"'
@@ -94,6 +95,7 @@ android {
             buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/i1bet99_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"https://i1bet99.com/H52NEW/Img/Ibet99H5.jpg"'
+            buildConfigField "String", "Contact_URL", '"http://www.appgd88.com/api/i1bet99_contact.php"'
             buildConfigField "String", "CHECK_VERSION", '"http://www.appgd88.com/api/afbAndroidVersion.php?appName=i1bet99"'
         }
     }
