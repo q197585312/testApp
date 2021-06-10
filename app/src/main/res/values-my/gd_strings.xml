@@ -208,6 +208,7 @@
     <string name="choice_bank">nama bank</string>
     <string name="bank_account">nama di rekening</string>
     <string name="bank_number">Nomor rekening</string>
+    <string name="gd_remark">Remark</string>
     <string name="gd_code">kode validasi</string>
     <string name="gd_deposit">setoran</string>
     <string name="gd_home">Beranda</string>

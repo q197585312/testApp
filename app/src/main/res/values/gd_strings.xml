@@ -232,6 +232,7 @@
     <string name="choice_bank">Bank</string>
     <string name="bank_account">Bank Account</string>
     <string name="bank_number">Bank Number</string>
+    <string name="gd_remark">Remark</string>
     <string name="gd_code">Code</string>
     <string name="gd_deposit">Deposit</string>
     <string name="gd_home">Home</string>

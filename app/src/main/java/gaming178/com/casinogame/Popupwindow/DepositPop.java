@@ -41,6 +41,7 @@ public class DepositPop extends BasePopupWindow {
     private Button btnCancel;
     private User user;
     public EditText edtAmount;
+    private EditText edtRemark;
     List<BankInfo> bankList = new ArrayList<>();
     private BankInfo bank2;
     private BankInfo myBank;
@@ -152,7 +153,7 @@ public class DepositPop extends BasePopupWindow {
             public void convert(ViewHolder helper, BankInfo item, int position) {
                 helper.setText(R.id.text_tv1, item.getBankName());
                 helper.setTextSize(R.id.text_tv1, 12);
-                helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context,R.color.gray_dark));
+                helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context, R.color.gray_dark));
             }
         });
         content2.setItemClick(new ItemCLickImp<BankInfo>() {
@@ -209,6 +210,7 @@ public class DepositPop extends BasePopupWindow {
         lstbank1 = (ListView) view.findViewById(R.id.gd__lv_bank_list1);
         lstbank2 = (ListView) view.findViewById(R.id.gd__lv_bank_list2);
         ivClose = (ImageView) view.findViewById(R.id.gd__iv_pop_deposit_close);
+        edtRemark = (EditText) view.findViewById(R.id.gd__edt_remark);
 
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,6 +305,8 @@ public class DepositPop extends BasePopupWindow {
             builder.append("deposit8=");
             builder.append(tvBankNumber2.getText().toString().trim());
         }
+        builder.append("&remark=");
+        builder.append(edtRemark.getText().toString().trim());
         GdThreadHander threadHander = new GdThreadHander(context) {
             @Override
             protected RequestBean<String> getRequestBean() {
