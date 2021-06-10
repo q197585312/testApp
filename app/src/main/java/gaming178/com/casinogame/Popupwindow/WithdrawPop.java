@@ -32,6 +32,7 @@ public class WithdrawPop extends BasePopupWindow {
     private BlockDialog dialog;
     private EditText edtPassword;
     private ImageView ivClose;
+    private EditText edtRemark;
 
     public WithdrawPop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -105,7 +106,7 @@ public class WithdrawPop extends BasePopupWindow {
         edtBankNumber=(TextView)view.findViewById(R.id.gd__edt_pop_withdraw_bank_number);
         edtPassword=(EditText)view.findViewById(R.id.gd__edt_pop_withdraw_password);
         ivClose=(ImageView)view.findViewById(R.id.gd__iv_pop_withdraw_close);
-
+        edtRemark = (EditText) view.findViewById(R.id.gd__edt_remark);
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,6 +179,8 @@ public class WithdrawPop extends BasePopupWindow {
             builder.append("withdraw6=");
             builder.append(edtPassword.getText().toString().trim());
         }
+        builder.append("&remark=");
+        builder.append(edtRemark.getText().toString().trim());
         GdThreadHander threadHander=new GdThreadHander(context) {
             @Override
             protected RequestBean<String> getRequestBean() {
