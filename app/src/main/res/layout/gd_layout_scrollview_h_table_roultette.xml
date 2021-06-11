@@ -53,6 +53,17 @@
                 android:background="@mipmap/gd_close_bet_table"></ImageView>
 
             <TextView
+                android:id="@+id/tv_table_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/gd__text_shoe_game_number"
                 style="@style/text_wrap_black12"
                 android:layout_width="60dp"
@@ -295,5 +306,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"></include>
+
+    <include layout="@layout/include_table_bet_hint"></include>
 
 </FrameLayout>

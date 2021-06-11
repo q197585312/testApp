@@ -53,6 +53,8 @@ public class SicboTableContentBean {
     private AnimationDrawable Animation5;
     private AnimationDrawable Animation6;
     private List<AnimationDrawable> animationList = new ArrayList<>();
+    private TextView tvTableNumber;
+    private TextView tvBetHint;
 
     public int getTableId() {
         return tableId;
@@ -384,5 +386,21 @@ public class SicboTableContentBean {
 
     public void setAnimation6(AnimationDrawable animation6) {
         Animation6 = animation6;
+    }
+
+    public TextView getTvTableNumber() {
+        return tvTableNumber;
+    }
+
+    public void setTvTableNumber(TextView tvTableNumber) {
+        this.tvTableNumber = tvTableNumber;
+    }
+
+    public TextView getTvBetHint() {
+        return tvBetHint;
+    }
+
+    public void setTvBetHint(TextView tvBetHint) {
+        this.tvBetHint = tvBetHint;
     }
 }

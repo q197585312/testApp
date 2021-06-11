@@ -1946,7 +1946,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
 
         }
-        int with = ScreenUtil.dip2px(mContext, 250);
+        int with = ScreenUtil.dip2px(mContext, 300);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             with = with * 2;
         }

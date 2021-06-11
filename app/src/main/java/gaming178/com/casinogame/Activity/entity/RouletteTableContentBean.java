@@ -49,6 +49,8 @@ public class RouletteTableContentBean {
     private AnimationDrawable AnimationRed;
     private AnimationDrawable AnimationBlack;
     private List<AnimationDrawable> animationList = new ArrayList<>();
+    private TextView tvTableNumber;
+    private TextView tvBetHint;
 
     public int getTableId() {
         return tableId;
@@ -356,5 +358,21 @@ public class RouletteTableContentBean {
 
     public List<AnimationDrawable> getAnimationList() {
         return animationList;
+    }
+
+    public TextView getTvTableNumber() {
+        return tvTableNumber;
+    }
+
+    public void setTvTableNumber(TextView tvTableNumber) {
+        this.tvTableNumber = tvTableNumber;
+    }
+
+    public TextView getTvBetHint() {
+        return tvBetHint;
+    }
+
+    public void setTvBetHint(TextView tvBetHint) {
+        this.tvBetHint = tvBetHint;
     }
 }

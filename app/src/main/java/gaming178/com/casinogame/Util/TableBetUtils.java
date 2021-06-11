@@ -825,6 +825,8 @@ public class TableBetUtils {
                     if (strInfo.length >= 10) {
                         mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
 
+                        String betAll = strInfo[2];
+
                         double resMoney = Double.parseDouble(strInfo[4]);
                         baccaratTableBetBean.setBankerAlreadyBet((int) resMoney);
                         baccaratTableBetBean.setBankerRepeatBet((int) resMoney);
@@ -849,19 +851,33 @@ public class TableBetUtils {
                         baccaratTableBetBean.setPpAlreadyBet((int) resMoney);
                         baccaratTableBetBean.setPpAlreadyBet((int) resMoney);
                         baccaratTableBetBean.setPpCurrentBet(0);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_sucess) + betAll);
+                                contentBean.getTvBetHint().setVisibility(View.VISIBLE);
+                                clearNoBetChip(baccaratTableBetBean, contentBean, context);
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        contentBean.getTvBetHint().setVisibility(View.GONE);
+                                    }
+                                }, 1500);
+                            }
+                        });
                     }
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
-                            clearNoBetChip(baccaratTableBetBean, contentBean, context);
-                        }
-                    });
                 } else {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
+                            contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_error));
+                            contentBean.getTvBetHint().setVisibility(View.VISIBLE);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    contentBean.getTvBetHint().setVisibility(View.GONE);
+                                }
+                            }, 1500);
                         }
                     });
                 }
@@ -878,6 +894,8 @@ public class TableBetUtils {
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 10) {
                         mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
+
+                        String betAll = strInfo[2];
 
                         double resMoney = Double.parseDouble(strInfo[4]);
                         betBean.setDragonAlreadyBet((int) resMoney);
@@ -896,8 +914,15 @@ public class TableBetUtils {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
+                                contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_sucess) + betAll);
+                                contentBean.getTvBetHint().setVisibility(View.VISIBLE);
                                 clearDragonTigerNoBetChip(betBean, contentBean, context);
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        contentBean.getTvBetHint().setVisibility(View.GONE);
+                                    }
+                                }, 1500);
                             }
                         });
                     }
@@ -905,7 +930,14 @@ public class TableBetUtils {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
+                            contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_error));
+                            contentBean.getTvBetHint().setVisibility(View.VISIBLE);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    contentBean.getTvBetHint().setVisibility(View.GONE);
+                                }
+                            }, 1500);
                         }
                     });
                 }
@@ -924,6 +956,7 @@ public class TableBetUtils {
                 String strInfo[] = strRes.split("\\^");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 10) {
+                        String betAll = strInfo[2];
                         mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                         double resMoney = Double.parseDouble(strInfo[3]);
                         betBean.setBigAlreadyBet((int) resMoney);
@@ -975,8 +1008,15 @@ public class TableBetUtils {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
+                                contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_sucess) + betAll);
+                                contentBean.getTvBetHint().setVisibility(View.VISIBLE);
                                 clearSicboNoBetChip(betBean, contentBean, context);
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        contentBean.getTvBetHint().setVisibility(View.GONE);
+                                    }
+                                }, 1500);
                             }
                         });
                     }
@@ -984,7 +1024,14 @@ public class TableBetUtils {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
+                            contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_error));
+                            contentBean.getTvBetHint().setVisibility(View.VISIBLE);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    contentBean.getTvBetHint().setVisibility(View.GONE);
+                                }
+                            }, 1500);
                         }
                     });
                 }
@@ -1018,6 +1065,7 @@ public class TableBetUtils {
 
                             }
                         }
+                        String betAll = strInfo[2];
                         betBean.setSingle1_12AlreadyBet(Integer.parseInt(strInfo[13]));
                         betBean.setSingle13_24AlreadyBet(Integer.parseInt(strInfo[14]));
                         betBean.setSingle25_36AlreadyBet(Integer.parseInt(strInfo[15]));
@@ -1045,19 +1093,33 @@ public class TableBetUtils {
                         betBean.setEvenCurrentBet(0);
                         betBean.setSingle1_18CurrentBet(0);
                         betBean.setSingle19_36CurrentBet(0);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_sucess) + betAll);
+                                contentBean.getTvBetHint().setVisibility(View.VISIBLE);
+                                clearRouletteNoBetChip(betBean, contentBean, context);
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        contentBean.getTvBetHint().setVisibility(View.GONE);
+                                    }
+                                }, 1500);
+                            }
+                        });
                     }
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(context, "Succes", Toast.LENGTH_SHORT).show();
-                            clearRouletteNoBetChip(betBean, contentBean, context);
-                        }
-                    });
                 } else {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
+                            contentBean.getTvBetHint().setText(context.getString(R.string.show_bet_error));
+                            contentBean.getTvBetHint().setVisibility(View.VISIBLE);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    contentBean.getTvBetHint().setVisibility(View.GONE);
+                                }
+                            }, 1500);
                         }
                     });
                 }

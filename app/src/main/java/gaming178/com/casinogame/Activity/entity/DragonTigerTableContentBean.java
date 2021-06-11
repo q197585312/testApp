@@ -24,6 +24,8 @@ public class DragonTigerTableContentBean {
     private boolean isDragonTigerOpenPoker;
     private boolean isDragonTigerGetResult;
     private boolean isCanBet;
+    private TextView tvTableNumber;
+    private TextView tvBetHint;
 
     public int getTableId() {
         return tableId;
@@ -159,5 +161,21 @@ public class DragonTigerTableContentBean {
 
     public void setCanBet(boolean canBet) {
         isCanBet = canBet;
+    }
+
+    public TextView getTvTableNumber() {
+        return tvTableNumber;
+    }
+
+    public void setTvTableNumber(TextView tvTableNumber) {
+        this.tvTableNumber = tvTableNumber;
+    }
+
+    public TextView getTvBetHint() {
+        return tvBetHint;
+    }
+
+    public void setTvBetHint(TextView tvBetHint) {
+        this.tvBetHint = tvBetHint;
     }
 }

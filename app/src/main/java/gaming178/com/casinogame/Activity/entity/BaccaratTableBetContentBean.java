@@ -30,6 +30,8 @@ public class BaccaratTableBetContentBean {
     private boolean isBaccaratOpenPoker;
     private boolean isBaccaratGetResult;
     private boolean isCanBet;
+    private TextView tvTableNumber;
+    private TextView tvBetHint;
 
     public int getTableId() {
         return tableId;
@@ -213,5 +215,21 @@ public class BaccaratTableBetContentBean {
 
     public void setCanBet(boolean canBet) {
         isCanBet = canBet;
+    }
+
+    public TextView getTvTableNumber() {
+        return tvTableNumber;
+    }
+
+    public void setTvTableNumber(TextView tvTableNumber) {
+        this.tvTableNumber = tvTableNumber;
+    }
+
+    public TextView getTvBetHint() {
+        return tvBetHint;
+    }
+
+    public void setTvBetHint(TextView tvBetHint) {
+        this.tvBetHint = tvBetHint;
     }
 }
