@@ -92,6 +92,8 @@ public class PopMenu extends BasePopupWindow {
                 String promotionUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "promom.jsp";
                 if (BuildConfig.FLAVOR.equals("indocasino338")) {
                     promotionUrl = "http://161.97.76.91/indocasino338/";
+                } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
+                    promotionUrl = "https://b.link/promowgc";
                 }
                 return promotionUrl;
             }
