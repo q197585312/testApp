@@ -1947,9 +1947,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
         }
         int with = ScreenUtil.dip2px(mContext, 300);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            with = with * 2;
-        }
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            with = with * 2;
+//        }
         tablePop = new TableChangePop(mContext, v, with, ViewGroup.LayoutParams.MATCH_PARENT);
         tablePop.setClickImp(new ItemCLickImp<GameMenuItem>() {
             @Override

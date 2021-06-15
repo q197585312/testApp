@@ -69,7 +69,7 @@ public class TableChangePop extends BasePopupWindow {
     private BaseRecyclerAdapter<String> adapter;
     private LinearLayout parent;
     private List<TableTimerBean> list;
-    private TextView tv_b, tv_r, tv_s, tv_d;
+    private ImageView img_b, img_r, img_s, img_d;
     private AdapterView lvChips;
     List<TextView> hereList = new ArrayList<>();
     List<TableMaintenanceBean> tableMaintenanceList = new ArrayList<>();
@@ -121,13 +121,13 @@ public class TableChangePop extends BasePopupWindow {
                 closePopupWindow();
             }
         });
-        tv_b = view.findViewById(R.id.gd__tv_b);
-        tv_r = view.findViewById(R.id.gd__tv_r);
-        tv_s = view.findViewById(R.id.gd__tv_s);
-        tv_d = view.findViewById(R.id.gd__tv_d);
+        img_b = view.findViewById(R.id.gd__img_b);
+        img_r = view.findViewById(R.id.gd__img_r);
+        img_s = view.findViewById(R.id.gd__img_s);
+        img_d = view.findViewById(R.id.gd__img_d);
         lvChips = view.findViewById(R.id.gd_lv_chips);
         setChip();
-        tv_b.setOnClickListener(new View.OnClickListener() {
+        img_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
@@ -138,7 +138,7 @@ public class TableChangePop extends BasePopupWindow {
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
             }
         });
-        tv_r.setOnClickListener(new View.OnClickListener() {
+        img_r.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
@@ -149,7 +149,7 @@ public class TableChangePop extends BasePopupWindow {
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
             }
         });
-        tv_s.setOnClickListener(new View.OnClickListener() {
+        img_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
@@ -160,7 +160,7 @@ public class TableChangePop extends BasePopupWindow {
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
             }
         });
-        tv_d.setOnClickListener(new View.OnClickListener() {
+        img_d.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
@@ -730,22 +730,25 @@ public class TableChangePop extends BasePopupWindow {
             });
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.weight = 1;
-            if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                if (i % 2 == 0) {
-                    parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
-                }
-                parentLine.addView(aB1, layoutParams);
-//                if (i == tables.size() - 1) {
-//                    parentLine.addView(new View(context), layoutParams);
+//            if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                if (i % 2 == 0) {
+//                    parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
 //                }
-                if (i % 2 == 1 || i == tables.size() - 1) {
-                    parent.addView(parentLine);
-                }
-            } else {
-                parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
-                parentLine.addView(aB1, layoutParams);
-                parent.addView(parentLine);
-            }
+//                parentLine.addView(aB1, layoutParams);
+////                if (i == tables.size() - 1) {
+////                    parentLine.addView(new View(context), layoutParams);
+////                }
+//                if (i % 2 == 1 || i == tables.size() - 1) {
+//                    parent.addView(parentLine);
+//                }
+//            } else {
+//                parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
+//                parentLine.addView(aB1, layoutParams);
+//                parent.addView(parentLine);
+//            }
+            parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
+            parentLine.addView(aB1, layoutParams);
+            parent.addView(parentLine);
             i++;
         }
     }
