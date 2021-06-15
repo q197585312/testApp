@@ -343,7 +343,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wargacasino"]
                 buildConfigField "String", "Labelid", '"142"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.89'
+                versionName '3.90'
             }
 
 
