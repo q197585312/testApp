@@ -152,6 +152,14 @@ public class MainPresenter extends BaseSwitchPresenter {
         else if (g.equals("TFG CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenTFGGamee", "", "wfTFGLogin"), "", "^.*\"(http[^\"]+)\".*$");
         }
+
+        else if (g.equals("betsoft")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfBTSLogin"), "", "^.*\"(http[^\"]+)\".*$");
+        }
+
+        else if (g.equals("Joker")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfJKRLogin"), "", "^.*\"(http[^\"]+)\".*$");
+        }
     }
 
 
