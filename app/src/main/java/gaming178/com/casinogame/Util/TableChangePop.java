@@ -127,6 +127,7 @@ public class TableChangePop extends BasePopupWindow {
         img_d = view.findViewById(R.id.gd__img_d);
         lvChips = view.findViewById(R.id.gd_lv_chips);
         setChip();
+        img_b.setImageResource(R.mipmap.gd__img_b_select);
         img_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +137,10 @@ public class TableChangePop extends BasePopupWindow {
                 dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
                 rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                img_b.setImageResource(R.mipmap.gd__img_b_select);
+                img_r.setImageResource(R.mipmap.table_roulette);
+                img_s.setImageResource(R.mipmap.table_sicbo);
+                img_d.setImageResource(R.mipmap.table_dragon_tiger);
             }
         });
         img_r.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +152,10 @@ public class TableChangePop extends BasePopupWindow {
                 dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
                 rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                img_b.setImageResource(R.mipmap.table_baccarat);
+                img_r.setImageResource(R.mipmap.gd__img_r_select);
+                img_s.setImageResource(R.mipmap.table_sicbo);
+                img_d.setImageResource(R.mipmap.table_dragon_tiger);
             }
         });
         img_s.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +167,10 @@ public class TableChangePop extends BasePopupWindow {
                 dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
                 rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                img_b.setImageResource(R.mipmap.table_baccarat);
+                img_r.setImageResource(R.mipmap.table_roulette);
+                img_s.setImageResource(R.mipmap.gd__img_s_select);
+                img_d.setImageResource(R.mipmap.table_dragon_tiger);
             }
         });
         img_d.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +182,10 @@ public class TableChangePop extends BasePopupWindow {
                 dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
                 rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                img_b.setImageResource(R.mipmap.table_baccarat);
+                img_r.setImageResource(R.mipmap.table_roulette);
+                img_s.setImageResource(R.mipmap.table_sicbo);
+                img_d.setImageResource(R.mipmap.gd__img_d_select);
             }
         });
     }
