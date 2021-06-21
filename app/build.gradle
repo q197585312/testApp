@@ -133,7 +133,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "depocasino"]
                 buildConfigField "String", "Labelid", '"186"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.88'
+                versionName '3.89'
             }
             dewacasino388 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "dewacasino388"]
@@ -329,7 +329,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ularnaga"]
                 buildConfigField "String", "Labelid", '"187"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.88'
+                versionName '3.89'
             }
 
             w99casino {
