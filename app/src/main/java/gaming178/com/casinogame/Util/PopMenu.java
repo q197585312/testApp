@@ -94,6 +94,10 @@ public class PopMenu extends BasePopupWindow {
                     promotionUrl = "http://161.97.76.91/indocasino338/";
                 } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
                     promotionUrl = "https://b.link/promowgc";
+                } else if (BuildConfig.FLAVOR.equals("depocasino")) {
+                    promotionUrl = "http://45.77.243.206/depocasino/";
+                } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
+                    promotionUrl = "http://45.77.243.206/ularnaga/";
                 }
                 return promotionUrl;
             }
