@@ -39,7 +39,8 @@ public class LobbyRouletteFragment extends BaseFragment {
     @BindView(R2.id.gd__base_rv)
     RecyclerView gridView;
 
-
+    @BindView(R2.id.gd_view_table_maintenance)
+    View gd_view_table_maintenance;
     private TextView tv_roulette_timer01;
     private TextView tv_game_number01;
     private TextView tv_roulette_red01;
@@ -196,6 +197,12 @@ public class LobbyRouletteFragment extends BaseFragment {
     }
 
     public void updateTimer() {
+        if (baseActivity.mAppViewModel.getRoulette01().getStatus() != 1) {
+            gd_view_table_maintenance.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            gd_view_table_maintenance.setVisibility(View.GONE);
+        }
         if (rouletteTimer01 == 0 && baseActivity.mAppViewModel.getRoulette01().getTimer() > 0) {
             //   Log.i(WebSiteUrl.Tag, "updateTimer="+mAppViewModel.getRoulette01().getTimer());
             if (!gameNumber.equals(baseActivity.mAppViewModel.getRoulette01().getGameNumber())) {
@@ -237,9 +244,9 @@ public class LobbyRouletteFragment extends BaseFragment {
         tv_roulette_big01 = (TextView) rootView.findViewById(R.id.gd__text_big);
         tv_roulette_small01 = (TextView) rootView.findViewById(R.id.gd__text_small);
         baseActivity.girlLayout = (LinearLayout) rootView.findViewById(R.id.gd__ll_layout_girl);
-        if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             baseActivity.girlLayout.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             baseActivity.girlLayout.setVisibility(View.GONE);
         }
         baseActivity.ll_more_info = (LinearLayout) rootView.findViewById(R.id.gd__ll_more_info);

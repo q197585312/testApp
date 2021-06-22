@@ -58,6 +58,8 @@ public class LobbyDragonTigerFragment extends BaseFragment {
     FrameLayout fl5;//baccarat_roach_road1
     @BindView(R2.id.gd__baccarat_head_iv)
     ImageView baccarat_head_iv;//baccarat_roach_road1
+    @BindView(R2.id.gd_view_table_maintenance)
+    View gd_view_table_maintenance;
     private float density;
     private TextView shufflingTv;
 
@@ -211,6 +213,12 @@ public class LobbyDragonTigerFragment extends BaseFragment {
     }
 
     public void updateTimer() {
+        if (baseActivity.mAppViewModel.getDragonTiger01().getStatus() != 1) {
+            gd_view_table_maintenance.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            gd_view_table_maintenance.setVisibility(View.GONE);
+        }
         if (baseActivity.mAppViewModel.getDragonTiger01().getGameStatus() == 8) {
             shufflingTv.setVisibility(View.VISIBLE);
         } else {
