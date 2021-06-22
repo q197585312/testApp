@@ -9,6 +9,7 @@
     android:visibility="gone">
 
     <FrameLayout
+        android:id="@+id/fl_dt_bet_bg"
         android:layout_width="match_parent"
         android:layout_height="105dp"
         android:background="@mipmap/gd_dragon_tiger_bg_h_table_change">
@@ -64,6 +65,7 @@
                 android:paddingRight="5dp">
 
                 <TextView
+                    android:id="@+id/tv_dragon_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -114,6 +116,7 @@
                 android:paddingRight="5dp">
 
                 <TextView
+                    android:id="@+id/tv_tiger_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"

@@ -9,6 +9,7 @@
     android:visibility="invisible">
 
     <FrameLayout
+        android:id="@+id/fl_sicbo_bet_bg"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@mipmap/gd_sicbo_bg_h_table_change">

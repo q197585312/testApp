@@ -32,6 +32,9 @@ public class BaccaratTableBetContentBean {
     private boolean isCanBet;
     private TextView tvTableNumber;
     private TextView tvBetHint;
+    private TextView tvPlayerName;
+    private TextView tvBankerName;
+    private FrameLayout flBetBg;
 
     public int getTableId() {
         return tableId;
@@ -231,5 +234,29 @@ public class BaccaratTableBetContentBean {
 
     public void setTvBetHint(TextView tvBetHint) {
         this.tvBetHint = tvBetHint;
+    }
+
+    public TextView getTvPlayerName() {
+        return tvPlayerName;
+    }
+
+    public void setTvPlayerName(TextView tvPlayerName) {
+        this.tvPlayerName = tvPlayerName;
+    }
+
+    public TextView getTvBankerName() {
+        return tvBankerName;
+    }
+
+    public void setTvBankerName(TextView tvBankerName) {
+        this.tvBankerName = tvBankerName;
+    }
+
+    public FrameLayout getFlBetBg() {
+        return flBetBg;
+    }
+
+    public void setFlBetBg(FrameLayout flBetBg) {
+        this.flBetBg = flBetBg;
     }
 }

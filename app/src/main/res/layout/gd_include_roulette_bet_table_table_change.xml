@@ -9,6 +9,7 @@
     android:visibility="gone">
 
     <FrameLayout
+        android:id="@+id/fl_roulette_bet_bg"
         android:layout_width="match_parent"
         android:layout_height="105dp"
         android:background="@mipmap/gd_roulette_bg_h_table_change">

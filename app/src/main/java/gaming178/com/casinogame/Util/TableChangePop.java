@@ -31,6 +31,7 @@ import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
+import gaming178.com.casinogame.Activity.entity.ApngPlayBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetContentBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableChangeViewBean;
@@ -52,6 +53,7 @@ import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.AppModel;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.base.AdapterViewContent;
@@ -126,7 +128,6 @@ public class TableChangePop extends BasePopupWindow {
         img_s = view.findViewById(R.id.gd__img_s);
         img_d = view.findViewById(R.id.gd__img_d);
         lvChips = view.findViewById(R.id.gd_lv_chips);
-        setChip();
         img_b.setImageResource(R.mipmap.gd__img_b_select);
         img_b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,6 +197,9 @@ public class TableChangePop extends BasePopupWindow {
 //        this.chooseChip = chooseChip;
         for (int i = 0; i < hereList.size(); i++) {
             hereList.get(i).setText(context.getString(R.string.your_here));
+        }
+        if (lvChips != null) {
+            setChip();
         }
         refreshTimer((BaseActivity) context);
         initAllGame();
@@ -284,6 +288,32 @@ public class TableChangePop extends BasePopupWindow {
         initDragonTigerGame();
         initSicboGame();
         initRouletteGame();
+        initLg();
+    }
+
+    private void initLg() {
+        String lg = AppTool.getAppLanguage(context);
+        for (int i = 0; i < baccaratBetContentList.size(); i++) {
+            BaccaratTableBetContentBean contentBean = baccaratBetContentList.get(i);
+            if (lg.equals("zh") || lg.equals("zh_TW")) {
+                contentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_baccarat_bg_h_table_change_cn);
+            } else {
+                contentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_baccarat_bg_h_table_change);
+            }
+            contentBean.getTvPlayerName().setText(context.getString(R.string.player_home));
+            contentBean.getTvBankerName().setText(context.getString(R.string.banker_home));
+        }
+        dragonTigerTableContentBean.getTvDragonName().setText(context.getString(R.string.dragon));
+        dragonTigerTableContentBean.getTvTigerName().setText(context.getString(R.string.tiger));
+        if (lg.equals("zh") || lg.equals("zh_TW")) {
+            dragonTigerTableContentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_dragon_tiger_bg_h_table_change_cn);
+            sicboTableContentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_sicbo_bg_h_table_change_cn);
+            rouletteTableContentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_roulette_bg_h_table_change_cn);
+        } else {
+            dragonTigerTableContentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_dragon_tiger_bg_h_table_change);
+            sicboTableContentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_sicbo_bg_h_table_change);
+            rouletteTableContentBean.getFlBetBg().setBackgroundResource(R.mipmap.gd_roulette_bg_h_table_change);
+        }
     }
 
     private void initBaccaratGame(BaccaratTableBetContentBean contentBean) {
@@ -774,6 +804,7 @@ public class TableChangePop extends BasePopupWindow {
         rouletteTableBetBean.setTableId(tableId);
         rouletteTableContentBean.setTableId(tableId);
         View betContent = view.findViewById(R.id.gd_roulette_bet_table_change);
+        rouletteTableContentBean.setFlBetBg(view.findViewById(R.id.fl_roulette_bet_bg));
         rouletteTableContentBean.setContentView(betContent);
         rouletteTableContentBean.setTvTableNumber(view.findViewById(R.id.tv_table_number));
         rouletteTableContentBean.setTvBetHint(view.findViewById(R.id.tv_table_bet_hint));
@@ -1019,6 +1050,7 @@ public class TableChangePop extends BasePopupWindow {
         sicboTableBetBean.setTableId(tableId);
         sicboTableContentBean.setTableId(tableId);
         View betContent = view.findViewById(R.id.gd_sicbo_bet_table_change);
+        sicboTableContentBean.setFlBetBg(view.findViewById(R.id.fl_sicbo_bet_bg));
         sicboTableContentBean.setContentView(betContent);
         sicboTableContentBean.setTvTableNumber(view.findViewById(R.id.tv_table_number));
         sicboTableContentBean.setTvBetHint(view.findViewById(R.id.tv_table_bet_hint));
@@ -1236,6 +1268,9 @@ public class TableChangePop extends BasePopupWindow {
         dragonTigerTableBetBean.setTableId(tableId);
         dragonTigerTableContentBean.setTableId(tableId);
         View betContent = view.findViewById(R.id.gd_dragon_tiger_bet_table_change);
+        dragonTigerTableContentBean.setFlBetBg(view.findViewById(R.id.fl_dt_bet_bg));
+        dragonTigerTableContentBean.setTvDragonName(view.findViewById(R.id.tv_dragon_name));
+        dragonTigerTableContentBean.setTvTigerName(view.findViewById(R.id.tv_tiger_name));
         dragonTigerTableContentBean.setContentView(betContent);
         dragonTigerTableContentBean.setTvTableNumber(view.findViewById(R.id.tv_table_number));
         dragonTigerTableContentBean.setTvBetHint(view.findViewById(R.id.tv_table_bet_hint));
@@ -1377,6 +1412,9 @@ public class TableChangePop extends BasePopupWindow {
         BaccaratTableBetContentBean contentBean = new BaccaratTableBetContentBean();
         contentBean.setTableId(tableId);
         View betContent = view.findViewById(R.id.gd_baccarat_bet_table_change);
+        contentBean.setFlBetBg(view.findViewById(R.id.fl_baccarat_bet_bg));
+        contentBean.setTvPlayerName(view.findViewById(R.id.tv_player_name));
+        contentBean.setTvBankerName(view.findViewById(R.id.tv_banker_name));
         contentBean.setTvTableNumber(view.findViewById(R.id.tv_table_number));
         contentBean.setTvBetHint(view.findViewById(R.id.tv_table_bet_hint));
         contentBean.setContentView(betContent);
@@ -2797,7 +2835,7 @@ public class TableChangePop extends BasePopupWindow {
             }
         });
         BaseActivity baseActivity = (BaseActivity) context;
-        List<ChipBean> currentChip = baseActivity.getCurrentChip(false);
+        List<ChipBean> currentChip = baseActivity.getChip();
         List<ChipBean> chip = new ArrayList<>();
         for (int i = 0; i < currentChip.size(); i++) {
             if (currentChip.get(i).getValue() != -101) {

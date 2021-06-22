@@ -55,6 +55,7 @@ public class SicboTableContentBean {
     private List<AnimationDrawable> animationList = new ArrayList<>();
     private TextView tvTableNumber;
     private TextView tvBetHint;
+    private FrameLayout flBetBg;
 
     public int getTableId() {
         return tableId;
@@ -402,5 +403,13 @@ public class SicboTableContentBean {
 
     public void setTvBetHint(TextView tvBetHint) {
         this.tvBetHint = tvBetHint;
+    }
+
+    public FrameLayout getFlBetBg() {
+        return flBetBg;
+    }
+
+    public void setFlBetBg(FrameLayout flBetBg) {
+        this.flBetBg = flBetBg;
     }
 }

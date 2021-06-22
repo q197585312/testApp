@@ -754,58 +754,55 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             String sicboUrl = WebSiteUrl.SICBO_TABLE_STATUS_URL;
                             String lpUrl = WebSiteUrl.LP_TABLE_STATUS_URL;
                             String lhUrl = WebSiteUrl.LH_TABLE_STATUS_URL;
-                            if (postUrl.equals(bjlUrl)) {
-                                if (mAppViewModel.isClickBaccarat1() && mAppViewModel.getTableId() != 1) {
-                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(1));
-                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
-                                    if (bjlRes.startsWith("Results=ok")) {
-                                        getBaccaratStatus(bjlRes, 1);
-                                    }
+                            if (mAppViewModel.isClickBaccarat1() && mAppViewModel.getTableId() != 1) {
+                                String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(1));
+                                Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                if (bjlRes.startsWith("Results=ok")) {
+                                    getBaccaratStatus(bjlRes, 1);
                                 }
-                                if (mAppViewModel.isClickBaccarat2() && mAppViewModel.getTableId() != 2) {
-                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(2));
-                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
-                                    if (bjlRes.startsWith("Results=ok")) {
-                                        getBaccaratStatus(bjlRes, 2);
-                                    }
+                            }
+                            if (mAppViewModel.isClickBaccarat2() && mAppViewModel.getTableId() != 2) {
+                                String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(2));
+                                Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                if (bjlRes.startsWith("Results=ok")) {
+                                    getBaccaratStatus(bjlRes, 2);
                                 }
+                            }
 
-                                if (mAppViewModel.isClickBaccarat3() && mAppViewModel.getTableId() != 3) {
-                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(3));
-                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
-                                    if (bjlRes.startsWith("Results=ok")) {
-                                        getBaccaratStatus(bjlRes, 3);
-                                    }
+                            if (mAppViewModel.isClickBaccarat3() && mAppViewModel.getTableId() != 3) {
+                                String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(3));
+                                Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                if (bjlRes.startsWith("Results=ok")) {
+                                    getBaccaratStatus(bjlRes, 3);
                                 }
-                                if (mAppViewModel.isClickBaccarat5() && mAppViewModel.getTableId() != 61) {
-                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(61));
-                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
-                                    if (bjlRes.startsWith("Results=ok")) {
-                                        getBaccaratStatus(bjlRes, 61);
-                                    }
+                            }
+                            if (mAppViewModel.isClickBaccarat5() && mAppViewModel.getTableId() != 61) {
+                                String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(61));
+                                Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                if (bjlRes.startsWith("Results=ok")) {
+                                    getBaccaratStatus(bjlRes, 61);
                                 }
-                                if (mAppViewModel.isClickBaccarat6() && mAppViewModel.getTableId() != 62) {
-                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(62));
-                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
-                                    if (bjlRes.startsWith("Results=ok")) {
-                                        getBaccaratStatus(bjlRes, 62);
-                                    }
+                            }
+                            if (mAppViewModel.isClickBaccarat6() && mAppViewModel.getTableId() != 62) {
+                                String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(62));
+                                Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                if (bjlRes.startsWith("Results=ok")) {
+                                    getBaccaratStatus(bjlRes, 62);
                                 }
-                                if (mAppViewModel.isClickBaccarat7() && mAppViewModel.getTableId() != 63) {
-                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(63));
-                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
-                                    if (bjlRes.startsWith("Results=ok")) {
-                                        getBaccaratStatus(bjlRes, 63);
-                                    }
+                            }
+                            if (mAppViewModel.isClickBaccarat7() && mAppViewModel.getTableId() != 63) {
+                                String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(63));
+                                Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                if (bjlRes.startsWith("Results=ok")) {
+                                    getBaccaratStatus(bjlRes, 63);
                                 }
-                                if (mAppViewModel.isClickBaccaratMi() && mAppViewModel.getTableId() != 71) {
-                                    String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(71));
-                                    Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
-                                    if (bjlRes.startsWith("Results=ok")) {
-                                        getBaccaratStatus(bjlRes, 71);
-                                    }
+                            }
+                            if (mAppViewModel.isClickBaccaratMi() && mAppViewModel.getTableId() != 71) {
+                                String bjlRes = mAppViewModel.getHttpClient().sendPost(bjlUrl, getParam(71));
+                                Log.d("shangpeisheng1212", "bjlRes=" + bjlRes);
+                                if (bjlRes.startsWith("Results=ok")) {
+                                    getBaccaratStatus(bjlRes, 71);
                                 }
-
                             }
                             if (mAppViewModel.isClickSicbo() && !postUrl.equals(sicboUrl)) {
                                 String sicboRes = mAppViewModel.getHttpClient().sendPost(sicboUrl, getParam(31));
@@ -2206,7 +2203,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     }
 
-    public List<ChipBean> getCurrentChip(boolean isNeedAddSure) {
+    public List<ChipBean> getChip() {
         List<ChipBean> list = new ArrayList<>();
         String chipContent = Gd88Utils.getChipContent(this);
         String[] split = chipContent.split("-");
@@ -2224,6 +2221,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
         }
         list.add(new ChipBean(R.mipmap.gd_chip_choose, "CHOOSE", -101));
+        return list;
+    }
+
+    public List<ChipBean> getCurrentChip(boolean isNeedAddSure) {
+        List<ChipBean> list = getChip();
         if (isNeedAddSure) {
             list.add(new ChipBean(R.mipmap.gd_noimg, "", -2));
             list.add(new ChipBean(R.mipmap.gd_replayimg, "", -3));

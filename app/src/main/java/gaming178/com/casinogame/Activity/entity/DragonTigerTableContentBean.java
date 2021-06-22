@@ -26,6 +26,9 @@ public class DragonTigerTableContentBean {
     private boolean isCanBet;
     private TextView tvTableNumber;
     private TextView tvBetHint;
+    private TextView tvDragonName;
+    private TextView tvTigerName;
+    private FrameLayout flBetBg;
 
     public int getTableId() {
         return tableId;
@@ -177,5 +180,29 @@ public class DragonTigerTableContentBean {
 
     public void setTvBetHint(TextView tvBetHint) {
         this.tvBetHint = tvBetHint;
+    }
+
+    public TextView getTvDragonName() {
+        return tvDragonName;
+    }
+
+    public void setTvDragonName(TextView tvDragonName) {
+        this.tvDragonName = tvDragonName;
+    }
+
+    public TextView getTvTigerName() {
+        return tvTigerName;
+    }
+
+    public void setTvTigerName(TextView tvTigerName) {
+        this.tvTigerName = tvTigerName;
+    }
+
+    public FrameLayout getFlBetBg() {
+        return flBetBg;
+    }
+
+    public void setFlBetBg(FrameLayout flBetBg) {
+        this.flBetBg = flBetBg;
     }
 }
