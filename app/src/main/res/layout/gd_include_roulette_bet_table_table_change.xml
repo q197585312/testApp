@@ -244,7 +244,7 @@
         android:layout_gravity="center"
         android:visibility="gone">
 
-        <include layout="@layout/gd_layout_pop_center_roulette"></include>
+        <include layout="@layout/gd_layout_pop_center_roulette_table"></include>
     </FrameLayout>
 
 </FrameLayout>
