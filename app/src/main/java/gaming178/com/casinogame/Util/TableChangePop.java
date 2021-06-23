@@ -1575,7 +1575,37 @@ public class TableChangePop extends BasePopupWindow {
                 getBaccaratBetContentBean(tableId).getResultWinView().setBackgroundResource(0);
             }
             clearBaccaratResultView(tableId);
+            if (getBaccaratBetContentBean(tableId).getFlBetBg().getVisibility() != View.VISIBLE) {
+                getBaccaratBetContentBean(tableId).getFlBetBg().setVisibility(View.VISIBLE);
+                getBaccaratBetContentBean(tableId).getContentView().setBackgroundColor(context.getResources().getColor(R.color.table_bet_bg_color));
+            }
             if (!getBaccaratBetContentBean(tableId).getBaccaratGameNumber().equals(mAppViewModel.getBaccarat(tableId).getGameNumber())) {
+                if (!TextUtils.isEmpty(getBaccaratBetContentBean(tableId).getBaccaratGameNumber()) && !TextUtils.isEmpty(mAppViewModel.getBaccarat(tableId).getGameNumber())) {
+                    initBaccaratGame(getBaccaratBetContentBean(tableId));
+                    switch (tableId) {
+                        case 1:
+                            mAppViewModel.setClickBaccarat1(false);
+                            break;
+                        case 2:
+                            mAppViewModel.setClickBaccarat2(false);
+                            break;
+                        case 3:
+                            mAppViewModel.setClickBaccarat3(false);
+                            break;
+                        case 61:
+                            mAppViewModel.setClickBaccarat5(false);
+                            break;
+                        case 62:
+                            mAppViewModel.setClickBaccarat6(false);
+                            break;
+                        case 63:
+                            mAppViewModel.setClickBaccarat7(false);
+                            break;
+                        case 71:
+                            mAppViewModel.setClickBaccaratMi(false);
+                            break;
+                    }
+                }
                 String gameIdNumber = mAppViewModel.getBaccarat(tableId).getShoeNumber() + " - " + mAppViewModel.getBaccarat(tableId).getGameNumber();
                 getBaccaratBetContentBean(tableId).getTvTableNumber().setText(gameIdNumber);
                 getBaccaratBetContentBean(tableId).setBaccaratGameNumber(mAppViewModel.getBaccarat(tableId).getGameNumber());
@@ -1589,9 +1619,12 @@ public class TableChangePop extends BasePopupWindow {
                 baccaratBetBean.setBpAlreadyBet(0);
             }
         } else if (mAppViewModel.getBaccarat(tableId).getGameStatus() == 2) {
-            getBaccaratBetContentBean(tableId).getLlResult().setVisibility(View.VISIBLE);
             showBaccaratPoint(tableId);
             if (getBaccaratBetContentBean(tableId).isBaccaratOpenPoker()) {
+                if (getBaccaratBetContentBean(tableId).getLlResult().getVisibility() != View.VISIBLE) {
+                    getBaccaratBetContentBean(tableId).getLlResult().setVisibility(View.VISIBLE);
+                }
+                getBaccaratBetContentBean(tableId).setBaccaratGameNumber(mAppViewModel.getBaccarat(tableId).getGameNumber());
                 String gameIdNumber = mAppViewModel.getBaccarat(tableId).getShoeNumber() + " - " + mAppViewModel.getBaccarat(tableId).getGameNumber();
                 getBaccaratBetContentBean(tableId).getTvTableNumber().setText(gameIdNumber);
                 getBaccaratBetContentBean(tableId).setBaccaratOpenPoker(false);
@@ -1601,6 +1634,10 @@ public class TableChangePop extends BasePopupWindow {
             showBaccaratPoint(tableId);
             showBaccaratResult(tableId);
             if (getBaccaratBetContentBean(tableId).isBaccaratGetResult()) {
+                if (getBaccaratBetContentBean(tableId).getLlResult().getVisibility() != View.VISIBLE) {
+                    getBaccaratBetContentBean(tableId).getLlResult().setVisibility(View.VISIBLE);
+                }
+                getBaccaratBetContentBean(tableId).setBaccaratGameNumber(mAppViewModel.getBaccarat(tableId).getGameNumber());
                 String gameIdNumber = mAppViewModel.getBaccarat(tableId).getShoeNumber() + " - " + mAppViewModel.getBaccarat(tableId).getGameNumber();
                 getBaccaratBetContentBean(tableId).getTvTableNumber().setText(gameIdNumber);
                 getBaccaratBetContentBean(tableId).setBaccaratGetResult(false);
@@ -1620,18 +1657,24 @@ public class TableChangePop extends BasePopupWindow {
                     sicboTableContentBean.getAnimationList().get(i).selectDrawable(0);
                 }
                 sicboTableContentBean.getFlResult().setVisibility(View.GONE);
-                sicboTableContentBean.setSicboGameNumber(mAppViewModel.getSicbo01().getGameNumber());
                 sicboTableContentBean.setSicboOpenResult(true);
                 sicboTableContentBean.setSicboGetResult(true);
+                if (!TextUtils.isEmpty(sicboTableContentBean.getSicboGameNumber()) && !TextUtils.isEmpty(mAppViewModel.getSicbo01().getGameNumber())) {
+                    initSicboGame();
+                    mAppViewModel.setClickSicbo(false);
+                }
+                sicboTableContentBean.setSicboGameNumber(mAppViewModel.getSicbo01().getGameNumber());
             }
         } else if (mAppViewModel.getSicbo01().getGameStatus() == 2) {
             if (sicboTableContentBean.isSicboOpenResult()) {
+                sicboTableContentBean.setSicboGameNumber(mAppViewModel.getSicbo01().getGameNumber());
                 sicboTableContentBean.getTvTableNumber().setText(mAppViewModel.getSicbo01().getGameNumber());
                 sicboTableContentBean.setSicboOpenResult(false);
                 TableBetUtils.clearSicboNoBetChip(sicboTableBetBean, sicboTableContentBean, context);
             }
         } else if (mAppViewModel.getSicbo01().getGameStatus() == 5) {
             if (sicboTableContentBean.isSicboGetResult()) {
+                sicboTableContentBean.setSicboGameNumber(mAppViewModel.getSicbo01().getGameNumber());
                 sicboTableContentBean.getTvTableNumber().setText(mAppViewModel.getSicbo01().getGameNumber());
                 showSicboResult();
                 sicboTableContentBean.setSicboGetResult(false);
@@ -1650,18 +1693,24 @@ public class TableChangePop extends BasePopupWindow {
                     rouletteTableContentBean.getAnimationList().get(i).selectDrawable(0);
                 }
                 rouletteTableContentBean.getFlResult().setVisibility(View.GONE);
-                rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
                 rouletteTableContentBean.setRouletteOpenResult(true);
                 rouletteTableContentBean.setRouletteGetResult(true);
+                if (!TextUtils.isEmpty(rouletteTableContentBean.getRouletteGameNumber()) && !TextUtils.isEmpty(mAppViewModel.getRoulette01().getGameNumber())) {
+                    initRouletteGame();
+                    mAppViewModel.setClickRoulette(false);
+                }
+                rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
             }
         } else if (mAppViewModel.getRoulette01().getGameStatus() == 2) {
             if (rouletteTableContentBean.isRouletteOpenResult()) {
+                rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
                 rouletteTableContentBean.getTvTableNumber().setText(mAppViewModel.getRoulette01().getGameNumber());
                 rouletteTableContentBean.setRouletteOpenResult(false);
                 TableBetUtils.clearRouletteNoBetChip(rouletteTableBetBean, rouletteTableContentBean, context);
             }
         } else if (mAppViewModel.getRoulette01().getGameStatus() == 5) {
             if (rouletteTableContentBean.isRouletteGetResult()) {
+                rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
                 rouletteTableContentBean.getTvTableNumber().setText(mAppViewModel.getRoulette01().getGameNumber());
                 showRouletteResult();
                 rouletteTableContentBean.setRouletteGetResult(false);
@@ -1676,7 +1725,15 @@ public class TableChangePop extends BasePopupWindow {
                 dragonTigerTableContentBean.getResultWinView().setBackgroundResource(0);
             }
             clearDragonTigerResultView();
+            if (dragonTigerTableContentBean.getFlBetBg().getVisibility() != View.VISIBLE) {
+                dragonTigerTableContentBean.getFlBetBg().setVisibility(View.VISIBLE);
+                dragonTigerTableContentBean.getContentView().setBackgroundColor(context.getResources().getColor(R.color.table_bet_bg_color));
+            }
             if (!dragonTigerTableContentBean.getDragonTigerGameNumber().equals(mAppViewModel.getDragonTiger(tableId).getGameNumber())) {
+                if (!TextUtils.isEmpty(dragonTigerTableContentBean.getDragonTigerGameNumber()) && !TextUtils.isEmpty(mAppViewModel.getDragonTiger(tableId).getGameNumber())) {
+                    initDragonTigerGame();
+                    mAppViewModel.setClickDragonTiger(false);
+                }
                 dragonTigerTableContentBean.getTvTableNumber().setText(mAppViewModel.getDragonTiger(tableId).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(tableId).getGameNumber());
                 mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().setDragon(0);
                 mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().setTiger(0);
@@ -1691,6 +1748,10 @@ public class TableChangePop extends BasePopupWindow {
             dragonTigerTableContentBean.getLlResult().setVisibility(View.VISIBLE);
             showDragonTigerPoint(tableId);
             if (dragonTigerTableContentBean.isDragonTigerOpenPoker()) {
+                if (dragonTigerTableContentBean.getLlResult().getVisibility() != View.VISIBLE) {
+                    dragonTigerTableContentBean.getLlResult().setVisibility(View.VISIBLE);
+                }
+                dragonTigerTableContentBean.setDragonTigerGameNumber(mAppViewModel.getDragonTiger(tableId).getGameNumber());
                 dragonTigerTableContentBean.getTvTableNumber().setText(mAppViewModel.getDragonTiger(tableId).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(tableId).getGameNumber());
                 dragonTigerTableContentBean.setDragonTigerOpenPoker(false);
                 TableBetUtils.clearDragonTigerNoBetChip(dragonTigerTableBetBean, dragonTigerTableContentBean, context);
@@ -1699,6 +1760,10 @@ public class TableChangePop extends BasePopupWindow {
             showDragonTigerPoint(tableId);
             showDragonTigerResult(tableId);
             if (dragonTigerTableContentBean.isDragonTigerGetResult()) {
+                if (dragonTigerTableContentBean.getLlResult().getVisibility() != View.VISIBLE) {
+                    dragonTigerTableContentBean.getLlResult().setVisibility(View.VISIBLE);
+                }
+                dragonTigerTableContentBean.setDragonTigerGameNumber(mAppViewModel.getDragonTiger(tableId).getGameNumber());
                 dragonTigerTableContentBean.getTvTableNumber().setText(mAppViewModel.getDragonTiger(tableId).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(tableId).getGameNumber());
                 dragonTigerTableContentBean.setDragonTigerGetResult(false);
                 TableBetUtils.clearDragonTigerAllChip(dragonTigerTableBetBean, dragonTigerTableContentBean);
@@ -2364,6 +2429,48 @@ public class TableChangePop extends BasePopupWindow {
                 }
             }
         }.start();
+    }
+
+    public void openBaccarat(int tableId) {
+        for (int i = 0; i < list.size(); i++) {
+            TableTimerBean tableTimerBean = list.get(i);
+            String type = tableTimerBean.getType();
+            if (type.equals(tableId + "")) {
+                String s = tableTimerBean.getTvTimer().getText().toString();
+                if (!s.equals("0")) {
+                    getBaccaratBetContentBean(tableId).getLlResult().setVisibility(View.GONE);
+                    getBaccaratBetContentBean(tableId).getFlBetBg().setVisibility(View.VISIBLE);
+                    getBaccaratBetContentBean(tableId).getContentView().setBackgroundColor(context.getResources().getColor(R.color.table_bet_bg_color));
+                } else {
+                    getBaccaratBetContentBean(tableId).getLlResult().setVisibility(View.VISIBLE);
+                    getBaccaratBetContentBean(tableId).getFlBetBg().setVisibility(View.GONE);
+                    getBaccaratBetContentBean(tableId).getContentView().setBackgroundColor(context.getResources().getColor(R.color.null_color));
+                }
+                break;
+            }
+        }
+        getBaccaratBetContentBean(tableId).getContentView().setVisibility(View.VISIBLE);
+    }
+
+    public void openDragonTiger(int tableId) {
+        for (int i = 0; i < list.size(); i++) {
+            TableTimerBean tableTimerBean = list.get(i);
+            String type = tableTimerBean.getType();
+            if (type.equals(tableId + "")) {
+                String s = tableTimerBean.getTvTimer().getText().toString();
+                if (!s.equals("0")) {
+                    dragonTigerTableContentBean.getLlResult().setVisibility(View.GONE);
+                    dragonTigerTableContentBean.getFlBetBg().setVisibility(View.VISIBLE);
+                    dragonTigerTableContentBean.getContentView().setBackgroundColor(context.getResources().getColor(R.color.table_bet_bg_color));
+                } else {
+                    dragonTigerTableContentBean.getLlResult().setVisibility(View.VISIBLE);
+                    dragonTigerTableContentBean.getFlBetBg().setVisibility(View.GONE);
+                    dragonTigerTableContentBean.getContentView().setBackgroundColor(context.getResources().getColor(R.color.null_color));
+                }
+                break;
+            }
+        }
+        dragonTigerTableContentBean.getContentView().setVisibility(View.VISIBLE);
     }
 
     private void updateGame() {

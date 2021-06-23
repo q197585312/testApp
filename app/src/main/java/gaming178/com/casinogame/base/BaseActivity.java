@@ -1957,52 +1957,68 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 }
                 switch (gameMenuItem.getDrawableRes()) {
                     case 1:
-                        mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickBaccarat1(true);
-                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickBaccarat1(true);
+                            tablePop.openBaccarat(gameMenuItem.getDrawableRes());
+                            tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 2:
-                        mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickBaccarat2(true);
-                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickBaccarat2(true);
+                            tablePop.openBaccarat(gameMenuItem.getDrawableRes());
+                            tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 3:
-                        mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickBaccarat3(true);
-                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickBaccarat3(true);
+                            tablePop.openBaccarat(gameMenuItem.getDrawableRes());
+                            tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 61:
-                        mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickBaccarat5(true);
-                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickBaccarat5(true);
+                            tablePop.openBaccarat(gameMenuItem.getDrawableRes());
+                            tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 62:
-                        mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickBaccarat6(true);
-                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickBaccarat6(true);
+                            tablePop.openBaccarat(gameMenuItem.getDrawableRes());
+                            tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 63:
-                        mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickBaccarat7(true);
-                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickBaccarat7(true);
+                            tablePop.openBaccarat(gameMenuItem.getDrawableRes());
+                            tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 71:
-                        mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickBaccaratMi(true);
-                        tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickBaccaratMi(true);
+                            tablePop.openBaccarat(gameMenuItem.getDrawableRes());
+                            tablePop.updateBaccaratBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 5:
-                        mAppViewModel.getDragonTiger(gameMenuItem.getDrawableRes()).setGameStatus(-1);
-                        mAppViewModel.setClickDragonTiger(true);
-                        tablePop.getDragonTigerContentBean().getContentView().setVisibility(View.VISIBLE);
-                        tablePop.updateDragonTigerBetMoney(gameMenuItem.getDrawableRes());
+                        if (tablePop.getDragonTigerContentBean().getContentView().getVisibility()!=View.VISIBLE){
+                            mAppViewModel.getDragonTiger(gameMenuItem.getDrawableRes()).setGameStatus(-1);
+                            mAppViewModel.setClickDragonTiger(true);
+                            tablePop.openDragonTiger(gameMenuItem.getDrawableRes());
+                            tablePop.updateDragonTigerBetMoney(gameMenuItem.getDrawableRes());
+                        }
                         break;
                     case 21:
                         mAppViewModel.getRoulette01().setGameStatus(-1);
