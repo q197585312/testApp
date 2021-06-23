@@ -85,7 +85,7 @@ public class HomeViewModel : BaseViewModel() {
                         }
                     }
                     left.addAll(allImage.left)
-                    if (allImage.header.isNullOrEmpty())
+                    if (!allImage.header.isNullOrEmpty())
                         headers.addAll(allImage.header)
                     selectedType.value = "sport"
                     mainList = allImage.main
