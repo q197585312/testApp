@@ -93,23 +93,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         presenter.getRunningList(type);
         setAdapter();
     }
-    public void showLoadingDialog() {
-    }
 
 
     BaseRecyclerAdapter<RunningBean> adapter;
 
-    BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter1;
 
     private void setAdapter() {
 
-
-        adapter1 = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, new ArrayList<StatementOpen2ListDataBean>(), R.layout.item_statement_open2) {
-            @Override
-            public void convert(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
-                updateRc1(getmDatas(), view, position, bean);
-            }
-        };
 
         rv.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new BaseRecyclerAdapter<RunningBean>(mContext, new ArrayList<RunningBean>(), R.layout.item_running) {
@@ -171,8 +161,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
                     if (openDetailMap.get(item.getSocTransId17()) != null && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getType())) {
                         l.setVisibility(View.VISIBLE);
-                        l1Content(openDetailMap.get(item.getSocTransId17()).getType(), holder);
+
                         if (openDetailMap.get(item.getSocTransId17()).getParent() != null) {
+                            l1Content(openDetailMap.get(item.getSocTransId17()).getType(), holder);
                             open_detail_list.setText(getString(R.string.CloseDetail));
                             l2.setVisibility(View.VISIBLE);
                             if (!StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getParent())) {
@@ -198,6 +189,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                 presenter.getParList(item.getSocTransId17(), new BaseConsumer<String>(getIBaseContext()) {
                                     @Override
                                     protected void onBaseGetData(String data) throws JSONException {
+                                        LogUtil.d("SocTransId17", "item.getSocTransId17():" + item.getSocTransId17() + ",data:" + data);
                                         l.setVisibility(View.VISIBLE);
                                         MenuItemInfo<String> stringMenuItemInfo1 = openDetailMap.get(item.getSocTransId17());
                                         if (stringMenuItemInfo1 != null) {
@@ -407,6 +399,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         try {
             JSONArray jsonArray = new JSONArray(updateString);
             if (jsonArray.length() > 3) {
+
+                BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter1 = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, new ArrayList<StatementOpen2ListDataBean>(), R.layout.item_statement_open2) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
+                        updateRc1(getmDatas(), view, position, bean);
+                    }
+                };
                 list = presenter.getBeanList2(jsonArray);
                 RecyclerView rc1 = holder.getView(R.id.rc_par_1);
                 rc1.setLayoutManager(new LinearLayoutManager(mContext));
