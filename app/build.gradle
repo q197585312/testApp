@@ -451,6 +451,13 @@ android {
                 versionName '3.88'
 
             }
+            kuncicasino {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "kuncicasino"]
+                buildConfigField "String", "Labelid", '"63"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '3.88'
+
+            }
         }
 
         applicationVariants.all { variant ->
