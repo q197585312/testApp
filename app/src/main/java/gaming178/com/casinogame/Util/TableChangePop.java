@@ -1585,25 +1585,25 @@ public class TableChangePop extends BasePopupWindow {
                     switch (tableId) {
                         case 1:
                             mAppViewModel.setClickBaccarat1(false);
-                            break;
+                            return;
                         case 2:
                             mAppViewModel.setClickBaccarat2(false);
-                            break;
+                            return;
                         case 3:
                             mAppViewModel.setClickBaccarat3(false);
-                            break;
+                            return;
                         case 61:
                             mAppViewModel.setClickBaccarat5(false);
-                            break;
+                            return;
                         case 62:
                             mAppViewModel.setClickBaccarat6(false);
-                            break;
+                            return;
                         case 63:
                             mAppViewModel.setClickBaccarat7(false);
-                            break;
+                            return;
                         case 71:
                             mAppViewModel.setClickBaccaratMi(false);
-                            break;
+                            return;
                     }
                 }
                 String gameIdNumber = mAppViewModel.getBaccarat(tableId).getShoeNumber() + " - " + mAppViewModel.getBaccarat(tableId).getGameNumber();
@@ -1662,6 +1662,7 @@ public class TableChangePop extends BasePopupWindow {
                 if (!TextUtils.isEmpty(sicboTableContentBean.getSicboGameNumber()) && !TextUtils.isEmpty(mAppViewModel.getSicbo01().getGameNumber())) {
                     initSicboGame();
                     mAppViewModel.setClickSicbo(false);
+                    return;
                 }
                 sicboTableContentBean.setSicboGameNumber(mAppViewModel.getSicbo01().getGameNumber());
             }
@@ -1698,6 +1699,7 @@ public class TableChangePop extends BasePopupWindow {
                 if (!TextUtils.isEmpty(rouletteTableContentBean.getRouletteGameNumber()) && !TextUtils.isEmpty(mAppViewModel.getRoulette01().getGameNumber())) {
                     initRouletteGame();
                     mAppViewModel.setClickRoulette(false);
+                    return;
                 }
                 rouletteTableContentBean.setRouletteGameNumber(mAppViewModel.getRoulette01().getGameNumber());
             }
@@ -1733,6 +1735,7 @@ public class TableChangePop extends BasePopupWindow {
                 if (!TextUtils.isEmpty(dragonTigerTableContentBean.getDragonTigerGameNumber()) && !TextUtils.isEmpty(mAppViewModel.getDragonTiger(tableId).getGameNumber())) {
                     initDragonTigerGame();
                     mAppViewModel.setClickDragonTiger(false);
+                    return;
                 }
                 dragonTigerTableContentBean.getTvTableNumber().setText(mAppViewModel.getDragonTiger(tableId).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(tableId).getGameNumber());
                 mAppViewModel.getDragonTiger(tableId).getDragonTigerPoker().setDragon(0);
