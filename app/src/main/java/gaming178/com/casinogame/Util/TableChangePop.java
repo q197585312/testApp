@@ -812,8 +812,8 @@ public class TableChangePop extends BasePopupWindow {
         FrameLayout flZero = view.findViewById(R.id.fl_zero);
         FrameLayout flOdd = view.findViewById(R.id.fl_odd);
         ImageView imgEven = view.findViewById(R.id.img_even);
-        ImageView imgZero = view.findViewById(R.id.img_even);
-        ImageView imgOdd = view.findViewById(R.id.img_even);
+        ImageView imgZero = view.findViewById(R.id.img_zero);
+        ImageView imgOdd = view.findViewById(R.id.img_odd);
         ImageView imgSingle1_12 = view.findViewById(R.id.img_1_12);
         ImageView imgSingle13_24 = view.findViewById(R.id.img_13_24);
         ImageView imgSingle25_36 = view.findViewById(R.id.img_25_36);
