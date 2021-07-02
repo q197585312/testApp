@@ -27,6 +27,7 @@ public class PopMenu extends BasePopupWindow {
 
     LinearLayout ll_promotion;
     LinearLayout ll_contact;
+    LinearLayout ll_winner;
     BaseActivity baseActivity;
 
     public void urlHostInit(int type) {
@@ -59,6 +60,18 @@ public class PopMenu extends BasePopupWindow {
         super.initView(view);
         ll_promotion = view.findViewById(R.id.gd_ll_promotion);
         ll_contact = view.findViewById(R.id.gd_ll_contact);
+        ll_winner = view.findViewById(R.id.gd_ll_winner);
+        if (BuildConfig.FLAVOR.equals("oricasino")) {
+            ll_winner.setVisibility(View.VISIBLE);
+            ll_winner.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    closePopupWindow();
+                    PopWebView popWebView = getWinnerPop();
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+        }
         ll_promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +139,25 @@ public class PopMenu extends BasePopupWindow {
             @Override
             public String getTitle() {
                 return context.getString(R.string.CONTACT);
+            }
+        };
+        return popWebView;
+    }
+
+    private PopWebView getWinnerPop() {
+        PopWebView popWebView = new PopWebView(context, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+            @Override
+            public String getUrl() {
+                String winnerUrl = "";
+                if (BuildConfig.FLAVOR.equals("oricasino")) {
+                    winnerUrl = "https://event-spectacular.club/";
+                }
+                return winnerUrl;
+            }
+
+            @Override
+            public String getTitle() {
+                return context.getString(R.string.WINNER);
             }
         };
         return popWebView;

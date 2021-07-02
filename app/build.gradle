@@ -413,7 +413,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]
                 buildConfigField "String", "Labelid", '"224"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.92'
+                versionName '3.93'
 
             }
             rajawalicasino {
