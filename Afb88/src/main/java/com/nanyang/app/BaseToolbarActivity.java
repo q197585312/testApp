@@ -1,7 +1,9 @@
 package com.nanyang.app;
 
+import android.animation.ValueAnimator;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -55,6 +57,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -380,7 +383,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                             intent.putString("curCode", bean.getCurCode());
                             LogIntervalUtils.logTime("请求数据完成开始跳转");
                             getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyActivity");
-                        } else if (code == 200 && body.contains("not online")|| StringUtils.isNull(getApp().getUser().getLoginName()) || getApp().getUser().getLoginName().equals("@@@AFB88###")) {
+                        } else if (code == 200 && body.contains("not online") || StringUtils.isNull(getApp().getUser().getLoginName()) || getApp().getUser().getLoginName().equals("@@@AFB88###")) {
                             ToastUtils.showShort("User not online");
                             reLogin();
 
@@ -622,5 +625,62 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         return isGranted;
     }
 
+    public int[] sc = new int[2];
+    public int scrollHeight = 0;
 
+    public void inputMove(View llContainer, View llBottomBtn) {
+
+        llContainer.getViewTreeObserver().addOnGlobalLayoutListener(() -> changeHeight(llContainer, llBottomBtn));
+    }
+
+    private void changeHeight(View llContainer, View llBottomBtn) {
+        LogUtil.d("llContainer", "监听到滑动");
+        Rect r = new Rect();
+        if (llContainer == null || llContainer.getVisibility() == View.GONE)
+            return;
+
+        llContainer.getWindowVisibleDisplayFrame(r);
+        if (sc[0] == 0 && sc[1] == 0)
+            llBottomBtn.getLocationOnScreen(sc);
+
+        //r.top 是状态栏高度
+        int screenHeight = llContainer.getRootView().getHeight();
+        int softHeight = screenHeight - r.bottom;
+
+        if (scrollHeight == 0 && softHeight > 200) {
+            scrollHeight = sc[1] + llBottomBtn.getHeight() - (screenHeight - softHeight) + DeviceUtils.dip2px(mContext, 20);
+        }
+
+        if (scrollHeight < 1)
+            return;
+        if (softHeight > 200) {
+            //当输入法高度大于100判定为输入法打开了  设置大点，有虚拟键的会超过100
+            LogUtil.d("llContainer", "判断为输入法打开了");
+            if (llContainer.getScrollY() != scrollHeight) {
+                LogUtil.d("llContainer", "滑动顶上去");
+                scrollToPos(llContainer, 0, scrollHeight);
+            }
+        } else {//否则判断为输入法隐藏了
+            LogUtil.d("llContainer", "判断为输入法隐藏了");
+            if (llContainer.getScrollY() != 0) {
+                LogUtil.d("llContainer", "滑动收回来");
+                scrollToPos(llContainer, scrollHeight, 0);
+            }
+        }
+    }
+
+    private void scrollToPos(View llContainer, int start, int end) {
+        ValueAnimator animator = ValueAnimator.ofInt(start, end);
+        animator.setDuration(250);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                if (llContainer == null) {
+                    return;
+                }
+                llContainer.scrollTo(0, (Integer) valueAnimator.getAnimatedValue());
+            }
+        });
+        animator.start();
+    }
 }

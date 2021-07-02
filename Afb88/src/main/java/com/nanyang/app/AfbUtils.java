@@ -749,4 +749,7 @@ public class AfbUtils {
         Log.d("end17", "end17:" + end17 + "," + nn);
         return AfbUtils.decimalValue(Float.parseFloat(index3) * Float.parseFloat(index9) / nn, "0.00");
     }
+
+
+
 }

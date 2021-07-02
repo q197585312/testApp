@@ -1,8 +1,6 @@
 package com.nanyang.app.load.login;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -11,7 +9,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
@@ -38,7 +35,6 @@ import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
-import cn.finalteam.toolsfinal.DeviceUtils;
 
 
 /**
@@ -77,8 +73,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     @BindView(R.id.login_language)
     TextView loginLanguage;
     private PopChoiceLanguage popLanguage;
-    private int[] sc;
-    private int scrollHeight;
+
     private volatile int loginType = 0;
 
 
@@ -115,7 +110,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         });
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        inputMove();
+        inputMove(llContainer, llBottomBtn);
         presenter.playVideoRaw(c_video_bg);
 
     }
@@ -195,10 +190,11 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         }
     }
 
-    public void loginView2(View v){
+    public void loginView2(View v) {
         loginType = 1;
         login();
     }
+
     protected void restart() {
         super.restart();
         edtLoginUsername.setHint(getString(R.string.Account));
@@ -256,9 +252,9 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
             finish();
         } else {
             Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
-            Bundle bundle=new Bundle();
+            Bundle bundle = new Bundle();
             bundle.putInt(AppConstant.KEY_INT, loginType);
-            skipAct(MainActivity.class,bundle);
+            skipAct(MainActivity.class, bundle);
             finish();
 
         }
@@ -292,53 +288,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
     }
 
-    public void inputMove() {
-        llContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Rect r = new Rect();
-                if (llContainer == null)
-                    return;
-                llContainer.getWindowVisibleDisplayFrame(r);
-                if (sc == null) {
-                    sc = new int[2];
-                    llBottomBtn.getLocationOnScreen(sc);
-                }
-                //r.top 是状态栏高度
-                int screenHeight = llContainer.getRootView().getHeight();
-                int softHeight = screenHeight - r.bottom;
-                if (scrollHeight == 0 && softHeight > 200) {
-                    scrollHeight = sc[1] + btnLoginLogin.getHeight() - (screenHeight - softHeight) + DeviceUtils.dip2px(mContext, 20);
-                }
-
-                if (scrollHeight < 1)
-                    return;
-                if (softHeight > 200) {//当输入法高度大于100判定为输入法打开了  设置大点，有虚拟键的会超过100
-                    if (llContainer.getScrollY() != scrollHeight) {
-                        scrollToPos(0, scrollHeight);
-                    }
-                } else {//否则判断为输入法隐藏了
-                    if (llContainer.getScrollY() != 0)
-                        scrollToPos(scrollHeight, 0);
-                }
-            }
-        });
-    }
-
-    private void scrollToPos(int start, int end) {
-        ValueAnimator animator = ValueAnimator.ofInt(start, end);
-        animator.setDuration(250);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                if (llContainer == null) {
-                    return;
-                }
-                llContainer.scrollTo(0, (Integer) valueAnimator.getAnimatedValue());
-            }
-        });
-        animator.start();
-    }
 
     @Override
     public void startUpdateState() {

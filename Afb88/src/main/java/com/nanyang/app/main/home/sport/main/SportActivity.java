@@ -119,6 +119,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.bet_pop_parent_ll)
     public View bet_pop_parent_ll;
 
+
     @BindView(R.id.fl_top_video)
     public View fl_top_video;
     @BindView(R.id.tv_toolbar_left)
