@@ -80,6 +80,11 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="sensor"
             />
+        <activity android:name=".MaintenanceActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensor"
+            />
 
         <provider
             android:name="androidx.core.content.FileProvider"

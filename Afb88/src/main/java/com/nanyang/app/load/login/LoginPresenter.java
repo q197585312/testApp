@@ -48,10 +48,10 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                         @Override
                         protected void onBaseGetData(String s) throws JSONException {
                             JSONArray jsonArray = new JSONArray(s);
-
                             if (s.contains("Maintenance")) {
                                 Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
                                 onError(exception);
+                                ((BaseToolbarActivity) baseContext.getBaseActivity()).skipMaintenance();
                             } else {
                                 String s1 = jsonArray.optString(2);
                                 if (s1 != null && StringUtils.matches(s1, "^.*\\(\\'([^\\']+)\\'\\);.*?")) {

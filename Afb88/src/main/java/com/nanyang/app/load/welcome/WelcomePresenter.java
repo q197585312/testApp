@@ -154,6 +154,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                         } else if (data.contains("Maintenance")) {
                             Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
                             onError(exception);
+                            ((BaseToolbarActivity)baseContext.getBaseActivity()).skipMaintenance();
                         } else {
                             Exception exception = new Exception(data);
                             onError(exception);

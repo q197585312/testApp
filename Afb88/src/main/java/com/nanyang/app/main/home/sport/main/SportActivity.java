@@ -1210,7 +1210,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                                 }
                             }
                         };
-//                popWindow.setData(presenter.currencyList);
+//                        popWindow.setData(presenter.currencyList);
                         popWindowRun.setTrans(1f);
                         popWindowRun.setData(data);
 

@@ -162,12 +162,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     if (openDetailMap.get(item.getSocTransId17()) != null && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getType())) {
                         l.setVisibility(View.VISIBLE);
 
-                        if (openDetailMap.get(item.getSocTransId17()).getParent() != null) {
+                        if (openDetailMap.get(item.getSocTransId17()).getType() != null) {
                             l1Content(openDetailMap.get(item.getSocTransId17()).getType(), holder);
                             open_detail_list.setText(getString(R.string.CloseDetail));
                             l2.setVisibility(View.VISIBLE);
                             if (!StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getParent())) {
                                 l2content(openDetailMap.get(item.getSocTransId17()).getParent(), holder);
+                            }else{
+                                open_detail_list.setText(getString(R.string.OpenDetail));
+                                l2.setVisibility(View.GONE);
                             }
                         } else {
                             open_detail_list.setText(getString(R.string.OpenDetail));
@@ -204,27 +207,24 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
                         }
                     });
-                    open_detail_list.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (openDetailMap.get(item.getSocTransId17()) != null && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getType()) && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getParent())) {
-                                open_detail_list.setText(getString(R.string.OpenDetail));
-                                l2.setVisibility(View.GONE);
-                                openDetailMap.get(item.getSocTransId17()).setParent(null);
-                            } else {
-
-                                showLoadingDialog();
-                                presenter.getParList2(item.getSocTransId17(), item.getBetType18(), new BaseConsumer<String>(getIBaseContext()) {
-                                    @Override
-                                    protected void onBaseGetData(String data) throws JSONException {
-                                        openDetailMap.get(item.getSocTransId17()).setParent(data);
-                                        open_detail_list.setText(getString(R.string.CloseDetail));
-                                        openDetailMap.put(item.getSocTransId17(), openDetailMap.get(item.getSocTransId17()));
-                                        l2content(data, holder);
-                                        l2.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
+                    open_detail_list.setOnClickListener(view -> {
+                        if (openDetailMap.get(item.getSocTransId17()) != null && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getType()) && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getParent())) {
+                            open_detail_list.setText(getString(R.string.OpenDetail));
+                            l2.setVisibility(View.GONE);
+                            openDetailMap.get(item.getSocTransId17()).setParent(null);
+                        } else {
+                            showLoadingDialog();
+                            l2.setVisibility(View.GONE);
+                            presenter.getParList2(item.getSocTransId17(), item.getBetType18(), new BaseConsumer<String>(getIBaseContext()) {
+                                @Override
+                                protected void onBaseGetData(String data) throws JSONException {
+                                    openDetailMap.get(item. getSocTransId17()).setParent(data);
+                                    open_detail_list.setText(getString(R.string.CloseDetail));
+                                    openDetailMap.put(item.getSocTransId17(), openDetailMap.get(item.getSocTransId17()));
+                                    l2content(data, holder);
+                                    l2.setVisibility(View.VISIBLE);
+                                }
+                            });
                         }
                     });
 

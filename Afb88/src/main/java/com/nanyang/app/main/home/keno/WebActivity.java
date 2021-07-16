@@ -62,12 +62,16 @@ public class WebActivity extends BaseToolbarActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
+                loadUrl(view, url);
                 return true;
             }
         });
 
         loadWebView(url);
+    }
+
+    public void loadUrl(WebView view, String url) {
+        view.loadUrl(url);
     }
 
     private void loadWebView(String url) {
@@ -92,7 +96,7 @@ public class WebActivity extends BaseToolbarActivity {
                 else if (url.contains("/LiveDealerGDC.aspx")) {
                     goGd88App();
                 } else {
-                    view.loadUrl(url);
+                    loadUrl(view, url);
                 }
 
                 return true;

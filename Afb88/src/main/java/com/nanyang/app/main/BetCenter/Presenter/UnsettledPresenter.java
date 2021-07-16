@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
 import com.nanyang.app.main.BetCenter.Bean.RunningBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen2ListDataBean;
@@ -44,12 +45,27 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
         settledData();
     }
 
+    String oldGetData = "";
+
     private void settledData() {
         BaseParamBean bean = new BaseParamBean("GetTable", "wfRunningH50", type, "1");
         doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 LogUtil.d("onBaseGetData", "GetTable:" + data);
+                if (!unsettledFragment.parentHidden) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            settledData();
+                        }
+                    }, 30000);
+                }
+                if (StringUtils.isNull(data) || oldGetData.equals(data)) {
+                    return;
+                } else {
+                    oldGetData = data;
+                }
                 JSONArray jsonArray = new JSONArray(data);
                 JSONArray jsonData = jsonArray.getJSONArray(3);
                 JSONArray jsonArray1 = jsonData.getJSONArray(0);
@@ -65,14 +81,7 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
                     dataList.add(rb);
                 }
                 unsettledFragment.setRvlist(dataList);
-                if (!unsettledFragment.parentHidden) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            settledData();
-                        }
-                    }, 30000);
-                }
+
 
             }
 

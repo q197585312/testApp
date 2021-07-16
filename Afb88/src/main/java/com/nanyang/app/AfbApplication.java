@@ -254,12 +254,12 @@ public class AfbApplication extends BaseApplication {
         SportIdBean soccerRunning = new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small);
         soccerRunning.setKey("-1");
 
-        SportIdBean soccerEuro_2020= new SportIdBean("1", "1", R.string.Euro_2020, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small);
-        soccerEuro_2020.setKey("122");
+   /*     SportIdBean soccerEuro_2020= new SportIdBean("1", "1", R.string.Euro_2020, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small);
+        soccerEuro_2020.setKey("122");*/
 
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running,R.mipmap.white_soccer_small));
         sportMap.put("-1", soccerRunning);
-        sportMap.put("122", soccerEuro_2020);
+//        sportMap.put("122", soccerEuro_2020);
 
         sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small));
         sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small));
@@ -314,7 +314,7 @@ public class AfbApplication extends BaseApplication {
         map.put("WM CASINO", new SportIdBean("WM CASINO", "", R.string.WM_Cashio, "WM CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_wm_gaming));
 
         map.put("NL CASINO", new SportIdBean("NL CASINO", "", R.string.NG_Cashio, "NL CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ng_casnio_game));
-        map.put("LG CASINO", new SportIdBean("LG CASINO", "", R.string.LG_Cashio, "LG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_lg_gaming));
+//        map.put("LG CASINO", new SportIdBean("LG CASINO", "", R.string.LG_Cashio, "LG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_lg_gaming));
 
         map.put("MK CASINO", new SportIdBean("MK CASINO", "", R.string.MK_CASINO, "MK CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.mkg_game));
 

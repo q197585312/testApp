@@ -95,6 +95,7 @@ public class MainPresenter extends BaseSwitchPresenter {
             public void onBack(String data) throws JSONException {
                 if (data.contains("Maintenance")) {
                     ToastUtils.showLong(R.string.System_maintenance);
+                    ((BaseToolbarActivity)baseContext.getBaseActivity()).skipMaintenance();
                     return;
                 }
                 SettingAllDataBean settingAllDataBean = gson.fromJson(data, SettingAllDataBean.class);

@@ -66,7 +66,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.98'
+            versionName '2.99'
             buildConfigField "String", "Domain", '".afb1188.net"'
             buildConfigField "String", "H5_URL", '"https://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
             buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.net/W0/Pub/wfMain0.html"'
@@ -76,6 +76,7 @@ android {
             buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/afb1188_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
+            buildConfigField "String", "Maintenance_URL", '"http://wsapp.afb1188.net/W0/Img/Maintenance.html"'
             buildConfigField "String", "Contact_URL", '"http://www.appgd88.com/api/afb1188_contact.php"'
 //ws://wsapp.afb1188.com:8888/fnOddsGen
 //            buildConfigField "String", "HOST_AFB", '"http://13.112.86.40/"'//h5正式机
@@ -86,7 +87,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '2.98'
+            versionName '2.99'
             buildConfigField "String", "Domain", '".i1bet99.com"'
             buildConfigField "String", "H5_URL", '"https://www.i1bet99.com/H52/Pub/wfLoginH50.html"'
             buildConfigField "String", "PC_URL", '"https://www.i1bet99.com/W2/Pub/wfMain.html"'
@@ -95,6 +96,7 @@ android {
             buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/i1bet99_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"https://i1bet99.com/H52NEW/Img/Ibet99H5.jpg"'
+            buildConfigField "String", "Maintenance_URL", '"https://i1bet99.com/W2NEW/Img/Maintenance.html"'
             buildConfigField "String", "Contact_URL", '"http://www.appgd88.com/api/i1bet99_contact.php"'
             buildConfigField "String", "CHECK_VERSION", '"http://www.appgd88.com/api/afbAndroidVersion.php?appName=i1bet99"'
         }

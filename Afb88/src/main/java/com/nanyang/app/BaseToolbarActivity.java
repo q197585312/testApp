@@ -515,6 +515,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                             if (s.contains("Maintenance")) {
                                 Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
                                 onError(exception);
+                                ((BaseToolbarActivity)baseContext.getBaseActivity()).skipMaintenance();
                             } else {
                                 errorCount = 0;
                                 ToastUtils.showLong(R.string.Login_Success);
@@ -682,5 +683,13 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
             }
         });
         animator.start();
+    }
+
+    public void skipMaintenance() {
+        Bundle bundle = new Bundle();
+        bundle.putString("url", BuildConfig.Maintenance_URL);
+        bundle.putString(AppConstant.KEY_STRING, getString(R.string.System_maintenance));
+        bundle.putBoolean(AppConstant.KEY_BOOLEAN, true);
+        skipAct(MaintenanceActivity.class,bundle);
     }
 }
