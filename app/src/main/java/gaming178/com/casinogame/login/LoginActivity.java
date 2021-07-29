@@ -167,6 +167,9 @@ public class LoginActivity extends BaseActivity {
         } else {
             tv_register.setVisibility(View.VISIBLE);
             img_login_title.setImageResource(R.mipmap.gd_title_logo);
+            if (BuildConfig.FLAVOR.equals("kuncicasino")){
+                img_login_title.setImageResource(R.mipmap.kuncicasino_lobby_logo);
+            }
         }
         img_gif = findViewById(R.id.gd_img_gif);
         imgOpen = findViewById(R.id.gd_img_open);

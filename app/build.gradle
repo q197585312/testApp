@@ -237,7 +237,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "marina118"]
                 buildConfigField "String", "Labelid", '"93"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.92'
+                versionName '3.93'
             }
             mastercasino88 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mastercasino88"]
@@ -455,7 +455,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "kuncicasino"]
                 buildConfigField "String", "Labelid", '"63"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.92'
+                versionName '3.93'
 
             }
         }

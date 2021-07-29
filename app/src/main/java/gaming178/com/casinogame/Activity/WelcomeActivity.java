@@ -101,6 +101,9 @@ public class WelcomeActivity extends BaseActivity {
             bgImg.setImageResource(R.mipmap.gd88_welcome_logo);
         } else {
             bgImg.setImageResource(R.mipmap.gd_title_logo);
+            if (BuildConfig.FLAVOR.equals("kuncicasino")){
+                bgImg.setImageResource(R.mipmap.kuncicasino_lobby_logo);
+            }
         }
         flWelcome.setVisibility(View.VISIBLE);
         llLogin.setVisibility(View.GONE);
