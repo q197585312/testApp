@@ -64,6 +64,7 @@
 
                     <LinearLayout
                         android:id="@+id/layout_set"
+                        android:visibility="gone"
                         android:layout_width="50dp"
                         android:layout_height="44dp"
                         android:layout_gravity="center_vertical"

@@ -25,6 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.LobbySicboActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
@@ -47,6 +48,9 @@ public class LobbySicboFragment extends BaseFragment {
     private TextView tv_waidic01;
     private GridLayout sicbo_bigsmall_road;
     private GridLayout sicbo_evenodd_road;
+
+    @BindView(R2.id.gd_view_table_maintenance)
+    View gd_view_table_maintenance;
 
     /////////////////////////////////
     private UpdateStatus updateStatus = null;
@@ -152,6 +156,12 @@ public class LobbySicboFragment extends BaseFragment {
     }
 
     public void updateTimer() {
+        if (baseActivity.mAppViewModel.getSicbo01().getStatus() != 1) {
+            gd_view_table_maintenance.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            gd_view_table_maintenance.setVisibility(View.GONE);
+        }
         if (sicboTimer01 == 0 && baseActivity.mAppViewModel.getSicbo01().getTimer() > 0) {
             if (!gameNumber.equals(baseActivity.mAppViewModel.getSicbo01().getGameNumber())) {
                 gameNumber = baseActivity.mAppViewModel.getSicbo01().getGameNumber();

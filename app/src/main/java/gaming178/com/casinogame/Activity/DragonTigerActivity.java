@@ -2425,6 +2425,7 @@ public class DragonTigerActivity extends BaseActivity {
                         selectedMap.put(true, position);
                         chips.notifyDataSetChanged();
                         chooseChip = chipBean.getValue();
+                        setGameChooseChip(chooseChip);
                         initClickCount();
                         mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, mAppViewModel.getFrontVolume());
                     } else {

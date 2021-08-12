@@ -208,6 +208,7 @@
     <string name="choice_bank">nama bank</string>
     <string name="bank_account">nama di rekening</string>
     <string name="bank_number">Nomor rekening</string>
+    <string name="gd_remark">Remark</string>
     <string name="gd_code">kode validasi</string>
     <string name="gd_deposit">setoran</string>
     <string name="gd_home">Beranda</string>
@@ -222,6 +223,7 @@
     <string name="referral_list">List Refernsi</string>
     <string name="PROMOTION">Promo</string>
     <string name="CONTACT">Hubungi Kami</string>
+    <string name="WINNER">Pemenang</string>
     <string name="member_center">Pusat Anggota</string>
     <string name="Live_Chat">Obrolan Langsung</string>
     <string name="user_limit">akun harus menggunakan karakter:a-z A-Z 0-9 _- dan panjang 4-25</string>

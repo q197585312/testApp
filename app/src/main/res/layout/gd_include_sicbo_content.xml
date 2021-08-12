@@ -264,4 +264,5 @@
         layout="@layout/gd_popupwindow_limit_select_layout"
         android:visibility="gone" />
 
+    <include layout="@layout/gd_table_close_bg"></include>
 </FrameLayout>
