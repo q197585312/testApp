@@ -7,6 +7,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
@@ -43,7 +44,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
     }
 
     public Disposable doRetrofitApiOnUiThreadHeaders(T languageWfBean, final MainPresenter.CallBack<String> back, final String matches, Map<String, String> header) {
-        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
+        String p = AppConstant.getInstance().HOST + BuildConfig.H5+ "/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
         Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getDataHeader(p, header), new BaseConsumer<String>(baseContext) {

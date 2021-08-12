@@ -47,7 +47,11 @@
             android:text="确定"
             android:textColor="@color/blue"
             android:textSize="15sp" />
-        <View style="@style/line_vertical_grey1"/>
+
+        <View
+            android:id="@+id/line_center"
+            style="@style/line_vertical_grey1"
+            android:layout_width="3dp" />
         <TextView
             android:layout_weight="1"
             android:layout_width="0dp"

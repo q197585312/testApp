@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -109,6 +110,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 }
 
                 switch (position) {
+
                     case 2:
                         MenuItemInfo<String> language = new LanguageHelper(getBaseActivity()).getLanguageItem();
                         tvChoiceType.setText(language.getText());
@@ -152,7 +154,36 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 CheckBox cbChoice = view.findViewById(R.id.cb_choice);
                 switch (position) {
                     case 1:
+                        BaseYseNoChoosePopupWindow passwordPopupWindow = new BaseYseNoChoosePopupWindow(mContext, tv) {
+                            @Override
+                            protected void onClickSure(View v) {
+                                EditText newPassword = contentView.findViewById(R.id.choose_new_password_tv);
+                                EditText repeatPassword = (EditText) chooseMessage;
+                                TextView tip_new_password_tv = contentView.findViewById(R.id.tip_new_password_tv);
+                                TextView tip_repeat_password_tv = contentView.findViewById(R.id.tip_repeat_password_tv);
+                                String strNew = newPassword.getText().toString();
+                                String strRepeat = repeatPassword.getText().toString();
+                                if (presenter.verifyPassword(strNew, tip_new_password_tv, strRepeat, tip_repeat_password_tv)) {
+                                    presenter.doChangePassword(strNew, data -> {
+                                        if (data.contains("OK")) {
+                                            ToastUtils.showShort("Your password has been changed successfully");
+                                            closePopupWindow();
+                                        } else {
+                                            tip_repeat_password_tv.setVisibility(View.VISIBLE);
+                                            tip_repeat_password_tv.setText(data);
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public int onSetLayoutRes() {
+                                return R.layout.popupwindow_password_edit_yes_no;
+                            }
+                        };
+                        ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreatedAndShow(passwordPopupWindow, Gravity.CENTER);
                         break;
+
                     case 2:
 
                         PopSwitch popLg = new PopSwitch<MenuItemInfo<String>>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
@@ -186,6 +217,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popOddType.showPopupDownWindow();
                         break;
                     case 4:
+                    case 6:
                         if (cbChoice.isChecked()) {
                             cbChoice.setChecked(false);
                         } else {
@@ -203,19 +235,12 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             }
 
                             @Override
-                            protected int onSetLayoutRes() {
+                            public int onSetLayoutRes() {
                                 return R.layout.popupwindow_content_edit_yes_no;
                             }
                         };
                         baseYseNoChoosePopupWindow.getChooseMessage().setText(quickAmount);
                         ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreatedAndShow(baseYseNoChoosePopupWindow, Gravity.CENTER);
-                        break;
-                    case 6:
-                        if (cbChoice.isChecked()) {
-                            cbChoice.setChecked(false);
-                        } else {
-                            cbChoice.setChecked(true);
-                        }
                         break;
                     case 7:
                         PopSwitch<IString> popSort = new PopSwitch<IString>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {

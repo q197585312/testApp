@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -25,6 +26,7 @@ import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
 import com.nanyang.app.main.home.SaCasinoWfBean;
+import com.nanyang.app.main.home.PasswordWfBean;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
@@ -95,7 +97,7 @@ public class MainPresenter extends BaseSwitchPresenter {
             public void onBack(String data) throws JSONException {
                 if (data.contains("Maintenance")) {
                     ToastUtils.showLong(R.string.System_maintenance);
-                    ((BaseToolbarActivity)baseContext.getBaseActivity()).skipMaintenance();
+                    ((BaseToolbarActivity) baseContext.getBaseActivity()).skipMaintenance();
                     return;
                 }
                 SettingAllDataBean settingAllDataBean = gson.fromJson(data, SettingAllDataBean.class);
@@ -141,24 +143,18 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenNLGamee", "", "wfNLLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         } else if (g.equals("LG CASINO")) {
             skipPCashio("post", AppConstant.getInstance().HOST + "api/LGLogin", g, new SaCasinoWfBean("", "", "LGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
-        }
-        else if (g.equals("MK CASINO")) {
+        } else if (g.equals("MK CASINO")) {
             skipPCashio("post", AppConstant.getInstance().HOST + "api/MKLogin", g, new SaCasinoWfBean("", "", "MKLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         }
         /*  skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPSLogin"), "", "^.*\"(http[^\"]+)\".*$");*/
         else if (g.equals("CQ9 GAME")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfCQLogin"), "", "^.*\"(http[^\"]+)\".*$");
 
-        }
-        else if (g.equals("TFG CASINO")) {
+        } else if (g.equals("TFG CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenTFGGamee", "", "wfTFGLogin"), "", "^.*\"(http[^\"]+)\".*$");
-        }
-
-        else if (g.equals("betsoft")) {
+        } else if (g.equals("betsoft")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfBTSLogin"), "", "^.*\"(http[^\"]+)\".*$");
-        }
-
-        else if (g.equals("Joker")) {
+        } else if (g.equals("Joker")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfJKRLogin"), "", "^.*\"(http[^\"]+)\".*$");
         }
     }
@@ -311,11 +307,11 @@ public class MainPresenter extends BaseSwitchPresenter {
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         helper.doRetrofitApiOnUiThread(languageWfBean, back);
     }
-    public void loadAllMainDataHeaders(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back,Map<String,String>headers) {
-        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThreadHeaders(languageWfBean, back,"",headers);
-    }
 
+    public void loadAllMainDataHeaders(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back, Map<String, String> headers) {
+        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        helper.doRetrofitApiOnUiThreadHeaders(languageWfBean, back, "", headers);
+    }
 
 
     public void loadAllImages(final CallBack<AllBannerImagesBean> back) {
@@ -384,7 +380,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                 public void onError(String data) throws JSONException {
                     ToastUtils.showLong(data);
                     baseContext.getBaseActivity().hideLoadingDialog();
-                    if(data.contains("not online")){
+                    if (data.contains("not online")) {
                         ((BaseToolbarActivity) baseContext.getBaseActivity()).reLogin();
                     }
                 }
@@ -503,6 +499,33 @@ public class MainPresenter extends BaseSwitchPresenter {
 
     public void initMatchTypePop() {
 
+    }
+
+    public boolean verifyPassword(String strNew, TextView tip_new_password_tv, String strRepeat, TextView tip_repeat_password_tv) {
+        tip_new_password_tv.setVisibility(View.GONE);
+        tip_repeat_password_tv.setVisibility(View.GONE);
+        if (strNew.trim().isEmpty()) {
+            tip_new_password_tv.setVisibility(View.VISIBLE);
+            tip_new_password_tv.setText(R.string.check_empty_password);
+            return false;
+        }
+        if (strRepeat.trim().isEmpty()) {
+            tip_repeat_password_tv.setVisibility(View.VISIBLE);
+            tip_repeat_password_tv.setText(R.string.check_empty_password);
+            return false;
+        }
+        if (!strNew.trim().equals(strRepeat.trim())) {
+            tip_repeat_password_tv.setVisibility(View.VISIBLE);
+            tip_repeat_password_tv.setText(R.string.check_same_password);
+            return false;
+        }
+        return true;
+    }
+
+    public void doChangePassword(String strNew,  CallBack<String> back) {
+        //"ACT":"GetPassword","PT":"wfSettingH50","NewPass":"123456aa","ConPass":"123456aa","pgLable":"0.48415547826337857","vsn":"4.0.12"}
+        PasswordWfBean getPassword = new PasswordWfBean("GetPassword", "", "wfSettingH50", strNew, strNew);
+        loadAllMainData(getPassword,back );
     }
 
 

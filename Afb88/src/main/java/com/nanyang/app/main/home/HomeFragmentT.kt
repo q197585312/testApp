@@ -44,7 +44,7 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
     private var jsonObjectNum: JSONObject? = null
     private var lastAllMainData: String? = null
 
-    private var language: String? = null
+    private var language: String = ""
 
     override fun onSetLayoutId(): Int {
         return R.layout.fragment_home_t
