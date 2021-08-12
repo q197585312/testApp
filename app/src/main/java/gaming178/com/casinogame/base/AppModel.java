@@ -849,7 +849,7 @@ public class AppModel extends ViewModel {
         FrameLayout fl = new FrameLayout(ctx);
         try {
             parent.addView(fl, params);
-        } catch (java.lang.IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             Log.e("test", "row=" + row + "----->column=" + column);
         }
         return fl;
@@ -2340,7 +2340,7 @@ public class AppModel extends ViewModel {
     }
 
     public void scrollTableRoad(GridLayout baccarat_big_road, Context mContext) {
-        int bigRoadParent2width = DeviceUtils.dip2px(mContext, 140);
+        int bigRoadParent2width = DeviceUtils.dip2px(mContext, 240);
         int bigRoadWidth = baccarat_big_road.getWidth();
         if (bigRoadWidth > bigRoadParent2width) {
             baccarat_big_road.scrollTo(0, 0);
@@ -3829,5 +3829,105 @@ public class AppModel extends ViewModel {
 
     public void setLiveChatStr(String liveChatStr) {
         this.liveChatStr = liveChatStr;
+    }
+
+    private boolean isOpenChangeTable;
+    private boolean isClickBaccarat1;
+    private boolean isClickBaccarat2;
+    private boolean isClickBaccarat3;
+    private boolean isClickBaccarat5;
+    private boolean isClickBaccarat6;
+    private boolean isClickBaccarat7;
+    private boolean isClickBaccaratMi;
+    private boolean isClickDragonTiger;
+    private boolean isClickRoulette;
+    private boolean isClickSicbo;
+
+    public boolean isOpenChangeTable() {
+        return isOpenChangeTable;
+    }
+
+    public void setOpenChangeTable(boolean openChangeTable) {
+        isOpenChangeTable = openChangeTable;
+    }
+
+    public boolean isClickDragonTiger() {
+        return isClickDragonTiger;
+    }
+
+    public void setClickDragonTiger(boolean clickDragonTiger) {
+        isClickDragonTiger = clickDragonTiger;
+    }
+
+    public boolean isClickRoulette() {
+        return isClickRoulette;
+    }
+
+    public void setClickRoulette(boolean clickRoulette) {
+        isClickRoulette = clickRoulette;
+    }
+
+    public boolean isClickSicbo() {
+        return isClickSicbo;
+    }
+
+    public void setClickSicbo(boolean clickSicbo) {
+        isClickSicbo = clickSicbo;
+    }
+
+    public boolean isClickBaccarat1() {
+        return isClickBaccarat1;
+    }
+
+    public void setClickBaccarat1(boolean clickBaccarat1) {
+        isClickBaccarat1 = clickBaccarat1;
+    }
+
+    public boolean isClickBaccarat2() {
+        return isClickBaccarat2;
+    }
+
+    public void setClickBaccarat2(boolean clickBaccarat2) {
+        isClickBaccarat2 = clickBaccarat2;
+    }
+
+    public boolean isClickBaccarat3() {
+        return isClickBaccarat3;
+    }
+
+    public void setClickBaccarat3(boolean clickBaccarat3) {
+        isClickBaccarat3 = clickBaccarat3;
+    }
+
+    public boolean isClickBaccarat5() {
+        return isClickBaccarat5;
+    }
+
+    public void setClickBaccarat5(boolean clickBaccarat5) {
+        isClickBaccarat5 = clickBaccarat5;
+    }
+
+    public boolean isClickBaccarat6() {
+        return isClickBaccarat6;
+    }
+
+    public void setClickBaccarat6(boolean clickBaccarat6) {
+        isClickBaccarat6 = clickBaccarat6;
+    }
+
+    public boolean isClickBaccarat7() {
+        return isClickBaccarat7;
+    }
+
+    public void setClickBaccarat7(boolean clickBaccarat7) {
+        isClickBaccarat7 = clickBaccarat7;
+    }
+
+    public boolean isClickBaccaratMi() {
+        return isClickBaccaratMi;
+    }
+
+    public void setClickBaccaratMi(boolean clickBaccaratMi) {
+        isClickBaccaratMi = clickBaccaratMi;
     }
 }

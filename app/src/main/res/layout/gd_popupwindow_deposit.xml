@@ -290,6 +290,34 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="@string/gd_remark"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/gd__edt_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left|top"
+                    android:background="@drawable/rectangle_white_graystroke_radius5"
+                    android:padding="3dp"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">

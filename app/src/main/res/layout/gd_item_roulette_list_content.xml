@@ -308,5 +308,6 @@
             android:visibility="gone" />
     </FrameLayout>
 
+    <include layout="@layout/gd_table_close_bg"></include>
 
 </FrameLayout>
