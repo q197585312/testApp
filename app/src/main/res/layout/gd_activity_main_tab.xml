@@ -255,7 +255,6 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:text="@string/gd_home"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="13sp"></TextView>
 
@@ -268,7 +267,6 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:text="@string/gd_deposit"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="13sp"></TextView>
 
@@ -281,7 +279,6 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:text="@string/gd_withdrawal"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="13sp"></TextView>
 
@@ -293,8 +290,7 @@
                 android:drawableTop="@mipmap/gd_home_live_chat"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:text="LIVECHAT"
-                android:textAllCaps="true"
+                android:text="Livechat"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 android:visibility="gone"></TextView>
@@ -309,7 +305,6 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:text="@string/logout"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="13sp"></TextView>
 

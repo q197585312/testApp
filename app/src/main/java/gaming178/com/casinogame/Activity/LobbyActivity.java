@@ -348,20 +348,12 @@ public class LobbyActivity extends BaseActivity {
         tv_home_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
-                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 showLanguagePop(tv_lg, 0.75f);
             }
         });
         tv_home_deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
-                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
                 int width = screenWidth / 15 * 14;
                 User u = mAppViewModel.getUser();
@@ -374,10 +366,6 @@ public class LobbyActivity extends BaseActivity {
         tv_home_withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
-                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
                 int width = screenWidth / 15 * 14;
                 User u = mAppViewModel.getUser();
@@ -390,10 +378,6 @@ public class LobbyActivity extends BaseActivity {
         tv_home_live_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_home_home.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_deposit.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_withdraw.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
-                tv_home_live_chat.setBackgroundColor(ContextCompat.getColor(mContext, R.color.home_bottom_color));
                 PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 popLiveChat.showPopupCenterWindow();
             }

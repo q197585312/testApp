@@ -74,6 +74,7 @@ import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.PopReferralList;
 import gaming178.com.casinogame.Popupwindow.PopReport;
+import gaming178.com.casinogame.Popupwindow.PopTransactionRecord;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
@@ -1335,7 +1336,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 width = width / 2;
             }
-            popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, width, ScreenUtil.dip2px(mContext, 200)) {
+            popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, width, ScreenUtil.dip2px(mContext, 220)) {
                 @Override
                 protected int onSetRcItemLayout() {
                     return R.layout.gd_item_language_selected;
@@ -1412,6 +1413,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                 case "liveChat":
                                     PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                                     popLiveChat.showPopupCenterWindow();
+                                    break;
+                                case "TransactionRecord":
+                                    PopTransactionRecord popTransactionReport = new PopTransactionRecord(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                    popTransactionReport.showPopupCenterWindow();
                                     break;
                             }
                         }
