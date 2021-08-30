@@ -76,7 +76,7 @@ public class SoccerRunningGoalManager {
             return isHomeGoal;
         if (StringUtils.isEmpty(runHomeScore) || StringUtils.isEmpty(runAwayScore))
             return false;
-        if ((runHomeScore.trim().equals("0") && runAwayScore.trim().equals("0")))
+        if ((runHomeScore.trim().equals("0")))
             return false;
         if (runAwayScore.trim().equals("0")) {
             return true;
@@ -96,7 +96,7 @@ public class SoccerRunningGoalManager {
             return isAwayGoal;
         if (StringUtils.isEmpty(runHomeScore) || StringUtils.isEmpty(runAwayScore))
             return false;
-        if (runHomeScore.trim().equals("0") && runAwayScore.trim().equals("0"))
+        if (runAwayScore.trim().equals("0"))
             return false;
         if (runHomeScore.trim().equals("0")) {
             return true;
