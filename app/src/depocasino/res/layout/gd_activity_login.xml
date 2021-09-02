@@ -19,7 +19,7 @@
             android:layout_width="30dp"
             android:layout_height="27dp"
             android:src="@mipmap/gd_menu"
-            android:visibility="gone"></ImageView>
+            android:visibility="visible"></ImageView>
 
         <ImageView
             android:id="@+id/gd_img_gif"
@@ -58,18 +58,33 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="125dp"
+                android:layout_marginTop="20dp">
 
                 <ImageView
                     android:id="@+id/gd_img_login_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="40dp"
-                    android:src="@mipmap/gd_app_logo" />
+                    android:layout_width="165dp"
+                    android:layout_height="125dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="30dp"
+                    android:background="@mipmap/gd_title_logo" />
+
+                <ImageView
+                    android:id="@+id/img_gif_1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/gd_img_login_title"></ImageView>
+
+
+                <ImageView
+                    android:id="@+id/img_gif_2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="-10dp"
+                    android:layout_toRightOf="@+id/gd_img_login_title"></ImageView>
 
                 <ImageView
                     android:id="@+id/gd_img_login_title_main"
@@ -93,14 +108,15 @@
                     android:background="@mipmap/gd_title_logo"
                     android:visibility="gone" />
 
-            </FrameLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/ll_lg_and_remember"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/gd__ll_choose_language"
@@ -157,15 +173,19 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/salju"></ImageView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/gd_login_bg"
+                    android:layout_marginTop="37dp"
+                    android:background="@drawable/gd_login_bg_depo"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -215,22 +235,28 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="15dp"
+                            android:src="@mipmap/depousericon"></ImageView>
 
                         <TextView
                             android:id="@+id/tv_user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
                             android:drawablePadding="6dp"
                             android:gravity="center"
                             android:paddingLeft="15dp"
                             android:text="@string/input_username"
-                            android:textColor="@color/white"
+                            android:textColor="#757575"
                             android:textSize="16sp"></TextView>
 
                         <EditText
@@ -240,8 +266,8 @@
                             android:background="@null"
                             android:paddingLeft="15dp"
                             android:singleLine="true"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
+                            android:textColor="@color/black"
+                            android:textColorHint="#757575"
                             android:textCursorDrawable="@null"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -256,21 +282,28 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="80dp"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@mipmap/depopwicon"></ImageView>
 
                         <TextView
                             android:id="@+id/tv_password_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
                             android:drawablePadding="6dp"
                             android:gravity="center"
                             android:paddingLeft="15dp"
                             android:text="@string/input_password"
-                            android:textColor="@color/white"
+                            android:textColor="#757575"
                             android:textSize="16sp"></TextView>
 
                         <EditText
@@ -280,8 +313,8 @@
                             android:background="@null"
                             android:inputType="textPassword"
                             android:paddingLeft="15dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
+                            android:textColor="@color/black"
+                            android:textColorHint="#757575"
                             android:textCursorDrawable="@null"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -300,14 +333,14 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/gd_login_button_bg"
+                        android:background="@drawable/gd_login_button_bg_purple"
                         android:gravity="center"
                         android:onClick="clickLogin"
                         android:text="@string/gd_login"
                         android:textAllCaps="true"
-                        android:textColor="#008000"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -323,17 +356,17 @@
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/gd_login_button_bg"
+                            android:background="@drawable/gd_login_button_bg_purple"
                             android:gravity="center"
                             android:text="@string/register"
                             android:textAllCaps="true"
-                            android:textColor="#008000"
+                            android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                         <TextView
                             android:id="@+id/gd__tv_whatsapp"
@@ -342,27 +375,50 @@
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/gd_login_button_bg"
+                            android:background="@drawable/gd_login_button_bg_gold"
                             android:gravity="center"
-                            android:text="@string/whatsapp"
+                            android:text="@string/PROMOTION"
                             android:textAllCaps="true"
-                            android:textColor="#008000"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
                     </LinearLayout>
 
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"></View>
+                        android:layout_height="10dp"></View>
 
                 </LinearLayout>
 
             </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@mipmap/jp_bg"></ImageView>
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="31dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="33sp"></TextView>
+            </FrameLayout>
+
         </LinearLayout>
 
     </FrameLayout>
@@ -515,32 +571,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_count"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="31dp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="33sp"
-        android:visibility="gone"></TextView>
-
-    <ImageView
-        android:id="@+id/img_gif_1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/gd_img_login_title"
-        android:visibility="gone"></ImageView>
-
-
-    <ImageView
-        android:id="@+id/img_gif_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="-10dp"
-        android:layout_toRightOf="@+id/gd_img_login_title"
-        android:visibility="gone"></ImageView>
 
 </FrameLayout>
