@@ -23,10 +23,10 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +37,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.zhpan.bannerview.BannerViewPager;
+import com.zhpan.bannerview.constants.IndicatorGravity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +59,7 @@ import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.PopMenu;
 import gaming178.com.casinogame.Util.PopWebView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
+import gaming178.com.casinogame.adapter.MyBannerAdapter;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
@@ -76,7 +80,7 @@ public class LoginActivity extends BaseActivity {
     private String version;
     private View ll_language;
     private ImageView iv_language_flag;
-    private TextView tv_register, tvWhatsApp;
+    private TextView tv_register, tvWhatsApp, tvPromo;
     private View llContainer;
     private int[] sc;
     private View llBottomBtn;
@@ -99,6 +103,7 @@ public class LoginActivity extends BaseActivity {
     private TextView tvCount;
     private boolean isNeedCount = true;
     double count = 821521000;
+    private BannerViewPager bannerView;
 
 
     @Override
@@ -169,6 +174,7 @@ public class LoginActivity extends BaseActivity {
         cb_remember_me = findViewById(R.id.cb_remember_me);
         tv_register = (TextView) findViewById(R.id.gd__tv_register);
         tvWhatsApp = findViewById(R.id.gd__tv_whatsapp);
+        tvPromo = findViewById(R.id.gd__tv_promo);
         if (BuildConfig.FLAVOR.equals("dewacasino388")) {
             tvWhatsApp.setVisibility(View.VISIBLE);
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
@@ -177,6 +183,26 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://wa.me/855885179735");
                 }
             });
+            tvPromo.setVisibility(View.VISIBLE);
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getNetPromo();
+                }
+            });
+            List<Integer> imgList = new ArrayList<>();
+            imgList.add(R.mipmap.dewa_banner_1);
+            imgList.add(R.mipmap.dewa_banner_2);
+            imgList.add(R.mipmap.dewa_banner_3);
+            imgList.add(R.mipmap.dewa_banner_4);
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.setLifecycleRegistry(getLifecycle()).
+                    setAdapter(new MyBannerAdapter()).
+                    setScrollDuration(500).
+                    setIndicatorSliderColor(getResources().getColor(R.color.black44_trans),
+                            getResources().getColor(R.color.yellow_gold2)).
+                    setIndicatorGravity(IndicatorGravity.START).
+                    create(imgList);
         }
         if (BuildConfig.FLAVOR.equals("depocasino")) {
             cb_remember_me.setChecked(true);
@@ -244,11 +270,34 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
+
+        if (BuildConfig.FLAVOR.equals("livecasino338")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getNetPromo();
+                }
+            });
+            List<Integer> imgList = new ArrayList<>();
+            imgList.add(R.mipmap.live_banner_1);
+            imgList.add(R.mipmap.live_banner_2);
+            imgList.add(R.mipmap.live_banner_3);
+            imgList.add(R.mipmap.live_banner_4);
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.setLifecycleRegistry(getLifecycle()).
+                    setAdapter(new MyBannerAdapter()).
+                    setScrollDuration(500).
+                    setIndicatorSliderColor(getResources().getColor(R.color.black44_trans),
+                            getResources().getColor(R.color.yellow_gold2)).
+                    setIndicatorGravity(IndicatorGravity.START).
+                    create(imgList);
+        }
+
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
             tv_register.setVisibility(View.VISIBLE);
-            if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88")) {
+            if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") && !BuildConfig.FLAVOR.equals("livecasino338")) {
                 img_login_title.setImageResource(R.mipmap.gd_title_logo);
             }
             if (BuildConfig.FLAVOR.equals("kuncicasino")) {
@@ -427,6 +476,36 @@ public class LoginActivity extends BaseActivity {
             }
         }
 
+    }
+
+    private void getNetPromo(){
+        new Thread() {
+            @Override
+            public void run() {
+                String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                String param = "labelid=" + BuildConfig.Labelid;
+                String result = httpClient.getHttpClient(url + param, null);
+                WebSiteUrl.setNormal(result);
+                getHandler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        PopWebView popWebView = new PopWebView(mContext, tvWhatsApp, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                            @Override
+                            public String getUrl() {
+                                String promotionUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "promom.jsp";
+                                return promotionUrl;
+                            }
+
+                            @Override
+                            public String getTitle() {
+                                return getString(R.string.PROMOTION);
+                            }
+                        };
+                        popWebView.showPopupCenterWindow();
+                    }
+                });
+            }
+        }.start();
     }
 
     @Override
