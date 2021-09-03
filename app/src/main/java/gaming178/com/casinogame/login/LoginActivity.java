@@ -293,6 +293,32 @@ public class LoginActivity extends BaseActivity {
                     create(imgList);
         }
 
+        if (BuildConfig.FLAVOR.equals("pemain")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://rebrand.ly/pemainkasino");
+                }
+            });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://direct.lc.chat/8668396/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "LiveChat";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+        }
+
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
@@ -478,7 +504,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    private void getNetPromo(){
+    private void getNetPromo() {
         new Thread() {
             @Override
             public void run() {
