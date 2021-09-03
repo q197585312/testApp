@@ -224,6 +224,7 @@
     <string name="dr">@string/dragon</string>
     <string name="ti">@string/tiger</string>
     <string name="register">Register</string>
+    <string name="whatsapp">WHATSAPP</string>
     <string name="gd_username">Account</string>
     <string name="gd_password">Password</string>
     <string name="verify_password">Verify Password</string>

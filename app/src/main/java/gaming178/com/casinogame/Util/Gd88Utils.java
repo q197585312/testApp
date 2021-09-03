@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,6 +70,11 @@ public class Gd88Utils {
         return curMap;
 
 
+    }
+
+    public static String formatTosepara(double data) {
+        DecimalFormat df = new DecimalFormat("#,###");
+        return df.format(data);
     }
 
     public static void goBrowser(Context context, String url) {
