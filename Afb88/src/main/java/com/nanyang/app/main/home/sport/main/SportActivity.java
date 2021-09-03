@@ -239,7 +239,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             outState.remove(BUNDLE_FRAGMENTS_KEY);
         }
     }
-
+    public Map<String, Map<String, Boolean>> localCollectionMap=new HashMap<>();
     public void onCreate(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             //重建时清除 fragment的状态

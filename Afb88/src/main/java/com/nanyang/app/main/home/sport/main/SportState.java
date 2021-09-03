@@ -80,7 +80,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
     private String LID = "";
-    protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
+
 
     private int page;
     private List<TableSportInfo<B>> filterData;
@@ -132,7 +132,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return baseView;
     }
 
+    protected Map<String, Map<String, Boolean>> localCollectionMap;
+
     public void setBaseView(V mBaseView) {
+
+        localCollectionMap = ((SportActivity) mBaseView.getIBaseContext().getBaseActivity()).localCollectionMap;
         this.baseView = mBaseView;
         mCompositeSubscription = new CompositeDisposable();
     }
@@ -1259,6 +1263,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         if (item.getRes() == R.mipmap.sport_game_cup_white || item.getRes() == R.mipmap.sport_cup_yellow) {
             SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
             sportActivity.clickTop();
+            sportActivity.stopPopupWindow();
             return;
         }
         runWayItem(item);

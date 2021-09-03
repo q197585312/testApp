@@ -223,6 +223,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="5dp"
+                android:visibility="gone"
                 android:onClick="closeTv"
                 android:src="@mipmap/play_close_tv" />
         </LinearLayout>
