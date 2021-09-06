@@ -2,6 +2,7 @@ package gaming178.com.mylibrary.allinone.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
@@ -189,6 +190,34 @@ public class WidgetUtil {
             }
         });
         return animator;
+    }
+
+    public static ObjectAnimator startAlphaAnimation(final View view, long duration) {
+        final ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1, 0, 1);
+        animator.setRepeatCount(Animation.INFINITE);
+        animator.setDuration(duration);
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (animator != null && view != null) {
+                    view.setAlpha(1.0f);
+                }
+            }
+        });
+        return animator;
+    }
+
+    public static AnimatorSet startScaleAnimation(final View view) {
+        AnimatorSet resizeAvenger = new AnimatorSet();
+        ObjectAnimator animResizeX = ObjectAnimator.ofFloat(view, "scaleX", 1, 0.98f, 1);
+        animResizeX.setRepeatCount(Animation.INFINITE);
+        animResizeX.setDuration(800);
+        ObjectAnimator animResizeY = ObjectAnimator.ofFloat(view, "scaleY", 1, 0.98f, 1);
+        animResizeY.setRepeatCount(Animation.INFINITE);
+        animResizeY.setDuration(800);
+        resizeAvenger.playTogether(animResizeX, animResizeY);
+        resizeAvenger.start();
+        return resizeAvenger;
     }
 
     private static DisplayMetrics outMetrics;

@@ -1,5 +1,6 @@
 package gaming178.com.casinogame.login;
 
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +26,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -65,6 +63,7 @@ import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.allinone.util.StringUtils;
 import gaming178.com.mylibrary.allinone.util.GdToastUtils;
+import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.lib.util.LogUtil;
 
 /**
@@ -104,6 +103,8 @@ public class LoginActivity extends BaseActivity {
     private boolean isNeedCount = true;
     double count = 821521000;
     private BannerViewPager bannerView;
+    private LinearLayout ll_register_bg;
+    private ImageView img_ula_enter_bg;
 
 
     @Override
@@ -263,7 +264,7 @@ public class LoginActivity extends BaseActivity {
 
                         @Override
                         public String getTitle() {
-                            return context.getString(R.string.PROMOTION);
+                            return getString(R.string.PROMOTION);
                         }
                     };
                     popWebView.showPopupCenterWindow();
@@ -315,6 +316,91 @@ public class LoginActivity extends BaseActivity {
                         }
                     };
                     popWebView.showPopupCenterWindow();
+                }
+            });
+            WidgetUtil.startScaleAnimation(tvWhatsApp);
+            WidgetUtil.startScaleAnimation(tvPromo);
+            ll_register_bg = findViewById(R.id.ll_register_bg);
+            ObjectAnimator objectAnimator = WidgetUtil.startAlphaAnimation(ll_register_bg, 800);
+            objectAnimator.start();
+        }
+
+        if (BuildConfig.FLAVOR.equals("menangcasino")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://rebrand.ly/menangcas");
+                }
+            });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://direct.lc.chat/11428453/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "LiveChat";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+            WidgetUtil.startScaleAnimation(tvWhatsApp);
+            WidgetUtil.startScaleAnimation(tvPromo);
+            ll_register_bg = findViewById(R.id.ll_register_bg);
+            ObjectAnimator objectAnimator = WidgetUtil.startAlphaAnimation(ll_register_bg, 800);
+            objectAnimator.start();
+        }
+
+        if (BuildConfig.FLAVOR.equals("ularnaga")) {
+            cb_remember_me.setChecked(true);
+            img_ula_enter_bg = findViewById(R.id.img_ula_enter_bg);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.form_bg).into(img_ula_enter_bg);
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "http://45.77.243.206/ularnaga/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return getString(R.string.PROMOTION);
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_dragon).into(img_login_title_main);
+        }
+
+        if (BuildConfig.FLAVOR.equals("serbacasino")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://wa.me/855977595518");
+                }
+            });
+        }
+
+        if (BuildConfig.FLAVOR.equals("mastercasino88")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/WA-mastercasino88");
+                }
+            });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/T-MasterCasino88");
                 }
             });
         }
@@ -497,7 +583,8 @@ public class LoginActivity extends BaseActivity {
                 viewById.setText(objectData.getSite());
         } else {
             if (!BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("sbocasino77") &&
-                    !BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88")) {
+                    !BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88")&&
+                    !BuildConfig.FLAVOR.equals("ularnaga")) {
                 cb_remember_me.setChecked(false);
             }
         }
