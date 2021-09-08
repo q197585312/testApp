@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -149,7 +150,17 @@ public class CQSlotsGameActivity extends BaseActivity {
             @Override
             public void convert(ViewHolder helper, CQSlotsGameInfoBean.DataBean item, int position) {
                 ImageView img = helper.retrieveView(R.id.gd__hall_game_pic_iv);
-                Glide.with(mContext).load(item.getImgAddress()).centerCrop().transform(new GlideRoundTransform(mContext, 4)).into(img);
+                img.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int width = img.getWidth();
+                        int height = (int) (width / 1.72);
+                        ViewGroup.LayoutParams layoutParams = img.getLayoutParams();
+                        layoutParams.height = height;
+                        img.setLayoutParams(layoutParams);
+                        Glide.with(mContext).load(item.getImgAddress()).centerCrop().transform(new GlideRoundTransform(mContext, 4)).into(img);
+                    }
+                });
                 if (!TextUtils.isEmpty(lg) && lg.equals("zh")) {
                     helper.setText(R.id.gd__hall_game_title_tv, item.getCN_name());
                 } else {

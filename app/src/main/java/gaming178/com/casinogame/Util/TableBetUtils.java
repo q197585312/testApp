@@ -220,6 +220,12 @@ public class TableBetUtils {
     public static void dragonTigerBet(int tableId, DragonTigerTableBetBean betBean, DragonTigerTableContentBean contentBean, AppModel mAppViewModel, Context context, int chooseChip, String betType, boolean isRepeat) {
         int currentBet = 0;
         int alreadyBet = 0;
+        for (int i = 1; i <= 4; i++) {
+            if (mAppViewModel.getDragonTiger01().getDragonTigerLimit(i).getMaxTotalBet() > 0) {
+                mAppViewModel.getDragonTiger01().setLimitIndex(i);
+                break;
+            }
+        }
         if (!isRepeat) {
             int min = 0;
             int max = 0;
@@ -365,6 +371,12 @@ public class TableBetUtils {
     public static void sicboBet(int tableId, SicboTableBetBean betBean, SicboTableContentBean contentBean, AppModel mAppViewModel, Context context, int chooseChip, String betType, boolean isRepeat) {
         int currentBet = 0;
         int alreadyBet = 0;
+        for (int i = 1; i <= 4; i++) {
+            if (mAppViewModel.getSicbo01().getSicboLimit(i).getMaxTotalBet() > 0) {
+                mAppViewModel.getSicbo01().setLimitIndex(i);
+                break;
+            }
+        }
         if (!isRepeat) {
             int min = 0;
             int max = 0;
@@ -584,6 +596,12 @@ public class TableBetUtils {
     public static void RouletteBet(int tableId, RouletteTableBetBean betBean, RouletteTableContentBean contentBean, AppModel mAppViewModel, Context context, int chooseChip, String betType, boolean isRepeat) {
         int currentBet = 0;
         int alreadyBet = 0;
+        for (int i = 1; i <= 4; i++) {
+            if (mAppViewModel.getRoulette01().getRouletteLimit(i).getMaxTotalBet() > 0) {
+                mAppViewModel.getRoulette01().setLimitIndex(i);
+                break;
+            }
+        }
         if (!isRepeat) {
             int min = 0;
             int max = 0;
@@ -609,8 +627,8 @@ public class TableBetUtils {
                 case "1_12":
                     currentBet = betBean.getSingle1_12CurrentBet();
                     alreadyBet = betBean.getSingle1_12AlreadyBet();
-                    min = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMinAlldiceBet();
-                    max = mAppViewModel.getSicbo01().getSicboLimit(mAppViewModel.getSicbo01().getLimitIndex()).getMaxAlldiceBet();
+                    min = mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMinColumnDozenBet();
+                    max = mAppViewModel.getRoulette01().getRouletteLimit(mAppViewModel.getRoulette01().getLimitIndex()).getMaxColumnDozenBet();
                     break;
                 case "13_24":
                     currentBet = betBean.getSingle13_24CurrentBet();
