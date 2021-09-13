@@ -102,7 +102,7 @@ public class LoginActivity extends BaseActivity {
     private ImageView imgGif1, imgGif2;
     private TextView tvCount;
     private boolean isNeedCount = true;
-    double count = 821521000;
+    double count = 555650100;
     private BannerViewPager bannerView;
     private LinearLayout ll_register_bg;
     private ImageView img_ula_enter_bg;
@@ -208,7 +208,6 @@ public class LoginActivity extends BaseActivity {
                     create(imgList);
         }
         if (BuildConfig.FLAVOR.equals("depocasino")) {
-            cb_remember_me.setChecked(true);
             imgGif1 = findViewById(R.id.img_gif_1);
             imgGif2 = findViewById(R.id.img_gif_2);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.depo_gif_1).into(imgGif1);
@@ -242,7 +241,7 @@ public class LoginActivity extends BaseActivity {
                                 @Override
                                 public void run() {
                                     String a = Gd88Utils.formatTosepara(count);
-                                    tvCount.setText(a);
+                                    tvCount.setText("30,"+a);
                                 }
                             });
                         } catch (InterruptedException e) {
@@ -253,7 +252,6 @@ public class LoginActivity extends BaseActivity {
             }.start();
         }
         if (BuildConfig.FLAVOR.equals("ratucasino88")) {
-            cb_remember_me.setChecked(true);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.kilat).into(img_login_title);
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -359,7 +357,6 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (BuildConfig.FLAVOR.equals("ularnaga")) {
-            cb_remember_me.setChecked(true);
             img_ula_enter_bg = findViewById(R.id.img_ula_enter_bg);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.form_bg).into(img_ula_enter_bg);
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
@@ -442,6 +439,21 @@ public class LoginActivity extends BaseActivity {
                     }
                 }
             }.start();
+        }
+
+        if (BuildConfig.FLAVOR.equals("mandiricasino")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/WA-MandiriCasino");
+                }
+            });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/T-MandiriCasino");
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
@@ -621,9 +633,7 @@ public class LoginActivity extends BaseActivity {
             if (viewById != null)
                 viewById.setText(objectData.getSite());
         } else {
-            if (!BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("sbocasino77") &&
-                    !BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") &&
-                    !BuildConfig.FLAVOR.equals("ularnaga")) {
+            if (!BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("sbocasino77")) {
                 cb_remember_me.setChecked(false);
             }
         }

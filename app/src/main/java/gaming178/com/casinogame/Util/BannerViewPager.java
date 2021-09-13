@@ -95,7 +95,7 @@ public class BannerViewPager extends ViewPager {
                     index++;
                 }
             };
-            timer.schedule(task, 2000, 3000);
+            timer.schedule(task, 2500, 7000);
         }
     }
 
