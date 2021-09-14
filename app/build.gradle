@@ -508,6 +508,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.github.zhpanvip:BannerViewPager:3.5.4'
     implementation 'com.github.lihangleo2:ShadowLayout:3.2.2'
+    implementation 'com.codersun:fingermanager:1.0.2'
     implementation rootProject.ext.dependencies.butterknife
 
     kapt rootProject.ext.dependencies.butterknife_compiler

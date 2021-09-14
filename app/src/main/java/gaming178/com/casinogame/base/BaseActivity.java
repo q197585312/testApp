@@ -1418,6 +1418,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                     PopTransactionRecord popTransactionReport = new PopTransactionRecord(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                                     popTransactionReport.showPopupCenterWindow();
                                     break;
+                                case "Fingerprint":
+                                    showFingerPop(v, Gravity.TOP);
+                                    break;
                             }
                         }
                     }
@@ -1532,21 +1535,30 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 RadioButton rb_password = (RadioButton) view.findViewById(R.id.gd__rb_password);
                 RadioButton rb_limit = (RadioButton) view.findViewById(R.id.gd__rb_limit);
                 RadioButton rb_language = (RadioButton) view.findViewById(R.id.gd__rb_language);
+                RadioButton rb_finger = (RadioButton) view.findViewById(R.id.gd__rb_finger);
                 ImageView img_open_close = (ImageView) view.findViewById(R.id.gd_img_open_close);
                 if (mAppViewModel.isMusicOpen()) {
                     img_open_close.setImageResource(R.mipmap.music_open);
                 } else {
                     img_open_close.setImageResource(R.mipmap.music_close);
                 }
-                if (!BuildConfig.FLAVOR.isEmpty() && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                    rb_limit.setBackgroundResource(R.drawable.gd_selector_music_choose_right);
-                    rb_password.setVisibility(View.GONE);
-                    rb_language.setVisibility(View.GONE);
+                if (!BuildConfig.FLAVOR.isEmpty()) {
+                    if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                        rb_limit.setBackgroundResource(R.drawable.gd_selector_music_choose_right);
+                        rb_password.setVisibility(View.GONE);
+                        rb_language.setVisibility(View.GONE);
+                    }
                 }
-                TextView tv_music_title = (TextView) view.findViewById(R.id.gd__tv_music_title);
+                rb_finger.setVisibility(View.GONE);
+//                TextView tv_music_title = (TextView) view.findViewById(R.id.gd__tv_music_title);
                 if (BaseActivity.this instanceof LobbyActivity) {
-                    rg_switch.setVisibility(View.GONE);
-                    tv_music_title.setVisibility(View.VISIBLE);
+                    rb_limit.setVisibility(View.GONE);
+                    if (!BuildConfig.FLAVOR.isEmpty()) {
+                        rb_finger.setVisibility(View.VISIBLE);
+                        if (rb_finger.getVisibility() == View.VISIBLE) {
+                            rb_language.setBackgroundResource(R.drawable.gd_selector_music_choose_mid);
+                        }
+                    }
                     isGameUi = false;
                 } else {
                     isGameUi = true;
@@ -1573,6 +1585,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 final LinearLayout ll_password = view.findViewById(R.id.gd__ll_password);
                 final RecyclerView recyclerView = view.findViewById(R.id.gd__base_rv);
                 final RecyclerView rc_lg = view.findViewById(R.id.gd__rc_lg);
+                LinearLayout ll_finger = view.findViewById(R.id.gd__ll_finger);
                 recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
                 BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(mAppViewModel.getTableId()), R.layout.gd_item_popupwindow_text_select) {
                     @Override
@@ -1641,21 +1654,31 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             recyclerView.setVisibility(View.GONE);
                             rc_lg.setVisibility(View.GONE);
                             ll_password.setVisibility(View.GONE);
+                            ll_finger.setVisibility(View.GONE);
                         } else if (checkedId == R.id.gd__rb_password) {
                             ll_music.setVisibility(View.INVISIBLE);
                             ll_password.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             rc_lg.setVisibility(View.GONE);
+                            ll_finger.setVisibility(View.GONE);
                         } else if (checkedId == R.id.gd__rb_limit) {
                             ll_music.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
                             rc_lg.setVisibility(View.GONE);
                             ll_password.setVisibility(View.GONE);
+                            ll_finger.setVisibility(View.GONE);
                         } else if (checkedId == R.id.gd__rb_language) {
                             ll_music.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             rc_lg.setVisibility(View.VISIBLE);
                             ll_password.setVisibility(View.GONE);
+                            ll_finger.setVisibility(View.GONE);
+                        } else if (checkedId == R.id.gd__rb_finger) {
+                            ll_music.setVisibility(View.INVISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                            rc_lg.setVisibility(View.GONE);
+                            ll_password.setVisibility(View.GONE);
+                            ll_finger.setVisibility(View.VISIBLE);
                         }
                     }
                 });
@@ -1776,6 +1799,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         changePasswordHelper.changePassword();
                     }
                 });
+
+                initFingerView(view);
+
             }
 
             @Override
@@ -1795,6 +1821,61 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 viewById.setVisibility(View.VISIBLE);
             pop.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
         }
+    }
+
+    private void showFingerPop(final View v, int gravity) {
+        View center = v;
+        if (v == null) {
+            center = new View(mContext);
+        }
+        int width = ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            width = width / 2;
+        }
+        BasePopupWindow pop = new BasePopupWindow(mContext, center, width, ViewGroup.LayoutParams.WRAP_CONTENT) {
+            @Override
+            protected int getContentViewLayoutRes() {
+                return R.layout.gd_popupwindow_finger;
+            }
+
+            @Override
+            protected void initView(View view) {
+                super.initView(view);
+                initFingerView(view);
+            }
+
+            @Override
+            protected void onCloose() {
+                super.onCloose();
+                darkenBackground(1f);
+            }
+        };
+        darkenBackground(0.5f);
+        pop.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+    }
+
+    private void initFingerView(View view) {
+        CheckBox cbFinger = view.findViewById(R.id.cb_finger);
+        String finger = (String) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_FINGER);
+        if (TextUtils.isEmpty(finger)) {
+            cbFinger.setChecked(false);
+        } else {
+            cbFinger.setChecked(true);
+        }
+        cbFinger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String finger = (String) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_FINGER);
+                if (TextUtils.isEmpty(finger)) {
+                    AppTool.saveObjectData(mContext, AppConfig.ACTION_KEY_FINGER, "finger");
+                    cbFinger.setChecked(true);
+                    AppTool.saveObjectData(mContext, WebSiteUrl.Tag, mAppViewModel.getCurrentUserLoginBean());
+                } else {
+                    AppTool.saveObjectData(mContext, AppConfig.ACTION_KEY_FINGER, "");
+                    cbFinger.setChecked(false);
+                }
+            }
+        });
     }
 
     private void chooseMusic(List<CheckBox> boxList, CheckBox chooseCheckBox) {
@@ -1962,7 +2043,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 }
                 switch (gameMenuItem.getDrawableRes()) {
                     case 1:
-                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickBaccarat1(true);
                             tablePop.openBaccarat(gameMenuItem.getDrawableRes());
@@ -1970,7 +2051,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                         break;
                     case 2:
-                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickBaccarat2(true);
                             tablePop.openBaccarat(gameMenuItem.getDrawableRes());
@@ -1978,7 +2059,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                         break;
                     case 3:
-                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickBaccarat3(true);
                             tablePop.openBaccarat(gameMenuItem.getDrawableRes());
@@ -1986,7 +2067,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                         break;
                     case 61:
-                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickBaccarat5(true);
                             tablePop.openBaccarat(gameMenuItem.getDrawableRes());
@@ -1994,7 +2075,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                         break;
                     case 62:
-                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickBaccarat6(true);
                             tablePop.openBaccarat(gameMenuItem.getDrawableRes());
@@ -2002,7 +2083,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                         break;
                     case 63:
-                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickBaccarat7(true);
                             tablePop.openBaccarat(gameMenuItem.getDrawableRes());
@@ -2010,7 +2091,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                         break;
                     case 71:
-                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getBaccaratBetContentBean(gameMenuItem.getDrawableRes()).getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getBaccarat(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickBaccaratMi(true);
                             tablePop.openBaccarat(gameMenuItem.getDrawableRes());
@@ -2018,7 +2099,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                         }
                         break;
                     case 5:
-                        if (tablePop.getDragonTigerContentBean().getContentView().getVisibility()!=View.VISIBLE){
+                        if (tablePop.getDragonTigerContentBean().getContentView().getVisibility() != View.VISIBLE) {
                             mAppViewModel.getDragonTiger(gameMenuItem.getDrawableRes()).setGameStatus(-1);
                             mAppViewModel.setClickDragonTiger(true);
                             tablePop.openDragonTiger(gameMenuItem.getDrawableRes());

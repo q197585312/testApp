@@ -42,6 +42,7 @@ import gaming178.com.casinogame.Bean.Sicbo;
 import gaming178.com.casinogame.Bean.SicboLimit;
 import gaming178.com.casinogame.Bean.SlotsBean;
 import gaming178.com.casinogame.Bean.User;
+import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.HttpClient;
@@ -3930,4 +3931,15 @@ public class AppModel extends ViewModel {
     public void setClickBaccaratMi(boolean clickBaccaratMi) {
         isClickBaccaratMi = clickBaccaratMi;
     }
+
+    private UserLoginBean userLoginBean;
+
+    public UserLoginBean getCurrentUserLoginBean() {
+        return userLoginBean;
+    }
+
+    public void setCurrentUserLoginBean(UserLoginBean userLoginBean) {
+        this.userLoginBean = userLoginBean;
+    }
+
 }

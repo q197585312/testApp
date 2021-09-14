@@ -229,6 +229,13 @@
     <string name="Live_Chat">Obrolan Langsung</string>
     <string name="user_limit">akun harus menggunakan karakter:a-z A-Z 0-9 _- dan panjang 4-25</string>
     <string name="search_game">Cari Game</string>
+    <string name="fingerprint">Sidik Jari</string>
+    <string name="use_fingerprint">Gunakan Sidik Jari Untuk Masuk</string>
+    <string name="Fingerprint_verification">Verifikasi sidik jari</string>
+    <string name="Please_press_fingerprint">Silakan tekan sidik jari</string>
+    <string name="verification_failed">verifikasi gagal</string>
+    <string name="not_support">Perangkat Anda tidak mendukung sidik jari</string>
+    <string name="after_verify">Harap verifikasi setelah memasukkan sidik jari Anda di sistem</string>
 </resources>
 
 

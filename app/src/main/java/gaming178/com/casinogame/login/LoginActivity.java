@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -34,8 +35,12 @@ import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.codersun.fingerprintcompat.AonFingerChangeCallback;
+import com.codersun.fingerprintcompat.FingerManager;
+import com.codersun.fingerprintcompat.SimpleFingerCheckCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.constants.IndicatorGravity;
 
@@ -52,6 +57,7 @@ import gaming178.com.casinogame.Bean.Liga365AgentBean;
 import gaming178.com.casinogame.Bean.UserBean;
 import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
+import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HttpClient;
@@ -241,7 +247,7 @@ public class LoginActivity extends BaseActivity {
                                 @Override
                                 public void run() {
                                     String a = Gd88Utils.formatTosepara(count);
-                                    tvCount.setText("30,"+a);
+                                    tvCount.setText("30," + a);
                                 }
                             });
                         } catch (InterruptedException e) {
@@ -445,13 +451,22 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/WA-MandiriCasino");
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6281284159432&text&app_absent=0");
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/T-MandiriCasino");
+                }
+            });
+        }
+
+        if (BuildConfig.FLAVOR.equals("hobi")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://wa.me/855975299341");
                 }
             });
         }
@@ -630,8 +645,10 @@ public class LoginActivity extends BaseActivity {
             tv_name.setText(objectData.getUsername());
             tv_password.setText(objectData.getPassword());
             EditText viewById = (EditText) findViewById(R.id.gd__login_site_edt);
-            if (viewById != null)
+            if (viewById != null) {
                 viewById.setText(objectData.getSite());
+            }
+            fingerLogin();
         } else {
             if (!BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("sbocasino77")) {
                 cb_remember_me.setChecked(false);
@@ -776,6 +793,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void clickLogin(View v) {
+        goLogin();
+    }
+
+    private void goLogin() {
         String usName = tv_name.getText().toString().trim();
 
         mAppViewModel.getUser().setName(usName);
@@ -820,7 +841,6 @@ public class LoginActivity extends BaseActivity {
             showLoginBlockDialog();
             loginThread.start();
         }
-
     }
 
     private void goLogin365(final UserBean user) {
@@ -965,10 +985,10 @@ public class LoginActivity extends BaseActivity {
             switch (msg.what) {
                 case ErrorCode.LOGIN_SECCESS:
                     dismissLoginBlockDialog();
+                    String usName = tv_name.getText().toString().trim();
+                    String password = tv_password.getText().toString().trim();
+                    EditText siteEdt = findViewById(R.id.gd__login_site_edt);
                     if (cb_remember_me.isChecked()) {
-                        String usName = tv_name.getText().toString().trim();
-                        String password = tv_password.getText().toString().trim();
-                        EditText siteEdt = findViewById(R.id.gd__login_site_edt);
                         String site = "";
                         if (siteEdt != null) {
                             site = siteEdt.getText().toString().trim();
@@ -979,6 +999,7 @@ public class LoginActivity extends BaseActivity {
                     } else {
                         AppTool.saveObjectData(mContext, WebSiteUrl.Tag, null);
                     }
+                    mAppViewModel.setCurrentUserLoginBean(new UserLoginBean(siteEdt.getText().toString().trim(), usName, password));
                     skipAct(LobbyActivity.class);
                     //    finish();
                     break;
@@ -1144,5 +1165,60 @@ public class LoginActivity extends BaseActivity {
             }
         });
         animator.start();
+    }
+
+    private void fingerLogin() {
+        String finger = (String) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_FINGER);
+        if (!TextUtils.isEmpty(finger)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                fingerVerify();
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void fingerVerify() {
+        switch (FingerManager.checkSupport(this)) {
+            case DEVICE_UNSUPPORTED:
+                ToastUtils.showShort(getString(R.string.not_support));
+                break;
+            case SUPPORT_WITHOUT_DATA:
+                ToastUtils.showShort(getString(R.string.after_verify));
+                break;
+            case SUPPORT:
+                FingerManager.updateFingerData(this);
+                FingerManager.build().setApplication(getApplication())
+                        .setTitle(getString(R.string.Fingerprint_verification))
+                        .setDes(getString(R.string.Please_press_fingerprint))
+                        .setNegativeText(getString(R.string.gd_cancel))
+//                        .setFingerDialogApi23(new MyFingerDialog())//如果你需要自定义android P 一下系统弹窗就设置,不设置会使用默认弹窗
+                        .setFingerCheckCallback(new SimpleFingerCheckCallback() {
+
+                            @Override
+                            public void onSucceed() {
+                                goLogin();
+                            }
+
+                            @Override
+                            public void onError(String error) {
+                                ToastUtils.showShort(getString(R.string.verification_failed));
+                            }
+
+                            @Override
+                            public void onCancel() {
+
+                            }
+                        })
+                        .setFingerChangeCallback(new AonFingerChangeCallback() {
+
+                            @Override
+                            protected void onFingerDataChange() {
+
+                            }
+                        })
+                        .create()
+                        .startListener(this);
+                break;
+        }
     }
 }

@@ -301,6 +301,13 @@
     <string name="bandarq">BANDARQ</string>
     <string name="user_limit">Account must use the following characters:a-z A-Z 0-9 _- and length 4~25</string>
     <string name="search_game">Search Game</string>
+    <string name="fingerprint">Fingerprin</string>
+    <string name="use_fingerprint">Use Fingerprint to Login</string>
+    <string name="Fingerprint_verification">Fingerprint verification</string>
+    <string name="Please_press_fingerprint">Please press fingerprint</string>
+    <string name="verification_failed">verification failed</string>
+    <string name="not_support">Your device does not support fingerprints</string>
+    <string name="after_verify">Please verify after entering your fingerprint in the system</string>
 </resources>
 
 

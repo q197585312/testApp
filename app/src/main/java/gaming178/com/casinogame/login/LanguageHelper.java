@@ -55,6 +55,7 @@ public class LanguageHelper {
                     languageItems.add(new MenuItemInfo<>(R.mipmap.gd_live_chat, context.getString(R.string.Live_Chat), "liveChat", ""));
                 }
                 languageItems.add(new MenuItemInfo<>(R.mipmap.gd_home_report, context.getString(R.string.transaction_record), "TransactionRecord", ""));
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_finger, context.getString(R.string.fingerprint), "Fingerprint", ""));
             }
         }
     }

@@ -132,6 +132,8 @@ public class PopMenu extends BasePopupWindow {
                 String contactUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "hubungikamim.jsp";
                 if (BuildConfig.FLAVOR.equals("wargacasino")) {
                     contactUrl = "https://b.link/promowgc";
+                }else if (BuildConfig.FLAVOR.equals("marina118")){
+                    contactUrl = "https://secure.livechatinc.com/licence/8631744/v2/open_chat.cgi";
                 }
                 return contactUrl;
             }

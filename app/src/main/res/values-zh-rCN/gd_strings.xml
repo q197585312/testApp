@@ -247,4 +247,11 @@
     <string name="bjl">百家乐</string>
     <string name="nn">牛牛</string>
     <string name="search_game">搜索游戏</string>
+    <string name="fingerprint">指纹</string>
+    <string name="use_fingerprint">使用指纹登录</string>
+    <string name="Fingerprint_verification">指纹验证</string>
+    <string name="Please_press_fingerprint">请按下指纹</string>
+    <string name="verification_failed">验证失败</string>
+    <string name="not_support">您的设备不支持指纹</string>
+    <string name="after_verify">请在系统录入指纹后再验证</string>
 </resources>
