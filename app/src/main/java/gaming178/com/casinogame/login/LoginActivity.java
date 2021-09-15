@@ -471,6 +471,32 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
+        if (BuildConfig.FLAVOR.equals("cahaya")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=87869413811");
+                }
+            });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://direct.lc.chat/8666201/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "LiveChat";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+        }
+
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
