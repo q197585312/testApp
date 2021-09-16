@@ -497,6 +497,34 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
+        if (BuildConfig.FLAVOR.equals("wargacasino")) {
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.war_gif).into(img_login_title_main);
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://b.link/promowgc";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return getString(R.string.PROMOTION);
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://bit.ly/WA-Wargacas1");
+                }
+            });
+        }
+
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
