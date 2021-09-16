@@ -666,13 +666,15 @@ public class LoginActivity extends BaseActivity {
         iv_language_flag.setImageResource(languageItem.getRes());
         Object objectData1 = AppTool.getObjectData(mContext, WebSiteUrl.Tag);
         if (objectData1 != null && objectData1 instanceof UserLoginBean) {
-            cb_remember_me.setChecked(true);
             UserLoginBean objectData = (UserLoginBean) objectData1;
-            tv_name.setText(objectData.getUsername());
-            tv_password.setText(objectData.getPassword());
-            EditText viewById = (EditText) findViewById(R.id.gd__login_site_edt);
-            if (viewById != null) {
-                viewById.setText(objectData.getSite());
+            cb_remember_me.setChecked(objectData.getRememberMe());
+            if (objectData.getRememberMe()) {
+                tv_name.setText(objectData.getUsername());
+                tv_password.setText(objectData.getPassword());
+                EditText viewById = (EditText) findViewById(R.id.gd__login_site_edt);
+                if (viewById != null) {
+                    viewById.setText(objectData.getSite());
+                }
             }
             fingerLogin();
         } else {
@@ -819,15 +821,23 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void clickLogin(View v) {
-        goLogin();
+        goLogin(AppConfig.CLICK_LOGIN);
     }
 
-    private void goLogin() {
-        String usName = tv_name.getText().toString().trim();
-
+    private void goLogin(String loginType) {
+        String usName;
+        String usPassword;
+        if (loginType.equals(AppConfig.CLICK_LOGIN)) {
+            usName = tv_name.getText().toString().trim();
+            usPassword = tv_password.getText().toString().trim();
+        } else {
+            UserLoginBean userLoginBean = (UserLoginBean) AppTool.getObjectData(mContext, WebSiteUrl.Tag);
+            usName = userLoginBean.getUsername();
+            usPassword = userLoginBean.getPassword();
+        }
         mAppViewModel.getUser().setName(usName);
         mAppViewModel.getUser().setRealName(usName);
-        mAppViewModel.getUser().setPassword(tv_password.getText().toString().trim());
+        mAppViewModel.getUser().setPassword(usPassword);
         if (mAppViewModel.getUser().getName() == null || mAppViewModel.getUser().getName().length() == 0) {
             //     showToast("Please input user name");
             return;
@@ -850,16 +860,23 @@ public class LoginActivity extends BaseActivity {
         mAppViewModel.setbInitLimit(false);
         if (BuildConfig.FLAVOR.equals("liga365")) {
             EditText edt_site = (EditText) findViewById(R.id.gd__login_site_edt);
-            UserLoginBean userBean = new UserLoginBean(edt_site.getText().toString().trim(), usName, tv_password.getText().toString().trim());
-            if (userBean.getSite().length() == 0) {
+            String site;
+            if (loginType.equals(AppConfig.CLICK_LOGIN)) {
+                site = edt_site.getText().toString().trim();
+            } else {
+                UserLoginBean userLoginBean = (UserLoginBean) AppTool.getObjectData(mContext, WebSiteUrl.Tag);
+                site = userLoginBean.getSite();
+            }
+            mAppViewModel.getUser().setSite(site);
+            if (site.length() == 0) {
 //            showToast("Please input user name");
                 return;
             }
-            if (siteMap.get(userBean.getSite()) == null) {
+            if (siteMap.get(site) == null) {
                 Toast.makeText(mContext, R.string.error_site, Toast.LENGTH_LONG).show();
                 return;
             }
-            UserBean user = new UserBean(userBean.getUsername() + siteMap.get(userBean.getSite()), userBean.getPassword());
+            UserBean user = new UserBean(usName + siteMap.get(site), usPassword);
             goLogin365(user);
 
         } else {
@@ -1011,23 +1028,25 @@ public class LoginActivity extends BaseActivity {
             switch (msg.what) {
                 case ErrorCode.LOGIN_SECCESS:
                     dismissLoginBlockDialog();
-                    String usName = tv_name.getText().toString().trim();
-                    String password = tv_password.getText().toString().trim();
-                    EditText siteEdt = findViewById(R.id.gd__login_site_edt);
-                    if (cb_remember_me.isChecked()) {
-                        String site = "";
-                        if (siteEdt != null) {
-                            site = siteEdt.getText().toString().trim();
-                        }
-                        UserLoginBean userLoginBean = new UserLoginBean(site, usName, password);
-
-                        AppTool.saveObjectData(mContext, WebSiteUrl.Tag, userLoginBean);
+                    UserLoginBean dataBean = new UserLoginBean();
+                    UserLoginBean userLoginBean = (UserLoginBean) AppTool.getObjectData(mContext, WebSiteUrl.Tag);
+                    if (userLoginBean == null) {
+                        String usName = tv_name.getText().toString().trim();
+                        String password = tv_password.getText().toString().trim();
+                        EditText siteEdt = findViewById(R.id.gd__login_site_edt);
+                        String site = siteEdt.getText().toString().trim();
+                        dataBean.setSite(site);
+                        dataBean.setUsername(usName);
+                        dataBean.setPassword(password);
                     } else {
-                        AppTool.saveObjectData(mContext, WebSiteUrl.Tag, null);
+                        dataBean.setSite(userLoginBean.getSite());
+                        dataBean.setUsername(userLoginBean.getUsername());
+                        dataBean.setPassword(userLoginBean.getPassword());
                     }
-                    mAppViewModel.setCurrentUserLoginBean(new UserLoginBean(siteEdt.getText().toString().trim(), usName, password));
+                    boolean rememberMe = cb_remember_me.isChecked();
+                    dataBean.setRememberMe(rememberMe);
+                    AppTool.saveObjectData(mContext, WebSiteUrl.Tag, dataBean);
                     skipAct(LobbyActivity.class);
-                    //    finish();
                     break;
                 case ErrorCode.LOGIN_AREADY:
                     dismissLoginBlockDialog();
@@ -1222,7 +1241,7 @@ public class LoginActivity extends BaseActivity {
 
                             @Override
                             public void onSucceed() {
-                                goLogin();
+                                goLogin(AppConfig.FINGER_LOGIN);
                             }
 
                             @Override

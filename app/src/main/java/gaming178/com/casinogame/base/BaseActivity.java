@@ -1869,7 +1869,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 if (TextUtils.isEmpty(finger)) {
                     AppTool.saveObjectData(mContext, AppConfig.ACTION_KEY_FINGER, "finger");
                     cbFinger.setChecked(true);
-                    AppTool.saveObjectData(mContext, WebSiteUrl.Tag, mAppViewModel.getCurrentUserLoginBean());
                 } else {
                     AppTool.saveObjectData(mContext, AppConfig.ACTION_KEY_FINGER, "");
                     cbFinger.setChecked(false);

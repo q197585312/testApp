@@ -3932,14 +3932,4 @@ public class AppModel extends ViewModel {
         isClickBaccaratMi = clickBaccaratMi;
     }
 
-    private UserLoginBean userLoginBean;
-
-    public UserLoginBean getCurrentUserLoginBean() {
-        return userLoginBean;
-    }
-
-    public void setCurrentUserLoginBean(UserLoginBean userLoginBean) {
-        this.userLoginBean = userLoginBean;
-    }
-
 }

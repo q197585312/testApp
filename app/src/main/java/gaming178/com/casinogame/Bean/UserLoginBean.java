@@ -10,6 +10,15 @@ public class UserLoginBean implements Serializable{
     String site;
     String username;
     String password;
+    Boolean rememberMe;
+
+    public Boolean getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(Boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
 
     public String getSite() {
         return site;
@@ -35,9 +44,19 @@ public class UserLoginBean implements Serializable{
         this.password = password;
     }
 
+    public UserLoginBean() {
+    }
+
     public UserLoginBean(String site, String username, String password) {
         this.site = site;
         this.username = username;
         this.password = password;
+    }
+
+    public UserLoginBean(String site, String username, String password, Boolean rememberMe) {
+        this.site = site;
+        this.username = username;
+        this.password = password;
+        this.rememberMe = rememberMe;
     }
 }

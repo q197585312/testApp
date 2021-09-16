@@ -24,6 +24,7 @@ public class User implements Serializable{
 	private String areaNumber;//区位号
 	private String seatNumber;//桌位号
 	private String currency;//币别
+	private String site;
 	public String getCurrency() {
 		return currency;
 	}
@@ -94,5 +95,11 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
+	public String getSite() {
+		return site;
+	}
 
+	public void setSite(String site) {
+		this.site = site;
+	}
 }
