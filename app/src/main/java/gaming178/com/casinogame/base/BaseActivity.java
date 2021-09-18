@@ -2502,6 +2502,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     stopUpdateStatus();
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
+                    bundle.putString(AppConfig.CLICK_BACK_TO_LOGIN, AppConfig.CLICK_BACK_TO_LOGIN);
                     skipAct(LoginActivity.class, bundle);
                 }
             }
@@ -2542,6 +2543,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         new Thread(new Logout()).start();
         Bundle bundle = new Bundle();
         bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 0);
+        bundle.putString(AppConfig.CLICK_BACK_TO_LOGIN, AppConfig.CLICK_BACK_TO_LOGIN);
         skipAct(LoginActivity.class, bundle);
 
     }

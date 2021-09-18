@@ -18,6 +18,7 @@ public class AppConfig {
     public static final String ACTION_KEY_FINGER = "ACTION_KEY_FINGER";
     public static final String CLICK_LOGIN = "CLICK_LOGIN";
     public static final String FINGER_LOGIN = "FINGER_LOGIN";
+    public static final String CLICK_BACK_TO_LOGIN = "CLICK_BACK_TO_LOGIN";
 
     public static final int dsv_casino = -1;
     public static final int baccarat = 1;

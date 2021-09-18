@@ -1241,10 +1241,23 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void fingerLogin() {
-        String finger = (String) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_FINGER);
-        if (!TextUtils.isEmpty(finger)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                fingerVerify();
+        boolean isClickBackToLogin = false;
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                String s = extras.getString(AppConfig.CLICK_BACK_TO_LOGIN);
+                if (!TextUtils.isEmpty(s) && s.equals(AppConfig.CLICK_BACK_TO_LOGIN)) {
+                    isClickBackToLogin = true;
+                }
+            }
+        }
+        if (!isClickBackToLogin) {
+            String finger = (String) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_FINGER);
+            if (!TextUtils.isEmpty(finger)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    fingerVerify();
+                }
             }
         }
     }
