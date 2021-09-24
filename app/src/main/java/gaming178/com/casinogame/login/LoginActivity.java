@@ -57,6 +57,7 @@ import gaming178.com.casinogame.Bean.Liga365AgentBean;
 import gaming178.com.casinogame.Bean.UserBean;
 import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
+import gaming178.com.casinogame.Popupwindow.PopImg;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.Gd88Utils;
@@ -605,6 +606,9 @@ public class LoginActivity extends BaseActivity {
                         @Override
                         public void run() {
                             Glide.with(LoginActivity.this).asGif().load(result + "images/banner-20200724.gif").diskCacheStrategy(DiskCacheStrategy.NONE).into(img_gif);
+                            PopImg popImg = new PopImg(LoginActivity.this, img_gif, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                            popImg.setLoadUrl(result + "images/popup.jpg");
+                            popImg.showPopupCenterWindow();
                         }
                     });
                 }
