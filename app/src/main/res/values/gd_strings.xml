@@ -308,6 +308,7 @@
     <string name="verification_failed">verification failed</string>
     <string name="not_support">Your device does not support fingerprints</string>
     <string name="after_verify">Please verify after entering your fingerprint in the system</string>
+    <string name="lg88_casino">LG88 Casino</string>
 </resources>
 
 

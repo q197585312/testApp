@@ -33,4 +33,5 @@ public class AppConfig {
     public static final int pragmatic = 10;
     public static final int kingKong = 11;
     public static final int bandarq = 12;
+    public static final int lg88 = 13;
 }

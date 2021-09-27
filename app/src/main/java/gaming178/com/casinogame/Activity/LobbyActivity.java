@@ -576,6 +576,8 @@ public class LobbyActivity extends BaseActivity {
                             if (!TextUtils.isEmpty(hallGameItemBean.getBrowserUrl())) {
                                 Gd88Utils.goBrowser(mContext, hallGameItemBean.getBrowserUrl());
                             }
+                        } else if (hallGameItemBean.getGameType() == AppConfig.lg88) {
+                            skipAct(LG88WebActivity.class);
                         }
 
                     }
@@ -831,6 +833,11 @@ public class LobbyActivity extends BaseActivity {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, getString(R.string.afb1188), AppConfig.afb1188));
             }
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots), AppConfig.slots));
+            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                if (!BuildConfig.FLAVOR.equals("nagacasino") && !BuildConfig.FLAVOR.equals("mejaemas") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
+                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, getString(R.string.lg88_casino), AppConfig.lg88));
+                }
+            }
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, getString(R.string.cq), AppConfig.cq9));
             if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, getString(R.string.cock_fighting), AppConfig.cockfighting));

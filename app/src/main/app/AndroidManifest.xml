@@ -111,6 +111,9 @@
             android:name="gaming178.com.casinogame.Activity.CockFightingWebActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="gaming178.com.casinogame.Activity.LG88WebActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="gaming178.com.casinogame.Activity.We1PokerWebActivity"
             android:screenOrientation="portrait" />
         <activity
