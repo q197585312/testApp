@@ -113,6 +113,8 @@ public class PopMenu extends BasePopupWindow {
                     promotionUrl = "http://45.77.243.206/ularnaga/";
                 } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
                     promotionUrl = "http://139.162.82.229/bonus/";
+                } else if (BuildConfig.FLAVOR.equals("oricasino")) {
+                    promotionUrl = "http://45.77.243.206/oricasino/";
                 }
                 return promotionUrl;
             }
@@ -132,7 +134,7 @@ public class PopMenu extends BasePopupWindow {
                 String contactUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "hubungikamim.jsp";
                 if (BuildConfig.FLAVOR.equals("wargacasino")) {
                     contactUrl = "https://b.link/promowgc";
-                }else if (BuildConfig.FLAVOR.equals("marina118")){
+                } else if (BuildConfig.FLAVOR.equals("marina118")) {
                     contactUrl = "https://secure.livechatinc.com/licence/8631744/v2/open_chat.cgi";
                 }
                 return contactUrl;
