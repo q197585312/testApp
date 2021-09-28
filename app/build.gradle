@@ -97,7 +97,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ahlicasino"]
                 buildConfigField "String", "Labelid", '"98"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.99'
+                versionName '4.00'
             }
             cahaya {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "cahaya"]
@@ -246,7 +246,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mejaemas"]
                 buildConfigField "String", "Labelid", '"145"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.98'
+                versionName '4.00'
             }
             memoricasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "memoricasino"]
@@ -258,7 +258,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "nagacasino"]
                 buildConfigField "String", "Labelid", '"185"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.98'
+                versionName '4.00'
             }
             pelangi {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "pelangi"]

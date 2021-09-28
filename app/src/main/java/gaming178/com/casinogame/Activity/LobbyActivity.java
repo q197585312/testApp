@@ -834,9 +834,7 @@ public class LobbyActivity extends BaseActivity {
             }
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots), AppConfig.slots));
             if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                if (!BuildConfig.FLAVOR.equals("nagacasino") && !BuildConfig.FLAVOR.equals("mejaemas") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
-                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, getString(R.string.lg88_casino), AppConfig.lg88));
-                }
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, getString(R.string.lg88_casino), AppConfig.lg88));
             }
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, getString(R.string.cq), AppConfig.cq9));
             if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
