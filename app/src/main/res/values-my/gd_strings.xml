@@ -236,6 +236,8 @@
     <string name="verification_failed">verifikasi gagal</string>
     <string name="not_support">Perangkat Anda tidak mendukung sidik jari</string>
     <string name="after_verify">Harap verifikasi setelah memasukkan sidik jari Anda di sistem</string>
+    <string name="special_bonus">BONUS SPESIAL</string>
+    <string name="vip_service">LAYANAN VIP</string>
 </resources>
 
 

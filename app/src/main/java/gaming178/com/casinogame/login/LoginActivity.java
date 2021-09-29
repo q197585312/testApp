@@ -526,6 +526,36 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
+        if (BuildConfig.FLAVOR.equals("oricasino")) {
+            img_ula_enter_bg = findViewById(R.id.img_ula_enter_bg);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.form_bg_ori).into(img_ula_enter_bg);
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://b.link/Bonus-Oricas";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return getString(R.string.special_bonus);
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://b.link/Layanan-ViP");
+                }
+            });
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_ori_bg).into(img_login_title_main);
+        }
+
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
