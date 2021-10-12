@@ -1234,7 +1234,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }
 //                tablePop.setTablesData(afbApp, games);
             }
-        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2) {
+        } else if (mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameStatus() == 4) {
  /*           if (!gameNumber.equals(mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber())) {//如果第一局下注完，返回大厅，第2局开牌或者出结果的时候 需要清除筹码
                 //        Log.i(WebSiteUrl.Tag, "gameNumber="+gameNumber+",gameNumber1="+mAppViewModel.getBaccarat(mAppViewModel.getTableId()).getGameNumber());
                 clearAllChips();
