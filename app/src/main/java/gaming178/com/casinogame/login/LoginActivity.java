@@ -549,7 +549,7 @@ public class LoginActivity extends BaseActivity {
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://b.link/Layanan-ViP");
+                    Gd88Utils.goBrowser(mContext, "http://bit.ly/WA-Oricasino1");
                 }
             });
             img_login_title_main = findViewById(R.id.gd_img_login_title_main);
