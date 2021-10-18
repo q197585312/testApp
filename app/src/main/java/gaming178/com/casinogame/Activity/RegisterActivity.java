@@ -1,5 +1,7 @@
 package gaming178.com.casinogame.Activity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -9,6 +11,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,8 +107,17 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
     protected void initData(Bundle savedInstanceState) {
         initFocusChangeListener();
         createVerifyCode();
+
+        if (BuildConfig.FLAVOR.equals("hitamslot")){
+            toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color));
+            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
+            btnRegist.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
+        }
+
         setLayout.setVisibility(View.GONE);
-        titleTv.setText(getString(R.string.register));
+//        titleTv.setText(getString(R.string.register));
+        tvCenterTitle.setText(getString(R.string.register));
+        tvCenterTitle.setVisibility(View.VISIBLE);
 //        setEditTextInhibitInputSpace(edtRegisterUsername);
         if (BuildConfig.FLAVOR.equals("mejaemas")) {
             tvRegisterChoiceBank.setVisibility(View.GONE);

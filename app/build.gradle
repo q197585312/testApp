@@ -401,7 +401,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]
                 buildConfigField "String", "Labelid", '"224"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.03'
+                versionName '4.04'
 
             }
             istanacasino {
@@ -428,6 +428,13 @@ android {
             kuncicasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "kuncicasino"]
                 buildConfigField "String", "Labelid", '"63"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '4.02'
+
+            }
+            hitamslot {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "hitamslot"]
+                buildConfigField "String", "Labelid", '"228"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.02'
 

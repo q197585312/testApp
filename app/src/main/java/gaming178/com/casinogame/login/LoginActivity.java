@@ -549,11 +549,20 @@ public class LoginActivity extends BaseActivity {
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "http://bit.ly/WA-Oricasino1");
+                    Gd88Utils.goBrowser(mContext, "http://bit.ly/WA-Oricasino");
                 }
             });
             img_login_title_main = findViewById(R.id.gd_img_login_title_main);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_ori_bg).into(img_login_title_main);
+        }
+
+        if (BuildConfig.FLAVOR.equals("hitamslot")){
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "");
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
