@@ -37,4 +37,7 @@
     <color name="table_bet_bg_color">#006E09</color>
     <color name="null_color">#00000000</color>
     <color name="hitam_color">#6F6D6F</color>
+    <color name="hitam_color2">#13181B</color>
+    <color name="hitam_color3">#0181C2</color>
+    <color name="hitam_register_color_bg">#101010</color>
 </resources>

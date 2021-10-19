@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -412,6 +413,14 @@ public class LobbyActivity extends BaseActivity {
                 p.showPopupCenterWindow();
             }
         });
+
+        if (BuildConfig.FLAVOR.equals("hitamslot")) {
+            LinearLayout ll_lobby_parent = findViewById(R.id.ll_lobby_parent);
+            LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
+            ll_lobby_parent.setBackgroundColor(Color.BLACK);
+            ll_top_parent.setBackgroundColor(Color.BLACK);
+            ll_bottom.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color2));
+        }
     }
 
     BannerViewPager viewPager;

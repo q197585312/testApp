@@ -236,12 +236,12 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginRight="4dp"
                             android:layout_marginBottom="4dp"
-                            android:background="@drawable/gd_input_bg"
+                            android:background="@null"
                             android:hint="@string/input_username"
                             android:paddingLeft="15dp"
                             android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="#757575"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textCursorDrawable="@null"
                             android:textSize="17sp" />
                     </LinearLayout>
@@ -274,13 +274,13 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginRight="4dp"
                             android:layout_marginBottom="4dp"
-                            android:background="@drawable/gd_input_bg"
+                            android:background="@null"
                             android:hint="@string/input_password"
                             android:inputType="textPassword"
                             android:paddingLeft="15dp"
                             android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="#757575"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textCursorDrawable="@null"
                             android:textSize="17sp" />
 

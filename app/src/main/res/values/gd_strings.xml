@@ -227,6 +227,7 @@
     <string name="whatsapp">WHATSAPP</string>
     <string name="gd_username">Account</string>
     <string name="gd_password">Password</string>
+    <string name="gd_password_up">PASSWORD</string>
     <string name="verify_password">Verify Password</string>
     <string name="telephone_number">Telephone</string>
     <string name="email">Email</string>

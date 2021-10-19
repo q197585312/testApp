@@ -202,6 +202,7 @@
     <string name="register">DAFTAR</string>
     <string name="gd_username">ID pengguna</string>
     <string name="gd_password">kata sandi</string>
+    <string name="gd_password_up">KATA SANDI</string>
     <string name="verify_password">pengulangan kata sandi</string>
     <string name="telephone_number">nomor telepon</string>
     <string name="email">email</string>

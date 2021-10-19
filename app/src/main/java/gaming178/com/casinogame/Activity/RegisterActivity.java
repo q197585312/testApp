@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Control.GdThreadHander;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.entity.CurrencyBean;
@@ -108,10 +110,13 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
         initFocusChangeListener();
         createVerifyCode();
 
-        if (BuildConfig.FLAVOR.equals("hitamslot")){
+        if (BuildConfig.FLAVOR.equals("hitamslot")) {
             toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color));
             tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
             btnRegist.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
+            edtRegisterPassword.setHint(getString(R.string.gd_password_up));
+            LinearLayout ll_parent = findViewById(R.id.ll_parent);
+            ll_parent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_register_color_bg));
         }
 
         setLayout.setVisibility(View.GONE);
@@ -448,13 +453,27 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
             @Override
             protected void convertItem(ViewHolder helper, CurrencyBean item, int position) {
-                helper.setText(R.id.text_tv1, item.getCurrencyName());
+                TextView textView = helper.retrieveView(R.id.text_tv1);
+                textView.setText(item.getCurrencyName());
+                if (BuildConfig.FLAVOR.equals("hitamslot")) {
+                    if (position == 0 && TextUtils.isEmpty(tvRegisterChoiceBank.getText().toString())) {
+                        textView.setTextColor(Color.WHITE);
+                        textView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color3));
+                    } else if (tvRegisterChoiceBank.getText().toString().equals(textView.getText().toString())) {
+                        textView.setTextColor(Color.WHITE);
+                        textView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color3));
+                    } else {
+                        textView.setTextColor(Color.BLACK);
+                        textView.setBackgroundColor(Color.WHITE);
+                    }
+                }
             }
 
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                getAbListViewRes(view).setBackgroundResource(R.drawable.rectangle_white_graystroke_radius0);
+                getAbListViewRes(view).setPadding(dp2px(mContext,1),dp2px(mContext,1),dp2px(mContext,1),dp2px(mContext,1));
+                getAbListViewRes(view).setBackgroundResource(R.drawable.rectangle_white_graystroke_radius0_stroke);
             }
         };
         pop.setData(currencyBeanList);
