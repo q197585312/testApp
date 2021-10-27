@@ -92,6 +92,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -129,7 +131,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="5dp">
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -166,196 +170,186 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/gd_login_bg_wincasino3652"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@mipmap/gd_win365_center_bg"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_liga365"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:background="@drawable/gd_login_bg_wincasino365"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/ll_liga365"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:visibility="gone">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginTop="5dp"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:paddingLeft="15dp"
-                                    android:text="www."
-                                    android:textColor="@color/white"
-                                    android:textSize="16sp" />
-
-                                <EditText
-                                    android:id="@+id/gd__login_site_edt"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@null"
-                                    android:hint="@string/login_site"
-                                    android:paddingLeft="5dp"
-                                    android:singleLine="true"
-                                    android:textColor="@color/white"
-                                    android:textColorHint="@color/white"
-                                    android:textCursorDrawable="@null"
-                                    android:textSize="16sp" />
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.5dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@color/white" />
-                        </LinearLayout>
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="49dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="25dp"
-                            android:background="@mipmap/gd_win365_input_bg"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="5dp"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingBottom="4dp">
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/tv_user_name"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginLeft="8dp"
-                                android:background="@mipmap/ratuuser"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:gravity="center"
+                                android:paddingLeft="15dp"
+                                android:text="www."
                                 android:textColor="@color/white"
-                                android:textSize="16sp"></TextView>
+                                android:textSize="16sp" />
 
                             <EditText
-                                android:id="@+id/gd__login_username_edt"
+                                android:id="@+id/gd__login_site_edt"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@null"
-                                android:hint="@string/input_username"
-                                android:paddingLeft="15dp"
+                                android:hint="@string/login_site"
+                                android:paddingLeft="5dp"
                                 android:singleLine="true"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/black"
-                                android:textCursorDrawable="@null"
-                                android:textSize="17sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="49dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="25dp"
-                            android:background="@mipmap/gd_win365_input_bg"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingBottom="4dp">
-
-                            <TextView
-                                android:id="@+id/tv_password_name"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginLeft="8dp"
-                                android:background="@mipmap/ratupw"
-                                android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="16sp"></TextView>
-
-                            <EditText
-                                android:id="@+id/gd__login_password_edt"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@null"
-                                android:hint="@string/input_password"
-                                android:inputType="textPassword"
-                                android:paddingLeft="15dp"
-                                android:singleLine="true"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/black"
+                                android:textColorHint="@color/white"
                                 android:textCursorDrawable="@null"
-                                android:textSize="17sp" />
-
+                                android:textSize="16sp" />
                         </LinearLayout>
-
-
-                        <Button
-                            android:id="@+id/gd__login_login_btn"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="25dp"
-                            android:background="@mipmap/gd_win365_login_bg"
-                            android:gravity="center"
-                            android:onClick="clickLogin"
-                            android:text="@string/gd_login"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:id="@+id/gd__tv_register"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="25dp"
-                            android:background="@mipmap/gd_win365_register_bg"
-                            android:gravity="center"
-                            android:text="@string/register"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/gd__tv_whatsapp"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="25dp"
-                            android:background="@drawable/gd_login_button_bg_gold9"
-                            android:gravity="center"
-                            android:text="@string/whatsapp"
-                            android:textAllCaps="true"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:visibility="gone" />
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="15dp"></View>
+                            android:layout_height="0.5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@mipmap/gd_win365_input_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@mipmap/ratuuser"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"></TextView>
+
+                        <EditText
+                            android:id="@+id/gd__login_username_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="@string/input_username"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textCursorDrawable="@null"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@mipmap/gd_win365_input_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_password_name"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@mipmap/ratupw"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"></TextView>
+
+                        <EditText
+                            android:id="@+id/gd__login_password_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="@string/input_password"
+                            android:inputType="textPassword"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textCursorDrawable="@null"
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
-                </LinearLayout>
 
+                    <Button
+                        android:id="@+id/gd__login_login_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@mipmap/gd_win365_login_bg"
+                        android:gravity="center"
+                        android:onClick="clickLogin"
+                        android:text="@string/gd_login"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/gd__tv_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@mipmap/gd_win365_register_bg"
+                        android:gravity="center"
+                        android:text="@string/register"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/gd__tv_whatsapp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/gd_login_button_bg_gold9"
+                        android:gravity="center"
+                        android:text="@string/whatsapp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"></View>
+
+                </LinearLayout>
 
             </FrameLayout>
         </LinearLayout>
