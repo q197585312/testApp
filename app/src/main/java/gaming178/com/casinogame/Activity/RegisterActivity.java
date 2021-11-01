@@ -117,6 +117,15 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             edtRegisterPassword.setHint(getString(R.string.gd_password_up));
             LinearLayout ll_parent = findViewById(R.id.ll_parent);
             ll_parent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_register_color_bg));
+            edtRegisterUsername.setHint(edtRegisterUsername.getHint().toString().toUpperCase());
+            edtRegisterPasswordConfirm.setHint(edtRegisterPasswordConfirm.getHint().toString().toUpperCase());
+            edtRegisterTelephone.setHint(edtRegisterTelephone.getHint().toString().toUpperCase());
+            edtRegisterEmail.setHint(edtRegisterEmail.getHint().toString().toUpperCase());
+            edtRegisterFullName.setHint(edtRegisterFullName.getHint().toString().toUpperCase());
+            tvRegisterChoiceBank.setHint(tvRegisterChoiceBank.getHint().toString().toUpperCase());
+            edtRegisterBankAccount.setHint(edtRegisterBankAccount.getHint().toString().toUpperCase());
+            edtRegisterBankNumber.setHint(edtRegisterBankNumber.getHint().toString().toUpperCase());
+            edtRegisterVerifyCode.setHint(edtRegisterVerifyCode.getHint().toString().toUpperCase());
         }
 
         setLayout.setVisibility(View.GONE);
