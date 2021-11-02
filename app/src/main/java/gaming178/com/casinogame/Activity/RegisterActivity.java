@@ -3,9 +3,11 @@ package gaming178.com.casinogame.Activity;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Control.GdThreadHander;
+import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -109,13 +112,12 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
     protected void initData(Bundle savedInstanceState) {
         initFocusChangeListener();
         createVerifyCode();
-
+        LinearLayout ll_parent = findViewById(R.id.ll_parent);
         if (BuildConfig.FLAVOR.equals("hitamslot")) {
             toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color));
             tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
             btnRegist.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
             edtRegisterPassword.setHint(getString(R.string.gd_password_up));
-            LinearLayout ll_parent = findViewById(R.id.ll_parent);
             ll_parent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_register_color_bg));
             edtRegisterUsername.setHint(edtRegisterUsername.getHint().toString().toUpperCase());
             edtRegisterPasswordConfirm.setHint(edtRegisterPasswordConfirm.getHint().toString().toUpperCase());
@@ -126,6 +128,13 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             edtRegisterBankAccount.setHint(edtRegisterBankAccount.getHint().toString().toUpperCase());
             edtRegisterBankNumber.setHint(edtRegisterBankNumber.getHint().toString().toUpperCase());
             edtRegisterVerifyCode.setHint(edtRegisterVerifyCode.getHint().toString().toUpperCase());
+            edtRegisterUsername.setTransformationMethod(new AllCapTransformationMethod());
+        } else if (BuildConfig.FLAVOR.equals("merpatislot")) {
+            toolbar.setBackgroundResource(R.drawable.gd_login_merpatislot_title_bg);
+            ll_parent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_register_color_bg));
+            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
+            tvRegisterVerifyCode.setTextColor(Color.BLACK);
+            btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold11);
         }
 
         setLayout.setVisibility(View.GONE);
@@ -481,7 +490,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                getAbListViewRes(view).setPadding(dp2px(mContext,1),dp2px(mContext,1),dp2px(mContext,1),dp2px(mContext,1));
+                getAbListViewRes(view).setPadding(dp2px(mContext, 1), dp2px(mContext, 1), dp2px(mContext, 1), dp2px(mContext, 1));
                 getAbListViewRes(view).setBackgroundResource(R.drawable.rectangle_white_graystroke_radius0_stroke);
             }
         };

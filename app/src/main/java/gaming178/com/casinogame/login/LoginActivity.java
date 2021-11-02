@@ -58,6 +58,7 @@ import gaming178.com.casinogame.Bean.UserBean;
 import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
 import gaming178.com.casinogame.Popupwindow.PopImg;
+import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.Gd88Utils;
@@ -556,11 +557,27 @@ public class LoginActivity extends BaseActivity {
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_ori_bg).into(img_login_title_main);
         }
 
-        if (BuildConfig.FLAVOR.equals("hitamslot")){
+        if (BuildConfig.FLAVOR.equals("hitamslot")) {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6281361892070");
+                }
+            });
+            tv_name = (EditText) this.findViewById(R.id.gd__login_username_edt);
+            tv_name.setTransformationMethod(new AllCapTransformationMethod());
+        }
+
+        if (BuildConfig.FLAVOR.equals("merpatislot")) {
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = gd_img_login_title_main_sbocasino77.getWidth();
+                    ViewGroup.LayoutParams layoutParams = gd_img_login_title_main_sbocasino77.getLayoutParams();
+                    layoutParams.width = width;
+                    layoutParams.height = (int) (width / 1.46);
+                    gd_img_login_title_main_sbocasino77.setLayoutParams(layoutParams);
                 }
             });
         }
@@ -653,36 +670,6 @@ public class LoginActivity extends BaseActivity {
                 }
             }.start();
         }
-        if (BuildConfig.FLAVOR.equals("sbocasino77")) {
-            img_login_title.setVisibility(View.GONE);
-            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
-            gd_img_login_title_main_sbocasino77.setVisibility(View.VISIBLE);
-            ll_sbocasino77 = findViewById(R.id.ll_sbocasino77);
-            ll_sbocasino77.setVisibility(View.VISIBLE);
-            btn_login.setTextColor(Color.BLACK);
-            tv_register.setTextColor(Color.BLACK);
-            cb_remember_me.setChecked(true);
-            ll_lg_and_remember = findViewById(R.id.ll_lg_and_remember);
-            ll_lg_and_remember.setVisibility(View.GONE);
-            ll_lang = findViewById(R.id.ll_lang);
-            ll_lang.setVisibility(View.VISIBLE);
-            img_in = findViewById(R.id.img_in);
-            img_en = findViewById(R.id.img_en);
-            img_in.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AppTool.setAppLanguage(LoginActivity.this, "my");
-                    recreate();
-                }
-            });
-            img_en.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AppTool.setAppLanguage(LoginActivity.this, "en");
-                    recreate();
-                }
-            });
-        }
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
             imgOpen.setVisibility(View.VISIBLE);
@@ -749,7 +736,7 @@ public class LoginActivity extends BaseActivity {
             }
             fingerLogin();
         } else {
-            if (!BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("sbocasino77")) {
+            if (!BuildConfig.FLAVOR.equals("mainkasino")) {
                 cb_remember_me.setChecked(false);
             }
         }
