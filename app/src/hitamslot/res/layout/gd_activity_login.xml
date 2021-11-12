@@ -338,6 +338,24 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/gd__tv_promo"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/gd_login_button_bg_gold9"
+                        android:gravity="center"
+                        android:text="LIVECHAT"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="25dp"></View>
@@ -534,21 +552,4 @@
         android:padding="2dp"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/gd__tv_promo"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/gd_login_button_bg_red"
-        android:gravity="center"
-        android:text="@string/PROMOTION"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
 </FrameLayout>

@@ -564,6 +564,23 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6281361892070");
                 }
             });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://direct.lc.chat/13218531/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "LIVECHAT";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
             tv_name = (EditText) this.findViewById(R.id.gd__login_username_edt);
             tv_name.setTransformationMethod(new AllCapTransformationMethod());
         }
