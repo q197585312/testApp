@@ -415,9 +415,9 @@ public class LobbyActivity extends BaseActivity {
         });
 
         if (BuildConfig.FLAVOR.equals("hitamslot")) {
-            LinearLayout ll_lobby_parent = findViewById(R.id.ll_lobby_parent);
+//            LinearLayout ll_lobby_parent = findViewById(R.id.ll_lobby_parent);
             LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
-            ll_lobby_parent.setBackgroundColor(Color.BLACK);
+//            ll_lobby_parent.setBackgroundColor(Color.BLACK);
             ll_top_parent.setBackgroundColor(Color.BLACK);
             ll_bottom.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color2));
         }
@@ -530,6 +530,11 @@ public class LobbyActivity extends BaseActivity {
                         ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
                         Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
                         imageView.setImageBitmap(bitmap);
+                        if (item.getGameType() == AppConfig.pragmatic){
+                            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                        }else {
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                        }
                         TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
                         textView.setText(item.getTitle());
                         if (position == clickItem) {
@@ -537,7 +542,11 @@ public class LobbyActivity extends BaseActivity {
                             textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
                         } else {
                             rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
-                            textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_no_select_color));
+                            if (BuildConfig.FLAVOR.equals("hitamslot")) {
+                                textView.setTextColor(Color.WHITE);
+                            } else {
+                                textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_no_select_color));
+                            }
                         }
                     }
                 };
