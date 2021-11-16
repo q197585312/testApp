@@ -1,8 +1,13 @@
 package com.nanyang.app.main.home.keno;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebResourceRequest;
@@ -70,6 +75,23 @@ public class WebActivity extends BaseToolbarActivity {
         loadWebView(url);
     }
 
+    private void createWebPrintJob(WebView webView) {
+        //create object of print manager in your device
+        PrintManager printManager = (PrintManager) getSystemService(Context.PRINT_SERVICE);
+        if (printManager != null) {
+            //create object of print adapter
+            PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter();
+
+            //provide name to your newly generated pdf file
+            String jobName = getString(R.string.app_name) + " Document";
+
+            //open print dialog
+            printManager.print(jobName, printAdapter, new PrintAttributes.Builder().setMinMargins(new PrintAttributes.Margins(0,0,0,0)).build());
+        }else{
+            // sorry, not supported
+        }
+    }
+
     public void loadUrl(WebView view, String url) {
         view.loadUrl(url);
     }
@@ -78,6 +100,13 @@ public class WebActivity extends BaseToolbarActivity {
         LogUtil.d("url---", "-------" + url);
         webView.resumeTimers();
         AfbUtils.synCookies(this, webView, url, true, new WebViewClient() {
+
+            @Override
+            public void onLoadResource(WebView view, String url) {
+                if (url.contains("IDAutomationStreamingLinear")){
+                    createWebPrintJob(webView);
+                }
+            }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
