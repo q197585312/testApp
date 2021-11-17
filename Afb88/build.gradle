@@ -66,7 +66,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '3.00'
+            versionName '3.02'
             buildConfigField "String", "Domain", '".afb1188.net"'
             buildConfigField "String", "H5_URL", '"https://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
             buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.net/W0/Pub/wfMain0.html"'

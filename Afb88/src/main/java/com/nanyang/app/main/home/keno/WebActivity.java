@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebResourceRequest;
@@ -75,6 +74,17 @@ public class WebActivity extends BaseToolbarActivity {
         loadWebView(url);
     }
 
+//    public void saveImage(WebView webView) {
+//        //图片打印
+//        View view  = getWindow().getDecorView();
+//        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+//        Canvas canvas = new Canvas(bitmap);
+//        view.draw(canvas);
+//        PrintHelper photoPrinter = new PrintHelper(this);
+//        photoPrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
+//        photoPrinter.printBitmap("droids.jpg - test print", bitmap);
+//    }
+
     private void createWebPrintJob(WebView webView) {
         //create object of print manager in your device
         PrintManager printManager = (PrintManager) getSystemService(Context.PRINT_SERVICE);
@@ -86,8 +96,11 @@ public class WebActivity extends BaseToolbarActivity {
             String jobName = getString(R.string.app_name) + " Document";
 
             //open print dialog
-            printManager.print(jobName, printAdapter, new PrintAttributes.Builder().setMinMargins(new PrintAttributes.Margins(0,0,0,0)).build());
-        }else{
+            PrintAttributes printAttributes = new PrintAttributes.Builder().
+                    setMinMargins(new PrintAttributes.Margins(0, 0, 0, 0)).build();
+
+            printManager.print(jobName, printAdapter, printAttributes);
+        } else {
             // sorry, not supported
         }
     }
@@ -103,7 +116,7 @@ public class WebActivity extends BaseToolbarActivity {
 
             @Override
             public void onLoadResource(WebView view, String url) {
-                if (url.contains("IDAutomationStreamingLinear")){
+                if (url.contains("IDAutomationStreamingLinear")) {
                     createWebPrintJob(webView);
                 }
             }
