@@ -253,6 +253,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 //        presenter.getStateHelper().switchOddsType(item.getType());
         updateMixOrderCount();
         hasBet = true;
+        if (BuildConfig.FLAVOR.equals("ez2888")){
+            tvRecord.setTextColor(Color.WHITE);
+            tvMix.setTextColor(Color.WHITE);
+            tvMenu.setTextColor(Color.WHITE);
+            tvMatchType.setTextColor(Color.WHITE);
+            list_top.setVisibility(View.GONE);
+        }
     }
 
 
@@ -1118,7 +1125,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void resumeCurrent() {
         if (currentFragment.isVisible()) {
             cl_sport_head.setVisibility(View.VISIBLE);
-            list_top.setVisibility(View.VISIBLE);
+            if (!BuildConfig.FLAVOR.equals("ez2888")){
+                list_top.setVisibility(View.VISIBLE);
+            }
             ll_line1.setVisibility(View.VISIBLE);
             ll_line2.setVisibility(View.VISIBLE);
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_login_btn">#3282E8</color>
+    <color name="green500">#4c89af</color>
+    <color name="green900">#1774ae</color>
+    <color name="green_dark">#5680CC</color>
+    <color name="green_light_content">#7899ee</color>
+    <color name="green_black_word">#5680CD</color>
+    <color name="green_thick_line">#3A59A7</color>
+<!--    <color name="keno_grenn">#1E45A8</color>-->
+    <color name="green_bottom">#567FCE</color>
+    <color name="green1">#B0C6FF</color>
+    <color name="green3">#92AEF6</color>
+    <color name="google_green">#416DDE</color>
+    <color name="green2">#294A9B</color>
+    <color name="green_title">#99B2F8</color>
+    <color name="green_content1">#FFCBCB</color>
+    <color name="green_content2">#FFE7E7</color>
+    <color name="green_line">#DEDADA</color>
+    <color name="bet_window_bg">#E3EAFF</color>
+    <color name="bet_rectangle_bg">#3665DD</color>
+    <color name="green_light">#92AEF6</color>
+    <color name="green_word">#133a7d</color>
+    <color name="green900_trans">#661768AE</color>
+    <color name="app_title_color" >@color/green_word</color>
+    <color name="white_bottom">@color/black_grey</color>
+    <color name="grey_thick_white">#FFFFFF</color>
+    <color name="grey_thick_line">#EFF4FF</color>
+</resources>

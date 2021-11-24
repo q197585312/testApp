@@ -47,4 +47,8 @@
     <color name="green_afb">#0d5924</color>
     <color name="app_title_color">#ffffff</color>
     <color name="white_bottom">@color/white</color>
+    <color name="login_bg">#FAFAFA</color>
+    <color name="login_line_select_bg">#FAC832</color>
+    <color name="login_line_no_select_bg">#DDDDDD</color>
+    <color name="sport_left_gold">#C7F500</color>
 </resources>

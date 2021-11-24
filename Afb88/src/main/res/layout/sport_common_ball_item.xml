@@ -48,22 +48,27 @@
                 android:gravity="center_vertical"
                 android:maxLines="2"
                 android:paddingLeft="10dp"
-                android:textColor="@color/black_grey"
-              />
+                android:textColor="@color/black_grey" />
+
             <TextView
                 android:id="@+id/module_League_child_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="2dp"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
                 android:background="@drawable/oval_green_stroke_black"
                 android:gravity="center"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
 
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
 
         <LinearLayout
             android:id="@+id/ll_match_content"
@@ -146,9 +151,8 @@
                     android:paddingRight="3dp"
                     android:text="P"
                     android:textAllCaps="true"
-                    android:textSize="13sp"
                     android:textColor="@color/green"
-                    />
+                    android:textSize="13sp" />
 
 
                 <ImageView
@@ -222,9 +226,9 @@
                         android:id="@+id/module_match_left1_ll1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="3dp">
@@ -395,8 +399,8 @@
                     android:id="@+id/module_match_left1_ll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="3dp"
@@ -467,8 +471,8 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
@@ -533,6 +537,7 @@
 
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
@@ -567,6 +572,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"

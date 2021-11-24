@@ -62,6 +62,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     TextView tv_tab_login_out;
     @BindView(R.id.ll_tab_menu_bottom)
     LinearLayout ll_tab_menu_bottom;
+    @BindView(R.id.view_line)
+    View view_line;
     @Nullable
     protected
     @BindView(R.id.drawer_more)
@@ -100,6 +102,13 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 }, 100);
             }
         }
+        if (BuildConfig.FLAVOR.equals("ez2888")) {
+            view_line.setVisibility(View.GONE);
+            tv_tab_home.setTextColor(Color.WHITE);
+            tv_tab_statement.setTextColor(Color.WHITE);
+            tv_tab_center.setTextColor(Color.WHITE);
+            tv_tab_login_out.setTextColor(Color.WHITE);
+        }
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragmentT();
@@ -119,10 +128,20 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Override
     protected void onResume() {
         super.onResume();
-        tv_tab_home.setText(R.string.balances);
-        tv_tab_statement.setText(R.string.statement);
-        tv_tab_center.setText(R.string.contact);
-        tv_tab_login_out.setText(R.string.more);
+        if (BuildConfig.FLAVOR.equals("ez2888")) {
+            tv_tab_home.setText(R.string.bet);
+            tv_tab_statement.setText(R.string.balances);
+            tv_tab_center.setText(R.string.statement);
+            tv_tab_login_out.setText(R.string.more);
+//            tv_tab_home.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+            tv_tab_statement.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_balance, 0, 0);
+            tv_tab_center.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_botton_teb_statement, 0, 0);
+        } else {
+            tv_tab_home.setText(R.string.balances);
+            tv_tab_statement.setText(R.string.statement);
+            tv_tab_center.setText(R.string.contact);
+            tv_tab_login_out.setText(R.string.more);
+        }
         presenter.oddsType();
 
         Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
@@ -142,55 +161,81 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fl_menu_home:
-                HomePopupWindow<HomePopItemBeen> pop = new HomePopupWindow<HomePopItemBeen>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
-                    @Override
-                    public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
-                        TextView name = holder.getTextView(R.id.tv_type_name);
-                        TextView data = holder.getTextView(R.id.tv_type_data);
-
-                        if (item.getData().startsWith("-")) {
-                            data.setTextColor(Color.RED);
-                        } else {
-                            data.setTextColor(Color.BLACK);
-                        }
-                        data.setText(item.getData());
-                        name.setText(item.getName());
-
-                    }
-
-                    @Override
-                    public List<HomePopItemBeen> getCurrentData() {
-                        PersonalInfo info = getApp().getUser();
-                        List<HomePopItemBeen> dataList = new ArrayList<>();
-
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2().replace("MYR",getString(R.string.MYR))));
-                        if (!AppConstant.IS_AGENT)
-                            dataList.add(new HomePopItemBeen(getString(R.string.cash_balance), AfbUtils.scientificCountingToString(info.getBalances().trim().replaceAll(",", ""))));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
-                        if (!AppConstant.IS_AGENT)
-                            dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), AfbUtils.addComma(info.getCredit2().trim().replaceAll(",", ""), tvTime)));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), AfbUtils.addComma(info.getTotalCredit().trim().replaceAll(",", ""), tvTime)));
-                        return dataList;
-                    }
-                };
-                int windowPos[] = new int[2];
-                ll_tab_menu_bottom.getLocationOnScreen(windowPos);
-                int viewY = windowPos[1];
-                pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
+                if (!BuildConfig.FLAVOR.equals("ez2888")) {
+                    clickHome();
+                }
                 break;
             case R.id.fl_menu_center:
-                afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getContactFragment());
+                if (BuildConfig.FLAVOR.equals("ez2888")) {
+                    clickStatement();
+                } else {
+                    clickCenter();
+                }
                 break;
             case R.id.fl_menu_statemente:
-                afbDrawerViewHolder.getStatementFragment().setSwitchTypeIndex(BetCenterFragment.statementNew);
-                afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getStatementFragment());
+                if (BuildConfig.FLAVOR.equals("ez2888")) {
+                    clickHome();
+                } else {
+                    clickStatement();
+                }
                 break;
             case R.id.fl_menu_login_out:
-                drawerLayout.openDrawer(Gravity.RIGHT);
+                clickLogout();
                 break;
         }
+    }
+
+    private void clickHome() {
+        HomePopupWindow<HomePopItemBeen> pop = new HomePopupWindow<HomePopItemBeen>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
+            @Override
+            public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
+                TextView name = holder.getTextView(R.id.tv_type_name);
+                TextView data = holder.getTextView(R.id.tv_type_data);
+
+                if (item.getData().startsWith("-")) {
+                    data.setTextColor(Color.RED);
+                } else {
+                    data.setTextColor(Color.BLACK);
+                }
+                data.setText(item.getData());
+                name.setText(item.getName());
+
+            }
+
+            @Override
+            public List<HomePopItemBeen> getCurrentData() {
+                PersonalInfo info = getApp().getUser();
+                List<HomePopItemBeen> dataList = new ArrayList<>();
+
+                dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
+                dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2().replace("MYR", getString(R.string.MYR))));
+                if (!AppConstant.IS_AGENT)
+                    dataList.add(new HomePopItemBeen(getString(R.string.cash_balance), AfbUtils.scientificCountingToString(info.getBalances().trim().replaceAll(",", ""))));
+                dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
+                dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
+                if (!AppConstant.IS_AGENT)
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), AfbUtils.addComma(info.getCredit2().trim().replaceAll(",", ""), tvTime)));
+                dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), AfbUtils.addComma(info.getTotalCredit().trim().replaceAll(",", ""), tvTime)));
+                return dataList;
+            }
+        };
+        int windowPos[] = new int[2];
+        ll_tab_menu_bottom.getLocationOnScreen(windowPos);
+        int viewY = windowPos[1];
+        pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
+    }
+
+    private void clickCenter() {
+        afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getContactFragment());
+    }
+
+    private void clickStatement() {
+        afbDrawerViewHolder.getStatementFragment().setSwitchTypeIndex(BetCenterFragment.statementNew);
+        afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getStatementFragment());
+    }
+
+    private void clickLogout() {
+        drawerLayout.openDrawer(Gravity.RIGHT);
     }
 
 

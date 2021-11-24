@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nanyang.app.main.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E0E0E0"
+        android:orientation="vertical">
+
+        <ImageView
+            imgUrl="@{viewModel.headerBgUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_head"
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:paddingTop="6dp"
+            android:background="@color/white"
+            app:itemBinding="@{viewModel.headerItemBinding}"
+            app:items="@{viewModel.headers}"
+            app:layout_constraintBottom_toTopOf="@id/rv_content_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_home_image" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_content_type"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:itemBinding="@{viewModel.leftItemBinding}"
+            app:items="@{viewModel.left}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rv_content_detail"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_head"
+            app:layout_constraintVertical_weight="3"
+            tools:listitem="@layout/item_left_image" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_content_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="6dp"
+            app:itemBinding="@{viewModel.mainItemBinding}"
+            app:items="@{viewModel.mainContent}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@+id/rv_content_type"
+            app:layout_constraintTop_toBottomOf="@+id/rv_head"
+            app:layout_constraintVertical_weight="3"
+            app:spanCount="3"
+            tools:listitem="@layout/item_main_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

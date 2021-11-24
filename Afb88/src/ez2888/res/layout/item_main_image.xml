@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="itemClick"
+            type="com.nanyang.app.main.home.OnItemClickListener" />
+
+        <variable
+            name="itemBean"
+            type="com.nanyang.app.data.Main" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="141dp"
+        android:onClick="@{()->itemClick.onItemClick(itemBean)}"
+        android:paddingLeft="6dp"
+        android:paddingBottom="6dp">
+
+
+        <com.unkonw.testapp.libs.view.CircleImageView
+            android:id="@+id/iv_content"
+            imgUrl="@{itemBean.img}"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:scaleType="fitXY"
+            app:ease_border_color="@color/white"
+            app:ease_radius="0dp"
+            app:es_shape_type="rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/rectangle_yellow_button_all_corner5"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@{itemBean.number}"
+            android:textColor="@color/black_grey"
+            android:visibility='@{itemBean.number==null||(itemBean.number.trim().empty||itemBean.number.trim().equals("0"))?View.GONE:View.VISIBLE}'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@{itemBean.gameName}"
+            android:textColor="@color/green_black_word"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_content"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

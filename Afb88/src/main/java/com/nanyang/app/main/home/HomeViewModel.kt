@@ -1,17 +1,12 @@
 package com.nanyang.app.main.home
 
+import android.app.Application
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.GridLayoutManager
-import com.nanyang.app.ApiServiceKt
-import com.nanyang.app.BR
-import com.nanyang.app.BuildConfig
+import com.nanyang.app.*
 import com.nanyang.app.data.GamesData
 import com.nanyang.app.data.Left
 import com.nanyang.app.data.Main
-
-import com.nanyang.app.R
-import com.unkonw.testapp.libs.base.BaseApplication
 import com.unkonw.testapp.libs.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,6 +14,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.OnItemBind
 
 public class HomeViewModel : BaseViewModel() {
+    lateinit var application: Application
     val headerBgUrl = BuildConfig.ImgHeader_URL
     private lateinit var onItemClick: OnItemClickListener<Main>
     private lateinit var onLeftItemClick: OnItemClickListener<Left>
@@ -89,11 +85,10 @@ public class HomeViewModel : BaseViewModel() {
                         headers.addAll(allImage.header)
                     selectedType.value = "sport"
                     mainList = allImage.main
+                    setGameName(mainList)
                     loadMainGame(selectedType.value!!)
                 }
             }
-
-
         },
             error = {
                 defUI.toastEvent.postValue(
@@ -104,7 +99,6 @@ public class HomeViewModel : BaseViewModel() {
     }
 
     public fun loadMainGame(type: String) {
-
         var temp = arrayListOf<Main>()
         mainList.forEach {
             if (type.equals(it.type)) {
@@ -117,4 +111,31 @@ public class HomeViewModel : BaseViewModel() {
 
     }
 
+    private fun setGameName(list: List<Main>) {
+        for (main in list) {
+            var g = main.g
+            var img = main.img
+            if (g == "1") {
+                if (img.contains("soccer")) {
+                    main.gameName = application.getString(R.string.Soccer)
+                } else if (img.contains("Keno")) {
+                    main.gameName = application.getString(R.string.Keno)
+                } else if (img.contains("Fishing")) {
+                    main.gameName = "Fishing"
+                }
+            } else if (g == "Casino") {
+                main.gameName = application.getString(R.string.gd88_casino)
+            } else if (g == "SA CASINO") {
+                main.gameName = application.getString(R.string.SA_CASINO)
+            } else if (g == "WM CASINO") {
+                main.gameName = application.getString(R.string.WM_Cashio)
+            } else if (g == "DG CASINO") {
+                main.gameName = application.getString(R.string.DG_Cashio)
+            } else if (g == "SEXY CASINO") {
+                main.gameName = application.getString(R.string.SEXY_CASINO)
+            } else if (g == "PRAGMATIC CASINO") {
+                main.gameName = "Game"
+            }
+        }
+    }
 }

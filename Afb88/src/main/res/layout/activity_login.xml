@@ -48,7 +48,6 @@
             android:paddingBottom="20dp">
 
 
-
             <EditText
                 android:id="@+id/edt_login_username"
                 android:layout_width="0dp"
@@ -58,8 +57,8 @@
                 android:layout_marginEnd="10dp"
                 android:gravity="center_vertical"
                 android:hint="@string/home_user_name"
-                android:singleLine="true"
                 android:paddingLeft="10dp"
+                android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gary2"
                 android:textSize="15sp"
@@ -68,6 +67,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -85,27 +85,27 @@
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/rectangle_white_corners8"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="2dp"
+                    android:paddingRight="5dp"
                     android:paddingBottom="2dp"
                     android:text="@string/remember_me"
                     android:textColor="@color/black" />
+
                 <View
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_gravity="right"
                     android:layout_marginRight="8dp"
-                    android:background="@drawable/gd_triangle_white_bottom"
-                    />
+                    android:background="@drawable/gd_triangle_white_bottom" />
 
                 <CheckBox
                     android:id="@+id/cb_login_remember"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:button="@drawable/checkbox_style"
-                    />
+                    android:button="@drawable/checkbox_style" />
             </LinearLayout>
+
             <EditText
                 android:id="@+id/edt_login_password"
                 android:layout_width="0dp"
@@ -131,11 +131,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:button="@drawable/checkbox_eye_style"
                 android:layout_marginRight="10dp"
+                android:button="@drawable/checkbox_eye_style"
                 app:layout_constraintBottom_toBottomOf="@+id/edt_login_password"
                 app:layout_constraintEnd_toEndOf="@+id/edt_login_username"
                 app:layout_constraintTop_toBottomOf="@+id/edt_login_username" />
+
             <TextView
                 android:id="@+id/login_language"
                 android:layout_width="0dp"
@@ -194,8 +195,8 @@
                     android:layout_weight="1"
                     android:background="@mipmap/login_button"
                     android:gravity="center"
-                    android:text="@string/view2"
                     android:onClick="loginView2"
+                    android:text="@string/view2"
                     android:textAllCaps="false"
                     android:textColor="@color/app_title_color"
                     android:textStyle="bold" />

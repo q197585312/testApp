@@ -23,6 +23,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
@@ -626,12 +627,16 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         LogUtil.d("getMethodName", getClass().getSimpleName() + ",onlyShowAdded:" + getBaseActivity().onlyShowOne);
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().cl_sport_head.setVisibility(View.VISIBLE);
-        getBaseActivity().list_top.setVisibility(View.VISIBLE);
+        if (!BuildConfig.FLAVOR.equals("ez2888")){
+            getBaseActivity().list_top.setVisibility(View.VISIBLE);
+        }
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
         if (getBaseActivity().fl_top_video.getVisibility() == View.GONE) {
             getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
-            getBaseActivity().list_top.setVisibility(View.VISIBLE);
+            if (!BuildConfig.FLAVOR.equals("ez2888")){
+                getBaseActivity().list_top.setVisibility(View.VISIBLE);
+            }
             getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
         } else {
             getBaseActivity().liveMatchHelper.onResumePlay();

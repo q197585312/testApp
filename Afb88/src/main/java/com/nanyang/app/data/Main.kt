@@ -5,7 +5,9 @@ data class Main(
     val g: String,
     val img: String,
     val type: String,
-    var number: String = "0"
+    var number: String = "0",
+    var gameName: String,
+
 ) : Comparable<Main> {
     override fun compareTo(other: Main): Int {
         if (this.number.isNullOrEmpty()) {

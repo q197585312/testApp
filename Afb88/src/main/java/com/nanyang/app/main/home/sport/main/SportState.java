@@ -21,6 +21,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
@@ -357,11 +358,19 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public int getTitleContentColor() {
-        return Color.WHITE;
+        if (BuildConfig.FLAVOR.equals("ez2888")) {
+            return Color.parseColor("#EFF4FF");
+        } else {
+            return Color.WHITE;
+        }
     }
 
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.grey_thick_white);
+        if (BuildConfig.FLAVOR.equals("ez2888")) {
+            return Color.WHITE;
+        } else {
+            return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.grey_thick_white);
+        }
     }
 
     private List<B> toMatchList(List<TableSportInfo<B>> pageList) {

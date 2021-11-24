@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,8 +19,6 @@ import com.nanyang.app.common.LanguageHelper
 import com.nanyang.app.common.MainPresenter
 import com.nanyang.app.databinding.FragmentHomeTBinding
 import com.nanyang.app.load.login.LoginInfo.LanguageWfBean
-import com.nanyang.app.load.welcome.AllBannerImagesBean
-import com.nanyang.app.load.welcome.AllBannerImagesBean.MainBannersBean
 import com.nanyang.app.main.home.HomeViewModel
 import com.nanyang.app.main.home.OnItemClickListener
 import com.unkonw.testapp.libs.base.BaseApplication
@@ -66,7 +65,12 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         initView()
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.viewModel = viewModel
-        binding.rvHead.layoutManager = GridLayoutManager(BaseApplication.getInstance(), 3)
+        viewModel.application = getBaseToolbarActivity().application
+        var count = 3
+        if (BuildConfig.FLAVOR == "ez2888") {
+            count = 4;
+        }
+        binding.rvHead.layoutManager = GridLayoutManager(BaseApplication.getInstance(), count)
         viewModel.setItemClick(onItemClick())
         viewModel.setLeftItemClick(onLeftItemClick())
         viewModel.heightLeft = 90f
@@ -115,7 +119,13 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
 
                 val g = item.g
                 if (getBaseToolbarActivity().app.updateOtherMap().containsKey(g)) {
-                    (baseActivity.presenter as MainPresenter).clickGdGameItem(g)
+                    if (g == "allCasino") {
+                        viewModel.selectedType.postValue("casino")
+                        viewModel.loadMainGame("casino")
+                        binding.rvContentType.adapter?.notifyDataSetChanged()
+                    } else {
+                        (baseActivity.presenter as MainPresenter).clickGdGameItem(g)
+                    }
                     return
                 }
                 val sportIdBean = getBaseToolbarActivity().app.getSportByG(g) ?: return
@@ -167,15 +177,23 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
     }
 
 
-
-
-
     private fun initHomeToolBar() {
         (baseActivity as BaseToolbarActivity<*>).toolbar!!.navigationIcon = null
         (baseActivity as BaseToolbarActivity<*>).toolbar!!.title = null
         (baseActivity as BaseToolbarActivity<*>).tvToolbarLeft.visibility = View.VISIBLE
         (baseActivity as BaseToolbarActivity<*>).tvToolbarRight!!.visibility = View.VISIBLE
-        (baseActivity as BaseToolbarActivity<*>).tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo)
+        if (BuildConfig.FLAVOR == "ez2888") {
+            (baseActivity as BaseToolbarActivity<*>).tvToolbarLeft.setBackgroundResource(0)
+            (baseActivity as BaseToolbarActivity<*>).tvToolbarLeft.setTextColor(
+                ContextCompat.getColor(
+                    mContext,
+                    R.color.login_line_select_bg
+                )
+            )
+            (baseActivity as BaseToolbarActivity<*>).tvToolbarLeft.text = "EZ2888"
+        } else {
+            (baseActivity as BaseToolbarActivity<*>).tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo)
+        }
         (baseActivity as BaseToolbarActivity<*>).llRight!!.visibility = View.VISIBLE
     }
 
@@ -190,24 +208,25 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
 
     var hasInitNum = false
     private fun sortNotEmptyData() {
-        if (!viewModel.selectedType.value.equals("sport"))
-            return
-        var hasNum = false
-        viewModel.mainContent.forEach() {
-            hasNum = (hasData("M_RAm", it, true) || hasData("M_TAm", it, true) || hasData(
-                "M_EAm",
-                it,
-                true
-            )) || hasNum
-        }
-        viewModel.mainContent.sort()
-        viewModel.mainContent.sort()
-        if (!hasInitNum && hasNum) {
-            /*     viewModel.mainContent.clear()
-                 viewModel.mainContent.addAll(temp)*/
-        }
+        if (BuildConfig.FLAVOR != "ez2888") {
+            if (!viewModel.selectedType.value.equals("sport"))
+                return
+            var hasNum = false
+            viewModel.mainContent.forEach() {
+                hasNum = (hasData("M_RAm", it, true) || hasData("M_TAm", it, true) || hasData(
+                    "M_EAm",
+                    it,
+                    true
+                )) || hasNum
+            }
+            viewModel.mainContent.sort()
+            viewModel.mainContent.sort()
+            if (!hasInitNum && hasNum) {
+                /*     viewModel.mainContent.clear()
+                     viewModel.mainContent.addAll(temp)*/
+            }
 //        println("temp:$temp")
-
+        }
         binding.rvContentDetail.adapter?.notifyDataSetChanged()
     }
 

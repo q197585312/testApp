@@ -14,8 +14,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -72,6 +75,10 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     CheckBox cb_login_password_eye;
     @BindView(R.id.login_language)
     TextView loginLanguage;
+    View line_name;
+    View line_password;
+    ImageView img_name;
+    ImageView img_password;
     private PopChoiceLanguage popLanguage;
 
     private volatile int loginType = 0;
@@ -112,7 +119,38 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove(llContainer, llBottomBtn);
         presenter.playVideoRaw(c_video_bg);
-
+        if (BuildConfig.FLAVOR.equals("ez2888")) {
+            line_name = findViewById(R.id.line_name);
+            line_password = findViewById(R.id.line_password);
+            img_name = findViewById(R.id.img_name);
+            img_password = findViewById(R.id.img_password);
+            edtLoginUsername.setOnFocusChangeListener(new android.view.View.
+                    OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        line_name.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_line_select_bg));
+                        img_name.setBackgroundResource(R.mipmap.username_gold);
+                    } else {
+                        line_name.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_line_no_select_bg));
+                        img_name.setBackgroundResource(R.mipmap.username_gary);
+                    }
+                }
+            });
+            edtLoginPassword.setOnFocusChangeListener(new android.view.View.
+                    OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        line_password.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_line_select_bg));
+                        img_password.setBackgroundResource(R.mipmap.password_gold);
+                    } else {
+                        line_password.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_line_no_select_bg));
+                        img_password.setBackgroundResource(R.mipmap.password_gary);
+                    }
+                }
+            });
+        }
     }
 
     private void initAppNullData() {
@@ -199,8 +237,13 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         super.restart();
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
-        btnLoginLogin.setText(getString(R.string.view1));
-        btn_desktop.setText(getString(R.string.view2));
+        if (BuildConfig.FLAVOR.equals("ez2888")) {
+            btnLoginLogin.setText(getString(R.string.Login));
+            btn_desktop.setText(getString(R.string.desktop));
+        } else {
+            btnLoginLogin.setText(getString(R.string.view1));
+            btn_desktop.setText(getString(R.string.view2));
+        }
         tv_remember_me.setText(getString(R.string.remember_me));
         loginLanguage.setText(getString(R.string.language_switch));
 
