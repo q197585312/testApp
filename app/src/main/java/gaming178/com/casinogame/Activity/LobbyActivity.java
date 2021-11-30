@@ -850,7 +850,11 @@ public class LobbyActivity extends BaseActivity {
             if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, getString(R.string.afb1188), AppConfig.afb1188));
             }
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_slots, getString(R.string.slots), AppConfig.slots));
+            int slot = R.mipmap.gd_slots;
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                slot = R.mipmap.gd_slots_v;
+            }
+            hallGameItemBeenS.add(new HallGameItemBean(slot, getString(R.string.slots), AppConfig.slots));
             if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, getString(R.string.lg88_casino), AppConfig.lg88));
             }

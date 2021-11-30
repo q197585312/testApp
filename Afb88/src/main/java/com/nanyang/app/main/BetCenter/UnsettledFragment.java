@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
@@ -107,7 +109,11 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             public void convert(final MyRecyclerViewHolder holder, final int position, final RunningBean item) {
                 String isRun5 = item.getIsRun5();
                 if (!StringUtils.isNull(isRun5) && isRun5.equals("True")) {
-                    holder.getHolderView().setBackgroundResource(R.color.green_content1);
+                    if (BuildConfig.FLAVOR.equals("ez2888")){
+                        holder.getHolderView().setBackgroundResource(R.color.ez2888_item);
+                    }else {
+                        holder.getHolderView().setBackgroundResource(R.color.green_content1);
+                    }
                 } else {
                     holder.getHolderView().setBackgroundResource(R.color.white);
                 }
@@ -168,7 +174,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             l2.setVisibility(View.VISIBLE);
                             if (!StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getParent())) {
                                 l2content(openDetailMap.get(item.getSocTransId17()).getParent(), holder);
-                            }else{
+                            } else {
                                 open_detail_list.setText(getString(R.string.OpenDetail));
                                 l2.setVisibility(View.GONE);
                             }
@@ -218,7 +224,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             presenter.getParList2(item.getSocTransId17(), item.getBetType18(), new BaseConsumer<String>(getIBaseContext()) {
                                 @Override
                                 protected void onBaseGetData(String data) throws JSONException {
-                                    openDetailMap.get(item. getSocTransId17()).setParent(data);
+                                    openDetailMap.get(item.getSocTransId17()).setParent(data);
                                     open_detail_list.setText(getString(R.string.CloseDetail));
                                     openDetailMap.put(item.getSocTransId17(), openDetailMap.get(item.getSocTransId17()));
                                     l2content(data, holder);
@@ -294,6 +300,16 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     tv_running_status.setText(dangerStatus8);
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());
+
+                    ImageView imgPrint = holder.getImageView(R.id.img_print);
+                    imgPrint.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            BaseToolbarActivity activity = (BaseToolbarActivity) getBaseActivity();
+                            activity.goWebActivity(BuildConfig.PRINT_URL + item.getSocTransId17(), "PRINT", true);
+                        }
+                    });
+
                     View view2 = holder.getView(R.id.ll_content_3);
 
                     ll2.setOnClickListener(new View.OnClickListener() {

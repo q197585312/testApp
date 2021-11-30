@@ -359,7 +359,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     public int getTitleContentColor() {
         if (BuildConfig.FLAVOR.equals("ez2888")) {
-            return Color.parseColor("#EFF4FF");
+            return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.ez2888_item);
         } else {
             return Color.WHITE;
         }

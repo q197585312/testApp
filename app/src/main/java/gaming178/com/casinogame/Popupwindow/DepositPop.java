@@ -322,14 +322,10 @@ public class DepositPop extends BasePopupWindow {
 
             @Override
             public void errorEnd(String obj) {
-                //Results=error^1^5000
+                //Results=error^Minimum deposit amount 10000
                 String[] split = obj.split("\\^");
-                if (split.length == 3) {
-                    if (split[1].equals("1")) {
-                        Toast.makeText(context, "The minimum deposit amount is " + split[2], Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(context, "Deposit fail", Toast.LENGTH_LONG).show();
-                    }
+                if (split.length >= 2) {
+                    Toast.makeText(context, split[1], Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(context, "Deposit fail", Toast.LENGTH_LONG).show();
                 }

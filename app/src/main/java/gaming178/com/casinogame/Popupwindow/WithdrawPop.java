@@ -203,7 +203,12 @@ public class WithdrawPop extends BasePopupWindow {
 
             @Override
             public void errorEnd(String obj) {
-                Toast.makeText(context,"withdraw fail",Toast.LENGTH_LONG).show();
+                String[] split = obj.split("\\^");
+                if (split.length >= 2) {
+                    Toast.makeText(context, split[1], Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, "withdraw fail", Toast.LENGTH_LONG).show();
+                }
                 dialog.dismiss();
             }
         };

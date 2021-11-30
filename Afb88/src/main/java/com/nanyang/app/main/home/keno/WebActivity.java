@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
@@ -30,6 +31,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 public class WebActivity extends BaseToolbarActivity {
     WebView webView;
     private boolean canFinish;
+    private Handler handler = new Handler();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -117,7 +119,12 @@ public class WebActivity extends BaseToolbarActivity {
             @Override
             public void onLoadResource(WebView view, String url) {
                 if (url.contains("IDAutomationStreamingLinear")) {
-                    createWebPrintJob(webView);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            createWebPrintJob(webView);
+                        }
+                    },1500);
                 }
             }
 

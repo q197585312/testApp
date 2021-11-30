@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <ImageView
-
+                    android:id="@+id/img_message"
                     android:src="@mipmap/message_small"
                     android:layout_marginLeft="12dp"
                     android:layout_gravity="center_horizontal"

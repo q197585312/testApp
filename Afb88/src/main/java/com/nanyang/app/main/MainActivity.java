@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -64,6 +65,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     LinearLayout ll_tab_menu_bottom;
     @BindView(R.id.view_line)
     View view_line;
+    @BindView(R.id.img_message)
+    ImageView img_message;
     @Nullable
     protected
     @BindView(R.id.drawer_more)
@@ -108,6 +111,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_tab_statement.setTextColor(Color.WHITE);
             tv_tab_center.setTextColor(Color.WHITE);
             tv_tab_login_out.setTextColor(Color.WHITE);
+            img_message.setVisibility(View.GONE);
         }
     }
 
@@ -133,7 +137,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_tab_statement.setText(R.string.balances);
             tv_tab_center.setText(R.string.statement);
             tv_tab_login_out.setText(R.string.more);
-//            tv_tab_home.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+            tv_tab_home.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.main_bet,0,0);
             tv_tab_statement.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_balance, 0, 0);
             tv_tab_center.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_botton_teb_statement, 0, 0);
         } else {

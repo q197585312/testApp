@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
@@ -102,7 +103,10 @@ public class AfbDrawerViewHolder implements IDrawerView {
         More m2 = new More(R.mipmap.messages, baseToolbarActivity.getString(R.string.messages), R.mipmap.email_msg, messageFragment);
         More m3 = new More(R.mipmap.main_statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, baseToolbarActivity.getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
-        More m5 = new More(R.mipmap.contactus, baseToolbarActivity.getString(R.string.contact), 0, contactFragment);
+        More m5 = null;
+        if (!BuildConfig.FLAVOR.equals("ez2888")) {
+            m5 = new More(R.mipmap.contactus, baseToolbarActivity.getString(R.string.contact), 0, contactFragment);
+        }
         More m6 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.setting), 0, settingFragment);
         More m7 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.how_to_use), 0, howToUseFragment);
         More m8 = new More(R.mipmap.logout, baseToolbarActivity.getString(R.string.logout), 0);
@@ -111,8 +115,9 @@ public class AfbDrawerViewHolder implements IDrawerView {
         dataList.add(m2);
         dataList.add(m3);
         dataList.add(m4);
-
-        dataList.add(m5);
+        if (m5 != null) {
+            dataList.add(m5);
+        }
         dataList.add(m6);
         dataList.add(m7);
         if (!AppConstant.IS_AGENT)
