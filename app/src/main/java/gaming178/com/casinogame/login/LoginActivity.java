@@ -401,7 +401,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/WA-mastercasino88");
+                    Gd88Utils.goBrowser(mContext, "https://wa.me/6282249576270");
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
