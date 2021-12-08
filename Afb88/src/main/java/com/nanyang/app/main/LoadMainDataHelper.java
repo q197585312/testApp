@@ -7,6 +7,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.MainPresenter;
@@ -44,7 +45,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
     }
 
     public Disposable doRetrofitApiOnUiThreadHeaders(T languageWfBean, final MainPresenter.CallBack<String> back, final String matches, Map<String, String> header) {
-        String p = AppConstant.getInstance().HOST + BuildConfig.H5+ "/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
+        String p = AppConstant.getInstance().HOST + BuildConfig.H5 + "/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
         Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getDataHeader(p, header), new BaseConsumer<String>(baseContext) {
@@ -112,6 +113,11 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                             /*CreatWS(\"ws://ws2.afb1188.net:8888/FnChat\");*/
                             /*"^.*\"(http[^\"]+)\",.*$"*/
                             String ws = StringUtils.findGroup(s2, "^.*CreatWS\\(\"([^\"]+)\\\".*$", 1);
+                            if (data.contains("\"SettlTypeCash\":\"1\"")) {
+                                ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setSettltypecash(1);
+                            } else {
+                                ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setSettltypecash(0);
+                            }
                             if (!StringUtils.isNull(ws) && ws.startsWith("ws")) {
                                 AppConstant.getInstance().WebSocket_HOST = ws;
                             }

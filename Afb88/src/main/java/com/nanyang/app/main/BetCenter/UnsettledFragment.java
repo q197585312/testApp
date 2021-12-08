@@ -109,9 +109,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             public void convert(final MyRecyclerViewHolder holder, final int position, final RunningBean item) {
                 String isRun5 = item.getIsRun5();
                 if (!StringUtils.isNull(isRun5) && isRun5.equals("True")) {
-                    if (BuildConfig.FLAVOR.equals("ez2888")){
+                    if (BuildConfig.FLAVOR.equals("ez2888")) {
                         holder.getHolderView().setBackgroundResource(R.color.ez2888_item);
-                    }else {
+                    } else {
                         holder.getHolderView().setBackgroundResource(R.color.green_content1);
                     }
                 } else {
@@ -185,6 +185,25 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     } else {
                         l.setVisibility(View.GONE);
                     }
+
+                    ImageView imgPrint = holder.getImageView(R.id.img_print_mix);
+                    if (type.equals("A")) {
+                        if (item.getStatus20().equals("A") || item.getStatus20().equals("N")) {
+                            imgPrint.setVisibility(View.VISIBLE);
+                            imgPrint.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    BaseToolbarActivity activity = (BaseToolbarActivity) getBaseActivity();
+                                    activity.goWebActivity(BuildConfig.PRINT_URL + item.getSocTransId17(), "PRINT", true);
+                                }
+                            });
+                        } else {
+                            imgPrint.setVisibility(View.GONE);
+                        }
+                    } else {
+                        imgPrint.setVisibility(View.GONE);
+                    }
+
                     ll1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -302,13 +321,18 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_Amt.setText(item.getAmt9());
 
                     ImageView imgPrint = holder.getImageView(R.id.img_print);
-                    imgPrint.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            BaseToolbarActivity activity = (BaseToolbarActivity) getBaseActivity();
-                            activity.goWebActivity(BuildConfig.PRINT_URL + item.getSocTransId17(), "PRINT", true);
-                        }
-                    });
+                    if (type.equals("A")) {
+                        imgPrint.setVisibility(View.VISIBLE);
+                        imgPrint.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                BaseToolbarActivity activity = (BaseToolbarActivity) getBaseActivity();
+                                activity.goWebActivity(BuildConfig.PRINT_URL + item.getSocTransId17(), "PRINT", true);
+                            }
+                        });
+                    } else {
+                        imgPrint.setVisibility(View.GONE);
+                    }
 
                     View view2 = holder.getView(R.id.ll_content_3);
 

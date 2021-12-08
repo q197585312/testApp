@@ -17,6 +17,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
@@ -101,6 +102,17 @@ public class AfbDrawerViewHolder implements IDrawerView {
         drawerLayoutRightRc = drawerLayout.findViewById(R.id.main_more);
         More m1 = new More(R.mipmap.myacount, baseToolbarActivity.getString(R.string.my_account), 0, personFragment);
         More m2 = new More(R.mipmap.messages, baseToolbarActivity.getString(R.string.messages), R.mipmap.email_msg, messageFragment);
+        More deposit = null;
+        More withdraw = null;
+//        if (BuildConfig.FLAVOR.equals("afb1188")) {
+//            PersonalInfo person = baseToolbarActivity.getApp().getUser();
+//            String isapi = person.getISAPI();
+//            int settltypecash = baseToolbarActivity.getApp().getSettltypecash();
+//            if (!isapi.equals("1") && settltypecash == 1) {
+//                deposit = new More(R.mipmap.menu_deposit, baseToolbarActivity.getString(R.string.deposit), 0, messageFragment);
+//                withdraw = new More(R.mipmap.menu_withdraw, baseToolbarActivity.getString(R.string.withdraw), 0, messageFragment);
+//            }
+//        }
         More m3 = new More(R.mipmap.main_statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, baseToolbarActivity.getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
         More m5 = null;
@@ -113,6 +125,12 @@ public class AfbDrawerViewHolder implements IDrawerView {
         List<More> dataList = new ArrayList<>();
         dataList.add(m1);
         dataList.add(m2);
+        if (deposit != null) {
+            dataList.add(deposit);
+        }
+        if (withdraw != null) {
+            dataList.add(withdraw);
+        }
         dataList.add(m3);
         dataList.add(m4);
         if (m5 != null) {

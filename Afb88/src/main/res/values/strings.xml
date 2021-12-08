@@ -666,4 +666,6 @@
     <string name="Euro_2020">Euro 2020</string>
     <string name="betsoft">BETSOFT GAME</string>
     <string name="Joker">JOKER</string>
+    <string name="deposit">deposit</string>
+    <string name="withdraw">withdraw</string>
 </resources>

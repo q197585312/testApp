@@ -208,12 +208,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.07'
             }
-            mandiricasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mandiricasino"]
-                buildConfigField "String", "Labelid", '"107"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.07'
-            }
             marina118 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "marina118"]
                 buildConfigField "String", "Labelid", '"93"'
@@ -338,7 +332,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "lipocasino338"]
                 buildConfigField "String", "Labelid", '"160"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.07'
+                versionName '4.08'
             }
 
 
@@ -425,6 +419,12 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.07'
 
+            }
+            wingsbet88 {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wingsbet88"]
+                buildConfigField "String", "Labelid", '"107"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '4.07'
             }
         }
 

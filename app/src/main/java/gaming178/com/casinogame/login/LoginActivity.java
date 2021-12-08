@@ -449,21 +449,6 @@ public class LoginActivity extends BaseActivity {
             }.start();
         }
 
-        if (BuildConfig.FLAVOR.equals("mandiricasino")) {
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6281284159432&text&app_absent=0");
-                }
-            });
-            tvPromo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/T-MandiriCasino");
-                }
-            });
-        }
-
         if (BuildConfig.FLAVOR.equals("hobi")) {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override

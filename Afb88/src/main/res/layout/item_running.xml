@@ -591,6 +591,14 @@
                 android:text="ID:[PAR000396162]12/04 9:48:47 am"
                 android:textColor="@color/grey_dark"
                 android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/img_print_mix"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:src="@mipmap/print" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

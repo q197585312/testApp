@@ -168,6 +168,16 @@ public class AfbApplication extends BaseApplication {
 
     private PersonalInfo user = new PersonalInfo();
 
+    private int settltypecash;
+
+    public int getSettltypecash() {
+        return settltypecash;
+    }
+
+    public void setSettltypecash(int settltypecash) {
+        this.settltypecash = settltypecash;
+    }
+
     public LinkedHashMap<String, SportIdBean> beanHashMap = new LinkedHashMap<>();
     public LinkedHashMap<String, SportIdBean> sportMap = new LinkedHashMap<>();
     public LinkedHashMap<String, SportIdBean> othersMap = new LinkedHashMap<>();
