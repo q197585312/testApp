@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contact_back"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingTop="6dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="6dp"
+        android:text="@string/auto_deposit_note"
+        android:textColor="#FFAC13"
+        android:textSize="16sp"
+        android:textStyle="bold"></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/deposit_withdraw_bg"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/amount"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+            <EditText
+                android:id="@+id/edt_amount"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|right"
+                android:background="@drawable/deposit_withdraw_input_bg"
+                android:gravity="center_vertical"
+                android:inputType="number"
+                android:padding="3dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"></EditText>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/contact_back"></View>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="To: Bank Name"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_bank_name_content"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|right"
+                android:background="@drawable/deposit_withdraw_input_bg"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:text="Bangkok Bank"
+                android:textColor="@color/black"
+                android:textSize="14sp"></TextView>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/down_black"></ImageView>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/contact_back"></View>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/account_name"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_account_name"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|right"
+                android:background="@drawable/deposit_withdraw_bank_bg"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:text="Narisara Charoen"
+                android:textColor="@color/black"
+                android:textSize="14sp"></TextView>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/contact_back"></View>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/account_number"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_account_number"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|right"
+                android:background="@drawable/deposit_withdraw_bank_bg"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:text="924-0-419367"
+                android:textColor="@color/black"
+                android:textSize="14sp"></TextView>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/contact_back"></View>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/minimum_deposit_amount"
+                android:textColor="@color/black"
+                android:textSize="15sp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_min_amount"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|right"
+                android:background="@drawable/deposit_withdraw_bank_bg"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:text="10"
+                android:textColor="@color/black"
+                android:textSize="14sp"></TextView>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/contact_back"></View>
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/green_dark"
+            android:paddingLeft="18dp"
+            android:paddingTop="8dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="8dp"
+            android:text="@string/Submit"
+            android:textColor="@color/white"
+            android:textSize="16sp"></TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

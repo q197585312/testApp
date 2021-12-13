@@ -666,6 +666,22 @@
     <string name="Euro_2020">Euro 2020</string>
     <string name="betsoft">BETSOFT GAME</string>
     <string name="Joker">JOKER</string>
-    <string name="deposit">deposit</string>
-    <string name="withdraw">withdraw</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="auto_deposit">Auto Deposit</string>
+    <string name="deposit_history">Deposit History</string>
+    <string name="withdraw_history">Withdraw History</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="account_name">Account Name</string>
+    <string name="to">To</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_number">Account Number</string>
+    <string name="upload_receipt">upload receipt</string>
+    <string name="no_image_selected">No Image selected</string>
+    <string name="only_image">*only image files allowed (jpg,png,bmp)</string>
+    <string name="remark">Remark</string>
+    <string name="auto_deposit_note">System will display the deposit amount with DECIMAL that you need to transfer, you have to transfer the EXACT AMOUNT as displayed.\nSystem will check the transaction and automatically recharge your account within 1-5 minutes after you deposit</string>
+    <string name="minimum_deposit_amount">Minimum Deposit Amount</string>
+    <string name="from">From</string>
+    <string name="to_other">To</string>
 </resources>

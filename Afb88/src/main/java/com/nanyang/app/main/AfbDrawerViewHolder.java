@@ -21,6 +21,8 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
+import com.nanyang.app.main.DepositAndWithdraw.DepositCenterFragment;
+import com.nanyang.app.main.DepositAndWithdraw.WithdrawCenterFragment;
 import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.contact.ContactFragment;
 import com.nanyang.app.main.howtouse.HowToUseFragment;
@@ -73,6 +75,8 @@ public class AfbDrawerViewHolder implements IDrawerView {
     private BaseSwitchFragment personFragment = new PersonCenterFragment();
     private BaseSwitchFragment howToUseFragment = new HowToUseFragment();
     private BaseSwitchFragment messageFragment = new MessageFragment();
+    private BaseSwitchFragment depositCenterFragment = new DepositCenterFragment();
+    private BaseSwitchFragment withdrawCenterFragment = new WithdrawCenterFragment();
     private BaseSwitchFragment indexFragment;
     private BaseSwitchFragment lastIndexFragment;
 
@@ -104,15 +108,15 @@ public class AfbDrawerViewHolder implements IDrawerView {
         More m2 = new More(R.mipmap.messages, baseToolbarActivity.getString(R.string.messages), R.mipmap.email_msg, messageFragment);
         More deposit = null;
         More withdraw = null;
-//        if (BuildConfig.FLAVOR.equals("afb1188")) {
-//            PersonalInfo person = baseToolbarActivity.getApp().getUser();
-//            String isapi = person.getISAPI();
-//            int settltypecash = baseToolbarActivity.getApp().getSettltypecash();
-//            if (!isapi.equals("1") && settltypecash == 1) {
-//                deposit = new More(R.mipmap.menu_deposit, baseToolbarActivity.getString(R.string.deposit), 0, messageFragment);
-//                withdraw = new More(R.mipmap.menu_withdraw, baseToolbarActivity.getString(R.string.withdraw), 0, messageFragment);
-//            }
-//        }
+        if (BuildConfig.FLAVOR.equals("afb1188")) {
+            PersonalInfo person = baseToolbarActivity.getApp().getUser();
+            String isapi = person.getISAPI();
+            int settltypecash = baseToolbarActivity.getApp().getSettltypecash();
+            if (!isapi.equals("1") && settltypecash == 1) {
+                deposit = new More(R.mipmap.menu_deposit, baseToolbarActivity.getString(R.string.deposit), 0, depositCenterFragment);
+                withdraw = new More(R.mipmap.menu_withdraw, baseToolbarActivity.getString(R.string.withdraw), 0, withdrawCenterFragment);
+            }
+        }
         More m3 = new More(R.mipmap.main_statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, baseToolbarActivity.getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
         More m5 = null;

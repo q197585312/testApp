@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg_deposit_center"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_auto_deposit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_bet_center_select"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:text="@string/auto_deposit" />
+
+        <RadioButton
+            android:id="@+id/rb_deposit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_bet_center_select"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/deposit" />
+
+        <RadioButton
+            android:id="@+id/rb_deposit_history"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_bet_center_select"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:text="@string/deposit_history" />
+    </RadioGroup>
+
+
+    <FrameLayout
+        android:id="@+id/fl_depositCenter_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

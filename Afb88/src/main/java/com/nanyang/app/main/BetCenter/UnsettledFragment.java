@@ -188,7 +188,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
                     ImageView imgPrint = holder.getImageView(R.id.img_print_mix);
                     if (type.equals("A")) {
-                        if (item.getStatus20().equals("A") || item.getStatus20().equals("N")) {
+                        String status = item.getStatus20().trim();
+                        if (status.equals("A") || status.equals("N")) {
                             imgPrint.setVisibility(View.VISIBLE);
                             imgPrint.setOnClickListener(new View.OnClickListener() {
                                 @Override

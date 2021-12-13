@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contact_back"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/from"
+            android:textColor="@color/black"
+            android:textSize="15sp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_from_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/date_bg"
+            android:padding="3dp"
+            android:text="12/12/2021"
+            android:textColor="@color/black"
+            android:textSize="15sp"></TextView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/to_other"
+            android:textColor="@color/black"
+            android:textSize="15sp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_to_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/date_bg"
+            android:padding="3dp"
+            android:text="12/12/2021"
+            android:textColor="@color/black"
+            android:textSize="15sp"></TextView>
+
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:background="@color/green_dark"
+            android:paddingLeft="18dp"
+            android:paddingTop="3dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="3dp"
+            android:text="@string/Submit"
+            android:textColor="@color/white"
+            android:textSize="15sp"></TextView>
+
+    </LinearLayout>
+</LinearLayout>
