@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_way"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="User Name"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:text="TestSH13"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="User Name"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:text="TestSH13"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/contact_back"
+        android:visibility="gone" />
+</LinearLayout>

@@ -70,7 +70,6 @@
                 android:background="@drawable/deposit_withdraw_bank_bg"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="Bangkok Bank"
                 android:textColor="@color/black"
                 android:textSize="14sp"></TextView>
         </FrameLayout>
@@ -103,7 +102,6 @@
                 android:background="@drawable/deposit_withdraw_bank_bg"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="test apk"
                 android:textColor="@color/black"
                 android:textSize="14sp"></TextView>
         </FrameLayout>
@@ -136,7 +134,6 @@
                 android:background="@drawable/deposit_withdraw_bank_bg"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="16665666"
                 android:textColor="@color/black"
                 android:textSize="14sp"></TextView>
         </FrameLayout>
