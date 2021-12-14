@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="Base_AlertDialog" parent="@android:style/Theme.DeviceDefault.Dialog.Alert">
         <!-- 这里设置背景为透明，为了隐藏边框 -->
         <item name="android:windowBackground">@color/update_bg1</item>
@@ -18,11 +19,14 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
+
     <style name="ProgressBar_Mini" parent="@android:style/Widget.ProgressBar.Horizontal">
         <item name="android:maxHeight">50dip</item>
         <item name="android:minHeight">8dip</item>
         <item name="android:indeterminateOnly">false</item>
-        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
         <item name="android:progressDrawable">@drawable/progressbar_mini</item>
     </style>
 
@@ -37,6 +41,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:paddingBottom">5dp</item>
     </style>
+
     <style name="text_match_black10">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -44,16 +49,19 @@
         <item name="android:textSize">10sp</item>
         <item name="android:drawablePadding">5dp</item>
     </style>
+
     <style name="line_vertical_grey1">
         <item name="android:layout_width">0.5dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/grey_thick_line</item>
     </style>
+
     <style name="line_horizontal_grey1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
         <item name="android:background">@color/grey_thick_line</item>
     </style>
+
     <style name="text_wrap_black10">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -61,14 +69,17 @@
         <item name="android:textSize">10sp</item>
         <item name="android:drawablePadding">5dp</item>
     </style>
+
     <style name="style_match_wrap">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="style_wrap_wrap">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
+
     <style name="MyDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -78,4 +89,20 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/calendar_choice</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
 </resources>

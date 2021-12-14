@@ -10,7 +10,7 @@ import com.nanyang.app.main.home.sport.dialog.CalendarPop;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class WithdrawHistoryFragment extends DepositWithdrawBaseFragment {
+public class DepositHistoryFragment extends DepositWithdrawBaseFragment {
     @BindView(R.id.tv_from_date)
     TextView tvFromDate;
     @BindView(R.id.tv_to_date)
@@ -20,7 +20,7 @@ public class WithdrawHistoryFragment extends DepositWithdrawBaseFragment {
 
     @Override
     public int onSetLayoutId() {
-        return R.layout.fragment_withdraw_history;
+        return R.layout.fragment_deposit_history;
     }
 
     @Override

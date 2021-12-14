@@ -51,4 +51,5 @@
     <color name="login_line_select_bg">#FAC832</color>
     <color name="login_line_no_select_bg">#DDDDDD</color>
     <color name="sport_left_gold">#C7F500</color>
+    <color name="calendar_choice">#009688</color>
 </resources>

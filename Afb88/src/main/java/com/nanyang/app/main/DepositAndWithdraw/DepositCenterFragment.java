@@ -29,7 +29,7 @@ public class DepositCenterFragment extends BaseMoreFragment {
     List<BaseFragment> baseFragmentList;
     BaseFragment autoDepositFragment = new AutoDepositFragment();
     BaseFragment depositFragment = new DepositFragment();
-    BaseFragment depositHistoryFragment = new DepositHistory();
+    BaseFragment depositHistoryFragment = new DepositHistoryFragment();
 
     @Override
     public int onSetLayoutId() {
