@@ -2,6 +2,7 @@ package com.unkonw.testapp.libs.base;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -199,6 +200,10 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
 
     public void setParentHidden(boolean hidden) {
         this.parentHidden = hidden;
+    }
+
+    public void showChoosePic(Uri uri){
+
     }
 
 }

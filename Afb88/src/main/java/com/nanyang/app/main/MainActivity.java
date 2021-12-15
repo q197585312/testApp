@@ -3,8 +3,10 @@ package com.nanyang.app.main;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -137,7 +139,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_tab_statement.setText(R.string.balances);
             tv_tab_center.setText(R.string.statement);
             tv_tab_login_out.setText(R.string.more);
-            tv_tab_home.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.main_bet,0,0);
+            tv_tab_home.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_bet, 0, 0);
             tv_tab_statement.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_balance, 0, 0);
             tv_tab_center.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_botton_teb_statement, 0, 0);
         } else {
@@ -294,4 +296,14 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     public void loadingUrlPics(MainPresenter.CallBack<AllBannerImagesBean> callBack) {
         (presenter).loadAllImages(callBack);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && data != null && !TextUtils.isEmpty(data.getData().toString()) && getUploadFragment() != null) {
+            Uri uri = data.getData();
+            getUploadFragment().showChoosePic(uri);
+        }
+    }
+
 }

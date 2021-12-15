@@ -1,5 +1,7 @@
 package com.nanyang.app.main.DepositAndWithdraw;
 
+import com.nanyang.app.main.DepositAndWithdraw.Bean.DepositDataBean;
+import com.nanyang.app.main.DepositAndWithdraw.Bean.UploadImgBean;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.WithdrawDataBean;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.WithdrawHistoryBean;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.WithdrawTakeAwayBean;
@@ -23,6 +25,22 @@ public abstract class DepositWithdrawBaseFragment extends BaseFragment<DepositWi
     }
 
     public void onGetWithdrawHistoryData(List<WithdrawHistoryBean> list) {
+
+    }
+
+    public void onGetUploadImgData(UploadImgBean bean) {
+
+    }
+
+    public void onGetDepositData(List<DepositDataBean> list) {
+
+    }
+
+    public void onGetSubmitDepositData(String msg) {
+
+    }
+
+    public void onGetDepositHistoryData(List<WithdrawHistoryBean> list) {
 
     }
 }

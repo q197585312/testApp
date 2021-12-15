@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
 
 /**
  *
- *
  */
 public abstract class BasePopupWindow {
     private static final String TAG = "BasePopupWindow";
@@ -164,7 +163,7 @@ public abstract class BasePopupWindow {
         }
     }
 
-    protected void initView( @NonNull View view) {
+    protected void initView(@NonNull View view) {
 
     }
 
@@ -185,6 +184,11 @@ public abstract class BasePopupWindow {
 
     protected void onClose() {
 
+    }
+
+    public void showPopupDownWindowNoBlack() {
+        closePopupWindow();
+        popWindow.showAsDropDown(v, 0, 0);
     }
 
     public void showPopupDownWindow() {
@@ -243,7 +247,7 @@ public abstract class BasePopupWindow {
         view.getLocationOnScreen(location);
 //在控件上方显示    向上移动y轴是负数
         setBackgroundAttr(trans);
-        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight );
+        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
     }
 
     public void showPopupWindowUpCenter(View view) {

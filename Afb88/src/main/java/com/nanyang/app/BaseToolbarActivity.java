@@ -42,6 +42,7 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
@@ -515,7 +516,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                             if (s.contains("Maintenance")) {
                                 Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
                                 onError(exception);
-                                ((BaseToolbarActivity)baseContext.getBaseActivity()).skipMaintenance();
+                                ((BaseToolbarActivity) baseContext.getBaseActivity()).skipMaintenance();
                             } else {
                                 errorCount = 0;
                                 ToastUtils.showLong(R.string.Login_Success);
@@ -690,6 +691,16 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         bundle.putString("url", BuildConfig.Maintenance_URL);
         bundle.putString(AppConstant.KEY_STRING, getString(R.string.System_maintenance));
         bundle.putBoolean(AppConstant.KEY_BOOLEAN, true);
-        skipAct(MaintenanceActivity.class,bundle);
+        skipAct(MaintenanceActivity.class, bundle);
+    }
+
+    private BaseFragment uploadFragment;
+
+    public BaseFragment getUploadFragment() {
+        return uploadFragment;
+    }
+
+    public void setUploadFragment(BaseFragment uploadFragment) {
+        this.uploadFragment = uploadFragment;
     }
 }

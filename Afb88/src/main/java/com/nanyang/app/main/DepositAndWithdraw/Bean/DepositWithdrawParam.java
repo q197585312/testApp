@@ -12,6 +12,13 @@ public class DepositWithdrawParam {
     String fdate;
     String todate;
     String type;
+    String Deposit;
+    String AccName;
+    String AccNumber;
+    String lstBank;
+    String PayMethod;
+    String Remark;
+    String imgurl;
 
     public DepositWithdrawParam(String ACT, String PT, String Amountinput, String Passwordinput, String pgLable, String vsn) {
         this.ACT = ACT;
@@ -28,6 +35,20 @@ public class DepositWithdrawParam {
         this.fdate = fdate;
         this.todate = todate;
         this.type = type;
+        this.pgLable = pgLable;
+        this.vsn = vsn;
+    }
+
+    public DepositWithdrawParam(String ACT, String PT, String Deposit, String AccName, String AccNumber, String lstBank, String PayMethod, String Remark, String imgurl, String pgLable, String vsn) {
+        this.ACT = ACT;
+        this.PT = PT;
+        this.Deposit = Deposit;
+        this.AccName = AccName;
+        this.AccNumber = AccNumber;
+        this.lstBank = lstBank;
+        this.PayMethod = PayMethod;
+        this.Remark = Remark;
+        this.imgurl = imgurl;
         this.pgLable = pgLable;
         this.vsn = vsn;
     }

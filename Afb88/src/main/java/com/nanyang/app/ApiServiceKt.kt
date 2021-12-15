@@ -1,5 +1,6 @@
 package com.nanyang.app
 
+import android.content.res.AssetFileDescriptor
 import com.nanyang.app.data.CheckVersionBean
 import com.nanyang.app.data.GamesData
 import com.nanyang.app.load.welcome.AllBannerImagesBean
@@ -13,6 +14,7 @@ import com.nanyang.app.main.home.sport.model.BettingPromptBean
 import com.unkonw.testapp.libs.api.ApiManager
 import gaming178.com.casinogame.load.Liga365Data
 import io.reactivex.Flowable
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -27,6 +29,7 @@ interface ApiServiceKt {
             return instance
         }
     }
+
     /**
      * 玩安卓轮播图
      */
@@ -230,4 +233,8 @@ interface ApiServiceKt {
 
     @GET
     fun getAdditionData(@Url url: String?): Flowable<String?>?
+
+    @Multipart
+    @POST
+    fun upload(@Url url: String, @Part file: MultipartBody.Part?): Flowable<String?>?
 }
