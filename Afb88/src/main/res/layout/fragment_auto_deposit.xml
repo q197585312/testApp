@@ -84,7 +84,6 @@
                 android:background="@drawable/deposit_withdraw_input_bg"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="Bangkok Bank"
                 android:textColor="@color/black"
                 android:textSize="14sp"></TextView>
 
@@ -93,6 +92,7 @@
                 android:layout_height="20dp"
                 android:layout_gravity="right|center_vertical"
                 android:layout_marginRight="5dp"
+                android:singleLine="true"
                 android:src="@mipmap/down_black"></ImageView>
         </FrameLayout>
 
@@ -124,7 +124,7 @@
                 android:background="@drawable/deposit_withdraw_bank_bg"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="Narisara Charoen"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"></TextView>
         </FrameLayout>
@@ -157,7 +157,7 @@
                 android:background="@drawable/deposit_withdraw_bank_bg"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="924-0-419367"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"></TextView>
         </FrameLayout>
@@ -190,7 +190,6 @@
                 android:background="@drawable/deposit_withdraw_bank_bg"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="10"
                 android:textColor="@color/black"
                 android:textSize="14sp"></TextView>
         </FrameLayout>

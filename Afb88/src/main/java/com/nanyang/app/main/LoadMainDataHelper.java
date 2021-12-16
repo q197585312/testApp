@@ -12,6 +12,7 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.DepositAndWithdraw.Bean.UserCashBean;
 import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -113,11 +114,10 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                             /*CreatWS(\"ws://ws2.afb1188.net:8888/FnChat\");*/
                             /*"^.*\"(http[^\"]+)\",.*$"*/
                             String ws = StringUtils.findGroup(s2, "^.*CreatWS\\(\"([^\"]+)\\\".*$", 1);
-                            if (data.contains("\"SettlTypeCash\":\"1\"")) {
-                                ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setSettltypecash(1);
-                            } else {
-                                ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setSettltypecash(0);
-                            }
+                            JSONArray settlTypeCashArr = jsonArray.getJSONArray(3);
+                            String settlTypeCashStr = settlTypeCashArr.getJSONObject(0).toString();
+                            UserCashBean userCashBean = new Gson().fromJson(settlTypeCashStr, UserCashBean.class);
+                            ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setUserCashBean(userCashBean);
                             if (!StringUtils.isNull(ws) && ws.startsWith("ws")) {
                                 AppConstant.getInstance().WebSocket_HOST = ws;
                             }

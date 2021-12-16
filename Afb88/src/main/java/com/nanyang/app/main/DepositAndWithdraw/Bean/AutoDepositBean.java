@@ -1,15 +1,15 @@
 package com.nanyang.app.main.DepositAndWithdraw.Bean;
 
 public class AutoDepositBean {
-    private String BankId;
+    private int BankId;
     private String BankCode;
     private String BankName;
     private String BankAccountName;
     private String BankAccountNum;
-    private String MinDepositAmt;
-    private String ExpiredInterval;
+    private int MinDepositAmt;
+    private int ExpiredInterval;
 
-    public AutoDepositBean(String bankId, String bankCode, String bankName, String bankAccountName, String bankAccountNum, String minDepositAmt, String expiredInterval) {
+    public AutoDepositBean(int bankId, String bankCode, String bankName, String bankAccountName, String bankAccountNum, int minDepositAmt, int expiredInterval) {
         BankId = bankId;
         BankCode = bankCode;
         BankName = bankName;
@@ -19,11 +19,11 @@ public class AutoDepositBean {
         ExpiredInterval = expiredInterval;
     }
 
-    public String getBankId() {
+    public int getBankId() {
         return BankId;
     }
 
-    public void setBankId(String bankId) {
+    public void setBankId(int bankId) {
         BankId = bankId;
     }
 
@@ -59,19 +59,19 @@ public class AutoDepositBean {
         BankAccountNum = bankAccountNum;
     }
 
-    public String getMinDepositAmt() {
+    public int getMinDepositAmt() {
         return MinDepositAmt;
     }
 
-    public void setMinDepositAmt(String minDepositAmt) {
+    public void setMinDepositAmt(int minDepositAmt) {
         MinDepositAmt = minDepositAmt;
     }
 
-    public String getExpiredInterval() {
+    public int getExpiredInterval() {
         return ExpiredInterval;
     }
 
-    public void setExpiredInterval(String expiredInterval) {
+    public void setExpiredInterval(int expiredInterval) {
         ExpiredInterval = expiredInterval;
     }
 }

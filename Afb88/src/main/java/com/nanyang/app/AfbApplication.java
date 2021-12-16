@@ -7,6 +7,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseMoreFragment;
+import com.nanyang.app.main.DepositAndWithdraw.Bean.UserCashBean;
 import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
@@ -168,14 +169,14 @@ public class AfbApplication extends BaseApplication {
 
     private PersonalInfo user = new PersonalInfo();
 
-    private int settltypecash;
+    private UserCashBean userCashBean;
 
-    public int getSettltypecash() {
-        return settltypecash;
+    public UserCashBean getUserCashBean() {
+        return userCashBean;
     }
 
-    public void setSettltypecash(int settltypecash) {
-        this.settltypecash = settltypecash;
+    public void setUserCashBean(UserCashBean userCashBean) {
+        this.userCashBean = userCashBean;
     }
 
     public LinkedHashMap<String, SportIdBean> beanHashMap = new LinkedHashMap<>();

@@ -19,6 +19,7 @@ public class DepositWithdrawParam {
     String PayMethod;
     String Remark;
     String imgurl;
+    String MinAmt;
 
     public DepositWithdrawParam(String ACT, String PT, String Amountinput, String Passwordinput, String pgLable, String vsn) {
         this.ACT = ACT;
@@ -49,6 +50,18 @@ public class DepositWithdrawParam {
         this.PayMethod = PayMethod;
         this.Remark = Remark;
         this.imgurl = imgurl;
+        this.pgLable = pgLable;
+        this.vsn = vsn;
+    }
+
+    public DepositWithdrawParam(String ACT, String PT, String Deposit, String AccName, String AccNumber, String lstBank, String MinAmt, String pgLable, String vsn) {
+        this.ACT = ACT;
+        this.PT = PT;
+        this.Deposit = Deposit;
+        this.AccName = AccName;
+        this.AccNumber = AccNumber;
+        this.lstBank = lstBank;
+        this.MinAmt = MinAmt;
         this.pgLable = pgLable;
         this.vsn = vsn;
     }

@@ -118,7 +118,7 @@ public class DepositFragment extends DepositWithdrawBaseFragment {
     public void showChoosePic(Uri uri) {
         String imgPath = ImageBase64.getPath_above19(mContext, uri);
         File file = new File(imgPath);
-        String url = "https://test.khsport.net:7011/api/ImgFile/Post";
+        String url = mainActivity.getApp().getUserCashBean().getFileuUploadUrl() + "api/ImgFile/Post";
         presenter.uploadImg(url, file);
     }
 

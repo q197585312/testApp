@@ -4,6 +4,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
+import com.nanyang.app.main.DepositAndWithdraw.Bean.AutoDepositBean;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.DepositDataBean;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.DepositWithdrawParam;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.UploadImgBean;
@@ -190,6 +191,53 @@ public class DepositWithdrawPresenter extends BaseRetrofitPresenter<DepositWithd
                         list.add(bean);
                     }
                     depositWithdrawBaseFragment.onGetDepositHistoryData(list);
+                }
+            }
+        });
+    }
+
+    public void getAutoDepositData() {
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTT", "wfTransferH5").getJson();
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                String updateString = AfbUtils.delHTMLTag(data);
+                JSONArray jsonArray = new JSONArray(updateString);
+                if (jsonArray.length() > 3) {
+                    JSONArray jsonArrayData = jsonArray.getJSONArray(3);
+                    JSONArray jsonDepositStr = jsonArrayData.getJSONArray(0);
+                    JSONArray jsonDepositList = jsonDepositStr.getJSONArray(2);
+                    List<AutoDepositBean> list = new ArrayList<>();
+                    for (int i = 0; i < jsonDepositList.length(); i++) {
+                        JSONArray dataDetail = jsonDepositList.getJSONArray(i);
+                        AutoDepositBean bean = new AutoDepositBean(dataDetail.getInt(0), dataDetail.getString(1),
+                                dataDetail.getString(2), dataDetail.getString(3), dataDetail.getString(4),
+                                dataDetail.getInt(5), dataDetail.getInt(6));
+                        list.add(bean);
+                    }
+                    depositWithdrawBaseFragment.onGetAutoDepositData(list);
+                }
+            }
+        });
+    }
+
+    public void submitAutoDeposit(String Daposit, String AccName, String AccNumber, String lstBank, String MinAmt) {
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new DepositWithdrawParam("AutoSave", "wfTransferH5", Daposit, AccName, AccNumber, lstBank, MinAmt, "", "").getJson();
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                String updateString = AfbUtils.delHTMLTag(data);
+                JSONArray jsonArray = new JSONArray(updateString);
+                if (jsonArray.length() > 3) {
+                    String msg;
+                    if (data.contains("successful") || data.contains("Successful")) {
+                        msg = "Deposit request successful! Credit will be deposited into your account shortly. Alternatively, you can contact our live chat to confirm your credit update.";
+                    } else if (data.contains("Sorry")) {
+                        msg = "Sorry, you have already made (deposit or withdraw) request. You can (deposit or withdraw) again after your current request is processed. Thank you.";
+                    } else {
+                        msg = "Failed";
+                    }
+                    depositWithdrawBaseFragment.onGetSubmitAutoDepositData(msg);
                 }
             }
         });
