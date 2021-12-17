@@ -69,7 +69,7 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
     @Override
     public void onGetSubmitAutoDepositData(String msg) {
         ToastUtils.showLong(msg);
-        if (msg.contains("successful")) {
+        if (msg.contains("Amount")) {
             edtAmount.setText("");
         }
     }

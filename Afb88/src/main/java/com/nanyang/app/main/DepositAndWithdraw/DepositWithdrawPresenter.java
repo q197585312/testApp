@@ -16,6 +16,7 @@ import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -227,11 +228,15 @@ public class DepositWithdrawPresenter extends BaseRetrofitPresenter<DepositWithd
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);
-                JSONArray jsonArray = new JSONArray(updateString);
+                String replace = updateString.replace("'", "\"");
+                JSONArray jsonArray = new JSONArray(replace);
                 if (jsonArray.length() > 3) {
                     String msg;
-                    if (data.contains("successful") || data.contains("Successful")) {
-                        msg = "Deposit request successful! Credit will be deposited into your account shortly. Alternatively, you can contact our live chat to confirm your credit update.";
+                    if (data.contains("finalAmt")) {
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(3);
+                        JSONObject jsonObject = jsonArray1.getJSONObject(0);
+                        double finalAmt = jsonObject.getDouble("finalAmt");
+                        msg = "Final Deposit Amount: " + finalAmt;
                     } else if (data.contains("Sorry")) {
                         msg = "Sorry, you have already made (deposit or withdraw) request. You can (deposit or withdraw) again after your current request is processed. Thank you.";
                     } else {
