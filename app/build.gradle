@@ -115,7 +115,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "388casino"]
                 buildConfigField "String", "Labelid", '"90"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.07'
+                versionName '4.08'
             }
             cintacasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "cintacasino"]
@@ -218,7 +218,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mastercasino88"]
                 buildConfigField "String", "Labelid", '"131"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.08'
+                versionName '4.09'
             }
 
 //            全部自动打包分割线 分两批打包 不然会OOM

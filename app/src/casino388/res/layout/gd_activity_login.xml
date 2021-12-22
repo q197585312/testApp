@@ -61,15 +61,15 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.7">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/gd_img_login_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:src="@mipmap/gd_title_logo" />
+                    android:layout_margin="40dp"
+                    android:src="@mipmap/gd_app_logo" />
 
                 <ImageView
                     android:id="@+id/gd_img_login_title_main"
@@ -155,12 +155,12 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_weight="1">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -293,51 +293,41 @@
                         android:layout_marginRight="10dp"
                         android:background="@color/white" />
 
-
-                    <LinearLayout
+                    <Button
+                        android:id="@+id/gd__login_login_btn"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/gd_login_button_bg"
+                        android:gravity="center"
+                        android:onClick="clickLogin"
+                        android:text="@string/gd_login"
+                        android:textAllCaps="true"
+                        android:textColor="#F8F8FF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                        <Button
-                            android:id="@+id/gd__login_login_btn"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/gd_login_button_bg_white2"
-                            android:gravity="center"
-                            android:onClick="clickLogin"
-                            android:text="@string/gd_login"
-                            android:textAllCaps="true"
-                            android:textColor="#008000"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/gd__tv_register"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/gd_login_button_bg_white2"
-                            android:gravity="center"
-                            android:text="@string/register"
-                            android:textAllCaps="true"
-                            android:textColor="#008000"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/gd__tv_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/gd_login_button_bg"
+                        android:gravity="center"
+                        android:text="@string/register"
+                        android:textAllCaps="true"
+                        android:textColor="#F8F8FF"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/gd__tv_whatsapp"
@@ -346,60 +336,24 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/gd_login_button_bg_green"
+                        android:background="@drawable/gd_login_button_bg"
                         android:gravity="center"
                         android:text="@string/whatsapp"
                         android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/gd__tv_promo"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/gd_login_button_bg_blue2"
-                        android:gravity="center"
-                        android:text="telegram"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/gd__tv_live_chat"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@mipmap/live_chat_bg"
-                        android:gravity="center"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
+                        android:textColor="#F8F8FF"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"></View>
+                        android:layout_height="16dp"></View>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
+            </FrameLayout>
         </LinearLayout>
 
     </FrameLayout>
@@ -589,4 +543,21 @@
         android:padding="2dp"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/gd__tv_promo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/gd_login_button_bg_red"
+        android:gravity="center"
+        android:text="@string/PROMOTION"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 </FrameLayout>

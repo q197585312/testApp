@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity {
     private String version;
     private View ll_language;
     private ImageView iv_language_flag;
-    private TextView tv_register, tvWhatsApp, tvPromo;
+    private TextView tv_register, tvWhatsApp, tvPromo, tvLiveChat;
     private View llContainer;
     private int[] sc;
     private View llBottomBtn;
@@ -410,6 +410,24 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/T-MasterCasino88");
                 }
             });
+            tvLiveChat = findViewById(R.id.gd__tv_live_chat);
+            tvLiveChat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://direct.lc.chat/8792026/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "LiveChat";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("rentalbaccarat")) {
@@ -580,6 +598,15 @@ public class LoginActivity extends BaseActivity {
                     layoutParams.width = width;
                     layoutParams.height = (int) (width / 1.46);
                     gd_img_login_title_main_sbocasino77.setLayoutParams(layoutParams);
+                }
+            });
+        }
+
+        if (BuildConfig.FLAVOR.equals("casino388")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6282298087754&text&app_absent=0");
                 }
             });
         }
