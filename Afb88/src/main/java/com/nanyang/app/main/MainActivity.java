@@ -297,13 +297,4 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         (presenter).loadAllImages(callBack);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 101 && data != null && !TextUtils.isEmpty(data.getData().toString()) && getUploadFragment() != null) {
-            Uri uri = data.getData();
-            getUploadFragment().showChoosePic(uri);
-        }
-    }
-
 }

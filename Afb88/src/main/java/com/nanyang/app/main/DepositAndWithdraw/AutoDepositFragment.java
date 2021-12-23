@@ -1,8 +1,12 @@
 package com.nanyang.app.main.DepositAndWithdraw;
 
+import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
@@ -30,8 +34,30 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
     TextView tvMinAmount;
     @BindView(R.id.tv_submit)
     TextView tvSubmit;
+    @BindView(R.id.tv_result_bank_name)
+    TextView tvResultBankName;
+    @BindView(R.id.scrollview)
+    ScrollView scrollview;
+    @BindView(R.id.tv_copy)
+    TextView tvCopy;
+    @BindView(R.id.ll_result)
+    LinearLayout llResult;
+    @BindView(R.id.tv_final_amount)
+    TextView tvFinalAmount;
+    @BindView(R.id.tv_time_limit)
+    TextView tvTimeLimit;
+    @BindView(R.id.tv_result_bank_name_content)
+    TextView tvResultBankNameContent;
+    @BindView(R.id.tv_result_account_name)
+    TextView tvResultAccountName;
+    @BindView(R.id.tv_result_account_number)
+    TextView tvResultAccountNumber;
     private List<AutoDepositBean> list;
     private AutoDepositBean currentAutoDepositBean;
+    private int count;
+    private Handler handler = new Handler();
+    private boolean isCanCountDown = true;
+    private boolean isNeedSendExpired = true;
 
     @Override
     public int onSetLayoutId() {
@@ -42,6 +68,7 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
     public void initView() {
         super.initView();
         tvBankName.setText(getString(R.string.to) + ": " + getString(R.string.bank_name));
+        tvResultBankName.setText(getString(R.string.to) + ": " + getString(R.string.bank_name));
     }
 
     @Override
@@ -67,14 +94,79 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
     }
 
     @Override
-    public void onGetSubmitAutoDepositData(String msg) {
-        ToastUtils.showLong(msg);
-        if (msg.contains("Amount")) {
-            edtAmount.setText("");
-        }
+    public void onGetSubmitAutoDepositData(String finalAmount, String depReqId) {
+        isNeedSendExpired = true;
+        tvFinalAmount.setText(finalAmount);
+        tvResultBankNameContent.setText(tvBankNameContent.getText().toString());
+        tvResultAccountName.setText(tvAccountName.getText().toString());
+        tvResultAccountNumber.setText(tvAccountNumber.getText().toString());
+        count = 900;
+        new Thread() {
+            @Override
+            public void run() {
+                while (count > 0 && isCanCountDown) {
+                    count--;
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (tvTimeLimit != null) {
+                                int sec = count % 60;
+                                int min = count / 60;
+                                tvTimeLimit.setText(((min < 10) ? "0" + min : min) + " : " + ((sec < 10) ? "0" + sec : sec));
+                                if (count % 8 == 0) {
+                                    presenter.checkAutoDeposit(finalAmount, depReqId, 2);
+                                }
+                            }
+                        }
+                    });
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("kkkaaak", "count: " + count);
+                }
+                if (isNeedSendExpired) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("kkkaaak", "sendExpired: " + count);
+                            onGetSubmitAutoDepositErrorData("Your deposit request is expired. Please submit another deposit request.");
+                            presenter.expiredAutoDeposit(depReqId);
+                        }
+                    });
+                }
+            }
+        }.start();
+        llResult.setVisibility(View.VISIBLE);
+        llResult.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 
-    @OnClick({R.id.tv_bank_name_content, R.id.tv_submit})
+    @Override
+    public void onGetCheckData() {
+        count = 0;
+        isNeedSendExpired = false;
+        llResult.setVisibility(View.GONE);
+        scrollview.fullScroll(ScrollView.FOCUS_UP);
+    }
+
+    @Override
+    public void onGetSubmitAutoDepositErrorData(String msg) {
+        ToastUtils.showLong(msg);
+    }
+
+    @Override
+    public void onGetExpireData() {
+        llResult.setVisibility(View.GONE);
+        scrollview.fullScroll(ScrollView.FOCUS_UP);
+    }
+
+    @OnClick({R.id.tv_bank_name_content, R.id.tv_submit, R.id.tv_copy})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_bank_name_content:
@@ -106,7 +198,16 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
                     ToastUtils.showLong("Min Deposit Amount: " + minDepositAmt);
                 }
                 break;
+            case R.id.tv_copy:
+
+                break;
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isCanCountDown = false;
+        handler.removeCallbacksAndMessages(null);
+    }
 }

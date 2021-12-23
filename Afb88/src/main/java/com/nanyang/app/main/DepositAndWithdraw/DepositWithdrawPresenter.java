@@ -1,5 +1,7 @@
 package com.nanyang.app.main.DepositAndWithdraw;
 
+import android.util.Log;
+
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
@@ -227,23 +229,79 @@ public class DepositWithdrawPresenter extends BaseRetrofitPresenter<DepositWithd
         doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
+                Log.d("kkkaaak", "submit: " + data);
                 String updateString = AfbUtils.delHTMLTag(data);
                 String replace = updateString.replace("'", "\"");
                 JSONArray jsonArray = new JSONArray(replace);
                 if (jsonArray.length() > 3) {
-                    String msg;
                     if (data.contains("finalAmt")) {
                         JSONArray jsonArray1 = jsonArray.getJSONArray(3);
                         JSONObject jsonObject = jsonArray1.getJSONObject(0);
                         double finalAmt = jsonObject.getDouble("finalAmt");
-                        msg = "Final Deposit Amount: " + finalAmt;
+                        int depReqId = jsonObject.getInt("depReqId");
+                        checkAutoDeposit(finalAmt + "", depReqId + "", 1);
                     } else if (data.contains("Sorry")) {
-                        msg = "Sorry, you have already made (deposit or withdraw) request. You can (deposit or withdraw) again after your current request is processed. Thank you.";
+                        String msg = "Sorry, you have already made (deposit or withdraw) request. You can (deposit or withdraw) again after your current request is processed. Thank you.";
+                        depositWithdrawBaseFragment.onGetSubmitAutoDepositErrorData(msg);
                     } else {
-                        msg = "Failed";
+                        String msg = "Failed";
+                        depositWithdrawBaseFragment.onGetSubmitAutoDepositErrorData(msg);
                     }
-                    depositWithdrawBaseFragment.onGetSubmitAutoDepositData(msg);
                 }
+            }
+        });
+    }
+
+    public void checkAutoDeposit(String finalAmt, String depReqId, int type) {
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new DepositWithdrawParam("Check", "wfTransferH5", depReqId + "", "", "").getJson();
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                Log.d("kkkaaak", "check: " + data);
+                String updateString = AfbUtils.delHTMLTag(data);
+                String replace = updateString.replace("'", "\"");
+                JSONArray jsonArray = new JSONArray(replace);
+                if (jsonArray.length() > 3) {
+                    JSONArray jsonArray1 = jsonArray.getJSONArray(3);
+                    JSONObject jsonObject = jsonArray1.getJSONObject(0);
+                    int status = jsonObject.getInt("status");
+                    if (status == 1) {
+                        if (type == 1) {
+                            Log.d("kkkaaak", "init: ");
+                            depositWithdrawBaseFragment.onGetSubmitAutoDepositData(finalAmt + "", depReqId + "");
+                        }
+                    } else if (status == 2) {
+                        String msg = "Final Deposit Amount: " + finalAmt;
+                        depositWithdrawBaseFragment.onGetSubmitAutoDepositErrorData(msg);
+                        depositWithdrawBaseFragment.onGetCheckData();
+                    } else {
+                        String msg = "Your deposit request is expired. Please submit another deposit request.";
+                        depositWithdrawBaseFragment.onGetSubmitAutoDepositErrorData(msg);
+                        depositWithdrawBaseFragment.onGetCheckData();
+                    }
+                }
+            }
+
+            @Override
+            protected void onAccept() {
+//                super.onAccept();
+            }
+        });
+    }
+
+    public void expiredAutoDeposit(String depReqId) {
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new DepositWithdrawParam("Expire", "wfTransferH5", depReqId + "", "", "").getJson();
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                Log.d("kkkaaak", "expiredData: " + data);
+                String updateString = AfbUtils.delHTMLTag(data);
+                depositWithdrawBaseFragment.onGetExpireData();
+            }
+
+            @Override
+            protected void onError(Throwable throwable) {
+                super.onError(throwable);
             }
         });
     }

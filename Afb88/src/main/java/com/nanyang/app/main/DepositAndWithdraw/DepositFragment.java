@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.ImageBase64;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.DepositDataBean;
@@ -21,7 +22,6 @@ import com.nanyang.app.main.DepositAndWithdraw.Bean.PayMethodBean;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.UploadImgBean;
 import com.nanyang.app.main.DepositAndWithdraw.Pop.PopBankName;
 import com.nanyang.app.main.DepositAndWithdraw.Pop.PopPayMethod;
-import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.io.File;
@@ -55,7 +55,7 @@ public class DepositFragment extends DepositWithdrawBaseFragment {
     private List<PayMethodBean> payMethodList;
     private String payId;
     private List<DepositDataBean> list;
-    private MainActivity mainActivity;
+    private BaseToolbarActivity mainActivity;
     private String uploadImgStr;
     private DepositDataBean currentDepositDataBean;
 
@@ -79,7 +79,7 @@ public class DepositFragment extends DepositWithdrawBaseFragment {
         payMethodList.add(new PayMethodBean("Online Deposit", "1"));
         setPayMethod(payMethodList.get(0));
         presenter.getDepositData();
-        mainActivity = (MainActivity) getActivity();
+        mainActivity = (BaseToolbarActivity) getActivity();
         mainActivity.setUploadFragment(this);
     }
 

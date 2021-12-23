@@ -49,7 +49,19 @@ public abstract class DepositWithdrawBaseFragment extends BaseFragment<DepositWi
 
     }
 
-    public void onGetSubmitAutoDepositData(String msg) {
+    public void onGetSubmitAutoDepositData(String finalAmount, String depReqId) {
+
+    }
+
+    public void onGetCheckData() {
+
+    }
+
+    public void onGetSubmitAutoDepositErrorData(String msg) {
+
+    }
+
+    public void onGetExpireData() {
 
     }
 

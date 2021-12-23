@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -503,6 +504,9 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         if (requestCode == 7 && resultCode == 8) {
             String gameType = data.getStringExtra("gameType");
             reLogin();
+        } else if (requestCode == 101 && data != null && !TextUtils.isEmpty(data.getData().toString()) && getUploadFragment() != null) {
+            Uri uri = data.getData();
+            getUploadFragment().showChoosePic(uri);
         }
     }
 

@@ -63,6 +63,30 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                                     String regex = "window.location";
                                     Pattern p = Pattern.compile(regex);
                                     Matcher m = p.matcher(s);
+//                                    final MainPresenter switchLanguage = new MainPresenter(baseContext);
+//                                    switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
+//                                                                  @Override
+//                                                                  public void onBack(SettingAllDataBean data) throws JSONException {
+//                                                                      checkLogin(0x01);
+//                                                                  }
+//                                                              }
+//                                    );
+//                                    String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
+//                                    Map<String, String> headers = new HashMap<>();
+//                                    headers.put("isios", "true");
+//                                    headers.put("Authorization", ss);
+//
+//                                    switchLanguage.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
+//                                        @Override
+//                                        public void onBack(String data) {
+//                                            PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
+//                                            personalInfo.setPassword(((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getUser().getPassword());
+//                                            personalInfo.setLoginUrl(url);
+//                                            ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setUser(personalInfo);
+//
+//                                            checkLogin(0x10);
+//                                        }
+//                                    });
                                     if (m.find()) {
                                         final MainPresenter switchLanguage = new MainPresenter(baseContext);
                                         switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {

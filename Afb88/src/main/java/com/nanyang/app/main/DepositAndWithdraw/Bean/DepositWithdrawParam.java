@@ -20,6 +20,7 @@ public class DepositWithdrawParam {
     String Remark;
     String imgurl;
     String MinAmt;
+    String depReqId;
 
     public DepositWithdrawParam(String ACT, String PT, String Amountinput, String Passwordinput, String pgLable, String vsn) {
         this.ACT = ACT;
@@ -62,6 +63,14 @@ public class DepositWithdrawParam {
         this.AccNumber = AccNumber;
         this.lstBank = lstBank;
         this.MinAmt = MinAmt;
+        this.pgLable = pgLable;
+        this.vsn = vsn;
+    }
+
+    public DepositWithdrawParam(String ACT, String PT, String depReqId, String pgLable, String vsn) {
+        this.ACT = ACT;
+        this.PT = PT;
+        this.depReqId = depReqId;
         this.pgLable = pgLable;
         this.vsn = vsn;
     }
