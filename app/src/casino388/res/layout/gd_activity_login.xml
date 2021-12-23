@@ -65,11 +65,11 @@
 
                 <ImageView
                     android:id="@+id/gd_img_login_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="40dp"
-                    android:src="@mipmap/gd_app_logo" />
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="80dp"
+                    android:background="@mipmap/gd_title_logo" />
 
                 <ImageView
                     android:id="@+id/gd_img_login_title_main"
@@ -338,7 +338,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/gd_login_button_bg"
+                        android:background="@drawable/gd_whatsapp_button_bg"
                         android:gravity="center"
                         android:text="@string/whatsapp"
                         android:textAllCaps="true"

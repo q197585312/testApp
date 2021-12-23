@@ -530,9 +530,9 @@ public class LobbyActivity extends BaseActivity {
                         ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
                         Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
                         imageView.setImageBitmap(bitmap);
-                        if (item.getGameType() == AppConfig.pragmatic){
+                        if (item.getGameType() == AppConfig.pragmatic) {
                             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                        }else {
+                        } else {
                             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                         }
                         TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
@@ -851,7 +851,7 @@ public class LobbyActivity extends BaseActivity {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, getString(R.string.afb1188), AppConfig.afb1188));
             }
             int slot = R.mipmap.gd_slots;
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 slot = R.mipmap.gd_slots_v;
             }
             hallGameItemBeenS.add(new HallGameItemBean(slot, getString(R.string.slots), AppConfig.slots));
@@ -867,7 +867,8 @@ public class LobbyActivity extends BaseActivity {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, getString(R.string.king_kong), AppConfig.kingKong));
             }
             if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") || BuildConfig.FLAVOR.equals("ratucasino88") ||
-                    BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga")) {
+                    BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("kasino365") ||
+                    BuildConfig.FLAVOR.equals("mainkasino")) {
                 if (BuildConfig.FLAVOR.equals("oricasino")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.249/"));
                 } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
@@ -878,6 +879,10 @@ public class LobbyActivity extends BaseActivity {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "https://b.link/adaqq"));
                 } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "https://b.link/adaqq"));
+                } else if (BuildConfig.FLAVOR.equals("kasino365")) {
+                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_ninekiu, "", AppConfig.bandarq, "https://ninekiu.com/core/m/"));
+                } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
+                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_warungqq, "WARUNGQQ", AppConfig.bandarq, "http://202.95.10.115/core/m/?ref=mainkasinoapp"));
                 }
             }
         }
