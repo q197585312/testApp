@@ -684,4 +684,7 @@
     <string name="minimum_deposit_amount">Minimum Deposit Amount</string>
     <string name="from">From</string>
     <string name="to_other">To</string>
+    <string name="deposit_amount">Deposit Amount</string>
+    <string name="time_limit">Time Limit</string>
+    <string name="copy_account_number">Copy Account Number</string>
 </resources>

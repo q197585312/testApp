@@ -260,7 +260,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:text="Deposit Amount"
+                            android:text="@string/deposit_amount"
                             android:textColor="@color/black"
                             android:textSize="14sp"></TextView>
 
@@ -296,7 +296,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:text="Time Limit"
+                            android:text="@string/time_limit"
                             android:textColor="@color/black"
                             android:textSize="14sp"></TextView>
 
@@ -438,7 +438,7 @@
                         android:paddingTop="8dp"
                         android:paddingRight="25dp"
                         android:paddingBottom="8dp"
-                        android:text="Copy Account Number"
+                        android:text="@string/copy_account_number"
                         android:textColor="@color/black"></TextView>
                 </LinearLayout>
 

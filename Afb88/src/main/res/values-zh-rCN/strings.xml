@@ -635,4 +635,7 @@
     <string name="minimum_deposit_amount">最低存款额</string>
     <string name="from">从</string>
     <string name="to_other">到</string>
+    <string name="deposit_amount">存款数额</string>
+    <string name="time_limit">时间限定</string>
+    <string name="copy_account_number">复制帐号</string>
 </resources>

@@ -1,5 +1,8 @@
 package com.nanyang.app.main.DepositAndWithdraw;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -199,7 +202,10 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
                 }
                 break;
             case R.id.tv_copy:
-
+                ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData mClipData = ClipData.newPlainText("Label", tvResultAccountNumber.getText().toString().trim());
+                cm.setPrimaryClip(mClipData);
+                ToastUtils.showLong("Copy Successful");
                 break;
         }
     }
