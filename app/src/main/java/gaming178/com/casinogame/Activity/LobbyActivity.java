@@ -129,6 +129,22 @@ public class LobbyActivity extends BaseActivity {
     TextView tv_home_deposit_l;
     @BindView(R2.id.tv_home_withdraw_l)
     TextView tv_home_withdraw_l;
+    @BindView(R2.id.view_bottom)
+    View view_bottom;
+    @BindView(R2.id.view_top)
+    View view_top;
+    @BindView(R2.id.view_1)
+    View view_1;
+    @BindView(R2.id.view_2)
+    View view_2;
+    @BindView(R2.id.view_3)
+    View view_3;
+    @BindView(R2.id.view_4)
+    View view_4;
+    @BindView(R2.id.view_5)
+    View view_5;
+    @BindView(R2.id.view_6)
+    View view_6;
     private String announcement = "";
     private UpdateAnnouncement updateAnnouncement = null;
     private Thread threadAnnouncement = null;
@@ -421,6 +437,28 @@ public class LobbyActivity extends BaseActivity {
             ll_top_parent.setBackgroundColor(Color.BLACK);
             ll_bottom.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color2));
         }
+
+        if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+            ll_bottom.setBackgroundResource(R.drawable.hokicasino_home_bottom);
+            tv_home_home.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
+            tv_home_deposit.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
+            tv_home_withdraw.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
+            tv_home_live_chat.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
+            tv_home_logout.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
+            tv_home_home.setTextColor(Color.parseColor("#C4A550"));
+            tv_home_deposit.setTextColor(Color.parseColor("#C4A550"));
+            tv_home_withdraw.setTextColor(Color.parseColor("#C4A550"));
+            tv_home_live_chat.setTextColor(Color.parseColor("#C4A550"));
+            tv_home_logout.setTextColor(Color.parseColor("#C4A550"));
+            view_1.setVisibility(View.VISIBLE);
+            view_2.setVisibility(View.VISIBLE);
+            view_3.setVisibility(View.VISIBLE);
+            view_4.setVisibility(View.VISIBLE);
+            view_5.setVisibility(View.VISIBLE);
+            view_6.setVisibility(View.VISIBLE);
+            view_top.setVisibility(View.VISIBLE);
+            view_bottom.setVisibility(View.VISIBLE);
+        }
     }
 
     BannerViewPager viewPager;
@@ -541,7 +579,15 @@ public class LobbyActivity extends BaseActivity {
                             rl_parent.setBackgroundResource(R.mipmap.home_game_select);
                             textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
                         } else {
-                            rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
+                            if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+                                if (position < 4) {
+                                    rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item_top);
+                                } else {
+                                    rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item);
+                                }
+                            } else {
+                                rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
+                            }
                             if (BuildConfig.FLAVOR.equals("hitamslot")) {
                                 textView.setTextColor(Color.WHITE);
                             } else {

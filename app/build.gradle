@@ -328,13 +328,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.07'
             }
-            lipocasino338 {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "lipocasino338"]
-                buildConfigField "String", "Labelid", '"160"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.08'
-            }
-
 
             winnicasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "winnicasino"]

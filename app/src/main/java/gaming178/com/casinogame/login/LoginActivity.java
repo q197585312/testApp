@@ -611,6 +611,35 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
+        if (BuildConfig.FLAVOR.equals("kasino365")) {
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    Log.d("AppData", result);
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                            popImg.setLoadUrl(result + "/images/popup.jpg");
+                            popImg.showPopupCenterWindow();
+                        }
+                    });
+                }
+            }.start();
+        }
+
+        if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6282187616272&text&app_absent=0");
+                }
+            });
+        }
+
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {

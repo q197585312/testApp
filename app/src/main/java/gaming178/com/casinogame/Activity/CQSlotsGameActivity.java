@@ -1,6 +1,7 @@
 package gaming178.com.casinogame.Activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -23,6 +25,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.entity.CQSlotsGameInfoBean;
 import gaming178.com.casinogame.Util.GlideRoundTransform;
@@ -43,6 +46,7 @@ public class CQSlotsGameActivity extends BaseActivity {
     GridView gridView;
     EditText edtSearch;
     ImageView imgClear;
+    LinearLayout ll_parent;
     List<CQSlotsGameInfoBean.DataBean> allGameList;
     AdapterViewContent<CQSlotsGameInfoBean.DataBean> adapterViewContent;
 
@@ -69,6 +73,16 @@ public class CQSlotsGameActivity extends BaseActivity {
     }
 
     private void initSearch() {
+        if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+            toolbar.setNavigationIcon(R.mipmap.search_back);
+            toolbar.setBackgroundResource(R.mipmap.bg_search);
+            ll_parent = findViewById(R.id.gd__ll_parent);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom_land);
+            } else {
+                ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
+            }
+        }
         edtSearch = findViewById(R.id.edt_search);
         imgClear = findViewById(R.id.img_clear);
         imgClear.setOnClickListener(new View.OnClickListener() {

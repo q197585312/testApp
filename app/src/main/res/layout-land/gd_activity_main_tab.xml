@@ -313,76 +313,129 @@
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/black"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_home_home"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/gd_home_home"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="@string/gd_home"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="14sp"></TextView>
+        <View
+            android:id="@+id/view_top"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:visibility="gone"></View>
 
-        <TextView
-            android:id="@+id/tv_home_deposit"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
             android:layout_weight="1"
-            android:drawableTop="@mipmap/gd_home_deposit"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="@string/gd_deposit"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="14sp"></TextView>
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_home_withdraw"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/gd_home_withdraw"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="@string/gd_withdrawal"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="14sp"></TextView>
+            <View
+                android:id="@+id/view_1"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"></View>
 
-        <TextView
-            android:id="@+id/tv_home_live_chat"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/gd_home_live_chat"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="@string/Live_Chat"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="13sp"></TextView>
+            <TextView
+                android:id="@+id/tv_home_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/gd_home_home"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/gd_home"
+                android:textColor="@color/white"
+                android:textSize="13sp"></TextView>
 
-        <TextView
-            android:id="@+id/tv_home_logout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/gd_home_exit"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="@string/logout"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="14sp"></TextView>
+            <View
+                android:id="@+id/view_2"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"></View>
+
+            <TextView
+                android:id="@+id/tv_home_deposit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/gd_home_deposit"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/gd_deposit"
+                android:textColor="@color/white"
+                android:textSize="13sp"></TextView>
+
+            <View
+                android:id="@+id/view_3"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"></View>
+
+            <TextView
+                android:id="@+id/tv_home_withdraw"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/gd_home_withdraw"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/gd_withdrawal"
+                android:textColor="@color/white"
+                android:textSize="13sp"></TextView>
+
+            <View
+                android:id="@+id/view_4"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"></View>
+
+            <TextView
+                android:id="@+id/tv_home_live_chat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/gd_home_live_chat"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Livechat"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:visibility="gone"></TextView>
+
+            <View
+                android:id="@+id/view_5"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"></View>
+
+            <TextView
+                android:id="@+id/tv_home_logout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/gd_home_exit"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/logout"
+                android:textColor="@color/white"
+                android:textSize="13sp"></TextView>
+
+            <View
+                android:id="@+id/view_6"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"></View>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:visibility="gone"></View>
+
 
     </LinearLayout>
 

@@ -5,14 +5,29 @@
     android:background="@mipmap/gd_login_bg"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/gd_img_login_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@mipmap/gd_title_logo"
-        android:visibility="gone" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@mipmap/bg_top">
+
+        <ImageView
+            android:id="@+id/gd_img_open"
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/gd_menu"
+            android:visibility="visible"></ImageView>
+
+        <ImageView
+            android:id="@+id/gd_img_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/gd_title_logo" />
+
+
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -22,21 +37,6 @@
         <include
             layout="@layout/toolbar_layout"
             android:visibility="gone" />
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/gd_menu_bg">
-
-            <ImageView
-                android:id="@+id/gd_img_open"
-                android:layout_width="30dp"
-                android:layout_height="27dp"
-                android:layout_margin="8dp"
-                android:src="@mipmap/gd_menu"
-                android:visibility="visible"></ImageView>
-
-        </FrameLayout>
 
         <ImageView
             android:id="@+id/gd_img_gif"
@@ -73,106 +73,104 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.7">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/gd_img_login_title_main"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:visibility="gone" />
-
-                <LinearLayout
-                    android:id="@+id/ll_lg_and_remember"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/gd__ll_choose_language"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/gd_rectangle_white_radius10"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                        <ImageView
-                            android:id="@+id/gd__iv_language_flag"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:src="@mipmap/gd_flag_british_bg" />
-
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_marginLeft="30dp"
-                            android:src="@mipmap/white_bottom" />
-
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="1"></View>
-
-                    <LinearLayout
-                        android:id="@+id/ll_remember_me"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/remember_me"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"></TextView>
-
-                        <CheckBox
-                            android:id="@+id/cb_remember_me"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/checkbox_login_style"
-                            android:button="@null"
-                            android:clickable="false"></CheckBox>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/slide_md" />
 
                 <ImageView
                     android:id="@+id/gd_img_login_title_main_sbocasino77"
-                    android:layout_width="270dp"
-                    android:layout_height="158dp"
-                    android:layout_above="@+id/ll_lg_and_remember"
-                    android:layout_centerHorizontal="true"
-                    android:background="@mipmap/gd_title_logo" />
-            </RelativeLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@mipmap/gd_title_logo"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_lg_and_remember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/gd__ll_choose_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gd_rectangle_white_radius10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/gd__iv_language_flag"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@mipmap/gd_flag_british_bg" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="30dp"
+                        android:src="@mipmap/white_bottom" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></View>
+
+                <LinearLayout
+                    android:id="@+id/ll_remember_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remember_me"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"></TextView>
+
+                    <CheckBox
+                        android:id="@+id/cb_remember_me"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/checkbox_login_style"
+                        android:button="@null"
+                        android:clickable="false"></CheckBox>
+                </LinearLayout>
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@mipmap/gd_win365_center_bg"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -222,110 +220,132 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@mipmap/gd_win365_input_bg"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/hokicasino_input_bg"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_user_name"
+                        <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginLeft="8dp"
-                            android:background="@mipmap/ratuuser"
+                            android:layout_marginLeft="15dp"
+                            android:src="@mipmap/ratuuser"></ImageView>
+
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:drawablePadding="6dp"
                             android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:text="@string/input_username"
                             android:textColor="@color/white"
-                            android:textSize="16sp"></TextView>
+                            android:textSize="16sp"
+                            android:visibility="gone"></TextView>
 
                         <EditText
                             android:id="@+id/gd__login_username_edt"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="50dp"
                             android:background="@null"
                             android:hint="@string/input_username"
                             android:paddingLeft="15dp"
                             android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textCursorDrawable="@null"
-                            android:textSize="17sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@mipmap/gd_win365_input_bg"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/hokicasino_input_bg"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_password_name"
+                        <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginLeft="8dp"
-                            android:background="@mipmap/ratupw"
+                            android:layout_marginLeft="15dp"
+                            android:src="@mipmap/ratupw"></ImageView>
+
+                        <TextView
+                            android:id="@+id/tv_password_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:drawablePadding="6dp"
                             android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:text="@string/input_password"
                             android:textColor="@color/white"
-                            android:textSize="16sp"></TextView>
+                            android:textSize="16sp"
+                            android:visibility="gone"></TextView>
 
                         <EditText
                             android:id="@+id/gd__login_password_edt"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="50dp"
                             android:background="@null"
                             android:hint="@string/input_password"
                             android:inputType="textPassword"
                             android:paddingLeft="15dp"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textCursorDrawable="@null"
-                            android:textSize="17sp" />
-
+                            android:textSize="16sp" />
                     </LinearLayout>
 
-
-                    <Button
-                        android:id="@+id/gd__login_login_btn"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@mipmap/gd_win365_login_bg"
-                        android:gravity="center"
-                        android:onClick="clickLogin"
-                        android:text="@string/gd_login"
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
+                        <Button
+                            android:id="@+id/gd__login_login_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gd_login_button_bg_gold12"
+                            android:gravity="center"
+                            android:onClick="clickLogin"
+                            android:text="@string/gd_login"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/gd__tv_register"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@mipmap/gd_win365_register_bg"
-                        android:gravity="center"
-                        android:text="@string/register"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/gd__tv_register"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gd_login_button_bg_gold12"
+                            android:gravity="center"
+                            android:text="@string/register"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/gd__tv_whatsapp"
@@ -333,21 +353,22 @@
                         android:layout_height="40dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/gd_login_button_bg_gold9"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/gd_login_button_bg_gold12"
                         android:gravity="center"
                         android:text="@string/whatsapp"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
+
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="15dp"></View>
+                        android:layout_height="25dp"></View>
 
                 </LinearLayout>
 
