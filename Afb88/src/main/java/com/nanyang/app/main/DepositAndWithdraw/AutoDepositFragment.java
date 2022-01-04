@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.nanyang.app.R;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.AutoDepositBean;
 import com.nanyang.app.main.DepositAndWithdraw.Pop.PopAutoBankName;
+import com.nanyang.app.main.DepositAndWithdraw.Pop.PopHint;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.List;
@@ -61,6 +62,7 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
     private Handler handler = new Handler();
     private boolean isCanCountDown = true;
     private boolean isNeedSendExpired = true;
+    private PopHint popHint;
 
     @Override
     public int onSetLayoutId() {
@@ -72,6 +74,7 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
         super.initView();
         tvBankName.setText(getString(R.string.to) + ": " + getString(R.string.bank_name));
         tvResultBankName.setText(getString(R.string.to) + ": " + getString(R.string.bank_name));
+        popHint = new PopHint(mContext, edtAmount);
     }
 
     @Override
@@ -103,7 +106,7 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
         tvResultBankNameContent.setText(tvBankNameContent.getText().toString());
         tvResultAccountName.setText(tvAccountName.getText().toString());
         tvResultAccountNumber.setText(tvAccountNumber.getText().toString());
-        count = 900;
+        count = 20;
         new Thread() {
             @Override
             public void run() {
@@ -148,6 +151,9 @@ public class AutoDepositFragment extends DepositWithdrawBaseFragment {
                 scrollview.fullScroll(ScrollView.FOCUS_DOWN);
             }
         });
+        if (popHint != null) {
+            popHint.showPopupCenterWindow();
+        }
     }
 
     @Override
