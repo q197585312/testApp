@@ -629,6 +629,18 @@ public class LoginActivity extends BaseActivity {
                     });
                 }
             }.start();
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "http://66.29.153.229/bonus/");
+                }
+            });
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6282182318018&text&app_absent=0");
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("hokicasino88")) {
