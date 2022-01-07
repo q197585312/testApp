@@ -564,7 +564,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6287743162916");
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=+85569569189");
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
