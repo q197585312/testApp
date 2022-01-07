@@ -135,6 +135,12 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
             tvRegisterVerifyCode.setTextColor(Color.BLACK);
             btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold11);
+        } else if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+            toolbar.setBackgroundResource(R.mipmap.bg_top);
+            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
+            btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
+            tvRegisterVerifyCode.setTextColor(Color.BLACK);
+            btnRegist.setTextColor(Color.BLACK);
         }
 
         setLayout.setVisibility(View.GONE);
