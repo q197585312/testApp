@@ -580,11 +580,7 @@ public class LobbyActivity extends BaseActivity {
                             textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
                         } else {
                             if (BuildConfig.FLAVOR.equals("hokicasino88")) {
-                                if (position < 4) {
-                                    rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item_top);
-                                } else {
-                                    rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item);
-                                }
+                                rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item);
                             } else {
                                 rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
                             }
