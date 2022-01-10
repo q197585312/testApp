@@ -346,7 +346,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/gd_login_button_bg_365_k_gold"
                         android:gravity="center"
-                        android:text="PROMO SPECIAL"
+                        android:text="BONUS SPESIAL"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textSize="18sp"

@@ -458,6 +458,8 @@ public class LobbyActivity extends BaseActivity {
             view_6.setVisibility(View.VISIBLE);
             view_top.setVisibility(View.VISIBLE);
             view_bottom.setVisibility(View.VISIBLE);
+        } else if (BuildConfig.FLAVOR.equals("kasino365")) {
+            ll_bottom.setBackgroundColor(Color.parseColor("#050606"));
         }
     }
 
