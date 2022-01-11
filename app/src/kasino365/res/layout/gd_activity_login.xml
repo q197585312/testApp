@@ -65,34 +65,27 @@
 
                 <ImageView
                     android:id="@+id/gd_img_login_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="57dp"
-                    android:layout_gravity="bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_gravity="bottom|center_horizontal"
                     android:layout_marginBottom="10dp"
                     android:src="@mipmap/gd_title_logo" />
 
                 <ImageView
-                    android:id="@+id/gd_img_login_title_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:id="@+id/gd_img_login_title_main_sbocasino77"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@mipmap/gd_title_logo"
-                    android:visibility="gone" />
+                    android:layout_marginLeft="30dp"
+                    android:background="@mipmap/zeus" />
 
                 <ImageView
-                    android:id="@+id/gd_img_login_title_main_sbocasino77"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:id="@+id/gd_img_login_title_main"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginRight="25dp"
-                    android:background="@mipmap/gd_title_logo"
-                    android:visibility="gone" />
-
+                    android:layout_marginRight="60dp"
+                    android:background="@mipmap/aztec" />
             </FrameLayout>
 
             <LinearLayout

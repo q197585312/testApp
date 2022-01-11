@@ -1,5 +1,6 @@
 package gaming178.com.casinogame.login;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -16,6 +17,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -60,6 +64,7 @@ import gaming178.com.casinogame.Bean.UserResponseBean;
 import gaming178.com.casinogame.Popupwindow.PopImg;
 import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.AppConfig;
+import gaming178.com.casinogame.Util.CircleAnimation;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HttpClient;
@@ -108,7 +113,6 @@ public class LoginActivity extends BaseActivity {
     private ImageView img_en;
     private TextView tv_user_name, tv_password_name;
     private ImageView imgGif1, imgGif2;
-    private TextView tvCount;
     private boolean isNeedCount = true;
     double count = 555650100;
     private BannerViewPager bannerView;
@@ -237,27 +241,15 @@ public class LoginActivity extends BaseActivity {
                     popWebView.showPopupCenterWindow();
                 }
             });
-            tvCount = findViewById(R.id.tv_count);
-            new Thread() {
-                @Override
-                public void run() {
-                    while (isNeedCount) {
-                        try {
-                            Thread.sleep(3);
-                            count++;
-                            getHandler().post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    String a = Gd88Utils.formatTosepara(count);
-                                    tvCount.setText("30," + a);
-                                }
-                            });
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }.start();
+            ObjectAnimator objectTranslationY = ObjectAnimator.ofFloat(tvWhatsApp, "translationY", 0, -40, 0);
+            objectTranslationY.setDuration(700);
+            objectTranslationY.setRepeatCount(Animation.INFINITE);
+            ObjectAnimator objectScaleY = ObjectAnimator.ofFloat(tvWhatsApp, "scaleY", (float) 0.95, (float) 1.25, (float) 0.95);
+            objectScaleY.setDuration(700);
+            objectScaleY.setRepeatCount(Animation.INFINITE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(objectTranslationY, objectScaleY);
+            animatorSet.start();
         }
         if (BuildConfig.FLAVOR.equals("ratucasino88")) {
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.kilat).into(img_login_title);
@@ -629,6 +621,25 @@ public class LoginActivity extends BaseActivity {
                     });
                 }
             }.start();
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_365_logo).into(img_login_title);
+
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            CircleAnimation circleAnimation = new CircleAnimation(40);
+            circleAnimation.setDuration(8000);
+            circleAnimation.setRepeatCount(-1);
+            circleAnimation.setInterpolator(new LinearInterpolator());
+            img_login_title_main.startAnimation(circleAnimation);
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            ObjectAnimator objectAnimatorY = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationY", 0, -30, 0);
+            objectAnimatorY.setDuration(5000);
+            objectAnimatorY.setRepeatCount(Animation.INFINITE);
+            ObjectAnimator objectAnimatorX = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationX", 0, 30, 0);
+            objectAnimatorX.setDuration(5000);
+            objectAnimatorX.setRepeatCount(Animation.INFINITE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(objectAnimatorX, objectAnimatorY);
+            animatorSet.start();
+
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -656,7 +667,8 @@ public class LoginActivity extends BaseActivity {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
             tv_register.setVisibility(View.VISIBLE);
-            if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") && !BuildConfig.FLAVOR.equals("livecasino338")) {
+            if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") &&
+                    !BuildConfig.FLAVOR.equals("livecasino338") && !BuildConfig.FLAVOR.equals("kasino365")) {
                 img_login_title.setImageResource(R.mipmap.gd_title_logo);
             }
             if (BuildConfig.FLAVOR.equals("kuncicasino")) {
