@@ -431,14 +431,10 @@ public class LobbyActivity extends BaseActivity {
         });
 
         if (BuildConfig.FLAVOR.equals("hitamslot")) {
-//            LinearLayout ll_lobby_parent = findViewById(R.id.ll_lobby_parent);
             LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
-//            ll_lobby_parent.setBackgroundColor(Color.BLACK);
             ll_top_parent.setBackgroundColor(Color.BLACK);
             ll_bottom.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color2));
-        }
-
-        if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+        } else if (BuildConfig.FLAVOR.equals("hokicasino88")) {
             ll_bottom.setBackgroundResource(R.drawable.hokicasino_home_bottom);
             tv_home_home.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
             tv_home_deposit.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
@@ -460,6 +456,10 @@ public class LobbyActivity extends BaseActivity {
             view_bottom.setVisibility(View.VISIBLE);
         } else if (BuildConfig.FLAVOR.equals("kasino365")) {
             ll_bottom.setBackgroundColor(Color.parseColor("#050606"));
+        } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
+            LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
+            ll_top_parent.setBackgroundResource(0);
+            ll_bottom.setBackgroundColor(Color.parseColor("#93000000"));
         }
     }
 
