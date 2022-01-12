@@ -327,13 +327,14 @@ public class AfbApplication extends BaseApplication {
             map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
         } else {
             map.put("Casino", new SportIdBean("Casino", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_baccarat));
+            map.put("AFB CASINO", new SportIdBean("AFB CASINO", "", R.string.AFB_CASINO, "AFB CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_afb_gaming));
             map.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.SEXY_CASINO, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sg_gaming));
             map.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.SA_CASINO, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sa_gaming));
             map.put("DG CASINO", new SportIdBean("DG CASINO", "", R.string.DG_Cashio, "DG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_dg));
             map.put("WM CASINO", new SportIdBean("WM CASINO", "", R.string.WM_Cashio, "WM CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_wm_gaming));
 
             map.put("NL CASINO", new SportIdBean("NL CASINO", "", R.string.NG_Cashio, "NL CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ng_casnio_game));
-//        map.put("LG CASINO", new SportIdBean("LG CASINO", "", R.string.LG_Cashio, "LG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_lg_gaming));
+            map.put("LG CASINO", new SportIdBean("LG CASINO", "", R.string.LG_Cashio, "LG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_lg_gaming));
 
             map.put("MK CASINO", new SportIdBean("MK CASINO", "", R.string.MK_CASINO, "MK CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.mkg_game));
 
@@ -730,6 +731,7 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("betsoft", isEnabledWM);
         enableMap.put("Joker", isEnabledWM);
         enableMap.put("allCasino", isEnabledWM);
+        enableMap.put("AFB CASINO", isEnabledWM);
         return enableMap;
     }
 

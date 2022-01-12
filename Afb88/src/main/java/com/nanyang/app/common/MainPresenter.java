@@ -156,6 +156,8 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfBTSLogin"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("Joker")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfJKRLogin"), "", "^.*\"(http[^\"]+)\".*$");
+        } else if (g.equals("AFB CASINO")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenTGAGamee", "", "wfGeneralLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         }
     }
 
@@ -522,10 +524,10 @@ public class MainPresenter extends BaseSwitchPresenter {
         return true;
     }
 
-    public void doChangePassword(String strNew,  CallBack<String> back) {
+    public void doChangePassword(String strNew, CallBack<String> back) {
         //"ACT":"GetPassword","PT":"wfSettingH50","NewPass":"123456aa","ConPass":"123456aa","pgLable":"0.48415547826337857","vsn":"4.0.12"}
         PasswordWfBean getPassword = new PasswordWfBean("GetPassword", "", "wfSettingH50", strNew, strNew);
-        loadAllMainData(getPassword,back );
+        loadAllMainData(getPassword, back);
     }
 
 
