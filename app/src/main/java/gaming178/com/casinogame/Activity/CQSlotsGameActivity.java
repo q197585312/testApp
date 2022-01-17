@@ -73,14 +73,16 @@ public class CQSlotsGameActivity extends BaseActivity {
     }
 
     private void initSearch() {
-        if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+        if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino")) {
             toolbar.setNavigationIcon(R.mipmap.search_back);
             toolbar.setBackgroundResource(R.mipmap.bg_search);
-            ll_parent = findViewById(R.id.gd__ll_parent);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom_land);
-            } else {
-                ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
+            if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+                ll_parent = findViewById(R.id.gd__ll_parent);
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom_land);
+                } else {
+                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
+                }
             }
         }
         edtSearch = findViewById(R.id.edt_search);

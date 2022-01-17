@@ -434,7 +434,7 @@ public class LobbyActivity extends BaseActivity {
             LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
             ll_top_parent.setBackgroundColor(Color.BLACK);
             ll_bottom.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color2));
-        } else if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+        } else if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino")) {
             ll_bottom.setBackgroundResource(R.drawable.hokicasino_home_bottom);
             tv_home_home.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
             tv_home_deposit.setBackgroundResource(R.drawable.hokicasino_home_bottom_item);
@@ -454,6 +454,11 @@ public class LobbyActivity extends BaseActivity {
             view_6.setVisibility(View.VISIBLE);
             view_top.setVisibility(View.VISIBLE);
             view_bottom.setVisibility(View.VISIBLE);
+            if (BuildConfig.FLAVOR.equals("doacasino")) {
+                LinearLayout ll_lobby_parent = findViewById(R.id.ll_lobby_parent);
+                ll_lobby_parent.setBackgroundResource(0);
+                ll_lobby_parent.setBackgroundColor(Color.BLACK);
+            }
         } else if (BuildConfig.FLAVOR.equals("kasino365")) {
             ll_bottom.setBackgroundColor(Color.parseColor("#050606"));
         } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
@@ -581,7 +586,7 @@ public class LobbyActivity extends BaseActivity {
                             rl_parent.setBackgroundResource(R.mipmap.home_game_select);
                             textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
                         } else {
-                            if (BuildConfig.FLAVOR.equals("hokicasino88")) {
+                            if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino")) {
                                 rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item);
                             } else {
                                 rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);

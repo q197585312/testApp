@@ -663,6 +663,15 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
+        if (BuildConfig.FLAVOR.equals("doacasino")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6285586490002&&text&app_absent=0");
+                }
+            });
+        }
+
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
