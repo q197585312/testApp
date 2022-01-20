@@ -151,7 +151,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "doacasino"]
                 buildConfigField "String", "Labelid", '"144"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.07'
+                versionName '4.11'
             }
             slotku {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "slotku"]
