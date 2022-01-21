@@ -520,7 +520,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private void updateMixOrderCount() {
         if (getApp().getMixBetList() != null && getApp().getMixBetList().size() > 0) {
             tvMixCount.setVisibility(View.VISIBLE);
-            tvOrderCount.setVisibility(View.VISIBLE);
+//            tvOrderCount.setVisibility(View.VISIBLE);
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_white);
             tvMixCount.setText("" + getApp().getMixBetList().size());
             MixCount.setText("" + getApp().getMixBetList().size());

@@ -270,7 +270,7 @@
 
                         app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
                         app:layout_constraintLeft_toRightOf="@+id/match_cup_iv"
-                        app:layout_constraintRight_toLeftOf="@+id/frameLayout"
+                        app:layout_constraintRight_toLeftOf="@+id/sports_language_tv"
                         app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
 
                     <FrameLayout
@@ -278,6 +278,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
                         app:layout_constraintLeft_toRightOf="@+id/match_contracted_iv"
                         app:layout_constraintRight_toLeftOf="@+id/sports_language_tv"
@@ -292,7 +293,8 @@
                             android:contentDescription="@null"
                             android:onClick="clickOrderTop"
                             android:padding="5dp"
-                            android:src="@mipmap/sport_bottom_teb_shopping_white" />
+                            android:src="@mipmap/sport_bottom_teb_shopping_white"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/tv_order_count_top"
@@ -318,7 +320,7 @@
                         android:padding="6dp"
                         android:src="@mipmap/sport_flag_white"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
-                        app:layout_constraintLeft_toRightOf="@+id/frameLayout"
+                        app:layout_constraintLeft_toRightOf="@+id/match_contracted_iv"
                         app:layout_constraintRight_toLeftOf="@+id/match_collection_fl"
                         app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
 
@@ -417,10 +419,11 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@color/grey_background" />
+
                 <include
                     layout="@layout/popupwindow_match_betting"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:id="@+id/ll_footer_sport"
                     android:layout_width="match_parent"
@@ -428,16 +431,16 @@
                     android:orientation="vertical" />
 
                 <View
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="0.8dp"
-                    android:background="@color/trans_black_light" />
+                    android:background="@color/trans_black_light"
+                    android:visibility="gone" />
 
                 <View
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/trans_black" />
+                    android:background="@color/trans_black"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
 
@@ -550,12 +553,12 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="12dp"
-                    android:src="@mipmap/message_small" />
+                    android:src="@mipmap/message_small"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_menu"
