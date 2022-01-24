@@ -194,7 +194,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "365kasino"]
                 buildConfigField "String", "Labelid", '"135"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.13'
+                versionName '4.14'
             }
             livecasino338 {//livecasino338
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "livecasino338"]

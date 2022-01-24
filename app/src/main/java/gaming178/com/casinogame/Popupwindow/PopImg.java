@@ -1,21 +1,15 @@
 package gaming178.com.casinogame.Popupwindow;
 
 import android.content.Context;
-import android.net.http.SslError;
 import android.view.View;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.casinogame.login.LoginActivity;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
@@ -52,7 +46,11 @@ public class PopImg extends BasePopupWindow {
     }
 
     public void initImg() {
-        Glide.with(context).load(getLoadUrl()).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgBanner);
+        if (BuildConfig.FLAVOR.equals("kasino365")){
+            Glide.with(context).asGif().load(getLoadUrl()).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgBanner);
+        }else {
+            Glide.with(context).load(getLoadUrl()).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgBanner);
+        }
     }
 
     public String getLoadUrl() {
