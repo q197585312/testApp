@@ -206,7 +206,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mainkasino"]
                 buildConfigField "String", "Labelid", '"143"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.13'
+                versionName '4.14'
             }
             marina118 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "marina118"]

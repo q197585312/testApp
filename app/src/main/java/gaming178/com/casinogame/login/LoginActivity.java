@@ -677,7 +677,8 @@ public class LoginActivity extends BaseActivity {
         } else {
             tv_register.setVisibility(View.VISIBLE);
             if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") &&
-                    !BuildConfig.FLAVOR.equals("livecasino338") && !BuildConfig.FLAVOR.equals("kasino365")) {
+                    !BuildConfig.FLAVOR.equals("livecasino338") && !BuildConfig.FLAVOR.equals("kasino365") &&
+                    !BuildConfig.FLAVOR.equals("mainkasino")) {
                 img_login_title.setImageResource(R.mipmap.gd_title_logo);
             }
             if (BuildConfig.FLAVOR.equals("kuncicasino")) {
@@ -688,60 +689,20 @@ public class LoginActivity extends BaseActivity {
         imgOpen = findViewById(R.id.gd_img_open);
         btn_login = (Button) findViewById(R.id.gd__login_login_btn);
         if (BuildConfig.FLAVOR.equals("mainkasino")) {
-            tv_user_name = findViewById(R.id.tv_user_name);
-            tv_password_name = findViewById(R.id.tv_password_name);
-            tv_user_name.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.gd_user_img, 0, 0, 0);
-            tv_password_name.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.gd_password_img, 0, 0, 0);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tv_register.getLayoutParams();
-            layoutParams.topMargin = layoutParams.topMargin / 2;
-            tv_register.setLayoutParams(layoutParams);
-            cb_remember_me.setChecked(true);
-            btn_login.setBackgroundResource(R.drawable.gd_login_button_bg_blue);
-            tv_register.setBackgroundResource(R.drawable.gd_login_button_bg_red);
-            btn_login.setTextColor(Color.WHITE);
-            tv_register.setTextColor(Color.WHITE);
-            img_login_title.setVisibility(View.GONE);
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            img_login_title_main.setVisibility(View.VISIBLE);
-            ll_lg_and_remember = findViewById(R.id.ll_lg_and_remember);
-            ll_lg_and_remember.setVisibility(View.GONE);
-            ll_lang = findViewById(R.id.ll_lang);
-            ll_lang.setVisibility(View.VISIBLE);
-            img_in = findViewById(R.id.img_in);
-            img_en = findViewById(R.id.img_en);
-            img_in.setOnClickListener(new View.OnClickListener() {
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.post(new Runnable() {
                 @Override
-                public void onClick(View v) {
-                    AppTool.setAppLanguage(LoginActivity.this, "my");
-                    recreate();
+                public void run() {
+                    int width = gd_img_login_title_main_sbocasino77.getWidth();
+                    ViewGroup.LayoutParams layoutParams = gd_img_login_title_main_sbocasino77.getLayoutParams();
+                    int height = (int) (width * 1.05);
+                    layoutParams.height = height;
+                    gd_img_login_title_main_sbocasino77.setLayoutParams(layoutParams);
                 }
             });
-            img_en.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AppTool.setAppLanguage(LoginActivity.this, "en");
-                    recreate();
-                }
-            });
-
-            img_gif.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(LoginActivity.this, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "https://www.pragmaticplay.com/en/games/";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return "";
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
-                }
-            });
-            img_gif.setVisibility(View.VISIBLE);
+            ImageView imgWhatsApp = findViewById(R.id.img_whatsapp);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.layanan_vip).into(imgWhatsApp);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.logo_mainkasino).into(img_login_title);
             new Thread() {
                 @Override
                 public void run() {
@@ -752,14 +713,45 @@ public class LoginActivity extends BaseActivity {
                     getHandler().post(new Runnable() {
                         @Override
                         public void run() {
-                            Glide.with(LoginActivity.this).asGif().load(result + "images/banner-20200724.gif").diskCacheStrategy(DiskCacheStrategy.NONE).into(img_gif);
-                            PopImg popImg = new PopImg(LoginActivity.this, img_gif, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                            PopImg popImg = new PopImg(LoginActivity.this, btn_login, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             popImg.setLoadUrl(result + "images/popup.jpg");
                             popImg.showPopupCenterWindow();
+                            tvPromo.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                                        @Override
+                                        public String getUrl() {
+                                            return result + "promom.jsp";
+                                        }
+
+                                        @Override
+                                        public String getTitle() {
+                                            return "BONUS SPECIAL";
+                                        }
+                                    };
+                                    popWebView.showPopupCenterWindow();
+                                }
+                            });
                         }
                     });
                 }
             }.start();
+            ObjectAnimator objectScaleX = ObjectAnimator.ofFloat(tvPromo, "scaleX", 1, (float) 0.85, 1);
+            objectScaleX.setDuration(800);
+            objectScaleX.setRepeatCount(Animation.INFINITE);
+            ObjectAnimator objectScaleY = ObjectAnimator.ofFloat(tvPromo, "scaleY", 1, (float) 0.85, 1);
+            objectScaleY.setDuration(800);
+            objectScaleY.setRepeatCount(Animation.INFINITE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(objectScaleX, objectScaleY);
+            animatorSet.start();
+            imgWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=855882430818&text&app_absent=0");
+                }
+            });
         }
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
@@ -827,9 +819,7 @@ public class LoginActivity extends BaseActivity {
             }
             fingerLogin();
         } else {
-            if (!BuildConfig.FLAVOR.equals("mainkasino")) {
-                cb_remember_me.setChecked(false);
-            }
+            cb_remember_me.setChecked(false);
         }
 
     }
