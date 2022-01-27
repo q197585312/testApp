@@ -716,23 +716,6 @@ public class LoginActivity extends BaseActivity {
                             PopImg popImg = new PopImg(LoginActivity.this, btn_login, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                             popImg.setLoadUrl(result + "images/popup.jpg");
                             popImg.showPopupCenterWindow();
-                            tvPromo.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                                        @Override
-                                        public String getUrl() {
-                                            return result + "promom.jsp";
-                                        }
-
-                                        @Override
-                                        public String getTitle() {
-                                            return "BONUS SPECIAL";
-                                        }
-                                    };
-                                    popWebView.showPopupCenterWindow();
-                                }
-                            });
                         }
                     });
                 }
@@ -746,10 +729,16 @@ public class LoginActivity extends BaseActivity {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.playTogether(objectScaleX, objectScaleY);
             animatorSet.start();
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "http://68.65.120.194/bonus/");
+                }
+            });
             imgWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=855882430818&text&app_absent=0");
+                    Gd88Utils.goBrowser(mContext, "https://bit.ly/wamkasino");
                 }
             });
         }
