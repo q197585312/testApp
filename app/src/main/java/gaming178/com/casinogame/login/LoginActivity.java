@@ -701,8 +701,10 @@ public class LoginActivity extends BaseActivity {
                 }
             });
             ImageView imgWhatsApp = findViewById(R.id.img_whatsapp);
+            ImageView imgFB = findViewById(R.id.img_fb);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.layanan_vip).into(imgWhatsApp);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.logo_mainkasino).into(img_login_title);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.fb_messager).into(imgFB);
             new Thread() {
                 @Override
                 public void run() {
@@ -739,6 +741,12 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     Gd88Utils.goBrowser(mContext, "https://bit.ly/wamkasino");
+                }
+            });
+            imgFB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://bit.ly/3rtJWdQ");
                 }
             });
         }

@@ -34,4 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"></ImageView>
 
+    <ImageView
+        android:id="@+id/img_fb"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"></ImageView>
+
 </FrameLayout>

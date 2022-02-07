@@ -5,38 +5,6 @@
     android:background="@mipmap/gd_login_bg"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/black">
-
-        <ImageView
-            android:id="@+id/gd_img_open"
-            android:layout_width="30dp"
-            android:layout_height="27dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/gd_menu"
-            android:visibility="visible"></ImageView>
-
-        <ImageView
-            android:id="@+id/gd_img_login_title"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/gd_title_logo" />
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/gd_img_login_title_main_sbocasino77"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginRight="40dp"
-        android:background="@mipmap/character"
-        android:visibility="visible" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,6 +13,13 @@
         <include
             layout="@layout/toolbar_layout"
             android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/gd_img_open"
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:src="@mipmap/gd_menu"
+            android:visibility="gone"></ImageView>
 
         <ImageView
             android:id="@+id/gd_img_gif"
@@ -86,15 +61,38 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="0.7">
+
+                <ImageView
+                    android:id="@+id/gd_img_login_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="50dp"
+                    android:src="@mipmap/gd_title_logo" />
 
                 <ImageView
                     android:id="@+id/gd_img_login_title_main"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@mipmap/gd_title_logo"
                     android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/gd_img_login_title_main_sbocasino77"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@mipmap/gd_title_logo"
+                    android:visibility="gone" />
+
             </FrameLayout>
 
             <LinearLayout
@@ -161,13 +159,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1.5">
+                android:layout_weight="1">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@drawable/gd_login_bg"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp">
 
                     <LinearLayout
                         android:id="@+id/ll_liga365"
@@ -216,11 +218,10 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/mainkasino_input_right"
+                        android:layout_height="50dp"
+                        android:background="@drawable/shape_raja_input_bg"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_user_name"
@@ -236,18 +237,6 @@
                             android:textSize="16sp"
                             android:visibility="gone"></TextView>
 
-                        <LinearLayout
-                            android:layout_width="45dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/mainkasino_input_left"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:background="@mipmap/gd_user_img"></ImageView>
-                        </LinearLayout>
-
                         <EditText
                             android:id="@+id/gd__login_username_edt"
                             android:layout_width="match_parent"
@@ -256,19 +245,20 @@
                             android:hint="@string/input_username"
                             android:paddingLeft="15dp"
                             android:singleLine="true"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
                             android:textCursorDrawable="@null"
                             android:textSize="18sp" />
                     </LinearLayout>
 
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="50dp"
                         android:layout_marginTop="15dp"
-                        android:background="@drawable/mainkasino_input_right"
+                        android:background="@drawable/shape_raja_input_bg"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_password_name"
@@ -284,18 +274,6 @@
                             android:textSize="16sp"
                             android:visibility="gone"></TextView>
 
-                        <LinearLayout
-                            android:layout_width="45dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/mainkasino_input_left"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@mipmap/gd_password_img"></ImageView>
-                        </LinearLayout>
-
                         <EditText
                             android:id="@+id/gd__login_password_edt"
                             android:layout_width="match_parent"
@@ -304,129 +282,72 @@
                             android:hint="@string/input_password"
                             android:inputType="textPassword"
                             android:paddingLeft="15dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
                             android:textCursorDrawable="@null"
                             android:textSize="18sp" />
                     </LinearLayout>
 
-                    <LinearLayout
+
+                    <Button
+                        android:id="@+id/gd__login_login_btn"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/gd__login_login_btn"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/gd_login_button_bg_365_k_gold2"
-                            android:gravity="center"
-                            android:onClick="clickLogin"
-                            android:text="@string/gd_login"
-                            android:textAllCaps="true"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/gd__tv_register"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/gd_login_button_bg_365_k_red"
-                            android:gravity="center"
-                            android:text="@string/register"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:visibility="visible" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="15dp">
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"></View>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1.8"
-                            android:background="#EEEEEE"></View>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"></View>
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/gd__tv_promo"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/gd_login_button_bg_365_k_gold2"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/shape_casino5000_login_bg"
                         android:gravity="center"
-                        android:text="BONUS SPECIAL"
+                        android:onClick="clickLogin"
+                        android:text="@string/gd_login"
                         android:textAllCaps="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/gd__tv_whatsapp"
+                        android:id="@+id/gd__tv_register"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/gd_login_button_bg_365_k_white"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/shape_casino5000_login_bg"
                         android:gravity="center"
-                        android:text="LAYANAN VIP"
+                        android:text="@string/register"
                         android:textAllCaps="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
-                    <ImageView
-                        android:id="@+id/img_whatsapp"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginRight="10dp"></ImageView>
 
-                    <ImageView
-                        android:id="@+id/img_fb"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginRight="10dp"></ImageView>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/gd__tv_whatsapp"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gd_login_button_bg"
+                            android:gravity="center"
+                            android:text="@string/whatsapp"
+                            android:textAllCaps="true"
+                            android:textColor="#008000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
 
                     <View
                         android:layout_width="match_parent"
@@ -624,4 +545,21 @@
         android:padding="2dp"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/gd__tv_promo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/gd_login_button_bg_red"
+        android:gravity="center"
+        android:text="@string/PROMOTION"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 </FrameLayout>
