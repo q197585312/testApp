@@ -2,24 +2,69 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0E0E0E"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="15dp">
-
-        <include
-            layout="@layout/toolbar_layout"
-            android:visibility="gone" />
+        android:layout_height="50dp"
+        android:background="#0E8E05">
 
         <ImageView
             android:id="@+id/gd_img_open"
             android:layout_width="30dp"
             android:layout_height="27dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
             android:src="@mipmap/gd_menu"
-            android:visibility="gone"></ImageView>
+            android:visibility="visible"></ImageView>
+
+        <ImageView
+            android:id="@+id/gd_img_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/gd_title_logo" />
+
+        <LinearLayout
+            android:id="@+id/ll_lang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:gravity="center"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/img_in"
+                android:layout_width="35dp"
+                android:layout_height="24dp"
+                android:background="@mipmap/gd_lang_in_flag"></ImageView>
+
+            <ImageView
+                android:id="@+id/img_en"
+                android:layout_width="35dp"
+                android:layout_height="24dp"
+                android:background="@mipmap/gd_lang_en_flag"></ImageView>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/gd_img_login_title_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@mipmap/raja_login_bg" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <include
+            layout="@layout/toolbar_layout"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/gd_img_gif"
@@ -28,28 +73,6 @@
             android:layout_marginLeft="45dp"
             android:scaleType="fitXY"
             android:visibility="gone"></ImageView>
-
-        <LinearLayout
-            android:id="@+id/ll_lang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="center"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/img_in"
-                android:layout_width="45dp"
-                android:layout_height="35dp"
-                android:layout_marginRight="6dp"
-                android:background="@mipmap/gd_lang_in_flag"></ImageView>
-
-            <ImageView
-                android:id="@+id/img_en"
-                android:layout_width="45dp"
-                android:layout_height="35dp"
-                android:background="@mipmap/gd_lang_en_flag"></ImageView>
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/gd__ll_container"
@@ -61,26 +84,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.7">
-
-                <ImageView
-                    android:id="@+id/gd_img_login_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:src="@mipmap/gd_title_logo" />
-
-                <ImageView
-                    android:id="@+id/gd_img_login_title_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@mipmap/gd_title_logo"
-                    android:visibility="gone" />
+                android:layout_weight="0.8">
 
                 <ImageView
                     android:id="@+id/gd_img_login_title_main_sbocasino77"
@@ -99,8 +103,10 @@
                 android:id="@+id/ll_lg_and_remember"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/gd__ll_choose_language"
@@ -151,6 +157,7 @@
                         android:layout_height="25dp"
                         android:background="@drawable/checkbox_login_style"
                         android:button="@null"
+                        android:checked="true"
                         android:clickable="false"></CheckBox>
                 </LinearLayout>
             </LinearLayout>
@@ -168,7 +175,7 @@
                     android:background="@drawable/gd_login_bg"
                     android:orientation="vertical"
                     android:paddingLeft="15dp"
-                    android:paddingTop="15dp"
+                    android:paddingTop="25dp"
                     android:paddingRight="15dp">
 
                     <LinearLayout
@@ -216,9 +223,9 @@
                             android:background="@color/white" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="45dp"
                         android:background="@drawable/shape_raja_input_bg"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
@@ -237,24 +244,31 @@
                             android:textSize="16sp"
                             android:visibility="gone"></TextView>
 
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/ratuuser"></ImageView>
+
                         <EditText
                             android:id="@+id/gd__login_username_edt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="40dp"
                             android:background="@null"
                             android:hint="@string/input_username"
-                            android:paddingLeft="15dp"
                             android:singleLine="true"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             android:textCursorDrawable="@null"
                             android:textSize="16sp" />
-                    </LinearLayout>
+                    </RelativeLayout>
 
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/shape_raja_input_bg"
                         android:gravity="center_vertical"
@@ -274,19 +288,26 @@
                             android:textSize="16sp"
                             android:visibility="gone"></TextView>
 
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/ratupw"></ImageView>
+
                         <EditText
                             android:id="@+id/gd__login_password_edt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="40dp"
                             android:background="@null"
                             android:hint="@string/input_password"
                             android:inputType="textPassword"
-                            android:paddingLeft="15dp"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             android:textCursorDrawable="@null"
                             android:textSize="16sp" />
-                    </LinearLayout>
+                    </RelativeLayout>
 
 
                     <LinearLayout
@@ -300,9 +321,7 @@
                             android:layout_height="40dp"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="10dp"
                             android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_raja_login_bg"
                             android:gravity="center"
@@ -313,15 +332,17 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"></View>
+
                         <TextView
                             android:id="@+id/gd__tv_register"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="10dp"
                             android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_raja_register_bg"
                             android:gravity="center"
@@ -334,33 +355,66 @@
 
                     </LinearLayout>
 
-
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/rl_live_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gd_login_button_bg_green2">
 
+                        <TextView
+                            android:id="@+id/gd__tv_promo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="Livechat"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/gd__tv_promo"
+                            android:background="@mipmap/livechat_left"></ImageView>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_whatsapp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gd_login_button_bg_green2">
 
                         <TextView
                             android:id="@+id/gd__tv_whatsapp"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:layout_weight="1"
-                            android:background="@drawable/gd_login_button_bg"
                             android:gravity="center"
                             android:text="@string/whatsapp"
                             android:textAllCaps="true"
-                            android:textColor="#008000"
+                            android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:visibility="gone" />
-                    </LinearLayout>
+                            android:visibility="visible" />
 
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/gd__tv_whatsapp"
+                            android:background="@mipmap/whatsapp_left"></ImageView>
+
+                    </RelativeLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -558,21 +612,4 @@
         android:padding="2dp"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/gd__tv_promo"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/gd_login_button_bg_red"
-        android:gravity="center"
-        android:text="@string/PROMOTION"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
 </FrameLayout>

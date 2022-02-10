@@ -325,4 +325,19 @@ public class WidgetUtil {
         objectAnimator.start();
     }
 
+    public static void leftMarginsAnimation(View view, int from, int to) {
+        ValueAnimator animator = ValueAnimator.ofFloat(from, to);
+        animator.setDuration(300);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float currentValue = (float) animation.getAnimatedValue();
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+                layoutParams.setMargins((int) currentValue, layoutParams.topMargin, 0, 0);
+                view.requestLayout();
+            }
+        });
+        animator.start();
+    }
+
 }

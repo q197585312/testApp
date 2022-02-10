@@ -39,4 +39,71 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"></ImageView>
 
+    <RelativeLayout
+        android:id="@+id/rl_live_chat"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"></RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_whatsapp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"></RelativeLayout>
+
+    <gaming178.com.casinogame.Control.AutoScrollTextView
+        android:id="@+id/gd__hall_game_bottom_prompt_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_raja"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
+    <FrameLayout
+        android:id="@+id/fl_slide_left"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:visibility="gone"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_slide_right"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:visibility="gone"></FrameLayout>
+
+    <ImageView
+        android:id="@+id/img_slide2"
+        android:layout_width="220dp"
+        android:layout_height="189dp"
+        android:layout_marginLeft="-200dp"
+        android:layout_marginTop="320dp"
+        android:visibility="gone"></ImageView>
+
+    <ImageView
+        android:id="@+id/img_slide1"
+        android:layout_width="27dp"
+        android:layout_height="189dp"
+        android:layout_marginTop="320dp"
+        android:visibility="gone"></ImageView>
+
+    <FrameLayout
+        android:id="@+id/fl_jackpot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"></FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_raja2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
 </FrameLayout>

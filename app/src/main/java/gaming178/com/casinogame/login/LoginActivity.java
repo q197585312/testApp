@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebChromeClient;
@@ -36,6 +35,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -58,9 +60,11 @@ import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.RegisterActivity;
 import gaming178.com.casinogame.Bean.Liga365AgentBean;
+import gaming178.com.casinogame.Bean.NamePicBean;
 import gaming178.com.casinogame.Bean.UserBean;
 import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
+import gaming178.com.casinogame.Control.AutoScrollTextView;
 import gaming178.com.casinogame.Popupwindow.PopImg;
 import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.AppConfig;
@@ -71,7 +75,9 @@ import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.PopMenu;
 import gaming178.com.casinogame.Util.PopWebView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
+import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyBannerAdapter;
+import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
@@ -114,11 +120,15 @@ public class LoginActivity extends BaseActivity {
     private TextView tv_user_name, tv_password_name;
     private ImageView imgGif1, imgGif2;
     private boolean isNeedCount = true;
-    double count = 555650100;
+    double count = 38931592;
+    int format = 0;
     private BannerViewPager bannerView;
     private LinearLayout ll_register_bg;
     private ImageView img_ula_enter_bg;
     private FrameLayout fl_whatsapp;
+    private AutoScrollTextView hallGameBottomPromptTv;
+    private RecyclerView rajaRc, rajaRc2;
+    private TextView tvCount;
 
 
     @Override
@@ -133,6 +143,55 @@ public class LoginActivity extends BaseActivity {
     public boolean isLogin() {
         return true;
     }
+    private Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case ErrorCode.LOGIN_SECCESS:
+                    dismissLoginBlockDialog();
+                    UserLoginBean dataBean = new UserLoginBean();
+                    UserLoginBean userLoginBean = (UserLoginBean) AppTool.getObjectData(mContext, WebSiteUrl.Tag);
+                    String usName = tv_name.getText().toString().trim();
+                    if (userLoginBean == null || !TextUtils.isEmpty(usName)) {
+                        String password = tv_password.getText().toString().trim();
+                        EditText siteEdt = findViewById(R.id.gd__login_site_edt);
+                        String site = siteEdt.getText().toString().trim();
+                        dataBean.setSite(site);
+                        dataBean.setUsername(usName);
+                        dataBean.setPassword(password);
+                    } else {
+                        dataBean.setSite(userLoginBean.getSite());
+                        dataBean.setUsername(userLoginBean.getUsername());
+                        dataBean.setPassword(userLoginBean.getPassword());
+                    }
+                    boolean rememberMe = cb_remember_me.isChecked();
+                    dataBean.setRememberMe(rememberMe);
+                    AppTool.saveObjectData(mContext, WebSiteUrl.Tag, dataBean);
+                    skipAct(LobbyActivity.class);
+                    break;
+                case ErrorCode.LOGIN_AREADY:
+                    dismissLoginBlockDialog();
+                    Toast.makeText(mContext, R.string.login_already, Toast.LENGTH_LONG).show();
+                    break;
+                case ErrorCode.LOGIN_ERROR_USERNAME:
+                    dismissLoginBlockDialog();
+                    Toast.makeText(mContext, R.string.login_username_error, Toast.LENGTH_LONG).show();
+                    break;
+                case ErrorCode.LOGIN_ERROR_NETWORK:
+                    dismissLoginBlockDialog();
+                    Toast.makeText(mContext, R.string.login_network_error, Toast.LENGTH_LONG).show();
+                    break;
+                case ErrorCode.DATA_ERROR_LENGTH:
+                    dismissLoginBlockDialog();
+//                    mAppViewModel.setCookie("");
+                    Toast.makeText(mContext, R.string.login_data_error, Toast.LENGTH_LONG).show();
+                    break;
+            }
+            //
+
+        }
+    };
 
     public void initControl() {
         if (BuildConfig.FLAVOR.equals("gd88")) {
@@ -750,6 +809,205 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
+
+        if (BuildConfig.FLAVOR.equals("rajacasino")) {
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            img_login_title_main.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = img_login_title_main.getWidth();
+                    ViewGroup.LayoutParams layoutParams = img_login_title_main.getLayoutParams();
+                    layoutParams.height = (int) (width * 0.95);
+                    img_login_title_main.setLayoutParams(layoutParams);
+                }
+            });
+            RelativeLayout rl_whatsapp = findViewById(R.id.rl_whatsapp);
+            RelativeLayout rl_live_chat = findViewById(R.id.rl_live_chat);
+            rl_whatsapp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://wa.me/6287829675973");
+                }
+            });
+            rl_live_chat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://direct.lc.chat/8843331/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "LIVECHAT";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
+                }
+            });
+            initRightLang();
+        }
+
+        if (BuildConfig.FLAVOR.equals("rajabakarat")) {
+            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
+            hallGameBottomPromptTv.setSelected(true);
+            hallGameBottomPromptTv.stopScroll();
+            hallGameBottomPromptTv.setText("Welcome to Rajabaccarat Situs Judi Casino Slot Online Terpercaya Indonesia.   Pemeliharaan Terjadwal: Playtech pada 2021-11-15 dari 8:00 PM sampai 2021-11-30 8:00 PM (GMT + 7). Selama waktu ini, Playtech permainan tidak akan tersedia. Kami memohon maaf atas ketidaknyamanan yang mungkin ditimbulkan.");
+            hallGameBottomPromptTv.setSpeed(0.8f);
+            hallGameBottomPromptTv.setTextColor(Color.parseColor("#DC9A04"));
+            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+            hallGameBottomPromptTv.startScroll();
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = bannerView.getWidth();
+                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
+                    layoutParams.height = (int) (width / 2.14);
+                    bannerView.setLayoutParams(layoutParams);
+                    List<Integer> imgList = new ArrayList<>();
+                    imgList.add(R.mipmap.raja_m1);
+                    imgList.add(R.mipmap.raja_m2);
+                    imgList.add(R.mipmap.raja_m3);
+                    imgList.add(R.mipmap.raja_m4);
+                    bannerView.setLifecycleRegistry(getLifecycle()).
+                            setAdapter(new MyBannerAdapter()).
+                            setScrollDuration(500).
+                            setIndicatorSliderColor(getResources().getColor(R.color.white),
+                                    getResources().getColor(R.color.yellow_gold2)).
+                            setIndicatorGravity(IndicatorGravity.CENTER).
+                            create(imgList);
+                }
+            });
+
+            rajaRc = findViewById(R.id.rc_raja);
+            rajaRc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            List<NamePicBean> list = new ArrayList<>();
+            list.add(new NamePicBean("Hot Games", R.mipmap.raja_hot_games));
+            list.add(new NamePicBean("Slots", R.mipmap.raja_slots));
+            list.add(new NamePicBean("Live Casino", R.mipmap.raja_casino));
+            list.add(new NamePicBean("Sports", R.mipmap.raja_sports));
+            list.add(new NamePicBean("Arcade", R.mipmap.raja_arcade));
+            list.add(new NamePicBean("Poker", R.mipmap.raja_poker));
+            list.add(new NamePicBean("Togel", R.mipmap.raja_others));
+            list.add(new NamePicBean("Live Tv", R.mipmap.raja_live_tv));
+            BaseRecyclerAdapter<NamePicBean> adapter = new BaseRecyclerAdapter<NamePicBean>(mContext, list, R.layout.item_raja_show) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    TextView textView = holder.getTextView(R.id.tv);
+                    textView.setText(item.getName());
+                    imageView.setImageResource(item.getPic());
+                }
+            };
+            rajaRc.setAdapter(adapter);
+            FrameLayout flSlideLeft = findViewById(R.id.fl_slide_left);
+            FrameLayout flSlideRight = findViewById(R.id.fl_slide_right);
+            flSlideLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rajaRc.scrollBy(-100, 0);
+                }
+            });
+            flSlideRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rajaRc.scrollBy(100, 0);
+                }
+            });
+            ImageView imgSlide1 = findViewById(R.id.img_slide1);
+            ImageView imgSlide2 = findViewById(R.id.img_slide2);
+            imgSlide1.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width1 = imgSlide1.getWidth();
+                    int width2 = imgSlide2.getWidth();
+                    int leftMargin = width1 - width2;
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imgSlide2.getLayoutParams();
+                    layoutParams.setMargins(leftMargin, layoutParams.topMargin, 0, 0);
+                    imgSlide2.setLayoutParams(layoutParams);
+                    imgSlide2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            int left = imgSlide2.getLeft();
+                            if (left == leftMargin) {
+                                WidgetUtil.leftMarginsAnimation(imgSlide2, leftMargin, 0);
+                            } else {
+                                WidgetUtil.leftMarginsAnimation(imgSlide2, 0, leftMargin);
+                            }
+                        }
+                    });
+
+                }
+            });
+            FrameLayout flJackpot = findViewById(R.id.fl_jackpot);
+            flJackpot.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = flJackpot.getWidth();
+                    ViewGroup.LayoutParams layoutParams = flJackpot.getLayoutParams();
+                    layoutParams.height = (int) (width / 5.3);
+                    flJackpot.setLayoutParams(layoutParams);
+                }
+            });
+            tvCount = findViewById(R.id.tv_count);
+            new Thread() {
+                @Override
+                public void run() {
+                    while (isNeedCount) {
+                        try {
+                            Thread.sleep(10);
+                            format++;
+                            if (format == 100) {
+                                format = 0;
+                                count++;
+                            }
+                            getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String a = Gd88Utils.formatTosepara(count);
+                                    tvCount.setText("IDR " + a + "." + (format < 10 ? ("0" + format) : format));
+                                }
+                            });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }.start();
+            rajaRc2 = findViewById(R.id.rc_raja2);
+            rajaRc2.setNestedScrollingEnabled(false);
+            rajaRc2.setLayoutManager(new GridLayoutManager(this, 3));
+            List<NamePicBean> listSlot = new ArrayList<>();
+            listSlot.add(new NamePicBean("Gates Of Olympus", R.mipmap.raja_slot_1));
+            listSlot.add(new NamePicBean("Roma", R.mipmap.raja_slot_2));
+            listSlot.add(new NamePicBean("Koi Gate", R.mipmap.raja_slot_3));
+            listSlot.add(new NamePicBean("Wild West Gold", R.mipmap.raja_slot_4));
+            listSlot.add(new NamePicBean("Golden Dragon", R.mipmap.raja_slot_5));
+            listSlot.add(new NamePicBean("Sweet Bonanza", R.mipmap.raja_slot_6));
+            BaseRecyclerAdapter<NamePicBean> adapterSlot = new BaseRecyclerAdapter<NamePicBean>(mContext, listSlot, R.layout.item_raja_show_slot) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    imageView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int width = imageView.getWidth();
+                            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+                            layoutParams.height = width;
+                            imageView.setLayoutParams(layoutParams);
+                            imageView.setImageResource(item.getPic());
+                        }
+                    });
+                    TextView textView = holder.getTextView(R.id.tv);
+                    textView.setText(item.getName());
+                }
+            };
+            rajaRc2.setAdapter(adapterSlot);
+            initRightLang();
+        }
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
             imgOpen.setVisibility(View.VISIBLE);
@@ -816,7 +1074,9 @@ public class LoginActivity extends BaseActivity {
             }
             fingerLogin();
         } else {
-            cb_remember_me.setChecked(false);
+            if (!BuildConfig.FLAVOR.equals("rajacasino") && !BuildConfig.FLAVOR.equals("rajabakarat")) {
+                cb_remember_me.setChecked(false);
+            }
         }
 
     }
@@ -851,10 +1111,30 @@ public class LoginActivity extends BaseActivity {
         }.start();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        isNeedCount = false;
+    private void initRightLang() {
+        img_in = findViewById(R.id.img_in);
+        img_en = findViewById(R.id.img_en);
+        img_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppTool.setAppLanguage(mContext, "my");
+                recreate();
+            }
+        });
+        img_en.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppTool.setAppLanguage(mContext, "en");
+                recreate();
+            }
+        });
+        cb_remember_me.setChecked(true);
+        Object objectData1 = AppTool.getObjectData(mContext, WebSiteUrl.Tag);
+        if (objectData1 != null && objectData1 instanceof UserLoginBean) {
+            UserLoginBean objectData = (UserLoginBean) objectData1;
+            objectData.setRememberMe(true);
+            AppTool.saveObjectData(mContext, WebSiteUrl.Tag, objectData);
+        }
     }
 
     private void initSiteMap() {
@@ -1157,55 +1437,14 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    private Handler handler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case ErrorCode.LOGIN_SECCESS:
-                    dismissLoginBlockDialog();
-                    UserLoginBean dataBean = new UserLoginBean();
-                    UserLoginBean userLoginBean = (UserLoginBean) AppTool.getObjectData(mContext, WebSiteUrl.Tag);
-                    if (userLoginBean == null) {
-                        String usName = tv_name.getText().toString().trim();
-                        String password = tv_password.getText().toString().trim();
-                        EditText siteEdt = findViewById(R.id.gd__login_site_edt);
-                        String site = siteEdt.getText().toString().trim();
-                        dataBean.setSite(site);
-                        dataBean.setUsername(usName);
-                        dataBean.setPassword(password);
-                    } else {
-                        dataBean.setSite(userLoginBean.getSite());
-                        dataBean.setUsername(userLoginBean.getUsername());
-                        dataBean.setPassword(userLoginBean.getPassword());
-                    }
-                    boolean rememberMe = cb_remember_me.isChecked();
-                    dataBean.setRememberMe(rememberMe);
-                    AppTool.saveObjectData(mContext, WebSiteUrl.Tag, dataBean);
-                    skipAct(LobbyActivity.class);
-                    break;
-                case ErrorCode.LOGIN_AREADY:
-                    dismissLoginBlockDialog();
-                    Toast.makeText(mContext, R.string.login_already, Toast.LENGTH_LONG).show();
-                    break;
-                case ErrorCode.LOGIN_ERROR_USERNAME:
-                    dismissLoginBlockDialog();
-                    Toast.makeText(mContext, R.string.login_username_error, Toast.LENGTH_LONG).show();
-                    break;
-                case ErrorCode.LOGIN_ERROR_NETWORK:
-                    dismissLoginBlockDialog();
-                    Toast.makeText(mContext, R.string.login_network_error, Toast.LENGTH_LONG).show();
-                    break;
-                case ErrorCode.DATA_ERROR_LENGTH:
-                    dismissLoginBlockDialog();
-//                    mAppViewModel.setCookie("");
-                    Toast.makeText(mContext, R.string.login_data_error, Toast.LENGTH_LONG).show();
-                    break;
-            }
-            //
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isNeedCount = false;
+        if (hallGameBottomPromptTv != null) {
+            hallGameBottomPromptTv.stopScroll();
         }
-    };
+    }
     HttpClient httpClient = new HttpClient("");
 
     public class ThreadLogin extends Thread {
