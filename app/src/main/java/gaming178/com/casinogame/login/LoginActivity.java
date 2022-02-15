@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -143,6 +144,7 @@ public class LoginActivity extends BaseActivity {
     public boolean isLogin() {
         return true;
     }
+
     private Handler handler = new Handler() {
 
         @Override
@@ -737,7 +739,7 @@ public class LoginActivity extends BaseActivity {
             tv_register.setVisibility(View.VISIBLE);
             if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") &&
                     !BuildConfig.FLAVOR.equals("livecasino338") && !BuildConfig.FLAVOR.equals("kasino365") &&
-                    !BuildConfig.FLAVOR.equals("mainkasino")) {
+                    !BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("memoricasino")) {
                 img_login_title.setImageResource(R.mipmap.gd_title_logo);
             }
             if (BuildConfig.FLAVOR.equals("kuncicasino")) {
@@ -849,13 +851,18 @@ public class LoginActivity extends BaseActivity {
             initRightLang();
         }
 
-        if (BuildConfig.FLAVOR.equals("rajabakarat")) {
+        if (BuildConfig.FLAVOR.equals("rajabakarat") || BuildConfig.FLAVOR.equals("idrkasino")) {
             hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
             hallGameBottomPromptTv.setSelected(true);
             hallGameBottomPromptTv.stopScroll();
-            hallGameBottomPromptTv.setText("Welcome to Rajabaccarat Situs Judi Casino Slot Online Terpercaya Indonesia.   Pemeliharaan Terjadwal: Playtech pada 2021-11-15 dari 8:00 PM sampai 2021-11-30 8:00 PM (GMT + 7). Selama waktu ini, Playtech permainan tidak akan tersedia. Kami memohon maaf atas ketidaknyamanan yang mungkin ditimbulkan.");
+            if (BuildConfig.FLAVOR.equals("idrkasino")) {
+                hallGameBottomPromptTv.setText("Welcome to Idrkasino Situs Judi Bola Sbobet dan Slot Online.   Pemeliharaan Terjadwal: Playtech pada 2021-11-15 dari 8:00 PM sampai 2021-11-30 8:00 PM (GMT + 7). Selama waktu ini, Playtech permainan tidak akan tersedia. Kami memohon maaf atas ketidaknyamanan yang mungkin ditimbulkan.");
+                hallGameBottomPromptTv.setTextColor(ContextCompat.getColor(mContext, R.color.login_color));
+            } else {
+                hallGameBottomPromptTv.setText("Welcome to Rajabaccarat Situs Judi Casino Slot Online Terpercaya Indonesia.   Pemeliharaan Terjadwal: Playtech pada 2021-11-15 dari 8:00 PM sampai 2021-11-30 8:00 PM (GMT + 7). Selama waktu ini, Playtech permainan tidak akan tersedia. Kami memohon maaf atas ketidaknyamanan yang mungkin ditimbulkan.");
+                hallGameBottomPromptTv.setTextColor(Color.parseColor("#DC9A04"));
+            }
             hallGameBottomPromptTv.setSpeed(0.8f);
-            hallGameBottomPromptTv.setTextColor(Color.parseColor("#DC9A04"));
             hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
             hallGameBottomPromptTv.startScroll();
             bannerView = findViewById(R.id.banner_view);
@@ -864,18 +871,28 @@ public class LoginActivity extends BaseActivity {
                 public void run() {
                     int width = bannerView.getWidth();
                     ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
-                    layoutParams.height = (int) (width / 2.14);
-                    bannerView.setLayoutParams(layoutParams);
                     List<Integer> imgList = new ArrayList<>();
-                    imgList.add(R.mipmap.raja_m1);
-                    imgList.add(R.mipmap.raja_m2);
-                    imgList.add(R.mipmap.raja_m3);
-                    imgList.add(R.mipmap.raja_m4);
+                    int indicatorSliderColor;
+                    if (BuildConfig.FLAVOR.equals("idrkasino")) {
+                        layoutParams.height = (int) (width / 3.13);
+                        imgList.add(R.mipmap.idr_s1);
+                        imgList.add(R.mipmap.idr_s2);
+                        imgList.add(R.mipmap.idr_s3);
+                        indicatorSliderColor = ContextCompat.getColor(mContext, R.color.login_color);
+                    } else {
+                        layoutParams.height = (int) (width / 2.14);
+                        imgList.add(R.mipmap.raja_m1);
+                        imgList.add(R.mipmap.raja_m2);
+                        imgList.add(R.mipmap.raja_m3);
+                        imgList.add(R.mipmap.raja_m4);
+                        indicatorSliderColor = ContextCompat.getColor(mContext, R.color.yellow_gold2);
+                    }
+                    bannerView.setLayoutParams(layoutParams);
                     bannerView.setLifecycleRegistry(getLifecycle()).
                             setAdapter(new MyBannerAdapter()).
                             setScrollDuration(500).
                             setIndicatorSliderColor(getResources().getColor(R.color.white),
-                                    getResources().getColor(R.color.yellow_gold2)).
+                                    indicatorSliderColor).
                             setIndicatorGravity(IndicatorGravity.CENTER).
                             create(imgList);
                 }
@@ -918,29 +935,34 @@ public class LoginActivity extends BaseActivity {
             });
             ImageView imgSlide1 = findViewById(R.id.img_slide1);
             ImageView imgSlide2 = findViewById(R.id.img_slide2);
-            imgSlide1.post(new Runnable() {
-                @Override
-                public void run() {
-                    int width1 = imgSlide1.getWidth();
-                    int width2 = imgSlide2.getWidth();
-                    int leftMargin = width1 - width2;
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imgSlide2.getLayoutParams();
-                    layoutParams.setMargins(leftMargin, layoutParams.topMargin, 0, 0);
-                    imgSlide2.setLayoutParams(layoutParams);
-                    imgSlide2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            int left = imgSlide2.getLeft();
-                            if (left == leftMargin) {
-                                WidgetUtil.leftMarginsAnimation(imgSlide2, leftMargin, 0);
-                            } else {
-                                WidgetUtil.leftMarginsAnimation(imgSlide2, 0, leftMargin);
+            if (BuildConfig.FLAVOR.equals("idrkasino")) {
+                imgSlide1.setVisibility(View.GONE);
+                imgSlide2.setVisibility(View.GONE);
+            } else {
+                imgSlide1.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int width1 = imgSlide1.getWidth();
+                        int width2 = imgSlide2.getWidth();
+                        int leftMargin = width1 - width2;
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imgSlide2.getLayoutParams();
+                        layoutParams.setMargins(leftMargin, layoutParams.topMargin, 0, 0);
+                        imgSlide2.setLayoutParams(layoutParams);
+                        imgSlide2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                int left = imgSlide2.getLeft();
+                                if (left == leftMargin) {
+                                    WidgetUtil.leftMarginsAnimation(imgSlide2, leftMargin, 0);
+                                } else {
+                                    WidgetUtil.leftMarginsAnimation(imgSlide2, 0, leftMargin);
+                                }
                             }
-                        }
-                    });
+                        });
 
-                }
-            });
+                    }
+                });
+            }
             FrameLayout flJackpot = findViewById(R.id.fl_jackpot);
             flJackpot.post(new Runnable() {
                 @Override
@@ -1006,6 +1028,68 @@ public class LoginActivity extends BaseActivity {
             };
             rajaRc2.setAdapter(adapterSlot);
             initRightLang();
+        }
+
+        if (BuildConfig.FLAVOR.equals("indkasino")) {
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            CircleAnimation circleAnimation = new CircleAnimation(40);
+            circleAnimation.setDuration(8000);
+            circleAnimation.setRepeatCount(-1);
+            circleAnimation.setInterpolator(new LinearInterpolator());
+            img_login_title_main.startAnimation(circleAnimation);
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            ObjectAnimator objectAnimatorY = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationY", 0, -30, 0);
+            objectAnimatorY.setDuration(5000);
+            objectAnimatorY.setRepeatCount(Animation.INFINITE);
+            ObjectAnimator objectAnimatorX = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationX", 0, 30, 0);
+            objectAnimatorX.setDuration(5000);
+            objectAnimatorX.setRepeatCount(Animation.INFINITE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(objectAnimatorX, objectAnimatorY);
+            animatorSet.start();
+
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://bit.ly/whatsappindkasino");
+                }
+            });
+        }
+
+        if (BuildConfig.FLAVOR.equals("memoricasino")) {
+            imgGif1 = findViewById(R.id.img_gif_1);
+            imgGif1.post(new Runnable() {
+                @Override
+                public void run() {
+                    ViewGroup.LayoutParams layoutParams = imgGif1.getLayoutParams();
+                    layoutParams.height = (int) (imgGif1.getWidth() / 1.4);
+                    imgGif1.setLayoutParams(layoutParams);
+                }
+            });
+
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            CircleAnimation circleAnimation = new CircleAnimation(40);
+            circleAnimation.setDuration(8000);
+            circleAnimation.setRepeatCount(-1);
+            circleAnimation.setInterpolator(new LinearInterpolator());
+            img_login_title_main.startAnimation(circleAnimation);
+            LinearLayout llAnimation = findViewById(R.id.ll_animation);
+            ObjectAnimator objectAnimatorY = ObjectAnimator.ofFloat(llAnimation, "translationY", 0, -60, 0);
+            objectAnimatorY.setDuration(7000);
+            objectAnimatorY.setRepeatCount(Animation.INFINITE);
+            ObjectAnimator objectAnimatorX = ObjectAnimator.ofFloat(llAnimation, "translationX", 0, 60, 0);
+            objectAnimatorX.setDuration(7000);
+            objectAnimatorX.setRepeatCount(Animation.INFINITE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(objectAnimatorX, objectAnimatorY);
+            animatorSet.start();
+
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://bit.ly/2wD1ha7");
+                }
+            });
         }
 
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
@@ -1445,6 +1529,7 @@ public class LoginActivity extends BaseActivity {
             hallGameBottomPromptTv.stopScroll();
         }
     }
+
     HttpClient httpClient = new HttpClient("");
 
     public class ThreadLogin extends Thread {
