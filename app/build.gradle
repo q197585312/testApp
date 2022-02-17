@@ -176,13 +176,13 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "idrkasino"]
                 buildConfigField "String", "Labelid", '"45"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.13'
+                versionName '4.14'
             }
             indkasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "indkasino"]
                 buildConfigField "String", "Labelid", '"126"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.13'
+                versionName '4.14'
             }
             juragan {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "juragan"]
@@ -233,7 +233,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "memoricasino"]
                 buildConfigField "String", "Labelid", '"139"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.13'
+                versionName '4.14'
             }
             nagacasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "nagacasino"]
