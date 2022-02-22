@@ -29,8 +29,8 @@ android {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com/"'
-        buildConfigField "String", "Domain", '".afb1188.net"'//.test.khsport.net:8011
-        buildConfigField "String", "HOST", '"wsapp.afb1188.net"'
+        buildConfigField "String", "Domain", '".afb1188.com"'//.test.khsport.net:8011
+        buildConfigField "String", "HOST", '"wsapp.afb1188.com"'
         buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
         flavorDimensions "versionCode"
@@ -70,10 +70,8 @@ android {
             applicationId 'com.nanyang.afb1188'
             versionName '3.06'
 
-            buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.net/W0/Pub/wfMain0.html"'
+            buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.com/W0/Pub/wfMain0.html"'
 //https://test.khsport.net:8011/W0/Pub/wfMain0.html
-
-            buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.net/"'
             //app专用服务器//https://test.khsport.net:8011/
             //app专用服务器//test.khsport.net:8011
 
@@ -90,7 +88,7 @@ android {
             applicationId 'com.nanyang.i1bet99'
             versionName '3.04'
 
-            buildConfigField "String", "PC_URL", '"https://www.i1bet99.com/W2/Pub/wfMain.html"'
+            buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.com/W2/Pub/wfMain.html"'
 
 
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/i1bet99_game.php"'
@@ -105,7 +103,7 @@ android {
             applicationId 'com.nanyang.ez2888'
             versionName '3.01'
 
-            buildConfigField "String", "PC_URL", '"http://www.ez2888.com/W9/Pub/wfMain0.html"'
+            buildConfigField "String", "PC_URL", '"http://wsapp.afb1188.com/W9/Pub/wfMain0.html"'
 
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/ez2888_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
