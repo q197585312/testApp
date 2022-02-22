@@ -5,6 +5,7 @@ import com.nanyang.app.data.CheckVersionBean
 import com.nanyang.app.data.GamesData
 import com.nanyang.app.load.welcome.AllBannerImagesBean
 import com.nanyang.app.main.BetCenter.Bean.Contact
+import com.nanyang.app.main.home.LoginResultData
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo
 import com.nanyang.app.main.home.huayThai.ResultBean
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean
@@ -95,6 +96,9 @@ interface ApiServiceKt {
     @POST
     fun doPostJson(@Url url: String?, @Body info: RequestBody?): Flowable<String?>?
 
+    @Headers("Content-Type: application/json", "Accept: application/json") //需要添加头
+    @POST
+    fun doPostJsonLogin(@Url url: String?, @Body info: RequestBody?): Flowable<LoginResultData?>
 
     @POST
     fun getDataHeader(

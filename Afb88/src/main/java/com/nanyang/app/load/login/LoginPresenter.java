@@ -10,22 +10,18 @@ import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
+import com.nanyang.app.main.home.LoginResultData;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import okhttp3.RequestBody;
 
 class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
 
@@ -43,81 +39,45 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             final String url_login = AppConstant.getInstance().URL_LOGIN;
             String infoWfmain = info.getWfmainJson("Login", new LanguageHelper(baseContext).getLanguage());
             String url = url_login + "?_fm=" + infoWfmain;
-            doRetrofitApiOnDefaultThread(ApiServiceKt.Companion.getInstance().getData(url)
-                    , new BaseConsumer<String>(baseContext) {
+
+
+            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), infoWfmain);
+
+            doRetrofitApiOnDefaultThread(ApiServiceKt.Companion.getInstance().doPostJsonLogin(url_login, body)
+                    , new BaseConsumer<LoginResultData>(baseContext) {
                         @Override
-                        protected void onBaseGetData(String s) throws JSONException {
-                            JSONArray jsonArray = new JSONArray(s);
-                            if (s.contains("Maintenance")) {
-                                Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
-                                onError(exception);
-                                ((BaseToolbarActivity) baseContext.getBaseActivity()).skipMaintenance();
-                            } else {
-                                String s1 = jsonArray.optString(2);
-                                if (s1 != null && StringUtils.matches(s1, "^.*\\(\\'([^\\']+)\\'\\);.*?")) {
-                                    Exception exception = new Exception(StringUtils.findGroup(s1, "^.*\\(\\'([^\\']+)\\'\\);.*?", 1));
-                                    onError(exception);
-                                } else {
-                                    String ss = StringUtils.findGroup(s1, "^.*Authorization\\', \\'([^\\']+)\\'\\);.*?", 1);
-                                    ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setAuthorization(ss);
-                                    String regex = "window.location";
-                                    Pattern p = Pattern.compile(regex);
-                                    Matcher m = p.matcher(s);
-//                                    final MainPresenter switchLanguage = new MainPresenter(baseContext);
-//                                    switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
-//                                                                  @Override
-//                                                                  public void onBack(SettingAllDataBean data) throws JSONException {
-//                                                                      checkLogin(0x01);
-//                                                                  }
-//                                                              }
-//                                    );
-//                                    String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
-//                                    Map<String, String> headers = new HashMap<>();
-//                                    headers.put("isios", "true");
-//                                    headers.put("Authorization", ss);
-//
-//                                    switchLanguage.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
-//                                        @Override
-//                                        public void onBack(String data) {
-//                                            PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
-//                                            personalInfo.setPassword(((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getUser().getPassword());
-//                                            personalInfo.setLoginUrl(url);
-//                                            ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setUser(personalInfo);
-//
-//                                            checkLogin(0x10);
-//                                        }
-//                                    });
-                                    if (m.find()) {
-                                        final MainPresenter switchLanguage = new MainPresenter(baseContext);
-                                        switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
-                                                                      @Override
-                                                                      public void onBack(SettingAllDataBean data) throws JSONException {
-                                                                          checkLogin(0x01);
-                                                                      }
-                                                                  }
-                                        );
-                                        String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
-                                        Map<String, String> headers = new HashMap<>();
-//                                        headers.put("isios", "true");
-                                        headers.put("authorization", ss);
+                        protected void onBaseGetData(LoginResultData s) throws JSONException {
+                            if (s == null)
+                                return;
+                            ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setAuthorization(s.getAuthorization());
 
-                                        switchLanguage.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
-                                            @Override
-                                            public void onBack(String data) {
-                                                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
-                                                personalInfo.setPassword(((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getUser().getPassword());
-                                                personalInfo.setLoginUrl(url);
-                                                ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setUser(personalInfo);
+                            if (s.getLoginStatus().equals("true") || s.getLoginStatus().equals("1")) {
+                                final MainPresenter switchLanguage = new MainPresenter(baseContext);
+                                switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
+                                                              @Override
+                                                              public void onBack(SettingAllDataBean data) throws JSONException {
+                                                                  checkLogin(0x01);
+                                                              }
+                                                          }
+                                );
+                                String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
 
-                                                checkLogin(0x10);
-                                            }
-                                        });
+                                switchLanguage.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
+                                    @Override
+                                    public void onBack(String data) {
+                                        PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
+                                        personalInfo.setPassword(((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getUser().getPassword());
+                                        personalInfo.setLoginUrl(url);
+                                        ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setUser(personalInfo);
 
-                                    } else {
-                                        Exception exception1 = new Exception(s);
-                                        onError(exception1);
+                                        checkLogin(0x10);
                                     }
-                                }
+                                });
+
+                            } else {
+
+                                Exception exception1 = new Exception(s.getMessage());
+                                onError(exception1);
                             }
 
 

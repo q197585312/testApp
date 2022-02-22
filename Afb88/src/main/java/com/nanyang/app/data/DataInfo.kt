@@ -18,3 +18,21 @@ class PasswordWfBean(
     var NewPass: String,
     var ConPass: String
 ) : LoginInfo.LanguageWfBean(ACT,lang,PT)
+
+data class LoginResultData(
+    var Authorization: String,
+    /*{
+        AFB = 0,
+        I1BET99 = 2 ,
+        NONE = 256,
+        LIGA365 = 105,
+        AU789 = 112,
+        mbet666 = 113,
+        Afbsports=3,
+        EZ2888= 111,
+        USUN= 114
+    }*/
+    var CompType: String,
+    var LoginStatus: String,
+    var Message: String
+)

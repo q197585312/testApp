@@ -310,11 +310,6 @@ public class MainPresenter extends BaseSwitchPresenter {
         helper.doRetrofitApiOnUiThread(languageWfBean, back);
     }
 
-    public void loadAllMainDataHeaders(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back, Map<String, String> headers) {
-        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThreadHeaders(languageWfBean, back, "", headers);
-    }
-
 
     public void loadAllImages(final CallBack<AllBannerImagesBean> back) {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA

@@ -34,7 +34,7 @@ public class AppConstant {
     public String HOST = BuildConfig.HOST_AFB;
     public String WebSocket_HOST =BuildConfig.HOST_SPORT;
     //http://www.afb1188.com/W0/Pub/pcode.axd
-    public String URL_LOGIN = HOST + "H50/Pub/pcode.axd";///W0/Pub/pcode.axd
+    public String URL_LOGIN = HOST + "api/AppLogin";///W0/Pub/pcode.axd
     //    、、/W0/Pub/wfMain0.html
 
     public String _BET = "Bet/";

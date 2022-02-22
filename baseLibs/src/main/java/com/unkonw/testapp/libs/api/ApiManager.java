@@ -103,7 +103,7 @@ public class ApiManager {
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
-                    .addNetworkInterceptor(interceptor)
+                    .addInterceptor(interceptor)
                     .cookieJar(CookieManger.getInstance())
                     .cache(cache)
 //                    .addInterceptor( mInterceptor)

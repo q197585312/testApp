@@ -28,8 +28,10 @@ android {
         applicationId "com.nanyang.app"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com"'
-        buildConfigField "String", "HOST_SPORT", '"https://wsapp.afb1188.com:8888/fnOddsGen"'
+        buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com/"'
+        buildConfigField "String", "Domain", '".afb1188.net"'//.test.khsport.net:8011
+        buildConfigField "String", "HOST", '"wsapp.afb1188.net"'
+        buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
         flavorDimensions "versionCode"
 
@@ -61,27 +63,25 @@ android {
 //            ]
 //            applicationId 'com.nanyang.app'
 //            versionName '1.75'
-//            buildConfigField "String", "HOST_AFB", '"https://main55.afb88.com/"'
+
 //        }
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
             versionName '3.06'
-            buildConfigField "String", "Domain", '".afb1188.net"'//.test.khsport.net:8011
-            buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.net/W0/Pub/wfMain0.html"'//https://test.khsport.net:8011/W0/Pub/wfMain0.html
-//https://wsapp.afb1188.net/W0/Pub/wfMain0.html
-            buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.net/"' //app专用服务器//https://test.khsport.net:8011/
-            buildConfigField "String", "HOST", '"wsapp.afb1188.net"' //app专用服务器//test.khsport.net:8011
-            buildConfigField "String", "H5", '"H50"'
-            buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
+
+            buildConfigField "String", "PC_URL", '"https://wsapp.afb1188.net/W0/Pub/wfMain0.html"'
+//https://test.khsport.net:8011/W0/Pub/wfMain0.html
+
+            buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.net/"'
+            //app专用服务器//https://test.khsport.net:8011/
+            //app专用服务器//test.khsport.net:8011
+
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/afb1188_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
             buildConfigField "String", "Maintenance_URL", '"http://wsapp.afb1188.net/W0/Img/Maintenance.html"'
             buildConfigField "String", "Contact_URL", '"http://www.appgd88.com/api/afb1188_contact.php"'
-//ws://wsapp.afb1188.com:8888/fnOddsGen
-//            buildConfigField "String", "HOST_AFB", '"http://13.112.86.40/"'//h5正式机
-//            buildConfigField "String", "HOST_SPORT", '"ws://13.112.86.40:8888/fnOddsGen"'
-//            buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/afb1188_test.php"'
+
             buildConfigField "String", "CHECK_VERSION", '"http://www.appgd88.com/api/afbAndroidVersion.php?appName=afb1188"'
             buildConfigField "String", "PRINT_URL", '"https://afb1188.net/W0/Pub/wfBetSlip0.html?id="'
         }
@@ -89,12 +89,10 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
             versionName '3.04'
-            buildConfigField "String", "Domain", '".i1bet99.com"'
+
             buildConfigField "String", "PC_URL", '"https://www.i1bet99.com/W2/Pub/wfMain.html"'
-            buildConfigField "String", "HOST_AFB", '"https://www.i1bet99.com/"'
-            buildConfigField "String", "HOST", '"www.i1bet99.com"'
-            buildConfigField "String", "H5", '"H52NEW"'
-            buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
+
+
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/i1bet99_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"https://i1bet99.com/H52NEW/Img/Ibet99H5.jpg"'
             buildConfigField "String", "Maintenance_URL", '"https://i1bet99.com/W2NEW/Img/Maintenance.html"'
@@ -106,12 +104,9 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ez2888"]
             applicationId 'com.nanyang.ez2888'
             versionName '3.01'
-            buildConfigField "String", "Domain", '".ez2888.com"'
+
             buildConfigField "String", "PC_URL", '"http://www.ez2888.com/W9/Pub/wfMain0.html"'
-            buildConfigField "String", "HOST_AFB", '"https://www.ez2888.com/"'
-            buildConfigField "String", "HOST", '"www.ez2888.com"'
-            buildConfigField "String", "H5", '"H59"'
-            buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
+
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/ez2888_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
             buildConfigField "String", "Maintenance_URL", '"https://ez2888.com/W9/Img/Maintenance.html"'
@@ -165,4 +160,7 @@ dependencies {
         implementation project(':app')
     }
 
+//    implementation 'com.github.fingerprintjs:fingerprintjs-pro-android:v1.2.0'
+    // If you use Java for you project, add also this line
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

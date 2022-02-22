@@ -39,7 +39,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 
-
 /**
  * Created by Administrator on 2017/1/10 0010.
  */
@@ -83,6 +82,23 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
     private volatile int loginType = 0;
 
+
+/*    void initLoginParam() {
+        FPJSProFactory factory = new FPJSProFactory(this.getApplicationContext());
+        Configuration configuration = new Configuration(
+                "0a3Xe1YLj3N8Y3UkqQVb"
+        );
+
+        FPJSProKotlinClient fpjsClient = (FPJSProKotlinClient) factory.createInstance(
+                configuration
+        );
+
+        fpjsClient.getVisitorId(visitorId -> {
+                    // Use visitorId
+                    return null;
+                }
+        );
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -118,7 +118,9 @@ class LoginInfo {
         var lang: String? = ""
         var pgLable = "0.15504609525960888"
         var vsn = "4.0.12"
-        var PT = "wfLoginH50"//wfMainH50
+        var ISPC = "0"
+        var AppType = "AndroidApp"
+        var PT = "wfMainH50"//wfMainH50
         val json: String
             get() = Gson().toJson(this)
     }
