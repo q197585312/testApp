@@ -98,8 +98,8 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                                         );
                                         String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
                                         Map<String, String> headers = new HashMap<>();
-                                        headers.put("isios", "true");
-                                        headers.put("Authorization", ss);
+//                                        headers.put("isios", "true");
+                                        headers.put("authorization", ss);
 
                                         switchLanguage.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
                                             @Override

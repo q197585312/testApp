@@ -197,8 +197,8 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                 LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
                 String authorization = ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getAuthorization();
                 Map<String, String> headers = new HashMap<>();
-                headers.put("isios", "true");
-                headers.put("Authorization", authorization);
+//                headers.put("isios", "true");
+                headers.put("authorization", authorization);
                 helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
                     @Override
                     public void onBack(String data) {

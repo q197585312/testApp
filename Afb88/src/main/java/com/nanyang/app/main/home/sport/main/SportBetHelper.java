@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
@@ -29,8 +30,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -86,7 +89,11 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
         url = url.trim() + "&_=" + System.currentTimeMillis();
         Log.d("betUrl", url);
-        Disposable subscription = ApiServiceKt.Companion.getInstance().getData(url).subscribeOn(Schedulers.io())
+        String authorization = ((BaseToolbarActivity) (baseView.getIBaseContext().getBaseActivity())).getApp().getAuthorization();
+        Map<String, String> headers = new HashMap<>();
+//        headers.put("isios", "true");
+        headers.put("authorization", authorization);
+        Disposable subscription = ApiServiceKt.Companion.getInstance().getData(url,headers).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
@@ -165,7 +172,11 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     public Disposable getRefreshOdds(final String urlBet) {
         final String url = urlBet.trim() + "&_=" + System.currentTimeMillis();
         Log.d("updateMixListText", "betUrl:" + url);
-        Disposable subscribe = ApiServiceKt.Companion.getInstance().getData(url).subscribeOn(Schedulers.io())
+        String authorization = ((BaseToolbarActivity) (baseView.getIBaseContext().getBaseActivity())).getApp().getAuthorization();
+        Map<String, String> headers = new HashMap<>();
+//        headers.put("isios", "true");
+        headers.put("authorization", authorization);
+        Disposable subscribe = ApiServiceKt.Companion.getInstance().getData(url,headers).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
                     @Override
                     public AfbClickResponseBean apply(String s) throws Exception {

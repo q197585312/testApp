@@ -105,6 +105,9 @@ interface ApiServiceKt {
     @GET
     fun getData(@Url url: String?): Flowable<String?>?
 
+    @GET
+    fun getData(@Url url: String?, @HeaderMap headers: Map<String, String>): Flowable<String?>?
+
     @FormUrlEncoded
     @POST
     fun doHuayMap(@Url url: String?, @FieldMap info: Map<String?, String?>?): Flowable<ResultBean?>?

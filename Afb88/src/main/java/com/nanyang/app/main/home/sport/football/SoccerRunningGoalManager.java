@@ -71,13 +71,15 @@ public class SoccerRunningGoalManager {
     }
 
     public boolean isHomeGoal(String sid, String runHomeScore, String runAwayScore, String HomeGoal) {
+        if ((runHomeScore.trim().equals("0")))
+            return false;
+        if (StringUtils.isEmpty(runHomeScore) || StringUtils.isEmpty(runAwayScore))
+            return false;
         Boolean isHomeGoal = homeGoal.get(sid);
         if (isHomeGoal != null)
             return isHomeGoal;
-        if (StringUtils.isEmpty(runHomeScore) || StringUtils.isEmpty(runAwayScore))
-            return false;
-        if ((runHomeScore.trim().equals("0")))
-            return false;
+
+
         if (runAwayScore.trim().equals("0")) {
             return true;
         }
@@ -91,13 +93,13 @@ public class SoccerRunningGoalManager {
     }
 
     public boolean isAwayGoal(String sid, String runHomeScore, String runAwayScore, String HomeGoal) {
+        if (runAwayScore.trim().equals("0"))
+            return false;
+        if (StringUtils.isEmpty(runHomeScore) || StringUtils.isEmpty(runAwayScore))
+            return false;
         Boolean isAwayGoal = awayGoal.get(sid);
         if (isAwayGoal != null)
             return isAwayGoal;
-        if (StringUtils.isEmpty(runHomeScore) || StringUtils.isEmpty(runAwayScore))
-            return false;
-        if (runAwayScore.trim().equals("0"))
-            return false;
         if (runHomeScore.trim().equals("0")) {
             return true;
         }

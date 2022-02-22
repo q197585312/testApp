@@ -270,8 +270,8 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         LoadMainDataHelper helper = new LoadMainDataHelper(new ApiManager(), getBaseActivity(), mCompositeSubscription);
         Map<String, String> headers = new HashMap<String, String>();
         String authorization = ((BaseToolbarActivity) (getBaseActivity())).getApp().getAuthorization();
-        headers.put("isios", "true");
-        headers.put("Authorization", authorization);
+//        headers.put("isios", "true");
+        headers.put("authorization", authorization);
         helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
@@ -522,6 +522,8 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                                 onError(exception);
                                 ((BaseToolbarActivity) baseContext.getBaseActivity()).skipMaintenance();
                             } else {
+                                String ss = StringUtils.findGroup(s, "^.*Authorization\\', \\'([^\\']+)\\'\\);.*?", 1);
+                                ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setAuthorization(ss);
                                 errorCount = 0;
                                 ToastUtils.showLong(R.string.Login_Success);
                             }

@@ -21,6 +21,7 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -99,7 +100,11 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
-        Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
+        String authorization = ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getAuthorization();
+        Map<String, String> headers = new HashMap<>();
+//        headers.put("isios", "true");
+        headers.put("authorization", authorization);
+        Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p,headers), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);

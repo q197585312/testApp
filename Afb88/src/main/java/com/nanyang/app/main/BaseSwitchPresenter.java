@@ -1,7 +1,6 @@
 package com.nanyang.app.main;
 
 import com.nanyang.app.ApiServiceKt;
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -26,11 +25,4 @@ public class BaseSwitchPresenter extends BaseRetrofitPresenter<IBaseContext> {
         doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getContactData(BuildConfig.Contact_URL), bc);
     }
 
-    public void getStatementData(BaseConsumer<String> bc) {
-        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_STAEMENT), bc);
-    }
-
-    public void confirmBlance(BaseConsumer<String> bc, String url) {
-        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(url), bc);
-    }
 }
