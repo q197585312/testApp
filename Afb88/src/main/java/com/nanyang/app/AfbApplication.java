@@ -329,6 +329,7 @@ public class AfbApplication extends BaseApplication {
             map.put("Casino", new SportIdBean("Casino", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_baccarat));
             map.put("AFB CASINO", new SportIdBean("AFB CASINO", "", R.string.AFB_CASINO, "AFB CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_afb_gaming));
             map.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.SEXY_CASINO, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sg_gaming));
+            map.put("SV388", new SportIdBean("SV388", "", R.string.SV388_CASINO, "SV388", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sv388_gaming));
             map.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.SA_CASINO, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sa_gaming));
             map.put("DG CASINO", new SportIdBean("DG CASINO", "", R.string.DG_Cashio, "DG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_dg));
             map.put("WM CASINO", new SportIdBean("WM CASINO", "", R.string.WM_Cashio, "WM CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_wm_gaming));
@@ -732,6 +733,7 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("Joker", isEnabledWM);
         enableMap.put("allCasino", isEnabledWM);
         enableMap.put("AFB CASINO", isEnabledWM);
+        enableMap.put("SV388", isEnabledWM);
         return enableMap;
     }
 

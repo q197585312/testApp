@@ -25,6 +25,7 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
+import com.nanyang.app.main.home.SV338CasinoWfBean;
 import com.nanyang.app.main.home.SaCasinoWfBean;
 import com.nanyang.app.main.home.PasswordWfBean;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
@@ -158,6 +159,8 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfJKRLogin"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("AFB CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenTGAGamee", "", "wfGeneralLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+        } else if (g.equals("SV388")) {
+            skipPCashio("post", AppConstant.getInstance().HOST + "api/SGCheckonline", g, new SV338CasinoWfBean("", "", "SGCheckonline"), "", "^.*\"(http[^\"]+)\".*$");
         }
     }
 
