@@ -271,7 +271,9 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         Map<String, String> headers = new HashMap<String, String>();
         String authorization = ((BaseToolbarActivity) (getBaseActivity())).getApp().getAuthorization();
 //        headers.put("isios", "true");
-        headers.put("authorization", authorization);
+        if (!TextUtils.isEmpty(authorization)){
+            headers.put("authorization", authorization);
+        }
         helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {

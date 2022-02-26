@@ -1,5 +1,6 @@
 package com.nanyang.app.main;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -53,7 +54,9 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
         String authorization = ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getAuthorization();
         Map<String, String> headers = new HashMap<>();
 //        headers.put("isios", "true");
-        headers.put("authorization", authorization);
+        if (!TextUtils.isEmpty(authorization)){
+            headers.put("authorization", authorization);
+        }
         Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p,headers), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -93,6 +96,11 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                     JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);
                     back.onBack(jsonArrayData3.get(0).toString());
                 }
+            }
+
+            @Override
+            protected void onError(Throwable throwable) {
+                super.onError(throwable);
             }
 
             @Override

@@ -4,6 +4,7 @@ package com.nanyang.app.load.welcome;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -198,7 +199,9 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                 String authorization = ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getAuthorization();
                 Map<String, String> headers = new HashMap<>();
 //                headers.put("isios", "true");
-                headers.put("authorization", authorization);
+                if (!TextUtils.isEmpty(authorization)){
+                    headers.put("authorization", authorization);
+                }
                 helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
                     @Override
                     public void onBack(String data) {

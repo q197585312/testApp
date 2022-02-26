@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -92,7 +93,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         String authorization = ((BaseToolbarActivity) (baseView.getIBaseContext().getBaseActivity())).getApp().getAuthorization();
         Map<String, String> headers = new HashMap<>();
 //        headers.put("isios", "true");
-        headers.put("authorization", authorization);
+        if (!TextUtils.isEmpty(authorization)){
+            headers.put("authorization", authorization);
+        }
         Disposable subscription = ApiServiceKt.Companion.getInstance().getData(url,headers).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {//onNext
@@ -175,7 +178,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         String authorization = ((BaseToolbarActivity) (baseView.getIBaseContext().getBaseActivity())).getApp().getAuthorization();
         Map<String, String> headers = new HashMap<>();
 //        headers.put("isios", "true");
-        headers.put("authorization", authorization);
+        if (!TextUtils.isEmpty(authorization)){
+            headers.put("authorization", authorization);
+        }
         Disposable subscribe = ApiServiceKt.Companion.getInstance().getData(url,headers).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
                     @Override
