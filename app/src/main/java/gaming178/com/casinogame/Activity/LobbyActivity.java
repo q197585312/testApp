@@ -647,6 +647,8 @@ public class LobbyActivity extends BaseActivity {
                             skipAct(LG88WebActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.haba) {
                             skipAct(HabaGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.pg) {
+                            skipAct(PGGameActivity.class);
                         }
 
                     }
@@ -917,6 +919,7 @@ public class LobbyActivity extends BaseActivity {
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, getString(R.string.pragmatic), AppConfig.pragmatic));
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, getString(R.string.king_kong), AppConfig.kingKong));
                 hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_haba, getString(R.string.haba), AppConfig.haba));
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_pg, getString(R.string.gd_pg), AppConfig.pg));
             }
             if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") || BuildConfig.FLAVOR.equals("ratucasino88") ||
                     BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("kasino365") ||

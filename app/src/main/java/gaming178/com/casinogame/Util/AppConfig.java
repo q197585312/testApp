@@ -35,4 +35,5 @@ public class AppConfig {
     public static final int bandarq = 12;
     public static final int lg88 = 13;
     public static final int haba = 14;
+    public static final int pg = 15;
 }
