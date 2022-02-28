@@ -156,6 +156,11 @@ class LoginInfo {
             )
     }
 
+    class AfbGameWfBean(ACT: String, lang: String, PT: String) : LanguageWfBean(ACT, lang, PT) {
+        var ProviderName: String = "AFBGaming"
+
+    }
+
     class HuayDataWfBean(override var ACT: String,override var lang: String,override var PT: String) :
         LanguageWfBean(ACT, lang, PT) {
         open var type: String=""
