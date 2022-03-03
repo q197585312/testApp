@@ -973,7 +973,7 @@ public class LoginActivity extends BaseActivity {
                     flJackpot.setLayoutParams(layoutParams);
                 }
             });
-            tvCount = findViewById(R.id.tv_count);
+            tvCount = findViewById(R.id.gd_tv_count);
             new Thread() {
                 @Override
                 public void run() {

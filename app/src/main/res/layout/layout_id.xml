@@ -113,4 +113,14 @@
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:visibility="gone"></LinearLayout>
+
+    <TextView
+        android:id="@+id/gd_tv_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"></TextView>
 </FrameLayout>
