@@ -20,14 +20,21 @@
         android:textSize="12sp" />
 
     <TextView
-        android:textAllCaps="true"
         android:id="@+id/tv_game_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_weight="1"
         android:text="Soccer"
+        android:textAllCaps="true"
         android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_red_oval"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/oval_red_no_stroke_black"
+        android:visibility="gone"></TextView>
 
     <TextView
         android:id="@+id/tv_game_count"
@@ -35,9 +42,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_green_dark_all_corners8"
         android:gravity="center"
-        android:paddingBottom="2dp"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:paddingTop="2dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="2dp"
         android:textColor="@color/white" />
+
 </LinearLayout>

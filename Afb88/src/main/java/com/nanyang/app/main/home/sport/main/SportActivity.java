@@ -198,6 +198,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     RadioButton others_selected;
     @BindView(R.id.games_switch_rg)
     RadioGroup games_switch_rg;
+    public Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
 
 
     public MenuItemInfo<String> item;
@@ -239,7 +240,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             outState.remove(BUNDLE_FRAGMENTS_KEY);
         }
     }
-    public Map<String, Map<String, Boolean>> localCollectionMap=new HashMap<>();
+    @BindView(R.id.tv_top_right_oval)
+    TextView tvTopRightOval;
+
     public void onCreate(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             //重建时清除 fragment的状态
@@ -253,7 +256,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 //        presenter.getStateHelper().switchOddsType(item.getType());
         updateMixOrderCount();
         hasBet = true;
-        if (BuildConfig.FLAVOR.equals("ez2888")){
+        if (BuildConfig.FLAVOR.equals("ez2888")) {
             tvRecord.setTextColor(Color.WHITE);
             tvMix.setTextColor(Color.WHITE);
             tvMenu.setTextColor(Color.WHITE);
@@ -930,7 +933,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         @Override
         protected void initView(View view) {
             super.initView(view);
-
             RecyclerView rv_list = view.findViewById(R.id.rv_list);
             View iv_home_back = view.findViewById(R.id.iv_home_back);
             final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
@@ -1015,7 +1017,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickTop() {
-        currentFragment.checkTop(tvLeagueMain);
+        currentFragment.checkTop(tvLeagueMain, tvTopRightOval);
     }
 
     @Override
@@ -1125,7 +1127,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void resumeCurrent() {
         if (currentFragment.isVisible()) {
             cl_sport_head.setVisibility(View.VISIBLE);
-            if (!BuildConfig.FLAVOR.equals("ez2888")){
+            if (!BuildConfig.FLAVOR.equals("ez2888")) {
                 list_top.setVisibility(View.VISIBLE);
             }
             ll_line1.setVisibility(View.VISIBLE);

@@ -1,4 +1,4 @@
-    package com.nanyang.app.main.home.sport.main;
+package com.nanyang.app.main.home.sport.main;
 
 import android.app.Activity;
 import android.content.Context;
@@ -216,9 +216,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
 
-    public void checkTop(TextView tx) {
+    public void checkTop(TextView tx, TextView tvOval) {
 
-        setTopLog(tx, !isTop);
+        setTopLog(tx, tvOval, !isTop);
         MenuItemInfo stateType = presenter.getStateHelper().getStateType();
         if (isTop) {
             switchMajorType(stateType.getType());
@@ -228,12 +228,15 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
 
-    public void setTopLog(TextView tx, boolean isTop) {
+    public void setTopLog(TextView tx, TextView tvOval, boolean isTop) {
         this.isTop = isTop;
-        if (this.isTop)
+        if (this.isTop) {
             tx.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_button));
-        else
+            tvOval.setVisibility(View.VISIBLE);
+        } else {
             tx.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            tvOval.setVisibility(View.GONE);
+        }
     }
 
 
@@ -627,14 +630,14 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         LogUtil.d("getMethodName", getClass().getSimpleName() + ",onlyShowAdded:" + getBaseActivity().onlyShowOne);
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().cl_sport_head.setVisibility(View.VISIBLE);
-        if (!BuildConfig.FLAVOR.equals("ez2888")){
+        if (!BuildConfig.FLAVOR.equals("ez2888")) {
             getBaseActivity().list_top.setVisibility(View.VISIBLE);
         }
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
         if (getBaseActivity().fl_top_video.getVisibility() == View.GONE) {
             getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
-            if (!BuildConfig.FLAVOR.equals("ez2888")){
+            if (!BuildConfig.FLAVOR.equals("ez2888")) {
                 getBaseActivity().list_top.setVisibility(View.VISIBLE);
             }
             getBaseActivity().ll_line2.setVisibility(View.VISIBLE);

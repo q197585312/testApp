@@ -187,6 +187,16 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<Integer> item) {
                 TextView tvGamePic = holder.getTextView(R.id.img_game_pic);
                 TextView tv = holder.getView(R.id.tv_game_name);
+                TextView tvRedOval = holder.getView(R.id.tv_red_oval);
+                if (position == 0) {
+                    if (activity.currentFragment.isTop()) {
+                        tvRedOval.setVisibility(View.VISIBLE);
+                    } else {
+                        tvRedOval.setVisibility(View.GONE);
+                    }
+                } else {
+                    tvRedOval.setVisibility(View.GONE);
+                }
                 int res = item.getRes();
                 if (res == R.mipmap.date_day_grey) {
                     tvGamePic.setText(item.getDay());
