@@ -575,7 +575,7 @@ public class LobbyActivity extends BaseActivity {
                         ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
                         Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
                         imageView.setImageBitmap(bitmap);
-                        if (item.getGameType() == AppConfig.pragmatic) {
+                        if (item.getGameType() == AppConfig.pragmatic || item.getGameType() == AppConfig.pg) {
                             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                         } else {
                             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
