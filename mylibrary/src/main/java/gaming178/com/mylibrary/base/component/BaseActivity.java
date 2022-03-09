@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +24,7 @@ import gaming178.com.mylibrary.allinone.util.BlockDialog;
 public abstract class BaseActivity extends AutoLayoutActivity {
     protected Toolbar toolbar;
     public TextView titleTv;
+    public ImageView imgCenter;
     protected TextView tvCenterTitle;
     protected Context mContext;
 
@@ -82,6 +84,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         setLayout = (LinearLayout) findViewById(R.id.layout_set);
         titleTv = (TextView) findViewById(R.id.toolbar_title);
         tvCenterTitle = (TextView) findViewById(R.id.tv_center_title);
+        imgCenter = (ImageView) findViewById(R.id.gd_img_center);
         backTv = (TextView) findViewById(R.id.toolbar_back_tv);
 /*
         searchLl = (LinearLayout) findViewById(R.id.search_parent_ll);

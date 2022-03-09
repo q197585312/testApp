@@ -278,13 +278,13 @@
             <Button
                 android:id="@+id/gd__btn_register"
                 android:layout_width="match_parent"
-                android:layout_height="38dip"
+                android:layout_height="45dip"
                 android:layout_marginTop="7dip"
-                android:background="@drawable/gd_rectangle_green_corner_shade_bg"
+                android:background="@drawable/gd_rectangle_green_register_bg"
                 android:gravity="center"
                 android:onClick="clickRegister"
                 android:text="@string/register"
-                android:textSize="15dip" />
+                android:textSize="17dip" />
         </LinearLayout>
 
 

@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/rectangle_gray_graystroke_radius5"
+    android:background="@drawable/rectangle_deposit_withdraw_bg"
     android:orientation="vertical">
 
     <RelativeLayout

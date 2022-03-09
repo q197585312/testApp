@@ -90,6 +90,8 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
     @BindView(R2.id.gd__btn_register)
     Button btnRegist;
 
+    LinearLayout ll_parent;
+
 
     private boolean userNameConfirmed;
     private boolean passwordConfirmed;
@@ -110,9 +112,9 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        ll_parent = findViewById(R.id.ll_parent);
         initFocusChangeListener();
         createVerifyCode();
-        LinearLayout ll_parent = findViewById(R.id.ll_parent);
         if (BuildConfig.FLAVOR.equals("hitamslot")) {
             toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color));
             tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
@@ -141,7 +143,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
             tvRegisterVerifyCode.setTextColor(Color.BLACK);
             btnRegist.setTextColor(Color.BLACK);
-            if (BuildConfig.FLAVOR.equals("doacasino")){
+            if (BuildConfig.FLAVOR.equals("doacasino")) {
                 tvCenterTitle.setTextColor(Color.BLACK);
             }
         }
@@ -156,7 +158,36 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             edtRegisterBankAccount.setVisibility(View.GONE);
             edtRegisterBankNumber.setVisibility(View.GONE);
         }
+        initNewUi();
         getBank();
+    }
+
+    private void initNewUi() {
+        if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("wargacasino") ||
+                BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("slotku")) {
+            toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_color));
+            tvCenterTitle.setVisibility(View.GONE);
+            imgCenter.setImageResource(R.mipmap.gd_title_logo);
+            imgCenter.setVisibility(View.VISIBLE);
+            ll_parent.setBackgroundColor(Color.parseColor("#F3F3F3"));
+            tvRegisterVerifyCode.setBackgroundResource(R.drawable.rectangle_gray_graystroke_radius5);
+            tvRegisterVerifyCode.setTextColor(Color.parseColor("#505627"));
+            btnRegist.setBackgroundResource(R.drawable.gd_rectangle_green_register_bg);
+            if (BuildConfig.FLAVOR.equals("oricasino")) {
+                btnRegist.setTextColor(Color.WHITE);
+            } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
+                imgCenter.setImageResource(R.mipmap.gd_ratu_register_title_logo);
+                btnRegist.setTextColor(Color.WHITE);
+            } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
+                btnRegist.setTextColor(Color.WHITE);
+            } else if (BuildConfig.FLAVOR.equals("depocasino")) {
+                btnRegist.setTextColor(Color.WHITE);
+            } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
+                btnRegist.setTextColor(Color.BLACK);
+            } else if (BuildConfig.FLAVOR.equals("slotku")) {
+                btnRegist.setTextColor(Color.WHITE);
+            }
+        }
     }
 
     HttpClient httpClient;
