@@ -777,7 +777,7 @@ public class LoginActivity extends BaseActivity {
                         @Override
                         public void run() {
                             PopImg popImg = new PopImg(LoginActivity.this, btn_login, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                            popImg.setLoadUrl(result + "images/popup.jpg");
+                            popImg.setLoadUrl(result + "images/popup.gif");
                             popImg.showPopupCenterWindow();
                         }
                     });

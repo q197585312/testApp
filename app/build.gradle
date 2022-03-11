@@ -127,7 +127,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "depocasino"]
                 buildConfigField "String", "Labelid", '"186"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.17'
+                versionName '4.18'
             }
             dewacasino388 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "dewacasino388"]
@@ -157,7 +157,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "slotku"]
                 buildConfigField "String", "Labelid", '"91"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.17'
+                versionName '4.18'
             }
 
             ezykasino {
@@ -206,7 +206,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mainkasino"]
                 buildConfigField "String", "Labelid", '"143"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.18'
+                versionName '4.19'
             }
             marina118 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "marina118"]
@@ -271,7 +271,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ratucasino88"]
                 buildConfigField "String", "Labelid", '"134"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.17'
+                versionName '4.18'
             }
             royalkasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "royalkasino"]
@@ -305,7 +305,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ularnaga"]
                 buildConfigField "String", "Labelid", '"187"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.17'
+                versionName '4.18'
             }
 
             w99casino {
@@ -319,7 +319,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wargacasino"]
                 buildConfigField "String", "Labelid", '"142"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.17'
+                versionName '4.18'
             }
 
 
@@ -376,7 +376,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]
                 buildConfigField "String", "Labelid", '"224"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.17'
+                versionName '4.18'
 
             }
             istanacasino {

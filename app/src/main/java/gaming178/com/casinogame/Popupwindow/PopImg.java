@@ -46,9 +46,9 @@ public class PopImg extends BasePopupWindow {
     }
 
     public void initImg() {
-        if (BuildConfig.FLAVOR.equals("kasino365")){
+        if (BuildConfig.FLAVOR.equals("kasino365") || BuildConfig.FLAVOR.equals("mainkasino")) {
             Glide.with(context).asGif().load(getLoadUrl()).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgBanner);
-        }else {
+        } else {
             Glide.with(context).load(getLoadUrl()).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgBanner);
         }
     }
