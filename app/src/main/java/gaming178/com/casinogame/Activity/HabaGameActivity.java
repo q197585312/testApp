@@ -1,21 +1,15 @@
 package gaming178.com.casinogame.Activity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,12 +18,10 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.entity.HabaGameBean;
 import gaming178.com.casinogame.Util.GlideRoundTransform;
 import gaming178.com.casinogame.Util.WebSiteUrl;
-import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.base.AdapterViewContent;
 import gaming178.com.mylibrary.base.ItemCLickImp;
@@ -40,12 +32,9 @@ import gaming178.com.mylibrary.base.ViewHolder;
  * Created by Administrator on 2018/4/18.
  */
 
-public class HabaGameActivity extends BaseActivity {
+public class HabaGameActivity extends SearchBaseActivity {
     String lg;
     GridView gridView;
-    EditText edtSearch;
-    ImageView imgClear;
-    LinearLayout ll_parent;
     List<HabaGameBean.DataBean> allGameList;
     AdapterViewContent<HabaGameBean.DataBean> adapterViewContent;
     private boolean isCanLoad = true;
@@ -71,82 +60,40 @@ public class HabaGameActivity extends BaseActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected int getLayoutRes() {
-        return R.layout.gd_activity_slots;
-    }
-
-    @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
 //        titleTv.setText(getString(R.string.king_kong));
-        initSearch();
         gridView = findViewById(R.id.gridview_content_gv);
         lg = AppTool.getAppLanguage(mContext);
         getDataMsg();
     }
 
-    private void initSearch() {
-        if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino")) {
-            toolbar.setNavigationIcon(R.mipmap.search_back);
-            toolbar.setBackgroundResource(R.mipmap.bg_search);
-            if (BuildConfig.FLAVOR.equals("hokicasino88")) {
-                ll_parent = findViewById(R.id.gd__ll_parent);
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom_land);
-                } else {
-                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
-                }
-            }
-        }
-        edtSearch = findViewById(R.id.edt_search);
-        imgClear = findViewById(R.id.img_clear);
-        imgClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edtSearch.setText("");
-            }
-        });
-        edtSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    @Override
+    int layout() {
+        return R.layout.gd_activity_slots;
+    }
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (allGameList != null && allGameList.size() > 0) {
-                    String text = s.toString();
-                    if (!TextUtils.isEmpty(text)) {
-                        imgClear.setVisibility(View.VISIBLE);
-                        List<HabaGameBean.DataBean> list = new ArrayList<>();
-                        for (int i = 0; i < allGameList.size(); i++) {
-                            HabaGameBean.DataBean dataBean = allGameList.get(i);
-                            String name = dataBean.getGame();
-                            if (name.toLowerCase().contains(text.toLowerCase())) {
-                                list.add(dataBean);
-                            }
-                        }
-                        adapterViewContent.setData(list);
-                    } else {
-                        imgClear.setVisibility(View.GONE);
-                        adapterViewContent.setData(allGameList);
+    @Override
+    void input(Editable s) {
+        if (allGameList != null && allGameList.size() > 0) {
+            String text = s.toString();
+            if (!TextUtils.isEmpty(text)) {
+                imgClear.setVisibility(View.VISIBLE);
+                List<HabaGameBean.DataBean> list = new ArrayList<>();
+                for (int i = 0; i < allGameList.size(); i++) {
+                    HabaGameBean.DataBean dataBean = allGameList.get(i);
+                    String name = dataBean.getGame();
+                    if (name.toLowerCase().contains(text.toLowerCase())) {
+                        list.add(dataBean);
                     }
-                    adapterViewContent.notifyDataSetChanged();
                 }
+                adapterViewContent.setData(list);
+            } else {
+                imgClear.setVisibility(View.GONE);
+                adapterViewContent.setData(allGameList);
             }
-        });
+            adapterViewContent.notifyDataSetChanged();
+        }
     }
 
     private void initUi(HabaGameBean habaGameBean) {
