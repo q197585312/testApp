@@ -117,12 +117,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.17'
             }
-            cintacasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "cintacasino"]
-                buildConfigField "String", "Labelid", '"108"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.17'
-            }
             depocasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "depocasino"]
                 buildConfigField "String", "Labelid", '"186"'

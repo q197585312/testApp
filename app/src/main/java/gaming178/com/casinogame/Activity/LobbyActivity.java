@@ -606,6 +606,7 @@ public class LobbyActivity extends BaseActivity {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
                         RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
+                        ImageView imgTopLeftNew = holder.getImageView(R.id.img_top_left_new);
                         ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
                         layoutParams.height = itemWidth;
                         rl_parent.setLayoutParams(layoutParams);
@@ -616,6 +617,11 @@ public class LobbyActivity extends BaseActivity {
                             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                         } else {
                             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                        }
+                        if (item.getGameType() == AppConfig.slots) {
+                            imgTopLeftNew.setVisibility(View.VISIBLE);
+                        } else {
+                            imgTopLeftNew.setVisibility(View.GONE);
                         }
                         TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
                         textView.setText(item.getTitle());
