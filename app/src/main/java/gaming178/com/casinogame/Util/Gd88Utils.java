@@ -3,11 +3,18 @@ package gaming178.com.casinogame.Util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import gaming178.com.baccaratgame.BuildConfig;
+import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.entity.HallGameItemBean;
 
 /**
  * Created by Administrator on 2020/1/10.
@@ -83,6 +90,37 @@ public class Gd88Utils {
         Uri content_url = Uri.parse(url);
         intent.setData(content_url);
         context.startActivity(intent);
+    }
+
+    public static List<HallGameItemBean> getLobbyGameList(Context context) {
+        List<HallGameItemBean> hallGameItemBeenS = new ArrayList<>();
+        if (WebSiteUrl.GameType != 3) {
+            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_we1poker, context.getString(R.string.we1poker), AppConfig.we1poker));
+            }
+        }
+        if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, context.getString(R.string.afb1188), AppConfig.afb1188));
+        }
+        int slot = R.mipmap.gd_slots;
+        if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            slot = R.mipmap.gd_slots_v;
+        }
+        hallGameItemBeenS.add(new HallGameItemBean(slot, context.getString(R.string.slots), AppConfig.slots));
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, context.getString(R.string.lg88_casino), AppConfig.lg88));
+        }
+        hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, context.getString(R.string.cq), AppConfig.cq9));
+        if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
+        }
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_haba, context.getString(R.string.haba), AppConfig.haba));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_pg, context.getString(R.string.gd_pg), AppConfig.pg));
+        }
+        return hallGameItemBeenS;
     }
 
 }

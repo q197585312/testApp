@@ -267,6 +267,16 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
+
+    private void getIntentToAfb1188() {
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String goAfb1188 = extras.getString("GoAfb1188");
+        if (!TextUtils.isEmpty(goAfb1188) && goAfb1188.equals("GoAfb1188")) {
+            goAfb1188();
+        }
+    }
+
     @Override
     protected void initData(Bundle savedInstanceState) {
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
@@ -274,6 +284,7 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_live_chat.setVisibility(View.VISIBLE);
             }
         }
+        getIntentToAfb1188();
         AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
         setMoreToolbar(true);
 //        backTv.setText(R.string.back);
@@ -671,30 +682,39 @@ public class LobbyActivity extends BaseActivity {
                             showGameContent(3, getString(R.string.sicbo));
                         } else if (hallGameItemBean.getGameType() == AppConfig.slots) {
                             skipAct(SlotsGameActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.cq9) {
                             skipAct(CQSlotsGameActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.cockfighting) {
                             skipAct(CockFightingWebActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.afb1188) {
                             goAfb1188();
                         } else if (hallGameItemBean.getGameType() == AppConfig.dsv_casino) {
                             skipAct(DsvCasinoActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.we1poker) {
                             skipAct(We1PokerWebActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
                             skipAct(PragmaticGameActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
                             skipAct(KingKongGameActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.bandarq) {
                             if (!TextUtils.isEmpty(hallGameItemBean.getBrowserUrl())) {
                                 Gd88Utils.goBrowser(mContext, hallGameItemBean.getBrowserUrl());
                             }
                         } else if (hallGameItemBean.getGameType() == AppConfig.lg88) {
                             skipAct(LG88WebActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.haba) {
                             skipAct(HabaGameActivity.class);
+                            finish();
                         } else if (hallGameItemBean.getGameType() == AppConfig.pg) {
                             skipAct(PGGameActivity.class);
+                            finish();
                         }
 
                     }
@@ -941,32 +961,9 @@ public class LobbyActivity extends BaseActivity {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_s, getString(R.string.sicbo), AppConfig.sicbo));
-            if (WebSiteUrl.GameType != 3) {
-                if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_we1poker, getString(R.string.we1poker), AppConfig.we1poker));
-                }
-            }
-            if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, getString(R.string.afb1188), AppConfig.afb1188));
-            }
-            int slot = R.mipmap.gd_slots;
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                slot = R.mipmap.gd_slots_v;
-            }
-            hallGameItemBeenS.add(new HallGameItemBean(slot, getString(R.string.slots), AppConfig.slots));
-            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, getString(R.string.lg88_casino), AppConfig.lg88));
-            }
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, getString(R.string.cq), AppConfig.cq9));
-            if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, getString(R.string.cock_fighting), AppConfig.cockfighting));
-            }
-            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, getString(R.string.pragmatic), AppConfig.pragmatic));
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, getString(R.string.king_kong), AppConfig.kingKong));
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_haba, getString(R.string.haba), AppConfig.haba));
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_pg, getString(R.string.gd_pg), AppConfig.pg));
-            }
+
+            hallGameItemBeenS.addAll(Gd88Utils.getLobbyGameList(this));
+
             if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") || BuildConfig.FLAVOR.equals("ratucasino88") ||
                     BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("kasino365") ||
                     BuildConfig.FLAVOR.equals("mainkasino")) {

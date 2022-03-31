@@ -75,4 +75,15 @@ public class CockFightingWebActivity extends SlotsWebActivity {
             }
         }.start();
     }
+
+    @Override
+    public void goBack() {
+        leftClick();
+    }
+
+    @Override
+    protected void leftClick() {
+        skipAct(LobbyActivity.class);
+        finish();
+    }
 }

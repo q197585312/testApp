@@ -117,7 +117,7 @@ public class SlotsGameActivity extends SearchBaseActivity {
                 mAppViewModel.setSlotsCurrentIndex(position);
                 Intent i = new Intent(mContext, SlotsWebActivity.class);
                 String url = item.getUrl() + "?" + "platform=" + item.getPlatform() + "&language=" + item.getLanguage() + "&game=" + item.getGame() +
-                        "&id=" + item.getId() + "&username=" + item.getUsername() + "&token=" + item.getToken();
+                        "&id=" + item.getId() + "&username=" + item.getUsername() + "&token=" + item.getToken() + "&app=true";
                 i.putExtra("url", url);
                 i.putExtra("gameType", "SLOTS");
                 startActivity(i);

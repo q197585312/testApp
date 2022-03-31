@@ -75,7 +75,7 @@ public class SlotsWebActivity extends BaseActivity {
         });
     }
 
-    private void goBack() {
+    public void goBack() {
         webView.reload();
         webView.removeAllViews();
         webView.destroy();

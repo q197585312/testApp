@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.base.BaseActivity;
 
 public abstract class SearchBaseActivity extends BaseActivity {
@@ -101,5 +102,10 @@ public abstract class SearchBaseActivity extends BaseActivity {
                 input(s);
             }
         });
+    }
+    @Override
+    protected void leftClick() {
+        skipAct(LobbyActivity.class);
+        finish();
     }
 }

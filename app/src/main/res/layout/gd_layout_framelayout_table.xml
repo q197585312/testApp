@@ -40,7 +40,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:src="@mipmap/table_baccarat"
-                    android:text="B"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -51,7 +50,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:src="@mipmap/table_roulette"
-                    android:text="R"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -62,7 +60,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:src="@mipmap/table_sicbo"
-                    android:text="S"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -73,7 +70,16 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:src="@mipmap/table_dragon_tiger"
-                    android:text="D"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/gd__img_slot"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@mipmap/table_slot"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>

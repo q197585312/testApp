@@ -1,7 +1,6 @@
 package gaming178.com.casinogame.Util;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
@@ -27,11 +26,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.CQSlotsGameActivity;
+import gaming178.com.casinogame.Activity.CockFightingWebActivity;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
+import gaming178.com.casinogame.Activity.HabaGameActivity;
+import gaming178.com.casinogame.Activity.KingKongGameActivity;
+import gaming178.com.casinogame.Activity.LG88WebActivity;
+import gaming178.com.casinogame.Activity.LobbyActivity;
+import gaming178.com.casinogame.Activity.PGGameActivity;
+import gaming178.com.casinogame.Activity.PragmaticGameActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
-import gaming178.com.casinogame.Activity.entity.ApngPlayBean;
+import gaming178.com.casinogame.Activity.SlotsGameActivity;
+import gaming178.com.casinogame.Activity.We1PokerWebActivity;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableBetContentBean;
 import gaming178.com.casinogame.Activity.entity.BaccaratTableChangeViewBean;
@@ -53,6 +62,7 @@ import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.AppModel;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.casinogame.entity.HallGameItemBean;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
@@ -71,7 +81,7 @@ public class TableChangePop extends BasePopupWindow {
     private BaseRecyclerAdapter<String> adapter;
     private LinearLayout parent;
     private List<TableTimerBean> list;
-    private ImageView img_b, img_r, img_s, img_d;
+    List<View> slotList;
     private AdapterView lvChips;
     List<TextView> hereList = new ArrayList<>();
     List<TableMaintenanceBean> tableMaintenanceList = new ArrayList<>();
@@ -102,94 +112,7 @@ public class TableChangePop extends BasePopupWindow {
     protected int getContentViewLayoutRes() {
         return R.layout.gd_layout_framelayout_table;
     }
-
-    @Override
-    protected void initView(View view) {
-        super.initView(view);
-        baccaratTableChangeViewBeenList = new ArrayList<>();
-        baccaratBetContentList = new ArrayList<>();
-        baccaratTableBetBeanList = new ArrayList<>();
-        dragonTigerTableBetBean = new DragonTigerTableBetBean();
-        dragonTigerTableContentBean = new DragonTigerTableContentBean();
-        sicboTableBetBean = new SicboTableBetBean();
-        sicboTableContentBean = new SicboTableContentBean();
-        rouletteTableBetBean = new RouletteTableBetBean();
-        rouletteTableContentBean = new RouletteTableContentBean();
-        list = new ArrayList<>();
-        parent = (LinearLayout) view.findViewById(R.id.gd__ll_change_table_parent);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closePopupWindow();
-            }
-        });
-        img_b = view.findViewById(R.id.gd__img_b);
-        img_r = view.findViewById(R.id.gd__img_r);
-        img_s = view.findViewById(R.id.gd__img_s);
-        img_d = view.findViewById(R.id.gd__img_d);
-        lvChips = view.findViewById(R.id.gd_lv_chips);
-        img_b.setImageResource(R.mipmap.gd__img_b_select);
-        img_b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
-                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.VISIBLE);
-                }
-                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
-                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
-                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
-                img_b.setImageResource(R.mipmap.gd__img_b_select);
-                img_r.setImageResource(R.mipmap.table_roulette);
-                img_s.setImageResource(R.mipmap.table_sicbo);
-                img_d.setImageResource(R.mipmap.table_dragon_tiger);
-            }
-        });
-        img_r.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
-                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
-                }
-                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
-                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
-                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
-                img_b.setImageResource(R.mipmap.table_baccarat);
-                img_r.setImageResource(R.mipmap.gd__img_r_select);
-                img_s.setImageResource(R.mipmap.table_sicbo);
-                img_d.setImageResource(R.mipmap.table_dragon_tiger);
-            }
-        });
-        img_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
-                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
-                }
-                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
-                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
-                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
-                img_b.setImageResource(R.mipmap.table_baccarat);
-                img_r.setImageResource(R.mipmap.table_roulette);
-                img_s.setImageResource(R.mipmap.gd__img_s_select);
-                img_d.setImageResource(R.mipmap.table_dragon_tiger);
-            }
-        });
-        img_d.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
-                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
-                }
-                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
-                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
-                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
-                img_b.setImageResource(R.mipmap.table_baccarat);
-                img_r.setImageResource(R.mipmap.table_roulette);
-                img_s.setImageResource(R.mipmap.table_sicbo);
-                img_d.setImageResource(R.mipmap.gd__img_d_select);
-            }
-        });
-    }
+    private ImageView img_b, img_r, img_s, img_d, img_slot;
 
     private boolean isNeedRefenshTimer;
 
@@ -551,6 +474,137 @@ public class TableChangePop extends BasePopupWindow {
     RouletteTableChangeViewBean rouletteTableChangeViewBean;
     SicboTableChangeViewBean sicboTableChangeViewBean;
 
+    @Override
+    protected void initView(View view) {
+        super.initView(view);
+        baccaratTableChangeViewBeenList = new ArrayList<>();
+        baccaratBetContentList = new ArrayList<>();
+        baccaratTableBetBeanList = new ArrayList<>();
+        dragonTigerTableBetBean = new DragonTigerTableBetBean();
+        dragonTigerTableContentBean = new DragonTigerTableContentBean();
+        sicboTableBetBean = new SicboTableBetBean();
+        sicboTableContentBean = new SicboTableContentBean();
+        rouletteTableBetBean = new RouletteTableBetBean();
+        rouletteTableContentBean = new RouletteTableContentBean();
+        slotList = new ArrayList<>();
+        list = new ArrayList<>();
+        parent = (LinearLayout) view.findViewById(R.id.gd__ll_change_table_parent);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closePopupWindow();
+            }
+        });
+        img_b = view.findViewById(R.id.gd__img_b);
+        img_r = view.findViewById(R.id.gd__img_r);
+        img_s = view.findViewById(R.id.gd__img_s);
+        img_d = view.findViewById(R.id.gd__img_d);
+        img_slot = view.findViewById(R.id.gd__img_slot);
+        if (!TextUtils.isEmpty(BuildConfig.FLAVOR)) {
+            img_slot.setVisibility(View.VISIBLE);
+        } else {
+            img_slot.setVisibility(View.GONE);
+        }
+        lvChips = view.findViewById(R.id.gd_lv_chips);
+        img_b.setImageResource(R.mipmap.gd__img_b_select);
+        img_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.VISIBLE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                for (int i = 0; i < slotList.size(); i++) {
+                    slotList.get(i).setVisibility(View.VISIBLE);
+                }
+                img_b.setImageResource(R.mipmap.gd__img_b_select);
+                img_r.setImageResource(R.mipmap.table_roulette);
+                img_s.setImageResource(R.mipmap.table_sicbo);
+                img_d.setImageResource(R.mipmap.table_dragon_tiger);
+                img_slot.setImageResource(R.mipmap.table_slot);
+            }
+        });
+        img_r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                for (int i = 0; i < slotList.size(); i++) {
+                    slotList.get(i).setVisibility(View.GONE);
+                }
+                img_b.setImageResource(R.mipmap.table_baccarat);
+                img_r.setImageResource(R.mipmap.gd__img_r_select);
+                img_s.setImageResource(R.mipmap.table_sicbo);
+                img_d.setImageResource(R.mipmap.table_dragon_tiger);
+                img_slot.setImageResource(R.mipmap.table_slot);
+            }
+        });
+        img_s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                for (int i = 0; i < slotList.size(); i++) {
+                    slotList.get(i).setVisibility(View.GONE);
+                }
+                img_b.setImageResource(R.mipmap.table_baccarat);
+                img_r.setImageResource(R.mipmap.table_roulette);
+                img_s.setImageResource(R.mipmap.gd__img_s_select);
+                img_d.setImageResource(R.mipmap.table_dragon_tiger);
+                img_slot.setImageResource(R.mipmap.table_slot);
+            }
+        });
+        img_d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                for (int i = 0; i < slotList.size(); i++) {
+                    slotList.get(i).setVisibility(View.GONE);
+                }
+                img_b.setImageResource(R.mipmap.table_baccarat);
+                img_r.setImageResource(R.mipmap.table_roulette);
+                img_s.setImageResource(R.mipmap.table_sicbo);
+                img_d.setImageResource(R.mipmap.gd__img_d_select);
+                img_slot.setImageResource(R.mipmap.table_slot);
+            }
+        });
+
+        img_slot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                for (int i = 0; i < slotList.size(); i++) {
+                    slotList.get(i).setVisibility(View.VISIBLE);
+                }
+                img_b.setImageResource(R.mipmap.table_baccarat);
+                img_r.setImageResource(R.mipmap.table_roulette);
+                img_s.setImageResource(R.mipmap.table_sicbo);
+                img_d.setImageResource(R.mipmap.table_dragon_tiger);
+                img_slot.setImageResource(R.mipmap.gd__img_slot_select);
+            }
+        });
+    }
+
     private boolean isHaveThisTableId(String tableId) {
         for (int i = 0; i < list.size(); i++) {
             String type = list.get(i).getType();
@@ -560,7 +614,6 @@ public class TableChangePop extends BasePopupWindow {
         }
         return false;
     }
-
 
     public void setTablesData(AppModel mAppViewModel, ArrayList<GameMenuItem> tables) {
         this.mAppViewModel = mAppViewModel;
@@ -797,6 +850,57 @@ public class TableChangePop extends BasePopupWindow {
             parentLine.addView(aB1, layoutParams);
             parent.addView(parentLine);
             i++;
+        }
+        addSlots();
+    }
+
+    private void addSlots() {
+        if (!TextUtils.isEmpty(BuildConfig.FLAVOR)) {
+            BaseActivity baseActivity = (BaseActivity) context;
+            List<HallGameItemBean> hallGameItemBeenS = Gd88Utils.getLobbyGameList(context);
+            for (int i = 0; i < hallGameItemBeenS.size(); i++) {
+                HallGameItemBean hallGameItemBean = hallGameItemBeenS.get(i);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams.weight = 1;
+                LinearLayout parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
+                LinearLayout item = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.item_table_change_game, null);
+                ImageView img = item.findViewById(R.id.gd_img);
+                TextView text = item.findViewById(R.id.gd_text);
+                img.setImageResource(hallGameItemBean.getImageRes());
+                text.setText(hallGameItemBean.getTitle());
+                item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (hallGameItemBean.getGameType() == AppConfig.slots) {
+                            baseActivity.skipAct(SlotsGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.cq9) {
+                            baseActivity.skipAct(CQSlotsGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.cockfighting) {
+                            baseActivity.skipAct(CockFightingWebActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.afb1188) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("GoAfb1188", "GoAfb1188");
+                            baseActivity.skipAct(LobbyActivity.class, bundle);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.we1poker) {
+                            baseActivity.skipAct(We1PokerWebActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
+                            baseActivity.skipAct(PragmaticGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.kingKong) {
+                            baseActivity.skipAct(KingKongGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.lg88) {
+                            baseActivity.skipAct(LG88WebActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.haba) {
+                            baseActivity.skipAct(HabaGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.pg) {
+                            baseActivity.skipAct(PGGameActivity.class);
+                        }
+                        baseActivity.finish();
+                    }
+                });
+                slotList.add(item);
+                parentLine.addView(item, layoutParams);
+                parent.addView(parentLine);
+            }
         }
     }
 
