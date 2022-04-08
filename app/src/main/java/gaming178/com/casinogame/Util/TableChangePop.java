@@ -21,6 +21,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -112,6 +114,7 @@ public class TableChangePop extends BasePopupWindow {
     protected int getContentViewLayoutRes() {
         return R.layout.gd_layout_framelayout_table;
     }
+
     private ImageView img_b, img_r, img_s, img_d, img_slot;
 
     private boolean isNeedRefenshTimer;
@@ -857,17 +860,21 @@ public class TableChangePop extends BasePopupWindow {
     private void addSlots() {
         if (!TextUtils.isEmpty(BuildConfig.FLAVOR)) {
             BaseActivity baseActivity = (BaseActivity) context;
-            List<HallGameItemBean> hallGameItemBeenS = Gd88Utils.getLobbyGameList(context);
+            List<HallGameItemBean> hallGameItemBeenS = Gd88Utils.getTableGameList(context);
             for (int i = 0; i < hallGameItemBeenS.size(); i++) {
                 HallGameItemBean hallGameItemBean = hallGameItemBeenS.get(i);
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtil.dip2px(context, 150));
                 layoutParams.weight = 1;
                 LinearLayout parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
                 LinearLayout item = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.item_table_change_game, null);
                 ImageView img = item.findViewById(R.id.gd_img);
-                TextView text = item.findViewById(R.id.gd_text);
-                img.setImageResource(hallGameItemBean.getImageRes());
-                text.setText(hallGameItemBean.getTitle());
+                Glide.with(context).load(hallGameItemBean.getImageRes()).centerCrop().transform(new GlideRoundTransform(context, 6)).into(img);
+                View viewLine = item.findViewById(R.id.gd_view_line);
+                if (i == hallGameItemBeenS.size() - 1) {
+                    viewLine.setVisibility(View.GONE);
+                } else {
+                    viewLine.setVisibility(View.VISIBLE);
+                }
                 item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

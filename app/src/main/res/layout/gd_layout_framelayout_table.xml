@@ -89,7 +89,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
-                android:paddingRight="2dp"
                 android:scrollbars="none">
 
                 <LinearLayout

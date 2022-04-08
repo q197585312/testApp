@@ -123,4 +123,40 @@ public class Gd88Utils {
         return hallGameItemBeenS;
     }
 
+    public static List<HallGameItemBean> getTableGameList(Context context) {
+        List<HallGameItemBean> allGameList = new ArrayList<>();
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_we1poker, context.getString(R.string.we1poker), AppConfig.we1poker));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_afb1188, context.getString(R.string.afb1188), AppConfig.afb1188));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_slot, context.getString(R.string.slots), AppConfig.slots));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_lg, context.getString(R.string.lg88_casino), AppConfig.lg88));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cq9, context.getString(R.string.cq), AppConfig.cq9));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_haba, context.getString(R.string.haba), AppConfig.haba));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pg, context.getString(R.string.gd_pg), AppConfig.pg));
+        List<HallGameItemBean> tableGameList = new ArrayList<>();
+        for (int i = 0; i < allGameList.size(); i++) {
+            HallGameItemBean hallGameItemBean = allGameList.get(i);
+            int gameType = hallGameItemBean.getGameType();
+            HallGameItemBean game = getGame(gameType, context);
+            if (game != null) {
+                game.setImageRes(hallGameItemBean.getImageRes());
+                tableGameList.add(game);
+            }
+        }
+        return tableGameList;
+    }
+
+    private static HallGameItemBean getGame(int gameType, Context context) {
+        List<HallGameItemBean> lobbyGameList = getLobbyGameList(context);
+        for (int i = 0; i < lobbyGameList.size(); i++) {
+            HallGameItemBean hallGameItemBean = lobbyGameList.get(i);
+            int type = hallGameItemBean.getGameType();
+            if (type == gameType) {
+                return hallGameItemBean;
+            }
+        }
+        return null;
+    }
 }
