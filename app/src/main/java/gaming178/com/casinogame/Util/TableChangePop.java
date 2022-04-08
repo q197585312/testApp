@@ -83,7 +83,7 @@ public class TableChangePop extends BasePopupWindow {
     private BaseRecyclerAdapter<String> adapter;
     private LinearLayout parent;
     private List<TableTimerBean> list;
-    List<View> slotList;
+    List<View> slotList, slotRoundList;
     private AdapterView lvChips;
     List<TextView> hereList = new ArrayList<>();
     List<TableMaintenanceBean> tableMaintenanceList = new ArrayList<>();
@@ -490,6 +490,7 @@ public class TableChangePop extends BasePopupWindow {
         rouletteTableBetBean = new RouletteTableBetBean();
         rouletteTableContentBean = new RouletteTableContentBean();
         slotList = new ArrayList<>();
+        slotRoundList = new ArrayList<>();
         list = new ArrayList<>();
         parent = (LinearLayout) view.findViewById(R.id.gd__ll_change_table_parent);
         view.setOnClickListener(new View.OnClickListener() {
@@ -522,6 +523,9 @@ public class TableChangePop extends BasePopupWindow {
                 for (int i = 0; i < slotList.size(); i++) {
                     slotList.get(i).setVisibility(View.VISIBLE);
                 }
+                for (int i = 0; i < slotRoundList.size(); i++) {
+                    slotRoundList.get(i).setVisibility(View.GONE);
+                }
                 img_b.setImageResource(R.mipmap.gd__img_b_select);
                 img_r.setImageResource(R.mipmap.table_roulette);
                 img_s.setImageResource(R.mipmap.table_sicbo);
@@ -540,6 +544,9 @@ public class TableChangePop extends BasePopupWindow {
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
                 for (int i = 0; i < slotList.size(); i++) {
                     slotList.get(i).setVisibility(View.GONE);
+                }
+                for (int i = 0; i < slotRoundList.size(); i++) {
+                    slotRoundList.get(i).setVisibility(View.GONE);
                 }
                 img_b.setImageResource(R.mipmap.table_baccarat);
                 img_r.setImageResource(R.mipmap.gd__img_r_select);
@@ -560,6 +567,9 @@ public class TableChangePop extends BasePopupWindow {
                 for (int i = 0; i < slotList.size(); i++) {
                     slotList.get(i).setVisibility(View.GONE);
                 }
+                for (int i = 0; i < slotRoundList.size(); i++) {
+                    slotRoundList.get(i).setVisibility(View.GONE);
+                }
                 img_b.setImageResource(R.mipmap.table_baccarat);
                 img_r.setImageResource(R.mipmap.table_roulette);
                 img_s.setImageResource(R.mipmap.gd__img_s_select);
@@ -579,6 +589,9 @@ public class TableChangePop extends BasePopupWindow {
                 for (int i = 0; i < slotList.size(); i++) {
                     slotList.get(i).setVisibility(View.GONE);
                 }
+                for (int i = 0; i < slotRoundList.size(); i++) {
+                    slotRoundList.get(i).setVisibility(View.GONE);
+                }
                 img_b.setImageResource(R.mipmap.table_baccarat);
                 img_r.setImageResource(R.mipmap.table_roulette);
                 img_s.setImageResource(R.mipmap.table_sicbo);
@@ -597,7 +610,10 @@ public class TableChangePop extends BasePopupWindow {
                 rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
                 sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
                 for (int i = 0; i < slotList.size(); i++) {
-                    slotList.get(i).setVisibility(View.VISIBLE);
+                    slotList.get(i).setVisibility(View.GONE);
+                }
+                for (int i = 0; i < slotRoundList.size(); i++) {
+                    slotRoundList.get(i).setVisibility(View.VISIBLE);
                 }
                 img_b.setImageResource(R.mipmap.table_baccarat);
                 img_r.setImageResource(R.mipmap.table_roulette);
@@ -854,10 +870,11 @@ public class TableChangePop extends BasePopupWindow {
             parent.addView(parentLine);
             i++;
         }
-        addSlots();
+        addSlots(slotList, 0, View.VISIBLE);
+        addSlots(slotRoundList, 6, View.GONE);
     }
 
-    private void addSlots() {
+    private void addSlots(List<View> slotList, int round, int visibility) {
         if (!TextUtils.isEmpty(BuildConfig.FLAVOR)) {
             BaseActivity baseActivity = (BaseActivity) context;
             List<HallGameItemBean> hallGameItemBeenS = Gd88Utils.getTableGameList(context);
@@ -868,12 +885,24 @@ public class TableChangePop extends BasePopupWindow {
                 LinearLayout parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.gd_include_linearlayout, null);
                 LinearLayout item = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.item_table_change_game, null);
                 ImageView img = item.findViewById(R.id.gd_img);
-                Glide.with(context).load(hallGameItemBean.getImageRes()).centerCrop().transform(new GlideRoundTransform(context, 6)).into(img);
-                View viewLine = item.findViewById(R.id.gd_view_line);
-                if (i == hallGameItemBeenS.size() - 1) {
-                    viewLine.setVisibility(View.GONE);
+                if (round > 0) {
+                    Glide.with(context).load(hallGameItemBean.getImageRes()).centerCrop().transform(new GlideRoundTransform(context, round)).into(img);
                 } else {
-                    viewLine.setVisibility(View.VISIBLE);
+                    img.setBackgroundResource(hallGameItemBean.getImageRes());
+                }
+                View viewLineTop = item.findViewById(R.id.gd_view_line_top);
+                View viewLineBottom = item.findViewById(R.id.gd_view_line_bottom);
+                if (round > 0) {
+                    if (i == 0) {
+                        viewLineTop.setVisibility(View.GONE);
+                    } else {
+                        viewLineTop.setVisibility(View.VISIBLE);
+                    }
+                }
+                if (i == hallGameItemBeenS.size() - 1) {
+                    viewLineBottom.setVisibility(View.VISIBLE);
+                } else {
+                    viewLineBottom.setVisibility(View.GONE);
                 }
                 item.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -904,6 +933,7 @@ public class TableChangePop extends BasePopupWindow {
                         baseActivity.finish();
                     }
                 });
+                item.setVisibility(visibility);
                 slotList.add(item);
                 parentLine.addView(item, layoutParams);
                 parent.addView(parentLine);
