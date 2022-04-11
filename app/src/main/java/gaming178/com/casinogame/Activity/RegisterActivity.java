@@ -115,7 +115,48 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
         ll_parent = findViewById(R.id.ll_parent);
         initFocusChangeListener();
         createVerifyCode();
-        if (BuildConfig.FLAVOR.equals("hitamslot")) {
+        setLayout.setVisibility(View.GONE);
+        tvCenterTitle.setText(getString(R.string.register));
+        tvCenterTitle.setVisibility(View.VISIBLE);
+//        setEditTextInhibitInputSpace(edtRegisterUsername);
+        initNewUi();
+        getBank();
+    }
+
+    private void initNewUi() {
+        toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_color));
+        tvCenterTitle.setVisibility(View.GONE);
+        imgCenter.setImageResource(R.mipmap.gd_title_logo);
+        imgCenter.setVisibility(View.VISIBLE);
+        ll_parent.setBackgroundColor(Color.parseColor("#F3F3F3"));
+        tvRegisterVerifyCode.setBackgroundResource(R.drawable.rectangle_gray_graystroke_radius5);
+        tvRegisterVerifyCode.setTextColor(Color.parseColor("#505627"));
+        btnRegist.setBackgroundResource(R.drawable.gd_rectangle_green_register_bg);
+        btnRegist.setTextColor(Color.WHITE);
+        if (BuildConfig.FLAVOR.equals("ratucasino88")) {
+            imgCenter.setImageResource(R.mipmap.gd_ratu_register_title_logo);
+        } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
+            btnRegist.setTextColor(Color.BLACK);
+        } else if (BuildConfig.FLAVOR.equals("kuncicasino")) {
+            imgCenter.setImageResource(R.mipmap.kun_bg);
+        } else if (BuildConfig.FLAVOR.equals("wincasino365")) {
+            btnRegist.setBackgroundResource(R.mipmap.gd_win365_register_bg);
+        } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
+            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
+            tvRegisterVerifyCode.setTextColor(Color.WHITE);
+        } else if (BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("hokicasino88")) {
+            toolbar.setBackgroundResource(R.mipmap.bg_top);
+            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
+            btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
+            tvRegisterVerifyCode.setTextColor(Color.BLACK);
+            btnRegist.setTextColor(Color.BLACK);
+        } else if (BuildConfig.FLAVOR.equals("merpatislot")) {
+            toolbar.setBackgroundResource(R.drawable.gd_login_merpatislot_title_bg);
+            ll_parent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_register_color_bg));
+            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
+            tvRegisterVerifyCode.setTextColor(Color.BLACK);
+            btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold11);
+        } else if (BuildConfig.FLAVOR.equals("hitamslot")) {
             toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color));
             tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
             btnRegist.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
@@ -131,62 +172,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             edtRegisterBankNumber.setHint(edtRegisterBankNumber.getHint().toString().toUpperCase());
             edtRegisterVerifyCode.setHint(edtRegisterVerifyCode.getHint().toString().toUpperCase());
             edtRegisterUsername.setTransformationMethod(new AllCapTransformationMethod());
-        } else if (BuildConfig.FLAVOR.equals("merpatislot")) {
-            toolbar.setBackgroundResource(R.drawable.gd_login_merpatislot_title_bg);
-            ll_parent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_register_color_bg));
-            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_rectangle_dark_corner_shade_bg);
-            tvRegisterVerifyCode.setTextColor(Color.BLACK);
-            btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold11);
-        } else if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino")) {
-            toolbar.setBackgroundResource(R.mipmap.bg_top);
-            tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
-            btnRegist.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
-            tvRegisterVerifyCode.setTextColor(Color.BLACK);
-            btnRegist.setTextColor(Color.BLACK);
-            if (BuildConfig.FLAVOR.equals("doacasino")) {
-                tvCenterTitle.setTextColor(Color.BLACK);
-            }
-        }
-
-        setLayout.setVisibility(View.GONE);
-//        titleTv.setText(getString(R.string.register));
-        tvCenterTitle.setText(getString(R.string.register));
-        tvCenterTitle.setVisibility(View.VISIBLE);
-//        setEditTextInhibitInputSpace(edtRegisterUsername);
-        if (BuildConfig.FLAVOR.equals("mejaemas")) {
-            tvRegisterChoiceBank.setVisibility(View.GONE);
-            edtRegisterBankAccount.setVisibility(View.GONE);
-            edtRegisterBankNumber.setVisibility(View.GONE);
-        }
-        initNewUi();
-        getBank();
-    }
-
-    private void initNewUi() {
-        if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("wargacasino") ||
-                BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("slotku")) {
-            toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_color));
-            tvCenterTitle.setVisibility(View.GONE);
-            imgCenter.setImageResource(R.mipmap.gd_title_logo);
-            imgCenter.setVisibility(View.VISIBLE);
-            ll_parent.setBackgroundColor(Color.parseColor("#F3F3F3"));
-            tvRegisterVerifyCode.setBackgroundResource(R.drawable.rectangle_gray_graystroke_radius5);
-            tvRegisterVerifyCode.setTextColor(Color.parseColor("#505627"));
-            btnRegist.setBackgroundResource(R.drawable.gd_rectangle_green_register_bg);
-            if (BuildConfig.FLAVOR.equals("oricasino")) {
-                btnRegist.setTextColor(Color.WHITE);
-            } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
-                imgCenter.setImageResource(R.mipmap.gd_ratu_register_title_logo);
-                btnRegist.setTextColor(Color.WHITE);
-            } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
-                btnRegist.setTextColor(Color.WHITE);
-            } else if (BuildConfig.FLAVOR.equals("depocasino")) {
-                btnRegist.setTextColor(Color.WHITE);
-            } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
-                btnRegist.setTextColor(Color.BLACK);
-            } else if (BuildConfig.FLAVOR.equals("slotku")) {
-                btnRegist.setTextColor(Color.WHITE);
-            }
+            tvRegisterVerifyCode.setTextColor(Color.WHITE);
         }
     }
 
@@ -486,17 +472,15 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
         builder.append("&");
         builder.append("FullName=");
         builder.append(edtRegisterFullName.getText().toString().trim());
-        if (!BuildConfig.FLAVOR.equals("mejaemas")) {
-            builder.append("&");
-            builder.append("selectMemBank=");
-            builder.append(tvRegisterChoiceBank.getText().toString().trim());
-            builder.append("&");
-            builder.append("memAccountName=");
-            builder.append(edtRegisterBankAccount.getText().toString().trim());
-            builder.append("&");
-            builder.append("memAccountNumber=");
-            builder.append(edtRegisterBankNumber.getText().toString().trim());
-        }
+        builder.append("&");
+        builder.append("selectMemBank=");
+        builder.append(tvRegisterChoiceBank.getText().toString().trim());
+        builder.append("&");
+        builder.append("memAccountName=");
+        builder.append(edtRegisterBankAccount.getText().toString().trim());
+        builder.append("&");
+        builder.append("memAccountNumber=");
+        builder.append(edtRegisterBankNumber.getText().toString().trim());
         return builder.toString();
     }
 

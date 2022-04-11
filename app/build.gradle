@@ -273,12 +273,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.20'
             }
-            sentosa88 {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sentosa88"]
-                buildConfigField "String", "Labelid", '"58"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.20'
-            }
 
             serbacasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "serbacasino"]
