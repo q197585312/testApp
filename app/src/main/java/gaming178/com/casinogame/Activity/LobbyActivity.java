@@ -272,14 +272,10 @@ public class LobbyActivity extends BaseActivity {
     }
 
 
-    private void getIntentToAfb1188() {
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        if (intent != null && extras != null) {
-            String goAfb1188 = extras.getString("GoAfb1188");
-            if (!TextUtils.isEmpty(goAfb1188) && goAfb1188.equals("GoAfb1188")) {
-                goAfb1188();
-            }
+    private void skipLobbyToAfb1188() {
+        if (mAppViewModel.isSkipLobbyToAfb1188()) {
+            mAppViewModel.setSkipLobbyToAfb1188(false);
+            goAfb1188();
         }
     }
 
@@ -290,7 +286,7 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_live_chat.setVisibility(View.VISIBLE);
             }
         }
-        getIntentToAfb1188();
+        skipLobbyToAfb1188();
         AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
         setMoreToolbar(true);
 //        backTv.setText(R.string.back);

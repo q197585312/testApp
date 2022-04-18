@@ -3932,4 +3932,13 @@ public class AppModel extends ViewModel {
         isClickBaccaratMi = clickBaccaratMi;
     }
 
+    private boolean isSkipLobbyToAfb1188 = false;
+
+    public boolean isSkipLobbyToAfb1188() {
+        return isSkipLobbyToAfb1188;
+    }
+
+    public void setSkipLobbyToAfb1188(boolean skipLobbyToAfb1188) {
+        isSkipLobbyToAfb1188 = skipLobbyToAfb1188;
+    }
 }

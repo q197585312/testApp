@@ -917,9 +917,8 @@ public class TableChangePop extends BasePopupWindow {
                         } else if (hallGameItemBean.getGameType() == AppConfig.cockfighting) {
                             baseActivity.skipAct(CockFightingWebActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.afb1188) {
-                            Bundle bundle = new Bundle();
-                            bundle.putString("GoAfb1188", "GoAfb1188");
-                            baseActivity.skipAct(LobbyActivity.class, bundle);
+                            mAppViewModel.setSkipLobbyToAfb1188(true);
+                            baseActivity.skipAct(LobbyActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.we1poker) {
                             baseActivity.skipAct(We1PokerWebActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic) {
