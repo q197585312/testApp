@@ -1092,6 +1092,18 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
+        if (BuildConfig.FLAVOR.equals("slotku")) {
+            ObjectAnimator objectTranslationY = ObjectAnimator.ofFloat(tv_register, "scaleX", (float) 1, (float) 0.85, (float) 1);
+            objectTranslationY.setDuration(1200);
+            objectTranslationY.setRepeatCount(Animation.INFINITE);
+            ObjectAnimator objectScaleY = ObjectAnimator.ofFloat(tv_register, "scaleY", (float) 1, (float) 0.85, (float) 1);
+            objectScaleY.setDuration(1200);
+            objectScaleY.setRepeatCount(Animation.INFINITE);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(objectTranslationY, objectScaleY);
+            animatorSet.start();
+        }
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
             imgOpen.setVisibility(View.VISIBLE);

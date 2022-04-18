@@ -200,6 +200,10 @@ public class LobbyActivity extends BaseActivity {
                             hallGameBottomPromptTv.setTextColor(Color.parseColor("#AE0907"));
                         } else if (BuildConfig.FLAVOR.equals("depocasino")) {
                             hallGameBottomPromptTv.setTextColor(Color.parseColor("#800080"));
+                        } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
+                            hallGameBottomPromptTv.setTextColor(Color.BLACK);
+                        } else if (BuildConfig.FLAVOR.equals("slotku")) {
+                            hallGameBottomPromptTv.setTextColor(Color.WHITE);
                         } else {
                             hallGameBottomPromptTv.setTextColor(mContext.getResources().getColor(R.color.white));
                         }
@@ -452,7 +456,8 @@ public class LobbyActivity extends BaseActivity {
             ll_top_parent.setBackgroundColor(Color.BLACK);
             ll_bottom.setBackgroundColor(ContextCompat.getColor(mContext, R.color.hitam_color2));
         } else if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("ularnaga") ||
-                BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino")) {
+                BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
+                BuildConfig.FLAVOR.equals("slotku")) {
             LinearLayout ll_lobby_parent = findViewById(R.id.ll_lobby_parent);
             LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
             LinearLayout gd_ll_notice = findViewById(R.id.gd__ll_notice);
@@ -506,6 +511,21 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_withdraw.setTextColor(Color.WHITE);
                 tv_home_live_chat.setTextColor(Color.WHITE);
                 tv_home_logout.setTextColor(Color.WHITE);
+            } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
+                ll_top_parent.setBackgroundResource(R.drawable.ularnaga_top_bg);
+                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);//#AE0907
+                tv_home_home.setTextColor(Color.WHITE);
+                tv_home_deposit.setTextColor(Color.WHITE);
+                tv_home_withdraw.setTextColor(Color.WHITE);
+                tv_home_live_chat.setTextColor(Color.WHITE);
+                tv_home_logout.setTextColor(Color.WHITE);
+            } else if (BuildConfig.FLAVOR.equals("slotku")) {
+                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);//#AE0907
+                tv_home_home.setTextColor(Color.parseColor("#D3AE48"));
+                tv_home_deposit.setTextColor(Color.parseColor("#D3AE48"));
+                tv_home_withdraw.setTextColor(Color.parseColor("#D3AE48"));
+                tv_home_live_chat.setTextColor(Color.parseColor("#D3AE48"));
+                tv_home_logout.setTextColor(Color.parseColor("#D3AE48"));
             }
         } else if (BuildConfig.FLAVOR.equals("kasino365")) {
             ll_bottom.setBackgroundColor(Color.parseColor("#050606"));
@@ -641,7 +661,8 @@ public class LobbyActivity extends BaseActivity {
                             textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
                         } else {
                             if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("ularnaga") ||
-                                    BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino")) {
+                                    BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
+                                    BuildConfig.FLAVOR.equals("slotku")) {
                                 rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item);
                             } else {
                                 rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
@@ -650,6 +671,8 @@ public class LobbyActivity extends BaseActivity {
                                 textView.setTextColor(Color.WHITE);
                             } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
                                 textView.setTextColor(ContextCompat.getColor(mContext, R.color.ularnaga_home_no_select_color));
+                            } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
+                                textView.setTextColor(Color.parseColor("#6D4709"));
                             } else {
                                 textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_no_select_color));
                             }

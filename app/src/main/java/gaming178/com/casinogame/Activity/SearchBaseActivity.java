@@ -48,7 +48,8 @@ public abstract class SearchBaseActivity extends BaseActivity {
     private void initSearch() {
         edtSearch = findViewById(R.id.edt_search);
         if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("ularnaga") ||
-                BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino")) {
+                BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
+                BuildConfig.FLAVOR.equals("slotku")) {
             toolbar.setNavigationIcon(R.mipmap.search_back);
             toolbar.setBackgroundResource(R.mipmap.bg_search);
             ll_parent = findViewById(R.id.gd__ll_parent);
@@ -68,7 +69,7 @@ public abstract class SearchBaseActivity extends BaseActivity {
                 ll_parent.setBackgroundResource(R.mipmap.gd_login_bg);
                 edtSearch.setHintTextColor(Color.parseColor("#707070"));
                 edtSearch.setTextColor(Color.BLACK);
-            } else if (BuildConfig.FLAVOR.equals("depocasino")) {
+            } else if (BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino")) {
                 toolbar.setBackgroundResource(R.drawable.ularnaga_top_bg);
                 edtSearch.setHintTextColor(Color.parseColor("#707070"));
                 edtSearch.setTextColor(Color.BLACK);
@@ -77,6 +78,14 @@ public abstract class SearchBaseActivity extends BaseActivity {
                 } else {
                     ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
                 }
+            } else if (BuildConfig.FLAVOR.equals("slotku")) {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom_land);
+                } else {
+                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
+                }
+                edtSearch.setHintTextColor(Color.parseColor("#707070"));
+                edtSearch.setTextColor(Color.WHITE);
             }
         }
         imgClear = findViewById(R.id.img_clear);
@@ -103,6 +112,7 @@ public abstract class SearchBaseActivity extends BaseActivity {
             }
         });
     }
+
     @Override
     protected void leftClick() {
         skipAct(LobbyActivity.class);
