@@ -275,9 +275,11 @@ public class LobbyActivity extends BaseActivity {
     private void getIntentToAfb1188() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        String goAfb1188 = extras.getString("GoAfb1188");
-        if (!TextUtils.isEmpty(goAfb1188) && goAfb1188.equals("GoAfb1188")) {
-            goAfb1188();
+        if (intent != null && extras != null) {
+            String goAfb1188 = extras.getString("GoAfb1188");
+            if (!TextUtils.isEmpty(goAfb1188) && goAfb1188.equals("GoAfb1188")) {
+                goAfb1188();
+            }
         }
     }
 

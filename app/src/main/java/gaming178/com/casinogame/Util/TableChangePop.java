@@ -504,10 +504,10 @@ public class TableChangePop extends BasePopupWindow {
         img_s = view.findViewById(R.id.gd__img_s);
         img_d = view.findViewById(R.id.gd__img_d);
         img_slot = view.findViewById(R.id.gd__img_slot);
-        if (!TextUtils.isEmpty(BuildConfig.FLAVOR)) {
-            img_slot.setVisibility(View.VISIBLE);
-        } else {
+        if (TextUtils.isEmpty(BuildConfig.FLAVOR) || (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3)) {
             img_slot.setVisibility(View.GONE);
+        } else {
+            img_slot.setVisibility(View.VISIBLE);
         }
         lvChips = view.findViewById(R.id.gd_lv_chips);
         img_b.setImageResource(R.mipmap.gd__img_b_select);
@@ -869,6 +869,9 @@ public class TableChangePop extends BasePopupWindow {
             parentLine.addView(aB1, layoutParams);
             parent.addView(parentLine);
             i++;
+        }
+        if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
+            return;
         }
         addSlots(slotList, 0, View.VISIBLE);
         addSlots(slotRoundList, 6, View.GONE);
