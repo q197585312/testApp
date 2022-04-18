@@ -2614,18 +2614,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
         //https://112api.gd88bet.net/cklogin.jsp?txtAcctid=Demoafba0310&txtPwd=12345678&txtLang=0&txtRandCode=Ma5qXnw1HuauTpIpzO5WLWkE7tBgduFHmtNCClCEx4tM1xHZloL
         mAppViewModel.setCookie("");
-//http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
-
-        /*  intent.putString("username", info.getLoginName());
-        intent.putString("password", info.getPassword());
-        intent.putString("language", "en");*/
+        //http://112api.gd88bet.net/main.jsp?membername=DEMOAFBA0311&lang=1
 
         String username = extras.getString("username").toUpperCase();//转成大写;
-//        String password = extras.getString("password");
         String password = "12345678";
         String balance = extras.getString("balance");
         String curCode = extras.getString("curCode");
-
 
         postNewThread(new Runnable() {
             @Override
@@ -2667,80 +2661,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 checkSucceed(0x0001);
             }
         });
-
-//        postNewThread(postGameGG());
-//        postNewThread(postTableInfoA());
-//        postNewThread(postTimer());
-    }
-
-    private Runnable postTimer() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                String strRes;
-                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.COUNTDOWN_URL_A);
-                strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-                if (strRes.equals("netError")) {
-                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
-                    return;
-                }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.COUNTDOWN_URL_A + "完成0x100");
-
-                mAppViewModel.splitTimer(strRes);
-                checkSucceed(0x1000);
-            }
-        };
-    }
-
-    private Runnable postTableInfoA() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                String strRes;
-                LogIntervalUtils.logCustomTime(currentTime, "开始Table数据" + WebSiteUrl.TABLE_INFO_A_URL);
-                strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLE_INFO_A_URL, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
-
-                if (strRes.equals("netError")) {
-                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
-                    return;
-                }
-                String tableInfo[] = strRes.split("\\^");
-                if (tableInfo.length < 12) {
-                    handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
-                    return;
-                }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.TABLE_INFO_A_URL + "完成0x010");
-                mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
-                checkSucceed(0x0100);
-            }
-        };
     }
 
     private void postNewThread(Runnable runnable) {
         ThreadPoolUtils.execute(runnable);
-    }
-
-    private Runnable postGameGG() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                String strRes;
-                String language1 = "0";
-                String annoucementParams = "lng=" + language1 + "&Usid=" + mAppViewModel.getUser().getName();
-                LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.GAME_GG_URL);
-                strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
-                if (strRes.equals("netError")) {
-                    handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
-                    return;
-                }
-                LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.GAME_GG_URL + "完成0x001");
-                String ann[] = strRes.split("Results=ok\\|");
-                if (ann.length > 1)
-                    mAppViewModel.setAnnouncement(ann[1]);
-                checkSucceed(0x0010);
-            }
-        };
-
     }
 
     private volatile int hasSucceed = 0x0000;
