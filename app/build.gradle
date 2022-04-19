@@ -420,6 +420,12 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.21'
             }
+            garudakasino {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "garudakasino"]
+                buildConfigField "String", "Labelid", '"108"'
+                applicationId 'gaming178.com.baccaratgame'
+                versionName '4.21'
+            }
         }
 
         applicationVariants.all { variant ->

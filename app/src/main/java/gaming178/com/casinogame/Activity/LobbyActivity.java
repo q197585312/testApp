@@ -486,7 +486,7 @@ public class LobbyActivity extends BaseActivity {
                 ll_top_parent.setBackgroundResource(R.drawable.ularnaga_top_bg);
                 ll_lobby_parent.setBackgroundResource(0);
                 ll_lobby_parent.setBackgroundColor(Color.parseColor("#CD1012"));
-                gd_ll_notice.setBackgroundResource(R.drawable.hokicasino_home_item);//#AE0907
+                gd_ll_notice.setBackgroundResource(R.drawable.hokicasino_home_item);
                 tv_home_home.setTextColor(Color.WHITE);
                 tv_home_deposit.setTextColor(Color.WHITE);
                 tv_home_withdraw.setTextColor(Color.WHITE);
@@ -495,7 +495,7 @@ public class LobbyActivity extends BaseActivity {
             } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
                 ll_top_parent.setBackgroundResource(R.drawable.ularnaga_top_bg);
                 ll_lobby_parent.setBackgroundResource(R.mipmap.gd_login_bg);
-                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);//#AE0907
+                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);
                 tv_home_home.setTextColor(Color.WHITE);
                 tv_home_deposit.setTextColor(Color.WHITE);
                 tv_home_withdraw.setTextColor(Color.WHITE);
@@ -503,7 +503,7 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_logout.setTextColor(Color.WHITE);
             } else if (BuildConfig.FLAVOR.equals("depocasino")) {
                 ll_top_parent.setBackgroundResource(R.drawable.ularnaga_top_bg);
-                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);//#AE0907
+                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);
                 tv_home_home.setTextColor(Color.WHITE);
                 tv_home_deposit.setTextColor(Color.WHITE);
                 tv_home_withdraw.setTextColor(Color.WHITE);
@@ -511,7 +511,7 @@ public class LobbyActivity extends BaseActivity {
                 tv_home_logout.setTextColor(Color.WHITE);
             } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
                 ll_top_parent.setBackgroundResource(R.drawable.ularnaga_top_bg);
-                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);//#AE0907
+                gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);
                 tv_home_home.setTextColor(Color.WHITE);
                 tv_home_deposit.setTextColor(Color.WHITE);
                 tv_home_withdraw.setTextColor(Color.WHITE);
@@ -531,6 +531,10 @@ public class LobbyActivity extends BaseActivity {
             LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
             ll_top_parent.setBackgroundResource(0);
             ll_bottom.setBackgroundColor(Color.parseColor("#93000000"));
+        } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
+            LinearLayout gd_ll_notice = findViewById(R.id.gd__ll_notice);
+            gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);
+            ll_bottom.setBackgroundColor(Color.parseColor("#9f1411"));
         }
     }
 
@@ -665,7 +669,8 @@ public class LobbyActivity extends BaseActivity {
                             } else {
                                 rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
                             }
-                            if (BuildConfig.FLAVOR.equals("hitamslot") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino")) {
+                            if (BuildConfig.FLAVOR.equals("hitamslot") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") ||
+                                    BuildConfig.FLAVOR.equals("garudakasino")) {
                                 textView.setTextColor(Color.WHITE);
                             } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
                                 textView.setTextColor(ContextCompat.getColor(mContext, R.color.ularnaga_home_no_select_color));
@@ -987,7 +992,7 @@ public class LobbyActivity extends BaseActivity {
 
             if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") || BuildConfig.FLAVOR.equals("ratucasino88") ||
                     BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("kasino365") ||
-                    BuildConfig.FLAVOR.equals("mainkasino")) {
+                    BuildConfig.FLAVOR.equals("mainkasino") || BuildConfig.FLAVOR.equals("garudakasino")) {
                 if (BuildConfig.FLAVOR.equals("oricasino")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.249/"));
                 } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
@@ -1002,6 +1007,8 @@ public class LobbyActivity extends BaseActivity {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_ninekiu, "", AppConfig.bandarq, "https://ninekiu.com/core/m/"));
                 } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_warungqq, "WARUNGQQ", AppConfig.bandarq, "http://202.95.10.115/core/m/?ref=mainkasinoapp"));
+                } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
+//                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, "", AppConfig.bandarq, ""));
                 }
             }
         }

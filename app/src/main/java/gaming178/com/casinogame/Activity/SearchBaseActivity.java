@@ -49,7 +49,7 @@ public abstract class SearchBaseActivity extends BaseActivity {
         edtSearch = findViewById(R.id.edt_search);
         if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("ularnaga") ||
                 BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
-                BuildConfig.FLAVOR.equals("slotku")) {
+                BuildConfig.FLAVOR.equals("slotku") || BuildConfig.FLAVOR.equals("garudakasino")) {
             toolbar.setNavigationIcon(R.mipmap.search_back);
             toolbar.setBackgroundResource(R.mipmap.bg_search);
             ll_parent = findViewById(R.id.gd__ll_parent);
@@ -86,6 +86,13 @@ public abstract class SearchBaseActivity extends BaseActivity {
                 }
                 edtSearch.setHintTextColor(Color.parseColor("#707070"));
                 edtSearch.setTextColor(Color.WHITE);
+            } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom_land);
+                } else {
+                    ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
+                }
+                toolbar.setBackgroundColor(Color.parseColor("#850100"));
             }
         }
         imgClear = findViewById(R.id.img_clear);
