@@ -79,7 +79,7 @@ public class WelcomeActivity extends BaseActivity {
     private String agentName;
     private String requestUrl;
     private int version = Build.VERSION.SDK_INT;
-    private String appVersionUrl = "http://www.appgd88.com/api/gd88AndroidVersion.php?Labelid=";
+    private String appVersionUrl = "http://www.gd88.app/api/gd88AndroidVersion.php?Labelid=";
     private Gson gson = new Gson();
 
     private boolean hasVersionChecked;

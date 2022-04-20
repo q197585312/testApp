@@ -33,6 +33,7 @@ android {
     defaultConfig {
         ndk {
             abiFilters "armeabi-v7a" //, "x86", "armeabi"  按需设置
+            abiFilters "armeabi",'x86','x86_64','arm64-v8a'
         }
         if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
             applicationId 'gaming178.com.baccaratgame'
@@ -151,7 +152,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "slotku"]
                 buildConfigField "String", "Labelid", '"91"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.21'
+                versionName '4.22'
             }
 
             ezykasino {
@@ -307,7 +308,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wargacasino"]
                 buildConfigField "String", "Labelid", '"142"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.21'
+                versionName '4.22'
             }
 
 
