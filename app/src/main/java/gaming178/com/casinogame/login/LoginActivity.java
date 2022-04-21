@@ -1104,6 +1104,128 @@ public class LoginActivity extends BaseActivity {
             animatorSet.start();
         }
 
+        if (BuildConfig.FLAVOR.equals("garudakasino")) {
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.garuda_kasino_title_gif).into(img_login_title_main);
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = gd_img_login_title_main_sbocasino77.getWidth();
+                    ViewGroup.LayoutParams layoutParams = gd_img_login_title_main_sbocasino77.getLayoutParams();
+                    layoutParams.height = (int) (width / 3.62);
+                    gd_img_login_title_main_sbocasino77.setLayoutParams(layoutParams);
+                }
+            });
+            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
+            hallGameBottomPromptTv.setSelected(true);
+            hallGameBottomPromptTv.stopScroll();
+            hallGameBottomPromptTv.setText("Info : Untuk Bonus deposit dapat diklaim melalui whatsapp ataupun livechat ya bosku!!!");
+            hallGameBottomPromptTv.setTextColor(Color.WHITE);
+            hallGameBottomPromptTv.setSpeed(0.8f);
+            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+            hallGameBottomPromptTv.startScroll();
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://wa.me/6281284732312");
+                }
+            });
+            List<NamePicBean> listSlot = new ArrayList<>();
+            listSlot.add(new NamePicBean("", R.mipmap.garuda_pplay));
+            listSlot.add(new NamePicBean("", R.mipmap.garuda_cq9));
+            listSlot.add(new NamePicBean("", R.mipmap.garuda_joker));
+            listSlot.add(new NamePicBean("", R.mipmap.garuda_afb));
+            listSlot.add(new NamePicBean("", R.mipmap.garuda_pg));
+            listSlot.add(new NamePicBean("", R.mipmap.garuda_haba));
+            List<NamePicBean> listCasino = new ArrayList<>();
+            listCasino.add(new NamePicBean("", R.mipmap.garuda_lg));
+            listCasino.add(new NamePicBean("", R.mipmap.garuda_gd88));
+            List<NamePicBean> listSport = new ArrayList<>();
+            listSport.add(new NamePicBean("", R.mipmap.garuda_afb88));
+            List<NamePicBean> listCock = new ArrayList<>();
+            listCock.add(new NamePicBean("", R.mipmap.garuda_sv388));
+            List<NamePicBean> listPoker = new ArrayList<>();
+            listPoker.add(new NamePicBean("", R.mipmap.garuda_we1poker));
+            listPoker.add(new NamePicBean("", R.mipmap.garuda_cerahqq));
+            rajaRc2 = findViewById(R.id.rc_raja2);
+            rajaRc2.setNestedScrollingEnabled(false);
+            rajaRc2.setLayoutManager(new GridLayoutManager(this, 3));
+            List<NamePicBean> currentList = new ArrayList<>();
+            currentList.addAll(listSlot);
+            BaseRecyclerAdapter<NamePicBean> adapterSlot = new BaseRecyclerAdapter<NamePicBean>(mContext, currentList, R.layout.item_raja_show_slot) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    imageView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int width = imageView.getWidth();
+                            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+                            layoutParams.height = (int) (width * 1.36);
+                            imageView.setLayoutParams(layoutParams);
+                            imageView.setBackgroundResource(item.getPic());
+                        }
+                    });
+                }
+            };
+            rajaRc2.setAdapter(adapterSlot);
+            rajaRc = findViewById(R.id.rc_raja);
+            rajaRc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            List<NamePicBean> list = new ArrayList<>();
+            list.add(new NamePicBean("SLOT", R.mipmap.garuda_slot));
+            list.add(new NamePicBean("CASINO", R.mipmap.garuda_caisno));
+            list.add(new NamePicBean("SPORTS", R.mipmap.garuda_sport));
+            list.add(new NamePicBean("SABUNG AYAM", R.mipmap.garuda_ayam));
+            list.add(new NamePicBean("POKER", R.mipmap.garuda_poker));
+            BaseRecyclerAdapter<NamePicBean> adapter = new BaseRecyclerAdapter<NamePicBean>(mContext, list, R.layout.item_raja_show) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    TextView textView = holder.getTextView(R.id.tv);
+                    textView.setText(item.getName());
+                    imageView.setBackgroundResource(item.getPic());
+                }
+            };
+            adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<NamePicBean>() {
+                @Override
+                public void onItemClick(View view, NamePicBean item, int position) {
+                    switch (position) {
+                        case 0:
+                            adapterSlot.addAllAndClear(listSlot);
+                            break;
+                        case 1:
+                            adapterSlot.addAllAndClear(listCasino);
+                            break;
+                        case 2:
+                            adapterSlot.addAllAndClear(listSport);
+                            break;
+                        case 3:
+                            adapterSlot.addAllAndClear(listCock);
+                            break;
+                        case 4:
+                            adapterSlot.addAllAndClear(listPoker);
+                            break;
+                    }
+                }
+            });
+            rajaRc.setAdapter(adapter);
+            FrameLayout flSlideLeft = findViewById(R.id.fl_slide_left);
+            FrameLayout flSlideRight = findViewById(R.id.fl_slide_right);
+            flSlideLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rajaRc.scrollBy(-100, 0);
+                }
+            });
+            flSlideRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    rajaRc.scrollBy(100, 0);
+                }
+            });
+        }
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
             imgOpen.setVisibility(View.VISIBLE);

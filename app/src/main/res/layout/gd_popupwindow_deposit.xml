@@ -331,7 +331,7 @@
                     android:background="@drawable/gd_yellow_button"
                     android:gravity="center"
                     android:text="@string/gd_confirm"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <Button
@@ -343,7 +343,7 @@
                     android:background="@drawable/gd_yellow_button"
                     android:gravity="center"
                     android:text="@string/gd_cancel"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

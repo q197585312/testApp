@@ -17,7 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#BFD9FE"
+        android:background="#fdfdfd"
         android:orientation="vertical">
 
         <TextView
@@ -44,7 +44,7 @@
                 android:padding="10dp"
                 android:text="@string/Open_Address"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/gd__tv_copy"
@@ -55,7 +55,7 @@
                 android:padding="10dp"
                 android:text="@string/Copy_Address"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>
 
