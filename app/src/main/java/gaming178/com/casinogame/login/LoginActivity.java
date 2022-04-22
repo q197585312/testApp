@@ -67,6 +67,7 @@ import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
 import gaming178.com.casinogame.Control.AutoScrollTextView;
 import gaming178.com.casinogame.Popupwindow.PopImg;
+import gaming178.com.casinogame.Popupwindow.PopImgTitleHint;
 import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.CircleAnimation;
@@ -1230,6 +1231,13 @@ public class LoginActivity extends BaseActivity {
                     });
                 }
             };
+            adapterSlot.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<NamePicBean>() {
+                @Override
+                public void onItemClick(View view, NamePicBean item, int position) {
+                    PopImgTitleHint popImgTitleHint = new PopImgTitleHint(mContext, logoutTv, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    popImgTitleHint.showPopupCenterWindow();
+                }
+            });
             rajaRc2.setAdapter(adapterSlot);
             rajaRc = findViewById(R.id.rc_raja);
             rajaRc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

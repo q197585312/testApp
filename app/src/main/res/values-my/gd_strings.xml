@@ -240,6 +240,7 @@
     <string name="special_bonus">BONUS SPESIAL</string>
     <string name="vip_service">LAYANAN VIP</string>
     <string name="submit_ok">Konfirmasi</string>
+    <string name="gd_login_first">Silahkan login terlebih dahulu.</string>
 </resources>
 
 
