@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/gd_rl_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -242,8 +243,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="5dp"
-                android:gravity="left|top"
                 android:background="@drawable/rectangle_white_graystroke_radius5"
+                android:gravity="left|top"
                 android:padding="3dp"
                 android:textColor="@color/gray_dark"
                 android:textSize="14sp" />
@@ -263,10 +264,10 @@
                 android:layout_height="40dip"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/gd_yellow_button"
+                android:background="@drawable/common_button"
                 android:gravity="center"
                 android:text="@string/gd_confirm"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <Button
@@ -275,22 +276,24 @@
                 android:layout_height="40dip"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/gd_yellow_button"
+                android:background="@drawable/common_button"
                 android:gravity="center"
                 android:text="@string/gd_cancel"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 
 
     <TextView
+        android:id="@+id/gd_tv_bottom_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gd_rectangle_green_borwn_bottom_corner5"
         android:gravity="center"
         android:padding="10dp"
         android:text="Make sure you enter the correct bank information. Every financial transaction can only be made form and to this bank account"
+        android:textColor="@color/white"
         android:textSize="10sp" />
 
 </LinearLayout>

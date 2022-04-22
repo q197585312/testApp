@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.zhy.autolayout.AutoLinearLayout;
 
 import gaming178.com.baccaratgame.R;
@@ -41,6 +43,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
     @Override
     protected void initView() {
         super.initView();
+        setToolbarColor(ContextCompat.getColor(mContext, R.color.login_color));
         tv_username = (TextView) findViewById(R.id.gd__tv_username);
         tv_username.setText("User Name:" + mAppViewModel.getUser().getName());
         tv_ok = (TextView) findViewById(R.id.gd__tv_ok);

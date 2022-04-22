@@ -239,6 +239,7 @@
     <string name="after_verify">Harap verifikasi setelah memasukkan sidik jari Anda di sistem</string>
     <string name="special_bonus">BONUS SPESIAL</string>
     <string name="vip_service">LAYANAN VIP</string>
+    <string name="submit_ok">Konfirmasi</string>
 </resources>
 
 

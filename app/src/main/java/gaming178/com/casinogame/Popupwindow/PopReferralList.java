@@ -6,11 +6,15 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -56,10 +60,15 @@ public class PopReferralList extends BasePopupWindow {
 
     ImageView img_exit;
     ListView lv_content;
+    RelativeLayout rl_title;
 
     @Override
     protected void initView(View view) {
         super.initView(view);
+        rl_title = view.findViewById(R.id.gd_rl_title);
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+        }
         img_exit = view.findViewById(R.id.gd__img_exit);
         lv_content = view.findViewById(R.id.gd__lv_content);
         img_exit.setOnClickListener(new View.OnClickListener() {

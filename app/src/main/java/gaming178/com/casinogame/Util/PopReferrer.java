@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.LobbyActivity;
@@ -25,7 +27,7 @@ public class PopReferrer extends BasePopupWindow {
         super(context, v, width, height);
     }
 
-    TextView tvContent, tv_open, tv_copy;
+    TextView tvContent, tv_open, tv_copy, tv_title;
 
     @Override
     protected int getContentViewLayoutRes() {
@@ -46,6 +48,10 @@ public class PopReferrer extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
+        tv_title = (TextView) view.findViewById(R.id.gd_tv_title);
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            tv_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+        }
         tvContent = (TextView) view.findViewById(R.id.gd__tv_content);
         tv_open = (TextView) view.findViewById(R.id.gd__tv_open);
         tv_copy = (TextView) view.findViewById(R.id.gd__tv_copy);

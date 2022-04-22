@@ -6,8 +6,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
@@ -36,6 +39,8 @@ public class WithdrawPop extends BasePopupWindow {
     private ImageView ivClose;
     private EditText edtRemark;
     private LinearLayout llRemark;
+    private RelativeLayout rl_title;
+    private TextView tv_bottom_title;
 
     public WithdrawPop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -102,6 +107,12 @@ public class WithdrawPop extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
+        rl_title = view.findViewById(R.id.gd_rl_title);
+        tv_bottom_title = view.findViewById(R.id.gd_tv_bottom_title);
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+            tv_bottom_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+        }
         edtAmount=(EditText)view.findViewById(R.id.gd__edt_pop_withdraw_amount);
         tvUsername=(TextView)view.findViewById(R.id.gd__tv_pop_withdraw_username);
         tvChoiceBank=(TextView)view.findViewById(R.id.gd__tv_pop_withdraw_choice_bank);

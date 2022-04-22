@@ -41,4 +41,5 @@
     <color name="hitam_color3">#0181C2</color>
     <color name="hitam_register_color_bg">#101010</color>
     <color name="ularnaga_home_no_select_color">#AE0907</color>
+    <color name="common_button_color">#42BCFB</color>
 </resources>

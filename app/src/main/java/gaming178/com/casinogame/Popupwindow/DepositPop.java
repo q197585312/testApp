@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
+import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Control.GdThreadHander;
@@ -49,6 +51,8 @@ public class DepositPop extends BasePopupWindow {
     private ListView lstbank2;
     private BlockDialog dialog;
     private ImageView ivClose;
+    private RelativeLayout rl_title;
+    private TextView tv_bottom_title;
 
     public DepositPop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -197,6 +201,12 @@ public class DepositPop extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
+        rl_title = view.findViewById(R.id.gd_rl_title);
+        tv_bottom_title = view.findViewById(R.id.gd_tv_bottom_title);
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+            tv_bottom_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+        }
         edtAmount = (EditText) view.findViewById(R.id.gd__edt_pop_deposit_amount);
         tvUsername = (TextView) view.findViewById(R.id.gd__tv_pop_deposit_username);
         tvChoiceBank = (TextView) view.findViewById(R.id.gd__tv_pop_deposit_choice_bank);

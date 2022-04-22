@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/gd_rl_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -328,10 +329,10 @@
                     android:layout_height="40dip"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/gd_yellow_button"
+                    android:background="@drawable/common_button"
                     android:gravity="center"
                     android:text="@string/gd_confirm"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
 
                 <Button
@@ -340,10 +341,10 @@
                     android:layout_height="40dip"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/gd_yellow_button"
+                    android:background="@drawable/common_button"
                     android:gravity="center"
                     android:text="@string/gd_cancel"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
@@ -370,8 +371,10 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/gd_tv_bottom_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:background="@drawable/gd_rectangle_green_borwn_bottom_corner5"
         android:gravity="center"
         android:padding="10dp"

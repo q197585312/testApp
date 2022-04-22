@@ -11,8 +11,12 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
+import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.base.BaseActivity;
@@ -29,6 +33,7 @@ public class PopTransactionRecord extends BasePopupWindow {
     BaseActivity activity;
     private ImageView img_exit;
     private TextView tvTitle;
+    RelativeLayout rl_title;
 
     public PopTransactionRecord(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -42,6 +47,10 @@ public class PopTransactionRecord extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
+        rl_title = view.findViewById(R.id.rl_title);
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+        }
         tvTitle = view.findViewById(R.id.gd_tv_pop_title);
         tvTitle.setText(context.getString(R.string.transaction_record));
         img_exit = view.findViewById(R.id.gd__img_exit);

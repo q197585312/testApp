@@ -2849,6 +2849,14 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
     }
 
+    public void setToolbarColor(int color) {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            if (color != 0) {
+                toolbar.setBackgroundColor(color);
+            }
+        }
+    }
+
     private int gameChooseChip;
 
     public int getGameChooseChip() {

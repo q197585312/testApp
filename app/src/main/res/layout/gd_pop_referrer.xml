@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/gd_tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_table_color"
@@ -40,22 +41,22 @@
                 android:id="@+id/gd__tv_open"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/gd_yellow_button"
+                android:background="@drawable/common_button"
                 android:padding="10dp"
                 android:text="@string/Open_Address"
                 android:textAllCaps="false"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/gd__tv_copy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/gd_yellow_button"
+                android:background="@drawable/common_button"
                 android:padding="10dp"
                 android:text="@string/Copy_Address"
                 android:textAllCaps="false"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 

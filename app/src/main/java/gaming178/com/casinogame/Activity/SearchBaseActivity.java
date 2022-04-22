@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.core.content.ContextCompat;
+
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Util.AppConfig;
@@ -93,6 +95,10 @@ public abstract class SearchBaseActivity extends BaseActivity {
                     ll_parent.setBackgroundResource(R.mipmap.gd_home_bottom);
                 }
                 toolbar.setBackgroundColor(Color.parseColor("#850100"));
+            }
+        } else {
+            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_color));
             }
         }
         imgClear = findViewById(R.id.img_clear);

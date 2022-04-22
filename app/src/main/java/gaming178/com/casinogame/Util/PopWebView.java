@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.base.BaseActivity;
@@ -31,6 +33,7 @@ public abstract class PopWebView extends BasePopupWindow {
     BaseActivity activity;
     private ImageView img_exit;
     private TextView tv_pop_title;
+    RelativeLayout rl_title;
 
     public PopWebView(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -44,8 +47,11 @@ public abstract class PopWebView extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
+        rl_title = view.findViewById(R.id.rl_title);
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
+        }
         if (BuildConfig.FLAVOR.equals("hitamslot")){
-            RelativeLayout rl_title = view.findViewById(R.id.rl_title);
             rl_title.setBackgroundColor(Color.BLACK);
         }
         tv_pop_title = view.findViewById(R.id.gd_tv_pop_title);
