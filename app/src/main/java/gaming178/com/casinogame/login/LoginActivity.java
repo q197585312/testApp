@@ -78,8 +78,10 @@ import gaming178.com.casinogame.Util.PopWebView;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyBannerAdapter;
+import gaming178.com.casinogame.adapter.MyNetWorkBannerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.casinogame.entity.BannerBean;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.allinone.util.StringUtils;
@@ -1107,24 +1109,83 @@ public class LoginActivity extends BaseActivity {
         if (BuildConfig.FLAVOR.equals("garudakasino")) {
             img_login_title_main = findViewById(R.id.gd_img_login_title_main);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.garuda_kasino_title_gif).into(img_login_title_main);
-            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
-            gd_img_login_title_main_sbocasino77.post(new Runnable() {
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.post(new Runnable() {
                 @Override
                 public void run() {
-                    int width = gd_img_login_title_main_sbocasino77.getWidth();
-                    ViewGroup.LayoutParams layoutParams = gd_img_login_title_main_sbocasino77.getLayoutParams();
+                    int width = bannerView.getWidth();
+                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
                     layoutParams.height = (int) (width / 3.62);
-                    gd_img_login_title_main_sbocasino77.setLayoutParams(layoutParams);
+                    bannerView.setLayoutParams(layoutParams);
                 }
             });
             hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
             hallGameBottomPromptTv.setSelected(true);
             hallGameBottomPromptTv.stopScroll();
-            hallGameBottomPromptTv.setText("Info : Untuk Bonus deposit dapat diklaim melalui whatsapp ataupun livechat ya bosku!!!");
             hallGameBottomPromptTv.setTextColor(Color.WHITE);
             hallGameBottomPromptTv.setSpeed(0.8f);
-            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
-            hallGameBottomPromptTv.startScroll();
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    WebSiteUrl.setNormal(result);
+                    String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
+                    String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+                    url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
+                    String bannerResult = httpClient.sendPost(url, "");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (annoucement.startsWith("Results=ok")) {
+                                String[] split = annoucement.split("\\|");
+                                hallGameBottomPromptTv.setText(split[1]);
+                            } else {
+                                hallGameBottomPromptTv.setText("Info : Untuk Bonus deposit dapat diklaim melalui whatsapp ataupun livechat ya bosku!!!");
+                            }
+                            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+                            hallGameBottomPromptTv.startScroll();
+                            List<Integer> imgErrorList = new ArrayList<>();
+                            imgErrorList.add(R.mipmap.garudakasino_slide);
+                            if (bannerResult.contains("Success")) {
+                                BannerBean bannerBean = new Gson().fromJson(bannerResult, BannerBean.class);
+                                List<BannerBean.DataBean> data = bannerBean.getData();
+                                if (data != null && data.size() > 0) {
+                                    List<String> lists = new ArrayList<>();
+                                    for (int i = 0; i < data.size(); i++) {
+                                        BannerBean.DataBean dataBean = data.get(i);
+                                        lists.add(dataBean.getPath());
+                                    }
+                                    bannerView.setLifecycleRegistry(getLifecycle()).
+                                            setAdapter(new MyNetWorkBannerAdapter()).
+                                            setScrollDuration(500).
+                                            setIndicatorSliderColor(Color.WHITE,
+                                                    getResources().getColor(R.color.yellow_gold2)).
+                                            setIndicatorGravity(IndicatorGravity.CENTER).
+                                            create(lists);
+                                } else {
+                                    bannerView.setLifecycleRegistry(getLifecycle()).
+                                            setAdapter(new MyBannerAdapter()).
+                                            setScrollDuration(500).
+                                            setIndicatorSliderColor(Color.WHITE,
+                                                    getResources().getColor(R.color.yellow_gold2)).
+                                            setIndicatorGravity(IndicatorGravity.CENTER).
+                                            create(imgErrorList);
+                                }
+                            } else {
+                                bannerView.setLifecycleRegistry(getLifecycle()).
+                                        setAdapter(new MyBannerAdapter()).
+                                        setScrollDuration(500).
+                                        setIndicatorSliderColor(Color.WHITE,
+                                                getResources().getColor(R.color.yellow_gold2)).
+                                        setIndicatorGravity(IndicatorGravity.CENTER).
+                                        create(imgErrorList);
+                            }
+                        }
+                    });
+                }
+            }.start();
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

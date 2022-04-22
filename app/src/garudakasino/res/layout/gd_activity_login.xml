@@ -39,7 +39,12 @@
                 android:id="@+id/gd_img_login_title_main_sbocasino77"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:background="@mipmap/garudakasino_slide" />
+                android:visibility="gone" />
+
+            <com.zhpan.bannerview.BannerViewPager
+                android:id="@+id/banner_view"
+                android:layout_width="match_parent"
+                android:layout_height="90dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -609,15 +614,6 @@
         android:layout_marginTop="-10dp"
         android:layout_toRightOf="@+id/gd_img_login_title"
         android:visibility="gone"></ImageView>
-
-    <com.zhpan.bannerview.BannerViewPager
-        android:id="@+id/banner_view"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/banner_bg"
-        android:padding="2dp"
-        android:visibility="gone" />
 
     <TextView
         android:id="@+id/gd__tv_promo"
