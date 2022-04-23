@@ -1294,7 +1294,24 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
-
+        if (BuildConfig.FLAVOR.equals("wingsbet88")) {
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            PopImg popImg = new PopImg(LoginActivity.this, btn_login, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                            popImg.setLoadUrl(result + "images/popup.jpg");
+                            popImg.showPopupCenterWindow();
+                        }
+                    });
+                }
+            }.start();
+        }
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
             imgOpen.setVisibility(View.VISIBLE);
