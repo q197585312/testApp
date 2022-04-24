@@ -533,29 +533,106 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (BuildConfig.FLAVOR.equals("cahaya")) {
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
+            hallGameBottomPromptTv.setSelected(true);
+            hallGameBottomPromptTv.stopScroll();
+            hallGameBottomPromptTv.setTextColor(Color.WHITE);
+            hallGameBottomPromptTv.setSpeed(0.8f);
+            hallGameBottomPromptTv.setText("Situs Bandar Casino Online Terkemuka Dengan Bonus Rollingan Dan Cashback Terbesar Di Indonesia Saat ini, Kami Menerima Semua Jenis Deposit Bank Dan E-Wallet.");
+            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+            hallGameBottomPromptTv.startScroll();
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.post(new Runnable() {
                 @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=87869413811");
+                public void run() {
+                    int width = bannerView.getWidth();
+                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
+                    List<String> imgList = new ArrayList<>();
+                    layoutParams.height = (int) (width / 3);
+                    imgList.add("https://rejekibersaudara.com/assets/images/slider-selamat-datang.jpg");
+                    imgList.add("https://rejekibersaudara.com/assets/images/slider-20.jpg");
+                    imgList.add("https://rejekibersaudara.com/assets/images/slider-game.jpg");
+                    imgList.add("https://rejekibersaudara.com/assets/images/slider-roll.jpg");
+                    imgList.add("https://rejekibersaudara.com/assets/images/Slider-CK.jpg");
+                    imgList.add("https://rejekibersaudara.com/assets/images/slide11.jpg");
+                    bannerView.setLayoutParams(layoutParams);
+                    bannerView.setLifecycleRegistry(getLifecycle()).
+                            setAdapter(new MyNetWorkBannerAdapter()).
+                            setScrollDuration(500).
+                            setIndicatorSliderColor(getResources().getColor(R.color.white),
+                                    Color.parseColor("#FAE58C")).
+                            setIndicatorGravity(IndicatorGravity.CENTER).
+                            create(imgList);
                 }
             });
-            tvPromo.setOnClickListener(new View.OnClickListener() {
+            FrameLayout flSlideLeft = findViewById(R.id.fl_slide_left);
+            rajaRc = findViewById(R.id.rc_raja);
+            rajaRc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            List<NamePicBean> list = new ArrayList<>();
+            list.add(new NamePicBean("SLOTS", R.mipmap.cayaha_slots));
+            list.add(new NamePicBean("LIVE CASINO", R.mipmap.cayaha_casino));
+            list.add(new NamePicBean("SPORTS", R.mipmap.cayaha_sports));
+            list.add(new NamePicBean("COCK FIGHT", R.mipmap.cayaha_hot_games));
+            list.add(new NamePicBean("POKER", R.mipmap.cayaha_poker));
+            BaseRecyclerAdapter<NamePicBean> adapter = new BaseRecyclerAdapter<NamePicBean>(mContext, list, R.layout.item_raja_show) {
                 @Override
-                public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
+                    LinearLayout ll_parent = holder.getLinearLayout(R.id.ll_parent);
+                    ll_parent.post(new Runnable() {
                         @Override
-                        public String getUrl() {
-                            return "https://direct.lc.chat/8666201/";
+                        public void run() {
+                            int height = flSlideLeft.getHeight();
+                            ViewGroup.LayoutParams layoutParams = ll_parent.getLayoutParams();
+                            layoutParams.height = height;
+                            layoutParams.width = (bannerView.getWidth() - flSlideLeft.getWidth() * 2) / 5;
+                            ll_parent.setLayoutParams(layoutParams);
                         }
-
-                        @Override
-                        public String getTitle() {
-                            return "LiveChat";
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
+                    });
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    TextView textView = holder.getTextView(R.id.tv);
+                    textView.setText(item.getName());
+                    imageView.setImageResource(item.getPic());
+                }
+            };
+            rajaRc.setAdapter(adapter);
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = gd_img_login_title_main_sbocasino77.getWidth();
+                    ViewGroup.LayoutParams layoutParams = gd_img_login_title_main_sbocasino77.getLayoutParams();
+                    layoutParams.width = width;
+                    layoutParams.height = (int) (width / 3.5);
+                    gd_img_login_title_main_sbocasino77.setLayoutParams(layoutParams);
+                    Glide.with(LoginActivity.this).asGif().load(R.mipmap.cayaha_login_animation).into(gd_img_login_title_main_sbocasino77);
                 }
             });
+            tvCount = findViewById(R.id.gd_tv_count);
+            count = 38864610;
+            new Thread() {
+                @Override
+                public void run() {
+                    while (isNeedCount) {
+                        try {
+                            Thread.sleep(10);
+                            format++;
+                            if (format == 100) {
+                                format = 0;
+                                count++;
+                            }
+                            getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String a = Gd88Utils.formatTosepara(count);
+                                    tvCount.setText("IDR " + a + "." + (format < 10 ? ("0" + format) : format));
+                                }
+                            });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }.start();
         }
 
         if (BuildConfig.FLAVOR.equals("wargacasino")) {
