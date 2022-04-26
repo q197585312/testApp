@@ -538,33 +538,74 @@ public class LoginActivity extends BaseActivity {
             hallGameBottomPromptTv.stopScroll();
             hallGameBottomPromptTv.setTextColor(Color.WHITE);
             hallGameBottomPromptTv.setSpeed(0.8f);
-            hallGameBottomPromptTv.setText("Situs Bandar Casino Online Terkemuka Dengan Bonus Rollingan Dan Cashback Terbesar Di Indonesia Saat ini, Kami Menerima Semua Jenis Deposit Bank Dan E-Wallet.");
-            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
-            hallGameBottomPromptTv.startScroll();
             bannerView = findViewById(R.id.banner_view);
             bannerView.post(new Runnable() {
                 @Override
                 public void run() {
                     int width = bannerView.getWidth();
                     ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
-                    List<String> imgList = new ArrayList<>();
                     layoutParams.height = (int) (width / 3);
-                    imgList.add("https://rejekibersaudara.com/assets/images/slider-selamat-datang.jpg");
-                    imgList.add("https://rejekibersaudara.com/assets/images/slider-20.jpg");
-                    imgList.add("https://rejekibersaudara.com/assets/images/slider-game.jpg");
-                    imgList.add("https://rejekibersaudara.com/assets/images/slider-roll.jpg");
-                    imgList.add("https://rejekibersaudara.com/assets/images/Slider-CK.jpg");
-                    imgList.add("https://rejekibersaudara.com/assets/images/slide11.jpg");
                     bannerView.setLayoutParams(layoutParams);
-                    bannerView.setLifecycleRegistry(getLifecycle()).
-                            setAdapter(new MyNetWorkBannerAdapter()).
-                            setScrollDuration(500).
-                            setIndicatorSliderColor(getResources().getColor(R.color.white),
-                                    Color.parseColor("#FAE58C")).
-                            setIndicatorGravity(IndicatorGravity.CENTER).
-                            create(imgList);
                 }
             });
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    WebSiteUrl.setNormal(result);
+                    String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
+                    String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+                    url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
+                    String bannerResult = httpClient.sendPost(url, "");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (annoucement.startsWith("Results=ok")) {
+                                String[] split = annoucement.split("\\|");
+                                hallGameBottomPromptTv.setText(split[1]);
+                            } else {
+                                hallGameBottomPromptTv.setText("Situs Bandar Casino Online Terkemuka Dengan Bonus Rollingan Dan Cashback Terbesar Di Indonesia Saat ini, Kami Menerima Semua Jenis Deposit Bank Dan E-Wallet.");
+                            }
+                            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+                            hallGameBottomPromptTv.startScroll();
+                            List<String> imgList = new ArrayList<>();
+                            if (bannerResult.contains("Success")) {
+                                BannerBean bannerBean = new Gson().fromJson(bannerResult, BannerBean.class);
+                                List<BannerBean.DataBean> data = bannerBean.getData();
+                                if (data != null && data.size() > 0) {
+                                    for (int i = 0; i < data.size(); i++) {
+                                        BannerBean.DataBean dataBean = data.get(i);
+                                        imgList.add(dataBean.getPath());
+                                    }
+                                } else {
+                                    imgList.add("https://rejekibersaudara.com/assets/images/slider-selamat-datang.jpg");
+                                    imgList.add("https://rejekibersaudara.com/assets/images/slider-20.jpg");
+                                    imgList.add("https://rejekibersaudara.com/assets/images/slider-game.jpg");
+                                    imgList.add("https://rejekibersaudara.com/assets/images/slider-roll.jpg");
+                                    imgList.add("https://rejekibersaudara.com/assets/images/Slider-CK.jpg");
+                                    imgList.add("https://rejekibersaudara.com/assets/images/slide11.jpg");
+                                }
+                            } else {
+                                imgList.add("https://rejekibersaudara.com/assets/images/slider-selamat-datang.jpg");
+                                imgList.add("https://rejekibersaudara.com/assets/images/slider-20.jpg");
+                                imgList.add("https://rejekibersaudara.com/assets/images/slider-game.jpg");
+                                imgList.add("https://rejekibersaudara.com/assets/images/slider-roll.jpg");
+                                imgList.add("https://rejekibersaudara.com/assets/images/Slider-CK.jpg");
+                                imgList.add("https://rejekibersaudara.com/assets/images/slide11.jpg");
+                            }
+                            bannerView.setLifecycleRegistry(getLifecycle()).
+                                    setAdapter(new MyNetWorkBannerAdapter()).
+                                    setScrollDuration(500).
+                                    setIndicatorSliderColor(Color.WHITE,
+                                            Color.parseColor("#FAE58C")).
+                                    setIndicatorGravity(IndicatorGravity.CENTER).
+                                    create(imgList);
+                        }
+                    });
+                }
+            }.start();
             FrameLayout flSlideLeft = findViewById(R.id.fl_slide_left);
             rajaRc = findViewById(R.id.rc_raja);
             rajaRc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
