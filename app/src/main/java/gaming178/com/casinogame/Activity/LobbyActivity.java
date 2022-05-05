@@ -1008,7 +1008,7 @@ public class LobbyActivity extends BaseActivity {
                 } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_warungqq, "WARUNGQQ", AppConfig.bandarq, "http://202.95.10.115/core/m/?ref=mainkasinoapp"));
                 } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
-                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, "MISTER DOMINO", AppConfig.bandarq, "http://202.95.10.118/"));
+                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, "MISTER DOMINO", AppConfig.bandarq, "https://misterdomino99.com/"));
                 }
             }
         }
