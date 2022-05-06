@@ -212,7 +212,7 @@
     <string name="DSV_Casino">DSV旗舰厅</string>
     <string name="PPA" >闲对</string>
     <string name="BPA" >庄对</string>
-    <string name="dr">@string/dragon</string>
+    <string name="dr">龙</string>
     <string name="ti">@string/tiger</string>
     <string name="gd_ID">用户</string>
     <string name="gd_BET">下注</string>
