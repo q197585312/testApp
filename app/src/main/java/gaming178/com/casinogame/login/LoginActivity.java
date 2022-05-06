@@ -1456,6 +1456,18 @@ public class LoginActivity extends BaseActivity {
             });
         }
         if (BuildConfig.FLAVOR.equals("wingsbet88")) {
+            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getNetPromo();
+                }
+            });
+            tvPromo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=81290395881");
+                }
+            });
             new Thread() {
                 @Override
                 public void run() {
