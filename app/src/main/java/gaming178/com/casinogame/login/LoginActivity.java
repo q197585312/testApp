@@ -781,7 +781,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=+6281290144309");
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6281297240551");
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
@@ -1468,22 +1468,6 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=81290395881");
                 }
             });
-            new Thread() {
-                @Override
-                public void run() {
-                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
-                    String param = "labelid=" + BuildConfig.Labelid;
-                    String result = httpClient.getHttpClient(url + param, null);
-                    getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            PopImg popImg = new PopImg(LoginActivity.this, btn_login, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                            popImg.setLoadUrl(result + "images/popup.jpg");
-                            popImg.showPopupCenterWindow();
-                        }
-                    });
-                }
-            }.start();
         }
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
