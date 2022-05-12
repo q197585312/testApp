@@ -52,6 +52,7 @@ import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.constants.IndicatorGravity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -781,7 +782,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6281297240551");
+                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6281361892154");
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
@@ -1469,8 +1470,185 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
+        if (BuildConfig.FLAVOR.equals("rascasino")) {
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = bannerView.getWidth();
+                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
+                    layoutParams.height = (int) (width / 3.5);
+                    bannerView.setLayoutParams(layoutParams);
+                }
+            });
+            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
+            hallGameBottomPromptTv.setSelected(true);
+            hallGameBottomPromptTv.stopScroll();
+            hallGameBottomPromptTv.setTextColor(Color.WHITE);
+            hallGameBottomPromptTv.setSpeed(0.8f);
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    WebSiteUrl.setNormal(result);
+                    String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
+                    String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+                    url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
+                    String bannerResult = httpClient.sendPost(url, "");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (annoucement.startsWith("Results=ok")) {
+                                String[] split = annoucement.split("\\|");
+                                hallGameBottomPromptTv.setText(split[1]);
+                            } else {
+                                hallGameBottomPromptTv.setText("Deposit Pulsa tanpa ada potongan disini....");
+                            }
+                            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+                            hallGameBottomPromptTv.startScroll();
+                            if (bannerResult.contains("Success")) {
+                                BannerBean bannerBean = new Gson().fromJson(bannerResult, BannerBean.class);
+                                List<BannerBean.DataBean> data = bannerBean.getData();
+                                if (data != null && data.size() > 0) {
+                                    List<String> lists = new ArrayList<>();
+                                    for (int i = 0; i < data.size(); i++) {
+                                        BannerBean.DataBean dataBean = data.get(i);
+                                        lists.add(dataBean.getPath());
+                                    }
+                                    bannerView.setLifecycleRegistry(getLifecycle()).
+                                            setAdapter(new MyNetWorkBannerAdapter()).
+                                            setScrollDuration(500).
+                                            setIndicatorSliderColor(Color.parseColor("#00000000"),
+                                                    Color.parseColor("#00000000")).
+                                            setIndicatorGravity(IndicatorGravity.CENTER).
+                                            create(lists);
+                                }
+                            }
+                        }
+                    });
+                }
+            }.start();
+            List<NamePicBean> listPra = Arrays.asList(new NamePicBean("", R.mipmap.gd_pra_1), new NamePicBean("", R.mipmap.gd_pra_2),
+                    new NamePicBean("", R.mipmap.gd_pra_3), new NamePicBean("", R.mipmap.gd_pra_4), new NamePicBean("", R.mipmap.gd_pra_5),
+                    new NamePicBean("", R.mipmap.gd_pra_6), new NamePicBean("", R.mipmap.gd_pra_7), new NamePicBean("", R.mipmap.gd_pra_8),
+                    new NamePicBean("", R.mipmap.gd_pra_9), new NamePicBean("", R.mipmap.gd_pra_10), new NamePicBean("", R.mipmap.gd_pra_11),
+                    new NamePicBean("", R.mipmap.gd_pra_12), new NamePicBean("", R.mipmap.gd_pra_13), new NamePicBean("", R.mipmap.gd_pra_14),
+                    new NamePicBean("", R.mipmap.gd_pra_15));
+            List<NamePicBean> listPg = Arrays.asList(new NamePicBean("", R.mipmap.gd_pg_s1), new NamePicBean("", R.mipmap.gd_pg_s2),
+                    new NamePicBean("", R.mipmap.gd_pg_s3), new NamePicBean("", R.mipmap.gd_pg_s4), new NamePicBean("", R.mipmap.gd_pg_s5),
+                    new NamePicBean("", R.mipmap.gd_pg_s6), new NamePicBean("", R.mipmap.gd_pg_s7), new NamePicBean("", R.mipmap.gd_pg_s8),
+                    new NamePicBean("", R.mipmap.gd_pg_s9), new NamePicBean("", R.mipmap.gd_pg_s10), new NamePicBean("", R.mipmap.gd_pg_s11),
+                    new NamePicBean("", R.mipmap.gd_pg_s12));
+            List<NamePicBean> listCQ9 = Arrays.asList(new NamePicBean("", R.mipmap.gd_ca9_a1), new NamePicBean("", R.mipmap.gd_ca9_a2),
+                    new NamePicBean("", R.mipmap.gd_ca9_a3), new NamePicBean("", R.mipmap.gd_ca9_a4), new NamePicBean("", R.mipmap.gd_ca9_a5),
+                    new NamePicBean("", R.mipmap.gd_ca9_a6), new NamePicBean("", R.mipmap.gd_ca9_a7), new NamePicBean("", R.mipmap.gd_ca9_a8));
+            List<NamePicBean> listHaba = Arrays.asList(new NamePicBean("", R.mipmap.gd_haba_h1), new NamePicBean("", R.mipmap.gd_haba_h2),
+                    new NamePicBean("", R.mipmap.gd_haba_h3), new NamePicBean("", R.mipmap.gd_haba_h4), new NamePicBean("", R.mipmap.gd_haba_h5),
+                    new NamePicBean("", R.mipmap.gd_haba_h6), new NamePicBean("", R.mipmap.gd_haba_h7), new NamePicBean("", R.mipmap.gd_haba_h8),
+                    new NamePicBean("", R.mipmap.gd_haba_h9));
+            List<NamePicBean> listSport = new ArrayList<>();
+            listSport.add(new NamePicBean("", R.mipmap.ras_sports));
+            List<NamePicBean> listAYAM = new ArrayList<>();
+            listAYAM.add(new NamePicBean("", R.mipmap.ras_ayan));
+            List<NamePicBean> listCasino = Arrays.asList(new NamePicBean("", R.mipmap.gd_casino_1), new NamePicBean("", R.mipmap.gd_casino_2),
+                    new NamePicBean("", R.mipmap.gd_casino_3), new NamePicBean("", R.mipmap.gd_casino_4), new NamePicBean("", R.mipmap.gd_casino_5));
+            rajaRc2 = findViewById(R.id.rc_raja2);
+            rajaRc2.setNestedScrollingEnabled(false);
+            rajaRc2.setLayoutManager(new GridLayoutManager(this, 4));
+            List<NamePicBean> currentList = new ArrayList<>();
+            currentList.addAll(listPra);
+            BaseRecyclerAdapter<NamePicBean> adapterSlot = new BaseRecyclerAdapter<NamePicBean>(mContext, currentList, R.layout.item_raja_show_slot) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    imageView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int width = imageView.getWidth();
+                            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+                            layoutParams.height = (int) (width * 1.05);
+                            imageView.setLayoutParams(layoutParams);
+                            imageView.setBackgroundResource(item.getPic());
+                        }
+                    });
+                }
+            };
+            adapterSlot.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<NamePicBean>() {
+                @Override
+                public void onItemClick(View view, NamePicBean item, int position) {
+                    PopImgTitleHint popImgTitleHint = new PopImgTitleHint(mContext, logoutTv, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    popImgTitleHint.showPopupCenterWindow();
+                }
+            });
+            rajaRc2.setAdapter(adapterSlot);
+            rajaRc = findViewById(R.id.rc_raja);
+            rajaRc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            List<NamePicBean> list = new ArrayList<>();
+            list.add(new NamePicBean("PRAGMATIC", R.mipmap.ras_pplay));
+            list.add(new NamePicBean("PG SOFT", R.mipmap.ras_pg));
+            list.add(new NamePicBean("CQ9", R.mipmap.ras_cq9));
+            list.add(new NamePicBean("HABANERO", R.mipmap.ras_hb));
+            list.add(new NamePicBean("SPORTBOOK", R.mipmap.ras_sport));
+            list.add(new NamePicBean("SABUNG AYAM", R.mipmap.ras_sabungayam));
+            list.add(new NamePicBean("CASINO", R.mipmap.ras_casino));
+            BaseRecyclerAdapter<NamePicBean> adapter = new BaseRecyclerAdapter<NamePicBean>(mContext, list, R.layout.item_raja_show) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    TextView textView = holder.getTextView(R.id.tv);
+                    textView.setText(item.getName());
+                    imageView.setBackgroundResource(item.getPic());
+                }
+            };
+            adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<NamePicBean>() {
+                @Override
+                public void onItemClick(View view, NamePicBean item, int position) {
+                    switch (position) {
+                        case 0:
+                            adapterSlot.addAllAndClear(listPra);
+                            break;
+                        case 1:
+                            adapterSlot.addAllAndClear(listPg);
+                            break;
+                        case 2:
+                            adapterSlot.addAllAndClear(listCQ9);
+                            break;
+                        case 3:
+                            adapterSlot.addAllAndClear(listHaba);
+                            break;
+                        case 4:
+                            adapterSlot.addAllAndClear(listSport);
+                            break;
+                        case 5:
+                            adapterSlot.addAllAndClear(listAYAM);
+                            break;
+                        case 6:
+                            adapterSlot.addAllAndClear(listCasino);
+                            break;
+                    }
+                }
+            });
+            rajaRc.setAdapter(adapter);
+            View viewPro = findViewById(R.id.ll_pro);
+            View viewLc = findViewById(R.id.ll_lc);
+            viewPro.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getNetPromo();
+                }
+            });
+            viewLc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getNetContact();
+                }
+            });
+        }
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
-                !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas")) {
+                !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas") &&
+                !BuildConfig.FLAVOR.equals("rascasino")) {
             imgOpen.setVisibility(View.VISIBLE);
             imgOpen.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1557,6 +1735,36 @@ public class LoginActivity extends BaseActivity {
                             @Override
                             public String getUrl() {
                                 String promotionUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "promom.jsp";
+                                return promotionUrl;
+                            }
+
+                            @Override
+                            public String getTitle() {
+                                return getString(R.string.PROMOTION);
+                            }
+                        };
+                        popWebView.showPopupCenterWindow();
+                    }
+                });
+            }
+        }.start();
+    }
+
+    private void getNetContact() {
+        new Thread() {
+            @Override
+            public void run() {
+                String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                String param = "labelid=" + BuildConfig.Labelid;
+                String result = httpClient.getHttpClient(url + param, null);
+                WebSiteUrl.setNormal(result);
+                getHandler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        PopWebView popWebView = new PopWebView(mContext, tvWhatsApp, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                            @Override
+                            public String getUrl() {
+                                String promotionUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "hubungikamim.jsp";
                                 return promotionUrl;
                             }
 
