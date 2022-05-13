@@ -1642,7 +1642,18 @@ public class LoginActivity extends BaseActivity {
             viewLc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getNetContact();
+                    PopWebView popWebView = new PopWebView(mContext, tvWhatsApp, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                        @Override
+                        public String getUrl() {
+                            return "https://direct.lc.chat/13861980/";
+                        }
+
+                        @Override
+                        public String getTitle() {
+                            return "Live Chat";
+                        }
+                    };
+                    popWebView.showPopupCenterWindow();
                 }
             });
         }

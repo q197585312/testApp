@@ -379,7 +379,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rascasino"]
                 buildConfigField "String", "Labelid", '"26"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.21'
+                versionName '4.22'
 
             }
             kuncicasino {
