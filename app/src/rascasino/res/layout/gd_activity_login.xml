@@ -66,6 +66,7 @@
                     android:id="@+id/gd_img_login_title_main"
                     android:layout_width="180dp"
                     android:layout_height="62dp"
+                    android:layout_gravity="center_horizontal"
                     android:background="@mipmap/logo_rascasino"
                     android:visibility="visible" />
 
