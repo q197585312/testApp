@@ -374,6 +374,14 @@
 
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/gd_img_exit"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="8dp"></ImageView>
+
     <RelativeLayout
         android:id="@+id/gd_rl_webview"
         android:layout_width="match_parent"
@@ -387,14 +395,6 @@
             android:layout_height="0dp"
             android:layout_centerInParent="true"></WebView>
 
-        <ImageView
-            android:id="@+id/gd_img_exit"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_below="@+id/gd_login_webview"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="@mipmap/gd_login_exit"></ImageView>
     </RelativeLayout>
 
     <LinearLayout

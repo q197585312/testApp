@@ -189,7 +189,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "365kasino"]
                 buildConfigField "String", "Labelid", '"135"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.21'
+                versionName '4.22'
             }
             livecasino338 {//livecasino338
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "livecasino338"]
@@ -311,14 +311,6 @@ android {
                 versionName '4.22'
             }
 
-
-            palapacasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "palapacasino"]
-                buildConfigField "String", "Labelid", '"146"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.21'
-            }
-
             winnicasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "winnicasino"]
                 buildConfigField "String", "Labelid", '"40"'
@@ -380,13 +372,6 @@ android {
                 buildConfigField "String", "Labelid", '"26"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.23'
-
-            }
-            kuncicasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "kuncicasino"]
-                buildConfigField "String", "Labelid", '"63"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.21'
 
             }
             hitamslot {

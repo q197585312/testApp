@@ -533,39 +533,6 @@ public class LoginActivity extends BaseActivity {
         if (BuildConfig.FLAVOR.equals("rentalbaccarat")) {
             img_login_title.setVisibility(View.GONE);
         }
-        if (BuildConfig.FLAVOR.equals("kuncicasino")) {
-            fl_whatsapp = findViewById(R.id.fl_whatsapp);
-            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
-            Glide.with(LoginActivity.this).load("https://bit.ly/kcsbvs").diskCacheStrategy(DiskCacheStrategy.NONE).into(gd_img_login_title_main_sbocasino77);
-            fl_whatsapp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=+6285920574972&text=Hallo%20Boss%20ku%20Kuncicasino");
-                }
-            });
-            new Thread() {
-                @Override
-                public void run() {
-                    while (isNeedCount) {
-                        try {
-                            Thread.sleep(800);
-                            getHandler().post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (fl_whatsapp.getVisibility() == View.VISIBLE) {
-                                        fl_whatsapp.setVisibility(View.INVISIBLE);
-                                    } else {
-                                        fl_whatsapp.setVisibility(View.VISIBLE);
-                                    }
-                                }
-                            });
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }.start();
-        }
 
         if (BuildConfig.FLAVOR.equals("hobi")) {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
@@ -878,6 +845,14 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6282380320515&text&app_absent=0");
                 }
             });
+            img_exit = findViewById(R.id.gd_img_exit);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.kasino365_gif).into(img_exit);
+            img_exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://luckydragon.quest/");
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("hokicasino88")) {
@@ -906,9 +881,6 @@ public class LoginActivity extends BaseActivity {
                     !BuildConfig.FLAVOR.equals("livecasino338") && !BuildConfig.FLAVOR.equals("kasino365") &&
                     !BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("memoricasino")) {
                 img_login_title.setImageResource(R.mipmap.gd_title_logo);
-            }
-            if (BuildConfig.FLAVOR.equals("kuncicasino")) {
-                img_login_title.setImageResource(R.mipmap.kuncicasino_lobby_logo);
             }
         }
         img_gif = findViewById(R.id.gd_img_gif);
