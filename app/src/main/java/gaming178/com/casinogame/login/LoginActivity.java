@@ -846,7 +846,7 @@ public class LoginActivity extends BaseActivity {
                 }
             });
             img_exit = findViewById(R.id.gd_img_exit);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.kasino365_gif).into(img_exit);
+            Glide.with(LoginActivity.this).asGif().load("https://i0.wp.com/luckydragon.quest/assets/images/website/365luckywheel.gif").into(img_exit);
             img_exit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
