@@ -73,6 +73,7 @@ public class HomeViewModel : BaseViewModel() {
                     println("allImage.header:" + allImage.header)
                     allImage.left.map { itMap ->
                         when (itMap.type) {
+                            "all" -> itMap.text = "ALL GAME"
                             "sport" -> itMap.text = "SportBook"
                             "casino" -> itMap.text = "Casino"
                             "slot" -> itMap.text = "slot"
@@ -83,7 +84,7 @@ public class HomeViewModel : BaseViewModel() {
                     left.addAll(allImage.left)
                     if (!allImage.header.isNullOrEmpty())
                         headers.addAll(allImage.header)
-                    selectedType.value = "sport"
+                    selectedType.value = "all"
                     mainList = allImage.main
                     setGameName(mainList)
                     loadMainGame(selectedType.value!!)
