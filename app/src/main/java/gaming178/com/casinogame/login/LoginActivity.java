@@ -41,7 +41,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.codersun.fingerprintcompat.AonFingerChangeCallback;
 import com.codersun.fingerprintcompat.FingerManager;
 import com.codersun.fingerprintcompat.SimpleFingerCheckCallback;
@@ -66,6 +65,7 @@ import gaming178.com.casinogame.Bean.NamePicBean;
 import gaming178.com.casinogame.Bean.UserBean;
 import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Bean.UserResponseBean;
+import gaming178.com.casinogame.Bean.WABean;
 import gaming178.com.casinogame.Control.AutoScrollTextView;
 import gaming178.com.casinogame.Popupwindow.PopImg;
 import gaming178.com.casinogame.Popupwindow.PopImgTitleHint;
@@ -134,6 +134,7 @@ public class LoginActivity extends BaseActivity {
     private AutoScrollTextView hallGameBottomPromptTv;
     private RecyclerView rajaRc, rajaRc2;
     private TextView tvCount;
+    private WABean currentWABean;
 
 
     @Override
@@ -749,7 +750,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6281361892154");
+                    goNetWA();
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
@@ -1729,6 +1730,40 @@ public class LoginActivity extends BaseActivity {
                         popWebView.showPopupCenterWindow();
                     }
                 });
+            }
+        }.start();
+    }
+
+    private void goNetWA() {
+        new Thread() {
+            @Override
+            public void run() {
+                if (currentWABean != null && !TextUtils.isEmpty(currentWABean.getWA())) {
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Gd88Utils.goBrowser(mContext, currentWABean.getWA());
+                        }
+                    });
+                } else {
+                    String host = WebSiteUrl.HEADER + WebSiteUrl.PROJECT;
+                    if (TextUtils.isEmpty(host)) {
+                        String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                        String param = "labelid=" + BuildConfig.Labelid;
+                        String result = httpClient.getHttpClient(url + param, null);
+                        WebSiteUrl.setNormal(result);
+                    }
+                    String result = httpClient.getHttpClient(WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getWA.jsp", null);
+                    if (result.contains("Success")) {
+                        currentWABean = new Gson().fromJson(result, WABean.class);
+                        getHandler().post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Gd88Utils.goBrowser(mContext, currentWABean.getWA());
+                            }
+                        });
+                    }
+                }
             }
         }.start();
     }
