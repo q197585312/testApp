@@ -328,7 +328,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         refreshDataBean.setOt(t);
         refreshDataBean.setOv(sportActivity.getSortType());
         refreshDataBean.setMt(sportActivity.getMarketType().getType());
-        refreshDataBean.setTimess(sportActivity.wd);
 
         refreshDataBean.setTimess(sportActivity.wd);
         if (sportActivity.sportIdText == R.string.Euro_2020) {

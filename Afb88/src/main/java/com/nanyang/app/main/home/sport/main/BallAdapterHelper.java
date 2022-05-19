@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
@@ -2084,7 +2083,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 //        "0-0.5"
         if (f.contains("-"))
             return f;
-        try {
+
+       /* try {
             float v = Float.valueOf(f);
             int i;
             i = (int) (v / 0.5);   //先取商
@@ -2095,7 +2095,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return f;
     }
 

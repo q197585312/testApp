@@ -255,7 +255,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
         updateMixOrderCount();
-        hasBet = true;
+        hasBet = false;
         if (BuildConfig.FLAVOR.equals("ez2888")) {
             tvRecord.setTextColor(Color.WHITE);
             tvMix.setTextColor(Color.WHITE);
