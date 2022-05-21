@@ -66,7 +66,8 @@ public abstract class SoccerCommonState extends BallState {
                     case R.id.module_right_mark_tv:
                         boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
 
-                        boolean hasBet = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet;
+//                        boolean hasBet = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet;
+                        boolean hasBet =true;
                         if (getStateType().getType().toLowerCase().startsWith("r") && visible && hasBet) {
                             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).clickRunMatchPlay(item, position, false);
                         } else {

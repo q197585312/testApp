@@ -212,6 +212,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             } else {
                 getBaseActivity().clickRunMatchPlay(item, position, true);
             }
+//            getBaseActivity().clickRunMatchPlay(item, position, true);
         }
     }
 

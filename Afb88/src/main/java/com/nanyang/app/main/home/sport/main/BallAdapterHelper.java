@@ -2081,8 +2081,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     private String changeValueF(String f) {
 //        "0-0.5"
-        if (f.contains("-"))
-            return f;
+
+        if (f!=null&&f.contains("-")){
+            String[] split = f.split("-");
+                if(split.length>1){
+                    String s = subZeroAndDot((Float.parseFloat(split[0]) + Float.parseFloat(split[1]))/2);
+                    return s;
+                }
+        }
+        return f;
+
 
        /* try {
             float v = Float.valueOf(f);
@@ -2096,7 +2104,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         } catch (Exception e) {
             e.printStackTrace();
         }*/
-        return f;
     }
 
     String subZeroAndDot(float s) {
