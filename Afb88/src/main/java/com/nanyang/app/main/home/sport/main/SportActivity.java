@@ -65,7 +65,10 @@ import com.unkonw.testapp.libs.utils.MyFileUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+import com.unkonw.testapp.libs.widget.PopOneBtn;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -1142,6 +1145,30 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
+            if (onlyOne&& !hasBet) {
+                PopOneBtn popOneBtn = new PopOneBtn(this, tv_match_play) {
+                    @Override
+                    protected void initView(@NotNull View view) {
+                        super.initView(view);
+                        chooseMessage.setText(R.string.placing_a_bet);
+                    }
+
+                    @Override
+                    protected int onSetLayoutRes() {
+                        return R.layout.popupwindow_base_one_btn;
+
+                    }
+
+                    @Override
+                    protected void clickSure(@Nullable View v) {
+                        super.clickSure(v);
+                        clickCLosePlay(v);
+                    }
+                };
+                popOneBtn.showPopupCenterWindow();
+
+                return;
+            }
             if (!(currentFragment.presenter.getStateHelper().getStateType().getType().charAt(0) + "").toLowerCase().startsWith("r")) {
 //                closeTv(ll_header_sport);
                 return;
