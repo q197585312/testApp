@@ -85,6 +85,9 @@ public class HomeViewModel : BaseViewModel() {
                     if (!allImage.header.isNullOrEmpty())
                         headers.addAll(allImage.header)
                     selectedType.value = "all"
+                    if (BuildConfig.FLAVOR == "ez2888") {
+                        selectedType.value = "sport"
+                    }
                     mainList = allImage.main
                     setGameName(mainList)
                     loadMainGame(selectedType.value!!)
