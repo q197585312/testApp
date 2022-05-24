@@ -722,13 +722,13 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "http://162.0.224.203/");
+                    goNetWA(1);
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "http://bit.ly/WA-Oricasino");
+                    goNetWA(2);
                 }
             });
             img_login_title_main = findViewById(R.id.gd_img_login_title_main);
@@ -739,7 +739,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    goNetWA();
+                    goNetWA(-1);
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
@@ -1723,18 +1723,11 @@ public class LoginActivity extends BaseActivity {
         }.start();
     }
 
-    private void goNetWA() {
+    private void goNetWA(int type) {
         new Thread() {
             @Override
             public void run() {
-                if (currentWABean != null && !TextUtils.isEmpty(currentWABean.getWA())) {
-                    getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Gd88Utils.goBrowser(mContext, currentWABean.getWA());
-                        }
-                    });
-                } else {
+                if (currentWABean == null) {
                     String host = WebSiteUrl.HEADER + WebSiteUrl.PROJECT;
                     if (TextUtils.isEmpty(host)) {
                         String url = "http://www.grjl25.com/getDomainInform.jsp?";
@@ -1745,12 +1738,23 @@ public class LoginActivity extends BaseActivity {
                     String result = httpClient.getHttpClient(WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getWA.jsp", null);
                     if (result.contains("Success")) {
                         currentWABean = new Gson().fromJson(result, WABean.class);
-                        getHandler().post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Gd88Utils.goBrowser(mContext, currentWABean.getWA());
+                    }
+                }
+                if (currentWABean != null) {
+                    if (BuildConfig.FLAVOR.equals("hitamslot")) {
+                        if (!TextUtils.isEmpty(currentWABean.getWA())) {
+                            Gd88Utils.goBrowser(mContext, currentWABean.getWA());
+                        }
+                    } else if (BuildConfig.FLAVOR.equals("oricasino")) {
+                        if (type == 1) {
+                            if (!TextUtils.isEmpty(currentWABean.getBocoranRtp())) {
+                                Gd88Utils.goBrowser(mContext, currentWABean.getBocoranRtp());
                             }
-                        });
+                        } else if (type == 2) {
+                            if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
+                                Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
+                            }
+                        }
                     }
                 }
             }
