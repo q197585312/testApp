@@ -722,18 +722,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "https://b.link/Bonus-Oricas";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return getString(R.string.special_bonus);
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
+                    Gd88Utils.goBrowser(mContext, "http://162.0.224.203/");
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {

@@ -374,7 +374,7 @@
                             android:layout_marginRight="10dp"
                             android:background="@drawable/gd_login_button_bg_red3"
                             android:gravity="center"
-                            android:text="@string/special_bonus"
+                            android:text="BOCORAN RTP"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="18sp"
