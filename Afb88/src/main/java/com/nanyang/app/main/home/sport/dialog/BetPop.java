@@ -83,8 +83,7 @@ public class BetPop {
     AfbApplication afbApplication;
     private int listSize;
 
-    @BindView(R.id.mix_count)
-    View mix_count;
+
     @BindView(R.id.ll_bet_title)
     View ll_bet_title;
     @BindView(R.id.bet_balance_tv)
@@ -361,7 +360,7 @@ public class BetPop {
             tvSingleBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             tvMixBet.setTextColor(Color.WHITE);
             refreshOddsUrl = afbApplication.getRefreshSingleOddsUrl();
-            mix_count.setVisibility(View.GONE);
+
         } else {
             startAlphaColor(tvMixBet, tvSingleBet);
             tvSingleBet.setTextColor(Color.WHITE);
@@ -371,7 +370,7 @@ public class BetPop {
                 presenter.updateMixListText();
             }
             refreshOddsUrl = afbApplication.getRefreshMixOddsUrl();
-            mix_count.setVisibility(View.VISIBLE);
+
         }
         afbApplication.isSingleBet = isSingle;
         presenter.getRefreshOdds(refreshOddsUrl);
@@ -832,14 +831,12 @@ public class BetPop {
             if (!isRefreshEd)
                 initMix();
             llMix.setVisibility(View.VISIBLE);
-            mix_count.setVisibility(View.VISIBLE);
 
         } else {
             llMix.setVisibility(View.GONE);
             tvSingleBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             startAlphaColor(tvSingleBet, tvMixBet);
             tvMixBet.setTextColor(Color.WHITE);
-            mix_count.setVisibility(View.GONE);
         }
 
         if (contentAdapter == null) {
