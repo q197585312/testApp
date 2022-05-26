@@ -1225,6 +1225,11 @@ public class BetPop {
 
         if (activity == null)
             return;
+        if (activity.getApp().getHideChip().equals("1")) {
+            rcBetChip.setVisibility(View.GONE);
+        } else {
+            rcBetChip.setVisibility(View.VISIBLE);
+        }
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && (!oldRtsId.equals(rtsMatchId) || !isRefreshEd)) {
             oldRtsId = rtsMatchId;

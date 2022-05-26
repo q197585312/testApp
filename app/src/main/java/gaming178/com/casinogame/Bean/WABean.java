@@ -11,6 +11,8 @@ public class WABean {
     private String WA;
     private String bocoranRtp;
     private String layananVIP;
+    private String popup;
+    private String popupLink;
 
     public String getResult() {
         return result;
@@ -42,5 +44,21 @@ public class WABean {
 
     public void setLayananVIP(String layananVIP) {
         this.layananVIP = layananVIP;
+    }
+
+    public String getPopup() {
+        return popup;
+    }
+
+    public void setPopup(String popup) {
+        this.popup = popup;
+    }
+
+    public String getPopupLink() {
+        return popupLink;
+    }
+
+    public void setPopupLink(String popupLink) {
+        this.popupLink = popupLink;
     }
 }

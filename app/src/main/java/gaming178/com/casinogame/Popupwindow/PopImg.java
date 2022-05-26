@@ -1,6 +1,7 @@
 package gaming178.com.casinogame.Popupwindow;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,6 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
@@ -21,6 +23,7 @@ public class PopImg extends BasePopupWindow {
     private View viewParent;
     private ImageView imgBanner;
     private String loadUrl;
+    private String goUrl;
 
     public PopImg(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -37,6 +40,16 @@ public class PopImg extends BasePopupWindow {
         activity = (BaseActivity) context;
         viewParent = view.findViewById(R.id.view_parent);
         imgBanner = view.findViewById(R.id.img_banner);
+        imgBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(getGoUrl())) {
+                    Gd88Utils.goBrowser(context, getGoUrl());
+                } else {
+                    closePopupWindow();
+                }
+            }
+        });
         viewParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,5 +73,13 @@ public class PopImg extends BasePopupWindow {
     public void setLoadUrl(String loadUrl) {
         this.loadUrl = loadUrl;
         initImg();
+    }
+
+    public String getGoUrl() {
+        return goUrl;
+    }
+
+    public void setGoUrl(String goUrl) {
+        this.goUrl = goUrl;
     }
 }

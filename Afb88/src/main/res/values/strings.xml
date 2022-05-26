@@ -548,6 +548,9 @@
     <string name="default_sort">Default Sorting</string>
     <string name="market_type">Market Type</string>
     <string name="score_sound">Score Sound</string>
+    <string name="hide_chip">HIDE CHIP</string>
+    <string name="chip_disable">DISABLE</string>
+    <string name="chip_enable">ENABLE</string>
     <string name="chip_set">Chip Set</string>
     <string name="sound">Sound</string>
     <string name="no_less_5_no_more_8">No less than 5 chips and no more than 8 chips</string>

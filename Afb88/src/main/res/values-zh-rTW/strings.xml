@@ -531,6 +531,9 @@
     <string name="default_sort"> 排序</string>
     <string name="market_type"> 盤口顯示</string>
     <string name="score_sound">​​ 進球聲音</string>
+    <string name="hide_chip">隱藏籌碼</string>
+    <string name="chip_disable">關閉</string>
+    <string name="chip_enable">啟用</string>
     <string name="chip_set"> 籌碼選擇</string>
     <string name="sound">​​ Sound</string>
     <string name="no_less_5_no_more_8"> 只能選擇6个籌碼</string>

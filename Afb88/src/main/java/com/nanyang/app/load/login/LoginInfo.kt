@@ -192,6 +192,7 @@ class LoginInfo {
         var AmtS: String = ""
         var BetterOdds: String = ""
         var ChipsList: String = ""
+        var HideChip: String = ""
 
     }
 

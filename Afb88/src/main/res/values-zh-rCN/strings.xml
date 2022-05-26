@@ -538,6 +538,9 @@
     <string name="default_sort"> 排序</string>
     <string name="market_type"> 盘口显示</string>
     <string name="score_sound"> 进球声音</string>
+    <string name="hide_chip">隐藏筹码</string>
+    <string name="chip_disable">关闭</string>
+    <string name="chip_enable">启用</string>
     <string name="chip_set"> 筹码选择</string>
     <string name="sound"> Sound</string>
     <string name="no_less_5_no_more_8"> 筹码数不能低于5，不能高于8</string>

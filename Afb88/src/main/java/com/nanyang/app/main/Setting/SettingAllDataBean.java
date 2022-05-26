@@ -677,6 +677,7 @@ public class SettingAllDataBean {
     private String canbetmix;
     private String ChipSetChoose;
     private String IsOutletACC;
+    private String IsHideChipSet;
 
     public String getUserName() {
         return UserName;
@@ -3308,5 +3309,13 @@ public class SettingAllDataBean {
 
     public void setIsOutletACC(String IsOutletACC) {
         this.IsOutletACC = IsOutletACC;
+    }
+
+    public String getIsHideChipSet() {
+        return IsHideChipSet;
+    }
+
+    public void setIsHideChipSet(String isHideChipSet) {
+        IsHideChipSet = isHideChipSet;
     }
 }

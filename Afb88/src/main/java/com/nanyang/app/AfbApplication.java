@@ -140,6 +140,16 @@ public class AfbApplication extends BaseApplication {
 
     private int sort;
 
+    private String HideChip;
+
+    public String getHideChip() {
+        return HideChip;
+    }
+
+    public void setHideChip(String hideChip) {
+        HideChip = hideChip;
+    }
+
     public boolean isGoHome() {
         return isGoHome;
     }

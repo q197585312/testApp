@@ -1309,12 +1309,13 @@ public class LoginActivity extends BaseActivity {
                             }
                         }
                     });
+                    goNetWA(2);
                 }
             }.start();
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://wa.me/6281284732312");
+                    goNetWA(1);
                 }
             });
             List<NamePicBean> listSlot = new ArrayList<>();
@@ -1723,6 +1724,7 @@ public class LoginActivity extends BaseActivity {
         }.start();
     }
 
+
     private void goNetWA(int type) {
         new Thread() {
             @Override
@@ -1741,21 +1743,41 @@ public class LoginActivity extends BaseActivity {
                     }
                 }
                 if (currentWABean != null) {
-                    if (BuildConfig.FLAVOR.equals("hitamslot")) {
-                        if (!TextUtils.isEmpty(currentWABean.getWA())) {
-                            Gd88Utils.goBrowser(mContext, currentWABean.getWA());
-                        }
-                    } else if (BuildConfig.FLAVOR.equals("oricasino")) {
-                        if (type == 1) {
-                            if (!TextUtils.isEmpty(currentWABean.getBocoranRtp())) {
-                                Gd88Utils.goBrowser(mContext, currentWABean.getBocoranRtp());
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (BuildConfig.FLAVOR.equals("hitamslot")) {
+                                if (!TextUtils.isEmpty(currentWABean.getWA())) {
+                                    Gd88Utils.goBrowser(mContext, currentWABean.getWA());
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("oricasino")) {
+                                if (type == 1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getBocoranRtp())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getBocoranRtp());
+                                    }
+                                } else if (type == 2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
+                                    }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
+                                if (type == 1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
+                                    }
+                                } else if (type == 2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getPopup())) {
+                                        PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                        popImg.setLoadUrl(currentWABean.getPopup());
+                                        if (!TextUtils.isEmpty(currentWABean.getPopupLink())){
+                                            popImg.setGoUrl(currentWABean.getPopupLink());
+                                        }
+                                        popImg.showPopupCenterWindow();
+                                    }
+                                }
                             }
-                        } else if (type == 2) {
-                            if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
-                                Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
-                            }
                         }
-                    }
+                    });
                 }
             }
         }.start();

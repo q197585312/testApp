@@ -57,6 +57,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     BaseRecyclerAdapter<SettingInfoBean> adapter;
 
     private String quickAmount;
+    private String hideChip;
 
     @Override
     public int onSetLayoutId() {
@@ -140,6 +141,13 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             tvChoiceType.setText(SoundPlayUtils.getSoundIndex().getText());
                         else {
                             tvChoiceType.setText(getString(SoundPlayUtils.getSoundIndex().getText()) + SoundPlayUtils.getSoundIndex().getType());
+                        }
+                        break;
+                    case 10:
+                        if (((BaseToolbarActivity) getBaseActivity()).getApp().getHideChip().equals("0"))
+                            tvChoiceType.setText(getString(R.string.chip_enable));
+                        else {
+                            tvChoiceType.setText(getString(R.string.chip_disable));
                         }
                         break;
                 }
@@ -313,6 +321,31 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popSound.setData(sounds, tv.getText().toString());
                         popSound.showPopupDownWindow();
                         break;
+                    case 10:
+                        PopSwitch<IString> popHideChip = new PopSwitch<IString>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                            @Override
+                            public void onClickItem(IString item, int position) {
+                                tv.setText(item.getText());
+                                hideChip = position + "";
+                                ((BaseToolbarActivity) getBaseActivity()).getApp().setHideChip(hideChip);
+                            }
+                        };
+                        List<IString> hideChipStrings = new ArrayList<>();
+                        hideChipStrings.add(new IString() {
+                            @Override
+                            public int getText() {
+                                return (R.string.chip_enable);
+                            }
+                        });
+                        hideChipStrings.add(new IString() {
+                            @Override
+                            public int getText() {
+                                return (R.string.chip_disable);
+                            }
+                        });
+                        popHideChip.setData(hideChipStrings, tv.getText().toString());
+                        popHideChip.showPopupDownWindow();
+                        break;
                 }
             }
         });
@@ -365,6 +398,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     private List<SettingInfoBean> handleSettingData(SettingAllDataBean data) {
         LanguageHelper helper = new LanguageHelper(getBaseActivity());
         quickAmount = data.getAccamount() + "";
+        hideChip = data.getIsHideChipSet();
         List<SettingInfoBean> beanList = new ArrayList<>();
         SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName());
         SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********");
@@ -376,6 +410,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting()/*((BaseToolbarActivity) getBaseActivity()).getApp().getSort()*/ + "");
         SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType());
         SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound());
+        SettingInfoBean infoBeanChip = new SettingInfoBean("1", getBaseActivity().getString(R.string.hide_chip), data.getIsHideChipSet().equals("0") ? getBaseActivity().getString(R.string.chip_enable) : getBaseActivity().getString(R.string.chip_disable));
         List<ChipBean> chipList1 = new ArrayList<>();
         List<ChipBean> chipList2 = new ArrayList<>();
         chipList1.add(new ChipBean(R.mipmap.chips5000, "5000", 5000));
@@ -408,6 +443,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         beanList.add(infoBean8);
         beanList.add(infoBean9);
         beanList.add(infoBean10);
+        beanList.add(infoBeanChip);
         beanList.add(infoBean11);
         beanList.add(infoBean12);
 
@@ -442,6 +478,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
             settingWfBean.setScoreSoundd(SoundPlayUtils.getSoundIndex().getType());
             settingWfBean.setAccType(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType());
             settingWfBean.setAmtS(quickAmount);
+            settingWfBean.setHideChip(hideChip);
             String ChipsList = getChooseChips();
             //"ChipsList":"50000,30000,10000,5000,1000,500,10,1"
             settingWfBean.setChipsList(ChipsList);
