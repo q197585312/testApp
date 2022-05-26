@@ -13,6 +13,7 @@ public class WABean {
     private String layananVIP;
     private String popup;
     private String popupLink;
+    private String pemenang;
 
     public String getResult() {
         return result;
@@ -60,5 +61,13 @@ public class WABean {
 
     public void setPopupLink(String popupLink) {
         this.popupLink = popupLink;
+    }
+
+    public String getPemenang() {
+        return pemenang;
+    }
+
+    public void setPemenang(String pemenang) {
+        this.pemenang = pemenang;
     }
 }
