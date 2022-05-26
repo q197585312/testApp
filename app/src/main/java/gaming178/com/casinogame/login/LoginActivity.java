@@ -1725,7 +1725,7 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    private void goNetWA(int type) {
+    public void goNetWA(int type) {
         new Thread() {
             @Override
             public void run() {
@@ -1759,6 +1759,10 @@ public class LoginActivity extends BaseActivity {
                                     if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
                                         Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
                                     }
+                                } else if (type == 3) {
+                                    if (!TextUtils.isEmpty(currentWABean.getPemenang())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getPemenang());
+                                    }
                                 }
                             } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
                                 if (type == 1) {
@@ -1769,7 +1773,7 @@ public class LoginActivity extends BaseActivity {
                                     if (!TextUtils.isEmpty(currentWABean.getPopup())) {
                                         PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                                         popImg.setLoadUrl(currentWABean.getPopup());
-                                        if (!TextUtils.isEmpty(currentWABean.getPopupLink())){
+                                        if (!TextUtils.isEmpty(currentWABean.getPopupLink())) {
                                             popImg.setGoUrl(currentWABean.getPopupLink());
                                         }
                                         popImg.showPopupCenterWindow();

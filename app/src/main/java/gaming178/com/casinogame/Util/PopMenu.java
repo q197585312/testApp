@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.casinogame.login.LoginActivity;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 public class PopMenu extends BasePopupWindow {
@@ -67,8 +68,10 @@ public class PopMenu extends BasePopupWindow {
                 @Override
                 public void onClick(View v) {
                     closePopupWindow();
-                    PopWebView popWebView = getWinnerPop();
-                    popWebView.showPopupCenterWindow();
+                    if (context instanceof LoginActivity){
+                        LoginActivity activity = (LoginActivity) context;
+                        activity.goNetWA(3);
+                    }
                 }
             });
         }
@@ -145,25 +148,6 @@ public class PopMenu extends BasePopupWindow {
             @Override
             public String getTitle() {
                 return context.getString(R.string.CONTACT);
-            }
-        };
-        return popWebView;
-    }
-
-    private PopWebView getWinnerPop() {
-        PopWebView popWebView = new PopWebView(context, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-            @Override
-            public String getUrl() {
-                String winnerUrl = "";
-                if (BuildConfig.FLAVOR.equals("oricasino")) {
-                    winnerUrl = "https://event-spectacular.club/";
-                }
-                return winnerUrl;
-            }
-
-            @Override
-            public String getTitle() {
-                return context.getString(R.string.WINNER);
             }
         };
         return popWebView;
