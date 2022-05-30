@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home;
 
-import android.util.Log;
-
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
@@ -50,7 +48,7 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
         Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
-                Log.d("doRetrofitApiOnUiThread", "data: " + data);
+
                 String updateString = AfbUtils.delHTMLTag(data);
                 if (!StringUtils.isNull(matches)) {
                     String group = StringUtils.findGroup(updateString, matches, 1);
@@ -113,7 +111,7 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
     }
 
     private void onSuccessPost(String data, String matches, MainPresenter.CallBackError<String> back) throws JSONException {
-        Log.d("doRetrofitApiOnUiThread", "data: " + data);
+
         String updateString = AfbUtils.delHTMLTag(data);
         if (!StringUtils.isNull(matches)) {
             String group = StringUtils.findGroup(updateString, matches, 1);

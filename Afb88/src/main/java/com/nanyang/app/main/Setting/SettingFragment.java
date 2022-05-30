@@ -381,7 +381,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     @Override
     public void showContent() {
         super.showContent();
-        initSetData();
+//        initSetData();
         setBackTitle(getString(R.string.setting));
     }
 

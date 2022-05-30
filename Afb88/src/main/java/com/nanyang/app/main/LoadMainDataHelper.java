@@ -1,7 +1,6 @@
 package com.nanyang.app.main;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.nanyang.app.AfbApplication;
@@ -50,17 +49,17 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
     public Disposable doRetrofitApiOnUiThread(T languageWfBean, final MainPresenter.CallBack<String> back, final String matches) {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
-        Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
+
         String authorization = ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().getAuthorization();
         Map<String, String> headers = new HashMap<>();
 //        headers.put("isios", "true");
-        if (!TextUtils.isEmpty(authorization)){
+        if (!TextUtils.isEmpty(authorization)) {
             headers.put("authorization", authorization);
         }
-        Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p,headers), new BaseConsumer<String>(baseContext) {
+        Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p, headers), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
-                Log.d("doRetrofitApiOnUiThread", "data: " + data);
+
 
                 String updateString = AfbUtils.delHTMLTag(data);
                 JSONArray jsonArray = new JSONArray(updateString);
@@ -75,7 +74,8 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                             JSONArray settlTypeCashArr = jsonArray.getJSONArray(3);
                             String settlTypeCashStr = settlTypeCashArr.getJSONObject(0).toString();
                             UserCashBean userCashBean = new Gson().fromJson(settlTypeCashStr, UserCashBean.class);
-                            ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setUserCashBean(userCashBean);
+                            if (userCashBean != null)
+                                ((BaseToolbarActivity) (baseContext.getBaseActivity())).getApp().setUserCashBean(userCashBean);
                             if (!StringUtils.isNull(ws) && ws.startsWith("ws")) {
                                 AppConstant.getInstance().WebSocket_HOST = ws;
                             }
@@ -115,11 +115,10 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
     public void doRetrofitApiOnUiThreadHTML(T languageWfBean, final MainPresenter.CallBack<String> back) {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
-        Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
+
         Disposable disposable = mApiWrapper.applyDisposable(ApiServiceKt.Companion.getInstance().getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
-                Log.d("doRetrofitApiOnUiThread", "data: " + data);
                 JSONArray jsonArray = new JSONArray(data);
                 if (jsonArray.length() > 3) {
                     JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);

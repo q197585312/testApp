@@ -83,6 +83,7 @@ public class BetPop {
     AfbApplication afbApplication;
     private int listSize;
 
+
     @BindView(R.id.ll_bet_title)
     View ll_bet_title;
     @BindView(R.id.bet_balance_tv)
@@ -369,6 +370,7 @@ public class BetPop {
                 presenter.updateMixListText();
             }
             refreshOddsUrl = afbApplication.getRefreshMixOddsUrl();
+
         }
         afbApplication.isSingleBet = isSingle;
         presenter.getRefreshOdds(refreshOddsUrl);

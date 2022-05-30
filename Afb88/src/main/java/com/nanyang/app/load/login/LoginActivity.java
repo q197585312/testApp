@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -306,11 +305,11 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         AppConstant.IS_AGENT = false;
         AppConstant.wfMain = "wfMainH50";
         if (loginType == 0) {
-            Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
+
             skipAct(MainActivity.class);
             finish();
         } else {
-            Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
+
             Bundle bundle = new Bundle();
             bundle.putInt(AppConstant.KEY_INT, loginType);
             skipAct(MainActivity.class, bundle);
