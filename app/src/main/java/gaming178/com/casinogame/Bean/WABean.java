@@ -14,6 +14,8 @@ public class WABean {
     private String popup;
     private String popupLink;
     private String pemenang;
+    private String Telegram;
+    private String LiveChat;
 
     public String getResult() {
         return result;
@@ -69,5 +71,21 @@ public class WABean {
 
     public void setPemenang(String pemenang) {
         this.pemenang = pemenang;
+    }
+
+    public String getTelegram() {
+        return Telegram;
+    }
+
+    public void setTelegram(String telegram) {
+        Telegram = telegram;
+    }
+
+    public String getLiveChat() {
+        return LiveChat;
+    }
+
+    public void setLiveChat(String liveChat) {
+        LiveChat = liveChat;
     }
 }

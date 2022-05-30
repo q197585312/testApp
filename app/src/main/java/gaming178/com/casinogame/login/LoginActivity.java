@@ -502,31 +502,20 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6281370915773");
+                    goNetWA(1);
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://kontak-kita.id/T-MasterCasino88");
+                    goNetWA(2);
                 }
             });
             tvLiveChat = findViewById(R.id.gd__tv_live_chat);
             tvLiveChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "https://direct.lc.chat/8792026/";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return "LiveChat";
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
+                    goNetWA(3);
                 }
             });
         }
@@ -1777,6 +1766,31 @@ public class LoginActivity extends BaseActivity {
                                             popImg.setGoUrl(currentWABean.getPopupLink());
                                         }
                                         popImg.showPopupCenterWindow();
+                                    }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("mastercasino88")) {
+                                if (type == 1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getWA())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getWA());
+                                    }
+                                } else if (type == 2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getTelegram())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getTelegram());
+                                    }
+                                } else if (type == 3) {
+                                    if (!TextUtils.isEmpty(currentWABean.getLiveChat())) {
+                                        PopWebView popWebView = new PopWebView(mContext, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                                            @Override
+                                            public String getUrl() {
+                                                return currentWABean.getLiveChat();
+                                            }
+
+                                            @Override
+                                            public String getTitle() {
+                                                return "LiveChat";
+                                            }
+                                        };
+                                        popWebView.showPopupCenterWindow();
                                     }
                                 }
                             }
