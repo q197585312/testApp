@@ -381,28 +381,6 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
-        if (BuildConfig.FLAVOR.equals("livecasino338")) {
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getNetPromo();
-                }
-            });
-            List<Integer> imgList = new ArrayList<>();
-            imgList.add(R.mipmap.live_banner_1);
-            imgList.add(R.mipmap.live_banner_2);
-            imgList.add(R.mipmap.live_banner_3);
-            imgList.add(R.mipmap.live_banner_4);
-            bannerView = findViewById(R.id.banner_view);
-            bannerView.setLifecycleRegistry(getLifecycle()).
-                    setAdapter(new MyBannerAdapter()).
-                    setScrollDuration(500).
-                    setIndicatorSliderColor(getResources().getColor(R.color.black44_trans),
-                            getResources().getColor(R.color.yellow_gold2)).
-                    setIndicatorGravity(IndicatorGravity.START).
-                    create(imgList);
-        }
-
         if (BuildConfig.FLAVOR.equals("pemain")) {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -857,8 +835,8 @@ public class LoginActivity extends BaseActivity {
         } else {
             tv_register.setVisibility(View.VISIBLE);
             if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") &&
-                    !BuildConfig.FLAVOR.equals("livecasino338") && !BuildConfig.FLAVOR.equals("kasino365") &&
-                    !BuildConfig.FLAVOR.equals("mainkasino") && !BuildConfig.FLAVOR.equals("memoricasino")) {
+                    !BuildConfig.FLAVOR.equals("kasino365") && !BuildConfig.FLAVOR.equals("mainkasino") &&
+                    !BuildConfig.FLAVOR.equals("memoricasino")) {
                 img_login_title.setImageResource(R.mipmap.gd_title_logo);
             }
         }
