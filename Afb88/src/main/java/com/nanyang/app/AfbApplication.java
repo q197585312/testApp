@@ -348,7 +348,7 @@ public class AfbApplication extends BaseApplication {
             map.put("LG CASINO", new SportIdBean("LG CASINO", "", R.string.LG_Cashio, "LG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_lg_gaming));
 
             map.put("MK CASINO", new SportIdBean("MK CASINO", "", R.string.MK_CASINO, "MK CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.mkg_game));
-
+            map.put("JILI", new SportIdBean("JILI", "", R.string.jili_casino, "JILI", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_jili_slot_gaming));
 
             map.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_pg_symbol));
             map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
@@ -746,6 +746,7 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("AFB CASINO", isEnabledWM);
         enableMap.put("SV388", isEnabledWM);
         enableMap.put("AFB GAMING", isEnabledWM);
+        enableMap.put("JILI", isEnabledWM);
         return enableMap;
     }
 
