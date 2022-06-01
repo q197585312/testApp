@@ -365,18 +365,7 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "http://139.162.82.229/bonus/";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return getString(R.string.PROMOTION);
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
+                    goNetWA(-1);
                 }
             });
         }
@@ -1770,6 +1759,21 @@ public class LoginActivity extends BaseActivity {
                                         };
                                         popWebView.showPopupCenterWindow();
                                     }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
+                                if (!TextUtils.isEmpty(currentWABean.getPromo())) {
+                                    PopWebView popWebView = new PopWebView(mContext, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                                        @Override
+                                        public String getUrl() {
+                                            return currentWABean.getPromo();
+                                        }
+
+                                        @Override
+                                        public String getTitle() {
+                                            return getString(R.string.PROMOTION);
+                                        }
+                                    };
+                                    popWebView.showPopupCenterWindow();
                                 }
                             }
                         }

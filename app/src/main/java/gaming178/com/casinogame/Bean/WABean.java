@@ -16,6 +16,7 @@ public class WABean {
     private String pemenang;
     private String Telegram;
     private String LiveChat;
+    private String Promo;
 
     public String getResult() {
         return result;
@@ -87,5 +88,13 @@ public class WABean {
 
     public void setLiveChat(String liveChat) {
         LiveChat = liveChat;
+    }
+
+    public String getPromo() {
+        return Promo;
+    }
+
+    public void setPromo(String promo) {
+        Promo = promo;
     }
 }
