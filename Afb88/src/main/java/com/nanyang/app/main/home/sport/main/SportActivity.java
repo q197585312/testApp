@@ -1145,7 +1145,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
-            if (onlyOne&& !hasBet) {
+            if ( !hasBet) {
                 PopOneBtn popOneBtn = new PopOneBtn(this, tv_match_play) {
                     @Override
                     protected void initView(@NotNull View view) {
@@ -1182,7 +1182,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             this.positionBallAdded = positionBall;
 
             this.onlyShowOne = onlyOne;
-            LogUtil.d("xiao", "clickRunMatchPlay-onlyShowOne:" + onlyShowOne);
             if (onlyShowOne) {
                 tv_match_play.setText(R.string.All_Match);
                 llSportMenuBottom.setVisibility(View.GONE);

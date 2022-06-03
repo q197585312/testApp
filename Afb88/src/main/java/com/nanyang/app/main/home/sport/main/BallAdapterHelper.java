@@ -2081,15 +2081,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     private String changeValueF(String f) {
 //        "0-0.5"
+        String temp=AfbUtils.delHTMLTag(f);
 
-        if (f!=null&&f.contains("-")){
-            String[] split = f.split("-");
+        if (temp!=null&&temp.contains("-")){
+            String[] split = temp.split("-");
                 if(split.length>1){
                     String s = subZeroAndDot((Float.parseFloat(split[0]) + Float.parseFloat(split[1]))/2);
                     return s;
                 }
         }
-        return f;
+        return temp;
 
 
        /* try {
