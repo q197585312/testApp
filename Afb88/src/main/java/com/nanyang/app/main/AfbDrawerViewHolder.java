@@ -111,10 +111,14 @@ public class AfbDrawerViewHolder implements IDrawerView {
         if (BuildConfig.FLAVOR.equals("afb1188")) {
             PersonalInfo person = baseToolbarActivity.getApp().getUser();
             String isapi = person.getISAPI();
-            String settltypecash = baseToolbarActivity.getApp().getUserCashBean().getSettlTypeCash();
-            if (!isapi.equals("1") && settltypecash.equals("1")) {
-                deposit = new More(R.mipmap.menu_deposit, baseToolbarActivity.getString(R.string.deposit), 0, depositCenterFragment);
-                withdraw = new More(R.mipmap.menu_withdraw, baseToolbarActivity.getString(R.string.withdraw), 0, withdrawCenterFragment);
+            if (baseToolbarActivity.getApp().getUserCashBean() != null) {
+                String settltypecash = baseToolbarActivity.getApp().getUserCashBean().getSettlTypeCash();
+                if (!TextUtils.isEmpty(isapi) && !TextUtils.isEmpty(settltypecash)) {
+                    if (!isapi.equals("1") && settltypecash.equals("1")) {
+                        deposit = new More(R.mipmap.menu_deposit, baseToolbarActivity.getString(R.string.deposit), 0, depositCenterFragment);
+                        withdraw = new More(R.mipmap.menu_withdraw, baseToolbarActivity.getString(R.string.withdraw), 0, withdrawCenterFragment);
+                    }
+                }
             }
         }
         More m3 = new More(R.mipmap.main_statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
