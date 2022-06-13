@@ -137,18 +137,18 @@ public class LivePlayHelper {
     }
 
 
-    public void setLivePlayUrlId(String BID) {
+    public void setLivePlayUrlId(String TvPathIBC) {
 
 
         String path;
-        if (StringUtils.isNull(BID) || BID.equals("0")) {
+        if (StringUtils.isNull(TvPathIBC) || TvPathIBC.equals("0")) {
             return;
         } else {
-            path = "rtmp://pull.prosportslive.net/live/" + BID;
-            if (BID.startsWith("1")) {
-                path = "rtmp://pull3.prosportslive.net/live/" + BID;
-            } else if (BID.startsWith("8")) {
-                path = "rtmp://pull2.prosportslive.net/live/" + BID;
+            path = "rtmp://pull.prosportslive.net/live/" + TvPathIBC;
+            if (TvPathIBC.startsWith("1")) {
+                path = "rtmp://pull3.prosportslive.net/live/" + TvPathIBC;
+            } else if (TvPathIBC.startsWith("8")) {
+                path = "rtmp://pull2.prosportslive.net/live/" + TvPathIBC;
             }
 
         }
