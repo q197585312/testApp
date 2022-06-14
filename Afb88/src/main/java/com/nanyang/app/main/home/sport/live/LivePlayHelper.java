@@ -1,16 +1,26 @@
 package com.nanyang.app.main.home.sport.live;
 
-import android.content.Context;
 import android.view.View;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.load.login.LiveTvBean;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
+import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.VideoHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import okhttp3.RequestBody;
 
 /**
  * Created by Administrator on 2020/1/10.
@@ -26,7 +36,7 @@ public class LivePlayHelper {
 
     VideoHelper videoHelper;
 
-    public LivePlayHelper(ViewHolder holder, Context context) {
+    public LivePlayHelper(ViewHolder holder, SportActivity context) {
         this.holder = holder;
         videoHelper = new VideoHelper(context, holder.videoPlayerView);
         this.context = context;
@@ -55,7 +65,15 @@ public class LivePlayHelper {
         holder.tv_title_live_stream.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onResumePlay();
+                if (itemBall.getTvPathIBC().contains("GL")) {
+                    String tvPathIBC = itemBall.getTvPathIBC();
+                    LogUtil.d("tvPathIBC", "tvPathIBC:" + tvPathIBC);
+                    if (tvPathIBC.contains("GL")) {
+                        loadWebViewPlay(tvPathIBC);
+                    }
+                } else {
+                    onResumePlay();
+                }
             }
         });
     }
@@ -82,7 +100,7 @@ public class LivePlayHelper {
         }
     }
 
-    Context context;
+    SportActivity context;
 
     public void onDestroy() {
         if (videoHelper.getNodePlayer() != null) {
@@ -110,10 +128,12 @@ public class LivePlayHelper {
     public void onResumePlay() {
         if (checkLivePlayVisible(itemBall)) {
             if (playType == 2) {
+                holder.web_wv.loadUrl("");
                 holder.web_wv.onPause();
             }
             holder.ll_run_match_title.setVisibility(View.VISIBLE);
             holder.videoPlayerView.setVisibility(View.VISIBLE);
+            holder.web_wv.loadUrl("");
             holder.web_wv.setVisibility(View.GONE);
             webloading = false;
             holder.llStatus.setVisibility(View.VISIBLE);
@@ -157,23 +177,51 @@ public class LivePlayHelper {
         videoHelper.setPlayUrl(path);
     }
 
-    public void openRunMatch(IRTMatchInfo itemBall) {
-        LogUtil.getMethodName("IRTMatchInfo:"+itemBall.getHome()+",dbid:"+itemBall.getSocOddsId());
+    public void openRunMatch(IRTMatchInfo itemBall, BaseRetrofitPresenter presenter) {
+        LogUtil.getMethodName("IRTMatchInfo:" + itemBall.getHome() + ",dbid:" + itemBall.getSocOddsId());
         if (this.itemBall == null || !this.itemBall.getSocOddsId().equals(itemBall.getSocOddsId())) {
             this.itemBall = itemBall;
             webloading = false;
         }
         holder.fl_top_video.setVisibility(View.VISIBLE);
-        if (checkLivePlayVisible(itemBall) && !webloading) {
+        if (checkLivePlayVisible(itemBall) && !webloading && itemBall.getTvPathIBC() != null && !itemBall.getTvPathIBC().contains("GL")) {
+
             setLivePlayUrlId(itemBall.getTvPathIBC());
             onResumePlay();
+
+
         } else {
-            onResumeWeb();
+            String tvPathIBC = itemBall.getTvPathIBC();
+            LogUtil.d("tvPathIBC", "tvPathIBC:" + tvPathIBC);
+            if (tvPathIBC.contains("GL")) {
+
+                loadWebViewPlay(tvPathIBC);
+
+            } else {
+                onResumeWeb();
+            }
         }
         holder.tv_run_match_home.setText(itemBall.getHome());
         holder.tv_run_match_away.setText(itemBall.getAway());
         holder.tv_run_match_home_score.setText(itemBall.getRunHomeScore());
         holder.tv_run_match_away_score.setText(itemBall.getRunAwayScore());
+    }
+
+    public void loadWebViewPlay(String tvPathIBC) {
+        String gliveid = tvPathIBC.replace("GL", "");
+        LiveTvBean bean = new LiveTvBean("GetGliveUrl", gliveid);
+
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), bean.toJson());
+
+        context.presenter.doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().doPostJson(BuildConfig.HOST_AFB + "api/pgGetTVID", body), new BaseConsumer<String>(context) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                LogUtil.d("tvPathIBC", "data:" + data);
+                JSONObject json = new JSONObject(data);
+                String url = json.optString("data");
+                onResumeWebPlay(url);
+            }
+        });
     }
 
     private void onResumeWeb() {
@@ -191,6 +239,25 @@ public class LivePlayHelper {
         }
     }
 
+    private void onResumeWebPlay(String url) {
+
+        holder.videoPlayerView.setVisibility(View.GONE);
+        holder.web_wv.setVisibility(View.VISIBLE);
+        holder.llStatus.setVisibility(View.GONE);
+        holder.tv_run_time.setVisibility(View.GONE);
+        holder.ll_run_match_title.setVisibility(View.GONE);
+        if (playing) {
+            onStopPlay();
+        }
+        webloading = true;
+        webLoad(url);
+
+    }
+
+    private boolean checkWebLiveVisible(IRTMatchInfo itemBall) {
+        return false;
+    }
+
     private void webLoad() {
         playType = 2;
         String lag = AfbUtils.getLanguage(context);
@@ -199,6 +266,15 @@ public class LivePlayHelper {
             l = "zh";
         }
         String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + itemBall.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(itemBall.getHome()) + "&Away=" + StringUtils.URLEncode(itemBall.getAway()) + "&L=" + l;
+        AfbUtils.synCookies(context, holder.web_wv, gameUrl, false);
+        holder.web_wv.onResume();
+    }
+
+    private void webLoad(String url) {
+        playType = 2;
+
+        String gameUrl = url;
+        LogUtil.d("tvPathIBC", "url:" + url);
         AfbUtils.synCookies(context, holder.web_wv, gameUrl, false);
         holder.web_wv.onResume();
     }

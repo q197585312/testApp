@@ -392,7 +392,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
         if (getBaseActivity().liveMatchHelper != null && getBaseActivity().itemBall != null && getBaseActivity().itemBall instanceof RunMatchInfo && ((RunMatchInfo) getBaseActivity().itemBall).getDbid().equals(getBallDbid())) {
             LogUtil.d("liveMatchHelper", "000000000");
-            getBaseActivity().liveMatchHelper.openRunMatch(getBaseActivity().itemBall);
+            getBaseActivity().liveMatchHelper.openRunMatch(getBaseActivity().itemBall, getBaseActivity().presenter);
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.additionMap.put(true, "");
             clickItemAdd(getBaseActivity().fl_top_video, getBaseActivity().itemBall, getBaseActivity().dateClickPosition);

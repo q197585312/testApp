@@ -255,3 +255,10 @@ class LoginInfo {
         }
     }
 }
+open class JsonBaseBean:Serializable{
+   open fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}
+open class RequestBaseBean(open val ACT: String): JsonBaseBean()
+class LiveTvBean(ACT: String, val GLiveId:String ):RequestBaseBean(ACT)

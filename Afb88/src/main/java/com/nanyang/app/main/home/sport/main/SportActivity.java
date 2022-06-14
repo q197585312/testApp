@@ -1123,6 +1123,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void closeTv() {
         fl_top_video.setVisibility(View.GONE);
+        webView.loadUrl("");
+        webView.onPause();
         liveMatchHelper.onStopPlay();
 
     }
@@ -1205,7 +1207,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 if (getApp().getSportByDbid(((RunMatchInfo) itemBall).getDbid()) != null)
                     initSportFragment(getApp().getSportByDbid(((RunMatchInfo) itemBall).getDbid()), itemBall);
             } else {
-                liveMatchHelper.openRunMatch(itemBall);
+                liveMatchHelper.openRunMatch(itemBall, presenter);
                 presenter.loadAllRunMatches(fl_top_video, handler, new MainPresenter.CallBack<List<RunMatchInfo>>() {
                     @Override
                     public void onBack(List<RunMatchInfo> data) throws JSONException {
