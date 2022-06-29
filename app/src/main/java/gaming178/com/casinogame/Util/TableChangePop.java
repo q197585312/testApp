@@ -30,6 +30,7 @@ import java.util.Map;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.AfbCasinoActivity;
 import gaming178.com.casinogame.Activity.CQSlotsGameActivity;
 import gaming178.com.casinogame.Activity.CockFightingWebActivity;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
@@ -931,6 +932,8 @@ public class TableChangePop extends BasePopupWindow {
                             baseActivity.skipAct(HabaGameActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.pg) {
                             baseActivity.skipAct(PGGameActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.afb_casino) {
+                            baseActivity.skipAct(AfbCasinoActivity.class);
                         }
                         baseActivity.finish();
                     }

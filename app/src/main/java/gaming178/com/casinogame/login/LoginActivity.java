@@ -2122,7 +2122,7 @@ public class LoginActivity extends BaseActivity {
         String param = "labelid=" + BuildConfig.Labelid;
         String result = httpClient.getHttpClient(url + param, null);
         Log.d("AppData", result);
-//        WebSiteUrl.setNormal("http://113.130.125.211/");
+//        WebSiteUrl.setNormal("http://202.36.58.189/");
         WebSiteUrl.setNormal(result);
     }
 

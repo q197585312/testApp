@@ -741,6 +741,9 @@ public class LobbyActivity extends BaseActivity {
                         } else if (hallGameItemBean.getGameType() == AppConfig.pg) {
                             skipAct(PGGameActivity.class);
                             finish();
+                        }else if (hallGameItemBean.getGameType() == AppConfig.afb_casino) {
+                            skipAct(AfbCasinoActivity.class);
+                            finish();
                         }
 
                     }
