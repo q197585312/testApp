@@ -22,12 +22,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_sport_list_top"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:background="@drawable/green_black_shadow_bottom"
-                android:paddingTop="2dp" />
+                android:paddingTop="2dp">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_sport_list_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/green_black_shadow_bottom" />
+
+                <ImageView
+                    android:id="@+id/img_top_click_left"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/green_dark"
+                    android:src="@mipmap/arrow_left_white_double"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_top_click_right"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|center_vertical"
+                    android:background="@color/green_dark"
+                    android:src="@mipmap/arrow_right_white_double"></ImageView>
+
+            </FrameLayout>
 
             <View
                 android:id="@+id/line_shadow_top"

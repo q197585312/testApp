@@ -105,6 +105,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public View cl_sport_head;
     @BindView(R.id.list_top)
     public View list_top;
+    @BindView(R.id.img_top_click_left)
+    public ImageView img_top_click_left;
+    @BindView(R.id.img_top_click_right)
+    public ImageView img_top_click_right;
     @BindView(R.id.ll_line1)
     public View ll_line1;
     @BindView(R.id.ll_line2)
@@ -266,6 +270,18 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMatchType.setTextColor(Color.WHITE);
             list_top.setVisibility(View.GONE);
         }
+        img_top_click_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rc_sport_list_top.scrollBy(-80,0);
+            }
+        });
+        img_top_click_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rc_sport_list_top.scrollBy(80,0);
+            }
+        });
     }
 
 
