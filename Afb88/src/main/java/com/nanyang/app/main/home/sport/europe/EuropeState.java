@@ -97,7 +97,7 @@ public abstract class EuropeState extends BallState {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
                         boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
-                        if (getStateType().getType().toLowerCase().startsWith("r") && visible && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
+                        if (getStateType().getType().toLowerCase().startsWith("r") && visible /*&& ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet*/) {
                             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).clickRunMatchPlay(item, position, false);
                         } else {
                             if (StringUtils.isNull(getAdapterHelper().additionMap.get(true)) && !((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
