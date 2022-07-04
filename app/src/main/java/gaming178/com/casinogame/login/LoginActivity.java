@@ -1379,15 +1379,16 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getNetPromo();
+                    goNetWA(-2);
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=81290395881");
+                    goNetWA(-3);
                 }
             });
+            goNetWA(-1);
         }
         if (BuildConfig.FLAVOR.equals("rascasino")) {
             bannerView = findViewById(R.id.banner_view);
@@ -1774,6 +1775,36 @@ public class LoginActivity extends BaseActivity {
                                         }
                                     };
                                     popWebView.showPopupCenterWindow();
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("wingsbet88")) {
+                                if (type == -1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getPopup())) {
+                                        PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                        popImg.setLoadUrl(currentWABean.getPopup());
+                                        if (!TextUtils.isEmpty(currentWABean.getPopupLink())) {
+                                            popImg.setGoUrl(currentWABean.getPopupLink());
+                                        }
+                                        popImg.showPopupCenterWindow();
+                                    }
+                                } else if (type == -2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getBonusSpecial())) {
+                                        PopWebView popWebView = new PopWebView(mContext, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                                            @Override
+                                            public String getUrl() {
+                                                return currentWABean.getBonusSpecial();
+                                            }
+
+                                            @Override
+                                            public String getTitle() {
+                                                return "BONUS SPECIAL";
+                                            }
+                                        };
+                                        popWebView.showPopupCenterWindow();
+                                    }
+                                } else if (type == -3) {
+                                    if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
+                                    }
                                 }
                             }
                         }

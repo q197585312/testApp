@@ -17,6 +17,7 @@ public class WABean {
     private String Telegram;
     private String LiveChat;
     private String Promo;
+    private String bonusSpecial;
 
     public String getResult() {
         return result;
@@ -96,5 +97,13 @@ public class WABean {
 
     public void setPromo(String promo) {
         Promo = promo;
+    }
+
+    public String getBonusSpecial() {
+        return bonusSpecial;
+    }
+
+    public void setBonusSpecial(String bonusSpecial) {
+        this.bonusSpecial = bonusSpecial;
     }
 }

@@ -651,7 +651,7 @@ public class LobbyActivity extends BaseActivity {
                         } else {
                             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                         }
-                        if (item.getGameType() == AppConfig.slots) {
+                        if (item.getGameType() == AppConfig.slots || item.getGameType() == AppConfig.afb_casino) {
                             imgTopLeftNew.setVisibility(View.VISIBLE);
                         } else {
                             imgTopLeftNew.setVisibility(View.GONE);
@@ -741,7 +741,7 @@ public class LobbyActivity extends BaseActivity {
                         } else if (hallGameItemBean.getGameType() == AppConfig.pg) {
                             skipAct(PGGameActivity.class);
                             finish();
-                        }else if (hallGameItemBean.getGameType() == AppConfig.afb_casino) {
+                        } else if (hallGameItemBean.getGameType() == AppConfig.afb_casino) {
                             skipAct(AfbCasinoActivity.class);
                             finish();
                         }

@@ -110,6 +110,9 @@ public class Gd88Utils {
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, context.getString(R.string.lg88_casino), AppConfig.lg88));
         }
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
+        }
         hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, context.getString(R.string.cq), AppConfig.cq9));
         if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
@@ -119,7 +122,6 @@ public class Gd88Utils {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_haba, context.getString(R.string.haba), AppConfig.haba));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_pg, context.getString(R.string.gd_pg), AppConfig.pg));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         }
         return hallGameItemBeenS;
     }
@@ -132,11 +134,11 @@ public class Gd88Utils {
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_lg, context.getString(R.string.lg88_casino), AppConfig.lg88));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cq9, context.getString(R.string.cq), AppConfig.cq9));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_haba, context.getString(R.string.haba), AppConfig.haba));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pg, context.getString(R.string.gd_pg), AppConfig.pg));
-        allGameList.add(new HallGameItemBean(R.mipmap.gd_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         List<HallGameItemBean> tableGameList = new ArrayList<>();
         for (int i = 0; i < allGameList.size(); i++) {
             HallGameItemBean hallGameItemBean = allGameList.get(i);
