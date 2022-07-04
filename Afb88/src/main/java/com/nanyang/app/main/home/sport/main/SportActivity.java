@@ -1163,7 +1163,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
-            if ( !hasBet) {
+            if (onlyOne&& !hasBet) {
                 PopOneBtn popOneBtn = new PopOneBtn(this, tv_match_play) {
                     @Override
                     protected void initView(@NotNull View view) {
