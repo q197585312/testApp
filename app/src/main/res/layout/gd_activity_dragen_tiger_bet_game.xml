@@ -41,9 +41,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="253px"
+        android:layout_marginTop="252px"
+        android:background="@drawable/baccarat_data_bg"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="1px"
+        android:paddingBottom="1px">
 
         <TextView
             android:id="@+id/gd__tv_table_game_number1"
@@ -51,19 +54,17 @@
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:text="0 - 0"
-            android:textColor="@color/white"
+            android:textColor="#C6E46F"
             android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="3dp"
@@ -91,7 +92,6 @@
             android:layout_width="60dp"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
@@ -104,7 +104,6 @@
             android:layout_width="60dp"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
@@ -532,7 +531,6 @@
         android:layout_gravity="right"
         android:layout_marginTop="253px"
         android:layout_marginRight="5dp"
-        android:background="@mipmap/gd_img_change_table_bg"
         android:gravity="center"
         android:orientation="horizontal">
 
