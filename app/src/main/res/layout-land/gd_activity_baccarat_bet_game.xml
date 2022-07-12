@@ -779,4 +779,11 @@
             layout="@layout/gd_layout_baccarat_content_panel" />
 
     </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+
+    <ImageView
+        android:id="@+id/gd_img_cow"
+        android:layout_width="80dp"
+        android:layout_height="23.5dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"></ImageView>
 </FrameLayout>

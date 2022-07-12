@@ -47,6 +47,7 @@ import androidx.core.content.ContextCompat;
 import com.apng.utils.FileUtils;
 import com.apng.view.ApngImageView;
 import com.apng.view.ApngLoader;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unkonw.testapp.libs.widget.VideoHelper;
@@ -143,6 +144,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     /*
         @BindView(R2.id.gd__iv_baccarat_road_handle)
         ImageView iv;*/
+    @BindView(R2.id.gd_img_cow)
+    ImageView gd_img_cow;
     @BindView(R2.id.tv_change_bet_content)
     TextView tv_change_bet_content;
     @BindView(R2.id.gd__layout1)
@@ -3152,6 +3155,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
             }
             ll_bet_btn_parent.setVisibility(View.GONE);
+            Glide.with(this).asGif().load(R.mipmap.gd_cow_h).into(gd_img_cow);
         }
         setToolbarAndSet("", usName);
         AutoUtils.auto(baseContentView);

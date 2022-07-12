@@ -52,7 +52,7 @@
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:text="0 - 0"
-            android:textColor="#C6E46F"
+            android:textColor="#fff130"
             android:textSize="13sp" />
 
         <LinearLayout
@@ -89,7 +89,7 @@
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:textColor="@color/white"
+            android:textColor="#ff6565"
             android:textSize="13sp" />
 
         <TextView
@@ -684,22 +684,28 @@
         <include layout="@layout/gd_layout_pop_center_baccarat" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tv_change_bet_content"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginTop="220px"
         android:layout_marginRight="5px"
-        android:background="@drawable/baccarat_change_bet_h_bg"
-        android:gravity="center"
-        android:onClick="clickChangeBetContent"
-        android:paddingLeft="12dp"
-        android:paddingTop="3dp"
-        android:paddingRight="12dp"
-        android:paddingBottom="3dp"
-        android:text="@string/nn"
-        android:textColor="@color/black"
-        android:textSize="13sp"></TextView>
+        android:onClick="clickChangeBetContent">
 
+        <ImageView
+            android:id="@+id/gd_img_cow"
+            android:layout_width="80dp"
+            android:layout_height="23.5dp"
+            android:scaleType="fitXY"></ImageView>
+
+        <TextView
+            android:id="@+id/tv_change_bet_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/nn"
+            android:textColor="@color/black"
+            android:textSize="13sp"></TextView>
+    </FrameLayout>
 </FrameLayout>

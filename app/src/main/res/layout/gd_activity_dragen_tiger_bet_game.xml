@@ -58,7 +58,7 @@
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:text="0 - 0"
-            android:textColor="#C6E46F"
+            android:textColor="#fff130"
             android:textSize="13sp" />
 
         <LinearLayout
@@ -95,7 +95,7 @@
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:textColor="@color/white"
+            android:textColor="#ff6565"
             android:textSize="13sp" />
 
         <TextView
