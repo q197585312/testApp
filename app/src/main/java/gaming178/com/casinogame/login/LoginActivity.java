@@ -205,7 +205,7 @@ public class LoginActivity extends BaseActivity {
             webView = findViewById(R.id.gd_login_webview);
             img_exit = findViewById(R.id.gd_img_exit);
             rl_webview = findViewById(R.id.gd_rl_webview);
-            rl_webview.setVisibility(View.VISIBLE);
+            rl_webview.setVisibility(View.GONE);
             img_exit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
