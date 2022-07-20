@@ -163,4 +163,30 @@ public class Gd88Utils {
         }
         return null;
     }
+
+    public static final int LiveCasino = 1;
+    public static final int SlotOnline = 2;
+    public static final int SportBook_JudiBola = 3;
+    public static final int PokerOnline = 4;
+
+    public static List<HallGameItemBean> ahlTypeLobbyGameList(Context context, int type) {
+        List<HallGameItemBean> typeList = new ArrayList<>();
+        if (type == LiveCasino) {
+            typeList.add(new HallGameItemBean(R.mipmap.lobby_gd_casino, "GD Casino", AppConfig.gd_casino));
+            typeList.add(getGame(AppConfig.lg88, context));
+            typeList.add(getGame(AppConfig.afb_casino, context));
+        } else if (type == SlotOnline) {
+            typeList.add(getGame(AppConfig.pragmatic, context));
+            typeList.add(getGame(AppConfig.pg, context));
+            typeList.add(getGame(AppConfig.slots, context));
+            typeList.add(getGame(AppConfig.haba, context));
+            typeList.add(getGame(AppConfig.kingKong, context));
+            typeList.add(getGame(AppConfig.cq9, context));
+        } else if (type == SportBook_JudiBola) {
+            typeList.add(getGame(AppConfig.afb1188, context));
+        } else if (type == PokerOnline) {
+            typeList.add(getGame(AppConfig.we1poker, context));
+        }
+        return typeList;
+    }
 }

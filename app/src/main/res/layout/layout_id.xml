@@ -160,14 +160,12 @@
         android:id="@+id/fl_name_out_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ahl_input_out_bg"
         android:visibility="gone"></FrameLayout>
 
     <FrameLayout
         android:id="@+id/fl_password_out_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ahl_input_out_bg"
         android:visibility="gone"></FrameLayout>
 
     <LinearLayout

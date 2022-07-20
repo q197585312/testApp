@@ -1567,7 +1567,7 @@ public class LoginActivity extends BaseActivity {
                 public void run() {
                     int width = bannerView.getWidth();
                     ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
-                    layoutParams.height = (int) (width / 3.0);
+                    layoutParams.height = (int) (width / 2.8);
                     bannerView.setLayoutParams(layoutParams);
                 }
             });
