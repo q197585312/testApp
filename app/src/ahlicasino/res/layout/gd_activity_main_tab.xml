@@ -237,7 +237,8 @@
                     android:gravity="center"
                     android:text="Play Your Favourite Games"
                     android:textColor="@color/white"
-                    android:textSize="25sp"></TextView>
+                    android:textSize="25sp"
+                    android:textStyle="bold"></TextView>
 
                 <FrameLayout
                     android:id="@+id/view_game_parent"

@@ -215,4 +215,48 @@
         android:id="@+id/img_animation4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></ImageView>
+
+    <LinearLayout
+        android:id="@+id/ll_banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_ahl_game_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"></LinearLayout>
+
+    <RecyclerView
+        android:id="@+id/rc_liveCasino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></RecyclerView>
+
+    <RecyclerView
+        android:id="@+id/rc_sportBook_JudiBola"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></RecyclerView>
+
+    <RecyclerView
+        android:id="@+id/rc_slotOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></RecyclerView>
+
+    <RecyclerView
+        android:id="@+id/rc_pokerOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></RecyclerView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></androidx.core.widget.NestedScrollView>
 </FrameLayout>

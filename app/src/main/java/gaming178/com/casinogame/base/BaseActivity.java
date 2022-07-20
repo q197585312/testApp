@@ -2224,8 +2224,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         initBetImg();
 
         super.onCreate(savedInstanceState);
-        if (mAppViewModel.isbLogin()) {
-            startUpdateStatus();
+        if (mAppViewModel != null) {
+            if (mAppViewModel.isbLogin()) {
+                startUpdateStatus();
+            }
         }
         getMethodName();
     }
