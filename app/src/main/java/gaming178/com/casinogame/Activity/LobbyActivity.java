@@ -57,6 +57,7 @@ import gaming178.com.casinogame.Fragment.LobbyDragonTigerFragment;
 import gaming178.com.casinogame.Fragment.LobbyRouletteFragment;
 import gaming178.com.casinogame.Fragment.LobbySicboFragment;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
+import gaming178.com.casinogame.Popupwindow.PopContact;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
@@ -414,8 +415,15 @@ public class LobbyActivity extends BaseActivity {
         tv_home_live_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                popLiveChat.showPopupCenterWindow();
+                if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                    int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+                    int width = screenWidth / 15 * 14;
+                    PopContact popContact = new PopContact(mContext, v, width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    popContact.showPopupCenterWindow();
+                } else {
+                    PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    popLiveChat.showPopupCenterWindow();
+                }
             }
         });
         tv_home_logout.setOnClickListener(new View.OnClickListener() {

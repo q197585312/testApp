@@ -1333,10 +1333,14 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
         if (popLanguage == null) {
             int width = ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20);
+            int height = ScreenUtil.dip2px(mContext, 220);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 width = width / 2;
             }
-            popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, width, ScreenUtil.dip2px(mContext, 220)) {
+            if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            }
+            popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, width, height) {
                 @Override
                 protected int onSetRcItemLayout() {
                     return R.layout.gd_item_language_selected;
@@ -1460,7 +1464,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         if (BaseActivity.this instanceof LoginActivity) {
             popLanguage.showPopupDownWindow();
         } else {
-            popLanguage.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+            if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                popLanguage.showPopupCenterWindow();
+            } else {
+                popLanguage.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+            }
         }
 
     }

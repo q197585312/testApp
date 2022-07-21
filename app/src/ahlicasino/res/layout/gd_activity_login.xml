@@ -223,7 +223,7 @@
                                     android:layout_marginTop="8dp"
                                     android:layout_marginBottom="8dp"
                                     android:text="Whatsapp"
-                                    android:textColor="#78C240"></TextView>
+                                    android:textColor="#55CD6C"></TextView>
 
                                 <TextView
                                     android:layout_width="wrap_content"
