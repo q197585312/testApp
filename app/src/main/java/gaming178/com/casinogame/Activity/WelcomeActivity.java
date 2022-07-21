@@ -162,13 +162,17 @@ public class WelcomeActivity extends BaseActivity {
         }
         LogIntervalUtils.logCustomTime(currentTime, "onCreate");
         ActivityPageManager.getInstance().addActivity(this);
-        flWelcome = (FrameLayout) findViewById(R.id.gd__fl_welcome);
-        llLogin = (LinearLayout) findViewById(R.id.gd__ll_login);
-        bgImg = (ImageView) findViewById(R.id.gd__welcome_img);
+        flWelcome = findViewById(R.id.gd__fl_welcome);
+        llLogin = findViewById(R.id.gd__ll_login);
+        bgImg = findViewById(R.id.gd__welcome_img);
         if (!BuildConfig.FLAVOR.isEmpty() && BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             bgImg.setImageResource(R.mipmap.gd88_welcome_logo);
         } else {
-            bgImg.setImageResource(R.mipmap.gd_title_logo);
+            if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                bgImg.setImageResource(R.mipmap.ahl_welcome_banner);
+            } else {
+                bgImg.setImageResource(R.mipmap.gd_title_logo);
+            }
         }
         flWelcome.setVisibility(View.VISIBLE);
         llLogin.setVisibility(View.GONE);

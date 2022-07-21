@@ -45,19 +45,20 @@ public class WithdrawPop extends BasePopupWindow {
     public WithdrawPop(Context context, View v, int width, int height) {
         super(context, v, width, height);
     }
-    public void setDialog(BlockDialog  dialog){
-        this.dialog=dialog;
+
+    public void setDialog(BlockDialog dialog) {
+        this.dialog = dialog;
     }
 
-    public void  setUser(final User user){
-        this.user=user;
+    public void setUser(final User user) {
+        this.user = user;
 
         tvUsername.setText(user.getName());
-        GdThreadHander threadHander=new GdThreadHander(context) {
+        GdThreadHander threadHander = new GdThreadHander(context) {
             @Override
             protected RequestBean<String> getRequestBean() {
 
-                return new RequestBean<String>(WebSiteUrl.GetWithdraw_Url,"Usid="+user.getName());
+                return new RequestBean<String>(WebSiteUrl.GetWithdraw_Url, "Usid=" + user.getName());
             }
 
             @Override
@@ -65,10 +66,10 @@ public class WithdrawPop extends BasePopupWindow {
                 dialog.dismiss();
                 /*Results=ok^RAGA03^^BNI^gdctest^01432424242^BNI^HERMAN SUSILO^0383407688^BNI#BNI#HERMAN SUSILO#0383407688#BRI#BRI#GUNAWAN#060001009122502#DANAMON#DANAMON#RITA KOSASIH#003582651729#MANDIRI#MANDIRI#HASAN KOSASIH#9000033369886#BCA#BCA#LINA#8250013885#^BNI#HERMAN SUSILO#0383407688#BRI#GUNAWAN#060001009122502#DANAMON#RITA KOSASIH#003582651729#MANDIRI#HASAN KOSASIH#9000033369886#BCA#LINA#8250013885#^*/
                 String tableInfo[] = obj.split("\\^");
-                if(tableInfo==null||tableInfo.length<6)
+                if (tableInfo == null || tableInfo.length < 6)
                     return;
-                if(!tableInfo[3].isEmpty()){
-                    myBank=new BankInfo(tableInfo[3],tableInfo[4],tableInfo[5]);
+                if (!tableInfo[3].isEmpty()) {
+                    myBank = new BankInfo(tableInfo[3], tableInfo[4], tableInfo[5]);
                     setMyBank(myBank);
                 }
             }
@@ -86,13 +87,13 @@ public class WithdrawPop extends BasePopupWindow {
 
     private void setMyBank(BankInfo bank) {
         tvChoiceBank.setText(bank.getBankName());
-        if(myBank!=null&&!myBank.getBankName().isEmpty()&&bank.getBankName().equals(myBank.getBankName())){
+        if (myBank != null && !myBank.getBankName().isEmpty() && bank.getBankName().equals(myBank.getBankName())) {
             edtBankAccount.setText(myBank.getBankAccount());
             edtBankNumber.setText(myBank.getBankNumber());
             tvChoiceBank.setEnabled(false);
             edtBankAccount.setEnabled(false);
             edtBankNumber.setEnabled(false);
-        }else{
+        } else {
             edtBankAccount.setText("");
             edtBankNumber.setText("");
         }
@@ -109,20 +110,20 @@ public class WithdrawPop extends BasePopupWindow {
         super.initView(view);
         rl_title = view.findViewById(R.id.gd_rl_title);
         tv_bottom_title = view.findViewById(R.id.gd_tv_bottom_title);
-        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
             rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
             tv_bottom_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
         }
-        edtAmount=(EditText)view.findViewById(R.id.gd__edt_pop_withdraw_amount);
-        tvUsername=(TextView)view.findViewById(R.id.gd__tv_pop_withdraw_username);
-        tvChoiceBank=(TextView)view.findViewById(R.id.gd__tv_pop_withdraw_choice_bank);
-        edtBankAccount=(TextView)view.findViewById(R.id.gd__edt_pop_withdraw_bank_account);
-        edtBankNumber=(TextView)view.findViewById(R.id.gd__edt_pop_withdraw_bank_number);
-        edtPassword=(EditText)view.findViewById(R.id.gd__edt_pop_withdraw_password);
-        ivClose=(ImageView)view.findViewById(R.id.gd__iv_pop_withdraw_close);
+        edtAmount = (EditText) view.findViewById(R.id.gd__edt_pop_withdraw_amount);
+        tvUsername = (TextView) view.findViewById(R.id.gd__tv_pop_withdraw_username);
+        tvChoiceBank = (TextView) view.findViewById(R.id.gd__tv_pop_withdraw_choice_bank);
+        edtBankAccount = (TextView) view.findViewById(R.id.gd__edt_pop_withdraw_bank_account);
+        edtBankNumber = (TextView) view.findViewById(R.id.gd__edt_pop_withdraw_bank_number);
+        edtPassword = (EditText) view.findViewById(R.id.gd__edt_pop_withdraw_password);
+        ivClose = (ImageView) view.findViewById(R.id.gd__iv_pop_withdraw_close);
         edtRemark = (EditText) view.findViewById(R.id.gd__edt_remark);
         llRemark = view.findViewById(R.id.ll_remark);
-        if (BuildConfig.FLAVOR.equals("ahlicasino")){
+        if (BuildConfig.FLAVOR.equals("ahlicasino")) {
             llRemark.setVisibility(View.GONE);
         }
         ivClose.setOnClickListener(new View.OnClickListener() {
@@ -131,8 +132,8 @@ public class WithdrawPop extends BasePopupWindow {
                 closePopupWindow();
             }
         });
-        btnConfirm=(Button)view.findViewById(R.id.gd__btn_pop_withdraw_confirm);
-        btnCancel=(Button)view.findViewById(R.id.gd__btn_pop_withdraw_cancel);
+        btnConfirm = (Button) view.findViewById(R.id.gd__btn_pop_withdraw_confirm);
+        btnCancel = (Button) view.findViewById(R.id.gd__btn_pop_withdraw_cancel);
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,64 +151,63 @@ public class WithdrawPop extends BasePopupWindow {
     }
 
     private void postWithdraw() {
-        final StringBuilder builder=new StringBuilder();
-        if(tvUsername.getText().toString().trim().isEmpty())
+        final StringBuilder builder = new StringBuilder();
+        if (tvUsername.getText().toString().trim().isEmpty())
             return;
-        else{
+        else {
             builder.append("withdraw1=");
             builder.append(tvUsername.getText().toString().trim());
             builder.append("&");
         }
-        if(edtAmount.getText().toString().trim().isEmpty()){
+        if (edtAmount.getText().toString().trim().isEmpty()) {
             edtAmount.requestFocus();
             return;
-        }
-        else{
+        } else {
             builder.append("withdraw2=");
             builder.append(edtAmount.getText().toString().trim());
             builder.append("&");
         }
-        if(tvChoiceBank.getText().toString().trim().isEmpty())
+        if (tvChoiceBank.getText().toString().trim().isEmpty())
             return;
-        else{
+        else {
             builder.append("withdraw3=");
             builder.append(tvChoiceBank.getText().toString().trim());
             builder.append("&");
         }
-        if(edtBankAccount.getText().toString().trim().isEmpty()){
+        if (edtBankAccount.getText().toString().trim().isEmpty()) {
             edtBankAccount.requestFocus();
             return;
-        }else{
+        } else {
             builder.append("withdraw4=");
             builder.append(edtBankAccount.getText().toString().trim());
             builder.append("&");
         }
-        if(edtBankNumber.getText().toString().trim().isEmpty()){
+        if (edtBankNumber.getText().toString().trim().isEmpty()) {
             edtBankNumber.requestFocus();
             return;
-        }else{
+        } else {
             builder.append("withdraw5=");
             builder.append(/*edtBankNumber.getText().toString().trim()*/myBank.getBankNumber());
             builder.append("&");
         }
-        if(edtPassword.getText().toString().trim().isEmpty()){
+        if (edtPassword.getText().toString().trim().isEmpty()) {
             edtPassword.requestFocus();
             return;
-        }else{
+        } else {
             builder.append("withdraw6=");
             builder.append(edtPassword.getText().toString().trim());
         }
         builder.append("&remark=");
         builder.append(edtRemark.getText().toString().trim());
-        GdThreadHander threadHander=new GdThreadHander(context) {
+        GdThreadHander threadHander = new GdThreadHander(context) {
             @Override
             protected RequestBean<String> getRequestBean() {
-                return new RequestBean<>(WebSiteUrl.Withdraw_Url,builder.toString());
+                return new RequestBean<>(WebSiteUrl.Withdraw_Url, builder.toString());
             }
 
             @Override
             public void successEnd(String obj) {
-                Toast.makeText(context,"withdraw success"+edtAmount.getText(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "withdraw success" + edtAmount.getText(), Toast.LENGTH_LONG).show();
                 dialog.dismiss();
                 closePopupWindow();
             }

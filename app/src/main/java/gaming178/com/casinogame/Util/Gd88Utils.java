@@ -110,6 +110,9 @@ public class Gd88Utils {
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, context.getString(R.string.lg88_casino), AppConfig.lg88));
         }
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
+        }
         hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, context.getString(R.string.cq), AppConfig.cq9));
         if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
@@ -119,7 +122,6 @@ public class Gd88Utils {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_haba, context.getString(R.string.haba), AppConfig.haba));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_pg, context.getString(R.string.gd_pg), AppConfig.pg));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         }
         return hallGameItemBeenS;
     }
@@ -132,11 +134,11 @@ public class Gd88Utils {
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_lg, context.getString(R.string.lg88_casino), AppConfig.lg88));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cq9, context.getString(R.string.cq), AppConfig.cq9));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_haba, context.getString(R.string.haba), AppConfig.haba));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pg, context.getString(R.string.gd_pg), AppConfig.pg));
-        allGameList.add(new HallGameItemBean(R.mipmap.gd_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         List<HallGameItemBean> tableGameList = new ArrayList<>();
         for (int i = 0; i < allGameList.size(); i++) {
             HallGameItemBean hallGameItemBean = allGameList.get(i);
@@ -160,5 +162,31 @@ public class Gd88Utils {
             }
         }
         return null;
+    }
+
+    public static final int LiveCasino = 1;
+    public static final int SlotOnline = 2;
+    public static final int SportBook_JudiBola = 3;
+    public static final int PokerOnline = 4;
+
+    public static List<HallGameItemBean> ahlTypeLobbyGameList(Context context, int type) {
+        List<HallGameItemBean> typeList = new ArrayList<>();
+        if (type == LiveCasino) {
+            typeList.add(new HallGameItemBean(R.mipmap.lobby_gd_casino, "GD Casino", AppConfig.gd_casino));
+            typeList.add(getGame(AppConfig.lg88, context));
+            typeList.add(getGame(AppConfig.afb_casino, context));
+        } else if (type == SlotOnline) {
+            typeList.add(getGame(AppConfig.pragmatic, context));
+            typeList.add(getGame(AppConfig.pg, context));
+            typeList.add(getGame(AppConfig.slots, context));
+            typeList.add(getGame(AppConfig.haba, context));
+            typeList.add(getGame(AppConfig.kingKong, context));
+            typeList.add(getGame(AppConfig.cq9, context));
+        } else if (type == SportBook_JudiBola) {
+            typeList.add(getGame(AppConfig.afb1188, context));
+        } else if (type == PokerOnline) {
+            typeList.add(getGame(AppConfig.we1poker, context));
+        }
+        return typeList;
     }
 }

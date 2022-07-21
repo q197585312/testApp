@@ -203,7 +203,7 @@ public class DepositPop extends BasePopupWindow {
         super.initView(view);
         rl_title = view.findViewById(R.id.gd_rl_title);
         tv_bottom_title = view.findViewById(R.id.gd_tv_bottom_title);
-        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
             rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
             tv_bottom_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
         }

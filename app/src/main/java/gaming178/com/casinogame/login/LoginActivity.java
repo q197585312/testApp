@@ -205,7 +205,7 @@ public class LoginActivity extends BaseActivity {
             webView = findViewById(R.id.gd_login_webview);
             img_exit = findViewById(R.id.gd_img_exit);
             rl_webview = findViewById(R.id.gd_rl_webview);
-            rl_webview.setVisibility(View.VISIBLE);
+            rl_webview.setVisibility(View.GONE);
             img_exit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -256,78 +256,6 @@ public class LoginActivity extends BaseActivity {
         tv_register = (TextView) findViewById(R.id.gd__tv_register);
         tvWhatsApp = findViewById(R.id.gd__tv_whatsapp);
         tvPromo = findViewById(R.id.gd__tv_promo);
-        if (BuildConfig.FLAVOR.equals("dewacasino388")) {
-            tvWhatsApp.setVisibility(View.VISIBLE);
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=6281390280396");
-                }
-            });
-            tvPromo.setVisibility(View.VISIBLE);
-            tvPromo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getNetPromo();
-                }
-            });
-            List<Integer> imgErrorList = new ArrayList<>();
-            imgErrorList.add(R.mipmap.dewa_banner_1);
-            imgErrorList.add(R.mipmap.dewa_banner_2);
-            imgErrorList.add(R.mipmap.dewa_banner_3);
-            imgErrorList.add(R.mipmap.dewa_banner_4);
-            bannerView = findViewById(R.id.banner_view);
-            new Thread() {
-                @Override
-                public void run() {
-                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
-                    String param = "labelid=" + BuildConfig.Labelid;
-                    String result = httpClient.getHttpClient(url + param, null);
-                    WebSiteUrl.setNormal(result);
-                    url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
-                    String bannerResult = httpClient.sendPost(url, "");
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            List<String> imgList = new ArrayList<>();
-                            if (bannerResult.contains("Success")) {
-                                BannerBean bannerBean = new Gson().fromJson(bannerResult, BannerBean.class);
-                                List<BannerBean.DataBean> data = bannerBean.getData();
-                                if (data != null && data.size() > 0) {
-                                    for (int i = 0; i < data.size(); i++) {
-                                        BannerBean.DataBean dataBean = data.get(i);
-                                        imgList.add(dataBean.getPath());
-                                    }
-                                    bannerView.setLifecycleRegistry(getLifecycle()).
-                                            setAdapter(new MyNetWorkBannerAdapter()).
-                                            setScrollDuration(500).
-                                            setIndicatorSliderColor(Color.WHITE,
-                                                    getResources().getColor(R.color.yellow_gold2)).
-                                            setIndicatorGravity(IndicatorGravity.CENTER).
-                                            create(imgList);
-                                } else {
-                                    bannerView.setLifecycleRegistry(getLifecycle()).
-                                            setAdapter(new MyBannerAdapter()).
-                                            setScrollDuration(500).
-                                            setIndicatorSliderColor(getResources().getColor(R.color.black44_trans),
-                                                    getResources().getColor(R.color.yellow_gold2)).
-                                            setIndicatorGravity(IndicatorGravity.START).
-                                            create(imgErrorList);
-                                }
-                            } else {
-                                bannerView.setLifecycleRegistry(getLifecycle()).
-                                        setAdapter(new MyBannerAdapter()).
-                                        setScrollDuration(500).
-                                        setIndicatorSliderColor(getResources().getColor(R.color.black44_trans),
-                                                getResources().getColor(R.color.yellow_gold2)).
-                                        setIndicatorGravity(IndicatorGravity.START).
-                                        create(imgErrorList);
-                            }
-                        }
-                    });
-                }
-            }.start();
-        }
         if (BuildConfig.FLAVOR.equals("depocasino")) {
             imgGif1 = findViewById(R.id.img_gif_1);
             imgGif2 = findViewById(R.id.img_gif_2);
@@ -1379,15 +1307,16 @@ public class LoginActivity extends BaseActivity {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getNetPromo();
+                    goNetWA(-2);
                 }
             });
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send?phone=81290395881");
+                    goNetWA(-3);
                 }
             });
+            goNetWA(-1);
         }
         if (BuildConfig.FLAVOR.equals("rascasino")) {
             bannerView = findViewById(R.id.banner_view);
@@ -1576,6 +1505,175 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
+
+        if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+            Glide.with(this).asGif().load(R.mipmap.ahlicasino_logo_gif).into(img_gif);
+            LinearLayout ll_login_prent = findViewById(R.id.ll_login_prent);
+            LinearLayout ll_ahl_login = findViewById(R.id.ll_ahl_login);
+            ll_login_prent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            ll_ahl_login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ll_login_prent.setVisibility(View.VISIBLE);
+                }
+            });
+            LinearLayout ll_login_prent_exit = findViewById(R.id.ll_login_prent_exit);
+            ll_login_prent_exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ll_login_prent.setVisibility(View.GONE);
+                }
+            });
+            LinearLayout gd__ll_container = findViewById(R.id.gd__ll_container);
+            gd__ll_container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ll_login_prent.setVisibility(View.GONE);
+                }
+            });
+            FrameLayout fl_name_out_bg = findViewById(R.id.fl_name_out_bg);
+            EditText tvName = findViewById(R.id.gd__login_username_edt);
+            tvName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        fl_name_out_bg.setVisibility(View.VISIBLE);
+                    } else {
+                        fl_name_out_bg.setVisibility(View.GONE);
+                    }
+                }
+            });
+            FrameLayout fl_password_out_bg = findViewById(R.id.fl_password_out_bg);
+            EditText tvPassword = findViewById(R.id.gd__login_password_edt);
+            tvPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        fl_password_out_bg.setVisibility(View.VISIBLE);
+                    } else {
+                        fl_password_out_bg.setVisibility(View.GONE);
+                    }
+                }
+            });
+
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = bannerView.getWidth();
+                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
+                    layoutParams.height = (int) (width / 2.8);
+                    bannerView.setLayoutParams(layoutParams);
+                }
+            });
+            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
+            hallGameBottomPromptTv.setSelected(true);
+            hallGameBottomPromptTv.stopScroll();
+            hallGameBottomPromptTv.setTextColor(Color.WHITE);
+            hallGameBottomPromptTv.setSpeed(0.8f);
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    WebSiteUrl.setNormal(result);
+                    String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
+                    String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+                    url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
+                    String bannerResult = httpClient.sendPost(url, "");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (annoucement.startsWith("Results=ok")) {
+                                String[] split = annoucement.split("\\|");
+                                hallGameBottomPromptTv.setText(split[1]);
+                            } else {
+                                hallGameBottomPromptTv.setText("Selamat Datang di Ahlicasino Situs Judi Online Terbesar di Indonesia, Menyediakan permainan seperti : BACCARAT, ROULETTE, SICBO, DRAGON-TIGER, SLOT, AFB SPORT, KING KONG, PRAGMATIC, WE1POKER. Yang Terbaru Habanero dan Slot PGSoft. / Link alternatif : http://ahlikasino88.biz/ atau http://113.130.125.234");
+                            }
+                            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+                            hallGameBottomPromptTv.startScroll();
+                            if (bannerResult.contains("Success")) {
+                                BannerBean bannerBean = new Gson().fromJson(bannerResult, BannerBean.class);
+                                List<BannerBean.DataBean> data = bannerBean.getData();
+                                if (data != null && data.size() > 0) {
+                                    List<String> lists = new ArrayList<>();
+                                    for (int i = 0; i < data.size(); i++) {
+                                        BannerBean.DataBean dataBean = data.get(i);
+                                        lists.add(dataBean.getPath());
+                                    }
+                                    bannerView.setLifecycleRegistry(getLifecycle()).
+                                            setAdapter(new MyNetWorkBannerAdapter()).
+                                            setScrollDuration(500).
+                                            setIndicatorSliderColor(Color.parseColor("#00000000"),
+                                                    Color.parseColor("#00000000")).
+                                            setIndicatorGravity(IndicatorGravity.CENTER).
+                                            create(lists);
+                                }
+                            } else {
+                                List<Integer> lists = new ArrayList<>();
+                                lists.add(R.mipmap.ahl_slide1);
+                                lists.add(R.mipmap.ahl_slide2);
+                                lists.add(R.mipmap.ahl_slide3);
+                                bannerView.setLifecycleRegistry(getLifecycle()).
+                                        setAdapter(new MyBannerAdapter()).
+                                        setScrollDuration(500).
+                                        setIndicatorSliderColor(Color.parseColor("#00000000"),
+                                                Color.parseColor("#00000000")).
+                                        setIndicatorGravity(IndicatorGravity.CENTER).
+                                        create(lists);
+                            }
+                        }
+                    });
+                }
+            }.start();
+
+            LinearLayout ll_ahl_content = findViewById(R.id.ll_ahl_content);
+            ll_ahl_content.post(new Runnable() {
+                @Override
+                public void run() {
+                    ViewGroup.LayoutParams layoutParams = ll_ahl_content.getLayoutParams();
+                    layoutParams.height = ll_ahl_content.getWidth() / 2;
+                    ll_ahl_content.setLayoutParams(layoutParams);
+                }
+            });
+            LinearLayout ll_wa = findViewById(R.id.ll_wa);
+            LinearLayout ll_tg = findViewById(R.id.ll_tg);
+            LinearLayout ll_liveChat = findViewById(R.id.ll_liveChat);
+            ll_wa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://wa.me/85595306890");
+                }
+            });
+            ll_tg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://t.me/ahlicasino");
+                }
+            });
+            ll_liveChat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://secure.livechatinc.com/licence/8667886/v2/open_chat.cgi");
+                }
+            });
+
+            ImageView img_animation1 = findViewById(R.id.img_animation1);
+            ImageView img_animation2 = findViewById(R.id.img_animation2);
+            ImageView img_animation3 = findViewById(R.id.img_animation3);
+            ImageView img_animation4 = findViewById(R.id.img_animation4);
+            ahlTranslationY(img_animation1);
+            ahlTranslationY(img_animation2);
+            ahlTranslationY(img_animation3);
+            ahlTranslationY(img_animation4);
+        }
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas") &&
                 !BuildConfig.FLAVOR.equals("rascasino")) {
@@ -1648,6 +1746,13 @@ public class LoginActivity extends BaseActivity {
             }
         }
 
+    }
+
+    private void ahlTranslationY(View view) {
+        ObjectAnimator objectTranslationY = ObjectAnimator.ofFloat(view, "translationY", 0, -40, 0);
+        objectTranslationY.setDuration(1500);
+        objectTranslationY.setRepeatCount(Animation.INFINITE);
+        objectTranslationY.start();
     }
 
     private void getNetPromo() {
@@ -1774,6 +1879,36 @@ public class LoginActivity extends BaseActivity {
                                         }
                                     };
                                     popWebView.showPopupCenterWindow();
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("wingsbet88")) {
+                                if (type == -1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getPopup())) {
+                                        PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                        popImg.setLoadUrl(currentWABean.getPopup());
+                                        if (!TextUtils.isEmpty(currentWABean.getPopupLink())) {
+                                            popImg.setGoUrl(currentWABean.getPopupLink());
+                                        }
+                                        popImg.showPopupCenterWindow();
+                                    }
+                                } else if (type == -2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getBonusSpecial())) {
+                                        PopWebView popWebView = new PopWebView(mContext, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+                                            @Override
+                                            public String getUrl() {
+                                                return currentWABean.getBonusSpecial();
+                                            }
+
+                                            @Override
+                                            public String getTitle() {
+                                                return "BONUS SPECIAL";
+                                            }
+                                        };
+                                        popWebView.showPopupCenterWindow();
+                                    }
+                                } else if (type == -3) {
+                                    if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
+                                    }
                                 }
                             }
                         }

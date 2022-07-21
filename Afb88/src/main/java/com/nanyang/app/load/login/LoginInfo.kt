@@ -156,8 +156,15 @@ class LoginInfo {
             )
     }
 
+    class Lucky361WfBean(ACT: String, lang: String, PT: String) : LanguageWfBean(ACT, lang, PT) {
+        var ProviderName: String = "AFBGaming"
+        var IsAFBGame: String = "false"
+
+    }
+
     class AfbGameWfBean(ACT: String, lang: String, PT: String) : LanguageWfBean(ACT, lang, PT) {
         var ProviderName: String = "AFBGaming"
+        var IsAFBGame: String = "true"
 
     }
     class JILIGameWfBean(ACT: String, lang: String, PT: String) : LanguageWfBean(ACT, lang, PT) {

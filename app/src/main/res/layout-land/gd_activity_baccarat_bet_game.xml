@@ -279,7 +279,8 @@
                 android:padding="5dp"
                 android:text="@string/nn"
                 android:textColor="@color/white"
-                android:textSize="13sp"></TextView>
+                android:textSize="13sp"
+                android:textStyle="bold"></TextView>
 
             <include layout="@layout/gd_include_baccarat_bet_table" />
 
@@ -779,4 +780,11 @@
             layout="@layout/gd_layout_baccarat_content_panel" />
 
     </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+
+    <ImageView
+        android:id="@+id/gd_img_cow"
+        android:layout_width="80dp"
+        android:layout_height="23.5dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"></ImageView>
 </FrameLayout>

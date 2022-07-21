@@ -35,9 +35,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="255px"
+        android:layout_marginTop="253px"
+        android:background="@drawable/baccarat_data_bg"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="2px"
+        android:paddingBottom="2px">
 
         <TextView
             android:id="@+id/gd__tv_table_game_number1"
@@ -45,19 +48,17 @@
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_game_number_bg"
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:text="0 - 0"
-            android:textColor="@color/white"
+            android:textColor="#fff130"
             android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="3dp"
@@ -85,11 +86,10 @@
             android:layout_width="60dp"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:textColor="@color/white"
+            android:textColor="#ff6565"
             android:textSize="13sp" />
 
         <TextView
@@ -98,7 +98,6 @@
             android:layout_width="60dp"
             android:layout_height="25dp"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/gd_img_balance_bg"
             android:gravity="center"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
@@ -113,23 +112,29 @@
 
     <LinearLayout
         android:layout_width="35dp"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="255px"
+        android:layout_marginTop="253px"
         android:layout_marginRight="5dp"
-        android:background="@mipmap/gd_img_change_table_bg"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="2px"
+        android:paddingBottom="2px">
 
-        <TextView
-            android:layout_width="25dp"
-            android:layout_height="15dp"
-            android:background="@mipmap/gd_table_p"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:visibility="visible" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
 
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/gd_table_p"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="visible" />
+        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -679,19 +684,29 @@
         <include layout="@layout/gd_layout_pop_center_baccarat" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tv_change_bet_content"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="215px"
+        android:layout_marginTop="220px"
         android:layout_marginRight="5px"
-        android:background="@mipmap/gd_img_balance_l_bg"
-        android:gravity="center"
-        android:onClick="clickChangeBetContent"
-        android:padding="5dp"
-        android:text="@string/nn"
-        android:textColor="@color/white"
-        android:textSize="13sp"></TextView>
+        android:onClick="clickChangeBetContent">
 
+        <ImageView
+            android:id="@+id/gd_img_cow"
+            android:layout_width="80dp"
+            android:layout_height="23.5dp"
+            android:scaleType="fitXY"></ImageView>
+
+        <TextView
+            android:id="@+id/tv_change_bet_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/nn"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"></TextView>
+    </FrameLayout>
 </FrameLayout>

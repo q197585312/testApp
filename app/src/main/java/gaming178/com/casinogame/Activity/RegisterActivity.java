@@ -137,8 +137,6 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
             imgCenter.setImageResource(R.mipmap.gd_ratu_register_title_logo);
         } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
             btnRegist.setTextColor(Color.BLACK);
-        } else if (BuildConfig.FLAVOR.equals("wincasino365")) {
-            btnRegist.setBackgroundResource(R.mipmap.gd_win365_register_bg);
         } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
             tvRegisterVerifyCode.setBackgroundResource(R.drawable.gd_login_button_bg_gold12);
             tvRegisterVerifyCode.setTextColor(Color.WHITE);

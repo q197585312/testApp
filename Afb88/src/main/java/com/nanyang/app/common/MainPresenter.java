@@ -166,6 +166,8 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.AfbGameWfBean("GetTT", "", "wfSlotLogin"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("JILI")) {
             skipPCashio("get", "", g, new LoginInfo.JILIGameWfBean("GetTT", "", "wfSlotLogin"), "", "^.*\"(http[^\"]+)\".*$");
+        } else if (g.equals("Lucky361")) {
+            skipPCashio("get", "", g, new LoginInfo.Lucky361WfBean("GetTT", "", "wfSlotLogin"), "", "^.*\"(http[^\"]+)\".*$");
         }
     }
 

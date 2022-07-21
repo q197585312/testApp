@@ -44,14 +44,14 @@ public class LanguageHelper {
             } else {
 //                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_deposit_home, context.getString(R.string.gd_deposit), "deposit", ""));
 //                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_withdraw_home, context.getString(R.string.gd_withdrawal), "withdraw", ""));
-                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_home_setting, context.getString(R.string.setting), "setting", ""));
+                languageItems.add(new MenuItemInfo<>(R.mipmap.gd_home_setting, BuildConfig.FLAVOR.equals("ahlicasino") ? "Music" : context.getString(R.string.setting), "setting", ""));
                 languageItems.add(new MenuItemInfo<>(R.mipmap.gd_change_password_home, context.getString(R.string.katasandi), "katasandi", ""));
                 languageItems.add(new MenuItemInfo<>(R.mipmap.gd_referrer_home, context.getString(R.string.gd_Referrer), "referrer", ""));
                 if (!BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("mejaemas") && !BuildConfig.FLAVOR.equals("royalkasino")) {
                     languageItems.add(new MenuItemInfo<>(R.mipmap.gd_referral_list, context.getString(R.string.referral_list), "Referral_List", ""));
                 }
                 languageItems.add(new MenuItemInfo<>(R.mipmap.gd_home_report, context.getString(R.string.report), "report", ""));
-                if (!TextUtils.isEmpty(baseActivity.mAppViewModel.getLiveChatStr())) {
+                if (!TextUtils.isEmpty(baseActivity.mAppViewModel.getLiveChatStr()) && !BuildConfig.FLAVOR.equals("ahlicasino")) {
                     languageItems.add(new MenuItemInfo<>(R.mipmap.gd_live_chat, context.getString(R.string.Live_Chat), "liveChat", ""));
                 }
                 languageItems.add(new MenuItemInfo<>(R.mipmap.gd_home_report, context.getString(R.string.transaction_record), "TransactionRecord", ""));
