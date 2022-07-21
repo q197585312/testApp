@@ -269,6 +269,8 @@ public class BetPop {
 
                 if (afbApplication.getMixBetList().size() > 1) {
                     goChooseBetSingle(false);
+                }else{
+                    closePopupWindow();
                 }
 
             }
@@ -1062,6 +1064,7 @@ public class BetPop {
                             && !typeId.contains("over")
                             && !typeId.contains("under")
                             && !typeId.equals("1")
+                            && !typeId.equals("x")
                             && !typeId.equals("2")
                             && !typeId.equals("odd")
                             && !typeId.equals("even")

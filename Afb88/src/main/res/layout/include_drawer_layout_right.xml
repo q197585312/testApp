@@ -13,7 +13,7 @@
         android:background="@color/green_dark"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="@string/more"
+        android:text="@string/menu"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />

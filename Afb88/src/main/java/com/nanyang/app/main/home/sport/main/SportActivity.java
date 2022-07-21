@@ -1028,7 +1028,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         tvRecord.setText(R.string.TabMyBets);
         tvMix.setText(R.string.bet_slip);
         getTvSportSelect.setText(sportIdText);
-        tvMenu.setText(R.string.more);
+        tvMenu.setText(R.string.menu);
     }
 
     public void clickTop(View view) {

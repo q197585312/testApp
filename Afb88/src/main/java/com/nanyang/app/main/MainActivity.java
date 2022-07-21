@@ -3,10 +3,8 @@ package com.nanyang.app.main;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -23,13 +21,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.data.HomePopItemBeen;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.MainPresenter;
+import com.nanyang.app.data.HomePopItemBeen;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
@@ -138,7 +136,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_tab_home.setText(R.string.bet);
             tv_tab_statement.setText(R.string.balances);
             tv_tab_center.setText(R.string.statement);
-            tv_tab_login_out.setText(R.string.more);
+            tv_tab_login_out.setText(R.string.menu);
             tv_tab_home.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_bet, 0, 0);
             tv_tab_statement.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_balance, 0, 0);
             tv_tab_center.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_botton_teb_statement, 0, 0);
@@ -146,7 +144,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_tab_home.setText(R.string.balances);
             tv_tab_statement.setText(R.string.statement);
             tv_tab_center.setText(R.string.contact);
-            tv_tab_login_out.setText(R.string.more);
+            tv_tab_login_out.setText(R.string.menu);
         }
         presenter.oddsType();
 

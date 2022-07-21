@@ -592,7 +592,7 @@
                     android:gravity="center"
                     android:onClick="clickMoreMenu"
                     android:paddingTop="5dp"
-                    android:text="@string/more"
+                    android:text="@string/menu"
                     android:textAllCaps="true"
                     android:textColor="@color/white_bottom"
                     android:textSize="12sp"

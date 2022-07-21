@@ -245,7 +245,7 @@ public class LivePlayHelper {
         holder.web_wv.setVisibility(View.VISIBLE);
         holder.llStatus.setVisibility(View.GONE);
         holder.tv_run_time.setVisibility(View.GONE);
-        holder.ll_run_match_title.setVisibility(View.GONE);
+        holder.ll_run_match_title.setVisibility(View.VISIBLE);
         if (playing) {
             onStopPlay();
         }

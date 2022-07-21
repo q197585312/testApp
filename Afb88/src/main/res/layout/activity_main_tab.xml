@@ -132,7 +132,7 @@
                     android:layout_gravity="center"
                     android:drawableTop="@mipmap/main_more"
                     android:textAllCaps="true"
-                    android:text="@string/more"
+                    android:text="@string/menu"
                     android:textColor="@color/white_bottom"
                     android:textSize="12sp"
                     android:textStyle="bold" />
