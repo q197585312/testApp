@@ -11,12 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_white_oval_bg"
-        android:padding="8dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/gd__iv_flag_country"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_gravity="center"
             android:src="@mipmap/gd_lang_en_flag" />
     </FrameLayout>
