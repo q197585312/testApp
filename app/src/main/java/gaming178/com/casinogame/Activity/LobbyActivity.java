@@ -815,6 +815,21 @@ public class LobbyActivity extends BaseActivity {
         ll_ahl_game_content.setVisibility(View.GONE);
         gridviewContentGv.setVisibility(View.VISIBLE);
         ll_banner.setVisibility(View.GONE);
+        int height = ll_parent.getHeight();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
+        if (height != params.height) {
+            tv_home_close_game.setVisibility(View.GONE);
+            ll_content_bg.setBackgroundResource(0);
+            ll_parent.setGravity(Gravity.BOTTOM);
+            int dp = 5;
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                dp = 35;
+            }
+            params.height = ll_parent.getHeight() - itemWidth - UIUtil.dip2px(mContext, dp);
+            ll_content_bg.setLayoutParams(params);
+        }
+        clickItem = 0;
+        ll_content_bg.setVisibility(View.VISIBLE);
     }
 
     private void closeAhlLocalGame() {
@@ -822,6 +837,10 @@ public class LobbyActivity extends BaseActivity {
         gridviewContentGv.setVisibility(View.GONE);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             ll_banner.setVisibility(View.VISIBLE);
+        }
+        ll_content_bg.setVisibility(View.INVISIBLE);
+        if (clickItem != 0) {
+            showGameContent(0, getString(R.string.baccarat));
         }
     }
 
@@ -924,12 +943,12 @@ public class LobbyActivity extends BaseActivity {
     }
 
     private void showGameContent(int type, String name) {
-        if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
             initGameWayHeight();
         }
         clickItem = type;
         if (lastIndex == type) {
-            if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
                 if (isCanShowGame()) {
                     openGame();
                 }
@@ -938,7 +957,7 @@ public class LobbyActivity extends BaseActivity {
         }
         tv_home_close_game.setText(name);
         switchFragment(type);
-        if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -1166,11 +1185,6 @@ public class LobbyActivity extends BaseActivity {
 //        super.leftClick();
         if (BuildConfig.FLAVOR.equals("ahlicasino")) {
             if (gridviewContentGv.getVisibility() == View.VISIBLE) {
-                if (!isCanShowGame()) {
-                    closeGame();
-                    clickItem = -1;
-                    adapterViewContent.notifyDataSetChanged();
-                }
                 closeAhlLocalGame();
                 return;
             }
