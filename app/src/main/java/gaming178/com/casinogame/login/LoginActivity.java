@@ -1731,7 +1731,7 @@ public class LoginActivity extends BaseActivity {
         if (objectData1 != null && objectData1 instanceof UserLoginBean) {
             UserLoginBean objectData = (UserLoginBean) objectData1;
             cb_remember_me.setChecked(objectData.getRememberMe());
-            if (objectData.getRememberMe()) {
+            if (objectData.getRememberMe() && !BuildConfig.FLAVOR.equals("ahlicasino")) {
                 tv_name.setText(objectData.getUsername());
                 tv_password.setText(objectData.getPassword());
                 EditText viewById = (EditText) findViewById(R.id.gd__login_site_edt);

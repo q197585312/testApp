@@ -359,6 +359,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
                     android:background="@mipmap/bottom_bg"
                     android:orientation="vertical">
 
@@ -504,352 +505,359 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="OUR PARTNER"
-                    android:textColor="#F6BA1F"
-                    android:textSize="25sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text="Jika anda ingin bermain di server PKV GAMES, dimana tersedia permainan poker , dominoqq, bandarq, gaple, capsa susun, aduq, bdqq, bandar poker, bandar66, sakong, perang baccarat, perang dadu, dan adu sakong, kami dapat merekomendasikan anda 2 website lain, kami juga dapat menjamin 100% keamanan dan kenyamanan anda dalam bermain jika daftar di website berikut :"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"></TextView>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@mipmap/partner1"></ImageView>
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/shape_daftar_out_bg"
-                    android:padding="4dp">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/shape_daftar_bg"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp"
-                        android:text="DAFTAR DISINI"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"></TextView>
-                </FrameLayout>
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:text="OUR PARTNER"
+                        android:textColor="#F6BA1F"
+                        android:textSize="25sp"
+                        android:textStyle="bold"></TextView>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@mipmap/partner2"></ImageView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="Jika anda ingin bermain di server PKV GAMES, dimana tersedia permainan poker , dominoqq, bandarq, gaple, capsa susun, aduq, bdqq, bandar poker, bandar66, sakong, perang baccarat, perang dadu, dan adu sakong, kami dapat merekomendasikan anda 2 website lain, kami juga dapat menjamin 100% keamanan dan kenyamanan anda dalam bermain jika daftar di website berikut :"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"></TextView>
 
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/shape_daftar_out_bg"
-                    android:padding="4dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/partner1"></ImageView>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:background="@drawable/shape_daftar_out_bg"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/shape_daftar_bg"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="DAFTAR DISINI"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"></TextView>
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/partner2"></ImageView>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/shape_daftar_out_bg"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/shape_daftar_bg"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="DAFTAR DISINI"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"></TextView>
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#F6BA1F"></View>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/shape_daftar_bg"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp"
-                        android:text="DAFTAR DISINI"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"></TextView>
-                </FrameLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="15dp"
-                    android:background="#F6BA1F"></View>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="30dp"
-                    android:text="SUPPORT BANK"
-                    android:textColor="#F6BA1F"
-                    android:textSize="20sp"
-                    android:textStyle="bold"></TextView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="30dp"
+                        android:text="SUPPORT BANK"
+                        android:textColor="#F6BA1F"
+                        android:textSize="20sp"
+                        android:textStyle="bold"></TextView>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:background="@drawable/shape_daftar_bg">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <FrameLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank1"></ImageView>
-                        </FrameLayout>
+                                android:layout_marginTop="30dp"
+                                android:background="@drawable/shape_daftar_bg">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank1"></ImageView>
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank2"></ImageView>
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank3"></ImageView>
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank4"></ImageView>
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank5"></ImageView>
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank6"></ImageView>
+                            </FrameLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"></View>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <FrameLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank2"></ImageView>
-                        </FrameLayout>
+                                android:layout_marginTop="30dp"
+                                android:background="@drawable/shape_daftar_bg">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank7"></ImageView>
+                            </FrameLayout>
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <FrameLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank3"></ImageView>
-                        </FrameLayout>
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank8"></ImageView>
+                            </FrameLayout>
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <FrameLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank4"></ImageView>
-                        </FrameLayout>
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank9"></ImageView>
+                            </FrameLayout>
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <FrameLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank5"></ImageView>
-                        </FrameLayout>
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank10"></ImageView>
+                            </FrameLayout>
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <FrameLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank6"></ImageView>
-                        </FrameLayout>
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_daftar_bg">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/bank11"></ImageView>
+                            </FrameLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <View
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"></View>
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#F6BA1F"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="30dp"
+                        android:text="LICENSED"
+                        android:textColor="#F6BA1F"
+                        android:textSize="20sp"
+                        android:textStyle="bold"></TextView>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:background="@drawable/shape_daftar_bg">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank7"></ImageView>
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
+                                android:src="@mipmap/responsively"></ImageView>
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank8"></ImageView>
-                        </FrameLayout>
+                                android:layout_marginTop="10dp"
+                                android:src="@mipmap/ssl"></ImageView>
+                        </LinearLayout>
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"></View>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank9"></ImageView>
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank10"></ImageView>
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/shape_daftar_bg">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@mipmap/bank11"></ImageView>
-                        </FrameLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="15dp"
-                    android:background="#F6BA1F"></View>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="30dp"
-                    android:text="LICENSED"
-                    android:textColor="#F6BA1F"
-                    android:textSize="20sp"
-                    android:textStyle="bold"></TextView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="15dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/responsively"></ImageView>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:src="@mipmap/ssl"></ImageView>
+                                android:src="@mipmap/responsive"></ImageView>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <View
-                        android:layout_width="15dp"
-                        android:layout_height="match_parent"></View>
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#F6BA1F"></View>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/responsive"></ImageView>
-                    </LinearLayout>
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:gravity="center"
+                        android:text="Copyright © 2017 Ahlicasino. All rights reserved."
+                        android:textColor="@color/white"
+                        android:textSize="14sp"></TextView>
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="15dp"
-                    android:background="#F6BA1F"></View>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:gravity="center"
-                    android:text="Copyright © 2017 Ahlicasino. All rights reserved."
-                    android:textColor="@color/white"
-                    android:textSize="14sp"></TextView>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

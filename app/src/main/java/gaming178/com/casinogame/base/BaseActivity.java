@@ -1560,13 +1560,13 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 rb_finger.setVisibility(View.GONE);
 //                TextView tv_music_title = (TextView) view.findViewById(R.id.gd__tv_music_title);
                 if (BaseActivity.this instanceof LobbyActivity) {
-                    rb_limit.setVisibility(View.GONE);
-                    if (!BuildConfig.FLAVOR.isEmpty()) {
-                        rb_finger.setVisibility(View.VISIBLE);
-                        if (rb_finger.getVisibility() == View.VISIBLE) {
-                            rb_language.setBackgroundResource(R.drawable.gd_selector_music_choose_mid);
-                        }
-                    }
+//                    rb_limit.setVisibility(View.GONE);
+//                    if (!BuildConfig.FLAVOR.isEmpty()) {
+//                        rb_finger.setVisibility(View.VISIBLE);
+//                        if (rb_finger.getVisibility() == View.VISIBLE) {
+//                            rb_language.setBackgroundResource(R.drawable.gd_selector_music_choose_mid);
+//                        }
+//                    }
                     isGameUi = false;
                 } else {
                     isGameUi = true;
@@ -1595,7 +1595,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 final RecyclerView rc_lg = view.findViewById(R.id.gd__rc_lg);
                 LinearLayout ll_finger = view.findViewById(R.id.gd__ll_finger);
                 recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-                BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(mAppViewModel.getTableId()), R.layout.gd_item_popupwindow_text_select) {
+                BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(mAppViewModel.getTableId() == 0 ? 1 : mAppViewModel.getTableId()), R.layout.gd_item_popupwindow_text_select) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, String item) {
                         holder.setText(R.id.gd__pop_text_tv, item);

@@ -19,6 +19,7 @@ import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Control.GdThreadHander;
+import gaming178.com.casinogame.Util.UIUtil;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.base.AdapterViewContent;
@@ -48,11 +49,11 @@ public class DepositPop extends BasePopupWindow {
     private BankInfo bank2;
     private BankInfo myBank;
     private ListView lstbank1;
-    private ListView lstbank2;
     private BlockDialog dialog;
     private ImageView ivClose;
     private RelativeLayout rl_title;
     private TextView tv_bottom_title;
+    BasePopupWindow bankPop;
 
     public DepositPop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -146,29 +147,44 @@ public class DepositPop extends BasePopupWindow {
                 lstbank1.setVisibility(View.GONE);
             }
         });
-        AdapterViewContent<BankInfo> content2 = new AdapterViewContent<>(context, lstbank2);
-        content2.setBaseAdapter(new QuickAdapterImp<BankInfo>() {
-            @Override
-            public int getBaseItemResource() {
-                return R.layout.item_text;
-            }
 
-            @Override
-            public void convert(ViewHolder helper, BankInfo item, int position) {
-                helper.setText(R.id.text_tv1, item.getBankName());
-                helper.setTextSize(R.id.text_tv1, 12);
-                helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context, R.color.gray_dark));
-            }
-        });
-        content2.setItemClick(new ItemCLickImp<BankInfo>() {
-            @Override
-            public void itemCLick(View view, BankInfo bankInfo, int position) {
-                setBank2(bankInfo);
-                lstbank2.setVisibility(View.GONE);
-            }
-        });
         content1.setData(bankList);
-        content2.setData(bankList);
+        if (bankPop == null) {
+            bankPop = new BasePopupWindow(context, tvChoiceBank2, tvChoiceBank2.getWidth(), UIUtil.dip2px(context, 125)) {
+                @Override
+                protected int getContentViewLayoutRes() {
+                    return R.layout.pop_dep_withdraw_bank;
+                }
+
+                @Override
+                protected void initView(View view) {
+                    super.initView(view);
+                    ListView bankListView = view.findViewById(R.id.listView);
+                    AdapterViewContent<BankInfo> content2 = new AdapterViewContent<>(context, bankListView);
+                    content2.setBaseAdapter(new QuickAdapterImp<BankInfo>() {
+                        @Override
+                        public int getBaseItemResource() {
+                            return R.layout.item_text;
+                        }
+
+                        @Override
+                        public void convert(ViewHolder helper, BankInfo item, int position) {
+                            helper.setText(R.id.text_tv1, item.getBankName());
+                            helper.setTextSize(R.id.text_tv1, 12);
+                            helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context, R.color.gray_dark));
+                        }
+                    });
+                    content2.setItemClick(new ItemCLickImp<BankInfo>() {
+                        @Override
+                        public void itemCLick(View view, BankInfo bankInfo, int position) {
+                            setBank2(bankInfo);
+                            bankPop.closePopupWindow();
+                        }
+                    });
+                    content2.setData(bankList);
+                }
+            };
+        }
     }
 
     private void setMyBank(BankInfo bank) {
@@ -218,7 +234,6 @@ public class DepositPop extends BasePopupWindow {
         btnConfirm = (Button) view.findViewById(R.id.gd__btn_pop_deposit_confirm);
         btnCancel = (Button) view.findViewById(R.id.gd__btn_pop_deposit_cancel);
         lstbank1 = (ListView) view.findViewById(R.id.gd__lv_bank_list1);
-        lstbank2 = (ListView) view.findViewById(R.id.gd__lv_bank_list2);
         ivClose = (ImageView) view.findViewById(R.id.gd__iv_pop_deposit_close);
         edtRemark = (EditText) view.findViewById(R.id.gd__edt_remark);
 
@@ -249,7 +264,9 @@ public class DepositPop extends BasePopupWindow {
         tvChoiceBank2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initBankPopList(lstbank2);
+                if (bankPop != null) {
+                    bankPop.showPopupDownWindow();
+                }
             }
         });
 
