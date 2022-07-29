@@ -96,7 +96,7 @@ public abstract class BasePopupWindow {
         popoWindow.setOutsideTouchable(isOutsideTouchable);
         popoWindow.setBackgroundDrawable(new BitmapDrawable());
         popoWindow.setOnDismissListener(new poponDismissListener());
-        
+
     }
 
     private void setBackgroundAttr(float f) {
@@ -138,6 +138,12 @@ public abstract class BasePopupWindow {
 
     protected void onCloose() {
 
+    }
+
+    public void showPopupDownWindow(int style) {
+        closePopupWindow();
+        popoWindow.setAnimationStyle(style);
+        popoWindow.showAsDropDown(v,0,0);
     }
 
     public void showPopupDownWindow() {

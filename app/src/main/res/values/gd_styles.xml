@@ -17,6 +17,7 @@
         <item name="android:visibility">gone</item>
         <item name="android:padding">6dp</item>
     </style>
+
     <style name="text_baccarat_village">
         <item name="android:gravity">center</item>
         <item name="android:layout_width">match_parent</item>
@@ -77,9 +78,14 @@
         <item name="android:background">@drawable/gd_oval_blue_solid_not</item>
         <item name="android:layout_margin">1dp</item>
     </style>
+
     <style name="text_oval_sold_not_red_margin1">
         <item name="android:background">@drawable/gd_oval_red_solid_not</item>
         <item name="android:layout_margin">1dp</item>
     </style>
 
+    <style name="popWindow_animation">
+        <item name="android:windowEnterAnimation">@anim/pop_bank_animation_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_bank_animation_exit</item>
+    </style>
 </resources>

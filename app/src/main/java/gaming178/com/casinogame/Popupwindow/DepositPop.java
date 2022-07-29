@@ -2,6 +2,7 @@ package gaming178.com.casinogame.Popupwindow;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +20,6 @@ import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Control.GdThreadHander;
-import gaming178.com.casinogame.Util.UIUtil;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.mylibrary.allinone.util.BlockDialog;
 import gaming178.com.mylibrary.base.AdapterViewContent;
@@ -150,7 +150,7 @@ public class DepositPop extends BasePopupWindow {
 
         content1.setData(bankList);
         if (bankPop == null) {
-            bankPop = new BasePopupWindow(context, tvChoiceBank2, tvChoiceBank2.getWidth(), UIUtil.dip2px(context, 125)) {
+            bankPop = new BasePopupWindow(context, edtAmount, edtAmount.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT) {
                 @Override
                 protected int getContentViewLayoutRes() {
                     return R.layout.pop_dep_withdraw_bank;
@@ -265,7 +265,7 @@ public class DepositPop extends BasePopupWindow {
             @Override
             public void onClick(View v) {
                 if (bankPop != null) {
-                    bankPop.showPopupDownWindow();
+                    bankPop.showPopupDownWindow(R.style.popWindow_animation);
                 }
             }
         });
