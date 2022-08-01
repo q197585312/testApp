@@ -98,7 +98,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ahlicasino"]
                 buildConfigField "String", "Labelid", '"98"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.29'
+                versionName '4.30'
             }
             cahaya {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "cahaya"]
@@ -254,7 +254,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ratucasino88"]
                 buildConfigField "String", "Labelid", '"134"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.28'
+                versionName '4.29'
             }
             royalkasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "royalkasino"]

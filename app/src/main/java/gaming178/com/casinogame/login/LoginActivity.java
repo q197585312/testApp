@@ -296,6 +296,14 @@ public class LoginActivity extends BaseActivity {
                     goNetWA(-1);
                 }
             });
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gd_spin).into(img_login_title_main);
+            img_login_title_main.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://b.link/ratuspin");
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("pemain")) {

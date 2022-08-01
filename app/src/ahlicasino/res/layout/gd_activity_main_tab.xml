@@ -78,29 +78,45 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:background="@drawable/shape_ahl_money_bg"
-                    android:padding="6dp"
-                    android:src="@mipmap/ahl_user"></ImageView>
-
-                <TextView
-                    android:id="@+id/gd__tv_home_user_name"
+                    android:id="@+id/ahl_lobby_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:text="xxx"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
-            </LinearLayout>
+                    android:src="@mipmap/gd_arrow_left_back"
+                    android:visibility="gone"></ImageView>
+
+                <LinearLayout
+                    android:id="@+id/ahl_ll_user1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/shape_ahl_money_bg"
+                        android:padding="6dp"
+                        android:src="@mipmap/ahl_user"></ImageView>
+
+                    <TextView
+                        android:id="@+id/gd__tv_home_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="xxx"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
 
             <ImageView
                 android:id="@+id/gd_img_logo"
@@ -111,31 +127,63 @@
                 android:maxWidth="100dp"
                 android:src="@mipmap/gd_title_logo" />
 
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:background="@drawable/shape_ahl_money_bg"
-                    android:gravity="center"
-                    android:text="Rp."
-                    android:textColor="#F7BB27"></TextView>
-
-                <TextView
-                    android:id="@+id/gd__tv_home_balance"
+                <LinearLayout
+                    android:id="@+id/ahl_ll_user2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:text="xxx"
-                    android:textColor="#F7BB27"
-                    android:textSize="15sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/shape_ahl_money_bg"
+                        android:padding="6dp"
+                        android:src="@mipmap/ahl_user"></ImageView>
+
+                    <TextView
+                        android:id="@+id/ahl_tv_home_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="xxxxxxx"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/shape_ahl_money_bg"
+                        android:gravity="center"
+                        android:text="Rp."
+                        android:textColor="#F7BB27"></TextView>
+
+                    <TextView
+                        android:id="@+id/gd__tv_home_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="xxx"
+                        android:textColor="#F7BB27"
+                        android:textSize="15sp" />
+                </LinearLayout>
             </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tv_switch_account"

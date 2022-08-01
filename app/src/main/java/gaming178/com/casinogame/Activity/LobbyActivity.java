@@ -157,6 +157,10 @@ public class LobbyActivity extends BaseActivity {
     public BaseFragment rouletteFragment;
     public BaseFragment sicboFragment;
 
+    ImageView ahlBack;
+    LinearLayout ahlLlUser1, ahlLlUser2;
+    TextView ahlTvUser;
+
     private int tableIndex = 0;
 
     public class UpdateAnnouncement implements Runnable {
@@ -621,6 +625,20 @@ public class LobbyActivity extends BaseActivity {
         slotOnlineAdapterViewContent.setOnItemClickListener(getItemClickListener());
         sportBook_JudiBolaAdapterViewContent.setOnItemClickListener(getItemClickListener());
         pokerOnlineAdapterViewContent.setOnItemClickListener(getItemClickListener());
+
+        ahlBack = findViewById(R.id.ahl_lobby_back);
+        ahlLlUser1 = findViewById(R.id.ahl_ll_user1);
+        ahlLlUser2 = findViewById(R.id.ahl_ll_user2);
+        ahlTvUser = findViewById(R.id.ahl_tv_home_user_name);
+        ahlBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (gridviewContentGv.getVisibility() == View.VISIBLE) {
+                    closeAhlLocalGame();
+                }
+            }
+        });
+        ahlTvUser.setText(mAppViewModel.getUser().getName());
     }
 
     private void initCommonUi() {
@@ -812,6 +830,9 @@ public class LobbyActivity extends BaseActivity {
     }
 
     private void showAhlLocalGame() {
+        ahlLlUser1.setVisibility(View.GONE);
+        ahlBack.setVisibility(View.VISIBLE);
+        ahlLlUser2.setVisibility(View.VISIBLE);
         ll_ahl_game_content.setVisibility(View.GONE);
         gridviewContentGv.setVisibility(View.VISIBLE);
         ll_banner.setVisibility(View.GONE);
@@ -833,6 +854,9 @@ public class LobbyActivity extends BaseActivity {
     }
 
     private void closeAhlLocalGame() {
+        ahlLlUser1.setVisibility(View.VISIBLE);
+        ahlBack.setVisibility(View.GONE);
+        ahlLlUser2.setVisibility(View.GONE);
         ll_ahl_game_content.setVisibility(View.VISIBLE);
         gridviewContentGv.setVisibility(View.GONE);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
