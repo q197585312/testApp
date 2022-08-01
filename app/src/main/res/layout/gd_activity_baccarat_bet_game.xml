@@ -129,7 +129,7 @@
                                 android:paddingRight="3dp"
                                 android:text="0 - 0"
                                 android:textColor="#fff130"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -153,7 +153,7 @@
                                     android:layout_marginLeft="3dp"
                                     android:text="111"
                                     android:textColor="@color/white"
-                                    android:textSize="15sp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <TextView
@@ -166,7 +166,7 @@
                                 android:paddingLeft="3dp"
                                 android:paddingRight="3dp"
                                 android:textColor="#ff6565"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/gd__tv_win_lose_bet"
@@ -178,7 +178,7 @@
                                 android:paddingLeft="3dp"
                                 android:paddingRight="3dp"
                                 android:textColor="@color/white"
-                                android:textSize="15sp" />
+                                android:textSize="14sp" />
 
                             <View
                                 android:layout_width="0dp"

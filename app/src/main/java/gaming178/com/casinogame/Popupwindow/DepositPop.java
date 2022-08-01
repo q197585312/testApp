@@ -1,8 +1,12 @@
 package gaming178.com.casinogame.Popupwindow;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,7 +57,7 @@ public class DepositPop extends BasePopupWindow {
     private ImageView ivClose;
     private RelativeLayout rl_title;
     private TextView tv_bottom_title;
-    BasePopupWindow bankPop;
+    Dialog bankDialog;
 
     public DepositPop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -149,41 +153,43 @@ public class DepositPop extends BasePopupWindow {
         });
 
         content1.setData(bankList);
-        if (bankPop == null) {
-            bankPop = new BasePopupWindow(context, edtAmount, edtAmount.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT) {
+        if (bankDialog == null) {
+            bankDialog = new Dialog(context, R.style.Dialog);
+            View view = LayoutInflater.from(context).inflate(R.layout.pop_dep_withdraw_bank, null);
+            ListView bankListView = view.findViewById(R.id.listView);
+            AdapterViewContent<BankInfo> content2 = new AdapterViewContent<>(context, bankListView);
+            content2.setBaseAdapter(new QuickAdapterImp<BankInfo>() {
                 @Override
-                protected int getContentViewLayoutRes() {
-                    return R.layout.pop_dep_withdraw_bank;
+                public int getBaseItemResource() {
+                    return R.layout.item_text;
                 }
 
                 @Override
-                protected void initView(View view) {
-                    super.initView(view);
-                    ListView bankListView = view.findViewById(R.id.listView);
-                    AdapterViewContent<BankInfo> content2 = new AdapterViewContent<>(context, bankListView);
-                    content2.setBaseAdapter(new QuickAdapterImp<BankInfo>() {
-                        @Override
-                        public int getBaseItemResource() {
-                            return R.layout.item_text;
-                        }
-
-                        @Override
-                        public void convert(ViewHolder helper, BankInfo item, int position) {
-                            helper.setText(R.id.text_tv1, item.getBankName());
-                            helper.setTextSize(R.id.text_tv1, 12);
-                            helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context, R.color.gray_dark));
-                        }
-                    });
-                    content2.setItemClick(new ItemCLickImp<BankInfo>() {
-                        @Override
-                        public void itemCLick(View view, BankInfo bankInfo, int position) {
-                            setBank2(bankInfo);
-                            bankPop.closePopupWindow();
-                        }
-                    });
-                    content2.setData(bankList);
+                public void convert(ViewHolder helper, BankInfo item, int position) {
+                    helper.setText(R.id.text_tv1, item.getBankName());
+                    helper.setTextSize(R.id.text_tv1, 12);
+                    helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context, R.color.gray_dark));
                 }
-            };
+            });
+            content2.setItemClick(new ItemCLickImp<BankInfo>() {
+                @Override
+                public void itemCLick(View view, BankInfo bankInfo, int position) {
+                    setBank2(bankInfo);
+                    bankDialog.dismiss();
+                }
+            });
+            content2.setData(bankList);
+            bankDialog.setContentView(view);
+            Window window = bankDialog.getWindow();
+            window.setWindowAnimations(R.style.popWindow_animation);
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.gravity = Gravity.LEFT | Gravity.TOP;
+            params.width = tvChoiceBank2.getWidth();
+            int location[] = new int[2];
+            edtAmount.getLocationOnScreen(location);
+            params.x = location[0];
+            params.y = location[1];
+            window.setAttributes(params);
         }
     }
 
@@ -264,8 +270,8 @@ public class DepositPop extends BasePopupWindow {
         tvChoiceBank2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bankPop != null) {
-                    bankPop.showPopupDownWindow(R.style.popWindow_animation);
+                if (bankDialog != null) {
+                    bankDialog.show();
                 }
             }
         });
