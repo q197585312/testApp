@@ -12,11 +12,11 @@
         android:visibility="visible">
 
         <LinearLayout
+            android:id="@+id/ll_bet_parent_1"
             android:layout_width="match_parent"
             android:layout_height="237px"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="240px"
-            android:layout_marginBottom="5px"
             android:background="@mipmap/lv"
             android:orientation="vertical">
 
@@ -215,7 +215,6 @@
             android:layout_height="237px"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="240px"
-            android:layout_marginBottom="5px"
             android:background="@mipmap/gd_baccarat_bg_h"
             android:orientation="vertical">
 

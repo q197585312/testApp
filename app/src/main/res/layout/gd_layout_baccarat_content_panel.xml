@@ -302,8 +302,8 @@
 
 
         <LinearLayout
-            android:layout_width="42dp"
-            android:layout_height="25dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
@@ -337,8 +337,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="42dp"
-            android:layout_height="25dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@drawable/gd_rectangle_p_shape"
             android:gravity="center"
@@ -368,8 +368,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="42dp"
-            android:layout_height="25dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@drawable/gd_rectangle_tie_shape"
             android:gravity="center"
@@ -401,7 +401,7 @@
         <LinearLayout
             android:id="@+id/gd__ll_bp"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@drawable/gd_rectangle_bp_shape"
             android:gravity="center"
@@ -433,7 +433,7 @@
         <LinearLayout
             android:id="@+id/gd__ll_pp"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@drawable/gd_rectangle_pp_shape"
             android:gravity="center"
@@ -463,8 +463,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="42dp"
-            android:layout_height="25dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@drawable/gd_rectangle_total_shape"
             android:gravity="center"

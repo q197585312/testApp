@@ -2,7 +2,6 @@ package gaming178.com.casinogame.Activity;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -608,6 +608,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     private float player1x;
     private float player2x;
     private float player3x;
+
+    private View view_spacing, view_spacing_top;
+    private LinearLayout ll_table_data, ll_bet_parent_1;
+    private FrameLayout fl_bet_parent;
 
 
     public class UpdateStatus implements Runnable {
@@ -2476,6 +2480,38 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         gameNumber = "0";
         tv_table_timer.setText("0");
         bBetSucess = false;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            view_spacing_top = findViewById(R.id.view_spacing_top);
+            view_spacing = findViewById(R.id.view_spacing);
+            ll_table_data = findViewById(R.id.ll_table_data);
+            fl_bet_parent = findViewById(R.id.fl_bet_parent);
+            ll_bet_parent_1 = findViewById(R.id.ll_bet_parent_1);
+            ViewTreeObserver vto = view_small.getViewTreeObserver();
+            vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    view_small.getViewTreeObserver().removeOnPreDrawListener(this);
+                    int top = ll_bet_parent_1.getTop();
+                    int marginTop = view_spacing_top.getHeight() + view_spacing.getHeight() * 2 + ll_table_data.getHeight();
+                    int margin = marginTop - top;
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_bet_parent.getLayoutParams();
+                    layoutParams.topMargin = margin;
+                    fl_bet_parent.setLayoutParams(layoutParams);
+                    View change_table = findViewById(R.id.gd__iv_baccarat_change_table);
+                    int changeTableMarginTop = view_spacing_top.getHeight() + view_spacing.getHeight() + (ll_table_data.getHeight() - change_table.getHeight()) / 2;
+                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) change_table.getLayoutParams();
+                    lp.topMargin = changeTableMarginTop;
+                    change_table.setLayoutParams(lp);
+                    return false;
+                }
+            });
+            view_spacing_top.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parentClick();
+                }
+            });
+        }
     }
 
     @Override
