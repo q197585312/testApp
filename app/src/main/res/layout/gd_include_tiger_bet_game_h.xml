@@ -5,6 +5,7 @@
     android:layout_gravity="center_horizontal">
 
     <LinearLayout
+        android:id="@+id/ll_bet_parent_1"
         android:layout_width="match_parent"
         android:layout_height="247px"
         android:layout_marginLeft="5px"

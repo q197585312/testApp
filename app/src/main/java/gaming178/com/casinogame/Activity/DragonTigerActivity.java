@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -1814,6 +1815,10 @@ public class DragonTigerActivity extends BaseActivity {
         }
     };
 
+    private View view_spacing, view_spacing_top;
+    private LinearLayout ll_table_data, ll_bet_parent_1;
+    private FrameLayout fl_bet_parent;
+
     public void initUI() {
         dragonTigerTimer = 0;
         mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setTimer(0);
@@ -1824,6 +1829,40 @@ public class DragonTigerActivity extends BaseActivity {
 
 //        if(isBottomOpen)//正好在发牌的时候锁频，再次打开屏幕的时候要先隐藏
 //            hidePoker();
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            view_spacing_top = findViewById(R.id.view_spacing_top);
+            view_spacing = findViewById(R.id.view_spacing);
+            ll_table_data = findViewById(R.id.ll_table_data);
+            fl_bet_parent = findViewById(R.id.fl_bet_parent);
+            ll_bet_parent_1 = findViewById(R.id.ll_bet_parent_1);
+            ViewTreeObserver vto = view_spacing_top.getViewTreeObserver();
+            vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    view_spacing_top.getViewTreeObserver().removeOnPreDrawListener(this);
+                    int top = ll_bet_parent_1.getTop();
+                    int marginTop = view_spacing_top.getHeight() + view_spacing.getHeight() * 2 + ll_table_data.getHeight();
+                    int margin = marginTop - top;
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fl_bet_parent.getLayoutParams();
+                    layoutParams.topMargin = margin;
+                    fl_bet_parent.setLayoutParams(layoutParams);
+                    View change_table = findViewById(R.id.gd__iv_baccarat_change_table);
+                    int changeTableMarginTop = view_spacing_top.getHeight() + view_spacing.getHeight() + (ll_table_data.getHeight() - change_table.getHeight()) / 2;
+                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) change_table.getLayoutParams();
+                    lp.topMargin = changeTableMarginTop;
+                    change_table.setLayoutParams(lp);
+                    return false;
+                }
+            });
+            view_spacing_top.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parentClick();
+                }
+            });
+        }
+
     }
 
     @Override
@@ -2195,8 +2234,8 @@ public class DragonTigerActivity extends BaseActivity {
         btn_limit = (TextView) findViewById(R.id.gd__btn_limit);
         llCenter.setVisibility(View.VISIBLE);
 
-        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dr));
-        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.ti));
+        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dragon_dragon_tiger));
+        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.tiger_dragon_tiger));
         ((TextView) findViewById(R.id.gd__tv_tie)).setText(getString(R.string.tie));
         ((TextView) findViewById(R.id.gd__tv_banker_pair)).setVisibility(View.GONE);
         ((TextView) findViewById(R.id.gd__tv_player_pair)).setVisibility(View.GONE);
@@ -4020,8 +4059,8 @@ public class DragonTigerActivity extends BaseActivity {
         tv_ask1_name.setText(getString(R.string.ask));
         tv_ask2_name.setText(getString(R.string.ask));
         tv_good_road_name.setText(getString(R.string.good_road));
-        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dr));
-        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.ti));
+        ((TextView) findViewById(R.id.gd__tv_banker)).setText(getString(R.string.dragon_dragon_tiger));
+        ((TextView) findViewById(R.id.gd__tv_player)).setText(getString(R.string.tiger_dragon_tiger));
         ((TextView) findViewById(R.id.gd__tv_tie)).setText(getString(R.string.tie));
         ((TextView) findViewById(R.id.gd__tv_total)).setText(getString(R.string.total_m));
         ((TextView) findViewById(R.id.gd__tv_dragon_result_name)).setText(getString(R.string.dragon));

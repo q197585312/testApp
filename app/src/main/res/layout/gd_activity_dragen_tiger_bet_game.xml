@@ -8,10 +8,8 @@
     <cn.nodemedia.NodePlayerView
         android:id="@+id/gd__surface"
         android:layout_width="match_parent"
-        android:layout_height="250px"
+        android:layout_height="270px"
         android:layout_gravity="center_horizontal" />
-
-    <include layout="@layout/toolbar_layout" />
 
     <FrameLayout
         android:layout_width="40dp"
@@ -38,99 +36,16 @@
 
     </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/gd__fl_baccarat_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="252px"
-        android:background="@drawable/baccarat_data_bg"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="1px"
-        android:paddingBottom="1px">
-
-        <TextView
-            android:id="@+id/gd__tv_table_game_number1"
-            style="@style/text_shadow"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_marginLeft="5dp"
-            android:gravity="center"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:text="0 - 0"
-            android:textColor="#fff130"
-            android:textSize="13sp" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp">
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:background="@mipmap/gd_dollar_white" />
-
-            <TextView
-                android:id="@+id/gd__tv_service_time"
-                style="@style/text_shadow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:text="111"
-                android:textColor="@color/white"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/gd__tv_total_bet"
-            style="@style/text_shadow"
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="5dp"
-            android:gravity="center"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:textColor="#ff6565"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/gd__tv_win_lose_bet"
-            style="@style/text_shadow"
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="5dp"
-            android:gravity="center"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:textColor="@color/white"
-            android:textSize="13sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></View>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="61px">
-
-
-        <FrameLayout
-            android:id="@+id/gd__fl_baccarat_parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="false">
+            android:clickable="false"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/gd__tv_hint"
@@ -140,17 +55,132 @@
                 android:layout_marginTop="141px"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/view_spacing_top"
+                android:layout_width="match_parent"
+                android:layout_height="270px"
+                android:clickable="false"></View>
+
+            <View
+                android:id="@+id/view_spacing"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_table_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baccarat_data_bg"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="6px"
+                android:paddingBottom="6px">
+
+                <TextView
+                    android:id="@+id/gd__tv_table_game_number1"
+                    style="@style/text_shadow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:text="0 - 0"
+                    android:textColor="#fff130"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@mipmap/gd_dollar_white" />
+
+                    <TextView
+                        android:id="@+id/gd__tv_service_time"
+                        style="@style/text_shadow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="111"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/gd__tv_total_bet"
+                    style="@style/text_shadow"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:textColor="#ff6565"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/gd__tv_win_lose_bet"
+                    style="@style/text_shadow"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"></View>
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@mipmap/gd_table_p"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="247px"></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="475px">
+                android:layout_height="wrap_content">
 
                 <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
                     android:id="@+id/gd__lv_baccarat_chips_h"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
                     android:divider="@null"
                     android:scrollbars="none" />
 
@@ -159,7 +189,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="42px"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="-3px"
                     android:background="@mipmap/gd_bg_result"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -281,34 +310,37 @@
 
             </FrameLayout>
 
-            <FrameLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="534px"
-                android:background="@color/white">
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
 
-                <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
-                    android:id="@+id/gd__leftPanel1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:closedHandle="@mipmap/gd_handle_road_close"
-                    app:content="@+id/gd__content"
-                    app:handle="@+id/gd__handle1"
-                    app:openedHandle="@mipmap/gd_handle_road_open"
-                    app:position="left">
+            <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
+                android:id="@+id/gd__leftPanel1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:closedHandle="@mipmap/gd_handle_road_close"
+                app:content="@+id/gd__content"
+                app:handle="@+id/gd__handle1"
+                app:openedHandle="@mipmap/gd_handle_road_open"
+                app:position="left">
 
-                    <ImageView
-                        android:id="@+id/gd__handle1"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical" />
+                <ImageView
+                    android:id="@+id/gd__handle1"
+                    android:layout_width="1dp"
+                    android:layout_height="163dp"
+                    android:layout_gravity="center_vertical" />
 
-                    <include
-                        android:id="@+id/gd__content"
-                        layout="@layout/gd_layout_baccarat_content_panel" />
+                <include
+                    android:id="@+id/gd__content"
+                    layout="@layout/gd_layout_baccarat_content_panel" />
 
-                </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
-            </FrameLayout>
+            </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
 
             <TextView
                 android:id="@+id/gd__btn_limit"
@@ -409,7 +441,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/gd__ll_chip_parent"
@@ -456,33 +489,6 @@
                 android:textColor="@color/yellow_brown_white_word"
                 android:visibility="gone" />
 
-
-            <include layout="@layout/gd_include_tiger_bet_game_h" />
-
-            <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
-                android:id="@+id/gd__bottomPanel1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|center_horizontal"
-                android:visibility="visible"
-                app:closedHandle="@drawable/rectangle_transparent"
-                app:content="@+id/gd__content2"
-                app:handle="@+id/gd__handle2"
-                app:openedHandle="@drawable/rectangle_transparent"
-                app:position="top">
-
-                <ImageView
-                    android:id="@+id/gd__handle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
-
-                <include
-                    android:id="@+id/gd__content2"
-                    layout="@layout/gd_layout_pop_bottom_tiger" />
-
-            </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
-
             <ListView
                 android:id="@+id/gd__lv_table_pool"
                 android:layout_width="145px"
@@ -496,8 +502,44 @@
                 android:scrollbars="none"
                 android:textColor="@color/yellow_brown_white_word"
                 android:visibility="gone" />
-        </FrameLayout>
-    </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/toolbar_layout" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_bet_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/gd_include_tiger_bet_game_h" />
+
+    </FrameLayout>
+
+    <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
+        android:id="@+id/gd__bottomPanel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="68px"
+        android:visibility="visible"
+        app:closedHandle="@drawable/rectangle_transparent"
+        app:content="@+id/gd__content2"
+        app:handle="@+id/gd__handle2"
+        app:openedHandle="@drawable/rectangle_transparent"
+        app:position="top">
+
+        <ImageView
+            android:id="@+id/gd__handle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <include
+            android:id="@+id/gd__content2"
+            layout="@layout/gd_layout_pop_bottom_tiger" />
+
+    </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -529,19 +571,8 @@
         android:layout_width="35dp"
         android:layout_height="25dp"
         android:layout_gravity="right"
-        android:layout_marginTop="253px"
-        android:layout_marginRight="5dp"
         android:gravity="center"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="25dp"
-            android:layout_height="15dp"
-            android:background="@mipmap/gd_table_p"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:visibility="visible" />
 
     </LinearLayout>
 

@@ -36,7 +36,7 @@
             android:layout_height="85px"
             android:layout_gravity="right"
             android:layout_marginRight="55px"
-            android:layout_marginTop="295px"
+            android:layout_marginTop="315px"
             android:scaleType="fitXY"
             android:src="@mipmap/gd_pk_1"
             android:visibility="gone" />
@@ -54,7 +54,7 @@
             android:layout_height="85px"
             android:layout_gravity="top"
             android:layout_marginLeft="55px"
-            android:layout_marginTop="295px"
+            android:layout_marginTop="315px"
             android:scaleType="fitXY"
             android:src="@mipmap/gd_pk_1"
             android:visibility="gone" />

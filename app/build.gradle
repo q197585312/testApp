@@ -79,7 +79,7 @@ android {
     if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
         productFlavors {
             gd88 {
-                versionName '3.95'
+                versionName '3.96'
                 buildConfigField "String", "Labelid", '"48"'
                 applicationId 'gaming178.com.baccaratgame'
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gd88"]
@@ -98,7 +98,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ahlicasino"]
                 buildConfigField "String", "Labelid", '"98"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.30'
+                versionName '4.31'
             }
             cahaya {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "cahaya"]
@@ -254,7 +254,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ratucasino88"]
                 buildConfigField "String", "Labelid", '"134"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.29'
+                versionName '4.30'
             }
             royalkasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "royalkasino"]
