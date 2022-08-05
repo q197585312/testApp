@@ -71,7 +71,9 @@ import gaming178.com.casinogame.Bean.DragonTiger;
 import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
+import gaming178.com.casinogame.Popupwindow.PopChangePassword;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
+import gaming178.com.casinogame.Popupwindow.PopMusic;
 import gaming178.com.casinogame.Popupwindow.PopReferralList;
 import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.PopTransactionRecord;
@@ -90,6 +92,7 @@ import gaming178.com.casinogame.Util.PopChooseChip;
 import gaming178.com.casinogame.Util.PopReferrer;
 import gaming178.com.casinogame.Util.PopSlideHint;
 import gaming178.com.casinogame.Util.TableChangePop;
+import gaming178.com.casinogame.Util.UIUtil;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
@@ -123,8 +126,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     protected boolean bGetGameTimer = true;
     private String strResultsOld = "";
     private boolean updateRouletteRoad = true;
-    protected ComponentName componentFront;
-    protected ComponentName componentBack;
+    public ComponentName componentFront;
+    public ComponentName componentBack;
     protected LinearLayout llCenter;
     protected AbsListPopupWindow<String> popupGameChoose;
     protected List<String> selectableGames;
@@ -1401,14 +1404,24 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                                     popReferrer.showPopupCenterWindow();
                                     break;
                                 case "katasandi":
-                                    startActivity(new Intent(mContext, ChangePasswordActivity.class));
+                                    if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                                        PopChangePassword popChangePassword = new PopChangePassword(mContext, v, width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                        popChangePassword.showPopupCenterWindow();
+                                    } else {
+                                        startActivity(new Intent(mContext, ChangePasswordActivity.class));
+                                    }
                                     break;
                                 case "Referral_List":
                                     PopReferralList popReferralList = new PopReferralList(mContext, v, width, width);
                                     popReferralList.showPopupCenterWindow();
                                     break;
                                 case "setting":
-                                    showSetPop(v, Gravity.TOP);
+                                    if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                                        PopMusic popMusic = new PopMusic(mContext, v, width, UIUtil.dip2px(mContext, 220));
+                                        popMusic.showPopupCenterWindow();
+                                    } else {
+                                        showSetPop(v, Gravity.TOP);
+                                    }
                                     break;
                                 case "report":
                                     PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -1837,10 +1850,14 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             center = new View(mContext);
         }
         int width = ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20);
+        int height = ViewGroup.LayoutParams.WRAP_CONTENT;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             width = width / 2;
         }
-        BasePopupWindow pop = new BasePopupWindow(mContext, center, width, ViewGroup.LayoutParams.WRAP_CONTENT) {
+        if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+            height = UIUtil.dip2px(mContext, 180);
+        }
+        BasePopupWindow pop = new BasePopupWindow(mContext, center, width, height) {
             @Override
             protected int getContentViewLayoutRes() {
                 return R.layout.gd_popupwindow_finger;
@@ -1850,6 +1867,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             protected void initView(View view) {
                 super.initView(view);
                 initFingerView(view);
+                ImageView imgClose = view.findViewById(R.id.gd__iv_pop_deposit_close);
+                if (imgClose != null) {
+                    imgClose.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            closePopupWindow();
+                        }
+                    });
+                }
             }
 
             @Override
@@ -1859,7 +1885,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
         };
         darkenBackground(0.5f);
-        pop.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+        if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+            pop.showPopupCenterWindow();
+        } else {
+            pop.showPopupWindowBottom(v, ScreenUtil.dip2px(mContext, 200), ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20));
+        }
     }
 
     private void initFingerView(View view) {

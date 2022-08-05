@@ -59,6 +59,7 @@ import gaming178.com.casinogame.Fragment.LobbySicboFragment;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.PopContact;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
+import gaming178.com.casinogame.Popupwindow.PopLogout;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BannerViewPager;
@@ -433,7 +434,11 @@ public class LobbyActivity extends BaseActivity {
         tv_home_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                    popLogout();
+                } else {
+                    logout();
+                }
             }
         });
         tv_home_deposit_l.setOnClickListener(new View.OnClickListener() {
@@ -630,15 +635,19 @@ public class LobbyActivity extends BaseActivity {
         ahlLlUser1 = findViewById(R.id.ahl_ll_user1);
         ahlLlUser2 = findViewById(R.id.ahl_ll_user2);
         ahlTvUser = findViewById(R.id.ahl_tv_home_user_name);
-        ahlBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (gridviewContentGv.getVisibility() == View.VISIBLE) {
-                    closeAhlLocalGame();
+        if (ahlBack != null) {
+            ahlBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (gridviewContentGv.getVisibility() == View.VISIBLE) {
+                        closeAhlLocalGame();
+                    }
                 }
-            }
-        });
-        ahlTvUser.setText(mAppViewModel.getUser().getName());
+            });
+        }
+        if (ahlTvUser != null) {
+            ahlTvUser.setText(mAppViewModel.getUser().getName());
+        }
     }
 
     private void initCommonUi() {
@@ -830,9 +839,11 @@ public class LobbyActivity extends BaseActivity {
     }
 
     private void showAhlLocalGame() {
-        ahlLlUser1.setVisibility(View.GONE);
-        ahlBack.setVisibility(View.VISIBLE);
-        ahlLlUser2.setVisibility(View.VISIBLE);
+        if (ahlBack != null) {
+            ahlLlUser1.setVisibility(View.GONE);
+            ahlBack.setVisibility(View.VISIBLE);
+            ahlLlUser2.setVisibility(View.VISIBLE);
+        }
         ll_ahl_game_content.setVisibility(View.GONE);
         gridviewContentGv.setVisibility(View.VISIBLE);
         ll_banner.setVisibility(View.GONE);
@@ -854,9 +865,11 @@ public class LobbyActivity extends BaseActivity {
     }
 
     private void closeAhlLocalGame() {
-        ahlLlUser1.setVisibility(View.VISIBLE);
-        ahlBack.setVisibility(View.GONE);
-        ahlLlUser2.setVisibility(View.GONE);
+        if (ahlBack != null) {
+            ahlLlUser1.setVisibility(View.VISIBLE);
+            ahlBack.setVisibility(View.GONE);
+            ahlLlUser2.setVisibility(View.GONE);
+        }
         ll_ahl_game_content.setVisibility(View.VISIBLE);
         gridviewContentGv.setVisibility(View.GONE);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -1003,7 +1016,8 @@ public class LobbyActivity extends BaseActivity {
     private void initBar() {
         toolbar.setVisibility(View.GONE);
         tv_home_user_name.setText(mAppViewModel.getUser().getName());
-        tv_home_balance.setText(mAppViewModel.getUser().getBalance() + "");
+//        tv_home_balance.setText(mAppViewModel.getUser().getBalance() + "");
+        tv_home_balance.setText(Gd88Utils.formatToSepara(mAppViewModel.getUser().getBalance()));
     }
 
     private void goAfb1188() {
@@ -1212,11 +1226,20 @@ public class LobbyActivity extends BaseActivity {
                 closeAhlLocalGame();
                 return;
             }
+            popLogout();
+            return;
         }
         bGetGameStatus = false;
         bGetGameTimer = false;
         mAppViewModel.setbLogin(false);
         logout();
+    }
+
+    private void popLogout() {
+        int screenWidth = WidgetUtil.getPopScreenWidth(this);
+        int width = screenWidth / 15 * 14;
+        PopLogout popLogout = new PopLogout(mContext, tv_home_balance, width, UIUtil.dip2px(mContext, 130));
+        popLogout.showPopupCenterWindow();
     }
 
     int clickItem = -1;

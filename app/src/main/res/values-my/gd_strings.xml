@@ -200,7 +200,7 @@
     <string name="dr">@string/dragon</string>
     <string name="ti">@string/tiger</string>
     <string name="register">DAFTAR</string>
-    <string name="gd_username">ID pengguna</string>
+    <string name="gd_username">ID Pengguna</string>
     <string name="gd_password">kata sandi</string>
     <string name="gd_password_up">KATA SANDI</string>
     <string name="verify_password">pengulangan kata sandi</string>

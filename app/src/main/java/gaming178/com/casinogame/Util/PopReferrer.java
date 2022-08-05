@@ -8,6 +8,7 @@ import android.os.Message;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +50,7 @@ public class PopReferrer extends BasePopupWindow {
     protected void initView(View view) {
         super.initView(view);
         tv_title = (TextView) view.findViewById(R.id.gd_tv_title);
-        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
             tv_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
         }
         tvContent = (TextView) view.findViewById(R.id.gd__tv_content);
@@ -65,6 +66,15 @@ public class PopReferrer extends BasePopupWindow {
                 }
             }
         });
+        ImageView imgClose = view.findViewById(R.id.gd__iv_pop_deposit_close);
+        if (imgClose != null) {
+            imgClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    closePopupWindow();
+                }
+            });
+        }
         tv_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

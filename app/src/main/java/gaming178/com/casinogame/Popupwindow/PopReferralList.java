@@ -66,7 +66,7 @@ public class PopReferralList extends BasePopupWindow {
     protected void initView(View view) {
         super.initView(view);
         rl_title = view.findViewById(R.id.gd_rl_title);
-        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") && !BuildConfig.FLAVOR.equals("ahlicasino")) {
             rl_title.setBackgroundColor(ContextCompat.getColor(context, R.color.login_color));
         }
         img_exit = view.findViewById(R.id.gd__img_exit);

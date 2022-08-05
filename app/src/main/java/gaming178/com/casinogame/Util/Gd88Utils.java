@@ -84,6 +84,30 @@ public class Gd88Utils {
         return df.format(data);
     }
 
+    public static String formatToSepara(double data) {
+        int newData = (int) data;
+        double point = 0;
+        if (data > newData) {
+            point = data - newData;
+        }
+        DecimalFormat df = new DecimalFormat("#,###");
+        String format = df.format(newData);
+        if (point > 0) {
+            String dataStr = data + "";
+            if (dataStr.contains(".")) {
+                int index = dataStr.indexOf(".");
+                String substring = dataStr.substring(index);
+                if (substring.length() == 2) {
+                    substring = substring + "0";
+                }
+                format = format + substring;
+            }
+        } else {
+            format = format + ".00";
+        }
+        return format;
+    }
+
     public static void goBrowser(Context context, String url) {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
