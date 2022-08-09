@@ -252,7 +252,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         super.restart();
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
-        if (BuildConfig.FLAVOR.equals("ez2888")) {
+        if (BuildConfig.FLAVOR.equals("ez2888") || BuildConfig.FLAVOR.equals("usun")) {
             btnLoginLogin.setText(getString(R.string.Login));
             btn_desktop.setText(getString(R.string.desktop));
         } else {

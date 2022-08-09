@@ -13,13 +13,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/rectangle_green_gradient"
+        android:background="@{viewModel.parentBg}"
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/img_header"
             imgUrl="@{viewModel.headerBgUrl}"
             android:layout_width="match_parent"
             android:layout_height="172dp"
+            android:background="@{viewModel.headerBgColor}"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +33,7 @@
             android:layout_height="160dp"
             android:layout_marginStart="6dp"
             android:layout_marginTop="6dp"
+            android:visibility="invisible"
             app:itemBinding="@{viewModel.headerItemBinding}"
             app:items="@{viewModel.headers}"
             app:layout_constraintBottom_toTopOf="@id/rv_content_type"
@@ -39,6 +42,22 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_home_image" />
 
+        <RelativeLayout
+            android:id="@+id/rl_banner"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/rv_content_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.zhpan.bannerview.BannerViewPager
+                android:id="@+id/banner_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_content_type"

@@ -18,6 +18,7 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.data.AppVersionBean;
+import com.nanyang.app.data.BannerBean;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -90,6 +91,37 @@ public class MainPresenter extends BaseSwitchPresenter {
             }
         });
     }*/
+
+    public void getBanner(final CallBack<List<String>> back) {
+        doRetrofitApiOnDefaultThread(ApiServiceKt.Companion.getInstance().getData(BuildConfig.ImgConfig_URL)
+                , new BaseConsumer<String>(baseContext) {
+                    @Override
+                    protected void onBaseGetData(String s) throws JSONException {
+                        BannerBean bannerBean = gson.fromJson(s, BannerBean.class);
+                        List<String> bannerList = new ArrayList<>();
+                        for (int i = 0; i < bannerBean.getBannerList().size(); i++) {
+                            bannerList.add(bannerBean.getBannerList().get(i).getImg());
+                        }
+                        back.onBack(bannerList);
+                    }
+
+                    @Override
+                    protected void onHideDialog() {
+
+                    }
+
+                    @Override
+                    protected void onError(final Throwable throwable) {
+                        super.onError(throwable);
+                    }
+
+//                   @Override
+//                   protected void onAccept() {
+//                       super.onAccept();
+//                   }
+                }
+        );
+    }
 
     public void getSetting(final CallBack<SettingAllDataBean> back) {
         LoadMainDataHelper<LoginInfo.LanguageWfBean> dataHelper = new LoadMainDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);

@@ -15,7 +15,8 @@ import me.tatarka.bindingcollectionadapter2.OnItemBind
 
 public class HomeViewModel : BaseViewModel() {
     lateinit var application: Application
-    val headerBgUrl = BuildConfig.ImgHeader_URL
+    val headerBgUrl = if (BuildConfig.FLAVOR == "usun") "" else BuildConfig.ImgHeader_URL
+    var headerBgColor = if (BuildConfig.FLAVOR == "usun") R.color.usun_to_bg else 0
     private lateinit var onItemClick: OnItemClickListener<Main>
     private lateinit var onLeftItemClick: OnItemClickListener<Left>
     var heightLeft = 90f
@@ -44,7 +45,7 @@ public class HomeViewModel : BaseViewModel() {
     }
     var leftItemBinding = ItemBinding.of(leftBind)
     var left = ObservableArrayList<Left>()
-
+    var leftSelect = ObservableArrayList<Left>()
 
     val mainBind: OnItemBind<Main> = OnItemBind { itemBinding, position, item ->
         itemBinding.set(BR.itemBean, R.layout.item_main_image)
@@ -56,6 +57,9 @@ public class HomeViewModel : BaseViewModel() {
     var selectedType: MutableLiveData<String> = MutableLiveData<String>().also {
         it.value = "sport"
     }
+
+    var parentBg =
+        if (BuildConfig.FLAVOR == "usun") R.mipmap.usun_background else R.drawable.rectangle_green_gradient
 
 
     fun loadAllPic(loadAllUi: (m: GamesData) -> Unit) {
@@ -82,10 +86,22 @@ public class HomeViewModel : BaseViewModel() {
                         }
                     }
                     left.addAll(allImage.left)
+                    if (BuildConfig.FLAVOR == "usun") {
+                        leftSelect.addAll(allImage.leftSelect)
+                        for ((index, main) in left.withIndex()) {
+                            var imgSelct = leftSelect[index].img
+                            left[index].imgSelect = imgSelct
+                            left[index].imgNoSelect = left[index].img
+                            left[index].text = ""
+                            if (index == 0) {
+                                left[index].img = imgSelct
+                            }
+                        }
+                    }
                     if (!allImage.header.isNullOrEmpty())
                         headers.addAll(allImage.header)
                     selectedType.value = "all"
-                    if (BuildConfig.FLAVOR == "ez2888") {
+                    if (BuildConfig.FLAVOR == "ez2888" || BuildConfig.FLAVOR == "usun") {
                         selectedType.value = "sport"
                     }
                     mainList = allImage.main

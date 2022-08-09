@@ -3,6 +3,7 @@ package com.nanyang.app;
 import android.animation.ValueAnimator;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
@@ -119,7 +120,12 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         tvToolbarLeft = (TextView) findViewById(R.id.tv_toolbar_left);
         llRight = (LinearLayout) findViewById(R.id.ll_right);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
-        toolbar.setBackgroundResource(R.color.green_black_word);
+        if (BuildConfig.FLAVOR.equals("usun")) {
+            tvToolbarRight.setTextColor(Color.WHITE);
+            toolbar.setBackgroundResource(R.drawable.usun_title);
+        } else {
+            toolbar.setBackgroundResource(R.color.green_black_word);
+        }
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,7 +277,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
         Map<String, String> headers = new HashMap<String, String>();
         String authorization = ((BaseToolbarActivity) (getBaseActivity())).getApp().getAuthorization();
 //        headers.put("isios", "true");
-        if (!TextUtils.isEmpty(authorization)){
+        if (!TextUtils.isEmpty(authorization)) {
             headers.put("authorization", authorization);
         }
         helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {

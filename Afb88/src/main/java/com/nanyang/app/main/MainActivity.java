@@ -112,6 +112,9 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_tab_center.setTextColor(Color.WHITE);
             tv_tab_login_out.setTextColor(Color.WHITE);
             img_message.setVisibility(View.GONE);
+        } else if (BuildConfig.FLAVOR.equals("usun")) {
+            img_message.setVisibility(View.GONE);
+            ll_tab_menu_bottom.setBackgroundResource(R.drawable.usun_bottom_bg);
         }
     }
 
@@ -140,6 +143,12 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_tab_home.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_bet, 0, 0);
             tv_tab_statement.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_balance, 0, 0);
             tv_tab_center.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_botton_teb_statement, 0, 0);
+        } else if (BuildConfig.FLAVOR.equals("usun")) {
+            tv_tab_home.setText(R.string.balances);
+            tv_tab_statement.setText(R.string.statement);
+            tv_tab_center.setText(R.string.Result);
+            tv_tab_login_out.setText(R.string.menu);
+            tv_tab_center.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.home_result, 0, 0);
         } else {
             tv_tab_home.setText(R.string.balances);
             tv_tab_statement.setText(R.string.statement);
@@ -172,6 +181,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             case R.id.fl_menu_center:
                 if (BuildConfig.FLAVOR.equals("ez2888")) {
                     clickStatement();
+                } else if (BuildConfig.FLAVOR.equals("usun")) {
+                    clickResult();
                 } else {
                     clickCenter();
                 }
@@ -231,6 +242,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     private void clickCenter() {
         afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getContactFragment());
+    }
+
+    private void clickResult() {
+        afbDrawerViewHolder.getStatementFragment().setSwitchTypeIndex(BetCenterFragment.grade);
+        afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getStatementFragment());
     }
 
     private void clickStatement() {

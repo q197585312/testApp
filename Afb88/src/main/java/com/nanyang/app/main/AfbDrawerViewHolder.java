@@ -124,11 +124,14 @@ public class AfbDrawerViewHolder implements IDrawerView {
         More m3 = new More(R.mipmap.main_statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, baseToolbarActivity.getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
         More m5 = null;
-        if (!BuildConfig.FLAVOR.equals("ez2888")) {
+        if (!BuildConfig.FLAVOR.equals("ez2888") && !BuildConfig.FLAVOR.equals("usun")) {
             m5 = new More(R.mipmap.contactus, baseToolbarActivity.getString(R.string.contact), 0, contactFragment);
         }
         More m6 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.setting), 0, settingFragment);
-        More m7 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.how_to_use), 0, howToUseFragment);
+        More m7 = null;
+        if (!BuildConfig.FLAVOR.equals("usun")) {
+            m7 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.how_to_use), 0, howToUseFragment);
+        }
         More m8 = new More(R.mipmap.logout, baseToolbarActivity.getString(R.string.logout), 0);
         List<More> dataList = new ArrayList<>();
         dataList.add(m1);
@@ -145,7 +148,9 @@ public class AfbDrawerViewHolder implements IDrawerView {
             dataList.add(m5);
         }
         dataList.add(m6);
-        dataList.add(m7);
+        if (m7 != null) {
+            dataList.add(m7);
+        }
         if (!AppConstant.IS_AGENT)
             dataList.add(m8);
         BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(baseToolbarActivity, dataList, R.layout.item_main_more) {

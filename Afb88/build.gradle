@@ -112,6 +112,21 @@ android {
             buildConfigField "String", "CHECK_VERSION", '"http://www.gd88.app/api/afbAndroidVersion.php?appName=ez2888"'
             buildConfigField "String", "PRINT_URL", '"http://wsapp.khsport.net/W9/Pub/wfBetSlip0.html?id="'
         }
+
+        usun {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "usun"]
+            applicationId 'com.nanyang.usun'
+            versionName '3.01'
+
+            buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W0/Pub/wfMain0.html"'
+
+            buildConfigField "String", "ImgConfig_URL", '"http://www.gd88.app/app/usun_game.php"'
+            buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
+            buildConfigField "String", "Maintenance_URL", '"http://wsapp.afb1188.net/W0/Img/Maintenance.html"'
+            buildConfigField "String", "Contact_URL", '"http://www.gd88.app/api/afb1188_contact.php"'
+            buildConfigField "String", "CHECK_VERSION", '"http://www.gd88.app/api/afbAndroidVersion.php?appName=usun"'
+            buildConfigField "String", "PRINT_URL", '"https://wsapp.khsport.net/W0/Pub/wfBetSlip0.html?id="'
+        }
     }
 
     applicationVariants.all { variant ->

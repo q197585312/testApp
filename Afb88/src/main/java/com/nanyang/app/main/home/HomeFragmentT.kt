@@ -1,5 +1,6 @@
 package com.nanyang.app.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nanyang.app.*
+import com.nanyang.app.Utils.BannerViewPagerNetAdapter
 import com.nanyang.app.data.GamesData
 import com.nanyang.app.data.Left
 import com.nanyang.app.data.Main
@@ -27,8 +29,7 @@ import com.unkonw.testapp.libs.presenter.IBasePresenter
 import com.unkonw.testapp.libs.utils.LogUtil
 import com.unkonw.testapp.libs.utils.TimeUtils
 import com.unkonw.testapp.libs.utils.ToastUtils
-import kotlinx.android.synthetic.main.activity_sport.view.*
-import kotlinx.android.synthetic.main.fragment_home_t.view.*
+import com.zhpan.bannerview.constants.IndicatorGravity
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -82,10 +83,42 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
                 index++
             }
         })
-
-
-
+        if (BuildConfig.FLAVOR == "usun") {
+            binding.rvHead.visibility = View.INVISIBLE
+            binding.rlBanner.visibility = View.VISIBLE
+            (baseActivity.presenter as MainPresenter).getBanner(MainPresenter.CallBack {
+                binding.bannerViewPager.setLifecycleRegistry(lifecycle)
+                    .setAdapter(BannerViewPagerNetAdapter()).setScrollDuration(800)
+                    .setIndicatorSliderColor(
+                        Color.WHITE,
+                        ContextCompat.getColor(
+                            mContext,
+                            R.color.yellow_gold
+                        )
+                    ).setIndicatorGravity(IndicatorGravity.CENTER).create(it)
+            })
+        } else {
+            binding.rvHead.visibility = View.VISIBLE
+            binding.rlBanner.visibility = View.GONE
+        }
         return binding.root
+    }
+
+    private fun initUSUNLeftItemClick(left: List<Left>, itemLeft: Left) {
+        for ((index, main) in left.withIndex()) {
+            var type = itemLeft.type
+            if (left[index].type == type) {
+                left[index].img = left[index].imgSelect
+            } else {
+                left[index].img = left[index].imgNoSelect
+            }
+        }
+    }
+
+    private fun clearUSUNLeftItemClick(left: List<Left>) {
+        for ((index, main) in left.withIndex()) {
+            left[index].img = left[index].imgNoSelect
+        }
     }
 
     private fun onLeftItemClick(): OnItemClickListener<Left> {
@@ -94,14 +127,23 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
                 println("点几了$m")
                 if (binding.rvContentDetail.visibility == View.VISIBLE) {
                     if (m.type == viewModel.selectedType.value) {
+                        if (BuildConfig.FLAVOR == "usun") {
+                            clearUSUNLeftItemClick(viewModel.left)
+                        }
                         binding.rvContentDetail.visibility = View.GONE
                         viewModel.heightLeft = 120f
                         binding.rvContentType.adapter?.notifyDataSetChanged()
                     } else {
+                        if (BuildConfig.FLAVOR == "usun") {
+                            initUSUNLeftItemClick(viewModel.left, m)
+                        }
                         viewModel.selectedType.postValue(m.type)
                         viewModel.loadMainGame(m.type)
                     }
                 } else {
+                    if (BuildConfig.FLAVOR == "usun") {
+                        initUSUNLeftItemClick(viewModel.left, m)
+                    }
                     binding.rvContentDetail.visibility = View.VISIBLE
                     viewModel.heightLeft = 90f
                     viewModel.selectedType.postValue(m.type)

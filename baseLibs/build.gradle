@@ -68,6 +68,7 @@ dependencies {
     api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     // Java8 support for Lifecycles
     api 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+    api 'com.github.zhpanvip:BannerViewPager:3.5.4'
 
     api rootProject.ext.dependencies.glide
     api rootProject.ext.dependencies.bdclta
