@@ -67,6 +67,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     View view_line;
     @BindView(R.id.img_message)
     ImageView img_message;
+    @BindView(R.id.tv_menu)
+    TextView tv_menu;
     @Nullable
     protected
     @BindView(R.id.drawer_more)
@@ -114,6 +116,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             img_message.setVisibility(View.GONE);
         } else if (BuildConfig.FLAVOR.equals("usun")) {
             img_message.setVisibility(View.GONE);
+            tv_menu.setBackgroundResource(R.drawable.usun_title);
             ll_tab_menu_bottom.setBackgroundResource(R.drawable.usun_bottom_bg);
         }
     }

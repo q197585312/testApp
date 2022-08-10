@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
@@ -127,6 +128,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
         View ll_match_outside = helper.getView(R.id.ll_match_outside);
         View ll_title_list = helper.getView(R.id.ll_title_list);
+        if (BuildConfig.FLAVOR.equals("usun")) {
+            parent.setBackgroundColor(Color.parseColor("#FDE9DA"));
+            ll_title_list.setBackgroundResource(R.drawable.usun_add_title_bg);
+        }
         boolean contractedMatch = updateContractedMatch(helper, item);
 
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
@@ -2081,14 +2086,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     private String changeValueF(String f) {
 //        "0-0.5"
-        String temp=AfbUtils.delHTMLTag(f);
+        String temp = AfbUtils.delHTMLTag(f);
 
-        if (temp!=null&&temp.contains("-")){
+        if (temp != null && temp.contains("-")) {
             String[] split = temp.split("-");
-                if(split.length>1){
-                    String s = subZeroAndDot((Float.parseFloat(split[0]) + Float.parseFloat(split[1]))/2);
-                    return s;
-                }
+            if (split.length > 1) {
+                String s = subZeroAndDot((Float.parseFloat(split[0]) + Float.parseFloat(split[1])) / 2);
+                return s;
+            }
         }
         return temp;
 

@@ -209,7 +209,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 if (((SportActivity) baseView.getIBaseContext().getBaseActivity()).dateClickPosition == position) {
                     tvGamePic.setBackgroundResource(item.getParent());
                     holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
-                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                    if (BuildConfig.FLAVOR.equals("usun")) {
+                        tv.setTextColor(ContextCompat.getColor(mContext, R.color.green));
+                    } else {
+                        tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                    }
                 } else {
                     tvGamePic.setBackgroundResource(res);
                     holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));

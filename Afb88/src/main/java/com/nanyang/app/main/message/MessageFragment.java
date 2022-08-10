@@ -1,10 +1,12 @@
 package com.nanyang.app.main.message;
 
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.MainPresenter;
@@ -30,6 +32,10 @@ public class MessageFragment extends BaseMoreFragment<MessagePresenter> {
 
     @BindView(R.id.message_list)
     RecyclerView rv;
+    @BindView(R.id.view_line)
+    View view_line;
+    @BindView(R.id.tv_title)
+    TextView tv_title;
 
     @Override
     public int onSetLayoutId() {
@@ -46,7 +52,10 @@ public class MessageFragment extends BaseMoreFragment<MessagePresenter> {
     public void initData() {
         super.initData();
         createPresenter(new MessagePresenter(this));
-
+        if (BuildConfig.FLAVOR.equals("usun")) {
+            view_line.setVisibility(View.VISIBLE);
+            tv_title.setBackgroundResource(R.drawable.usun_title);
+        }
         LinearLayoutManager ll = new LinearLayoutManager(mContext);
         rv.setLayoutManager(ll);
         final BaseRecyclerAdapter<MenuItemInfo<String>> adapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, new ArrayList<MenuItemInfo<String>>(), R.layout.item_messages) {
@@ -79,7 +88,7 @@ public class MessageFragment extends BaseMoreFragment<MessagePresenter> {
                     adapter.addAllAndClear(datas);
                 } else {
                     ArrayList<MenuItemInfo<String>> list = new ArrayList<>();
-                    list.add( new MenuItemInfo<String>(0, 0, "No Message", ""));
+                    list.add(new MenuItemInfo<String>(0, 0, "No Message", ""));
                     adapter.addAllAndClear(list);
                 }
 

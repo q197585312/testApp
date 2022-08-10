@@ -93,7 +93,7 @@ public class MainPresenter extends BaseSwitchPresenter {
     }*/
 
     public void getBanner(final CallBack<List<String>> back) {
-        doRetrofitApiOnDefaultThread(ApiServiceKt.Companion.getInstance().getData(BuildConfig.ImgConfig_URL)
+        doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().getData(BuildConfig.ImgConfig_URL)
                 , new BaseConsumer<String>(baseContext) {
                     @Override
                     protected void onBaseGetData(String s) throws JSONException {

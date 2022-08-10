@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- bottom shadow -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="2dp" />
+            <solid android:color="@color/trans_black_light" />
+        </shape>
+    </item>
+
+    <!-- content -->
+    <item
+        android:bottom="1dp"
+        android:drawable="@drawable/usun_bet_odds_bg"
+        android:left="1px"
+        android:right="1px"
+        android:top="1px">
+        <shape android:shape="rectangle"/>
+    </item>
+
+</layer-list>

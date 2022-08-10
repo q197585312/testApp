@@ -177,6 +177,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.ll_sport_menu_bottom)
     public
     LinearLayout llSportMenuBottom;
+    @BindView(R.id.fl_top)
+    FrameLayout fl_top;
     @BindView(R.id.sports_language_tv)
     ImageView sports_language_tv;
     @BindView(R.id.sports_selected_tv)
@@ -247,6 +249,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             outState.remove(BUNDLE_FRAGMENTS_KEY);
         }
     }
+
     @BindView(R.id.tv_top_right_oval)
     TextView tvTopRightOval;
 
@@ -269,17 +272,24 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMenu.setTextColor(Color.WHITE);
             tvMatchType.setTextColor(Color.WHITE);
             list_top.setVisibility(View.GONE);
+        } else if (BuildConfig.FLAVOR.equals("usun")) {
+            fl_top.setBackgroundResource(R.drawable.green_black_shadow_bottom);
+            img_top_click_left.setBackgroundResource(R.drawable.green_black_shadow_bottom);
+            img_top_click_right.setBackgroundResource(R.drawable.green_black_shadow_bottom);
+            ll_line1.setBackgroundColor(Color.parseColor("#7C2600"));
+            tvBalance.setTextColor(Color.parseColor("#E0D620"));
+            llSportMenuBottom.setBackgroundResource(R.drawable.usun_bottom_bg);
         }
         img_top_click_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rc_sport_list_top.scrollBy(-80,0);
+                rc_sport_list_top.scrollBy(-80, 0);
             }
         });
         img_top_click_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rc_sport_list_top.scrollBy(80,0);
+                rc_sport_list_top.scrollBy(80, 0);
             }
         });
     }
@@ -1163,7 +1173,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
-            if (onlyOne&& !hasBet) {
+            if (onlyOne && !hasBet) {
                 PopOneBtn popOneBtn = new PopOneBtn(this, tv_match_play) {
                     @Override
                     protected void initView(@NotNull View view) {

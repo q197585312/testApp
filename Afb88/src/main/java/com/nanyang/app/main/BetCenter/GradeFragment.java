@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BetCenter.Bean.DataInfoBean;
 import com.nanyang.app.main.BetCenter.Bean.GradeAllMatchBean;
@@ -125,10 +126,16 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
                 LinearLayout llAddView = holder.getView(R.id.ll_addView);
                 TextView tvContent = holder.getView(R.id.tv_content);
                 tvContent.setText(item.getIndex2());
+                int colorBg1 = 0xffEFEFEF;
+                int colorBg2 = 0xffD6DBD7;
+                if (BuildConfig.FLAVOR.equals("usun")) {
+                    colorBg1 = 0xffFFEBE2;
+                    colorBg2 = 0xffFFFFFF;
+                }
                 if (position % 2 == 0) {
-                    llContent.setBackgroundColor(0xffEFEFEF);
+                    llContent.setBackgroundColor(colorBg1);
                 } else {
-                    llContent.setBackgroundColor(0xffD6DBD7);
+                    llContent.setBackgroundColor(colorBg2);
                 }
                 llAddView.removeAllViews();
                 if (item.getGradeOpenDataBeanlist() != null) {

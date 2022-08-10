@@ -111,6 +111,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 if (!StringUtils.isNull(isRun5) && isRun5.equals("True")) {
                     if (BuildConfig.FLAVOR.equals("ez2888")) {
                         holder.getHolderView().setBackgroundResource(R.color.ez2888_item);
+                    } else if (BuildConfig.FLAVOR.equals("usun")) {
+                        holder.getHolderView().setBackgroundResource(R.color.white);
                     } else {
                         holder.getHolderView().setBackgroundResource(R.color.green_content1);
                     }

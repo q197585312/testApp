@@ -1,12 +1,16 @@
 package com.nanyang.app.main.home.sport.live;
 
 import android.content.Context;
+
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.MainPresenter;
@@ -79,7 +83,7 @@ public class LiveSelectedHelper {
             LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             rv_title_list.setLayoutManager(layoutManager);
-            baseRecyclerAdapter= new BaseRecyclerAdapter<MenuItemInfo>(mContext, getList(), R.layout.text_wrap_wrap) {
+            baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, getList(), R.layout.text_wrap_wrap) {
                 @Override
                 public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                     TextView textView = holder.getTextView(R.id.item_text_tv);
@@ -87,7 +91,11 @@ public class LiveSelectedHelper {
                     textView.setText(item.getRes());
                     textView.setAllCaps(true);
                     if (isPositionSelected(position)) {
-                        textView.setTextColor(ContextCompat.getColor(mContext, R.color.yellow1));
+                        if (BuildConfig.FLAVOR.equals("usun")) {
+                            textView.setTextColor(Color.WHITE);
+                        } else {
+                            textView.setTextColor(ContextCompat.getColor(mContext, R.color.yellow1));
+                        }
                     }
                 }
             };
@@ -105,8 +113,8 @@ public class LiveSelectedHelper {
                 }
             });
             rv_title_list.setAdapter(baseRecyclerAdapter);
-        }else{
-            baseRecyclerAdapter= (BaseRecyclerAdapter<MenuItemInfo>) adapter;
+        } else {
+            baseRecyclerAdapter = (BaseRecyclerAdapter<MenuItemInfo>) adapter;
             baseRecyclerAdapter.notifyDataSetChanged();
         }
 

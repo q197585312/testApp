@@ -6,12 +6,15 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -40,6 +43,8 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
     private long totalLength;
     private File loadFile;
     private String downloadUrl = "";
+    private LinearLayout LlParent;
+    private ImageView imgWelcome;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +53,15 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
             finish();
             return;
         }
-
         setContentView(R.layout.activity_welcome);
+        LlParent = findViewById(R.id.ll_parent);
+        imgWelcome = findViewById(R.id.img_welcome);
+        if (BuildConfig.FLAVOR.equals("usun")) {
+            LlParent.setBackgroundResource(0);
+            LlParent.setBackgroundColor(Color.WHITE);
+            imgWelcome.setImageResource(R.mipmap.usun_welcome_bg);
+            imgWelcome.setVisibility(View.VISIBLE);
+        }
         createPresenter(new WelcomePresenter(this));
         try {
             presenter.checkVersion(new BaseConsumer<CheckVersionBean>(this) {
@@ -232,5 +244,5 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         defaultSkip("SportBook");
         finish();
     }
-    
+
 }
