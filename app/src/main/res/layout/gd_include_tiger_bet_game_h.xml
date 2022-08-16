@@ -7,19 +7,19 @@
     <LinearLayout
         android:id="@+id/ll_bet_parent_1"
         android:layout_width="match_parent"
-        android:layout_height="247px"
+        android:layout_height="262px"
         android:layout_marginLeft="5px"
-        android:layout_marginTop="224px"
+        android:layout_marginTop="180px"
         android:layout_marginRight="5px"
         android:background="@mipmap/dv"
         android:orientation="vertical"></LinearLayout>
 
     <FrameLayout
         android:layout_width="520px"
-        android:layout_height="170px"
+        android:layout_height="185px"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="8px"
-        android:layout_marginTop="261px">
+        android:layout_marginTop="217px">
 
         <ImageView
             android:layout_width="90px"
@@ -39,10 +39,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="247px"
+        android:layout_height="262px"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="5px"
-        android:layout_marginTop="224px"
+        android:layout_marginTop="180px"
         android:layout_marginRight="5px"
         android:orientation="vertical">
 
@@ -58,7 +58,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3.5px"
                 android:layout_marginBottom="4px"
-                android:layout_weight="1.40">
+                android:layout_weight="1.40"
+                android:paddingRight="9px"
+                android:paddingBottom="1px">
 
 
                 <ImageView
@@ -73,7 +75,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2px"
                 android:layout_marginBottom="3px"
-                android:layout_weight="0.91">
+                android:layout_weight="0.91"
+                android:paddingLeft="2px"
+                android:paddingTop="1px"
+                android:paddingRight="6px"
+                android:paddingBottom="3px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tie"
@@ -93,7 +99,9 @@
                 android:layout_marginLeft="2px"
                 android:layout_marginRight="2px"
                 android:layout_marginBottom="3px"
-                android:layout_weight="1.37">
+                android:layout_weight="1.37"
+                android:paddingLeft="7px"
+                android:paddingBottom="2px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tiger"
@@ -105,7 +113,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62px"
+            android:layout_height="60px"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -114,7 +122,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3px"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingTop="5px"
+                android:paddingRight="7px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_dragon_red"
@@ -129,7 +139,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4px"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="1px"
+                android:paddingTop="5px"
+                android:paddingRight="5px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_dragon_black"
@@ -144,7 +157,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="4px"
+                android:paddingTop="5px"
+                android:paddingRight="3px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tiger_red"
@@ -160,7 +176,9 @@
                 android:layout_marginLeft="4px"
                 android:layout_marginRight="1px"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="5px"
+                android:paddingTop="5px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tiger_black"
@@ -175,7 +193,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62px"
+            android:layout_height="61px"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -185,7 +203,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3px"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingTop="7px"
+                android:paddingRight="7px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_dragon_odd"
@@ -200,7 +220,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2px"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="1px"
+                android:paddingTop="7px"
+                android:paddingRight="5px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_dragon_even"
@@ -215,7 +238,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1px"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="5px"
+                android:paddingTop="7px"
+                android:paddingRight="4px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tiger_odd"
@@ -232,7 +258,10 @@
                 android:layout_marginLeft="1px"
                 android:layout_marginRight="2px"
                 android:layout_marginBottom="2px"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="8px"
+                android:paddingTop="7px"
+                android:paddingRight="1px">
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tiger_even"
@@ -248,10 +277,10 @@
     <LinearLayout
         android:id="@+id/gd__fl_baccarat_b_table"
         android:layout_width="match_parent"
-        android:layout_height="247px"
+        android:layout_height="262px"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="5px"
-        android:layout_marginTop="224px"
+        android:layout_marginTop="180px"
         android:layout_marginRight="5px"
         android:background="@mipmap/gd_dragon_tiger_bet_bg"
         android:orientation="vertical">
@@ -779,7 +808,7 @@
         android:layout_width="480px"
         android:layout_height="220px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="136px"
+        android:layout_marginTop="92px"
         android:orientation="horizontal">
 
         <FrameLayout
@@ -807,7 +836,7 @@
         android:layout_width="match_parent"
         android:layout_height="146px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="245px"
+        android:layout_marginTop="208px"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -822,7 +851,7 @@
             android:id="@+id/gd__fl_dragon_black"
             android:layout_width="140px"
             android:layout_height="match_parent"
-            android:layout_marginLeft="113px">
+            android:layout_marginLeft="110px">
 
 
         </FrameLayout>
@@ -833,7 +862,7 @@
             android:layout_width="140px"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:layout_marginRight="113px">
+            android:layout_marginRight="110px">
 
 
         </FrameLayout>
@@ -854,7 +883,7 @@
         android:layout_width="match_parent"
         android:layout_height="146px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="311px"
+        android:layout_marginTop="280px"
         android:layout_weight="1">
 
 
@@ -870,7 +899,7 @@
             android:id="@+id/gd__fl_dragon_even"
             android:layout_width="140px"
             android:layout_height="match_parent"
-            android:layout_marginLeft="113px">
+            android:layout_marginLeft="110px">
 
 
         </FrameLayout>
@@ -881,7 +910,7 @@
             android:layout_width="140px"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:layout_marginRight="113px">
+            android:layout_marginRight="110px">
 
 
         </FrameLayout>
