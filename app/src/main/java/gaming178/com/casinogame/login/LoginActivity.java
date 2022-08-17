@@ -753,6 +753,14 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=85586490002");
                 }
             });
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            goNetWA(1);
+            gd_img_login_title_main_sbocasino77.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goNetWA(2);
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
@@ -1916,6 +1924,18 @@ public class LoginActivity extends BaseActivity {
                                 } else if (type == -3) {
                                     if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
                                         Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
+                                    }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("doacasino")) {
+                                List<WABean.DataBean> data = currentWABean.getData();
+                                if (data != null && data.size() > 0) {
+                                    WABean.DataBean dataBean = data.get(0);
+                                    if (type == 1) {
+                                        Glide.with(LoginActivity.this).asGif().load(dataBean.getURL()).into(gd_img_login_title_main_sbocasino77);
+                                    } else if (type == 2) {
+                                        if (!TextUtils.isEmpty(dataBean.getLink())) {
+                                            Gd88Utils.goBrowser(mContext, dataBean.getLink());
+                                        }
                                     }
                                 }
                             }
