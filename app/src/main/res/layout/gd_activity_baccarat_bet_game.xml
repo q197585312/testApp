@@ -22,7 +22,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="270px"
+        android:layout_height="245px"
         android:layout_gravity="center_horizontal">
 
         <cn.nodemedia.NodePlayerView
@@ -81,7 +81,7 @@
             <View
                 android:id="@+id/view_spacing_top"
                 android:layout_width="match_parent"
-                android:layout_height="270px"
+                android:layout_height="245px"
                 android:clickable="false"></View>
 
 
@@ -110,7 +110,6 @@
                             android:id="@+id/ll_table_data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/baccarat_data_bg"
                             android:gravity="center"
                             android:orientation="horizontal"
                             android:paddingTop="6px"
@@ -201,7 +200,7 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="237px"></View>
+                            android:layout_height="262px"></View>
 
                         <View
                             android:layout_width="match_parent"
@@ -709,7 +708,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="240px"
+        android:layout_marginTop="215px"
         android:layout_marginRight="5px"
         android:onClick="clickChangeBetContent">
 
