@@ -20,6 +20,9 @@ public class WABean {
     private String LiveChat;
     private String Promo;
     private String bonusSpecial;
+    private String BonusSpesial;
+    private String LayananVIP;
+    private String LuckyDragon;
     /**
      * code : 0
      * data : [{"name":"RTP","URL":"/http://202.36.58.165/images/RTP.webp","link":"https://rebrand.ly/RTPdoacasino/"}]
@@ -158,5 +161,29 @@ public class WABean {
         public void setLink(String link) {
             this.link = link;
         }
+    }
+
+    public String getBonusSpesial() {
+        return BonusSpesial;
+    }
+
+    public void setBonusSpesial(String bonusSpesial) {
+        BonusSpesial = bonusSpesial;
+    }
+
+    public String getLuckyDragon() {
+        return LuckyDragon;
+    }
+
+    public void setLuckyDragon(String luckyDragon) {
+        LuckyDragon = luckyDragon;
+    }
+
+    public String getVIP() {
+        return LayananVIP;
+    }
+
+    public void setVIP(String LayananVIP) {
+        this.LayananVIP = LayananVIP;
     }
 }
