@@ -476,7 +476,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
             settingWfBean.setMarketTyped(((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType().getType());
             settingWfBean.setDefaultSortingd(((BaseToolbarActivity) getBaseActivity()).getApp().getSort() + "");
             settingWfBean.setScoreSoundd(SoundPlayUtils.getSoundIndex().getType());
-            settingWfBean.setAccType(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType());
+            settingWfBean.setAcc(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType());
             settingWfBean.setAmtS(quickAmount);
             settingWfBean.setHideChip(hideChip);
             String ChipsList = getChooseChips();

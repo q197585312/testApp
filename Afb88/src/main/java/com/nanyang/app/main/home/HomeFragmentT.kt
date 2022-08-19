@@ -1,4 +1,4 @@
-package com.nanyang.app.main
+package com.nanyang.app.main.home
 
 import android.graphics.Color
 import android.os.Bundle
@@ -21,8 +21,10 @@ import com.nanyang.app.common.LanguageHelper
 import com.nanyang.app.common.MainPresenter
 import com.nanyang.app.databinding.FragmentHomeTBinding
 import com.nanyang.app.load.login.LoginInfo.LanguageWfBean
+import com.nanyang.app.main.BaseSwitchFragment
 import com.nanyang.app.main.home.HomeViewModel
 import com.nanyang.app.main.home.OnItemClickListener
+import com.unkonw.testapp.libs.base.BaseActivity
 import com.unkonw.testapp.libs.base.BaseApplication
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter
@@ -30,6 +32,8 @@ import com.unkonw.testapp.libs.utils.LogUtil
 import com.unkonw.testapp.libs.utils.TimeUtils
 import com.unkonw.testapp.libs.utils.ToastUtils
 import com.zhpan.bannerview.constants.IndicatorGravity
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -207,6 +211,7 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         viewModel.loadAllPic(::loadAllUi)
         updateTimer()
         initHomeToolBar()
+
     }
 
     fun loadAllUi(allBannerImagesBean: GamesData) {
@@ -364,4 +369,12 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         }
     }
     var updateHandler = Handler()
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: EventShowBall) {
+        if ( viewModel.gameType=="sport") {
+            viewModel.loadMainGame(viewModel.gameType)
+        }
+    }
 }

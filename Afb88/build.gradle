@@ -160,6 +160,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation project(':baseLibs')
     implementation rootProject.ext.dependencies.butterknife
+    implementation rootProject.ext.dependencies.eventbus
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'

@@ -3,6 +3,7 @@ package com.nanyang.app.common;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -26,9 +27,9 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
+import com.nanyang.app.main.home.PasswordWfBean;
 import com.nanyang.app.main.home.SV338CasinoWfBean;
 import com.nanyang.app.main.home.SaCasinoWfBean;
-import com.nanyang.app.main.home.PasswordWfBean;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
@@ -254,12 +255,18 @@ public class MainPresenter extends BaseSwitchPresenter {
     int errorOddsType = 0;
 
     public void switchOddsType(final String oddsType) {
-        Map<String, String> map = new HashMap<>();
 
-        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
-        languageWfBean.setAccType(oddsType);
-        map.put("_fm", languageWfBean.getJson());
-        Disposable subscription = ApiServiceKt.Companion.getInstance().doPostMap(AppConstant.getInstance().URL_LOGIN, map)
+
+        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("SetAcc", "", AppConstant.wfMain);
+        languageWfBean.setAcc(oddsType);
+        String authorization = ((BaseToolbarActivity) baseContext.getBaseActivity()).getApp().getAuthorization();
+        Map<String, String> headers = new HashMap<>();
+//        headers.put("isios", "true");
+        if (!TextUtils.isEmpty(authorization)) {
+            headers.put("authorization", authorization);
+        }
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
+        Disposable subscription = ApiServiceKt.Companion.getInstance().getData(p, headers)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
 
@@ -375,6 +382,7 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     public void oddsType() {
+/*
         Disposable subscription = ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_ODDS_TYPE + "MY").subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(new Consumer<String>() {//onNext
@@ -398,7 +406,8 @@ public class MainPresenter extends BaseSwitchPresenter {
                         subscription.request(Long.MAX_VALUE);
                     }
                 });
-        mCompositeSubscription.add(subscription);
+*/
+//        mCompositeSubscription.add(subscription);
 
     }
 

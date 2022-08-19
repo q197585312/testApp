@@ -36,3 +36,7 @@ data class LoginResultData(
     var LoginStatus: String,
     var Message: String
 )
+
+data class EventShowBall(
+    var showBall: Int
+)

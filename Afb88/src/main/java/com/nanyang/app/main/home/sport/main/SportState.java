@@ -21,6 +21,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -1379,19 +1380,18 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
         Map<String, String> map = new HashMap<>();
 
-        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
-        languageWfBean.setAccType(oddsType);
-        map.put("_fm", languageWfBean.getJson());
-
-        Disposable subscription = ApiServiceKt.Companion.getInstance().doPostMap(AppConstant.getInstance().URL_LOGIN, map)
+        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("SetAcc", "", AppConstant.wfMain);
+        languageWfBean.setAcc(oddsType);
+        String authorization = ((BaseToolbarActivity) (getBaseView().getIBaseContext().getBaseActivity())).getApp().getAuthorization();
+        Map<String, String> headers = new HashMap<>();
+//        headers.put("isios", "true");
+        if (!TextUtils.isEmpty(authorization)) {
+            headers.put("authorization", authorization);
+        }
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
+        Disposable subscription = ApiServiceKt.Companion.getInstance().getData(p, headers)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                /*     .flatMap(new Function<String, Flowable<String>>() {
-                         @Override
-                         public Flowable<String> apply(String s) throws Exception {
-                             return ApiServiceKt.Companion.getInstance().getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
-                         }
-                     })*/
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {

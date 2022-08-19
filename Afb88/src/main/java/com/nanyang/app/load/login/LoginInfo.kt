@@ -135,7 +135,7 @@ class LoginInfo {
 
         constructor() {}
 
-        open var accType = ""
+        open var Acc = ""
         open var lang = ""
         open var pgLable = "0.6398654664343417"
         open var vsn = "4.0.12"
