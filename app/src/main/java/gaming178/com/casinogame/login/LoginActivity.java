@@ -718,13 +718,13 @@ public class LoginActivity extends BaseActivity {
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "http://66.29.153.229/bonus/");
+                    goNetWA(1);
                 }
             });
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6282380320515&text&app_absent=0");
+                    goNetWA(2);
                 }
             });
             img_exit = findViewById(R.id.gd_img_exit);
@@ -732,7 +732,7 @@ public class LoginActivity extends BaseActivity {
             img_exit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://luckydragon.quest/");
+                    goNetWA(3);
                 }
             });
         }
@@ -751,6 +751,14 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=85586490002");
+                }
+            });
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            goNetWA(1);
+            gd_img_login_title_main_sbocasino77.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goNetWA(2);
                 }
             });
         }
@@ -1916,6 +1924,32 @@ public class LoginActivity extends BaseActivity {
                                 } else if (type == -3) {
                                     if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
                                         Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
+                                    }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("doacasino")) {
+                                List<WABean.DataBean> data = currentWABean.getData();
+                                if (data != null && data.size() > 0) {
+                                    WABean.DataBean dataBean = data.get(0);
+                                    if (type == 1) {
+                                        Glide.with(LoginActivity.this).asGif().load(dataBean.getURL()).into(gd_img_login_title_main_sbocasino77);
+                                    } else if (type == 2) {
+                                        if (!TextUtils.isEmpty(dataBean.getLink())) {
+                                            Gd88Utils.goBrowser(mContext, dataBean.getLink());
+                                        }
+                                    }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("kasino365")) {
+                                if (type == 1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getBonusSpesial())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getBonusSpesial());
+                                    }
+                                } else if (type == 2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getVIP());
+                                    }
+                                } else if (type == 3) {
+                                    if (!TextUtils.isEmpty(currentWABean.getLuckyDragon())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getLuckyDragon());
                                     }
                                 }
                             }

@@ -959,18 +959,15 @@ public class LobbyActivity extends BaseActivity {
     }
 
     private void initGameWayHeight() {
-        int height = ll_parent.getHeight();
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
-        if (height != params.height) {
+        if (params.height <= 0) {
+            int height = ll_parent.getHeight();
             int dp = 6;
-            if (BuildConfig.FLAVOR.equals("ahlicasino")) {
-                dp += 39;
-            }
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 dp = 10;
             }
             contentHeight = height - itemWidth - UIUtil.dip2px(mContext, dp);
-            params.height = height;
+            params.height = contentHeight;
             params.topMargin = height;
             ll_content_bg.setLayoutParams(params);
         }

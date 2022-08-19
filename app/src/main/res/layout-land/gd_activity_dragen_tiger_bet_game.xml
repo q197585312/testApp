@@ -292,24 +292,27 @@
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_dragon"
-                    android:layout_width="128px"
-                    android:layout_height="115px"
+                    android:layout_width="113px"
+                    android:layout_height="112px"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginLeft="-98px" />
+                    android:layout_marginLeft="-97px"
+                    android:layout_marginBottom="2px" />
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tie"
-                    android:layout_width="79px"
-                    android:layout_height="115px"
-                    android:layout_gravity="center_horizontal|bottom" />
+                    android:layout_width="68px"
+                    android:layout_height="112px"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="2px" />
 
 
                 <ImageView
                     android:id="@+id/gd__img_bet_bg_tiger"
-                    android:layout_width="128px"
-                    android:layout_height="115px"
+                    android:layout_width="113px"
+                    android:layout_height="112px"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginRight="-98px" />
+                    android:layout_marginRight="-97px"
+                    android:layout_marginBottom="2px" />
 
                 <FrameLayout
                     android:layout_width="122px"
@@ -321,10 +324,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_dragon_red"
-                        android:layout_width="82px"
-                        android:layout_height="54px"
+                        android:layout_width="73px"
+                        android:layout_height="50px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="24px"
+                        android:layout_marginBottom="4px" />
 
                 </FrameLayout>
 
@@ -338,10 +342,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_dragon_black"
-                        android:layout_width="80px"
-                        android:layout_height="54px"
+                        android:layout_width="72px"
+                        android:layout_height="50px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="25px"
+                        android:layout_marginBottom="4px" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -352,10 +357,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_dragon_odd"
-                        android:layout_width="86px"
-                        android:layout_height="61px"
+                        android:layout_width="78px"
+                        android:layout_height="56px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="21px"
+                        android:layout_marginBottom="2px" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -366,10 +372,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_dragon_even"
-                        android:layout_width="84px"
-                        android:layout_height="60px"
+                        android:layout_width="75px"
+                        android:layout_height="56px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="26px"
+                        android:layout_marginBottom="2px" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -381,10 +388,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_tiger_red"
-                        android:layout_width="81px"
-                        android:layout_height="54px"
+                        android:layout_width="70px"
+                        android:layout_height="50px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="23px"
+                        android:layout_marginBottom="4px" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -396,10 +404,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_tiger_black"
-                        android:layout_width="83px"
-                        android:layout_height="54px"
+                        android:layout_width="72px"
+                        android:layout_height="50px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="25px"
+                        android:layout_marginBottom="4px" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -411,10 +420,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_tiger_odd"
-                        android:layout_width="86px"
-                        android:layout_height="60px"
+                        android:layout_width="75px"
+                        android:layout_height="55px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="23px"
+                        android:layout_marginBottom="2px" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -425,10 +435,11 @@
 
                     <ImageView
                         android:id="@+id/gd__img_bet_bg_tiger_even"
-                        android:layout_width="86px"
-                        android:layout_height="60px"
+                        android:layout_width="77px"
+                        android:layout_height="55px"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="20px" />
+                        android:layout_marginLeft="26px"
+                        android:layout_marginBottom="2px" />
                 </FrameLayout>
 
 
