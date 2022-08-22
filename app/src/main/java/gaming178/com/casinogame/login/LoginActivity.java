@@ -1592,6 +1592,17 @@ public class LoginActivity extends BaseActivity {
             hallGameBottomPromptTv.stopScroll();
             hallGameBottomPromptTv.setTextColor(Color.WHITE);
             hallGameBottomPromptTv.setSpeed(0.8f);
+            List<Integer> lists = new ArrayList<>();
+            lists.add(R.mipmap.ahl_slide1);
+            lists.add(R.mipmap.ahl_slide2);
+            lists.add(R.mipmap.ahl_slide3);
+            bannerView.setLifecycleRegistry(getLifecycle()).
+                    setAdapter(new MyBannerAdapter()).
+                    setScrollDuration(500).
+                    setIndicatorSliderColor(Color.parseColor("#00000000"),
+                            Color.parseColor("#00000000")).
+                    setIndicatorGravity(IndicatorGravity.CENTER).
+                    create(lists);
             new Thread() {
                 @Override
                 public void run() {
@@ -1601,8 +1612,6 @@ public class LoginActivity extends BaseActivity {
                     WebSiteUrl.setNormal(result);
                     String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
                     String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
-                    url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
-                    String bannerResult = httpClient.sendPost(url, "");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -1614,36 +1623,6 @@ public class LoginActivity extends BaseActivity {
                             }
                             hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
                             hallGameBottomPromptTv.startScroll();
-                            if (bannerResult.contains("Success")) {
-                                BannerBean bannerBean = new Gson().fromJson(bannerResult, BannerBean.class);
-                                List<BannerBean.DataBean> data = bannerBean.getData();
-                                if (data != null && data.size() > 0) {
-                                    List<String> lists = new ArrayList<>();
-                                    for (int i = 0; i < data.size(); i++) {
-                                        BannerBean.DataBean dataBean = data.get(i);
-                                        lists.add(dataBean.getPath());
-                                    }
-                                    bannerView.setLifecycleRegistry(getLifecycle()).
-                                            setAdapter(new MyNetWorkBannerAdapter()).
-                                            setScrollDuration(500).
-                                            setIndicatorSliderColor(Color.parseColor("#00000000"),
-                                                    Color.parseColor("#00000000")).
-                                            setIndicatorGravity(IndicatorGravity.CENTER).
-                                            create(lists);
-                                }
-                            } else {
-                                List<Integer> lists = new ArrayList<>();
-                                lists.add(R.mipmap.ahl_slide1);
-                                lists.add(R.mipmap.ahl_slide2);
-                                lists.add(R.mipmap.ahl_slide3);
-                                bannerView.setLifecycleRegistry(getLifecycle()).
-                                        setAdapter(new MyBannerAdapter()).
-                                        setScrollDuration(500).
-                                        setIndicatorSliderColor(Color.parseColor("#00000000"),
-                                                Color.parseColor("#00000000")).
-                                        setIndicatorGravity(IndicatorGravity.CENTER).
-                                        create(lists);
-                            }
                         }
                     });
                 }
