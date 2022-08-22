@@ -14,6 +14,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.OnItemBind
 
 public class HomeViewModel : BaseViewModel() {
+    var gameType: String =""
     lateinit var application: Application
     val headerBgUrl = if (BuildConfig.FLAVOR == "usun") "" else BuildConfig.ImgHeader_URL
     var headerBgColor = if (BuildConfig.FLAVOR == "usun") R.color.usun_to_bg else 0
@@ -119,14 +120,18 @@ public class HomeViewModel : BaseViewModel() {
     }
 
     public fun loadMainGame(type: String) {
+        this.gameType=type;
         var temp = arrayListOf<Main>()
         mainList.forEach {
-            if (type.equals(it.type)) {
+
+            if (type == it.type) {
                 temp.add(it)
             }
         }
         mainContent.clear()
-        mainContent.addAll(temp)
+        if(type!="sport"||(application as AfbApplication).showBall==1){
+            mainContent.addAll(temp)
+        }
         println("type:${type}  ,mainContent:${mainContent.size}$mainContent")
 
     }

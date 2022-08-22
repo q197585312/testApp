@@ -32,6 +32,7 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
+import com.nanyang.app.main.home.HomeFragmentT;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 
@@ -118,6 +119,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             img_message.setVisibility(View.GONE);
             tv_menu.setBackgroundResource(R.drawable.usun_title);
             ll_tab_menu_bottom.setBackgroundResource(R.drawable.usun_bottom_bg);
+        }
+      String where=  getIntent().getStringExtra("fromWhere");
+        if(where!=null&&where.contains("LoginActivity")){
+            defaultSkip("SportBook");
         }
     }
 

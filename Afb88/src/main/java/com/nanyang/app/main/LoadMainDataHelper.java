@@ -13,10 +13,12 @@ import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.DepositAndWithdraw.Bean.UserCashBean;
 import com.nanyang.app.main.Setting.RefreshDataBean;
+import com.nanyang.app.main.home.EventShowBall;
 import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -95,6 +97,12 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                     }
                     JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);
                     back.onBack(jsonArrayData3.get(0).toString());
+                    if (jsonArrayData3.length() > 6) {
+                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setShowBall(jsonArrayData3.optInt(6));
+                        // 发布事件
+                        EventBus.getDefault().post(new EventShowBall(jsonArrayData3.optInt(6)));
+
+                    }
                 }
             }
 

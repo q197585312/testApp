@@ -47,6 +47,7 @@ import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
+import com.nanyang.app.main.home.EventShowBall;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
@@ -67,6 +68,9 @@ import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.PopOneBtn;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
@@ -259,6 +263,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             savedInstanceState.remove(BUNDLE_FRAGMENTS_KEY);
         }
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
@@ -292,6 +297,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 rc_sport_list_top.scrollBy(80, 0);
             }
         });
+
     }
 
 
@@ -497,6 +503,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             }*/
         }
         isOther = true;
+
         leftSportAdapter.addAllAndClear(listOther);
     }
 
@@ -576,7 +583,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         BetGoalWindowUtils.clear();
         liveMatchHelper.onDestroy();
         unregisterReceiver(myGoHomeBroadcastReceiver);
-
+        EventBus.getDefault().unregister(this);
 
     }
 
@@ -749,8 +756,32 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (getBetContent().v.getVisibility() == View.VISIBLE) {
             getBetContent().updateOdds(0);
         }
+        if (!AppConstant.IS_AGENT && getApp().getShowBall() != 1) {
+            flContent.setVisibility(View.GONE);
+        } else {
+            flContent.setVisibility(View.VISIBLE);
+        }
 
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventShowBall event) {
+        if (!AppConstant.IS_AGENT && event.getShowBall() != 1) {
+            flContent.setVisibility(View.GONE);
+        } else {
+            flContent.setVisibility(View.VISIBLE);
+        }
+        if (isOther = false) {
+            if (AppConstant.IS_AGENT || getApp().getShowBall() == 1) {
+                leftSportAdapter.addAllAndClear(listSport);
+            } else {
+                leftSportAdapter.clearItems(true);
+            }
+        }
+
+
+    }
+
 
     @Override
     protected void onPause() {
@@ -785,9 +816,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         LogUtil.d("type", "--->>" + type);
         isOther = false;
         if (listSport != null) {
-            leftSportAdapter.addAllAndClear(listSport);
+            if (AppConstant.IS_AGENT || getApp().getShowBall() == 1) {
+                leftSportAdapter.addAllAndClear(listSport);
+            }
+
             topSportAdapter.addAllAndClear(listSport);
         }
+
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
@@ -837,7 +872,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     }*/
                     SportActivity.this.listSport = listSport;
                     if (!isOther) {
-                        leftSportAdapter.addAllAndClear(listSport);
+                        leftSportAdapter.clearItems(false);
+                        if (AppConstant.IS_AGENT || getApp().getShowBall() == 1) {
+                            leftSportAdapter.addAllAndClear(listSport);
+                        }
                         topSportAdapter.addAllAndClear(listSport);
                     }
                 } catch (JSONException e) {

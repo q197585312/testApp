@@ -104,6 +104,16 @@ public class AfbApplication extends BaseApplication {
 
     private RefreshDataBean refreshDataBean;
 
+    public int getShowBall() {
+        return showBall;
+    }
+
+    public void setShowBall(int showBall) {
+        this.showBall = showBall;
+    }
+
+    private int showBall;
+
     public String getQuickAmount() {
         return quickAmount;
     }
@@ -634,6 +644,7 @@ public class AfbApplication extends BaseApplication {
         AppCacheUtils.getInstance(this).put("RefreshData", refreshDataBean);
         this.refreshDataBean = refreshDataBean;
     }
+
 
 
     public synchronized boolean saveCurrentBet(OddsClickBean oddsUrlBean) {

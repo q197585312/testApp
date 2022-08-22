@@ -438,11 +438,23 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <FrameLayout
-                    android:id="@+id/fl_main_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="@color/grey_background" />
+                    android:layout_weight="1">
+
+
+
+                    <View
+                        android:id="@+id/has_ball_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/black_grey" />
+                    <FrameLayout
+                        android:id="@+id/fl_main_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_background" />
+                </FrameLayout>
 
                 <include
                     layout="@layout/popupwindow_match_betting"
