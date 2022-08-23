@@ -525,7 +525,9 @@
     <string name="ft_myanmarhdp">全場緬甸讓球</string>
     <string name="ft_myanmarou">全場緬甸大小</string>
     <string name="better_odds"> 接受較好的賠率</string>
-    <string name="quick_bet_amount"> 快速下注金額</string>
+    <string name="quick_bet_amount"> 快速單註下注金額</string>
+    <string name="quick_mix_par_amount">過關快速下注金額</string>
+    <string name="quick_par_single_amount">過關單註快速下注金額</string>
     <string name="customise"> 自定義</string>
     <string name="auto_refresh"> 自動刷新</string>
     <string name="default_sort"> 排序</string>

@@ -39,4 +39,5 @@ public class ChipBean implements Serializable{
         this.name = name;
         this.value = value;
     }
+
 }

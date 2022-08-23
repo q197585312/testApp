@@ -373,8 +373,28 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: EventShowBall) {
-        if ( viewModel.gameType=="sport") {
+        if (viewModel.gameType == "sport") {
             viewModel.loadMainGame(viewModel.gameType)
         }
     }
+
+ /*   @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: EventShowGame) {
+        println("event:${event}")
+        if (viewModel.gameType != "sport" && event.showBall.length > 1) {
+            val split = event.showBall
+            val filter = viewModel.mainContent.filter {
+                var tem = it.g
+                if (it.g.contains(" ")) {
+                    tem = it.g.split(" ")[0]
+                    println("tem:$tem")
+                }
+                split.contains(tem, true)
+            }
+
+            viewModel.mainContent.clear()
+            viewModel.mainContent.addAll(filter)
+            println("filter:${filter.size},$filter")
+        }
+    }*/
 }

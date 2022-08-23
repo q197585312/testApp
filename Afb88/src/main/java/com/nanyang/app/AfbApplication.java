@@ -72,6 +72,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
 public class AfbApplication extends BaseApplication {
 
 
+    public String H5MainChoose="";
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
@@ -119,6 +120,8 @@ public class AfbApplication extends BaseApplication {
     }
 
     private String quickAmount = "";
+    public String mixParAmount = "";
+    public String parAmtAmount = "";
 
     public MenuItemInfo getOddsType() {
         if (oddsType != null && getSettingAllDataBean() != null)
@@ -347,6 +350,7 @@ public class AfbApplication extends BaseApplication {
             map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
         } else {
             map.put("Casino", new SportIdBean("Casino", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_baccarat));
+
             map.put("AFB CASINO", new SportIdBean("AFB CASINO", "", R.string.AFB_CASINO, "AFB CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_afb_gaming));
             map.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.SEXY_CASINO, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sg_gaming));
             map.put("SV388", new SportIdBean("SV388", "", R.string.SV388_CASINO, "SV388", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sv388_gaming));
@@ -371,6 +375,7 @@ public class AfbApplication extends BaseApplication {
 //        map.put("betsoft", new SportIdBean("betsoft", "", R.string.betsoft, "betsoft", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.bts_gaming));
             map.put("Joker", new SportIdBean("Joker", "", R.string.Joker, "Joker", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.joker_game));
             map.put("AFB GAMING", new SportIdBean("AFB GAMING", "", R.string.afb_gaming, "AFB GAMING", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_afb_slot_gaming));
+
         }
     }
 
@@ -639,6 +644,7 @@ public class AfbApplication extends BaseApplication {
     public void setQuickAmount(String quickAmount) {
         this.quickAmount = quickAmount;
     }
+
 
     public void setRefreshDataBean(RefreshDataBean refreshDataBean) {
         AppCacheUtils.getInstance(this).put("RefreshData", refreshDataBean);

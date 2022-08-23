@@ -77,6 +77,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -158,7 +159,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.iv_sort_time)
     ImageView ivSortTime;
     @BindView(R.id.fl_main_content)
-    FrameLayout flContent;
+    public FrameLayout flContent;
     @BindView(R.id.tv_record)
     TextView tvRecord;
 
@@ -496,14 +497,17 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         final List<SportIdBean> listOther = new ArrayList<>();
         while (iterator.hasNext()) {
             SportIdBean next = iterator.next();
-            listOther.add(next);
+            String tem = next.getId();
+
+            String Id = AfbUtils.changeId(tem);
+            if (app.H5MainChoose.length() <= 1 || Arrays.asList(app.H5MainChoose.split(",")).contains(Id))
+                listOther.add(next);
        /*     String enable = enableMap.get(next.getId());
             if (enable != null && enable.equals("True")) {
                 listOther.add(next);
             }*/
         }
         isOther = true;
-
         leftSportAdapter.addAllAndClear(listOther);
     }
 
@@ -756,21 +760,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (getBetContent().v.getVisibility() == View.VISIBLE) {
             getBetContent().updateOdds(0);
         }
-        if (!AppConstant.IS_AGENT && getApp().getShowBall() != 1) {
-            flContent.setVisibility(View.GONE);
-        } else {
-            flContent.setVisibility(View.VISIBLE);
-        }
+
 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventShowBall event) {
-        if (!AppConstant.IS_AGENT && event.getShowBall() != 1) {
-            flContent.setVisibility(View.GONE);
-        } else {
-            flContent.setVisibility(View.VISIBLE);
-        }
+
         if (isOther = false) {
             if (AppConstant.IS_AGENT || getApp().getShowBall() == 1) {
                 leftSportAdapter.addAllAndClear(listSport);
@@ -778,8 +774,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 leftSportAdapter.clearItems(true);
             }
         }
-
-
     }
 
 

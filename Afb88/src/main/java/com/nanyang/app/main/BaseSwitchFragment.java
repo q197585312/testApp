@@ -1,10 +1,14 @@
 package com.nanyang.app.main;
 
 
+import android.view.View;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.home.sport.main.SportActivity;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -48,8 +52,6 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
         this.switchTypeIndex = switchType;
     }
 
-    public void showContent() {
-    }
 
     public void setHolder(AfbDrawerViewHolder holder) {
         this.holder = holder;
@@ -77,6 +79,14 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
 /*        if (!isHidden()) {
             showContent();
         }*/
+
+    }
+
+    public void showContent() {
+        BaseActivity baseActivity = getBaseActivity();
+        if (baseActivity instanceof SportActivity) {
+            ((SportActivity) baseActivity).flContent.setVisibility(View.VISIBLE);
+        }
 
     }
 

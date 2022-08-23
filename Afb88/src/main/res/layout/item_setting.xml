@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="45dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -65,6 +66,7 @@
                     android:visibility="gone" />
 
                 <LinearLayout
+                    tools:visibility="visible"
                     android:id="@+id/ll_chip"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

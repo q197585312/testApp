@@ -28,6 +28,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.home.EventShowBall;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AddedParamsInfo;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
@@ -51,6 +52,9 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.PopOneBtn;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -58,8 +62,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
-
-import static com.unkonw.testapp.libs.utils.LogUtil.getMethodName;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -103,18 +105,21 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onAttach(Context context) {
         super.onAttach(context);
         Log.d(TAG, "onAttach: " + getClass().getSimpleName());
+
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: " + getClass().getSimpleName());
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: " + getClass().getSimpleName());
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -624,11 +629,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             adapterHelper.notifyPositionAdded(data, item);
         }
     }
-
+    @Override
     public void showContent() {
         super.showContent();
-        getMethodName();
-        LogUtil.d("getMethodName", getClass().getSimpleName() + ",onlyShowAdded:" + getBaseActivity().onlyShowOne);
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().cl_sport_head.setVisibility(View.VISIBLE);
         if (!BuildConfig.FLAVOR.equals("ez2888")) {
@@ -651,7 +654,20 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 getBaseActivity().ll_footer_sport.setVisibility(View.GONE);
             }
         }
+        setContentVisible();
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventShowBall event) {
+        setContentVisible();
+    }
+
+    public void setContentVisible() {
+        if (!AppConstant.IS_AGENT && getApp().getShowBall() != 1) {
+            getBaseActivity().flContent.setVisibility(View.GONE);
+        } else {
+            getBaseActivity().flContent.setVisibility(View.VISIBLE);
+        }
     }
 
 

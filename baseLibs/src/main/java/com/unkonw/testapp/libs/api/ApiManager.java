@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -165,11 +167,34 @@ public class ApiManager {
             Field sslSocketFactory = workerClass.getDeclaredField("sslSocketFactory");
             sslSocketFactory.setAccessible(true);
             sslSocketFactory.set(client, sc.getSocketFactory());
+
+            final SSLContext sslcontext = SSLContext.getInstance("TLS");
+            sslcontext.init(null, new TrustManager[]{myX509TrustManager}, null);
+            sslSocketFactory.set(client, sslcontext.getSocketFactory());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
+    private static TrustManager myX509TrustManager = new X509TrustManager() {
+
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+
+        @Override
+        public void checkServerTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+        }
+
+    };
     /**
      * 对 Observable<T> 做统一的处理，处理了线程调度、分割返回结果等操作组合了起来
      *
