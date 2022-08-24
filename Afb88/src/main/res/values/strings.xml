@@ -542,7 +542,9 @@
     <string name="ft_myanmarhdp">FT.MyanmarHDP</string>
     <string name="ft_myanmarou">FT.MyanmarOU</string>
     <string name="better_odds">ACCEPT ON BETTER ODDS</string>
-    <string name="quick_bet_amount">Quick BetAmount</string>
+    <string name="quick_bet_amount">Quick SINGLE BET AMT</string>
+    <string name="quick_mix_par_amount">Quick PAR BET AMT</string>
+    <string name="quick_par_single_amount">Quick PAR SINGLE BET AMT</string>
     <string name="customise">Customise</string>
     <string name="auto_refresh">AutoRefresh</string>
     <string name="default_sort">Default Sorting</string>

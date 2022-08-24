@@ -140,7 +140,9 @@ public class MainPresenter extends BaseSwitchPresenter {
                     getSetting(back);
                 } else {
                     ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
-                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getAccamount() + "");
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getQuerBetAmt() + "");
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).mixParAmount=(settingAllDataBean.getQuerMixParBetAmt() + "");
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).parAmtAmount=(settingAllDataBean.getQuerParBetAmt() + "");
                     ((AfbApplication) baseContext.getBaseActivity().getApplication()).setHideChip(settingAllDataBean.getIsHideChipSet());
                     AfbUtils.setChipStatusMap(settingAllDataBean.getChipSetChoose());
                     back.onBack(settingAllDataBean);

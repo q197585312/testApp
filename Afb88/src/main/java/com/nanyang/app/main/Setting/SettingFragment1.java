@@ -49,15 +49,14 @@ import java.util.Map;
 import butterknife.BindView;
 
 
-public class SettingFragment extends BaseMoreFragment<MainPresenter> implements ILanguageView<String> {
+
+public class SettingFragment1 extends BaseMoreFragment<MainPresenter> implements ILanguageView<String> {
     @BindView(R.id.person_center_view)
     RecyclerView rcContent;
     BaseToolbarActivity aty;
     BaseRecyclerAdapter<SettingInfoBean> adapter;
 
     private String quickAmount;
-    private String mixPar;
-    private String parAmt;
     private String hideChip;
     Map<String, Boolean> gameMap = new HashMap<>();
 
@@ -95,7 +94,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                     tvChoiceType.setVisibility(View.GONE);
                     cbChoice.setVisibility(View.VISIBLE);
                     llChip.setVisibility(View.GONE);
-                } else if (type.equals("3")) {
+                } else
+if (type.equals("3"))
+ {
                     tvChoiceType.setVisibility(View.GONE);
                     cbChoice.setVisibility(View.GONE);
                     if (item.chipBeans != null && item.chipBeans.size() > 0) {
@@ -105,7 +106,8 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         rv_chips.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
                         chipBeanBaseRecyclerAdapter.addAllAndClear(item.chipBeans);
                     }
-                } else if (type.equals("4")) {
+                }
+ else if (type.equals("4")) {
                     tvChoiceType.setVisibility(View.GONE);
                     cbChoice.setVisibility(View.GONE);
                     if (item.getGameChooseBeans() != null && item.getGameChooseBeans().size() > 0) {
@@ -117,7 +119,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                     }
                 }
 
-                if (position == 2 || position == 3 || position == 4 || position == 7) {
+                if (position == 2 || position == 3 || position == 4 || position == 5) {
                     vLine.setVisibility(View.VISIBLE);
                 } else {
                     vLine.setVisibility(View.GONE);
@@ -134,20 +136,21 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         tvChoiceType.setText(oddsType.getText());
                         break;
                     case 5:
-
-                        tvChoiceType.setText(quickAmount);
-                        break;
-                    case 6:
-                        tvChoiceType.setText(mixPar);
+//                        tvChoiceType.setText(quickAmount);
                         break;
                     case 7:
-                        tvChoiceType.setText(parAmt);
+                        int sort = ((BaseToolbarActivity) getBaseActivity()).getApp().getSort();
+                        if (sort == 0) {
+                            tvChoiceType.setText(R.string.hot_sort);
+                        } else {
+                            tvChoiceType.setText(R.string.sort_by_time);
+                        }
                         break;
-                    case 10:
+                    case 8:
                         MenuItemInfo allOdds = ((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType();
                         tvChoiceType.setText(allOdds.getText());
                         break;
-                    case 11:
+                    case 9:
 
                         if (SoundPlayUtils.getSoundIndex().getType().equals("0"))
                             tvChoiceType.setText(SoundPlayUtils.getSoundIndex().getText());
@@ -155,7 +158,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             tvChoiceType.setText(getString(SoundPlayUtils.getSoundIndex().getText()) + SoundPlayUtils.getSoundIndex().getType());
                         }
                         break;
-                    case 12:
+                    case 10:
                         if (((BaseToolbarActivity) getBaseActivity()).getApp().getHideChip().equals("0"))
                             tvChoiceType.setText(getString(R.string.chip_enable));
                         else {
@@ -237,7 +240,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popOddType.showPopupDownWindow();
                         break;
                     case 4:
-                    case 8:
+                    case 6:
                         if (cbChoice.isChecked()) {
                             cbChoice.setChecked(false);
                         } else {
@@ -245,13 +248,13 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         }
                         break;
                     case 5:
-                        BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow2 = new BaseYseNoChoosePopupWindow(mContext, tv) {
+                        BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow = new BaseYseNoChoosePopupWindow(mContext, tv) {
                             @Override
                             protected void clickSure(View v) {
                                 quickAmount = getChooseMessage().getText().toString().trim();
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
 
-                                tv.setText(quickAmount);
+//                                tv.setText(quickAmount);
                             }
 
                             @Override
@@ -259,50 +262,10 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                                 return R.layout.popupwindow_content_edit_yes_no;
                             }
                         };
-                        baseYseNoChoosePopupWindow2.getChooseMessage().setText(quickAmount);
-                        baseYseNoChoosePopupWindow2.getChooseTitleTv().setText(R.string.quick_bet_amount);
-                        ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreatedAndShow(baseYseNoChoosePopupWindow2, Gravity.CENTER);
-                        break;
-                    case 6:
-                        BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow = new BaseYseNoChoosePopupWindow(mContext, tv) {
-                            @Override
-                            protected void clickSure(View v) {
-                                mixPar = getChooseMessage().getText().toString().trim();
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().mixParAmount=(mixPar);
-
-                                tv.setText(mixPar);
-                            }
-
-                            @Override
-                            public int onSetLayoutRes() {
-                                return R.layout.popupwindow_content_edit_yes_no;
-                            }
-                        };
-                        baseYseNoChoosePopupWindow.getChooseMessage().setText(mixPar);
-                        baseYseNoChoosePopupWindow.getChooseTitleTv().setText(R.string.quick_mix_par_amount);
+                        baseYseNoChoosePopupWindow.getChooseMessage().setText(quickAmount);
                         ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreatedAndShow(baseYseNoChoosePopupWindow, Gravity.CENTER);
                         break;
                     case 7:
-                        BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow1 = new BaseYseNoChoosePopupWindow(mContext, tv) {
-                            @Override
-                            protected void clickSure(View v) {
-                                parAmt = getChooseMessage().getText().toString().trim();
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().parAmtAmount=(parAmt);
-
-                                tv.setText(parAmt);
-                            }
-
-                            @Override
-                            public int onSetLayoutRes() {
-                                return R.layout.popupwindow_content_edit_yes_no;
-                            }
-                        };
-                        baseYseNoChoosePopupWindow1.getChooseMessage().setText(parAmt);
-                        baseYseNoChoosePopupWindow1.getChooseTitleTv().setText(R.string.quick_par_single_amount);
-                        ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreatedAndShow(baseYseNoChoosePopupWindow1, Gravity.CENTER);
-                        break;
-
-                    case 9:
                         PopSwitch<IString> popSort = new PopSwitch<IString>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
                             public void onClickItem(IString item, int position) {
@@ -326,7 +289,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popSort.setData(strings, tv.getText().toString());
                         popSort.showPopupDownWindow();
                         break;
-                    case 10:
+                    case 8:
                         PopSwitch<MenuItemInfo<String>> popMarket = new PopSwitch<MenuItemInfo<String>>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
                             public void onClickItem(MenuItemInfo<String> item, int position) {
@@ -338,7 +301,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popMarket.setData(markets, tv.getText().toString());
                         popMarket.showPopupDownWindow();
                         break;
-                    case 11:
+                    case 9:
                         PopSwitch<SoundBean> popSound = new PopSwitch<SoundBean>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
                             public void onClickItem(SoundBean item, int position) {
@@ -373,7 +336,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popSound.setData(sounds, tv.getText().toString());
                         popSound.showPopupDownWindow();
                         break;
-                    case 12:
+                    case 10:
                         PopSwitch<IString> popHideChip = new PopSwitch<IString>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
                             public void onClickItem(IString item, int position) {
@@ -446,7 +409,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         adapterGameChoose.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<GameChooseBean>() {
             @Override
             public void onItemClick(View view, GameChooseBean item, int position) {
-                gameSelectClick(item, adapterGameChoose);
+                gameSelectClick(item,adapterGameChoose);
             }
         });
         return adapterGameChoose;
@@ -456,7 +419,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         Boolean aBoolean = gameMap.get(item.getGameType());
         if (aBoolean == null)
             aBoolean = true;
-        gameMap.put(item.getGameType(), !aBoolean);
+        gameMap.put(item.getGameType(),!aBoolean);
         adapterGameChoose.notifyDataSetChanged();
     }
 
@@ -479,30 +442,17 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
 
     private List<SettingInfoBean> handleSettingData(SettingAllDataBean data) {
         LanguageHelper helper = new LanguageHelper(getBaseActivity());
-        quickAmount = data.getQuerBetAmt() + "";
-        mixPar = data.getQuerMixParBetAmt()+"";
-        parAmt = data.getQuerParBetAmt();
+        quickAmount = data.getAccamount() + "";
         hideChip = data.getIsHideChipSet();
-        String h5MainChoose = ((BaseToolbarActivity) getBaseActivity()).getApp().H5MainChoose;
         List<SettingInfoBean> beanList = new ArrayList<>();
         SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName());
         SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********");
         SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), getString(helper.getLanguageItem().getText()));
         SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), getString(AfbUtils.getOddsTypeByType(mContext, data.getAccType(), ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText()));
         SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1");
-
-        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), quickAmount);
-        SettingInfoBean infoBeanMixPar = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_mix_par_amount),mixPar);
-        SettingInfoBean infoBeanParAmt = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_par_single_amount), parAmt);
-
+        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), getString(R.string.customise));
         SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1");
-        String sort = data.getAccDefaultSorting();
-        if (sort == "0") {
-            sort = getString(R.string.hot_sort);
-        } else {
-            sort = getString(R.string.sort_by_time);
-        }
-        SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), sort);
+        SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting() + "");
         SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType());
         SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound());
         SettingInfoBean infoBeanChip = new SettingInfoBean("1", getBaseActivity().getString(R.string.hide_chip), data.getIsHideChipSet().equals("0") ? getBaseActivity().getString(R.string.chip_enable) : getBaseActivity().getString(R.string.chip_disable));
@@ -527,7 +477,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "", chipList1);
         SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", chipList2);
         SettingInfoBean infoBean13 = new SettingInfoBean("1", "MAIN_FAVORITE", "");
-
+        String h5MainChoose = data.getH5MainChoose();
 
         List<String> stringList = new ArrayList<>();
         if (h5MainChoose == null || h5MainChoose.length() < 2) {
@@ -584,8 +534,6 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         beanList.add(infoBean4);
         beanList.add(infoBean5);
         beanList.add(infoBean6);
-        beanList.add(infoBeanMixPar);
-        beanList.add(infoBeanParAmt);
         beanList.add(infoBean7);
         beanList.add(infoBean8);
         beanList.add(infoBean9);
@@ -594,7 +542,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         beanList.add(infoBean11);
         beanList.add(infoBean12);
         beanList.add(infoBean13);
-        beanList.add(infoBean14);
+     beanList.add(infoBean14);
         beanList.add(infoBean15);
         beanList.add(infoBean16);
         beanList.add(infoBean17);
@@ -625,18 +573,13 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-            /*"H5MainChoose":"1,SACashio,MKCashio,LUCKY361Cashio,TFGCashio"*/
             LoginInfo.SettingWfBean settingWfBean = new LoginInfo.SettingWfBean("Savesort", new LanguageHelper(getBaseActivity()).getLanguage(), "wfSettingH50");
             settingWfBean.setMarketTyped(((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType().getType());
             settingWfBean.setDefaultSortingd(((BaseToolbarActivity) getBaseActivity()).getApp().getSort() + "");
             settingWfBean.setScoreSoundd(SoundPlayUtils.getSoundIndex().getType());
             settingWfBean.setAcc(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType());
             settingWfBean.setAmtS(quickAmount);
-            settingWfBean.setMixParAmt(mixPar);
-            settingWfBean.setParAmt(parAmt);
             settingWfBean.setHideChip(hideChip);
-            String selectedGameStr = AfbUtils.getSelectedGameStr(gameMap);
-            settingWfBean.setH5MainChoose(selectedGameStr);
             String ChipsList = getChooseChips();
             //"ChipsList":"50000,30000,10000,5000,1000,500,10,1"
             settingWfBean.setChipsList(ChipsList);
@@ -644,7 +587,6 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 @Override
                 public void onBack(String data) throws JSONException {
                     Log.d(TAG, "onBack: " + data);
-                    ((BaseToolbarActivity) getBaseActivity()).getApp().H5MainChoose = selectedGameStr;
                 }
             });
         } else {

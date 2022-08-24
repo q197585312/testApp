@@ -40,3 +40,8 @@ data class LoginResultData(
 data class EventShowBall(
     var showBall: Int
 )
+data class GameChooseBean(
+    var gameName: String,
+    var gameType: String
+    
+)

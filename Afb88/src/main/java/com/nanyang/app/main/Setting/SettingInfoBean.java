@@ -1,5 +1,7 @@
 package com.nanyang.app.main.Setting;
 
+import com.nanyang.app.main.home.GameChooseBean;
+
 import java.util.List;
 
 
@@ -8,6 +10,7 @@ import java.util.List;
  */
 
 public class SettingInfoBean {
+    private List<GameChooseBean> gameChooseBeans;
     private String type;
     private String name;
     private String choiceType;
@@ -59,4 +62,18 @@ public class SettingInfoBean {
     }
 
     public List<ChipBean> chipBeans;
+
+    public SettingInfoBean(String type, String name, List<GameChooseBean> gameChooseBeans) {
+        this.type = type;
+        this.name = name;
+        this.gameChooseBeans = gameChooseBeans;
+    }
+
+    public List<GameChooseBean> getGameChooseBeans() {
+        return gameChooseBeans;
+    }
+
+    public void setGameChooseBeans(List<GameChooseBean> gameChooseBeans) {
+        this.gameChooseBeans = gameChooseBeans;
+    }
 }

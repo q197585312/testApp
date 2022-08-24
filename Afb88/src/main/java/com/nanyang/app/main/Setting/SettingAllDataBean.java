@@ -339,6 +339,44 @@ public class SettingAllDataBean {
      */
 
     private String UserName;
+
+    public String getH5MainChoose() {
+        return H5MainChoose;
+    }
+
+    public void setH5MainChoose(String h5MainChoose) {
+        H5MainChoose = h5MainChoose;
+    }
+
+    private String H5MainChoose;
+
+    public String getQuerMixParBetAmt() {
+        return QuerMixParBetAmt;
+    }
+
+    public void setQuerMixParBetAmt(String querMixParBetAmt) {
+        QuerMixParBetAmt = querMixParBetAmt;
+    }
+
+    public String getQuerParBetAmt() {
+        return QuerParBetAmt;
+    }
+
+    public void setQuerParBetAmt(String querParBetAmt) {
+        QuerParBetAmt = querParBetAmt;
+    }
+
+    public String getQuerBetAmt() {
+        return QuerBetAmt;
+    }
+
+    public void setQuerBetAmt(String querBetAmt) {
+        QuerBetAmt = querBetAmt;
+    }
+
+    private String QuerMixParBetAmt;
+    private String QuerParBetAmt;
+    private String QuerBetAmt;
     private String accType;
     private String timess;
     private String lang;

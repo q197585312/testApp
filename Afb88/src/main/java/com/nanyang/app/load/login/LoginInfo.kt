@@ -200,9 +200,12 @@ class LoginInfo {
         var DefaultSortingd: String = ""
         var ScoreSoundd: String = ""
         var AmtS: String = ""
+        var MixParAmt: String = ""
+        var ParAmt: String = ""
         var BetterOdds: String = ""
         var ChipsList: String = ""
         var HideChip: String = ""
+        var H5MainChoose: String = ""
 
     }
 

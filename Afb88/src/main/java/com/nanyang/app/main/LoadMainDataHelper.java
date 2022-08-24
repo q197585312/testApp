@@ -17,6 +17,7 @@ import com.nanyang.app.main.home.EventShowBall;
 import com.unkonw.testapp.libs.api.ApiManager;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
@@ -103,6 +104,14 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                         EventBus.getDefault().post(new EventShowBall(jsonArrayData3.optInt(6)));
 
                     }
+                }
+
+                if(p.contains("GetTT")){
+
+
+                    String ws = StringUtils.findGroup(data, "^.*H5MainChoose\":\"([^\"]+)\".*$", 1);
+                    LogUtil.d("H5MainChoose",ws);
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).H5MainChoose=ws;
                 }
             }
 

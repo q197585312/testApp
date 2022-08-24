@@ -59,6 +59,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -520,7 +521,7 @@ public class AfbUtils {
 
     public static String scientificCountingToString(String scientificCounting, String format) {
 
-        return  scientificCountingToString( scientificCounting,  format,null);
+        return scientificCountingToString(scientificCounting, format, null);
     }
 
     public static String scientificCountingToString(String scientificCounting, String format, RoundingMode mode) {
@@ -751,5 +752,125 @@ public class AfbUtils {
     }
 
 
+    public static String changeId(String tem) {
+        switch (tem) {
 
+            case "Casino":
+                return "Cashio";
+            case "PRAGMATIC CASINO":
+                return "PRGCashio";
+            case "PG CASINO":
+                return "PGCashio";
+            case "PS GAMING":
+                return "PSCashio";
+            case "SEXY CASINO":
+                return "SGCashio";
+            case "SA CASINO":
+                return "SACashio";
+            case "EVOPLAY":
+                return "EVCashio";
+            case "DG CASINO":
+                return "DGCashio";
+            case "WM CASINO":
+                return "WMCashio";
+            case "NL CASINO":
+                return "NLCashio";
+
+            case "LG CASINO":
+                return "LGCashio";
+            case "MK CASINO":
+                return "MKCashio";
+            case "CQ9 GAME":
+                return "CQCashio";
+            case "TFG CASINO":
+                return "TFGCashio";
+            case "Joker":
+                return "JKRCashio";
+            case "SV388":
+                return "SV388Cashio";
+            case "AFB CASINO":
+                return "AFBCashio";
+            case "AFB GAMING":
+                return "AFBSlotsCashio";
+            case "JILI":
+                return "JILICashio";
+            case "Lucky361":
+                return "LUCKY361Cashio";
+            case "COCK FIGHT":
+                return "Cockfigh";
+            case "KENO":
+                return "Keno";
+            case "LOTTERY":
+                return "Lottery";
+            default:
+                return tem;
+        }
+    }
+
+    public static String getSelectedGameStr(Map<String, Boolean> map) {
+        Set<Map.Entry<String, Boolean>> entries = map.entrySet();
+        StringBuilder builder = new StringBuilder();
+        for (Map.Entry<String, Boolean> entry : entries) {
+            if (entry.getValue()) {
+                builder.append(entry.getKey());
+                builder.append(",");
+            }
+        }
+        String ss = builder.substring(0, builder.length() - 1);
+        LogUtil.d("substring", ss);
+        return ss;
+    }
+
+    public static Map<String, Boolean> initSelectedGameMap(Boolean init) {
+
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("1", true);
+        map.put("Cashio", init);
+
+        map.put("PRGCashio", init);
+
+        map.put("PGCashio", init);
+
+        map.put("PSCashio", init);
+
+        map.put("SGCashio", init);
+
+        map.put("SACashio", init);
+
+        map.put("EVCashio", init);
+
+        map.put("DGCashio", init);
+
+        map.put("WMCashio", init);
+
+        map.put("NLCashio", init);
+
+
+        map.put("LGCashio", init);
+
+        map.put("MKCashio", init);
+
+        map.put("CQCashio", init);
+
+        map.put("TFGCashio", init);
+
+        map.put("JKRCashio", init);
+
+        map.put("SV388Cashio", init);
+
+        map.put("AFBCashio", init);
+
+        map.put("AFBSlotsCashio", init);
+
+        map.put("JILICashio", init);
+
+        map.put("LUCKY361Cashio", init);
+
+        map.put("Cockfigh", init);
+
+        map.put("Keno", init);
+
+        map.put("Lottery", init);
+        return map;
+    }
 }

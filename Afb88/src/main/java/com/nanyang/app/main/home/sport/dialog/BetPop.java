@@ -269,7 +269,7 @@ public class BetPop {
 
                 if (afbApplication.getMixBetList().size() > 1) {
                     goChooseBetSingle(false);
-                }else{
+                } else {
                     closePopupWindow();
                 }
 
@@ -895,6 +895,7 @@ public class BetPop {
                         tv_order_index.setVisibility(View.VISIBLE);
                         tv_order_index.setText(list.size() - position + "");
                         edt_single_bet.setVisibility(View.VISIBLE);
+
                         edt_single_bet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                             @Override
                             public void onFocusChange(View v, boolean hasFocus) {
@@ -955,7 +956,12 @@ public class BetPop {
                     if (hashMap.get(socOddsId) != null && !edt_single_bet.getText().toString().equals(hashMap.get(socOddsId)) && !hashMap.get(socOddsId).equals("0")) {
                         edt_single_bet.setText(hashMap.get(socOddsId));
                     } else {
-                        edt_single_bet.setText("");
+                        String mixParAmount = afbApplication.parAmtAmount;
+                        if (mixParAmount.equals("0"))
+                            edt_single_bet.setText("");
+                        else {
+                            edt_single_bet.setText(mixParAmount);
+                        }
                     }
                     if (cursorMap.get(true) != null && !StringUtils.isEmpty(cursorMap.get(true).getItemSocId()) && cursorMap.get(true).getItemSocId().equals(socOddsId)) {
                         edt_single_bet.setCursorVisible(true);//显示光标
@@ -1156,18 +1162,25 @@ public class BetPop {
     }
 
     public void setEditNum() {
-        String quickAmount = afbApplication.getQuickAmount();
-        if (quickAmount.equals("0"))
-            betAmountEdt.setText("");
-        else {
-            betAmountEdt.setText(quickAmount);
-        }
+
         if (list == null)
             return;
-        if (list.size() <= 1)
+        if (list.size() <= 1) {
             betAmountEdt.setHint(R.string.single_bet);
-        else {
+            String quickAmount = afbApplication.getQuickAmount();
+            if (quickAmount.equals("0"))
+                betAmountEdt.setText("");
+            else {
+                betAmountEdt.setText(quickAmount);
+            }
+        } else {
             betAmountEdt.setHint(R.string.mix);
+            String mixParAmount = afbApplication.mixParAmount;
+            if (mixParAmount.equals("0"))
+                betAmountEdt.setText("");
+            else {
+                betAmountEdt.setText(mixParAmount);
+            }
         }
     }
 
