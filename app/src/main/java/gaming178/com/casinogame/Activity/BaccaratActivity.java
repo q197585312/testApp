@@ -2787,17 +2787,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             });
         }
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            chipY = AutoUtils.getPercentHeightSize(50);
-            chipPlayerBankerY = AutoUtils.getPercentHeightSize(50);
-        } else {
-            chipY = AutoUtils.getPercentHeightSize(82);
-            chipPlayerBankerY = AutoUtils.getPercentHeightSize(82);
-        }
-        tipY = AutoUtils.getPercentHeightSize(30);
-        chipX = AutoUtils.getPercentHeightSize(4);
-        tieX = AutoUtils.getPercentHeightSize(4);
-        chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
+        initBetInfo();
 
         fl_bet1_bg.setVisibility(View.VISIBLE);
         fl_baccarat_table_tie = (FrameLayout) fl_bet1_bg.findViewById(R.id.gd__fl_baccarat_table_tie);
@@ -2926,6 +2916,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         });
     }
 
+    private void initBetInfo(){
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            chipY = UIUtil.dip2px(mContext, 46);
+            chipPlayerBankerY = UIUtil.dip2px(mContext, 46);
+        } else {
+            chipY = UIUtil.dip2px(mContext, 62);
+            chipPlayerBankerY = UIUtil.dip2px(mContext, 62);
+        }
+        tipY = UIUtil.dip2px(mContext, 20);
+        chipX = AutoUtils.getPercentHeightSize(4);
+        tieX = AutoUtils.getPercentHeightSize(4);
+        chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
+    }
+
     private boolean isSlideInfo = false;
 
     @Override
@@ -2985,17 +2989,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }
             });
         }
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            chipY = AutoUtils.getPercentHeightSize(50);
-            chipPlayerBankerY = AutoUtils.getPercentHeightSize(50);
-        } else {
-            chipY = AutoUtils.getPercentHeightSize(82);
-            chipPlayerBankerY = AutoUtils.getPercentHeightSize(82);
-        }
-        tipY = AutoUtils.getPercentHeightSize(30);
-        chipX = AutoUtils.getPercentHeightSize(4);
-        tieX = AutoUtils.getPercentHeightSize(4);
-        chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
+        initBetInfo();
         initControl();
         serviceTime.setText(mAppViewModel.covertBalance((int) mAppViewModel.getUser().getBalance()));
         if (mAppViewModel.isMusicOpen()) {
