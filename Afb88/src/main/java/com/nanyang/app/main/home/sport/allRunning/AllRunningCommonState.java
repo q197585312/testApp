@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.main.OutRightState;
@@ -16,10 +15,7 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.widget.PopOneBtn;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -65,10 +61,10 @@ public class AllRunningCommonState extends OutRightState {
 
                         boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
 
-                        if (getStateType().getType().toLowerCase().startsWith("r") && visible /*&& ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet*/) {
+                        if (getStateType().getType().toLowerCase().startsWith("r") && visible && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
                             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).clickRunMatchPlay(item, position, false);
                         } else {
-                            if (StringUtils.isNull(getAdapterHelper().additionMap.get(true)) && !((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
+                            /*if (StringUtils.isNull(getAdapterHelper().additionMap.get(true)) && !((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
                                 PopOneBtn popOneBtn = new PopOneBtn(getBaseView().getIBaseContext().getBaseActivity(), v) {
                                     @Override
                                     protected void initView(@NotNull View view) {
@@ -92,8 +88,8 @@ public class AllRunningCommonState extends OutRightState {
 
                             }else {
                                 getBaseView().clickItemAdd(v, item, position);
-                            }
-
+                            }*/
+                            getBaseView().clickItemAdd(v, item, position);
                         }
                         break;
                     case R.id.iv_hall_btn:

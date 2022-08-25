@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.e_sport.ESportRunningState;
 import com.nanyang.app.main.home.sport.e_sport.ESportTodayState;
 import com.nanyang.app.main.home.sport.main.SportActivity;
@@ -14,10 +13,6 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.widget.PopOneBtn;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -97,10 +92,10 @@ public abstract class EuropeState extends BallState {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
                         boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
-                        if (getStateType().getType().toLowerCase().startsWith("r") && visible /*&& ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet*/) {
+                        if (getStateType().getType().toLowerCase().startsWith("r") && visible && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
                             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).clickRunMatchPlay(item, position, false);
                         } else {
-                            if (StringUtils.isNull(getAdapterHelper().additionMap.get(true)) && !((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
+                           /* if (StringUtils.isNull(getAdapterHelper().additionMap.get(true)) && !((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
                                 PopOneBtn popOneBtn = new PopOneBtn(getBaseView().getIBaseContext().getBaseActivity(), v) {
                                     @Override
                                     protected void initView(@NotNull View view) {
@@ -123,8 +118,8 @@ public abstract class EuropeState extends BallState {
 
                             }else {
                                 getBaseView().clickItemAdd(v, item, position);
-                            }
-
+                            }*/
+                            getBaseView().clickItemAdd(v, item, position);
                         }
                         break;
                     case R.id.iv_hall_btn:

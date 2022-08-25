@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.europe.BallState;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
@@ -13,10 +12,6 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.widget.PopOneBtn;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -66,11 +61,11 @@ public abstract class SoccerCommonState extends BallState {
                     case R.id.module_right_mark_tv:
                         boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
 
-//                        boolean hasBet = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet;
-                        boolean hasBet =true;
+                        boolean hasBet = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet;
+//                        boolean hasBet =true;
                         if (getStateType().getType().toLowerCase().startsWith("r") && visible && hasBet) {
                             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).clickRunMatchPlay(item, position, false);
-                        } else {
+                        } else {/*
                             String s = getAdapterHelper().additionMap.get(true);
                             if (StringUtils.isNull(s) && !hasBet) {
                                 PopOneBtn popOneBtn = new PopOneBtn(getBaseView().getIBaseContext().getBaseActivity(), v) {
@@ -96,7 +91,8 @@ public abstract class SoccerCommonState extends BallState {
 
                             } else {
                                 getBaseView().clickItemAdd(v, item, position);
-                            }
+                            }*/
+                            getBaseView().clickItemAdd(v, item, position);
                         }
                         break;
                     case R.id.iv_hall_btn:
