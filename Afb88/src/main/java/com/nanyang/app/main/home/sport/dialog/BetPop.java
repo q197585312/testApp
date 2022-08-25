@@ -760,7 +760,7 @@ public class BetPop {
         if (list.size() > 1) {
             webViewPause();
         }
-        ll_bet_title.setVisibility(View.VISIBLE);
+//        ll_bet_title.setVisibility(View.VISIBLE);
 
     }
 

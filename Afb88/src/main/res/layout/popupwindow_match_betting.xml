@@ -9,11 +9,12 @@
     <LinearLayout
         android:id="@+id/ll_bet_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_gravity="center"
         android:background="@drawable/rectangle_green_gradient_line_trans"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/ll_back_title_line"
@@ -25,18 +26,6 @@
             android:background="@mipmap/go_back_left_white"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/mix_count"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/red"
-            android:gravity="center"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:text="0"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/ll_single_mix1"
@@ -46,18 +35,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_mix_bet"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/Parlay1"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
 
 
             <View
@@ -78,34 +55,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
 
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:layout_gravity="right"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/my_bets"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:padding="3dp"
-                android:text="@string/TabMyBets"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/tv_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@color/red"
-                android:src="@mipmap/white_delete"
-                android:visibility="visible" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -243,16 +193,72 @@
                 android:layout_height="30dp"
                 android:background="@drawable/shape_bet_bg1"
                 android:gravity="center"
-
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:singleLine="true"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/mix_count"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@color/red"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="0"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_mix_bet"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/rectangle_green_gradient_line_trans"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/Parlay1"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bet_sure_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/shape_bet_bg4"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/gd_cancel"
+                android:textColor="@color/yellow2"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bet_sure_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/shape_bet_bg3"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/bet1"
+                android:textColor="@color/yellow2"
+                android:textStyle="bold" />
+
 
             <EditText
                 android:id="@+id/bet_amount_edt"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:elevation="3dp"
@@ -264,30 +270,33 @@
                 android:textColorHint="@color/grey_light"
                 android:translationZ="5dp" />
 
-            <TextView
-                android:id="@+id/bet_sure_btn"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="4dp"
-                android:layout_weight="0.4"
-                android:background="@drawable/shape_bet_bg3"
-                android:gravity="center"
-                android:text="@string/bet1"
-                android:textColor="@color/yellow2"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/bet_sure_cancel"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="4dp"
-                android:layout_weight="0.4"
-                android:background="@drawable/shape_bet_bg4"
-                android:gravity="center"
-                android:text="@string/gd_cancel"
-                android:textColor="@color/yellow2"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/my_bets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text="@string/TabMyBets"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
 
+                <ImageView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/red"
+                    android:src="@mipmap/white_delete"
+                    android:visibility="visible" />
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -163,7 +163,10 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         return object : OnItemClickListener<Main> {
             override fun onItemClick(item: Main) {
 
-                val g = item.g
+                var g = item.g
+                if (g == "COCK FIGHT" || g == "KENO" || g == "LOTTERY") {
+                    g = "1"
+                }
                 if (getBaseToolbarActivity().app.updateOtherMap().containsKey(g)) {
                     if (g == "allCasino") {
                         viewModel.selectedType.postValue("casino")
@@ -378,23 +381,23 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
         }
     }
 
- /*   @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: EventShowGame) {
-        println("event:${event}")
-        if (viewModel.gameType != "sport" && event.showBall.length > 1) {
-            val split = event.showBall
-            val filter = viewModel.mainContent.filter {
-                var tem = it.g
-                if (it.g.contains(" ")) {
-                    tem = it.g.split(" ")[0]
-                    println("tem:$tem")
-                }
-                split.contains(tem, true)
-            }
+    /*   @Subscribe(threadMode = ThreadMode.MAIN)
+       fun onMessageEvent(event: EventShowGame) {
+           println("event:${event}")
+           if (viewModel.gameType != "sport" && event.showBall.length > 1) {
+               val split = event.showBall
+               val filter = viewModel.mainContent.filter {
+                   var tem = it.g
+                   if (it.g.contains(" ")) {
+                       tem = it.g.split(" ")[0]
+                       println("tem:$tem")
+                   }
+                   split.contains(tem, true)
+               }
 
-            viewModel.mainContent.clear()
-            viewModel.mainContent.addAll(filter)
-            println("filter:${filter.size},$filter")
-        }
-    }*/
+               viewModel.mainContent.clear()
+               viewModel.mainContent.addAll(filter)
+               println("filter:${filter.size},$filter")
+           }
+       }*/
 }
