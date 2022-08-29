@@ -98,20 +98,22 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                     }
                     JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);
                     back.onBack(jsonArrayData3.get(0).toString());
-                    if (jsonArrayData3.length() > 6) {
-                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setShowBall(jsonArrayData3.optInt(6));
-                        // 发布事件
-                        EventBus.getDefault().post(new EventShowBall(jsonArrayData3.optInt(6)));
-
+                    if (p.contains("Getmenu")) {
+                        AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
+                        if (jsonArrayData3.length() > 6) {
+                            if (app.getShowBall() != jsonArrayData3.optInt(6)) {
+                                app.setShowBall(jsonArrayData3.optInt(6));
+                                EventBus.getDefault().post(new EventShowBall(jsonArrayData3.optInt(6)));
+                            }
+                        }
                     }
                 }
 
-                if(p.contains("GetTT")){
-
+                if (p.contains("GetTT")) {
 
                     String ws = StringUtils.findGroup(data, "^.*H5MainChoose\":\"([^\"]+)\".*$", 1);
-                    LogUtil.d("H5MainChoose",ws);
-                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).H5MainChoose=ws;
+                    LogUtil.d("H5MainChoose", ws);
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).H5MainChoose = ws;
                 }
             }
 

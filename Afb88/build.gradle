@@ -75,12 +75,12 @@ android {
             //app专用服务器//https://test.khsport.net:8011/
             //app专用服务器//test.khsport.net:8011
 
-            buildConfigField "String", "ImgConfig_URL", '"http://www.gd88.app/app/afb1188_game.php"'
-            buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
-            buildConfigField "String", "Maintenance_URL", '"http://wsapp.afb1188.net/W0/Img/Maintenance.html"'
-            buildConfigField "String", "Contact_URL", '"http://www.gd88.app/api/afb1188_contact.php"'
+            buildConfigField "String", "ImgConfig_URL", '"https://www.gd88.app/app/afb1188_game.php"'
+            buildConfigField "String", "ImgHeader_URL", '"https://wsapp.afb1188.net/H50/Img/view2.png"'
+            buildConfigField "String", "Maintenance_URL", '"https://wsapp.afb1188.net/W0/Img/Maintenance.html"'
+            buildConfigField "String", "Contact_URL", '"https://www.gd88.app/api/afb1188_contact.php"'
 
-            buildConfigField "String", "CHECK_VERSION", '"http://www.gd88.app/api/afbAndroidVersion.php?appName=afb1188"'
+            buildConfigField "String", "CHECK_VERSION", '"https://www.gd88.app/api/afbAndroidVersion.php?appName=afb1188"'
             buildConfigField "String", "PRINT_URL", '"https://wsapp.khsport.net/W0/Pub/wfBetSlip0.html?id="'
         }
         i1bet99 {
@@ -91,11 +91,11 @@ android {
             buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W2/Pub/wfMain.html"'
 
 
-            buildConfigField "String", "ImgConfig_URL", '"http://www.gd88.app/app/i1bet99_game.php"'
+            buildConfigField "String", "ImgConfig_URL", '"https://www.gd88.app/app/i1bet99_game.php"'
             buildConfigField "String", "ImgHeader_URL", '"https://i1bet99.com/H52NEW/Img/Ibet99H5.jpg"'
             buildConfigField "String", "Maintenance_URL", '"https://i1bet99.com/W2NEW/Img/Maintenance.html"'
-            buildConfigField "String", "Contact_URL", '"http://www.gd88.app/api/i1bet99_contact.php"'
-            buildConfigField "String", "CHECK_VERSION", '"http://www.gd88.app/api/afbAndroidVersion.php?appName=i1bet99"'
+            buildConfigField "String", "Contact_URL", '"https://www.gd88.app/api/i1bet99_contact.php"'
+            buildConfigField "String", "CHECK_VERSION", '"https://www.gd88.app/api/afbAndroidVersion.php?appName=i1bet99"'
             buildConfigField "String", "PRINT_URL", '"https://wsapp.khsport.net/W2NEW/Pub/wfBetSlip0.html?id="'
         }
         ez2888 {
@@ -103,14 +103,14 @@ android {
             applicationId 'com.nanyang.ez2888'
             versionName '3.08'
 
-            buildConfigField "String", "PC_URL", '"http://wsapp.khsport.net/W9/Pub/wfMain0.html"'
+            buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W9/Pub/wfMain0.html"'
 
-            buildConfigField "String", "ImgConfig_URL", '"http://www.gd88.app/app/ez2888_game.php"'
-            buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
+            buildConfigField "String", "ImgConfig_URL", '"https://www.gd88.app/app/ez2888_game.php"'
+            buildConfigField "String", "ImgHeader_URL", '"https://wsapp.afb1188.net/H50/Img/view2.png"'
             buildConfigField "String", "Maintenance_URL", '"https://ez2888.com/W9/Img/Maintenance.html"'
-            buildConfigField "String", "Contact_URL", '"http://www.gd88.app/api/afb1188_contact.php"'
-            buildConfigField "String", "CHECK_VERSION", '"http://www.gd88.app/api/afbAndroidVersion.php?appName=ez2888"'
-            buildConfigField "String", "PRINT_URL", '"http://wsapp.khsport.net/W9/Pub/wfBetSlip0.html?id="'
+            buildConfigField "String", "Contact_URL", '"https://www.gd88.app/api/afb1188_contact.php"'
+            buildConfigField "String", "CHECK_VERSION", '"https://www.gd88.app/api/afbAndroidVersion.php?appName=ez2888"'
+            buildConfigField "String", "PRINT_URL", '"https://wsapp.khsport.net/W9/Pub/wfBetSlip0.html?id="'
         }
 
         usun {
@@ -120,11 +120,11 @@ android {
 
             buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W0SUN/Pub/wfMain0.html"'
 
-            buildConfigField "String", "ImgConfig_URL", '"http://www.gd88.app/app/usun_game.php"'
-            buildConfigField "String", "ImgHeader_URL", '"http://wsapp.afb1188.net/H50/Img/view2.png"'
-            buildConfigField "String", "Maintenance_URL", '"http://www.usun.com/W0SUN/Img/Maintenance.html"'
-            buildConfigField "String", "Contact_URL", '"http://www.gd88.app/api/afb1188_contact.php"'
-            buildConfigField "String", "CHECK_VERSION", '"http://www.gd88.app/api/afbAndroidVersion.php?appName=usun"'
+            buildConfigField "String", "ImgConfig_URL", '"https://www.gd88.app/app/usun_game.php"'
+            buildConfigField "String", "ImgHeader_URL", '"https://wsapp.afb1188.net/H50/Img/view2.png"'
+            buildConfigField "String", "Maintenance_URL", '"https://www.usun.com/W0SUN/Img/Maintenance.html"'
+            buildConfigField "String", "Contact_URL", '"https://www.gd88.app/api/afb1188_contact.php"'
+            buildConfigField "String", "CHECK_VERSION", '"https://www.gd88.app/api/afbAndroidVersion.php?appName=usun"'
             buildConfigField "String", "PRINT_URL", '"https://wsapp.khsport.net/W0SUN/Pub/wfBetSlip0.html?id="'
         }
     }

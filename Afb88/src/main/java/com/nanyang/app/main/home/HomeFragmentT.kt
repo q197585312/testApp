@@ -32,6 +32,7 @@ import com.unkonw.testapp.libs.utils.LogUtil
 import com.unkonw.testapp.libs.utils.TimeUtils
 import com.unkonw.testapp.libs.utils.ToastUtils
 import com.zhpan.bannerview.constants.IndicatorGravity
+import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.json.JSONException
@@ -55,7 +56,10 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
     }
 
     lateinit var viewModel: HomeViewModel
-
+    override fun onDestroyView() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroyView()
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,6 +71,7 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
             container,
             false
         )
+        EventBus.getDefault().register(this)
         initView()
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.viewModel = viewModel
@@ -105,6 +110,7 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
             binding.rvHead.visibility = View.VISIBLE
             binding.rlBanner.visibility = View.GONE
         }
+
         return binding.root
     }
 
@@ -376,8 +382,11 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: EventShowBall) {
-        if (viewModel.gameType == "sport") {
-            viewModel.loadMainGame(viewModel.gameType)
+        println("EventShowBall:"+event)
+
+        if (viewModel.selectedType.value == "sport") {
+
+            viewModel.loadMainGame("sport")
         }
     }
 
