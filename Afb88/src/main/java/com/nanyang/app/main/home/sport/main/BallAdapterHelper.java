@@ -2089,10 +2089,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String temp = AfbUtils.delHTMLTag(f);
 
         if (temp != null && temp.contains("-")) {
-            String[] split = temp.split("-");
-            if (split.length > 1) {
-                String s = subZeroAndDot((Float.parseFloat(split[0]) + Float.parseFloat(split[1])) / 2);
-                return s;
+            try {
+                String[] split = temp.split("-");
+                if (split.length > 1) {
+                    String s = subZeroAndDot((Float.parseFloat(split[0]) + Float.parseFloat(split[1])) / 2);
+                    return s;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                return temp;
             }
         }
         return temp;

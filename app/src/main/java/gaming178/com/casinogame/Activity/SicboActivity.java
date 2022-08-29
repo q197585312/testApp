@@ -5889,7 +5889,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
         String name = usName;
-        data = new LiveInfoBean(getString(R.string.gd_ID), name.toUpperCase(), "");
+        data = new LiveInfoBean(getString(R.string.gd_ID), name==null?"":name.toUpperCase(), "");
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.gd_BET), mAppViewModel.getSicbo01().getSicboBetInformation().getAllBetMoney() + "", "");
         if (Integer.parseInt(data.getValue1()) > 0) {
