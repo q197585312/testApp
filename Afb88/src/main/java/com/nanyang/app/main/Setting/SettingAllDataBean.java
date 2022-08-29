@@ -588,7 +588,7 @@ public class SettingAllDataBean {
     private String LangChoose;
     private String OldPSW;
     private String accType2;
-    private int BetterOdds;
+    private String BetterOdds;
     private String accMarketType;
     private String accDefaultSorting;
     private String accScoreSound;
@@ -2334,11 +2334,11 @@ public class SettingAllDataBean {
         this.accType2 = accType2;
     }
 
-    public int getBetterOdds() {
+    public String getBetterOdds() {
         return BetterOdds;
     }
 
-    public void setBetterOdds(int BetterOdds) {
+    public void setBetterOdds(String BetterOdds) {
         this.BetterOdds = BetterOdds;
     }
 

@@ -53,13 +53,15 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     @BindView(R.id.person_center_view)
     RecyclerView rcContent;
     BaseToolbarActivity aty;
-    BaseRecyclerAdapter<SettingInfoBean> adapter;
+    BaseRecyclerAdapter<SettingBean> adapter;
 
     private String quickAmount;
     private String mixPar;
     private String parAmt;
     private String hideChip;
     Map<String, Boolean> gameMap = new HashMap<>();
+    private boolean hasModified = false;
+    private String BetterOdds = "1";
 
     @Override
     public int onSetLayoutId() {
@@ -73,9 +75,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         aty = (BaseToolbarActivity) getBaseActivity();
         createPresenter(new MainPresenter(this));
 
-        adapter = new BaseRecyclerAdapter<SettingInfoBean>(mContext, new ArrayList<SettingInfoBean>(), R.layout.item_setting) {
+        adapter = new BaseRecyclerAdapter<SettingBean>(mContext, new ArrayList<SettingBean>(), R.layout.item_setting) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, SettingInfoBean item) {
+            public void convert(MyRecyclerViewHolder holder, int position, SettingBean item) {
                 TextView tvName = holder.getView(R.id.tv_name);
                 TextView tvChoiceType = holder.getView(R.id.tv_choice_type);
                 CheckBox cbChoice = holder.getView(R.id.cb_choice);
@@ -133,6 +135,13 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         MenuItemInfo oddsType = ((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType();
                         tvChoiceType.setText(oddsType.getText());
                         break;
+                    case 4:
+                        if (BetterOdds.equals("1")) {
+                            cbChoice.setChecked(true);
+                        } else {
+                            cbChoice.setChecked(false);
+                        }
+                        break;
                     case 5:
 
                         tvChoiceType.setText(quickAmount);
@@ -167,9 +176,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         };
         rcContent.setLayoutManager(new LinearLayoutManager(getContext()));
         rcContent.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SettingInfoBean>() {
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SettingBean>() {
             @Override
-            public void onItemClick(View view, SettingInfoBean item, int position) {
+            public void onItemClick(View view, SettingBean item, int position) {
                 final TextView tv = view.findViewById(R.id.tv_choice_type);
                 CheckBox cbChoice = view.findViewById(R.id.cb_choice);
                 switch (position) {
@@ -229,7 +238,12 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             @Override
                             public void onClickItem(MenuItemInfo item, int position) {
                                 tv.setText(item.getText());
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().setOddsType(item);
+                                if (!item.getType().equals(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType())) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().setOddsType(item);
+                                }
+
+
                             }
                         };
                         List<MenuItemInfo> oddsTypeList = AfbUtils.getOddsTypeList(mContext, ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode());
@@ -237,6 +251,17 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popOddType.showPopupDownWindow();
                         break;
                     case 4:
+                        if (cbChoice.isChecked()) {
+                            BetterOdds = "0";
+                            cbChoice.setChecked(false);
+
+                        } else {
+                            BetterOdds = "1";
+                            cbChoice.setChecked(true);
+
+                        }
+                        hasModified = true;
+                        break;
                     case 8:
                         if (cbChoice.isChecked()) {
                             cbChoice.setChecked(false);
@@ -249,7 +274,11 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             @Override
                             protected void clickSure(View v) {
                                 quickAmount = getChooseMessage().getText().toString().trim();
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
+                                if (!quickAmount.equals(((BaseToolbarActivity) getBaseActivity()).getApp().getQuickAmount())) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
+                                }
+
 
                                 tv.setText(quickAmount);
                             }
@@ -268,8 +297,11 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             @Override
                             protected void clickSure(View v) {
                                 mixPar = getChooseMessage().getText().toString().trim();
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().mixParAmount=(mixPar);
 
+                                if (!mixPar.equals(((BaseToolbarActivity) getBaseActivity()).getApp().mixParAmount)) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().mixParAmount = (mixPar);
+                                }
                                 tv.setText(mixPar);
                             }
 
@@ -287,8 +319,11 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             @Override
                             protected void clickSure(View v) {
                                 parAmt = getChooseMessage().getText().toString().trim();
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().parAmtAmount=(parAmt);
 
+                                if (!parAmt.equals(((BaseToolbarActivity) getBaseActivity()).getApp().parAmtAmount)) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().parAmtAmount = (parAmt);
+                                }
                                 tv.setText(parAmt);
                             }
 
@@ -307,7 +342,11 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             @Override
                             public void onClickItem(IString item, int position) {
                                 tv.setText(item.getText());
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().setSort(position);
+
+                                if (position != ((BaseToolbarActivity) getBaseActivity()).getApp().getSort()) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().setSort(position);
+                                }
                             }
                         };
                         List<IString> strings = new ArrayList<>();
@@ -332,6 +371,10 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             public void onClickItem(MenuItemInfo<String> item, int position) {
                                 tv.setText(item.getText());
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setMarketType(item);
+                                if (!item.getType().equals(((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType().getType())) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().setMarketType(item);
+                                }
                             }
                         };
                         List<MenuItemInfo<String>> markets = AfbUtils.getMarketsList(mContext);
@@ -347,7 +390,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                                 else {
                                     tv.setText(getString(item.getText()) + item.getType());
                                 }
-
+                                hasModified = true;
                                 SoundPlayUtils.setSound(item);
                             }
 
@@ -379,7 +422,10 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             public void onClickItem(IString item, int position) {
                                 tv.setText(item.getText());
                                 hideChip = position + "";
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().setHideChip(hideChip);
+                                if (!hideChip.equals(((BaseToolbarActivity) getBaseActivity()).getApp().getHideChip())) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().setHideChip(hideChip);
+                                }
                             }
                         };
                         List<IString> hideChipStrings = new ArrayList<>();
@@ -425,6 +471,8 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
             @Override
             public void onItemClick(View view, ChipBean item, int position) {
                 chipClick(item, adapterChip);
+                hasModified = true;
+
             }
         });
         return adapterChip;
@@ -457,6 +505,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         if (aBoolean == null)
             aBoolean = true;
         gameMap.put(item.getGameType(), !aBoolean);
+        hasModified = true;
         adapterGameChoose.notifyDataSetChanged();
     }
 
@@ -477,35 +526,36 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     }
 
 
-    private List<SettingInfoBean> handleSettingData(SettingAllDataBean data) {
+    private List<SettingBean> handleSettingData(SettingAllDataBean data) {
         LanguageHelper helper = new LanguageHelper(getBaseActivity());
         quickAmount = data.getQuerBetAmt() + "";
-        mixPar = data.getQuerMixParBetAmt()+"";
+        mixPar = data.getQuerMixParBetAmt() + "";
         parAmt = data.getQuerParBetAmt();
         hideChip = data.getIsHideChipSet();
+        BetterOdds = data.getBetterOdds();
         String h5MainChoose = ((BaseToolbarActivity) getBaseActivity()).getApp().H5MainChoose;
-        List<SettingInfoBean> beanList = new ArrayList<>();
-        SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName());
-        SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********");
-        SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), getString(helper.getLanguageItem().getText()));
-        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), getString(AfbUtils.getOddsTypeByType(mContext, data.getAccType(), ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText()));
-        SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1");
+        List<SettingBean> beanList = new ArrayList<>();
+        SettingBean infoBean1 = new SettingBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName());
+        SettingBean infoBean2 = new SettingBean("1", getBaseActivity().getString(R.string.Password), "**********");
+        SettingBean infoBean3 = new SettingBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), getString(helper.getLanguageItem().getText()));
+        SettingBean infoBean4 = new SettingBean("1", getBaseActivity().getString(R.string.Odds_Type), getString(AfbUtils.getOddsTypeByType(mContext, data.getAccType(), ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText()));
+        SettingBean infoBean5 = new SettingBean("2", getBaseActivity().getString(R.string.better_odds), BetterOdds);
 
-        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), quickAmount);
-        SettingInfoBean infoBeanMixPar = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_mix_par_amount),mixPar);
-        SettingInfoBean infoBeanParAmt = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_par_single_amount), parAmt);
+        SettingBean infoBean6 = new SettingBean("1", getBaseActivity().getString(R.string.quick_bet_amount), quickAmount);
+        SettingBean infoBeanMixPar = new SettingBean("1", getBaseActivity().getString(R.string.quick_mix_par_amount), mixPar);
+        SettingBean infoBeanParAmt = new SettingBean("1", getBaseActivity().getString(R.string.quick_par_single_amount), parAmt);
 
-        SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1");
+        SettingBean infoBean7 = new SettingBean("2", getBaseActivity().getString(R.string.auto_refresh), "1");
         String sort = data.getAccDefaultSorting();
         if (sort == "0") {
             sort = getString(R.string.hot_sort);
         } else {
             sort = getString(R.string.sort_by_time);
         }
-        SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), sort);
-        SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType());
-        SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound());
-        SettingInfoBean infoBeanChip = new SettingInfoBean("1", getBaseActivity().getString(R.string.hide_chip), data.getIsHideChipSet().equals("0") ? getBaseActivity().getString(R.string.chip_enable) : getBaseActivity().getString(R.string.chip_disable));
+        SettingBean infoBean8 = new SettingBean("1", getBaseActivity().getString(R.string.default_sort), sort);
+        SettingBean infoBean9 = new SettingBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType());
+        SettingBean infoBean10 = new SettingBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound());
+        SettingBean infoBeanChip = new SettingBean("1", getBaseActivity().getString(R.string.hide_chip), data.getIsHideChipSet().equals("0") ? getBaseActivity().getString(R.string.chip_enable) : getBaseActivity().getString(R.string.chip_disable));
         List<ChipBean> chipList1 = new ArrayList<>();
         List<ChipBean> chipList2 = new ArrayList<>();
         chipList1.add(new ChipBean(R.mipmap.chips5000, "5000", 5000));
@@ -524,9 +574,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         chipList2.add(new ChipBean(R.mipmap.chips1000, "1000", 1000));
 
 
-        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "", chipList1);
-        SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", chipList2);
-        SettingInfoBean infoBean13 = new SettingInfoBean("1", "MAIN_FAVORITE", "");
+        SettingBean infoBean11 = new SettingBean("3", getBaseActivity().getString(R.string.chip_set), "", chipList1);
+        SettingBean infoBean12 = new SettingBean("3", "", "", chipList2);
+        SettingBean infoBean13 = new SettingBean("1", "MAIN_FAVORITE", "");
 
 
         List<String> stringList = new ArrayList<>();
@@ -573,10 +623,10 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         gameChooseBeans4.add(new GameChooseBean("LOTTERY", "Lottery"));
 
 
-        SettingInfoBean infoBean14 = new SettingInfoBean("4", "", gameChooseBeans1);
-        SettingInfoBean infoBean15 = new SettingInfoBean("4", "", gameChooseBeans2);
-        SettingInfoBean infoBean16 = new SettingInfoBean("4", "", gameChooseBeans3);
-        SettingInfoBean infoBean17 = new SettingInfoBean("4", "", gameChooseBeans4);
+        SettingBean infoBean14 = new SettingBean("4", "", gameChooseBeans1);
+        SettingBean infoBean15 = new SettingBean("4", "", gameChooseBeans2);
+        SettingBean infoBean16 = new SettingBean("4", "", gameChooseBeans3);
+        SettingBean infoBean17 = new SettingBean("4", "", gameChooseBeans4);
 
         beanList.add(infoBean1);
         beanList.add(infoBean2);
@@ -625,32 +675,37 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-            /*"H5MainChoose":"1,SACashio,MKCashio,LUCKY361Cashio,TFGCashio"*/
-            LoginInfo.SettingWfBean settingWfBean = new LoginInfo.SettingWfBean("Savesort", new LanguageHelper(getBaseActivity()).getLanguage(), "wfSettingH50");
-            settingWfBean.setMarketTyped(((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType().getType());
-            settingWfBean.setDefaultSortingd(((BaseToolbarActivity) getBaseActivity()).getApp().getSort() + "");
-            settingWfBean.setScoreSoundd(SoundPlayUtils.getSoundIndex().getType());
-            settingWfBean.setAcc(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType());
-            settingWfBean.setAmtS(quickAmount);
-            settingWfBean.setMixParAmt(mixPar);
-            settingWfBean.setParAmt(parAmt);
-            settingWfBean.setHideChip(hideChip);
-            String selectedGameStr = AfbUtils.getSelectedGameStr(gameMap);
-            settingWfBean.setH5MainChoose(selectedGameStr);
-            String ChipsList = getChooseChips();
-            //"ChipsList":"50000,30000,10000,5000,1000,500,10,1"
-            settingWfBean.setChipsList(ChipsList);
-            presenter.loadAllMainData(settingWfBean, new MainPresenter.CallBack<String>() {
-                @Override
-                public void onBack(String data) throws JSONException {
-                    Log.d(TAG, "onBack: " + data);
-                    ((BaseToolbarActivity) getBaseActivity()).getApp().H5MainChoose = selectedGameStr;
-                }
-            });
+//            saveSettingData();
         } else {
             adapter.notifyDataSetChanged();
 //            initSetData();
         }
+    }
+
+    public void saveSettingData() {
+        /*"H5MainChoose":"1,SACashio,MKCashio,LUCKY361Cashio,TFGCashio"*/
+        LoginInfo.SettingWfBean settingWfBean = new LoginInfo.SettingWfBean("Savesort", new LanguageHelper(getBaseActivity()).getLanguage(), "wfSettingH50");
+        settingWfBean.setMarketTyped(((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType().getType());
+        settingWfBean.setDefaultSortingd(((BaseToolbarActivity) getBaseActivity()).getApp().getSort() + "");
+        settingWfBean.setScoreSoundd(SoundPlayUtils.getSoundIndex().getType());
+        settingWfBean.setAcc(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType());
+        settingWfBean.setAmtS(quickAmount);
+        settingWfBean.setMixParAmt(mixPar);
+        settingWfBean.setParAmt(parAmt);
+        settingWfBean.setBetterOdds(BetterOdds);
+        settingWfBean.setHideChip(hideChip);
+        String selectedGameStr = AfbUtils.getSelectedGameStr(gameMap);
+        settingWfBean.setH5MainChoose(selectedGameStr);
+        String ChipsList = getChooseChips();
+        //"ChipsList":"50000,30000,10000,5000,1000,500,10,1"
+        settingWfBean.setChipsList(ChipsList);
+        presenter.loadAllMainData(settingWfBean, new MainPresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                Log.d(TAG, "onBack: " + data);
+                ((BaseToolbarActivity) getBaseActivity()).getApp().H5MainChoose = selectedGameStr;
+            }
+        });
     }
 
 
@@ -672,7 +727,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         return "";
     }
 
-    public void onGetSettingContentData(List<SettingInfoBean> beanList) {
+    public void onGetSettingContentData(List<SettingBean> beanList) {
         adapter.setData(beanList);
     }
 
@@ -699,6 +754,8 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 return false;
             }
         }
+        if (hasModified)
+            saveSettingData();
         return true;
     }
 }
