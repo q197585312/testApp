@@ -120,10 +120,14 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             tv_menu.setBackgroundResource(R.drawable.usun_title);
             ll_tab_menu_bottom.setBackgroundResource(R.drawable.usun_bottom_bg);
         }
-      String where=  getIntent().getStringExtra("fromWhere");
-        if(where!=null&&where.contains("LoginActivity")){
-            defaultSkip("SportBook");
+        if(BuildConfig.FLAVOR.equals("afb1188")||BuildConfig.FLAVOR.equals("i1bet99")){
+            String where=  getIntent().getStringExtra("fromWhere");
+            if(where!=null&&where.contains("LoginActivity")){
+
+                defaultSkip("SportBook");
+            }
         }
+
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragmentT();
