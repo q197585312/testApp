@@ -633,4 +633,7 @@
     <string name="minimum_deposit_amount">最低存款額</string>
     <string name="from">從</string>
     <string name="to_other">到</string>
+    <string name="bet_pop_up">賭注彈出</string>
+    <string name="pop_up_with_live_centre">與現場中心彈出</string>
+    <string name="pop_up_without_live_centre">無現場中心彈出</string>
 </resources>

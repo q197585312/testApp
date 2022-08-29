@@ -716,6 +716,7 @@ public class SettingAllDataBean {
     private String ChipSetChoose;
     private String IsOutletACC;
     private String IsHideChipSet;
+    private String LiveCentreSetting;
 
     public String getUserName() {
         return UserName;
@@ -3355,5 +3356,13 @@ public class SettingAllDataBean {
 
     public void setIsHideChipSet(String isHideChipSet) {
         IsHideChipSet = isHideChipSet;
+    }
+
+    public String getLiveCentreSetting() {
+        return LiveCentreSetting;
+    }
+
+    public void setLiveCentreSetting(String liveCentreSetting) {
+        LiveCentreSetting = liveCentreSetting;
     }
 }

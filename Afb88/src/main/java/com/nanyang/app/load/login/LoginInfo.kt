@@ -205,6 +205,7 @@ class LoginInfo {
         var BetterOdds: String = ""
         var ChipsList: String = ""
         var HideChip: String = ""
+        var LiveCentre: String = ""
         var H5MainChoose: String = ""
 
     }

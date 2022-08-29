@@ -697,4 +697,7 @@
     <string name="deposit_amount">Deposit Amount</string>
     <string name="time_limit">Time Limit</string>
     <string name="copy_account_number">Copy Account Number</string>
+    <string name="bet_pop_up">BET POP UP</string>
+    <string name="pop_up_with_live_centre">Pop Up with Live Centre</string>
+    <string name="pop_up_without_live_centre">Pop Up without Live Centre</string>
 </resources>

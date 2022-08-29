@@ -643,4 +643,7 @@
     <string name="deposit_amount">存款数额</string>
     <string name="time_limit">时间限定</string>
     <string name="copy_account_number">复制帐号</string>
+    <string name="bet_pop_up">赌注弹出</string>
+    <string name="pop_up_with_live_centre">与现场中心弹出</string>
+    <string name="pop_up_without_live_centre">无现场中心弹出</string>
 </resources>

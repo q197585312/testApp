@@ -154,6 +154,7 @@ public class AfbApplication extends BaseApplication {
     private int sort;
 
     private String HideChip;
+    private String LiveCentreSetting;
 
     public String getHideChip() {
         return HideChip;
@@ -161,6 +162,14 @@ public class AfbApplication extends BaseApplication {
 
     public void setHideChip(String hideChip) {
         HideChip = hideChip;
+    }
+
+    public String getLiveCentreSetting() {
+        return LiveCentreSetting;
+    }
+
+    public void setLiveCentreSetting(String liveCentreSetting) {
+        LiveCentreSetting = liveCentreSetting;
     }
 
     public boolean isGoHome() {
