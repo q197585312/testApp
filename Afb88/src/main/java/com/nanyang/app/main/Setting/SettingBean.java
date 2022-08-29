@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Administrator on 2019/5/7.
  */
 
-public class SettingInfoBean {
+public class SettingBean {
     private List<GameChooseBean> gameChooseBeans;
     private String type;
     private String name;
@@ -24,13 +24,13 @@ public class SettingInfoBean {
         this.customizeAmount = customizeAmount;
     }
 
-    public SettingInfoBean(String type, String name, String choiceType) {
+    public SettingBean(String type, String name, String choiceType) {
         this.type = type;
         this.name = name;
         this.choiceType = choiceType;
     }
 
-    public SettingInfoBean(String type, String name, String choiceType, List<ChipBean> chipBeans) {
+    public SettingBean(String type, String name, String choiceType, List<ChipBean> chipBeans) {
         this.type = type;
         this.name = name;
         this.choiceType = choiceType;
@@ -63,7 +63,7 @@ public class SettingInfoBean {
 
     public List<ChipBean> chipBeans;
 
-    public SettingInfoBean(String type, String name, List<GameChooseBean> gameChooseBeans) {
+    public SettingBean(String type, String name, List<GameChooseBean> gameChooseBeans) {
         this.type = type;
         this.name = name;
         this.gameChooseBeans = gameChooseBeans;
