@@ -1274,7 +1274,7 @@ public class BetPop {
         if (!isNeedInitWeb)
             return;
 
-        if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
+        if (rtsMatchId != null && !rtsMatchId.isEmpty() && activity.getApp().getLiveCentreSetting().equals("0")) {
             String language = new LanguageHelper(activity).getLanguage();
 
             webViewResume();

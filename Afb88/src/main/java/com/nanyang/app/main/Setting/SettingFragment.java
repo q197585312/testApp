@@ -59,6 +59,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     private String mixPar;
     private String parAmt;
     private String hideChip;
+    private String liveCenter;
     Map<String, Boolean> gameMap = new HashMap<>();
     private boolean hasModified = false;
     private String BetterOdds = "1";
@@ -169,6 +170,13 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             tvChoiceType.setText(getString(R.string.chip_enable));
                         else {
                             tvChoiceType.setText(getString(R.string.chip_disable));
+                        }
+                        break;
+                    case 13:
+                        if (((BaseToolbarActivity) getBaseActivity()).getApp().getLiveCentreSetting().equals("0"))
+                            tvChoiceType.setText(getString(R.string.pop_up_with_live_centre));
+                        else {
+                            tvChoiceType.setText(getString(R.string.pop_up_without_live_centre));
                         }
                         break;
                 }
@@ -444,6 +452,34 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popHideChip.setData(hideChipStrings, tv.getText().toString());
                         popHideChip.showPopupDownWindow();
                         break;
+                    case 13:
+                        PopSwitch<IString> popLiveCenter = new PopSwitch<IString>(mContext, tv, AfbUtils.dp2px(mContext, 260), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                            @Override
+                            public void onClickItem(IString item, int position) {
+                                tv.setText(item.getText());
+                                liveCenter = position + "";
+                                if (!liveCenter.equals(((BaseToolbarActivity) getBaseActivity()).getApp().getLiveCentreSetting())) {
+                                    hasModified = true;
+                                    ((BaseToolbarActivity) getBaseActivity()).getApp().setLiveCentreSetting(liveCenter);
+                                }
+                            }
+                        };
+                        List<IString> liveCenterStrings = new ArrayList<>();
+                        liveCenterStrings.add(new IString() {
+                            @Override
+                            public int getText() {
+                                return (R.string.pop_up_with_live_centre);
+                            }
+                        });
+                        liveCenterStrings.add(new IString() {
+                            @Override
+                            public int getText() {
+                                return (R.string.pop_up_without_live_centre);
+                            }
+                        });
+                        popLiveCenter.setData(liveCenterStrings, tv.getText().toString());
+                        popLiveCenter.showPopupDownWindow();
+                        break;
                 }
             }
         });
@@ -532,6 +568,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         mixPar = data.getQuerMixParBetAmt() + "";
         parAmt = data.getQuerParBetAmt();
         hideChip = data.getIsHideChipSet();
+        liveCenter = data.getLiveCentreSetting();
         BetterOdds = data.getBetterOdds();
         String h5MainChoose = ((BaseToolbarActivity) getBaseActivity()).getApp().H5MainChoose;
         List<SettingBean> beanList = new ArrayList<>();
@@ -556,6 +593,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         SettingBean infoBean9 = new SettingBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType());
         SettingBean infoBean10 = new SettingBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound());
         SettingBean infoBeanChip = new SettingBean("1", getBaseActivity().getString(R.string.hide_chip), data.getIsHideChipSet().equals("0") ? getBaseActivity().getString(R.string.chip_enable) : getBaseActivity().getString(R.string.chip_disable));
+        SettingBean infoBeanLiveCentre = new SettingBean("1", getBaseActivity().getString(R.string.bet_pop_up), data.getLiveCentreSetting().equals("0") ? getBaseActivity().getString(R.string.pop_up_with_live_centre) : getBaseActivity().getString(R.string.pop_up_without_live_centre));
         List<ChipBean> chipList1 = new ArrayList<>();
         List<ChipBean> chipList2 = new ArrayList<>();
         chipList1.add(new ChipBean(R.mipmap.chips5000, "5000", 5000));
@@ -641,6 +679,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         beanList.add(infoBean9);
         beanList.add(infoBean10);
         beanList.add(infoBeanChip);
+        beanList.add(infoBeanLiveCentre);
         beanList.add(infoBean11);
         beanList.add(infoBean12);
         beanList.add(infoBean13);
@@ -694,6 +733,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         settingWfBean.setParAmt(parAmt);
         settingWfBean.setBetterOdds(BetterOdds);
         settingWfBean.setHideChip(hideChip);
+        settingWfBean.setLiveCentre(liveCenter);
         String selectedGameStr = AfbUtils.getSelectedGameStr(gameMap);
         settingWfBean.setH5MainChoose(selectedGameStr);
         String ChipsList = getChooseChips();
