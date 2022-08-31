@@ -179,7 +179,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         super.initLanguage();
         String language = AfbUtils.getLanguage(this);
         if (TextUtils.isEmpty(language)) {
-            AfbUtils.switchLanguage("zh", this);
+            AfbUtils.switchLanguage("en", this);
             LanguageHelper helper = new LanguageHelper(mContext);
             MenuItemInfo<String> languageItem = helper.getLanguageItem();
             loginLanguage.setText(languageItem.getText());

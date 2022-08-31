@@ -51,9 +51,9 @@ public class LanguageHelper {
         map.put("tr", "UR-PK");
         map.put("my", "EN-AU");
         languageItems = new ArrayList<>();
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_en_flag, (R.string.language_en), "en", "EN-US"));
         languageItems.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag, (R.string.language_zh), "zh", "ZH-CN"));
         languageItems.add(new MenuItemInfo<>(R.mipmap.lang_hk_flag, (R.string.language_zh_tw), "zh-rTW", "EN-CA"));
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_en_flag, (R.string.language_en), "en", "EN-US"));
         languageItems.add(new MenuItemInfo<>(R.mipmap.lang_th_flag, (R.string.language_th), "th", "TH-TH"));
         languageItems.add(new MenuItemInfo<>(R.mipmap.lang_ko_flag, (R.string.language_ko), "ko", "EN-TT"));
         languageItems.add(new MenuItemInfo<>(R.mipmap.lang_vi_flag, (R.string.language_vi), "vi", "EN-IE"));
@@ -76,7 +76,7 @@ public class LanguageHelper {
             if (lag.equals(languageItem.getType()))
                 return languageItem;
         }
-        return new MenuItemInfo<>(R.mipmap.lang_zh_flag, R.string.language_zh, "zh", "ZH-CN");
+        return new MenuItemInfo<>(R.mipmap.lang_en_flag, (R.string.language_en), "en", "EN-US");
     }
 
     public String getLanguage(String lag) {

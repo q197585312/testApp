@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nanyang.app.main.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{viewModel.parentBg}"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_header"
+            imgUrl="@{viewModel.headerBgUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:background="@{viewModel.headerBgColor}"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_head"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:visibility="invisible"
+            app:itemBinding="@{viewModel.headerItemBinding}"
+            app:items="@{viewModel.headers}"
+            app:layout_constraintBottom_toTopOf="@id/rv_content_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_home_image" />
+
+        <RelativeLayout
+            android:id="@+id/rl_banner"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/rv_content_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.zhpan.bannerview.BannerViewPager
+                android:id="@+id/banner_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_content_type"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:itemBinding="@{viewModel.leftItemBinding}"
+            app:items="@{viewModel.left}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rv_content_detail"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_head"
+            app:layout_constraintVertical_weight="3"
+            tools:listitem="@layout/item_left_image" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_content_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:itemBinding="@{viewModel.mainItemBinding}"
+            app:items="@{viewModel.mainContent}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@+id/rv_content_type"
+            app:layout_constraintTop_toBottomOf="@+id/rv_head"
+            app:layout_constraintVertical_weight="3"
+            app:spanCount="2"
+            tools:listitem="@layout/item_main_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

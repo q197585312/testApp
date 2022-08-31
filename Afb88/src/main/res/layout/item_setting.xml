@@ -70,7 +70,7 @@
                     android:id="@+id/ll_chip"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:orientation="horizontal"
                     android:visibility="gone">
 
