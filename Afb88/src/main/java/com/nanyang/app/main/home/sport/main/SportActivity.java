@@ -212,6 +212,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     RadioButton others_selected;
     @BindView(R.id.games_switch_rg)
     RadioGroup games_switch_rg;
+
+    @BindView(R.id.tv_early)
+    TextView tvLeftMenuEarly;
+    @BindView(R.id.tv_today)
+    TextView tvLeftMenuToday;
+
     public Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
 
 
@@ -1151,8 +1157,20 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             matchRes = item.getText();
             tvMatchType.setText(item.getText());
         }
+        setLeftMenuTypeState(item);
         tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.bottomRes, 0, 0);
         wd = item.getDateParam();
+    }
+
+    private void setLeftMenuTypeState(MenuItemInfo item){
+        String type = item.getType();
+        if (type.equals("Early")) {
+            tvLeftMenuEarly.setTextColor(ContextCompat.getColor(mContext,R.color.keno_text_clik1));
+            tvLeftMenuToday.setTextColor(Color.WHITE);
+        } else if (type.equals("Today")) {
+            tvLeftMenuEarly.setTextColor(Color.WHITE);
+            tvLeftMenuToday.setTextColor(ContextCompat.getColor(mContext,R.color.keno_text_clik1));
+        }
     }
 
     public void clickSortByTime(View view) {
@@ -1393,6 +1411,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey,
                     R.string.Early_All
                     , "Early", R.mipmap.date_early_green, "", "7");
+            itemEarly.bottomRes = R.mipmap.date_early_white;
             currentFragment.presenter.getStateHelper().onTypeWayClick(itemEarly, 3);
             loadLeftMenuSports();
             games_switch_rg.check(R.id.sports_selected);
@@ -1402,6 +1421,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void clickToday(View view) {
         if (currentFragment != null && currentFragment.isVisible()) {
             MenuItemInfo<Integer> itemToday = new MenuItemInfo<>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);
+            itemToday.bottomRes = R.mipmap.date_today_white;
             itemToday.setDateParam("");
             currentFragment.presenter.getStateHelper().onTypeWayClick(itemToday, 2);
             loadLeftMenuSports();

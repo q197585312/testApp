@@ -30,6 +30,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginLeft="17dp"
                     android:id="@+id/rc_sport_list_top"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
