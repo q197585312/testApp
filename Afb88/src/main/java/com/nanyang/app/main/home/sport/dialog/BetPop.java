@@ -1366,6 +1366,11 @@ public class BetPop {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if(activity==null||!(activity instanceof SportActivity)){
+                    stopUpdateOdds();
+                    goCancel();
+                    return;
+                }
                 String refreshCurrentOddsUrl = afbApplication.getRefreshCurrentOddsUrl();
 
                 if (StringUtils.isEmpty(refreshCurrentOddsUrl)) {
