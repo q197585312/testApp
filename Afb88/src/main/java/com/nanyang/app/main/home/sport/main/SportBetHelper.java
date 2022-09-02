@@ -258,7 +258,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         LogUtil.d("updateMixListText", "url:" + url);
         AfbApplication afbApplication = (AfbApplication) AfbApplication.getInstance();
         AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
-
+        if(baseView.getIBaseContext().getBaseActivity()==null||!(baseView.getIBaseContext().getBaseActivity() instanceof SportActivity)){
+            return ;
+        }
         if (!StringUtils.isNull(url) && url.contains("_par")) {
             List<OddsClickBean> mixBetList = afbApplication.getMixBetList();
             if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() < 1) {

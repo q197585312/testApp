@@ -794,8 +794,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onStop();
         if (liveMatchHelper != null)
             liveMatchHelper.onStopPlay();
-        if (getBetContent().v.getVisibility() == View.VISIBLE)
-            getBetContent().stopUpdateOdds();
+
+        getBetContent().stopUpdateOdds();
         stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
     }
