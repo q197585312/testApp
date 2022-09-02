@@ -28,4 +28,5 @@
     <color name="white_bottom">@color/black_grey</color>
     <color name="red_background">@color/bet_rectangle_bg</color>
     <color name="grey_hdp_ou">@color/bet_rectangle_bg</color>
+    <color name="p_dart_bg">#3357B2</color>
 </resources>

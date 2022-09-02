@@ -30,10 +30,11 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginLeft="17dp"
                     android:id="@+id/rc_sport_list_top"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="27dp"
                     android:background="@drawable/green_black_shadow_bottom" />
 
                 <ImageView
@@ -444,12 +445,12 @@
                     android:layout_weight="1">
 
 
-
                     <View
                         android:id="@+id/has_ball_bg"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/black_grey" />
+
                     <FrameLayout
                         android:id="@+id/fl_main_content"
                         android:layout_width="match_parent"

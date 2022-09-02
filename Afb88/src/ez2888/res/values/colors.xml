@@ -27,4 +27,5 @@
     <color name="grey_thick_white">#FFFFFF</color>
     <color name="grey_thick_line">#EFF4FF</color>
     <color name="green">#567FCE</color>
+    <color name="p_dart_bg">#567FCE</color>
 </resources>

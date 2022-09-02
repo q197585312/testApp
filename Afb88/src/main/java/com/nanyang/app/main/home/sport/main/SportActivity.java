@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
@@ -440,7 +441,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 ImageView img_game_pic = holder.getView(R.id.img_game_pic);
                 tvGameName.setText(item.getTextRes());
                 img_game_pic.setImageResource(item.picSmall);
-
+                ViewGroup.LayoutParams layoutParamsTv = tvGameName.getLayoutParams();
+                layoutParamsTv.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                tvGameName.setLayoutParams(layoutParamsTv);
+                LinearLayout ll_content = holder.getView(R.id.ll_content);
+                ViewGroup.LayoutParams layoutParams = ll_content.getLayoutParams();
+                layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                ll_content.setLayoutParams(layoutParams);
             }
         };
         rc_sport_list.setAdapter(leftSportAdapter);
@@ -1151,7 +1158,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (item.getRes() == R.mipmap.date_day_grey) {
             LogUtil.d("tvMatchType", item.getDay());
             matchRes = R.string.Early_All;
-            tvMatchType.setText(item.getDay());
+            tvMatchType.setText(item.getType()+" "+item.getDay());
         } else {
             LogUtil.d("tvMatchType", item.getText());
             matchRes = item.getText();
@@ -1170,6 +1177,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         } else if (type.equals("Today")) {
             tvLeftMenuEarly.setTextColor(Color.WHITE);
             tvLeftMenuToday.setTextColor(ContextCompat.getColor(mContext,R.color.keno_text_clik1));
+        }else {
+            tvLeftMenuEarly.setTextColor(Color.WHITE);
+            tvLeftMenuToday.setTextColor(Color.WHITE);
         }
     }
 
