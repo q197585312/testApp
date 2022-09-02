@@ -679,23 +679,7 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (BuildConfig.FLAVOR.equals("kasino365")) {
-            new Thread() {
-                @Override
-                public void run() {
-                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
-                    String param = "labelid=" + BuildConfig.Labelid;
-                    String result = httpClient.getHttpClient(url + param, null);
-                    Log.d("AppData", result);
-                    getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                            popImg.setLoadUrl(result + "/images/Pop-Up.gif");
-                            popImg.showPopupCenterWindow();
-                        }
-                    });
-                }
-            }.start();
+            goNetWA(4);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_365_logo).into(img_login_title);
 
             img_login_title_main = findViewById(R.id.gd_img_login_title_main);
@@ -1929,6 +1913,12 @@ public class LoginActivity extends BaseActivity {
                                 } else if (type == 3) {
                                     if (!TextUtils.isEmpty(currentWABean.getLuckyDragon())) {
                                         Gd88Utils.goBrowser(mContext, currentWABean.getLuckyDragon());
+                                    }
+                                } else if (type == 4) {
+                                    if (!TextUtils.isEmpty(currentWABean.get365KasinoPopup())) {
+                                        PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                        popImg.setLoadUrl(currentWABean.get365KasinoPopup());
+                                        popImg.showPopupCenterWindow();
                                     }
                                 }
                             }

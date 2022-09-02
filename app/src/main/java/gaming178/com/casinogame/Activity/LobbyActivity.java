@@ -1161,8 +1161,7 @@ public class LobbyActivity extends BaseActivity {
             }
 
             if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") || BuildConfig.FLAVOR.equals("ratucasino88") ||
-                    BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("kasino365") ||
-                    BuildConfig.FLAVOR.equals("mainkasino")) {
+                    BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("mainkasino")) {
                 if (BuildConfig.FLAVOR.equals("oricasino")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.249/"));
                 } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
@@ -1173,8 +1172,6 @@ public class LobbyActivity extends BaseActivity {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "https://b.link/adaqq"));
                 } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "https://b.link/adaqq"));
-                } else if (BuildConfig.FLAVOR.equals("kasino365")) {
-                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_ninekiu, "", AppConfig.bandarq, "https://ninekiu.com/core/m/"));
                 } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_warungqq, "WARUNGQQ", AppConfig.bandarq, "https://45.76.184.5/core/m/?ref=mainkasinoapp"));
                 }

@@ -23,6 +23,7 @@ public class WABean {
     private String BonusSpesial;
     private String LayananVIP;
     private String LuckyDragon;
+    private String PopUP;
     /**
      * code : 0
      * data : [{"name":"RTP","URL":"/http://202.36.58.165/images/RTP.webp","link":"https://rebrand.ly/RTPdoacasino/"}]
@@ -185,5 +186,13 @@ public class WABean {
 
     public void setVIP(String LayananVIP) {
         this.LayananVIP = LayananVIP;
+    }
+
+    public String get365KasinoPopup() {
+        return PopUP;
+    }
+
+    public void set365KasinoPopup(String popup) {
+        this.PopUP = popup;
     }
 }
