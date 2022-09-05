@@ -151,7 +151,7 @@
                     android:paddingRight="3dp"
                     android:text="P"
                     android:textAllCaps="true"
-                    android:textColor="@color/green"
+                    android:textColor="@color/p_dart_bg"
                     android:textSize="13sp" />
 
 

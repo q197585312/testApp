@@ -19,6 +19,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiServiceKt;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
@@ -313,7 +314,11 @@ public class BetGoalWindowUtils {
 
         if (status.trim().equals("N") || status.trim().equals("A")) {
             running_Status.setBackgroundColor(ContextCompat.getColor(activity, R.color.transparent));
-            running_Status.setTextColor(ContextCompat.getColor(activity, R.color.green500));
+            if (BuildConfig.FLAVOR.equals("usun")){
+                running_Status.setTextColor(ContextCompat.getColor(activity, R.color.p_dart_bg));
+            }else {
+                running_Status.setTextColor(ContextCompat.getColor(activity, R.color.green500));
+            }
         } else if (status.trim().equals("D")) {
             running_Status.setBackgroundColor(ContextCompat.getColor(activity, R.color.yellow_button));
         } else {

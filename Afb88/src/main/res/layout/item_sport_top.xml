@@ -4,23 +4,21 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/img_game_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
+        android:layout_marginLeft="20dp"
         android:src="@mipmap/white_soccer_small" />
 
     <TextView
         android:id="@+id/tv_game_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
         android:layout_weight="1"
-        android:paddingEnd="5dp"
         android:text="Soccer"
         android:textAllCaps="true"
         android:textColor="@color/white"
