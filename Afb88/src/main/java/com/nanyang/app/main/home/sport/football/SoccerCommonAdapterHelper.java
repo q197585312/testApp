@@ -56,8 +56,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
         TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
         TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
-        View llLeft1 = helper.getView(R.id.module_match_left1_ll);
-        View llLeft2 = helper.getView(R.id.module_match_left2_ll);
+
 
         String homeRank = item.getHomeRank();
         String awayRank = item.getAwayRank();
@@ -74,7 +73,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
 
 
 //        llLeft1.setVisibility(View.VISIBLE);
-        llLeft2.setVisibility(View.VISIBLE);
+
         String rcAway = item.getRCAway();
         String rcHome = item.getRCHome();
         checkRedCards(awayRedCardTv, rcAway);
@@ -88,16 +87,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     @Override
     protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {
         super.onMatchRepeat(helper, item, position);
-        TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
-        TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
-        View llLeft1 = helper.getView(R.id.module_match_left1_ll);
-        View llLeft2 = helper.getView(R.id.module_match_left2_ll);
-//        awayTv.setText("");
-//        homeTv.setText("");
 
-//        llLeft1.setVisibility(View.INVISIBLE);
-//        llLeft2.setVisibility(View.INVISIBLE);
-//        item.setHasOE("0");
         repMap.put(position, true);
     }
 

@@ -51,7 +51,6 @@ import butterknife.ButterKnife;
  */
 
 public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
-    private static final String TAG = "BallInfo";
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
     public final SportActivity act;
@@ -99,7 +98,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
 
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
-        TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
+        View LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
 
         View matchTitleLl = helper.getView(R.id.module_match_title_ll);
 
@@ -112,18 +111,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     }
                 }
         );
-        View contentParentLl = helper.getView(R.id.ll_match_content);
+        View contentParentLl = helper.getView(R.id.ll_match_content_bg);
+        if(contentParentLl==null)
+            contentParentLl = helper.getView(R.id.ll_match_content);
         contentParentLl.setBackgroundColor(item.getContentColor());
-        if (item.getType() == SportInfo.Type.ITME) {
-            matchTitleLl.setVisibility(View.GONE);
-            headV.setVisibility(View.GONE);
-            LeagueCollectionTv.setBackgroundResource(R.mipmap.sport_game_star_yellow);
-        } else {
-            LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.sport_game_star_yellow_open : R.mipmap.sport_game_star_yellow);
-            matchTitleLl.setVisibility(View.VISIBLE);
-            headV.setVisibility(View.VISIBLE);
-            matchTitleTv.setText(item.getModuleTitle());
-        }
+
         setClickOneTeam(helper, item);
         final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
         View ll_match_outside = helper.getView(R.id.ll_match_outside);
@@ -132,7 +124,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             parent.setBackgroundColor(Color.parseColor("#FDE9DA"));
             ll_title_list.setBackgroundResource(R.drawable.usun_add_title_bg);
         }
-        boolean contractedMatch = updateContractedMatch(helper, item);
+
 
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
 
@@ -144,12 +136,22 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 ll_match_outside.setVisibility(View.VISIBLE);
             }
-
         }
+
+        if (item.getType() == SportInfo.Type.ITME) {
+            matchTitleLl.setVisibility(View.GONE);
+            headV.setVisibility(View.GONE);
+            LeagueCollectionTv.setBackgroundResource(R.mipmap.sport_game_star_yellow);
+        } else {
+            LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.sport_game_star_yellow_open : R.mipmap.sport_game_star_yellow);
+            matchTitleLl.setVisibility(View.VISIBLE);
+            headV.setVisibility(View.VISIBLE);
+            matchTitleTv.setText(item.getModuleTitle());
+        }
+        boolean contractedMatch = updateContractedMatch(helper, item);
         if (contractedMatch) {
             parent.setVisibility(View.GONE);
             ll_title_list.setVisibility(View.GONE);
-            LogUtil.d("visiable:", contractedMatch + "getSocOddsId:" + item.getSocOddsId());
             return;
         }
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
@@ -209,38 +211,38 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         onConvertHall(item, ivHall, position);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         ImageView lastGif = helper.getView(R.id.iv_last_call_gif);
-        TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
+
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
         TextView hasPTv = helper.getView(R.id.module_match_has_p_tv);
-        TextView timeTv1 = helper.getView(R.id.module_match_time_tv1);
+
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
-        TextView liveTv1 = helper.getView(R.id.module_match_live_iv1);
+
         TextView homeTv = helper.getTextView(R.id.module_match_home_team_tv);
-        TextView homeTv1 = helper.getTextView(R.id.module_match_home_team_tv1);
+
         TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
-        TextView awayTv1 = helper.getTextView(R.id.module_match_away_team_tv1);
+
         TextView gameSumTv = helper.getView(R.id.module_right_mark_tv);
         final View tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(red_black);
-        liveTv1.setTextColor(red_black);
+
         dateTv.setTextColor(red_black);
-        dateTv1.setTextColor(red_black);
+
         timeTv.setTextColor(black_grey);
-        timeTv1.setTextColor(black_grey);
+
         dateTv.setPadding(0, 0, 0, 0);
-        dateTv1.setPadding(0, 0, 0, 0);
+
         String time = item.getMatchDate();
   /*      if (time.length() > 6) {
             time = time.substring(time.length() - 7, time.length());
             time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
         }*/
         timeTv.setText(time);
-        timeTv1.setText(time);
+
         lastGif.setVisibility(View.GONE);
         liveTv.setVisibility(View.VISIBLE);
-        liveTv1.setVisibility(View.VISIBLE);
+
         timeTv.setVisibility(View.VISIBLE);
-        timeTv1.setVisibility(View.VISIBLE);
+
         if (hasPTv != null) {
             hasPTv.setVisibility(View.GONE);
             if (!StringUtils.isNull(item.getHasPar()) && item.getHasPar().equals("1")) {
@@ -249,39 +251,39 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
         if (item.getLive() != null && !item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
-            dateTv1.setVisibility(View.VISIBLE);
+
             if (item.getLive().contains("LIVE")) {
                 dateTv.setText("LIVE");
-                dateTv1.setText("LIVE");
+
                 liveTv.setVisibility(View.GONE);
-                liveTv1.setVisibility(View.GONE);
+
             } else {
                 String channel = item.getLive();
                 channel = Html.fromHtml(channel).toString();
                 String[] channels = channel.split("\\n");
                 if (channels.length == 1) {
                     liveTv.setVisibility(View.GONE);
-                    liveTv1.setVisibility(View.GONE);
+
                     dateTv.setText(channels[0].trim());
-                    dateTv1.setText(channels[0].trim());
+
                     if (channels[0].contains("/")) {
                         dateTv.setVisibility(View.GONE);
-                        dateTv1.setVisibility(View.GONE);
+
                     }
                 } else if (channels.length == 2) {
                     liveTv.setVisibility(View.GONE);
-                    liveTv1.setVisibility(View.GONE);
+
                     liveTv.setText(channels[0].trim());
-                    liveTv1.setText(channels[0].trim());
+
                     dateTv.setText(channels[1].trim());
-                    dateTv1.setText(channels[1].trim());
+
                 }
             }
         } else {
             dateTv.setVisibility(View.GONE);
-            dateTv1.setVisibility(View.GONE);
+
         }
-        showLastCall(item, dateTv, lastGif, dateTv1, timeTv, timeTv1, liveTv, liveTv1);
+        showLastCall(item, dateTv, lastGif,  timeTv,  liveTv);
 
 
         if (((BallItemCallBack) back).isItemCollection(item))
@@ -299,20 +301,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String hdp = item.getHdp();
         if (isHomeGive.equals("1")) {
             homeTv.setTextColor(red_black);
-            homeTv1.setTextColor(red_black);
+
             awayTv.setTextColor(black_grey);
-            awayTv1.setTextColor(black_grey);
+
         } else {
             homeTv.setTextColor(black_grey);
-            homeTv1.setTextColor(black_grey);
+
             awayTv.setTextColor(red_black);
-            awayTv1.setTextColor(red_black);
+
         }
         if (hdp.equals("0")) {
             homeTv.setTextColor(black_grey);
-            homeTv1.setTextColor(black_grey);
+
             awayTv.setTextColor(black_grey);
-            awayTv1.setTextColor(black_grey);
+
         }
         gameSumTv.setVisibility(View.GONE);
         gameSumTv.setOnClickListener(new View.OnClickListener() {
@@ -327,15 +329,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String away = item.getAway();
         String home = item.getHome();
         homeTv.setText(home);
-        homeTv1.setText(home);
+
         awayTv.setText(away);
-        awayTv1.setText(away);
+
         if (liveTv.getText().toString().trim().isEmpty()) {
             liveTv.setVisibility(View.GONE);
-            liveTv1.setVisibility(View.GONE);
         } else {
             liveTv.setVisibility(View.GONE);
-            liveTv1.setVisibility(View.VISIBLE);
         }
         String oldHomeId = "";
         String oldAwayId = "";
@@ -2199,7 +2199,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     @Override
     public int onSetAdapterItemLayout() {
-        return R.layout.sport_common_ball_item;
+        return R.layout.sport_common_ball_item1;
     }
 
     public Map<Boolean, String> getAdditionMap() {
@@ -2275,7 +2275,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     public void setRunningItemBg(MyRecyclerViewHolder helper, BallInfo item) {
-        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        View matchTitleLl = helper.getView(R.id.module_match_title_bg);
+        if(matchTitleLl==null){
+            matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        }
         View viewLine = helper.getView(R.id.view_line);
         TextView moduleMatchTimeTv = helper.getView(R.id.module_match_time_tv);
         viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
@@ -2289,15 +2292,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 
-    public void showLastCall(I item, TextView dateTv, ImageView lastGif, TextView dateTv1, TextView timeTv, TextView timeTv1, TextView liveTv, TextView liveTv1) {
+    public void showLastCall(I item, TextView dateTv, ImageView lastGif,  TextView timeTv, TextView liveTv) {
         if (item.getIsLastCall() != null && item.getIsLastCall().equals("1")) {
             Glide.with(context).load(R.mipmap.lastcall).into(lastGif);
             dateTv.setVisibility(View.GONE);
-            dateTv1.setVisibility(View.GONE);
+
             liveTv.setVisibility(View.GONE);
-            liveTv1.setVisibility(View.GONE);
+
             timeTv.setVisibility(View.INVISIBLE);
-            timeTv1.setVisibility(View.INVISIBLE);
+
             lastGif.setVisibility(View.VISIBLE);
 
         }

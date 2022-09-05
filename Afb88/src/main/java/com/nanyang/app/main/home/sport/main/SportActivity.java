@@ -182,8 +182,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.ll_sport_menu_bottom)
     public
     LinearLayout llSportMenuBottom;
-    @BindView(R.id.fl_top)
-    FrameLayout fl_top;
+/*    @BindView(R.id.fl_top)
+    FrameLayout fl_top;*/
     @BindView(R.id.sports_language_tv)
     ImageView sports_language_tv;
     @BindView(R.id.sports_selected_tv)
@@ -285,7 +285,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMatchType.setTextColor(Color.WHITE);
             list_top.setVisibility(View.GONE);
         } else if (BuildConfig.FLAVOR.equals("usun")) {
-            fl_top.setBackgroundResource(R.drawable.green_black_shadow_bottom);
+//            fl_top.setBackgroundResource(R.drawable.green_black_shadow_bottom);
             img_top_click_left.setBackgroundResource(R.drawable.green_black_shadow_bottom);
             img_top_click_right.setBackgroundResource(R.drawable.green_black_shadow_bottom);
             ll_line1.setBackgroundColor(Color.parseColor("#7C2600"));
@@ -1502,6 +1502,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickAllContracted(View view) {
+        showLoadingDialog();
         boolean contracted = currentFragment.getPresenter().getStateHelper().getAdapterHelper().clickAllContracted();
 
         if (contracted) {
@@ -1509,7 +1510,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         } else {
             ((ImageView) view).setImageResource(R.mipmap.add_all_yellow);
         }
-
+        currentFragment.rvContent.post(new Runnable() {
+            @Override
+            public void run() {
+                hideLoadingDialog();
+            }
+        });
 
     }
 }

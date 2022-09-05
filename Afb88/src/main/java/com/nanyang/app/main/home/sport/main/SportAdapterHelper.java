@@ -82,18 +82,26 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         TextView module_League_child_count_tv = helper.getView(R.id.module_League_child_count_tv);
         if ((aBoolean == null && !isContracted()) || (aBoolean != null && !aBoolean)) {
             ll_match_content.setVisibility(View.VISIBLE);
+
             module_League_child_count_tv.setVisibility(View.GONE);
             return false;
         } else {
+            if (item.getType() == SportInfo.Type.ITME) {
+                module_League_child_count_tv.setVisibility(View.GONE);
+            } else {
+                module_League_child_count_tv.setText(item.getChildCount() + "");
+                module_League_child_count_tv.setVisibility(View.VISIBLE);
+            }
+
             ll_match_content.setVisibility(View.GONE);
-            module_League_child_count_tv.setText(item.getChildCount() + "");
-            module_League_child_count_tv.setVisibility(View.VISIBLE);
             return true;
         }
     }
 
     public void setClickOneTeam(MyRecyclerViewHolder helper, final B item) {
-        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        View matchTitleLl = helper.getView(R.id.module_match_title_bg);
+        if(matchTitleLl==null)
+            matchTitleLl=helper.getView(R.id.module_match_title_ll);
         matchTitleLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

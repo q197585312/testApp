@@ -68,7 +68,7 @@
         <View
             android:background="@color/gray_dark"
             android:layout_width="match_parent"
-            android:layout_height="1px"></View>
+            android:layout_height="1px"/>
 
         <LinearLayout
             android:id="@+id/ll_match_content"
@@ -208,176 +208,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_data1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-
-                    <LinearLayout
-                        android:id="@+id/module_match_left1_ll1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="3dp">
-
-                        <TextView
-                            android:id="@+id/module_match_live_iv1"
-                            android:layout_width="28dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:textSize="7sp"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/module_match_date_tv1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:maxLength="10"
-                            android:maxLines="1"
-                            android:text="03/11"
-                            android:textColor="@color/grey_thick_line"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:id="@+id/module_match_time_tv1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:maxLength="5"
-                            android:maxLines="1"
-                            android:text="03/11"
-                            android:textColor="@color/grey_thick_line"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/module_match_left2_ll1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/module_match_home_red_card_tv1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="@color/red"
-                                android:gravity="center"
-                                android:paddingLeft="1dp"
-                                android:paddingRight="1dp"
-                                android:textColor="@color/white"
-                                android:textSize="9sp"
-                                android:textStyle="bold"
-                                android:visibility="gone" />
-
-                            <TextView
-                                android:id="@+id/module_match_home_team_tv1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2dp"
-                                android:drawablePadding="5dp"
-                                android:gravity="left"
-                                android:maxLines="1"
-                                android:text="zheshiyigeceshi mingz "
-                                android:textColor="@color/black_grey"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/module_match_away_red_card_tv1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginTop="1dp"
-                                android:gravity="center"
-                                android:paddingLeft="1dp"
-                                android:paddingRight="1dp"
-                                android:textColor="@color/white"
-                                android:textSize="9sp"
-                                android:textStyle="bold"
-                                android:visibility="visible"
-
-                                />
-
-                            <TextView
-                                android:id="@+id/module_match_away_team_tv1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginTop="1dp"
-                                android:drawablePadding="5dp"
-                                android:gravity="left"
-                                android:maxLines="1"
-                                android:text="zheshiyigeceshi mingz "
-                                android:textColor="@color/black_grey"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="0.6dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/grey_button" />
-
-                    <View
-                        android:layout_width="0.6dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/grey_dialog_background" />
-
-                    <FrameLayout
-                        android:id="@+id/module_center_sl1"
-                        android:layout_width="140dp"
-                        android:layout_height="match_parent">
-
-                        <include
-                            layout="@layout/sport_item_table_module_viewpager"
-                            android:visibility="gone" />
-
-
-                    </FrameLayout>
-
-
-                    <FrameLayout
-                        android:id="@+id/fl_right"
-                        android:layout_width="24dp"
-                        android:layout_height="wrap_content">
-
-                    </FrameLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
 
 
             <LinearLayout
@@ -386,28 +216,8 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <FrameLayout
-                    android:id="@+id/module_match_collection_fl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
 
 
-                </FrameLayout>
-
-                <LinearLayout
-                    android:id="@+id/module_match_left1_ll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="3dp"
-                    android:visibility="gone">
-
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/module_match_left2_ll"

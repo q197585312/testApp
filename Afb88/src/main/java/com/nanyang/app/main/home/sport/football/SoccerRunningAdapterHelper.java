@@ -40,7 +40,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
 
     @Override
-    public void showLastCall(BallInfo item, TextView dateTv, ImageView lastGif, TextView dateTv1, TextView timeTv, TextView timeTv1, TextView liveTv, TextView liveTv1) {
+    public void showLastCall(BallInfo item, TextView dateTv, ImageView lastGif,  TextView timeTv,  TextView liveTv) {
 //        super.showLastCall(item, dateTv, lastGif, dateTv1, timeTv, timeTv1, liveTv, liveTv1);
     }
 }
