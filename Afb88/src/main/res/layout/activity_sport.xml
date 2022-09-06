@@ -6,7 +6,6 @@
     android:id="@+id/drawer_more"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <LinearLayout
@@ -20,16 +19,15 @@
         <FrameLayout
             android:id="@+id/list_top"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:paddingTop="2dp">
+            android:layout_height="28dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_sport_list_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginRight="27dp"
-                    android:background="@drawable/green_black_shadow_bottom" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_sport_list_top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/green_black_shadow_bottom" />
 
             <ImageView
                 android:id="@+id/img_top_click_left"
@@ -435,7 +433,7 @@
                         android:id="@+id/fl_main_content"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                       />
+                        android:background="@color/grey_background" />
                 </FrameLayout>
 
                 <include
