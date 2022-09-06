@@ -45,7 +45,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
 
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup"
+        tools:targetApi="m">
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />

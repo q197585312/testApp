@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -31,7 +30,6 @@ import com.nanyang.app.main.Setting.Pop.IString;
 import com.nanyang.app.main.Setting.Pop.PopSwitch;
 import com.nanyang.app.main.Setting.Pop.SoundBean;
 import com.nanyang.app.main.home.GameChooseBean;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
@@ -47,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 
 
 public class SettingFragment extends BaseMoreFragment<MainPresenter> implements ILanguageView<String> {
@@ -78,11 +77,11 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
 
         adapter = new BaseRecyclerAdapter<SettingBean>(mContext, new ArrayList<SettingBean>(), R.layout.item_setting) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, SettingBean item) {
+            public void convert(gaming178.com.casinogame.adapter.MyRecyclerViewHolder holder, int position, SettingBean item) {
                 TextView tvName = holder.getView(R.id.tv_name);
                 TextView tvChoiceType = holder.getView(R.id.tv_choice_type);
                 CheckBox cbChoice = holder.getView(R.id.cb_choice);
-                LinearLayout llChip = holder.getView(R.id.ll_chip);
+
                 RecyclerView rv_chips = holder.getView(R.id.rv_chips);
 
                 View vLine = holder.getView(R.id.v_line);
@@ -93,16 +92,16 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 if (type.equals("1")) {
                     tvChoiceType.setVisibility(View.VISIBLE);
                     cbChoice.setVisibility(View.GONE);
-                    llChip.setVisibility(View.GONE);
+                    rv_chips.setVisibility(View.GONE);
                 } else if (type.equals("2")) {
                     tvChoiceType.setVisibility(View.GONE);
                     cbChoice.setVisibility(View.VISIBLE);
-                    llChip.setVisibility(View.GONE);
+                    rv_chips.setVisibility(View.GONE);
                 } else if (type.equals("3")) {
                     tvChoiceType.setVisibility(View.GONE);
                     cbChoice.setVisibility(View.GONE);
                     if (item.chipBeans != null && item.chipBeans.size() > 0) {
-                        llChip.setVisibility(View.VISIBLE);
+                        rv_chips.setVisibility(View.VISIBLE);
                         BaseRecyclerAdapter<ChipBean> chipBeanBaseRecyclerAdapter = initChipAdapter();
                         rv_chips.setAdapter(chipBeanBaseRecyclerAdapter);
                         rv_chips.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
@@ -112,7 +111,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                     tvChoiceType.setVisibility(View.GONE);
                     cbChoice.setVisibility(View.GONE);
                     if (item.getGameChooseBeans() != null && item.getGameChooseBeans().size() > 0) {
-                        llChip.setVisibility(View.VISIBLE);
+                        rv_chips.setVisibility(View.VISIBLE);
                         BaseRecyclerAdapter<GameChooseBean> chipBeanBaseRecyclerAdapter = initGameChooseAdapter();
                         rv_chips.setAdapter(chipBeanBaseRecyclerAdapter);
                         rv_chips.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
@@ -180,7 +179,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         }
                         break;
                 }
+
             }
+
         };
         rcContent.setLayoutManager(new LinearLayoutManager(getContext()));
         rcContent.setAdapter(adapter);
@@ -492,7 +493,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     private BaseRecyclerAdapter<ChipBean> initChipAdapter() {
         BaseRecyclerAdapter<ChipBean> adapterChip = new BaseRecyclerAdapter<ChipBean>(mContext, new ArrayList<ChipBean>(), R.layout.item_setting_chip) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, ChipBean item) {
+            public void convert(gaming178.com.casinogame.adapter.MyRecyclerViewHolder holder, int position, ChipBean item) {
                 ImageView view = holder.getView(R.id.img_chip);
                 view.setImageResource(item.getDrawableRes());
                 Boolean finalStatus = AfbUtils.getChipStatusMap().get(item.getName());
@@ -501,7 +502,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 } else {
                     view.setBackgroundResource(0);
                 }
+
             }
+
         };
         adapterChip.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<ChipBean>() {
             @Override
@@ -517,7 +520,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     private BaseRecyclerAdapter<GameChooseBean> initGameChooseAdapter() {
         BaseRecyclerAdapter<GameChooseBean> adapterGameChoose = new BaseRecyclerAdapter<GameChooseBean>(mContext, new ArrayList<GameChooseBean>(), R.layout.item_game_choose) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, GameChooseBean item) {
+            public void convert(gaming178.com.casinogame.adapter.MyRecyclerViewHolder holder, int position, GameChooseBean item) {
                 TextView item_name = holder.getView(R.id.item_name);
                 item_name.setText(item.getGameName());
                 CheckBox view = holder.getView(R.id.cb_selected);
@@ -525,7 +528,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 if (aBoolean == null)
                     aBoolean = true;
                 view.setChecked(aBoolean);
+
             }
+
         };
         adapterGameChoose.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<GameChooseBean>() {
             @Override
@@ -768,7 +773,11 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     }
 
     public void onGetSettingContentData(List<SettingBean> beanList) {
-        adapter.setData(beanList);
+        rcContent.post(() -> {
+            adapter.addAllAndClear(beanList);
+            adapter.notifyDataSetChanged();
+        });
+
     }
 
     @Override

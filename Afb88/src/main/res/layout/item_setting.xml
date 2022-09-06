@@ -1,99 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="45dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    >
 
-    <LinearLayout
-        android:id="@+id/lin_person"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+
+    <TextView
         android:background="@color/yellow_white_bg"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingHorizontal="10dp"
+        android:gravity="left|center_vertical"
+        android:text="User Name"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/content_right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_right"
+        android:background="@color/yellow_white_bg"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/line_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
 
-            android:gravity="center"
-            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_choice_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="left|center_vertical"
-                android:text="User Name"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
+            android:text="TestSH13"
+            android:textColor="@color/grey_dark"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_choice_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:text="TestSH13"
-                    android:textColor="@color/grey_dark"
-                    android:textSize="17sp" />
-
-                <CheckBox
-                    android:id="@+id/cb_choice"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/setting_checkbox_style"
-                    android:button="@null"
-                    android:checked="true"
-                    android:clickable="false"
-                    android:gravity="right|center_vertical"
-                    android:visibility="gone" />
-
-                <LinearLayout
-                    tools:visibility="visible"
-                    android:id="@+id/ll_chip"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="left|center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_chips"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/cb_choice"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/setting_checkbox_style"
+            android:button="@null"
+            android:checked="true"
+            android:clickable="false"
+            android:gravity="right|center_vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
 
-                </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/contact_back" />
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <View
+        android:id="@+id/line_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/contact_back" />
+
+
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/v_line"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/transparent"
         android:visibility="visible" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
