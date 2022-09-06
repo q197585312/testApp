@@ -76,7 +76,7 @@ android {
             //app专用服务器//test.khsport.net:8011
 
             buildConfigField "String", "ImgConfig_URL", '"https://www.gd88.app/app/afb1188_game.php"'
-            buildConfigField "String", "ImgHeader_URL", '"https://wsapp.afb1188.net/H50/Img/view2.png"'
+            buildConfigField "String", "ImgHeader_URL", '"https://d2dgys6tg64hrs.cloudfront.net/h50/img/view2.png"'
             buildConfigField "String", "Maintenance_URL", '"https://wsapp.afb1188.net/W0/Img/Maintenance.html"'
             buildConfigField "String", "Contact_URL", '"https://www.gd88.app/api/afb1188_contact.php"'
 
