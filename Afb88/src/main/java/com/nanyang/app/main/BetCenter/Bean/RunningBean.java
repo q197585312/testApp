@@ -13,6 +13,7 @@ public class RunningBean {
     String MExtraTime30;
     String Live31;
     String IsHomeGoal32;
+    String CCSRHasODD233;
     public String getHomeScore25() {
         return HomeScore25;
     }
@@ -158,6 +159,7 @@ public class RunningBean {
         MExtraTime30 = str[30];
         Live31 = str[31];
         IsHomeGoal32 = str[32];
+        CCSRHasODD233 = str[33];
     }
 
     public String getTransDate0() {
@@ -342,5 +344,13 @@ public class RunningBean {
 
     public void setOldStatus22(String oldStatus22) {
         OldStatus22 = oldStatus22;
+    }
+
+    public String getCCSRHasODD233() {
+        return CCSRHasODD233;
+    }
+
+    public void setCCSRHasODD233(String CCSRHasODD233) {
+        this.CCSRHasODD233 = CCSRHasODD233;
     }
 }

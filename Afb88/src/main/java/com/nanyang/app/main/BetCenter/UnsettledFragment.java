@@ -351,7 +351,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             notifyItemChanged(position);
                         }
                     });
-                    showDetail(item, refNo, running_TransDate, running_ModuleTitle, running_OddsType, isOu, view2);
+
+                    TextView tv_CCSRHasODD2 = holder.getTextView(R.id.tv_CCSRHasODD2);
+                    if (!TextUtils.isEmpty(item.getCCSRHasODD233())) {
+                        tv_CCSRHasODD2.setText(getString(R.string.Excluding) + ": " + item.getCCSRHasODD233());
+                    }else {
+                        tv_CCSRHasODD2.setText("");
+                    }
+                    showDetail(item, refNo, running_TransDate, running_ModuleTitle, running_OddsType, tv_CCSRHasODD2,isOu, view2);
+
                 }
                 View view = holder.getView(R.id.ll_live_parent);
 //                View view1 = holder.getView(R.id.ll_live_parent1);
@@ -462,7 +470,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
     }
 
-    private void showDetail(RunningBean item, TextView refNo, TextView running_transDate, TextView running_moduleTitle, TextView running_oddsType, boolean isOu, View view2) {
+    private void showDetail(RunningBean item, TextView refNo, TextView running_transDate, TextView running_moduleTitle, TextView running_oddsType,TextView tv_CCSRHasODD2, boolean isOu, View view2) {
 
         if (showDetailMap.get(item.getSocTransId17()) == null || !showDetailMap.get(item.getSocTransId17())) {
             refNo.setVisibility(View.GONE);
@@ -474,12 +482,18 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             } else {
                 view2.setVisibility(View.GONE);
             }
+            tv_CCSRHasODD2.setVisibility(View.GONE);
         } else {
             refNo.setVisibility(View.VISIBLE);
             running_transDate.setVisibility(View.VISIBLE);
             running_moduleTitle.setVisibility(View.VISIBLE);
             running_oddsType.setVisibility(View.VISIBLE);
             view2.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(tv_CCSRHasODD2.getText().toString().trim())){
+                tv_CCSRHasODD2.setVisibility(View.VISIBLE);
+            }else {
+                tv_CCSRHasODD2.setVisibility(View.GONE);
+            }
         }
 
     }

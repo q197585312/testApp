@@ -61,6 +61,7 @@ public class AfbClickBetBean implements Serializable {
     private String outright;
     private String IsFH;
     private String AccType;
+    private String CCSRHasODD;
 
     private String SlingMaxLimit;
 
@@ -315,6 +316,14 @@ public class AfbClickBetBean implements Serializable {
 
     public String getOddsG() {
         return new AfbParseHelper<>().getSocOddsG(id);
+    }
+
+    public String getCCSRHasODD() {
+        return CCSRHasODD;
+    }
+
+    public void setCCSRHasODD(String CCSRHasODD) {
+        this.CCSRHasODD = CCSRHasODD;
     }
 
     @Override

@@ -151,6 +151,8 @@ public class BetPop {
     TextView max_win;
     @BindView(R.id.bet_amount)
     TextView bet_amount;
+    @BindView(R.id.tv_CCSRHasODD)
+    TextView tv_CCSRHasODD;
 
     private SportBetHelper presenter;
     private int coupon;
@@ -567,7 +569,7 @@ public class BetPop {
             betId = betId.substring(0, betId.length() - 1);
             betUrl += betId;
         } else {
-            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s;
+            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s + "&CCSRHasODD2=" + list.get(0).getCCSRHasODD();
         }
         stopUpdateOdds();
         presenter.bet(betUrl);
@@ -725,6 +727,14 @@ public class BetPop {
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
             betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
+            String ccsrHasODD = afbClickBetBean.getCCSRHasODD();
+            if (!TextUtils.isEmpty(ccsrHasODD)) {
+                tv_CCSRHasODD.setText(context.getString(R.string.Excluding) + ": " + afbClickBetBean.getCCSRHasODD());
+                tv_CCSRHasODD.setVisibility(View.VISIBLE);
+            } else {
+                tv_CCSRHasODD.setText("");
+                tv_CCSRHasODD.setVisibility(View.GONE);
+            }
 
             if (!isRefreshEd && list.size() == 1 && activity != null) {
                 if (afbClickBetBean.getIsRun() == 1) {
@@ -1366,7 +1376,7 @@ public class BetPop {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(activity==null||!(activity instanceof SportActivity)){
+                if (activity == null || !(activity instanceof SportActivity)) {
                     stopUpdateOdds();
                     goCancel();
                     return;

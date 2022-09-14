@@ -636,4 +636,5 @@
     <string name="bet_pop_up">賭注彈出</string>
     <string name="pop_up_with_live_centre">與現場中心彈出</string>
     <string name="pop_up_without_live_centre">無現場中心彈出</string>
+    <string name="Excluding">不包括</string>
 </resources>
