@@ -37,6 +37,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -396,25 +397,13 @@ public class LobbyActivity extends BaseActivity {
         tv_home_deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-                int width = screenWidth / 15 * 14;
-                User u = mAppViewModel.getUser();
-                DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                pop.setDialog(dialog);
-                pop.setUser(u);
-                pop.showPopupCenterWindow();
+                goDeposit(v);
             }
         });
         tv_home_withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-                int width = screenWidth / 15 * 14;
-                User u = mAppViewModel.getUser();
-                WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                p.setDialog(dialog);
-                p.setUser(u);
-                p.showPopupCenterWindow();
+                goWithdraw(v);
             }
         });
         tv_home_live_chat.setOnClickListener(new View.OnClickListener() {
@@ -444,25 +433,13 @@ public class LobbyActivity extends BaseActivity {
         tv_home_deposit_l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-                int width = screenWidth / 15 * 14;
-                User u = mAppViewModel.getUser();
-                DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                pop.setDialog(dialog);
-                pop.setUser(u);
-                pop.showPopupCenterWindow();
+                goDeposit(v);
             }
         });
         tv_home_withdraw_l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-                int width = screenWidth / 15 * 14;
-                User u = mAppViewModel.getUser();
-                WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                p.setDialog(dialog);
-                p.setUser(u);
-                p.showPopupCenterWindow();
+                goWithdraw(v);
             }
         });
 
@@ -548,11 +525,51 @@ public class LobbyActivity extends BaseActivity {
             LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
             ll_top_parent.setBackgroundResource(0);
             ll_bottom.setBackgroundColor(Color.parseColor("#93000000"));
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                LinearLayout ll_d_w = findViewById(R.id.ll_d_w);
+                ImageView img_d = findViewById(R.id.img_d);
+                ImageView img_w = findViewById(R.id.img_w);
+                ll_d_w.setVisibility(View.VISIBLE);
+                Glide.with(this).asGif().load(R.mipmap.deposit_gif).into(img_d);
+                Glide.with(this).asGif().load(R.mipmap.withdraw_gif).into(img_w);
+                img_d.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        goDeposit(v);
+                    }
+                });
+                img_w.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        goWithdraw(v);
+                    }
+                });
+            }
         } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
             LinearLayout gd_ll_notice = findViewById(R.id.gd__ll_notice);
             gd_ll_notice.setBackgroundResource(R.drawable.ratu_home_notice);
             ll_bottom.setBackgroundColor(Color.parseColor("#9f1411"));
         }
+    }
+
+    private void goDeposit(View v) {
+        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+        int width = screenWidth / 15 * 14;
+        User u = mAppViewModel.getUser();
+        DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+        pop.setDialog(dialog);
+        pop.setUser(u);
+        pop.showPopupCenterWindow();
+    }
+
+    private void goWithdraw(View v) {
+        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+        int width = screenWidth / 15 * 14;
+        User u = mAppViewModel.getUser();
+        WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+        p.setDialog(dialog);
+        p.setUser(u);
+        p.showPopupCenterWindow();
     }
 
     BannerViewPager viewPager;

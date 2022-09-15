@@ -286,4 +286,24 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/gd_arrow_left_back"
         android:visibility="gone"></ImageView>
+
+    <LinearLayout
+        android:id="@+id/ll_d_w"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_d"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></ImageView>
+
+        <ImageView
+            android:id="@+id/img_w"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></ImageView>
+    </LinearLayout>
 </FrameLayout>
