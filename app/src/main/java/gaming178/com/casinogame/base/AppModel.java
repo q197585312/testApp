@@ -1,6 +1,5 @@
 package gaming178.com.casinogame.base;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -42,7 +41,6 @@ import gaming178.com.casinogame.Bean.Sicbo;
 import gaming178.com.casinogame.Bean.SicboLimit;
 import gaming178.com.casinogame.Bean.SlotsBean;
 import gaming178.com.casinogame.Bean.User;
-import gaming178.com.casinogame.Bean.UserLoginBean;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.HttpClient;
@@ -3658,6 +3656,8 @@ public class AppModel extends ViewModel {
     }
 
     public HttpClient getHttpClient() {
+        if(httpClient==null)
+            httpClient=new HttpClient();
         return httpClient;
     }
 
