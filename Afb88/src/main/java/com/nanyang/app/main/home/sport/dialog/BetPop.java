@@ -153,6 +153,8 @@ public class BetPop {
     TextView bet_amount;
     @BindView(R.id.tv_CCSRHasODD)
     TextView tv_CCSRHasODD;
+    @BindView(R.id.img_clear)
+    ImageView img_clear;
 
     private SportBetHelper presenter;
     private int coupon;
@@ -169,137 +171,7 @@ public class BetPop {
         initContent();
 
     }
-
-    public void initContent() {
-        tvMixBet.setText(R.string.Parlay);
-        tvSingleBet.setText(R.string.single_bet);
-        max_win.setText(R.string.max_win);
-        max_bet.setText(R.string.max_bet_money);
-        min_bet.setText(R.string.min_bet_money);
-        max_single_bet.setText(R.string.max_single_money);
-        bet_amount.setText(R.string.bet_limit);
-        my_bets.setText(R.string.TabMyBets);
-        betSureBtn.setText(R.string.bet1);
-        betCancelBtn.setText(R.string.cancel);
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
-        activity = (SportActivity) context;
-        handler = new Handler();
-        afbApplication = activity.getApp();
-        betAmountEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    goBetting();
-                    return true;
-                }
-                return false;
-            }
-
-        });
-        betAmountEdt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
-                double max;
-                if (betAfbList != null && list.size() > 1 && !StringUtils.isEmpty(betAfbList.getMaxLimit())) {
-
-                    max = Double.parseDouble(betAfbList.getMaxLimit());
-                } else {
-                    max = list.get(0).getMaxLimit();
-                }
-                afterChange(s, max, betAmountEdt, this, true);
-
-            }
-
-
-        });
-        betAmountEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    CursorEditView cursorEditView = new CursorEditView("", betAmountEdt);
-                    cursorMap.put(true, cursorEditView);
-                    betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
-                } else {
-                    betAmountEdt.setBackgroundColor(Color.WHITE);
-                }
-            }
-        });
-        llBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goMixAndClose();
-            }
-        });
-
-        my_bets.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showMyBets(view);
-            }
-        });
-        tvDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopUpdateOdds();
-                goCancel();
-            }
-        });
-        tvSingleBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goChooseBetSingle(true);
-                webView.reload();
-            }
-        });
-        tvMixBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                closePopupWindow();
-
-                if (afbApplication.getMixBetList().size() > 1) {
-                    goChooseBetSingle(false);
-                } else {
-                    closePopupWindow();
-                }
-
-            }
-        });
-        betSureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goBetting();
-
-            }
-        });
-        betCancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closePopupWindow();
-            }
-        });
-        betSureBtn.setEnabled(true);
-        betCancelBtn.setEnabled(true);
-        imgFailed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llBetFailedHint.setVisibility(View.GONE);
-            }
-        });
-        initBetChip();
-    }
+    Dialog parlayDialog;
 
     private void goMixAndClose() {
         if (afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() > 0)
@@ -540,6 +412,143 @@ public class BetPop {
     public static final int MIN_CLICK_DELAY_TIME = 1000;
     private long lastClickTime = 0;
 
+    public void initContent() {
+        tvMixBet.setText(R.string.Parlay);
+        tvSingleBet.setText(R.string.single_bet);
+        max_win.setText(R.string.max_win);
+        max_bet.setText(R.string.max_bet_money);
+        min_bet.setText(R.string.min_bet_money);
+        max_single_bet.setText(R.string.max_single_money);
+        bet_amount.setText(R.string.bet_limit);
+        my_bets.setText(R.string.TabMyBets);
+        betSureBtn.setText(R.string.bet1);
+        betCancelBtn.setText(R.string.cancel);
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
+        activity = (SportActivity) context;
+        handler = new Handler();
+        afbApplication = activity.getApp();
+        img_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAmountEdt.setText("");
+            }
+        });
+        betAmountEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    goBetting();
+                    return true;
+                }
+                return false;
+            }
+
+        });
+        betAmountEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+                double max;
+                if (betAfbList != null && list.size() > 1 && !StringUtils.isEmpty(betAfbList.getMaxLimit())) {
+
+                    max = Double.parseDouble(betAfbList.getMaxLimit());
+                } else {
+                    max = list.get(0).getMaxLimit();
+                }
+                afterChange(s, max, betAmountEdt, this, true);
+
+            }
+
+
+        });
+        betAmountEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    CursorEditView cursorEditView = new CursorEditView("", betAmountEdt);
+                    cursorMap.put(true, cursorEditView);
+                    betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
+                } else {
+                    betAmountEdt.setBackgroundColor(Color.WHITE);
+                }
+            }
+        });
+        llBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMixAndClose();
+            }
+        });
+
+        my_bets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMyBets(view);
+            }
+        });
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopUpdateOdds();
+                goCancel();
+            }
+        });
+        tvSingleBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goChooseBetSingle(true);
+                webView.reload();
+            }
+        });
+        tvMixBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                closePopupWindow();
+
+                if (afbApplication.getMixBetList().size() > 1) {
+                    goChooseBetSingle(false);
+                } else {
+                    closePopupWindow();
+                }
+
+            }
+        });
+        betSureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBetting();
+
+            }
+        });
+        betCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closePopupWindow();
+            }
+        });
+        betSureBtn.setEnabled(true);
+        betCancelBtn.setEnabled(true);
+        imgFailed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llBetFailedHint.setVisibility(View.GONE);
+            }
+        });
+        initBetChip();
+    }
+
     private void goBetting() {
         //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
         long currentTime = Calendar.getInstance().getTimeInMillis();
@@ -553,54 +562,11 @@ public class BetPop {
             return;
         if (afbApplication.getBetParList() == null)
             return;
-        String s1 = betAmountEdt.getText().toString().trim().replace(",", "");
-        String s = s1.replaceAll(",", "");
-        String betUrl;
-
         if (list.size() > 1) {
-            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + afbApplication.getBetParList().getParUrl() + "&amt=" + s + "&coupon=" + coupon + "&exRate=" + afbApplication.getBetParList().getExRate();
-            StringBuilder BETIDBuilder = new StringBuilder();
-            BETIDBuilder.append("&BETID=");
-            for (AfbClickBetBean afbClickBetBean : afbApplication.getBetParList().getList()) {
-                BETIDBuilder.append(afbClickBetBean.getId());
-                BETIDBuilder.append(",");
-            }
-            String betId = BETIDBuilder.toString();
-            betId = betId.substring(0, betId.length() - 1);
-            betUrl += betId;
+            showParlayDialog();
         } else {
-            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s + "&CCSRHasODD2=" + list.get(0).getCCSRHasODD();
+            directBet();
         }
-        stopUpdateOdds();
-        presenter.bet(betUrl);
-
-        if (list != null && list.size() > 1) {
-            for (int i = 0; i < list.size(); i++) {
-                if (!StringUtils.isEmpty(hashMap.get(list.get(i).getSocOddsId()))) {
-                    String ss = hashMap.get(list.get(i).getSocOddsId());
-                    betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(i).getBeturl() + "&amt=" + ss.trim();
-                    presenter.bet(betUrl);
-                }
-            }
-        }
-        presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
-            @Override
-            public void callBack(String back) {
-//                        Chile (Over) 2 @ 0.745 ||r=467428298|5|100|34941
-                if (back.contains("||") && back.contains("|")) {
-                    String[] split = back.split("\\|");
-                    String tidss = split[5];
-                    BaseToolbarActivity sportActivity = (BaseToolbarActivity) context;
-                    String oddsType = sportActivity.getOtType();
-                    sportActivity.BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
-                } else {
-                    tvBetFailedHint.setText(back);
-                    llBetFailedHint.setVisibility(View.VISIBLE);
-                    LogUtil.d("BetPop", "updateOdds");
-                    updateOdds(0);
-                }
-            }
-        });
     }
 
     private boolean amountValid() {
@@ -1430,5 +1396,89 @@ public class BetPop {
         start.setShadowLayer(12, 0, 0, ContextCompat.getColor(context, R.color.yellow_gold));
     }
 
+    public void directBet() {
+        String s1 = betAmountEdt.getText().toString().trim().replace(",", "");
+        String s = s1.replaceAll(",", "");
+        String betUrl;
+        if (list.size() > 1) {
+            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + afbApplication.getBetParList().getParUrl() + "&amt=" + s + "&coupon=" + coupon + "&exRate=" + afbApplication.getBetParList().getExRate();
+            StringBuilder BETIDBuilder = new StringBuilder();
+            BETIDBuilder.append("&BETID=");
+            for (AfbClickBetBean afbClickBetBean : afbApplication.getBetParList().getList()) {
+                BETIDBuilder.append(afbClickBetBean.getId());
+                BETIDBuilder.append(",");
+            }
+            String betId = BETIDBuilder.toString();
+            betId = betId.substring(0, betId.length() - 1);
+            betUrl += betId;
+        } else {
+            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s + "&CCSRHasODD2=" + list.get(0).getCCSRHasODD();
+        }
+        stopUpdateOdds();
+        presenter.bet(betUrl);
+
+        if (list != null && list.size() > 1) {
+            for (int i = 0; i < list.size(); i++) {
+                if (!StringUtils.isEmpty(hashMap.get(list.get(i).getSocOddsId()))) {
+                    String ss = hashMap.get(list.get(i).getSocOddsId());
+                    betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(i).getBeturl() + "&amt=" + ss.trim();
+                    presenter.bet(betUrl);
+                }
+            }
+        }
+        presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
+            @Override
+            public void callBack(String back) {
+//                        Chile (Over) 2 @ 0.745 ||r=467428298|5|100|34941
+                if (back.contains("||") && back.contains("|")) {
+                    String[] split = back.split("\\|");
+                    String tidss = split[5];
+                    BaseToolbarActivity sportActivity = (BaseToolbarActivity) context;
+                    String oddsType = sportActivity.getOtType();
+                    sportActivity.BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
+                } else {
+                    tvBetFailedHint.setText(back);
+                    llBetFailedHint.setVisibility(View.VISIBLE);
+                    LogUtil.d("BetPop", "updateOdds");
+                    updateOdds(0);
+                }
+            }
+        });
+    }
+
+    public void showParlayDialog() {
+        if (parlayDialog == null) {
+            parlayDialog = new Dialog(context, R.style.Common_Dialog);
+            View view = LayoutInflater.from(context).inflate(R.layout.pop_parlay, null);
+            TextView tvExit = view.findViewById(R.id.tv_exit);
+            TextView tvSure = view.findViewById(R.id.tv_sure);
+            TextView tvCancel = view.findViewById(R.id.tv_cancel);
+            tvExit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parlayDialog.dismiss();
+                }
+            });
+            tvCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parlayDialog.dismiss();
+                }
+            });
+            tvSure.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parlayDialog.dismiss();
+                    directBet();
+                }
+            });
+            parlayDialog.setContentView(view);
+            Window window = parlayDialog.getWindow();
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.width = AfbUtils.getScreenWidth((SportActivity) context) / 10 * 9;
+            window.setAttributes(params);
+        }
+        parlayDialog.show();
+    }
 
 }
