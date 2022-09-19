@@ -171,7 +171,7 @@ public class BetPop {
     }
 
     public void initContent() {
-        tvMixBet.setText(R.string.Parlay1);
+        tvMixBet.setText(R.string.Parlay);
         tvSingleBet.setText(R.string.single_bet);
         max_win.setText(R.string.max_win);
         max_bet.setText(R.string.max_bet_money);
