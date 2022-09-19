@@ -306,4 +306,31 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"></ImageView>
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_rtp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/gd_home_null"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="Bocoran"
+            android:textColor="@color/white"
+            android:textSize="13sp"></TextView>
+
+        <ImageView
+            android:id="@+id/img_rtp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"></ImageView>
+    </FrameLayout>
 </FrameLayout>

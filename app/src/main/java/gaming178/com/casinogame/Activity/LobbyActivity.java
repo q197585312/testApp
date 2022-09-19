@@ -162,6 +162,8 @@ public class LobbyActivity extends BaseActivity {
     ImageView ahlBack;
     LinearLayout ahlLlUser1, ahlLlUser2;
     TextView ahlTvUser;
+    FrameLayout fl_rtp, fl_whatsapp;
+    ImageView img_rtp, img_whatsapp;
 
     private int tableIndex = 0;
 
@@ -542,6 +544,28 @@ public class LobbyActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         goWithdraw(v);
+                    }
+                });
+                fl_rtp = findViewById(R.id.fl_rtp);
+                img_rtp = findViewById(R.id.img_rtp);
+                fl_whatsapp = findViewById(R.id.fl_whatsapp);
+                img_whatsapp = findViewById(R.id.img_whatsapp);
+                tv_home_deposit.setVisibility(View.GONE);
+                tv_home_withdraw.setVisibility(View.GONE);
+                fl_rtp.setVisibility(View.VISIBLE);
+                fl_whatsapp.setVisibility(View.VISIBLE);
+                Glide.with(this).asGif().load(R.mipmap.rtp_slots_gif).into(img_rtp);
+                Glide.with(this).asGif().load(R.mipmap.whatsapp_gif).into(img_whatsapp);
+                fl_rtp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Gd88Utils.goBrowser(mContext, "https://polamainkasino.com/");
+                    }
+                });
+                fl_whatsapp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Gd88Utils.goBrowser(mContext, "https://wa.me/855712533580");
                     }
                 });
             }
