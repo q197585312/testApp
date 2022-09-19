@@ -79,6 +79,9 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 View headV = holder.getView(R.id.module_match_head_v);
                 TextView homeTv = holder.getView(R.id.out_right_home_tv);
                 View contentParentLl = holder.getView(R.id.ll_match_content_bg);
+                if(contentParentLl==null){
+                    contentParentLl = holder.getView(R.id.ll_match_content);
+                }
                 View module_match_title_ll = holder.getView(R.id.module_match_title_ll);
                 contentParentLl.setBackgroundColor(item.getContentColor());
                 final TextView markTv = holder.getView(R.id.out_right_mark_tv);

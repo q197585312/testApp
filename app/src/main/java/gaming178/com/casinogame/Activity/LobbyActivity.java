@@ -196,8 +196,9 @@ public class LobbyActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
 
-            if (!isAttached)
+            if (!isAttached) {
                 return;
+            }
             switch (msg.what) {
                 case 1:
                     if (announcement != null && !announcement.equals(mAppViewModel.getAnnouncement())) {
@@ -1281,6 +1282,8 @@ public class LobbyActivity extends BaseActivity {
     int lastIndex = -1;
 
     private void switchFragment(int index) {
+        if(isFinishing()||isDestroyed())
+            return;
         if (lastIndex == index) {
             return;
         }

@@ -982,7 +982,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         @Override
         public void handleMessage(Message msg) {
 
-
+            if(isAttached)
+                return;
             switch (msg.what) {
                 case ErrorCode.LOGIN_ERROR_NETWORK:
                     Toast.makeText(mContext, R.string.server_network_error, Toast.LENGTH_LONG).show();
