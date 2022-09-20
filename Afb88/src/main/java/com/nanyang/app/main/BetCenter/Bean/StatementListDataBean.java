@@ -38,6 +38,7 @@ public class StatementListDataBean {
     private String index23;
     private String index24;
     private String index25;
+    private String CCSRHasODD2_27;
 
     public String getIndex9() {
         return index9;
@@ -175,30 +176,7 @@ public class StatementListDataBean {
         this.index25 = index25;
     }
 
-    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7) {
-        this.index0 = index0;
-        this.index1 = index1;
-        this.index2 = index2;
-        this.index3 = index3;
-        this.index4 = index4;
-        this.index5 = index5;
-        this.index6 = index6;
-        this.index7 = index7;
-    }
-
-    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8) {
-        this.index0 = index0;
-        this.index1 = index1;
-        this.index2 = index2;
-        this.index3 = index3;
-        this.index4 = index4;
-        this.index5 = index5;
-        this.index6 = index6;
-        this.index7 = index7;
-        this.index8 = index8;
-    }
-
-    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, String index10, String index11, String index12, String index13, String index14, String index15, String index16, String index17, String index18, String index19, String index20, String index21, String index22, String index23, String index24, String index25) {
+    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, String index10, String index11, String index12, String index13, String index14, String index15, String index16, String index17, String index18, String index19, String index20, String index21, String index22, String index23, String index24, String index25, String CCSRHasODD2_27) {
         this.index0 = index0;
         this.index1 = index1;
         this.index2 = index2;
@@ -225,6 +203,38 @@ public class StatementListDataBean {
         this.index23 = index23;
         this.index24 = index24;
         this.index25 = index25;
+        this.CCSRHasODD2_27 = CCSRHasODD2_27;
+    }
+
+    public String getCCSRHasODD2_27() {
+        return CCSRHasODD2_27;
+    }
+
+    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7) {
+        this.index0 = index0;
+        this.index1 = index1;
+        this.index2 = index2;
+        this.index3 = index3;
+        this.index4 = index4;
+        this.index5 = index5;
+        this.index6 = index6;
+        this.index7 = index7;
+    }
+
+    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8) {
+        this.index0 = index0;
+        this.index1 = index1;
+        this.index2 = index2;
+        this.index3 = index3;
+        this.index4 = index4;
+        this.index5 = index5;
+        this.index6 = index6;
+        this.index7 = index7;
+        this.index8 = index8;
+    }
+
+    public void setCCSRHasODD2_27(String CCSRHasODD2_27) {
+        this.CCSRHasODD2_27 = CCSRHasODD2_27;
     }
 
     public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, String index10, String index11, String index12, String index13, String index14, String index15, String index16, String index17, String index18, String index19

@@ -106,7 +106,8 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
                                 jsonArrayArr.getString(10), jsonArrayArr.getString(11), jsonArrayArr.getString(12), jsonArrayArr.getString(13),
                                 jsonArrayArr.getString(14), jsonArrayArr.getString(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17),
                                 jsonArrayArr.getString(18), jsonArrayArr.getString(19), jsonArrayArr.getString(20), jsonArrayArr.getString(21),
-                                jsonArrayArr.getString(22), jsonArrayArr.getString(23), jsonArrayArr.getString(24), jsonArrayArr.getString(25));
+                                jsonArrayArr.getString(22), jsonArrayArr.getString(23), jsonArrayArr.getString(24), jsonArrayArr.getString(25),
+                                jsonArrayArr.getString(27));
                         list.add(bean);
                     }
                     statementNewFragment.onGetStatementOpen1Data(list);

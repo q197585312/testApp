@@ -64,7 +64,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         super.initData();
         createPresenter(new StatementNewPresenter(this));
         layoutInflater = LayoutInflater.from(mContext);
-
+        getStatementData();
     }
 
     @Override
@@ -122,7 +122,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             }
             tvDate.setText(date);
             setWinLoseText(tvCom, bean.getIndex5(), "#.##");
-            String wl = bean.getIndex4();
+            double WinLose = Double.parseDouble(bean.getIndex4());
+            double Commission = Double.parseDouble(bean.getIndex5());
+            String wl = Double.valueOf((WinLose + Commission)).toString();
             setWinLoseText(tvWinLose, wl, "#.##");
             setWinLoseText(tvSettled, bean.getIndex6(), "#,###");
 
@@ -204,7 +206,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             }
             tvDate.setText(dateStr);
             setWinLoseText(tvCom, bean.getIndex5(), "#.##");
-            String wl = bean.getIndex4();
+            double WinLose = Double.parseDouble(bean.getIndex4());
+            double Commission = Double.parseDouble(bean.getIndex5());
+            String wl = Double.valueOf((WinLose + Commission)).toString();
             setWinLoseText(tvWinLose, wl, "#.##");
             setWinLoseText(tvSettled, bean.getIndex6(), "#,###");
             view.setOnClickListener(new View.OnClickListener() {
@@ -299,6 +303,14 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 TextView tvCom = view.findViewById(R.id.tv_com);
                 TextView tvMatchAtFt = view.findViewById(R.id.tv_match_at_ft);
                 TextView tvWl = view.findViewById(R.id.tv_wl);
+                TextView tv_CCSRHasODD2 = view.findViewById(R.id.tv_CCSRHasODD2);
+                if (!TextUtils.isEmpty(bean.getCCSRHasODD2_27())) {
+                    tv_CCSRHasODD2.setVisibility(View.VISIBLE);
+                    tv_CCSRHasODD2.setText(getString(R.string.Excluding) + ": " + bean.getCCSRHasODD2_27());
+                } else {
+                    tv_CCSRHasODD2.setText("");
+                    tv_CCSRHasODD2.setVisibility(View.GONE);
+                }
                 tvIdDate.setText(getString(R.string.ID) + ":[" + bean.getIndex13() + "]" + bean.getIndex0());
                 int number = i + 1;
                 tvNumber.setText(number < 10 ? ("0" + number) : "" + number);

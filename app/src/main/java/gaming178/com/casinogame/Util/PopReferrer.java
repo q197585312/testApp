@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
-import gaming178.com.casinogame.Activity.LobbyActivity;
+import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
@@ -91,7 +91,7 @@ public class PopReferrer extends BasePopupWindow {
             public void run() {
                 String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getRefPlayer.jsp";
                 String param = "labelid=" + BuildConfig.Labelid;
-                LobbyActivity a = (LobbyActivity) context;
+                BaseActivity a = (BaseActivity) context;
                 if (a.mAppViewModel.getHttpClient() != null) {
                     String s = a.mAppViewModel.getHttpClient().sendPost(url, param);
                     handler.sendMessage(handler.obtainMessage(1, s));

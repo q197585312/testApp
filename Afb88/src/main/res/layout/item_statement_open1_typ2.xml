@@ -135,6 +135,15 @@
     </com.nanyang.app.Utils.FlowLayout>
 
     <TextView
+        android:id="@+id/tv_CCSRHasODD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/ccsrhasodd_color"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/tv_match_grade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

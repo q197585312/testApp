@@ -24,6 +24,7 @@ public abstract class SearchBaseActivity extends BaseActivity {
     EditText edtSearch;
     ImageView imgClear;
     LinearLayout ll_parent;
+    LinearLayout ll_menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,17 @@ public abstract class SearchBaseActivity extends BaseActivity {
                 toolbar.setBackgroundColor(Color.parseColor("#1B232E"));
                 toolbar.setNavigationIcon(R.mipmap.gd_arrow_left_back);
             }
+        } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
+            toolbar.setNavigationIcon(null);
+            toolbar.setBackgroundColor(Color.parseColor("#24272F"));
+            ll_menu = findViewById(R.id.gd_ll_menu);
+            ll_menu.setVisibility(View.VISIBLE);
+            ll_menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showLanguagePop(edtSearch, 0.75f);
+                }
+            });
         } else {
             if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
                 toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.login_color));

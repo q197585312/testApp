@@ -164,6 +164,7 @@ public class LobbyActivity extends BaseActivity {
     TextView ahlTvUser;
     FrameLayout fl_rtp, fl_whatsapp;
     ImageView img_rtp, img_whatsapp;
+    TextView main_tv_home_user_name, main_tv_home_balance;
 
     private int tableIndex = 0;
 
@@ -569,6 +570,23 @@ public class LobbyActivity extends BaseActivity {
                         Gd88Utils.goBrowser(mContext, "https://wa.me/855712533580");
                     }
                 });
+                main_tv_home_user_name = findViewById(R.id.main_tv_home_user_name);
+                main_tv_home_balance = findViewById(R.id.main_tv_home_balance);
+                main_tv_home_user_name.setText(mAppViewModel.getUser().getName());
+                main_tv_home_balance.setText(Gd88Utils.formatToSepara(mAppViewModel.getUser().getBalance()));
+                tv_home_user_name.setVisibility(View.GONE);
+                tv_home_balance.setVisibility(View.GONE);
+                ImageView gd_img_logo = findViewById(R.id.gd_img_logo);
+                gd_img_logo.setMaxWidth(UIUtil.dip2px(mContext, 200));
+                LinearLayout gd_ll_menu = findViewById(R.id.gd_ll_menu);
+                gd_ll_menu.setVisibility(View.VISIBLE);
+                gd_ll_menu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showLanguagePop(tv_lg, 0.75f);
+                    }
+                });
+                tv_home_home.setVisibility(View.GONE);
             }
         } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
             LinearLayout gd_ll_notice = findViewById(R.id.gd__ll_notice);
@@ -1055,7 +1073,6 @@ public class LobbyActivity extends BaseActivity {
     private void initBar() {
         toolbar.setVisibility(View.GONE);
         tv_home_user_name.setText(mAppViewModel.getUser().getName());
-//        tv_home_balance.setText(mAppViewModel.getUser().getBalance() + "");
         tv_home_balance.setText(Gd88Utils.formatToSepara(mAppViewModel.getUser().getBalance()));
     }
 
@@ -1282,7 +1299,7 @@ public class LobbyActivity extends BaseActivity {
     int lastIndex = -1;
 
     private void switchFragment(int index) {
-        if(isFinishing()||isDestroyed())
+        if (isFinishing() || isDestroyed())
             return;
         if (lastIndex == index) {
             return;

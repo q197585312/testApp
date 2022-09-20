@@ -317,6 +317,7 @@
     <string name="vip_service">VIP SERVICE</string>
     <string name="submit_ok">Confirm</string>
     <string name="gd_login_first">Please login first.</string>
+    <string name="gd_Menu">Menu</string>
 </resources>
 
 

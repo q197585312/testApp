@@ -16,8 +16,8 @@ import java.util.List;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
-import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Util.WebSiteUrl;
+import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.base.QuickBaseAdapter;
 import gaming178.com.mylibrary.base.ViewHolder;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
@@ -80,7 +80,7 @@ public class PopReferralList extends BasePopupWindow {
         new Thread() {
             @Override
             public void run() {
-                LobbyActivity activity = (LobbyActivity) context;
+                BaseActivity activity = (BaseActivity) context;
                 String url = WebSiteUrl.REFERRAL_LIST;
                 String param = "Usid=" + activity.mAppViewModel.getUser().getName();
                 if (activity.mAppViewModel.getHttpClient() != null) {
