@@ -2,7 +2,7 @@
     android:id="@+id/bet_pop_parent_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/yellow_white_bg"
+    android:background="@drawable/bet_pop_bg"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -466,6 +466,9 @@
         android:id="@+id/bet_pop_parent_top_fl"
         android:layout_width="match_parent"
         android:layout_height="205dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
         android:visibility="gone">
 
         <com.unkonw.testapp.libs.widget.LollipopFixedWebView
