@@ -982,7 +982,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         @Override
         public void handleMessage(Message msg) {
 
-            if(isAttached)
+            if(!isAttached)
                 return;
             switch (msg.what) {
                 case ErrorCode.LOGIN_ERROR_NETWORK:
