@@ -85,17 +85,6 @@
                     android:layout_toRightOf="@+id/gd_img_login_title"></ImageView>
 
                 <ImageView
-                    android:id="@+id/gd_img_login_title_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@mipmap/gd_title_logo"
-                    android:visibility="gone" />
-
-                <ImageView
                     android:id="@+id/gd_img_login_title_main_sbocasino77"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -432,6 +421,12 @@
             android:layout_marginTop="5dp"
             android:background="@mipmap/gd_login_exit"></ImageView>
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/gd_img_login_title_main"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_gravity="bottom" />
 
     <LinearLayout
         android:id="@+id/ll_sbocasino77"

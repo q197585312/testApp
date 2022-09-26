@@ -287,6 +287,14 @@ public class LoginActivity extends BaseActivity {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.playTogether(objectTranslationY, objectScaleY);
             animatorSet.start();
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_depocasino).into(img_login_title_main);
+            img_login_title_main.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://rtpgg.com/");
+                }
+            });
         }
         if (BuildConfig.FLAVOR.equals("ratucasino88")) {
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.kilat).into(img_login_title);
@@ -390,6 +398,15 @@ public class LoginActivity extends BaseActivity {
             });
             img_login_title_main = findViewById(R.id.gd_img_login_title_main);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_dragon).into(img_login_title_main);
+
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_ularnaga).into(gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://rtpgg.com/");
+                }
+            });
         }
 
         if (BuildConfig.FLAVOR.equals("serbacasino")) {
