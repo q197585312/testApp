@@ -183,8 +183,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @BindView(R.id.ll_sport_menu_bottom)
     public
     LinearLayout llSportMenuBottom;
-/*    @BindView(R.id.fl_top)
-    FrameLayout fl_top;*/
+    /*    @BindView(R.id.fl_top)
+        FrameLayout fl_top;*/
     @BindView(R.id.sports_language_tv)
     ImageView sports_language_tv;
     @BindView(R.id.sports_selected_tv)
@@ -1158,7 +1158,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (item.getRes() == R.mipmap.date_day_grey) {
             LogUtil.d("tvMatchType", item.getDay());
             matchRes = R.string.Early_All;
-            tvMatchType.setText(item.getType()+" "+item.getDay());
+            tvMatchType.setText(item.getType() + " " + item.getDay());
         } else {
             LogUtil.d("tvMatchType", item.getText());
             matchRes = item.getText();
@@ -1169,15 +1169,15 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         wd = item.getDateParam();
     }
 
-    private void setLeftMenuTypeState(MenuItemInfo item){
+    private void setLeftMenuTypeState(MenuItemInfo item) {
         String type = item.getType();
         if (type.equals("Early")) {
-            tvLeftMenuEarly.setTextColor(ContextCompat.getColor(mContext,R.color.keno_text_clik1));
+            tvLeftMenuEarly.setTextColor(ContextCompat.getColor(mContext, R.color.keno_text_clik1));
             tvLeftMenuToday.setTextColor(Color.WHITE);
         } else if (type.equals("Today")) {
             tvLeftMenuEarly.setTextColor(Color.WHITE);
-            tvLeftMenuToday.setTextColor(ContextCompat.getColor(mContext,R.color.keno_text_clik1));
-        }else {
+            tvLeftMenuToday.setTextColor(ContextCompat.getColor(mContext, R.color.keno_text_clik1));
+        } else {
             tvLeftMenuEarly.setTextColor(Color.WHITE);
             tvLeftMenuToday.setTextColor(Color.WHITE);
         }
@@ -1461,7 +1461,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void onChangeMatchClick(View view) {
-        clickRunMatchPlay(itemBallAdded, positionBallAdded, !onlyShowOne);
+        onlyShowOne = !onlyShowOne;
+        if (!onlyShowOne)
+            closeTv(view);
+        else
+            clickRunMatchPlay(itemBallAdded, positionBallAdded, true);
+
     }
 
     public void clickCLosePlay(View view) {

@@ -100,7 +100,7 @@ public class LogUtil {
     public static void getMethodName() {
         StackTraceElement[] temp = Thread.currentThread().getStackTrace();
         if (temp.length > 3) {
-            for (int i = 3; i < (temp.length > 7 ? 7 : temp.length); i++) {
+            for (int i = 3; i < (temp.length > 5 ? 5 : temp.length); i++) {
                 StackTraceElement a = temp[i];
                 LogUtil.d("getMethodName", a.getMethodName() + ",class:" + a.getClassName());
             }

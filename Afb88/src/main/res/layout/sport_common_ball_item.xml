@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/grey_white_bg"
     android:gravity="center"
     android:orientation="vertical">
@@ -369,6 +370,7 @@
         android:background="@color/green_light_button"
         android:gravity="center"
         android:orientation="horizontal"
+        tools:visibility="visible"
         android:visibility="gone">
 
         <ImageView
