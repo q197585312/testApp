@@ -32,19 +32,11 @@ import gaming178.com.mylibrary.base.ViewHolder;
  */
 
 public class PragmaticGameActivity extends SearchBaseActivity {
-    String lg;
     GridView gridView;
     List<PragmaticGameBean.DataBean> allGameList;
     AdapterViewContent<PragmaticGameBean.DataBean> adapterViewContent;
 
-    @Override
-    protected void initData(Bundle savedInstanceState) {
-        super.initData(savedInstanceState);
-//        titleTv.setText(getString(R.string.pragmatic));
-        gridView = findViewById(R.id.gridview_content_gv);
-        lg = AppTool.getAppLanguage(mContext);
-        getDataMsg();
-    }
+    String lang;
 
     @Override
     int layout() {
@@ -122,6 +114,20 @@ public class PragmaticGameActivity extends SearchBaseActivity {
 
     private boolean isCanLoad = true;
 
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        super.initData(savedInstanceState);
+//        titleTv.setText(getString(R.string.pragmatic));
+        gridView = findViewById(R.id.gridview_content_gv);
+        String appLanguage = AppTool.getAppLanguage(mContext);
+        if (appLanguage.equals("my")) {
+            lang = "id";
+        } else {
+            lang = "en";
+        }
+        getDataMsg();
+    }
+
     private void getUrl(final String gameId) {
         if (isCanLoad) {
             isCanLoad = false;
@@ -129,7 +135,7 @@ public class PragmaticGameActivity extends SearchBaseActivity {
                 @Override
                 public void run() {
                     String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "pragmaticpath.jsp?";
-                    String param = "gameid=" + gameId + "&technology=H5&platform=MOBILE";
+                    String param = "gameid=" + gameId + "&technology=H5&platform=MOBILE&lang"+lang;
                     String result = mAppViewModel.getHttpClient().sendPostCQ(url + param, "");
                     if (result.startsWith("Results=ok")) {
                         String[] split = result.split("#");

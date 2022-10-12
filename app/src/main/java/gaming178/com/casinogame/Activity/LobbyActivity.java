@@ -892,6 +892,9 @@ public class LobbyActivity extends BaseActivity {
                     finish();
                 } else if (hallGameItemBean.getGameType() == AppConfig.gd_casino) {
                     showAhlLocalGame();
+                } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic_casino) {
+                    skipAct(PragmaticCasinoActivity.class);
+                    finish();
                 }
 
             }

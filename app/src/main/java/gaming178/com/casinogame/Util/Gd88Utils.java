@@ -142,7 +142,8 @@ public class Gd88Utils {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
         }
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra_casino, context.getString(R.string.pragmatic_casino), AppConfig.pragmatic_casino));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, context.getString(R.string.pragmatic_slot), AppConfig.pragmatic));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_haba, context.getString(R.string.haba), AppConfig.haba));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_pg, context.getString(R.string.gd_pg), AppConfig.pg));
@@ -157,7 +158,8 @@ public class Gd88Utils {
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_slot, context.getString(R.string.slots), AppConfig.slots));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_lg, context.getString(R.string.lg88_casino), AppConfig.lg88));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
-        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra_casino, context.getString(R.string.pragmatic_casino), AppConfig.pragmatic_casino));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra, context.getString(R.string.pragmatic_slot), AppConfig.pragmatic));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cq9, context.getString(R.string.cq), AppConfig.cq9));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
@@ -199,6 +201,7 @@ public class Gd88Utils {
             typeList.add(new HallGameItemBean(R.mipmap.lobby_gd_casino, "GD Casino", AppConfig.gd_casino));
             typeList.add(getGame(AppConfig.lg88, context));
             typeList.add(getGame(AppConfig.afb_casino, context));
+            typeList.add(getGame(AppConfig.pragmatic_casino, context));
         } else if (type == SlotOnline) {
             typeList.add(getGame(AppConfig.pragmatic, context));
             typeList.add(getGame(AppConfig.pg, context));

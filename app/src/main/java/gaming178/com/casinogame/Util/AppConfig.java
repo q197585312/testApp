@@ -38,4 +38,5 @@ public class AppConfig {
     public static final int pg = 15;
     public static final int afb_casino = 16;
     public static final int gd_casino = 17;
+    public static final int pragmatic_casino = 18;
 }
