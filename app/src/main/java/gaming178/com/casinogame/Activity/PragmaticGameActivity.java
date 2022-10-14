@@ -135,7 +135,7 @@ public class PragmaticGameActivity extends SearchBaseActivity {
                 @Override
                 public void run() {
                     String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "pragmaticpath.jsp?";
-                    String param = "gameid=" + gameId + "&technology=H5&platform=MOBILE&lang"+lang;
+                    String param = "gameid=" + gameId + "&technology=H5&platform=MOBILE&lang="+lang;
                     String result = mAppViewModel.getHttpClient().sendPostCQ(url + param, "");
                     if (result.startsWith("Results=ok")) {
                         String[] split = result.split("#");
