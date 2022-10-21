@@ -41,6 +41,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.codersun.fingerprintcompat.AonFingerChangeCallback;
 import com.codersun.fingerprintcompat.FingerManager;
 import com.codersun.fingerprintcompat.SimpleFingerCheckCallback;
@@ -697,24 +698,58 @@ public class LoginActivity extends BaseActivity {
 
         if (BuildConfig.FLAVOR.equals("kasino365")) {
             goNetWA(4);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_365_logo).into(img_login_title);
 
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            CircleAnimation circleAnimation = new CircleAnimation(40);
-            circleAnimation.setDuration(8000);
-            circleAnimation.setRepeatCount(-1);
-            circleAnimation.setInterpolator(new LinearInterpolator());
-            img_login_title_main.startAnimation(circleAnimation);
-            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
-            ObjectAnimator objectAnimatorY = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationY", 0, -30, 0);
-            objectAnimatorY.setDuration(5000);
-            objectAnimatorY.setRepeatCount(Animation.INFINITE);
-            ObjectAnimator objectAnimatorX = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationX", 0, 30, 0);
-            objectAnimatorX.setDuration(5000);
-            objectAnimatorX.setRepeatCount(Animation.INFINITE);
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(objectAnimatorX, objectAnimatorY);
-            animatorSet.start();
+            bannerView = findViewById(R.id.banner_view);
+            bannerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    int width = bannerView.getWidth();
+                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
+                    layoutParams.height = (int) (width / 2.4);
+                    bannerView.setLayoutParams(layoutParams);
+                }
+            });
+            List<String> imgList = new ArrayList<>();
+            imgList.add("https://www.adminiframe.xyz/assets/images/slider/20221018194938.webp");
+            imgList.add("https://www.adminiframe.xyz/assets/images/slider/20221018194914.webp");
+            imgList.add("https://www.adminiframe.xyz/assets/images/slider/20221018171738.webp");
+            bannerView.setLifecycleRegistry(getLifecycle()).
+                    setAdapter(new MyNetWorkBannerAdapter()).
+                    setScrollDuration(500).
+                    setIndicatorSliderColor(Color.WHITE,
+                            Color.parseColor("#FAE58C")).
+                    setIndicatorGravity(IndicatorGravity.CENTER).
+                    create(imgList);
+
+            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
+            hallGameBottomPromptTv.setSelected(true);
+            hallGameBottomPromptTv.stopScroll();
+            hallGameBottomPromptTv.setTextColor(Color.BLACK);
+            hallGameBottomPromptTv.setSpeed(0.8f);
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
+                    String param = "labelid=" + BuildConfig.Labelid;
+                    String result = httpClient.getHttpClient(url + param, null);
+                    WebSiteUrl.setNormal(result);
+                    String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
+                    String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (annoucement.startsWith("Results=ok")) {
+                                String[] split = annoucement.split("\\|");
+                                hallGameBottomPromptTv.setText(split[1]);
+                            } else {
+                                hallGameBottomPromptTv.setText("Selamat Datang Disitus Slot Online 365Kasino & Joker Online Terpercaya. Dengan Minimal Deposit 20.000 Sudah Bisa Bermain Sepuasnya Hanya Dengan Satu User ID Untuk Semua Permainan. Via pembayaran Bank (BRI, BCA, BNI, MANDIRI) E-wallet (DANA, OVO, GO-PAY, LINK-AJA) & Deposit Pulsa Tanpa Potongan. Pelayanan 24jam Nonstop Oleh Customer Service Professional !!");
+                            }
+                            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
+                            hallGameBottomPromptTv.startScroll();
+                        }
+                    });
+                }
+            }.start();
 
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -736,6 +771,45 @@ public class LoginActivity extends BaseActivity {
                     goNetWA(3);
                 }
             });
+
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            Glide.with(mContext).asGif()
+                    .load("https://misterhoki08.github.io/master365/assets/telegram.gif")
+                    .apply(new RequestOptions()
+                            .circleCropTransform())
+                    .into(gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://t.me/infoslotharian88");
+                }
+            });
+
+            RecyclerView rcGame = findViewById(R.id.rc_game);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            rcGame.setLayoutManager(linearLayoutManager);
+            List<String> list = new ArrayList<>();
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018171925.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018202627.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018202656.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018202739.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210113.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210214.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210234.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210250.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210305.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210332.jpg");
+            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210349.jpg");
+            BaseRecyclerAdapter<String> adapter = new BaseRecyclerAdapter<String>(mContext, list, R.layout.item_kasino365_game) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, String item) {
+                    ImageView imageView = holder.getImageView(R.id.img_content);
+                    Glide.with(mContext).load(item).into(imageView);
+                }
+            };
+            rcGame.setAdapter(adapter);
+            initRightLang();
         }
 
         if (BuildConfig.FLAVOR.equals("hokicasino88")) {
@@ -1737,7 +1811,7 @@ public class LoginActivity extends BaseActivity {
             }
             fingerLogin();
         } else {
-            if (!BuildConfig.FLAVOR.equals("rajacasino") && !BuildConfig.FLAVOR.equals("rajabakarat")) {
+            if (!BuildConfig.FLAVOR.equals("rajacasino") && !BuildConfig.FLAVOR.equals("rajabakarat") && !BuildConfig.FLAVOR.equals("kasino365")) {
                 cb_remember_me.setChecked(false);
             }
         }

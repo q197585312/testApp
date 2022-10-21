@@ -374,4 +374,10 @@
         android:paddingRight="12dp"
         android:paddingBottom="5dp"
         android:visibility="gone"></LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>
