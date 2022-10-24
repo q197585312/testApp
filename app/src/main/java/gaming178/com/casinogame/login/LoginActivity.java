@@ -699,6 +699,7 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (BuildConfig.FLAVOR.equals("kasino365")) {
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_365_logo).into(img_login_title);
             WebView wb_notice = findViewById(R.id.wb_notice);
             WebView wb_banner = findViewById(R.id.wb_banner);
             WebView wb_game = findViewById(R.id.wb_game);
