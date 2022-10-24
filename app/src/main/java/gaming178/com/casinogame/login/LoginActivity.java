@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -697,59 +699,13 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (BuildConfig.FLAVOR.equals("kasino365")) {
+            WebView wb_notice = findViewById(R.id.wb_notice);
+            WebView wb_banner = findViewById(R.id.wb_banner);
+            WebView wb_game = findViewById(R.id.wb_game);
+            loadWebView(wb_notice, "https://adminiframe.xyz/website/running_text");
+            loadWebView(wb_banner, "https://www.adminiframe.xyz/website/sliders");
+            loadWebView(wb_game, "https://www.adminiframe.xyz/website/slot_updates");
             goNetWA(4);
-
-            bannerView = findViewById(R.id.banner_view);
-            bannerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    int width = bannerView.getWidth();
-                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
-                    layoutParams.height = (int) (width / 2.4);
-                    bannerView.setLayoutParams(layoutParams);
-                }
-            });
-            List<String> imgList = new ArrayList<>();
-            imgList.add("https://www.adminiframe.xyz/assets/images/slider/20221018194938.webp");
-            imgList.add("https://www.adminiframe.xyz/assets/images/slider/20221018194914.webp");
-            imgList.add("https://www.adminiframe.xyz/assets/images/slider/20221018171738.webp");
-            bannerView.setLifecycleRegistry(getLifecycle()).
-                    setAdapter(new MyNetWorkBannerAdapter()).
-                    setScrollDuration(500).
-                    setIndicatorSliderColor(Color.WHITE,
-                            Color.parseColor("#FAE58C")).
-                    setIndicatorGravity(IndicatorGravity.CENTER).
-                    create(imgList);
-
-            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
-            hallGameBottomPromptTv.setSelected(true);
-            hallGameBottomPromptTv.stopScroll();
-            hallGameBottomPromptTv.setTextColor(Color.BLACK);
-            hallGameBottomPromptTv.setSpeed(0.8f);
-            new Thread() {
-                @Override
-                public void run() {
-                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
-                    String param = "labelid=" + BuildConfig.Labelid;
-                    String result = httpClient.getHttpClient(url + param, null);
-                    WebSiteUrl.setNormal(result);
-                    String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
-                    String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (annoucement.startsWith("Results=ok")) {
-                                String[] split = annoucement.split("\\|");
-                                hallGameBottomPromptTv.setText(split[1]);
-                            } else {
-                                hallGameBottomPromptTv.setText("Selamat Datang Disitus Slot Online 365Kasino & Joker Online Terpercaya. Dengan Minimal Deposit 20.000 Sudah Bisa Bermain Sepuasnya Hanya Dengan Satu User ID Untuk Semua Permainan. Via pembayaran Bank (BRI, BCA, BNI, MANDIRI) E-wallet (DANA, OVO, GO-PAY, LINK-AJA) & Deposit Pulsa Tanpa Potongan. Pelayanan 24jam Nonstop Oleh Customer Service Professional !!");
-                            }
-                            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
-                            hallGameBottomPromptTv.startScroll();
-                        }
-                    });
-                }
-            }.start();
 
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -784,31 +740,6 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://t.me/infoslotharian88");
                 }
             });
-
-            RecyclerView rcGame = findViewById(R.id.rc_game);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            rcGame.setLayoutManager(linearLayoutManager);
-            List<String> list = new ArrayList<>();
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018171925.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018202627.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018202656.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018202739.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210113.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210214.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210234.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210250.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210305.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210332.jpg");
-            list.add("https://www.adminiframe.xyz/assets/images/slot_leak/20221018210349.jpg");
-            BaseRecyclerAdapter<String> adapter = new BaseRecyclerAdapter<String>(mContext, list, R.layout.item_kasino365_game) {
-                @Override
-                public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                    ImageView imageView = holder.getImageView(R.id.img_content);
-                    Glide.with(mContext).load(item).into(imageView);
-                }
-            };
-            rcGame.setAdapter(adapter);
             initRightLang();
         }
 
@@ -1816,6 +1747,28 @@ public class LoginActivity extends BaseActivity {
             }
         }
 
+    }
+
+    private void loadWebView(WebView webView, String url) {
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+        webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                //handler.cancel(); 默认的处理方式，WebView变成空白页
+                handler.proceed();//接受证书
+                //handleMessage(Message msg); 其他处理
+            }
+        });
+        webView.loadUrl(url);
     }
 
     private void ahlTranslationY(View view) {

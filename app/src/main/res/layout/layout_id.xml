@@ -375,9 +375,21 @@
         android:paddingBottom="5dp"
         android:visibility="gone"></LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_game"
+    <WebView
+        android:id="@+id/wb_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+        android:visibility="gone"></WebView>
+
+    <WebView
+        android:id="@+id/wb_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></WebView>
+
+    <WebView
+        android:id="@+id/wb_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></WebView>
 </FrameLayout>

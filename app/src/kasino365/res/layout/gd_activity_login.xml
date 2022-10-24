@@ -151,29 +151,15 @@
 
                 </FrameLayout>
 
-                <LinearLayout
+                <WebView
+                    android:id="@+id/wb_notice"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#FDB630"
-                    android:orientation="horizontal"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="8dp"
-                    android:paddingBottom="8dp">
+                    android:layout_height="wrap_content"></WebView>
 
-                    <gaming178.com.casinogame.Control.AutoScrollTextView
-                        android:id="@+id/gd__hall_game_bottom_prompt_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical" />
-
-                </LinearLayout>
-
-                <com.zhpan.bannerview.BannerViewPager
-                    android:id="@+id/banner_view"
+                <WebView
+                    android:id="@+id/wb_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="90dp" />
+                    android:layout_height="wrap_content"></WebView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -374,34 +360,11 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
+                <WebView
+                    android:id="@+id/wb_game"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Update Slot Terpanas"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"></TextView>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:src="@mipmap/icon_fire"></ImageView>
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rc_game"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_marginTop="20dp"></WebView>
 
                 <View
                     android:layout_width="match_parent"
@@ -595,4 +558,9 @@
         android:layout_toRightOf="@+id/gd_img_login_title"
         android:visibility="gone"></ImageView>
 
+    <com.zhpan.bannerview.BannerViewPager
+        android:id="@+id/banner_view"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:visibility="gone" />
 </FrameLayout>
