@@ -72,6 +72,7 @@ import gaming178.com.casinogame.Bean.WABean;
 import gaming178.com.casinogame.Control.AutoScrollTextView;
 import gaming178.com.casinogame.Popupwindow.PopImg;
 import gaming178.com.casinogame.Popupwindow.PopImgTitleHint;
+import gaming178.com.casinogame.Popupwindow.PopLanguage;
 import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.CircleAnimation;
@@ -1706,8 +1707,11 @@ public class LoginActivity extends BaseActivity {
         ll_language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initLanguage(ll_language);
-
+                if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                    showLanguagePop(ll_language);
+                } else {
+                    initLanguage(ll_language);
+                }
             }
         });
         ll_remember_me.setOnClickListener(new View.OnClickListener() {
@@ -2098,6 +2102,11 @@ public class LoginActivity extends BaseActivity {
         }
 
     };
+
+    public void showLanguagePop(View view) {
+        PopLanguage popLanguage = new PopLanguage(mContext, view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popLanguage.showPopupDownWindow();
+    }
 
     public void initLanguage(View view) {
         showLanguagePop(view, 0.15f);

@@ -26,16 +26,16 @@ public class LanguageHelper {
         this.context = context;
         languageItems = new ArrayList<>();
         if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88")) {
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_zh_flag, "简体中文", "zh", "ZH-CN"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "English", "en", "EN-US"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_th_flag, "ภาษาไทย", "th", "TH-TH"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_vn_flag, "Tiếng Việt", "vi", "EN-IE"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "INDONESIAN", "my", "EN-AU"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_hk_flag, "繁軆中文", "zh_TW", "ZH-TW"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "EN", "en", "EN-US"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_zh_flag, "ZH", "zh", "ZH-CN"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_hk_flag, "HK", "zh_TW", "ZH-TW"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_vn_flag, "VN", "vi", "EN-IE"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_th_flag, "TH", "th", "TH-TH"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "IN", "my", "EN-AU"));
         } else if (BuildConfig.FLAVOR.equals("liga365")) {
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_zh_flag, "简体中文", "zh", "ZH-CN"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "English", "en", "EN-US"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "INDONESIAN", "my", "EN-AU"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "EN", "en", "EN-US"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_zh_flag, "ZH", "zh", "ZH-CN"));
+            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "IN", "my", "EN-AU"));
         } else {
             BaseActivity baseActivity = (BaseActivity) context;
             if (baseActivity instanceof LoginActivity) {
