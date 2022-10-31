@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -215,5 +216,14 @@ public class Gd88Utils {
             typeList.add(getGame(AppConfig.we1poker, context));
         }
         return typeList;
+    }
+
+    public static boolean isGd88AndLiga365AndJump() {
+        String flavor = BuildConfig.FLAVOR;
+        if (TextUtils.isEmpty(flavor) || flavor.equals("gd88") || flavor.equals("liga365")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

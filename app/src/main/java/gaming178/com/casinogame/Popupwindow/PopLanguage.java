@@ -3,6 +3,7 @@ package gaming178.com.casinogame.Popupwindow;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,8 +20,10 @@ import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 public class PopLanguage extends BasePopupWindow {
     RecyclerView rcLg;
+    LinearLayout ll_parent;
     BaseRecyclerAdapter<MenuItemInfo<String>> adapter;
     BaseActivity activity;
+
     public PopLanguage(Context context, View v, int width, int height) {
         super(context, v, width, height);
         activity = (BaseActivity) context;
@@ -34,6 +37,7 @@ public class PopLanguage extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
+        ll_parent = view.findViewById(R.id.gd_ll_parent);
         rcLg = view.findViewById(R.id.rc_lg);
         rcLg.setLayoutManager(new LinearLayoutManager(context));
         adapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(context, new LanguageHelper(context).getLanguageItems(), R.layout.item_pop_lg) {
@@ -53,5 +57,9 @@ public class PopLanguage extends BasePopupWindow {
             }
         });
         rcLg.setAdapter(adapter);
+    }
+
+    public void setDarkBg(){
+        ll_parent.setBackgroundResource(R.drawable.gd_language_bg_dark);
     }
 }

@@ -90,8 +90,8 @@
                 android:src="@mipmap/gd_flag_british_bg" />
 
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginLeft="10dp"
                 android:src="@mipmap/white_bottom" />
 
