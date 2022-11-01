@@ -60,6 +60,7 @@ import gaming178.com.casinogame.Fragment.LobbyRouletteFragment;
 import gaming178.com.casinogame.Fragment.LobbySicboFragment;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.PopContact;
+import gaming178.com.casinogame.Popupwindow.PopGd88Music;
 import gaming178.com.casinogame.Popupwindow.PopLanguage;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.PopLogout;
@@ -443,7 +444,8 @@ public class LobbyActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (Gd88Utils.isGd88AndLiga365AndJump()) {
-
+                    PopGd88Music popGd88Music = new PopGd88Music(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    popGd88Music.showPopupCenterWindow();
                 } else {
                     showLanguagePop(tv_lg, 0.75f);
                 }
