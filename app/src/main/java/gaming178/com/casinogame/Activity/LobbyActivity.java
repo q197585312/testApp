@@ -63,6 +63,7 @@ import gaming178.com.casinogame.Popupwindow.PopContact;
 import gaming178.com.casinogame.Popupwindow.PopLanguage;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.PopLogout;
+import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BannerViewPager;
@@ -294,6 +295,71 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
+    int itemHeight;
+
+    private void goDeposit(View v) {
+        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+        int width = screenWidth / 15 * 14;
+        User u = mAppViewModel.getUser();
+        DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+        pop.setDialog(dialog);
+        pop.setUser(u);
+        pop.showPopupCenterWindow();
+    }
+
+    private void goWithdraw(View v) {
+        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+        int width = screenWidth / 15 * 14;
+        User u = mAppViewModel.getUser();
+        WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+        p.setDialog(dialog);
+        p.setUser(u);
+        p.showPopupCenterWindow();
+    }
+
+    BannerViewPager viewPager;
+
+    private void setBanner() {
+        setGameContent();
+        RelativeLayout rl_banner = findViewById(R.id.rl_banner);
+        viewPager = findViewById(R.id.auto_viewpager);
+        LinearLayout inLayout = findViewById(R.id.in_layout);
+        if (rl_banner != null && viewPager != null && inLayout != null) {
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
+                    String result = mAppViewModel.getHttpClient().sendPost(url, "");
+                    if (result.contains("Success")) {
+                        BannerBean bannerBean = new Gson().fromJson(result, BannerBean.class);
+                        List<BannerBean.DataBean> data = bannerBean.getData();
+                        if (data != null && data.size() > 0) {
+                            List<String> lists = new ArrayList<>();
+                            for (int i = 0; i < data.size(); i++) {
+                                BannerBean.DataBean dataBean = data.get(i);
+                                lists.add(dataBean.getPath());
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    rl_banner.setVisibility(View.VISIBLE);
+                                    BannerViewPagerAdapter adapter = new BannerViewPagerAdapter(lists, inLayout, LobbyActivity.this);
+                                    viewPager.setAdapter(adapter);
+                                    viewPager.addOnPageChangeListener(viewPager.listener);
+                                }
+                            });
+                        }
+                    }
+                }
+            }.start();
+        }
+    }
+
+    LinearLayout ll_ahl_game_content;
+    LinearLayout ll_banner;
+    int contentHeight;
+    int itemWidth;
+
     @Override
     protected void initData(Bundle savedInstanceState) {
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
@@ -376,13 +442,22 @@ public class LobbyActivity extends BaseActivity {
         tv_home_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLanguagePop(tv_lg, 0.75f);
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+
+                } else {
+                    showLanguagePop(tv_lg, 0.75f);
+                }
             }
         });
         tv_home_deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goDeposit(v);
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    popReport.showPopupCenterWindow();
+                } else {
+                    goDeposit(v);
+                }
             }
         });
         tv_home_withdraw.setOnClickListener(new View.OnClickListener() {
@@ -576,69 +651,6 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
-    private void goDeposit(View v) {
-        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-        int width = screenWidth / 15 * 14;
-        User u = mAppViewModel.getUser();
-        DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-        pop.setDialog(dialog);
-        pop.setUser(u);
-        pop.showPopupCenterWindow();
-    }
-
-    private void goWithdraw(View v) {
-        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-        int width = screenWidth / 15 * 14;
-        User u = mAppViewModel.getUser();
-        WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-        p.setDialog(dialog);
-        p.setUser(u);
-        p.showPopupCenterWindow();
-    }
-
-    BannerViewPager viewPager;
-
-    private void setBanner() {
-        setGameContent();
-        RelativeLayout rl_banner = findViewById(R.id.rl_banner);
-        viewPager = findViewById(R.id.auto_viewpager);
-        LinearLayout inLayout = findViewById(R.id.in_layout);
-        if (rl_banner != null && viewPager != null && inLayout != null) {
-            new Thread() {
-                @Override
-                public void run() {
-                    String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
-                    String result = mAppViewModel.getHttpClient().sendPost(url, "");
-                    if (result.contains("Success")) {
-                        BannerBean bannerBean = new Gson().fromJson(result, BannerBean.class);
-                        List<BannerBean.DataBean> data = bannerBean.getData();
-                        if (data != null && data.size() > 0) {
-                            List<String> lists = new ArrayList<>();
-                            for (int i = 0; i < data.size(); i++) {
-                                BannerBean.DataBean dataBean = data.get(i);
-                                lists.add(dataBean.getPath());
-                            }
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    rl_banner.setVisibility(View.VISIBLE);
-                                    BannerViewPagerAdapter adapter = new BannerViewPagerAdapter(lists, inLayout, LobbyActivity.this);
-                                    viewPager.setAdapter(adapter);
-                                    viewPager.addOnPageChangeListener(viewPager.listener);
-                                }
-                            });
-                        }
-                    }
-                }
-            }.start();
-        }
-    }
-
-    LinearLayout ll_ahl_game_content;
-    LinearLayout ll_banner;
-    int contentHeight;
-    int itemWidth;
-
     private void initAhlUi() {
         ll_banner = findViewById(R.id.ll_banner);
         ll_ahl_game_content = findViewById(R.id.ll_ahl_game_content);
@@ -700,15 +712,17 @@ public class LobbyActivity extends BaseActivity {
         }
         itemWidth = view_item.getWidth();
         if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            itemHeight = itemWidth;
             GridLayoutManager layoutManager = new GridLayoutManager(mContext, count);
             gridviewContentGv.setLayoutManager(layoutManager);
         } else {
+            itemHeight = itemWidth + UIUtil.dip2px(mContext, 40);
             ll_parent.setGravity(Gravity.BOTTOM);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
 //            if (TextUtils.isEmpty(BuildConfig.FLAVOR)) {
 //                dp = count == 4 ? 0 : 5;
 //            }
-            params.height = ll_parent.getHeight() - itemWidth - UIUtil.dip2px(mContext, dp);
+            params.height = ll_parent.getHeight() - itemHeight - UIUtil.dip2px(mContext, dp);
             ll_content_bg.setLayoutParams(params);
             clickItem = 0;
             ll_content_bg.setVisibility(View.VISIBLE);
@@ -724,8 +738,17 @@ public class LobbyActivity extends BaseActivity {
                 RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
                 ImageView imgTopLeftNew = holder.getImageView(R.id.img_top_left_new);
                 ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
-                layoutParams.height = itemWidth;
+                layoutParams.width = itemWidth;
+                layoutParams.height = itemHeight;
                 rl_parent.setLayoutParams(layoutParams);
+                RelativeLayout rl_content = null;
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    rl_content = holder.getRelativeLayout(R.id.rl_content);
+                    ViewGroup.LayoutParams lp = rl_content.getLayoutParams();
+                    lp.width = itemWidth;
+                    lp.height = itemWidth;
+                    rl_content.setLayoutParams(lp);
+                }
                 ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
                 Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
                 imageView.setImageBitmap(bitmap);
@@ -735,20 +758,28 @@ public class LobbyActivity extends BaseActivity {
                     imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 }
                 if (item.getGameType() == AppConfig.slots || item.getGameType() == AppConfig.afb_casino) {
-                    imgTopLeftNew.setVisibility(View.VISIBLE);
+                    if (!Gd88Utils.isGd88AndLiga365AndJump()) {
+                        imgTopLeftNew.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     imgTopLeftNew.setVisibility(View.GONE);
                 }
                 TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
                 textView.setText(item.getTitle());
                 if (position == clickItem) {
-                    rl_parent.setBackgroundResource(R.mipmap.home_game_select);
+                    if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                        rl_content.setBackgroundResource(R.drawable.gd88_liga365_home_item);
+                    } else {
+                        rl_parent.setBackgroundResource(R.mipmap.home_game_select);
+                    }
                     textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
                 } else {
                     if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("ularnaga") ||
                             BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
                             BuildConfig.FLAVOR.equals("slotku") || BuildConfig.FLAVOR.equals("ahlicasino")) {
                         rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item);
+                    } else if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                        rl_content.setBackgroundResource(R.drawable.gd88_liga365_home_item_no_select);
                     } else {
                         rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
                     }

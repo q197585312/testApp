@@ -118,7 +118,6 @@
                     android:id="@+id/gd__tv_home_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:drawableLeft="@mipmap/home_money"
                     android:drawablePadding="3dp"
                     android:gravity="center"
@@ -298,8 +297,20 @@
                     android:id="@+id/view_item"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1.1" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
                     android:layout_weight="1" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" />
 
                 <View
                     android:layout_width="0dp"
@@ -335,6 +346,11 @@
             android:layout_gravity="bottom"
             android:layout_marginTop="8dp"
             android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#E2B603"></View>
 
             <LinearLayout
                 android:id="@+id/ll_content_bg"
@@ -376,7 +392,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="#50000000"
+            android:background="@drawable/shape_gd88_home_bottom_bg"
             android:orientation="vertical">
 
             <View
@@ -402,10 +418,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableTop="@mipmap/gd_home_home"
+                    android:drawableTop="@mipmap/gd_home_setting_white"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="@string/gd_home"
+                    android:text="@string/setting"
                     android:textColor="@color/white"
                     android:textSize="13sp"></TextView>
 
@@ -420,10 +436,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableTop="@mipmap/gd_home_deposit"
+                    android:drawableTop="@mipmap/gd_home_report_white"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="@string/gd_deposit"
+                    android:text="@string/report"
                     android:textColor="@color/white"
                     android:textSize="13sp"></TextView>
 
@@ -470,7 +486,8 @@
                     android:paddingTop="10dp"
                     android:text="@string/gd_withdrawal"
                     android:textColor="@color/white"
-                    android:textSize="13sp"></TextView>
+                    android:textSize="13sp"
+                    android:visibility="gone"></TextView>
 
                 <FrameLayout
                     android:id="@+id/fl_whatsapp"
@@ -530,7 +547,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableTop="@mipmap/gd_home_exit"
+                    android:drawableTop="@mipmap/gd_home_logout_white"
                     android:gravity="center"
                     android:paddingTop="10dp"
                     android:text="@string/logout"

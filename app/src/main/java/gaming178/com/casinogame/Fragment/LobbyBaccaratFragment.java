@@ -4,7 +4,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +27,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.BindView;
-import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Util.AppConfig;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.UIUtil;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -1114,7 +1113,7 @@ public class LobbyBaccaratFragment extends BaseFragment {
         });
         addLayout4(baccaratContentParentLl);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            if (TextUtils.isEmpty(BuildConfig.FLAVOR) || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")){
+            if (Gd88Utils.isGd88AndLiga365AndJump()){
                 View view = new View(mContext);
                 ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, UIUtil.dip2px(mContext,66));
                 view.setLayoutParams(lp);
