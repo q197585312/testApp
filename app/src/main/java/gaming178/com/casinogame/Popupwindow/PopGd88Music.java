@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,7 +21,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gaming178.com.baccaratgame.R;
-import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.base.AdapterViewContent;

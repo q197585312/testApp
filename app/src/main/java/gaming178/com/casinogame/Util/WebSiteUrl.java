@@ -322,8 +322,8 @@ public class WebSiteUrl {
     public static String GET_GR_CASINO_URL = "http://app.info.dig88api.com/index.php?page=get_grcasino_agent";
     public static String GET_GD_CASINO_URL = "http://app.info.dig88api.com/index.php?page=get_gdcasino_agent";
 
-    public static String DownLoadPicture = "http://www.appgd88.com/dealer/";
-    public static String AppVersionUrl = "http://www.appgd88.com/gd88version.php?app=android";
+    public static String DownLoadPicture = "http://www.gd88.app/dealer/";
+    public static String AppVersionUrl = "http://www.gd88.app/gd88version.php?app=android";
 
     public static String ChatSocketHost = "96.9.71.8";
     public static int ChatSocketPort = 7275;

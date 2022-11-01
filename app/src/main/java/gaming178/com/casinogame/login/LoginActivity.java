@@ -2040,7 +2040,7 @@ public class LoginActivity extends BaseActivity {
         new Thread() {
             @Override
             public void run() {
-                String agentUrl = "http://www.appgd88.com/liga365agengt.php";
+                String agentUrl = "https://www.gd88.app/liga365agengt.php";
                 String agentResult = mAppViewModel.getHttpClient().sendPost(agentUrl, "");
                 Liga365AgentBean liga365AgentBean = null;
                 try {

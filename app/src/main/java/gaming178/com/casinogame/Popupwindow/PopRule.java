@@ -49,9 +49,9 @@ public class PopRule extends BasePopupWindow {
         });
         String language = AppTool.getAppLanguage(context);
         if ("zh".equals(language)) {
-            url = "http://www.appgd88.com/api/rule_cn.html";
+            url = "http://www.gd88.app/api/rule_cn.html";
         } else {
-            url = "http://www.appgd88.com/api/rule.html";
+            url = "http://www.gd88.app/api/rule.html";
         }
         activity = (BaseActivity) context;
         webView = (WebView) view.findViewById(R.id.gd__wv_report);

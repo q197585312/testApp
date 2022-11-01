@@ -1157,7 +1157,7 @@ public class LobbyActivity extends BaseActivity {
                     checkIsAndroidO();
                 }
             });
-            updateManager.checkUpdate("http://www.appgd88.com/androidAppDownload/afb1188.apk");
+            updateManager.checkUpdate("http://www.gd88.app/androidAppDownload/afb1188.apk");
         }
     }
 
