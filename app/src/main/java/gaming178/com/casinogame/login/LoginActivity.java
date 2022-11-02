@@ -1127,18 +1127,6 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
-        if (BuildConfig.FLAVOR.equals("slotku")) {
-            ObjectAnimator objectTranslationY = ObjectAnimator.ofFloat(tv_register, "scaleX", (float) 1, (float) 0.85, (float) 1);
-            objectTranslationY.setDuration(1200);
-            objectTranslationY.setRepeatCount(Animation.INFINITE);
-            ObjectAnimator objectScaleY = ObjectAnimator.ofFloat(tv_register, "scaleY", (float) 1, (float) 0.85, (float) 1);
-            objectScaleY.setDuration(1200);
-            objectScaleY.setRepeatCount(Animation.INFINITE);
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(objectTranslationY, objectScaleY);
-            animatorSet.start();
-        }
-
         if (BuildConfig.FLAVOR.equals("garudakasino")) {
             img_login_title_main = findViewById(R.id.gd_img_login_title_main);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.garuda_kasino_title_gif).into(img_login_title_main);

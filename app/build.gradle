@@ -142,12 +142,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.38'
             }
-            slotku {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "slotku"]
-                buildConfigField "String", "Labelid", '"91"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.38'
-            }
 
             ezykasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ezykasino"]
@@ -366,12 +360,6 @@ android {
             wingsbet88 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wingsbet88"]
                 buildConfigField "String", "Labelid", '"107"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.38'
-            }
-            casino5000 {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casino5000"]
-                buildConfigField "String", "Labelid", '"162"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.38'
             }
