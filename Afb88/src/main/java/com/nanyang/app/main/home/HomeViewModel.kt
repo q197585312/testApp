@@ -155,9 +155,9 @@ public class HomeViewModel : BaseViewModel() {
             if (g == "1") {
                 if (img.contains("soccer")) {
                     main.gameName = application.getString(R.string.Soccer)
-                } else if (img.contains("Keno")) {
+                } else if (img.contains("keno")) {
                     main.gameName = application.getString(R.string.Keno)
-                } else if (img.contains("Fishing")) {
+                } else if (img.contains("fishing")) {
                     main.gameName = "Fishing"
                 }
             } else if (g == "Casino") {
