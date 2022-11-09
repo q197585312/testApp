@@ -215,9 +215,9 @@ public class Gd88Utils {
             typeList.add(getGame(AppConfig.afb_casino, context));
             typeList.add(getGame(AppConfig.pragmatic_casino, context));
         } else if (type == SlotOnline) {
+            typeList.add(getGame(AppConfig.slots, context));
             typeList.add(getGame(AppConfig.pragmatic, context));
             typeList.add(getGame(AppConfig.pg, context));
-            typeList.add(getGame(AppConfig.slots, context));
             typeList.add(getGame(AppConfig.haba, context));
             typeList.add(getGame(AppConfig.kingKong, context));
             typeList.add(getGame(AppConfig.cq9, context));
