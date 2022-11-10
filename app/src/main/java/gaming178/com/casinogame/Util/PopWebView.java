@@ -3,10 +3,7 @@ package gaming178.com.casinogame.Util;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.http.SslError;
-import android.text.TextUtils;
 import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -20,7 +17,6 @@ import androidx.core.content.ContextCompat;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
@@ -88,27 +84,7 @@ public abstract class PopWebView extends BasePopupWindow {
                 //handleMessage(Message msg); 其他处理
             }
         });
-        synCookies(url);
         webView.loadUrl(url);
-    }
-
-    public void synCookies(String url) {
-        CookieSyncManager.createInstance(context);
-        CookieManager mCookieManager = CookieManager.getInstance();
-        mCookieManager.setAcceptCookie(true);
-        // 每次移除会有Cookie不一致问题，注释该地方
-        //mCookieManager.removeSessionCookie();// 移除
-        // Cookie是通过我们Volley活着HttpClient获取的
-        //  Log.i(WebSiteUrl.Tag,"cookie="+mAppViewModel.getHttpClient().getCookie());
-        if (activity.getApp() != null) {
-            if (activity.mAppViewModel.getHttpClient() != null) {
-                String cookie = activity.mAppViewModel.getHttpClient().getCookie();
-                if (!TextUtils.isEmpty(cookie)) {
-                    mCookieManager.setCookie(url, cookie);
-                    CookieSyncManager.getInstance().sync();
-                }
-            }
-        }
     }
 
     public abstract String getUrl();

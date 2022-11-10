@@ -607,18 +607,7 @@ public class LoginActivity extends BaseActivity {
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "https://b.link/promowgc";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return getString(R.string.PROMOTION);
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
+                    Gd88Utils.goBrowser(mContext, "https://jfa.one/rtp-wargacasino");
                 }
             });
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
