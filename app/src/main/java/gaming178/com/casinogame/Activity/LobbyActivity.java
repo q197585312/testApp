@@ -723,6 +723,7 @@ public class LobbyActivity extends BaseActivity {
                 itemHeight = itemWidth;
                 ll_content_bg.setBackgroundResource(0);
                 tv_home_close_game.setVisibility(View.GONE);
+                ll_bottom.setVisibility(View.GONE);
             }
             ll_parent.setGravity(Gravity.BOTTOM);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
