@@ -719,11 +719,13 @@ public class LobbyActivity extends BaseActivity {
             gridviewContentGv.setLayoutManager(layoutManager);
         } else {
             itemHeight = itemWidth + UIUtil.dip2px(mContext, 40);
+            if (TextUtils.isEmpty(BuildConfig.FLAVOR)){
+                itemHeight = itemWidth;
+                ll_content_bg.setBackgroundResource(0);
+                tv_home_close_game.setVisibility(View.GONE);
+            }
             ll_parent.setGravity(Gravity.BOTTOM);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
-//            if (TextUtils.isEmpty(BuildConfig.FLAVOR)) {
-//                dp = count == 4 ? 0 : 5;
-//            }
             params.height = ll_parent.getHeight() - itemHeight - UIUtil.dip2px(mContext, dp);
             ll_content_bg.setLayoutParams(params);
             clickItem = 0;

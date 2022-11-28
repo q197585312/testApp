@@ -30,5 +30,9 @@
         android:textAllCaps="true"
         android:textColor="@color/home_no_select_color"
         android:textSize="10sp" />
-
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></RelativeLayout>
 </RelativeLayout>

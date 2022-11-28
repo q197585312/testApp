@@ -231,7 +231,13 @@ public class Gd88Utils {
 
     public static boolean isGd88AndLiga365AndJump() {
         String flavor = BuildConfig.FLAVOR;
-        if (TextUtils.isEmpty(flavor) || flavor.equals("gd88") || flavor.equals("liga365")) {
+//        if (TextUtils.isEmpty(flavor) || flavor.equals("gd88") || flavor.equals("liga365")) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+
+        if (!TextUtils.isEmpty(flavor) && (flavor.equals("gd88") || flavor.equals("liga365"))) {
             return true;
         } else {
             return false;
