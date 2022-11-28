@@ -76,7 +76,8 @@
                 android:paddingBottom="3dp"
                 android:text="@string/setting"
                 android:textAllCaps="true"
-                android:textColor="@color/white"></TextView>
+                android:textColor="@color/white"
+                android:visibility="gone"></TextView>
 
             <TextView
                 android:id="@+id/tv_home_deposit_l"
@@ -92,7 +93,7 @@
                 android:text="@string/gd_deposit"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:visibility="gone"></TextView>
+                android:visibility="visible"></TextView>
 
             <TextView
                 android:id="@+id/tv_home_withdraw_l"
@@ -109,7 +110,7 @@
                 android:text="@string/gd_withdrawal"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:visibility="gone"></TextView>
+                android:visibility="visible"></TextView>
 
             <TextView
                 android:id="@+id/tv_lg"
@@ -117,13 +118,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/shape_home_black"
-                android:drawableLeft="@mipmap/home_lg"
+                android:drawableLeft="@mipmap/home_member_center"
                 android:drawablePadding="4dp"
                 android:paddingLeft="6dp"
                 android:paddingTop="3dp"
                 android:paddingRight="6dp"
                 android:paddingBottom="3dp"
-                android:text="@string/language"
+                android:text="@string/member_center"
                 android:textAllCaps="true"
                 android:textColor="@color/white"></TextView>
 
@@ -137,7 +138,8 @@
                 android:padding="7dp"
                 android:text="@string/logout"
                 android:textAllCaps="true"
-                android:textColor="@color/home_select_color"></TextView>
+                android:textColor="@color/home_select_color"
+                android:visibility="gone"></TextView>
 
 
         </LinearLayout>
@@ -182,7 +184,7 @@
                 android:text="@string/logout"
                 android:textAllCaps="true"
                 android:textColor="@color/home_select_color"
-                android:visibility="gone"></TextView>
+                android:visibility="visible"></TextView>
 
         </LinearLayout>
 

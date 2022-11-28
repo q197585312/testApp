@@ -39,6 +39,7 @@ import gaming178.com.casinogame.Activity.KingKongGameActivity;
 import gaming178.com.casinogame.Activity.LG88WebActivity;
 import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.PGGameActivity;
+import gaming178.com.casinogame.Activity.PragmaticCasinoActivity;
 import gaming178.com.casinogame.Activity.PragmaticGameActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
@@ -934,6 +935,8 @@ public class TableChangePop extends BasePopupWindow {
                             baseActivity.skipAct(PGGameActivity.class);
                         } else if (hallGameItemBean.getGameType() == AppConfig.afb_casino) {
                             baseActivity.skipAct(AfbCasinoActivity.class);
+                        } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic_casino) {
+                            baseActivity.skipAct(PragmaticCasinoActivity.class);
                         }
                         baseActivity.finish();
                     }

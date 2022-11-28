@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -41,6 +43,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.codersun.fingerprintcompat.AonFingerChangeCallback;
 import com.codersun.fingerprintcompat.FingerManager;
 import com.codersun.fingerprintcompat.SimpleFingerCheckCallback;
@@ -69,6 +72,7 @@ import gaming178.com.casinogame.Bean.WABean;
 import gaming178.com.casinogame.Control.AutoScrollTextView;
 import gaming178.com.casinogame.Popupwindow.PopImg;
 import gaming178.com.casinogame.Popupwindow.PopImgTitleHint;
+import gaming178.com.casinogame.Popupwindow.PopLanguage;
 import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.CircleAnimation;
@@ -603,18 +607,7 @@ public class LoginActivity extends BaseActivity {
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "https://b.link/promowgc";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return getString(R.string.PROMOTION);
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
+                    Gd88Utils.goBrowser(mContext, "https://jfa.one/rtp-wargacasino");
                 }
             });
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
@@ -696,25 +689,14 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (BuildConfig.FLAVOR.equals("kasino365")) {
-            goNetWA(4);
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_365_logo).into(img_login_title);
-
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            CircleAnimation circleAnimation = new CircleAnimation(40);
-            circleAnimation.setDuration(8000);
-            circleAnimation.setRepeatCount(-1);
-            circleAnimation.setInterpolator(new LinearInterpolator());
-            img_login_title_main.startAnimation(circleAnimation);
-            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
-            ObjectAnimator objectAnimatorY = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationY", 0, -30, 0);
-            objectAnimatorY.setDuration(5000);
-            objectAnimatorY.setRepeatCount(Animation.INFINITE);
-            ObjectAnimator objectAnimatorX = ObjectAnimator.ofFloat(gd_img_login_title_main_sbocasino77, "translationX", 0, 30, 0);
-            objectAnimatorX.setDuration(5000);
-            objectAnimatorX.setRepeatCount(Animation.INFINITE);
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(objectAnimatorX, objectAnimatorY);
-            animatorSet.start();
+            WebView wb_notice = findViewById(R.id.wb_notice);
+            WebView wb_banner = findViewById(R.id.wb_banner);
+            WebView wb_game = findViewById(R.id.wb_game);
+            loadWebView(wb_notice, "https://adminiframe.xyz/website/running_text");
+            loadWebView(wb_banner, "https://www.adminiframe.xyz/website/sliders");
+            loadWebView(wb_game, "https://www.adminiframe.xyz/website/slot_updates");
+            goNetWA(4);
 
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -736,6 +718,20 @@ public class LoginActivity extends BaseActivity {
                     goNetWA(3);
                 }
             });
+
+            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
+            Glide.with(mContext).asGif()
+                    .load("https://misterhoki08.github.io/master365/assets/telegram.gif")
+                    .apply(new RequestOptions()
+                            .circleCropTransform())
+                    .into(gd_img_login_title_main_sbocasino77);
+            gd_img_login_title_main_sbocasino77.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Gd88Utils.goBrowser(mContext, "https://t.me/infoslotharian88");
+                }
+            });
+            initRightLang();
         }
 
         if (BuildConfig.FLAVOR.equals("hokicasino88")) {
@@ -1118,18 +1114,6 @@ public class LoginActivity extends BaseActivity {
                     Gd88Utils.goBrowser(mContext, "https://bit.ly/2wD1ha7");
                 }
             });
-        }
-
-        if (BuildConfig.FLAVOR.equals("slotku")) {
-            ObjectAnimator objectTranslationY = ObjectAnimator.ofFloat(tv_register, "scaleX", (float) 1, (float) 0.85, (float) 1);
-            objectTranslationY.setDuration(1200);
-            objectTranslationY.setRepeatCount(Animation.INFINITE);
-            ObjectAnimator objectScaleY = ObjectAnimator.ofFloat(tv_register, "scaleY", (float) 1, (float) 0.85, (float) 1);
-            objectScaleY.setDuration(1200);
-            objectScaleY.setRepeatCount(Animation.INFINITE);
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(objectTranslationY, objectScaleY);
-            animatorSet.start();
         }
 
         if (BuildConfig.FLAVOR.equals("garudakasino")) {
@@ -1700,8 +1684,11 @@ public class LoginActivity extends BaseActivity {
         ll_language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initLanguage(ll_language);
-
+                if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                    showLanguagePop(ll_language);
+                } else {
+                    initLanguage(ll_language);
+                }
             }
         });
         ll_remember_me.setOnClickListener(new View.OnClickListener() {
@@ -1737,11 +1724,33 @@ public class LoginActivity extends BaseActivity {
             }
             fingerLogin();
         } else {
-            if (!BuildConfig.FLAVOR.equals("rajacasino") && !BuildConfig.FLAVOR.equals("rajabakarat")) {
+            if (!BuildConfig.FLAVOR.equals("rajacasino") && !BuildConfig.FLAVOR.equals("rajabakarat") && !BuildConfig.FLAVOR.equals("kasino365")) {
                 cb_remember_me.setChecked(false);
             }
         }
 
+    }
+
+    private void loadWebView(WebView webView, String url) {
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+        webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                //handler.cancel(); 默认的处理方式，WebView变成空白页
+                handler.proceed();//接受证书
+                //handleMessage(Message msg); 其他处理
+            }
+        });
+        webView.loadUrl(url);
     }
 
     private void ahlTranslationY(View view) {
@@ -2008,7 +2017,7 @@ public class LoginActivity extends BaseActivity {
         new Thread() {
             @Override
             public void run() {
-                String agentUrl = "http://www.appgd88.com/liga365agengt.php";
+                String agentUrl = "https://www.gd88.app/liga365agengt.php";
                 String agentResult = mAppViewModel.getHttpClient().sendPost(agentUrl, "");
                 Liga365AgentBean liga365AgentBean = null;
                 try {
@@ -2070,6 +2079,11 @@ public class LoginActivity extends BaseActivity {
         }
 
     };
+
+    public void showLanguagePop(View view) {
+        PopLanguage popLanguage = new PopLanguage(mContext, view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popLanguage.showPopupDownWindow();
+    }
 
     public void initLanguage(View view) {
         showLanguagePop(view, 0.15f);

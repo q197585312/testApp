@@ -92,7 +92,7 @@ android {
 
 
             buildConfigField "String", "ImgConfig_URL", '"https://www.gd88.app/app/i1bet99_game.php"'
-            buildConfigField "String", "ImgHeader_URL", '"https://i1bet99.com/H52NEW/Img/Ibet99H5.jpg"'
+            buildConfigField "String", "ImgHeader_URL", '"https://d2dgys6tg64hrs.cloudfront.net/h52new/img/ibet99h5.jpg"'
             buildConfigField "String", "Maintenance_URL", '"https://i1bet99.com/W2NEW/Img/Maintenance.html"'
             buildConfigField "String", "Contact_URL", '"https://www.gd88.app/api/i1bet99_contact.php"'
             buildConfigField "String", "CHECK_VERSION", '"https://www.gd88.app/api/afbAndroidVersion.php?appName=i1bet99"'

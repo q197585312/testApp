@@ -35,6 +35,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -59,8 +60,11 @@ import gaming178.com.casinogame.Fragment.LobbyRouletteFragment;
 import gaming178.com.casinogame.Fragment.LobbySicboFragment;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.PopContact;
+import gaming178.com.casinogame.Popupwindow.PopGd88Music;
+import gaming178.com.casinogame.Popupwindow.PopLanguage;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.PopLogout;
+import gaming178.com.casinogame.Popupwindow.PopReport;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BannerViewPager;
@@ -74,6 +78,8 @@ import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.casinogame.entity.BannerBean;
 import gaming178.com.casinogame.entity.HallGameItemBean;
+import gaming178.com.casinogame.login.LanguageHelper;
+import gaming178.com.casinogame.login.MenuItemInfo;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.BitmapTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
@@ -290,6 +296,71 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
+    int itemHeight;
+
+    private void goDeposit(View v) {
+        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+        int width = screenWidth / 15 * 14;
+        User u = mAppViewModel.getUser();
+        DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+        pop.setDialog(dialog);
+        pop.setUser(u);
+        pop.showPopupCenterWindow();
+    }
+
+    private void goWithdraw(View v) {
+        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
+        int width = screenWidth / 15 * 14;
+        User u = mAppViewModel.getUser();
+        WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+        p.setDialog(dialog);
+        p.setUser(u);
+        p.showPopupCenterWindow();
+    }
+
+    BannerViewPager viewPager;
+
+    private void setBanner() {
+        setGameContent();
+        RelativeLayout rl_banner = findViewById(R.id.rl_banner);
+        viewPager = findViewById(R.id.auto_viewpager);
+        LinearLayout inLayout = findViewById(R.id.in_layout);
+        if (rl_banner != null && viewPager != null && inLayout != null) {
+            new Thread() {
+                @Override
+                public void run() {
+                    String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
+                    String result = mAppViewModel.getHttpClient().sendPost(url, "");
+                    if (result.contains("Success")) {
+                        BannerBean bannerBean = new Gson().fromJson(result, BannerBean.class);
+                        List<BannerBean.DataBean> data = bannerBean.getData();
+                        if (data != null && data.size() > 0) {
+                            List<String> lists = new ArrayList<>();
+                            for (int i = 0; i < data.size(); i++) {
+                                BannerBean.DataBean dataBean = data.get(i);
+                                lists.add(dataBean.getPath());
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    rl_banner.setVisibility(View.VISIBLE);
+                                    BannerViewPagerAdapter adapter = new BannerViewPagerAdapter(lists, inLayout, LobbyActivity.this);
+                                    viewPager.setAdapter(adapter);
+                                    viewPager.addOnPageChangeListener(viewPager.listener);
+                                }
+                            });
+                        }
+                    }
+                }
+            }.start();
+        }
+    }
+
+    LinearLayout ll_ahl_game_content;
+    LinearLayout ll_banner;
+    int contentHeight;
+    int itemWidth;
+
     @Override
     protected void initData(Bundle savedInstanceState) {
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
@@ -327,42 +398,19 @@ public class LobbyActivity extends BaseActivity {
         } else {
             setGameContent();
         }
-        if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-            tv_lg.setText(getString(R.string.member_center));
-            tv_lg.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.home_member_center, 0, 0, 0);
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                tv_set.setVisibility(View.GONE);
-                tv_home_deposit_l.setVisibility(View.VISIBLE);
-                tv_home_withdraw_l.setVisibility(View.VISIBLE);
-                tv_switch_account.setVisibility(View.GONE);
-                tv_switch_account_1.setVisibility(View.VISIBLE);
-            } else {
-                tv_set.setVisibility(View.GONE);
-                tv_lg.setVisibility(View.GONE);
-                tv_switch_account.setVisibility(View.GONE);
-                ll_bottom.setVisibility(View.VISIBLE);
-            }
-        } else {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                tv_set.setVisibility(View.VISIBLE);
-                tv_home_deposit_l.setVisibility(View.GONE);
-                tv_home_withdraw_l.setVisibility(View.GONE);
-                tv_switch_account.setVisibility(View.VISIBLE);
-                tv_switch_account_1.setVisibility(View.GONE);
-            } else {
-                tv_set.setVisibility(View.VISIBLE);
-                tv_lg.setVisibility(View.VISIBLE);
-                tv_switch_account.setVisibility(View.VISIBLE);
-                ll_bottom.setVisibility(View.GONE);
-            }
-        }
         if (mAppViewModel.isbLogin()) {
             switchFragment(0);
         }
         tv_lg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLanguagePop(tv_lg, 0.75f);
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    PopLanguage popLanguage = new PopLanguage(mContext, tv_lg, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    popLanguage.setDarkBg();
+                    popLanguage.showPopupDownWindow();
+                } else {
+                    showLanguagePop(tv_lg, 0.75f);
+                }
             }
         });
         tv_set.setOnClickListener(new View.OnClickListener() {
@@ -395,13 +443,23 @@ public class LobbyActivity extends BaseActivity {
         tv_home_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLanguagePop(tv_lg, 0.75f);
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    PopGd88Music popGd88Music = new PopGd88Music(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    popGd88Music.showPopupCenterWindow();
+                } else {
+                    showLanguagePop(tv_lg, 0.75f);
+                }
             }
         });
         tv_home_deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goDeposit(v);
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    popReport.showPopupCenterWindow();
+                } else {
+                    goDeposit(v);
+                }
             }
         });
         tv_home_withdraw.setOnClickListener(new View.OnClickListener() {
@@ -595,69 +653,6 @@ public class LobbyActivity extends BaseActivity {
         }
     }
 
-    private void goDeposit(View v) {
-        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-        int width = screenWidth / 15 * 14;
-        User u = mAppViewModel.getUser();
-        DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-        pop.setDialog(dialog);
-        pop.setUser(u);
-        pop.showPopupCenterWindow();
-    }
-
-    private void goWithdraw(View v) {
-        int screenWidth = WidgetUtil.getPopScreenWidth(LobbyActivity.this);
-        int width = screenWidth / 15 * 14;
-        User u = mAppViewModel.getUser();
-        WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-        p.setDialog(dialog);
-        p.setUser(u);
-        p.showPopupCenterWindow();
-    }
-
-    BannerViewPager viewPager;
-
-    private void setBanner() {
-        setGameContent();
-        RelativeLayout rl_banner = findViewById(R.id.rl_banner);
-        viewPager = findViewById(R.id.auto_viewpager);
-        LinearLayout inLayout = findViewById(R.id.in_layout);
-        if (rl_banner != null && viewPager != null && inLayout != null) {
-            new Thread() {
-                @Override
-                public void run() {
-                    String url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
-                    String result = mAppViewModel.getHttpClient().sendPost(url, "");
-                    if (result.contains("Success")) {
-                        BannerBean bannerBean = new Gson().fromJson(result, BannerBean.class);
-                        List<BannerBean.DataBean> data = bannerBean.getData();
-                        if (data != null && data.size() > 0) {
-                            List<String> lists = new ArrayList<>();
-                            for (int i = 0; i < data.size(); i++) {
-                                BannerBean.DataBean dataBean = data.get(i);
-                                lists.add(dataBean.getPath());
-                            }
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    rl_banner.setVisibility(View.VISIBLE);
-                                    BannerViewPagerAdapter adapter = new BannerViewPagerAdapter(lists, inLayout, LobbyActivity.this);
-                                    viewPager.setAdapter(adapter);
-                                    viewPager.addOnPageChangeListener(viewPager.listener);
-                                }
-                            });
-                        }
-                    }
-                }
-            }.start();
-        }
-    }
-
-    LinearLayout ll_ahl_game_content;
-    LinearLayout ll_banner;
-    int contentHeight;
-    int itemWidth;
-
     private void initAhlUi() {
         ll_banner = findViewById(R.id.ll_banner);
         ll_ahl_game_content = findViewById(R.id.ll_ahl_game_content);
@@ -712,49 +707,53 @@ public class LobbyActivity extends BaseActivity {
 
     private void initCommonUi() {
         int count = 4;
+        int dp = 0;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             count = 8;
+            dp = 5;
         }
         itemWidth = view_item.getWidth();
         if (!TextUtils.isEmpty(BuildConfig.FLAVOR) && !BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-            LinearLayout ll_top_parent = findViewById(R.id.ll_top_parent);
-            LinearLayout ll_top_1 = findViewById(R.id.ll_top_1);
-            ImageView gd_img_logo = findViewById(R.id.gd_img_logo);
-            if (ll_top_parent != null && ll_top_1 != null && gd_img_logo != null) {
-                if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
-                    ViewGroup.LayoutParams layoutParams = ll_top_parent.getLayoutParams();
-                    layoutParams.height = ll_top_1.getHeight() * 2;
-                    ll_top_parent.setLayoutParams(layoutParams);
-                    ll_top_1.setVisibility(View.GONE);
-                    gd_img_logo.setVisibility(View.VISIBLE);
-                }
-            }
+            itemHeight = itemWidth;
+            GridLayoutManager layoutManager = new GridLayoutManager(mContext, count);
+            gridviewContentGv.setLayoutManager(layoutManager);
         } else {
-            tv_home_close_game.setVisibility(View.GONE);
-            ll_content_bg.setBackgroundResource(0);
+            itemHeight = itemWidth + UIUtil.dip2px(mContext, 40);
+            if (TextUtils.isEmpty(BuildConfig.FLAVOR)){
+                itemHeight = itemWidth;
+                ll_content_bg.setBackgroundResource(0);
+                tv_home_close_game.setVisibility(View.GONE);
+                ll_bottom.setVisibility(View.GONE);
+            }
             ll_parent.setGravity(Gravity.BOTTOM);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
-            int size = count == 4 ? 2 : 1;
-            int dp = 5;
-            if (TextUtils.isEmpty(BuildConfig.FLAVOR)) {
-                size = 1;
-                dp = count == 4 ? 0 : 5;
-            }
-            params.height = ll_parent.getHeight() - itemWidth * size - UIUtil.dip2px(mContext, dp);
+            params.height = ll_parent.getHeight() - itemHeight - UIUtil.dip2px(mContext, dp);
             ll_content_bg.setLayoutParams(params);
             clickItem = 0;
             ll_content_bg.setVisibility(View.VISIBLE);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
+            gridviewContentGv.setLayoutManager(linearLayoutManager);
+            MenuItemInfo<String> languageItem = new LanguageHelper(mContext).getLanguageItem();
+            tv_lg.setText(languageItem.getText());
+            tv_lg.setCompoundDrawablesWithIntrinsicBounds(languageItem.getRes(), 0, 0, 0);
         }
-        GridLayoutManager layoutManager = new GridLayoutManager(mContext, count);
-        gridviewContentGv.setLayoutManager(layoutManager);
         adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
                 RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
                 ImageView imgTopLeftNew = holder.getImageView(R.id.img_top_left_new);
                 ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
-                layoutParams.height = itemWidth;
+                layoutParams.width = itemWidth;
+                layoutParams.height = itemHeight;
                 rl_parent.setLayoutParams(layoutParams);
+                RelativeLayout rl_content = null;
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    rl_content = holder.getRelativeLayout(R.id.rl_content);
+                    ViewGroup.LayoutParams lp = rl_content.getLayoutParams();
+                    lp.width = itemWidth;
+                    lp.height = itemWidth;
+                    rl_content.setLayoutParams(lp);
+                }
                 ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
                 Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
                 imageView.setImageBitmap(bitmap);
@@ -764,20 +763,28 @@ public class LobbyActivity extends BaseActivity {
                     imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 }
                 if (item.getGameType() == AppConfig.slots || item.getGameType() == AppConfig.afb_casino) {
-                    imgTopLeftNew.setVisibility(View.VISIBLE);
+                    if (!Gd88Utils.isGd88AndLiga365AndJump()) {
+                        imgTopLeftNew.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     imgTopLeftNew.setVisibility(View.GONE);
                 }
                 TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
                 textView.setText(item.getTitle());
                 if (position == clickItem) {
-                    rl_parent.setBackgroundResource(R.mipmap.home_game_select);
+                    if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                        rl_content.setBackgroundResource(R.drawable.gd88_liga365_home_item);
+                    } else {
+                        rl_parent.setBackgroundResource(R.mipmap.home_game_select);
+                    }
                     textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
                 } else {
                     if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("ularnaga") ||
                             BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
                             BuildConfig.FLAVOR.equals("slotku") || BuildConfig.FLAVOR.equals("ahlicasino")) {
                         rl_parent.setBackgroundResource(R.drawable.hokicasino_home_item);
+                    } else if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                        rl_content.setBackgroundResource(R.drawable.gd88_liga365_home_item_no_select);
                     } else {
                         rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
                     }
@@ -892,6 +899,9 @@ public class LobbyActivity extends BaseActivity {
                     finish();
                 } else if (hallGameItemBean.getGameType() == AppConfig.gd_casino) {
                     showAhlLocalGame();
+                } else if (hallGameItemBean.getGameType() == AppConfig.pragmatic_casino) {
+                    skipAct(PragmaticCasinoActivity.class);
+                    finish();
                 }
 
             }
@@ -1150,7 +1160,7 @@ public class LobbyActivity extends BaseActivity {
                     checkIsAndroidO();
                 }
             });
-            updateManager.checkUpdate("http://www.appgd88.com/androidAppDownload/afb1188.apk");
+            updateManager.checkUpdate("http://www.gd88.app/androidAppDownload/afb1188.apk");
         }
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -118,31 +119,43 @@ public class Gd88Utils {
 
     public static List<HallGameItemBean> getLobbyGameList(Context context) {
         List<HallGameItemBean> hallGameItemBeenS = new ArrayList<>();
-        if (WebSiteUrl.GameType != 3) {
-            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_we1poker, context.getString(R.string.we1poker), AppConfig.we1poker));
-            }
-        }
-        if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, context.getString(R.string.afb1188), AppConfig.afb1188));
-        }
+
         int slot = R.mipmap.gd_slots;
         if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             slot = R.mipmap.gd_slots_v;
         }
         hallGameItemBeenS.add(new HallGameItemBean(slot, context.getString(R.string.slots), AppConfig.slots));
+
+        if (WebSiteUrl.GameType != 3) {
+            if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_we1poker, context.getString(R.string.we1poker), AppConfig.we1poker));
+            }
+        }
+
+        if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, context.getString(R.string.afb1188), AppConfig.afb1188));
+        }
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.lg88_casino, context.getString(R.string.lg88_casino), AppConfig.lg88));
         }
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
         }
-        hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, context.getString(R.string.cq), AppConfig.cq9));
+
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra_casino, context.getString(R.string.pragmatic_casino), AppConfig.pragmatic_casino));
+            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, context.getString(R.string.pragmatic_slot), AppConfig.pragmatic));
+        }
+
         if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
         }
+
+        hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, context.getString(R.string.cq), AppConfig.cq9));
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_haba, context.getString(R.string.haba), AppConfig.haba));
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_pg, context.getString(R.string.gd_pg), AppConfig.pg));
@@ -152,13 +165,14 @@ public class Gd88Utils {
 
     public static List<HallGameItemBean> getTableGameList(Context context) {
         List<HallGameItemBean> allGameList = new ArrayList<>();
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_slot, context.getString(R.string.slots), AppConfig.slots));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_we1poker, context.getString(R.string.we1poker), AppConfig.we1poker));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_afb1188, context.getString(R.string.afb1188), AppConfig.afb1188));
-        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_slot, context.getString(R.string.slots), AppConfig.slots));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_lg, context.getString(R.string.lg88_casino), AppConfig.lg88));
-        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
-        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra, context.getString(R.string.pragmatic), AppConfig.pragmatic));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_afb_casino, context.getString(R.string.gd_afb_casino), AppConfig.afb_casino));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra_casino, context.getString(R.string.pragmatic_casino), AppConfig.pragmatic_casino));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_pra, context.getString(R.string.pragmatic_slot), AppConfig.pragmatic));
+        allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_cq9, context.getString(R.string.cq), AppConfig.cq9));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
         allGameList.add(new HallGameItemBean(R.mipmap.gd_table_haba, context.getString(R.string.haba), AppConfig.haba));
@@ -199,10 +213,11 @@ public class Gd88Utils {
             typeList.add(new HallGameItemBean(R.mipmap.lobby_gd_casino, "GD Casino", AppConfig.gd_casino));
             typeList.add(getGame(AppConfig.lg88, context));
             typeList.add(getGame(AppConfig.afb_casino, context));
+            typeList.add(getGame(AppConfig.pragmatic_casino, context));
         } else if (type == SlotOnline) {
+            typeList.add(getGame(AppConfig.slots, context));
             typeList.add(getGame(AppConfig.pragmatic, context));
             typeList.add(getGame(AppConfig.pg, context));
-            typeList.add(getGame(AppConfig.slots, context));
             typeList.add(getGame(AppConfig.haba, context));
             typeList.add(getGame(AppConfig.kingKong, context));
             typeList.add(getGame(AppConfig.cq9, context));
@@ -212,5 +227,20 @@ public class Gd88Utils {
             typeList.add(getGame(AppConfig.we1poker, context));
         }
         return typeList;
+    }
+
+    public static boolean isGd88AndLiga365AndJump() {
+        String flavor = BuildConfig.FLAVOR;
+//        if (TextUtils.isEmpty(flavor) || flavor.equals("gd88") || flavor.equals("liga365")) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+
+        if (!TextUtils.isEmpty(flavor) && (flavor.equals("gd88") || flavor.equals("liga365"))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

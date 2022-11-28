@@ -3142,25 +3142,7 @@ public class AppModel extends ViewModel {
         //	Log.i(WebSiteUrl.Tag, "closeMuzicService="+ctx);
     }
 
-    public void startFrontMuzicService(String action, int index, ComponentName component, Context ctx, int volume) {
-        try {
-            BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)) {
-                return;
-            }
-            Intent mIntent = null;
-
-            // 	Log.i(WebSiteUrl.Tag, "startFrontMuzicService="+action);
-            mIntent = new Intent(action);
-            mIntent.putExtra("muzic_index", index);
-            mIntent.putExtra("volume", volume);
-            mIntent.setComponent(component);
-            ctx.startService(mIntent);
-            mIntent = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    private boolean isFrontMusicOpen = true;
 
     public void startBackgroudMuzicService(int index, ComponentName component, Context ctx, int volume) {
         try {
@@ -3740,6 +3722,37 @@ public class AppModel extends ViewModel {
 
     public void setMusicOpen(boolean musicOpen) {
         this.musicOpen = musicOpen;
+    }
+
+    public void startFrontMuzicService(String action, int index, ComponentName component, Context ctx, int volume) {
+        try {
+            if (!isFrontMusicOpen()){
+                return;
+            }
+            BaseActivity activity = (BaseActivity) ctx;
+            if (WidgetUtil.isRunBackground(activity)) {
+                return;
+            }
+            Intent mIntent = null;
+
+            // 	Log.i(WebSiteUrl.Tag, "startFrontMuzicService="+action);
+            mIntent = new Intent(action);
+            mIntent.putExtra("muzic_index", index);
+            mIntent.putExtra("volume", volume);
+            mIntent.setComponent(component);
+            ctx.startService(mIntent);
+            mIntent = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isFrontMusicOpen() {
+        return isFrontMusicOpen;
+    }
+
+    public void setFrontMusicOpen(boolean frontMusicOpen) {
+        isFrontMusicOpen = frontMusicOpen;
     }
 
     public int getHallId() {

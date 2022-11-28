@@ -94,6 +94,9 @@
             android:name="gaming178.com.casinogame.Activity.PragmaticGameActivity"
             android:configChanges="keyboardHidden|screenSize" />
         <activity
+            android:name="gaming178.com.casinogame.Activity.PragmaticCasinoActivity"
+            android:configChanges="keyboardHidden|screenSize" />
+        <activity
             android:name="gaming178.com.casinogame.Activity.KingKongGameActivity"
             android:configChanges="keyboardHidden|screenSize" />
         <activity

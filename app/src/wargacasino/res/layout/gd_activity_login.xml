@@ -373,7 +373,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/gd_login_button_bg_red3"
                         android:gravity="center"
-                        android:text="@string/PROMOTION"
+                        android:text="Bocoran RTP Live"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="18sp"
