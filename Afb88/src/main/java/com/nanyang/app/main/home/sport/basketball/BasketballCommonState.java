@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.europe.BallState;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -72,12 +71,12 @@ public abstract class BasketballCommonState extends BallState {
                         break;
                     case R.id.module_right_mark_tv:
 
-                        boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
+                       /*  boolean visible = (checkLivePlayVisible(item) || checkWebRtsVisible(item));
 
                         if (getStateType().getType().toLowerCase().startsWith("r") && visible && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
                             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).clickRunMatchPlay(item, position, false);
                         } else {
-                           /* if (StringUtils.isNull(getAdapterHelper().additionMap.get(true)) && !((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
+                           if (StringUtils.isNull(getAdapterHelper().additionMap.get(true)) && !((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).hasBet) {
                                 PopOneBtn popOneBtn = new PopOneBtn(getBaseView().getIBaseContext().getBaseActivity(), v) {
                                     @Override
                                     protected void initView(@NotNull View view) {
@@ -99,9 +98,10 @@ public abstract class BasketballCommonState extends BallState {
 
                             }else {
                                 getBaseView().clickItemAdd(v, item, position);
-                            }*/
-                            getBaseView().clickItemAdd(v, item, position);
-                        }
+                            }
+
+                        }*/
+                        getBaseView().clickItemAdd(v, item, position);
                         break;
                     case R.id.iv_hall_btn:
                         clickHallBtn(v, item, position);

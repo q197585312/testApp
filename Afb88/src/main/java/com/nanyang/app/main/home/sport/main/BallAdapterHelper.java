@@ -7,6 +7,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -96,6 +97,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
 
+        if (act.onlyShowOne && additionMap.get(true) != null && !item.getSocOddsId().equals(additionMap.get(true))) {
+            ViewGroup.LayoutParams layoutParams = helper.getView(R.id.content_parent_ll).getLayoutParams();
+            layoutParams.height = 0;
+            helper.getView(R.id.content_parent_ll).setLayoutParams(layoutParams);
+
+//            helper.getView(R.id.content_parent_ll).setVisibility(View.GONE);
+            return;
+        } else {
+            ViewGroup.LayoutParams layoutParams = helper.getView(R.id.content_parent_ll).getLayoutParams();
+            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            helper.getView(R.id.content_parent_ll).setLayoutParams(layoutParams);
+//            helper.getView(R.id.content_parent_ll).setVisibility(View.VISIBLE);
+        }
 
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
@@ -112,7 +126,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
         );
         View contentParentLl = helper.getView(R.id.ll_match_content_bg);
-        if(contentParentLl==null)
+        if (contentParentLl == null)
             contentParentLl = helper.getView(R.id.ll_match_content);
         contentParentLl.setBackgroundColor(item.getContentColor());
 
@@ -283,7 +297,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             dateTv.setVisibility(View.GONE);
 
         }
-        showLastCall(item, dateTv, lastGif,  timeTv,  liveTv);
+        showLastCall(item, dateTv, lastGif, timeTv, liveTv);
 
 
         if (((BallItemCallBack) back).isItemCollection(item))
@@ -2095,7 +2109,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String s = subZeroAndDot((Float.parseFloat(split[0]) + Float.parseFloat(split[1])) / 2);
                     return s;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return temp;
             }
@@ -2276,7 +2290,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public void setRunningItemBg(MyRecyclerViewHolder helper, BallInfo item) {
         View matchTitleLl = helper.getView(R.id.module_match_title_bg);
-        if(matchTitleLl==null){
+        if (matchTitleLl == null) {
             matchTitleLl = helper.getView(R.id.module_match_title_ll);
         }
         View viewLine = helper.getView(R.id.view_line);
@@ -2292,7 +2306,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 
-    public void showLastCall(I item, TextView dateTv, ImageView lastGif,  TextView timeTv, TextView liveTv) {
+    public void showLastCall(I item, TextView dateTv, ImageView lastGif, TextView timeTv, TextView liveTv) {
         if (item.getIsLastCall() != null && item.getIsLastCall().equals("1")) {
             Glide.with(context).load(R.mipmap.lastcall).into(lastGif);
             dateTv.setVisibility(View.GONE);
