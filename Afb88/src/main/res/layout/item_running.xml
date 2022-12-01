@@ -19,19 +19,51 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_title_running_Home_Away"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/running_RefNo"
+                    android:id="@+id/tv_title_Home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="OU000349084"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Fnatic ifsjdifjsidfjidsfsd"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="-VS-"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_title_Away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Team Vitafdgsgfdsgdfsgdfsg"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/running_TransDate"
@@ -42,6 +74,14 @@
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/running_RefNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OU000349084"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -51,6 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:gravity="right"
+                android:paddingRight="15dp"
                 android:text="LEAGUE OF LEGENDS - LEC SPRING"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -569,37 +611,51 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/running_par_DangerStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/green_dark"
+            android:gravity="center"
+            android:text="A"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:paddingBottom="4dp">
 
             <TextView
-                android:id="@+id/running_par_DangerStatus"
+                android:id="@+id/running_par_Id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/green_dark"
-                android:gravity="center"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="A"
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/running_par_IdAndTransDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="right"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
-                android:text="ID:[PAR000396162]12/04 9:48:47 am"
+                android:text="ID:[PAR000396162]"
                 android:textColor="@color/grey_dark"
                 android:textSize="13sp" />
+
+            <View
+                android:id="@+id/view_mid_line"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
+
+            <TextView
+                android:id="@+id/running_par_TransDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:text="12/04 9:48:47 am"
+                android:textColor="@color/grey_dark"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
 
             <ImageView
                 android:id="@+id/img_print_mix"

@@ -5,6 +5,13 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <View
+        android:id="@+id/view_green_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/green"
+        android:visibility="gone"></View>
+
     <LinearLayout
         android:id="@+id/ll_title"
         android:layout_width="match_parent"
@@ -113,6 +120,7 @@
             android:text="0fdasfdasfsaf1"
             android:textColor="@color/black"
             android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_match_at2_2"
             android:layout_width="wrap_content"
@@ -188,8 +196,8 @@
         android:id="@+id/tv_open_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/green"
         android:gravity="center"
         android:padding="5dp"
@@ -202,6 +210,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </LinearLayout>
