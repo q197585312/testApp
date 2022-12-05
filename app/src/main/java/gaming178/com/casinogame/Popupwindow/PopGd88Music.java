@@ -33,6 +33,9 @@ import gaming178.com.casinogame.Util.ChangePasswordHelper;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.casinogame.login.LanguageHelper;
+import gaming178.com.casinogame.login.MenuItemInfo;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import gaming178.com.mylibrary.base.AdapterViewContent;
 import gaming178.com.mylibrary.base.ItemCLickImp;
@@ -42,9 +45,9 @@ import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 public class PopGd88Music extends BasePopupWindow {
 
-    TextView tvMusic, tvPassword, tvLimit, tvFinger;
-    View lineMusic, linePassword, lineLimit, lineFinger;
-    LinearLayout llMusic, llPassword, llLimit, llFinger;
+    TextView tvMusic, tvPassword, tvLimit, tvFinger, tvLg;
+    View lineMusic, linePassword, lineLimit, lineFinger, lineLg;
+    LinearLayout llMusic, llPassword, llLimit, llFinger, llLg;
     List<PopNewMusicContentBean> contentList;
 
     BaseActivity baseActivity;
@@ -62,15 +65,31 @@ public class PopGd88Music extends BasePopupWindow {
     public PopGd88Music(Context context, View v, int width, int height) {
         super(context, v, width, height);
         baseActivity = (BaseActivity) context;
+        contentList = new ArrayList<>();
+        contentList.add(new PopNewMusicContentBean(tvMusic, lineMusic, llMusic));
+        contentList.add(new PopNewMusicContentBean(tvPassword, linePassword, llPassword));
+        contentList.add(new PopNewMusicContentBean(tvLimit, lineLimit, llLimit));
         if (baseActivity instanceof LobbyActivity) {
+            tvLg.setVisibility(View.GONE);
+            lineLg.setVisibility(View.GONE);
+            tvFinger.setVisibility(View.VISIBLE);
+            lineFinger.setVisibility(View.VISIBLE);
+            contentList.add(new PopNewMusicContentBean(tvFinger, lineFinger, llFinger));
             isGameUi = false;
         } else {
+            tvFinger.setVisibility(View.GONE);
+            lineFinger.setVisibility(View.GONE);
+            tvLg.setVisibility(View.VISIBLE);
+            lineLg.setVisibility(View.VISIBLE);
+            contentList.add(new PopNewMusicContentBean(tvLg, lineLg, llLg));
             isGameUi = true;
         }
+        switchContent(0);
         initMusic();
         initPassword();
         initLimit();
         initFinger();
+        initLg();
     }
 
     @Override
@@ -84,21 +103,18 @@ public class PopGd88Music extends BasePopupWindow {
         tvMusic = view.findViewById(R.id.gd_tv_music);
         tvPassword = view.findViewById(R.id.gd_tv_password);
         tvLimit = view.findViewById(R.id.gd_tv_limit);
+        tvLg = view.findViewById(R.id.gd_tv_lg);
         tvFinger = view.findViewById(R.id.gd_tv_finger);
         lineMusic = view.findViewById(R.id.gd_view_line_music);
         linePassword = view.findViewById(R.id.gd_view_line_password);
         lineLimit = view.findViewById(R.id.gd_view_line_limit);
+        lineLg = view.findViewById(R.id.gd_view_line_lg);
         lineFinger = view.findViewById(R.id.gd_view_line_finger);
         llMusic = view.findViewById(R.id.gd__ll_music);
         llPassword = view.findViewById(R.id.gd__ll_password);
         llLimit = view.findViewById(R.id.gd__ll_limit);
+        llLg = view.findViewById(R.id.gd__ll_lg);
         llFinger = view.findViewById(R.id.gd__ll_finger);
-        contentList = new ArrayList<>();
-        contentList.add(new PopNewMusicContentBean(tvMusic, lineMusic, llMusic));
-        contentList.add(new PopNewMusicContentBean(tvPassword, linePassword, llPassword));
-        contentList.add(new PopNewMusicContentBean(tvLimit, lineLimit, llLimit));
-        contentList.add(new PopNewMusicContentBean(tvFinger, lineFinger, llFinger));
-        switchContent(0);
         tvMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +134,12 @@ public class PopGd88Music extends BasePopupWindow {
             }
         });
         tvFinger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchContent(3);
+            }
+        });
+        tvLg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switchContent(3);
@@ -327,5 +349,34 @@ public class PopGd88Music extends BasePopupWindow {
 
     private void initFinger() {
         baseActivity.initFingerView(view);
+    }
+
+    private void initLg() {
+        RecyclerView rc_lg = view.findViewById(R.id.gd__rc_lg);
+        rc_lg.setLayoutManager(new GridLayoutManager(context, 2));
+        BaseRecyclerAdapter<MenuItemInfo<String>> recyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(context, new LanguageHelper(context).getLanguageItems(), R.layout.gd_item_language_selected_gd88_pop) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
+                ImageView ivFlag = holder.getView(R.id.gd__iv_flag_country);
+                TextView tvContent = holder.getView(R.id.gd__selectable_text_content_tv);
+                tvContent.setText(item.getText());
+                ivFlag.setImageResource(item.getRes());
+                boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
+                if (itemLanguageSelected) {
+                    tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
+                } else {
+                    tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                }
+            }
+        };
+        recyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
+            @Override
+            public void onItemClick(View view, MenuItemInfo<String> item, int position) {
+                AppTool.setAppLanguage(baseActivity, item.getType());
+                closePopupWindow();
+                baseActivity.onInGameChooseLanguage();
+            }
+        });
+        rc_lg.setAdapter(recyclerAdapter);
     }
 }

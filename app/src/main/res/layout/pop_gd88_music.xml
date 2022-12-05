@@ -93,12 +93,24 @@
                     android:textColor="#015500"></TextView>
 
                 <TextView
+                    android:id="@+id/gd_tv_lg"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/language"
+                    android:textAllCaps="true"
+                    android:textColor="#015500"
+                    android:visibility="gone"></TextView>
+
+                <TextView
                     android:id="@+id/gd_tv_finger"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/fingerprint"
+                    android:textAllCaps="true"
                     android:textColor="#015500"></TextView>
             </LinearLayout>
 
@@ -124,6 +136,13 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"></View>
+
+                <View
+                    android:id="@+id/gd_view_line_lg"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone"></View>
 
                 <View
                     android:id="@+id/gd_view_line_finger"
@@ -161,6 +180,23 @@
                     android:layout_marginTop="25dp"
                     android:background="@drawable/gd_finger_selector"
                     android:button="@null"></CheckBox>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gd__ll_lg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/gd__rc_lg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:divider="@null"
+                    android:scrollbars="none" />
             </LinearLayout>
 
             <LinearLayout
