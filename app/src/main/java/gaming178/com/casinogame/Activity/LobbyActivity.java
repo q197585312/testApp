@@ -724,6 +724,9 @@ public class LobbyActivity extends BaseActivity {
                 ll_content_bg.setBackgroundResource(0);
                 tv_home_close_game.setVisibility(View.GONE);
                 ll_bottom.setVisibility(View.GONE);
+                tv_home_deposit_l.setVisibility(View.GONE);
+                tv_home_withdraw_l.setVisibility(View.GONE);
+                tv_lg.setVisibility(View.GONE);
             }
             ll_parent.setGravity(Gravity.BOTTOM);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();

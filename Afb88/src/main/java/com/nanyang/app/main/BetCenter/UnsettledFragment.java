@@ -127,6 +127,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 TextView tv_running_status = holder.getView(R.id.running_Status);
                 l.setVisibility(View.GONE);
                 if (item.getBetType18().equals("PAR") || item.getBetType18().equals("PAM")) {
+                    View view_mid_line = holder.getView(R.id.view_mid_line);
+                    if (BuildConfig.FLAVOR.equals("ez2888")){
+                        view_mid_line.setVisibility(View.GONE);
+                    }
                     holder.getHolderView().setBackgroundResource(R.color.white);
                     ll1.setVisibility(View.VISIBLE);
                     ll2.setVisibility(View.GONE);
@@ -138,11 +142,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_par_CombInfo = holder.getTextView(R.id.running_par_CombInfo);
                     TextView running_par_Amt = holder.getTextView(R.id.running_par_Amt);
 
-                    TextView running_par_IdAndTransDate = holder.getTextView(R.id.running_par_IdAndTransDate);
+                    TextView running_par_Id = holder.getTextView(R.id.running_par_Id);
+                    TextView running_par_TransDate = holder.getTextView(R.id.running_par_TransDate);
 
                     TextView par_id = holder.getTextView(R.id.par_id);
                     TextView par_type = holder.getTextView(R.id.par_type);
-                    running_par_IdAndTransDate.setText("ID[" + item.getRefNo12() + "]" + item.getTransDate0());
+                    running_par_Id.setText("ID:[" + item.getRefNo12() + "]");
+                    running_par_TransDate.setText(item.getTransDate0());
                     running_par_DangerStatus.setText(item.getDangerStatus8());
 
                     running_bet_num.setText((getItemCount() - position) + "");
@@ -262,6 +268,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     ll1.setVisibility(View.GONE);
                     ll2.setVisibility(View.VISIBLE);
 
+                    LinearLayout ll_title_running_Home_Away = holder.getLinearLayout(R.id.ll_title_running_Home_Away);
+                    TextView tv_title_Home = holder.getTextView(R.id.tv_title_Home);
+                    TextView tv_title_Away = holder.getTextView(R.id.tv_title_Away);
                     TextView refNo = holder.getTextView(R.id.running_RefNo);
                     TextView running_hdp_bet_num = holder.getTextView(R.id.running_hdp_bet_num);
                     running_hdp_bet_num.setText((getItemCount() - position) + "");
@@ -272,8 +281,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_ModuleTitle.setText(item.getModuleTitle11());
                     TextView running_Home = holder.getTextView(R.id.running_Home);
                     running_Home.setText(item.getHome1());
+                    tv_title_Home.setText(item.getHome1());
                     TextView running_Away = holder.getTextView(R.id.running_Away);
                     running_Away.setText(item.getAway2());
+                    tv_title_Away.setText(item.getAway2());
                     TextView running_FullTimeId = holder.getTextView(R.id.running_FullTimeId);
                     String fullTimeId13 = item.getFullTimeId13();
                     boolean isOu = false;
@@ -355,10 +366,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView tv_CCSRHasODD2 = holder.getTextView(R.id.tv_CCSRHasODD2);
                     if (!TextUtils.isEmpty(item.getCCSRHasODD233())) {
                         tv_CCSRHasODD2.setText(getString(R.string.Excluding) + ": " + item.getCCSRHasODD233());
-                    }else {
+                    } else {
                         tv_CCSRHasODD2.setText("");
                     }
-                    showDetail(item, refNo, running_TransDate, running_ModuleTitle, running_OddsType, tv_CCSRHasODD2,isOu, view2);
+                    showDetail(item, refNo, running_TransDate, running_ModuleTitle, running_OddsType, tv_CCSRHasODD2, isOu, view2, ll_title_running_Home_Away);
 
                 }
                 View view = holder.getView(R.id.ll_live_parent);
@@ -470,8 +481,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
     }
 
-    private void showDetail(RunningBean item, TextView refNo, TextView running_transDate, TextView running_moduleTitle, TextView running_oddsType,TextView tv_CCSRHasODD2, boolean isOu, View view2) {
-
+    private void showDetail(RunningBean item, TextView refNo, TextView running_transDate, TextView running_moduleTitle, TextView running_oddsType, TextView tv_CCSRHasODD2, boolean isOu, View view2, LinearLayout ll_title_running_Home_Away) {
         if (showDetailMap.get(item.getSocTransId17()) == null || !showDetailMap.get(item.getSocTransId17())) {
             refNo.setVisibility(View.GONE);
             running_transDate.setVisibility(View.GONE);
@@ -483,15 +493,21 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 view2.setVisibility(View.GONE);
             }
             tv_CCSRHasODD2.setVisibility(View.GONE);
+            if (!StringUtils.isNull(item.getIsRun5()) && item.getIsRun5().equals("True")) {
+                ll_title_running_Home_Away.setVisibility(View.VISIBLE);
+            } else {
+                ll_title_running_Home_Away.setVisibility(View.GONE);
+            }
         } else {
+            ll_title_running_Home_Away.setVisibility(View.GONE);
             refNo.setVisibility(View.VISIBLE);
             running_transDate.setVisibility(View.VISIBLE);
             running_moduleTitle.setVisibility(View.VISIBLE);
             running_oddsType.setVisibility(View.VISIBLE);
             view2.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(tv_CCSRHasODD2.getText().toString().trim())){
+            if (!TextUtils.isEmpty(tv_CCSRHasODD2.getText().toString().trim())) {
                 tv_CCSRHasODD2.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 tv_CCSRHasODD2.setVisibility(View.GONE);
             }
         }
@@ -525,6 +541,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     }
 
     public void updateRc2(List<StatementOpen3ListDataBean> list, MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
+        View view_green_line = view.getView(R.id.view_green_line);
         LinearLayout llTitle = view.getLinearLayout(R.id.ll_title);
         TextView tvTotalOdds = view.getTextView(R.id.tv_total_odds);
         TextView tvAmt = view.getTextView(R.id.tv_amt);
@@ -583,10 +600,21 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             scoreStr = bean.getIndex6() + "-" + bean.getIndex7();
         }
         tvScore.setText(getString(R.string.Result) + " " + scoreStr);
+        view_green_line.setVisibility(View.GONE);
+        llTitle.setVisibility(View.GONE);
         if (position == 0) {
             llTitle.setVisibility(View.VISIBLE);
             tvTotalOdds.setText(getString(R.string.TotalOdds) + ":" + bean.getIndex18());
             tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex15());
+        } else {
+            int currentPositionId = bean.getIndex0();
+            int lastPositionId = list.get(position - 1).getIndex0();
+            if (currentPositionId != lastPositionId) {
+                view_green_line.setVisibility(View.VISIBLE);
+                llTitle.setVisibility(View.VISIBLE);
+                tvTotalOdds.setText(getString(R.string.TotalOdds) + ":" + bean.getIndex18());
+                tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex15());
+            }
         }
     }
 

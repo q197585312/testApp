@@ -22,11 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -53,7 +51,6 @@ import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Activity.ChangePasswordActivity;
-import gaming178.com.casinogame.Activity.DragonTigerActivity;
 import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.LobbyBaccaratActivity;
 import gaming178.com.casinogame.Activity.LobbyDragonTigerActivity;
@@ -72,6 +69,7 @@ import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
 import gaming178.com.casinogame.Popupwindow.PopChangePassword;
+import gaming178.com.casinogame.Popupwindow.PopGd88Music;
 import gaming178.com.casinogame.Popupwindow.PopLiveChat;
 import gaming178.com.casinogame.Popupwindow.PopMusic;
 import gaming178.com.casinogame.Popupwindow.PopReferralList;
@@ -80,7 +78,6 @@ import gaming178.com.casinogame.Popupwindow.PopTransactionRecord;
 import gaming178.com.casinogame.Popupwindow.WithdrawPop;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
-import gaming178.com.casinogame.Util.ChangePasswordHelper;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.FrontMuzicService;
 import gaming178.com.casinogame.Util.GameSlideChangeTableHelper;
@@ -982,7 +979,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         @Override
         public void handleMessage(Message msg) {
 
-            if(!isAttached)
+            if (!isAttached)
                 return;
             switch (msg.what) {
                 case ErrorCode.LOGIN_ERROR_NETWORK:
@@ -1334,7 +1331,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     PopChoiceLanguage popLanguage;
 
     public void showLanguagePop(View v, final float weight) {
-
         if (popLanguage == null) {
             int width = ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20);
             int height = ScreenUtil.dip2px(mContext, 220);
@@ -1358,14 +1354,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     ivFlag.setImageResource(item.getRes());
                     boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
                     if (itemLanguageSelected) {
-                        if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                        if (BaseActivity.this instanceof LoginActivity) {
                             tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
                         } else {
-                            if (BaseActivity.this instanceof LoginActivity) {
-                                tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
-                            } else {
-                                tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12_1, 0);
-                            }
+                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12_1, 0);
                         }
                     } else {
                         tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -1375,71 +1367,66 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 @Override
                 public void onClickItem(MenuItemInfo item, int position) {
                     closePopupWindow();
-                    if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+                    if (BaseActivity.this instanceof LoginActivity) {
                         AppTool.setAppLanguage(BaseActivity.this, item.getType());
                         recreate();
                     } else {
-                        if (BaseActivity.this instanceof LoginActivity) {
-                            AppTool.setAppLanguage(BaseActivity.this, item.getType());
-                            recreate();
-                        } else {
-                            int screenWidth = WidgetUtil.getPopScreenWidth((Activity) context);
-                            int width = screenWidth / 15 * 14;
-                            String type = item.getType();
-                            User u = mAppViewModel.getUser();
-                            switch (type) {
-                                case "deposit":
-                                    DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                    pop.setDialog(dialog);
-                                    pop.setUser(u);
-                                    pop.showPopupCenterWindow();
-                                    break;
-                                case "withdraw":
-                                    WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                    p.setDialog(dialog);
-                                    p.setUser(u);
-                                    p.showPopupCenterWindow();
-                                    break;
-                                case "referrer":
-                                    PopReferrer popReferrer = new PopReferrer(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                    popReferrer.showPopupCenterWindow();
-                                    break;
-                                case "katasandi":
-                                    if (BuildConfig.FLAVOR.equals("ahlicasino")) {
-                                        PopChangePassword popChangePassword = new PopChangePassword(mContext, v, width, ViewGroup.LayoutParams.WRAP_CONTENT);
-                                        popChangePassword.showPopupCenterWindow();
-                                    } else {
-                                        startActivity(new Intent(mContext, ChangePasswordActivity.class));
-                                    }
-                                    break;
-                                case "Referral_List":
-                                    PopReferralList popReferralList = new PopReferralList(mContext, v, width, width);
-                                    popReferralList.showPopupCenterWindow();
-                                    break;
-                                case "setting":
-                                    if (BuildConfig.FLAVOR.equals("ahlicasino")) {
-                                        PopMusic popMusic = new PopMusic(mContext, v, width, UIUtil.dip2px(mContext, 220));
-                                        popMusic.showPopupCenterWindow();
-                                    } else {
-                                        showSetPop(v, Gravity.TOP);
-                                    }
-                                    break;
-                                case "report":
-                                    PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                                    popReport.showPopupCenterWindow();
-                                    break;
-                                case "liveChat":
-                                    PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                                    popLiveChat.showPopupCenterWindow();
-                                    break;
-                                case "TransactionRecord":
-                                    PopTransactionRecord popTransactionReport = new PopTransactionRecord(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                                    popTransactionReport.showPopupCenterWindow();
-                                    break;
-                                case "Fingerprint":
-                                    showFingerPop(v, Gravity.TOP);
-                                    break;
-                            }
+                        int screenWidth = WidgetUtil.getPopScreenWidth((Activity) context);
+                        int width = screenWidth / 15 * 14;
+                        String type = item.getType();
+                        User u = mAppViewModel.getUser();
+                        switch (type) {
+                            case "deposit":
+                                DepositPop pop = new DepositPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                pop.setDialog(dialog);
+                                pop.setUser(u);
+                                pop.showPopupCenterWindow();
+                                break;
+                            case "withdraw":
+                                WithdrawPop p = new WithdrawPop(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                p.setDialog(dialog);
+                                p.setUser(u);
+                                p.showPopupCenterWindow();
+                                break;
+                            case "referrer":
+                                PopReferrer popReferrer = new PopReferrer(mContext, v, width, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                popReferrer.showPopupCenterWindow();
+                                break;
+                            case "katasandi":
+                                if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                                    PopChangePassword popChangePassword = new PopChangePassword(mContext, v, width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    popChangePassword.showPopupCenterWindow();
+                                } else {
+                                    startActivity(new Intent(mContext, ChangePasswordActivity.class));
+                                }
+                                break;
+                            case "Referral_List":
+                                PopReferralList popReferralList = new PopReferralList(mContext, v, width, width);
+                                popReferralList.showPopupCenterWindow();
+                                break;
+                            case "setting":
+                                if (BuildConfig.FLAVOR.equals("ahlicasino")) {
+                                    PopMusic popMusic = new PopMusic(mContext, v, width, UIUtil.dip2px(mContext, 220));
+                                    popMusic.showPopupCenterWindow();
+                                } else {
+                                    showSetPop(v, Gravity.TOP);
+                                }
+                                break;
+                            case "report":
+                                PopReport popReport = new PopReport(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                popReport.showPopupCenterWindow();
+                                break;
+                            case "liveChat":
+                                PopLiveChat popLiveChat = new PopLiveChat(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                popLiveChat.showPopupCenterWindow();
+                                break;
+                            case "TransactionRecord":
+                                PopTransactionRecord popTransactionReport = new PopTransactionRecord(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                popTransactionReport.showPopupCenterWindow();
+                                break;
+                            case "Fingerprint":
+                                showFingerPop(v, Gravity.TOP);
+                                break;
                         }
                     }
 
@@ -1487,7 +1474,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     }
 
-    private ArrayList<String> getSetLimitData(int tableId) {
+    public ArrayList<String> getSetLimitData(int tableId) {
         Baccarat baccarat;
         String limit1 = "0 - 0";
         String limit2 = "0 - 0";
@@ -1553,34 +1540,14 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.gd__rg_switch);
-                RadioButton rb_password = (RadioButton) view.findViewById(R.id.gd__rb_password);
-                RadioButton rb_limit = (RadioButton) view.findViewById(R.id.gd__rb_limit);
-                RadioButton rb_language = (RadioButton) view.findViewById(R.id.gd__rb_language);
-                RadioButton rb_finger = (RadioButton) view.findViewById(R.id.gd__rb_finger);
-                ImageView img_open_close = (ImageView) view.findViewById(R.id.gd_img_open_close);
+                RadioGroup rg_switch = view.findViewById(R.id.gd__rg_switch);
+                ImageView img_open_close = view.findViewById(R.id.gd_img_open_close);
                 if (mAppViewModel.isMusicOpen()) {
                     img_open_close.setImageResource(R.mipmap.music_open);
                 } else {
                     img_open_close.setImageResource(R.mipmap.music_close);
                 }
-                if (!BuildConfig.FLAVOR.isEmpty()) {
-                    if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
-                        rb_limit.setBackgroundResource(R.drawable.gd_selector_music_choose_right);
-                        rb_password.setVisibility(View.GONE);
-                        rb_language.setVisibility(View.GONE);
-                    }
-                }
-                rb_finger.setVisibility(View.GONE);
-//                TextView tv_music_title = (TextView) view.findViewById(R.id.gd__tv_music_title);
                 if (BaseActivity.this instanceof LobbyActivity) {
-//                    rb_limit.setVisibility(View.GONE);
-//                    if (!BuildConfig.FLAVOR.isEmpty()) {
-//                        rb_finger.setVisibility(View.VISIBLE);
-//                        if (rb_finger.getVisibility() == View.VISIBLE) {
-//                            rb_language.setBackgroundResource(R.drawable.gd_selector_music_choose_mid);
-//                        }
-//                    }
                     isGameUi = false;
                 } else {
                     isGameUi = true;
@@ -1604,10 +1571,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     }
                 });
                 final LinearLayout ll_music = view.findViewById(R.id.gd__ll_music);
-                final LinearLayout ll_password = view.findViewById(R.id.gd__ll_password);
                 final RecyclerView recyclerView = view.findViewById(R.id.gd__base_rv);
-                final RecyclerView rc_lg = view.findViewById(R.id.gd__rc_lg);
-                LinearLayout ll_finger = view.findViewById(R.id.gd__ll_finger);
                 recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
                 BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(mAppViewModel.getTableId() == 0 ? 1 : mAppViewModel.getTableId()), R.layout.gd_item_popupwindow_text_select) {
                     @Override
@@ -1641,66 +1605,15 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     }
                 });
                 recyclerView.setAdapter(baseRecyclerAdapter);
-
-                rc_lg.setLayoutManager(new GridLayoutManager(mContext, 2));
-                BaseRecyclerAdapter<MenuItemInfo<String>> recyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, new LanguageHelper(mContext).getLanguageItems(), R.layout.gd_item_language_selected) {
-                    @Override
-                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
-                        ImageView ivFlag = holder.getView(R.id.gd__iv_flag_country);
-                        TextView tvContent = holder.getView(R.id.gd__selectable_text_content_tv);
-                        tvContent.setText(item.getText());
-                        ivFlag.setImageResource(item.getRes());
-                        boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
-                        if (itemLanguageSelected) {
-                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
-                        } else {
-                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        }
-                    }
-                };
-                recyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
-                    @Override
-                    public void onItemClick(View view, MenuItemInfo<String> item, int position) {
-                        AppTool.setAppLanguage(BaseActivity.this, item.getType());
-                        closePopupWindow();
-                        onInGameChooseLanguage();
-                    }
-                });
-                rc_lg.setAdapter(recyclerAdapter);
-
                 rg_switch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
                         if (checkedId == R.id.gd__rb_music) {
                             ll_music.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
-                            rc_lg.setVisibility(View.GONE);
-                            ll_password.setVisibility(View.GONE);
-                            ll_finger.setVisibility(View.GONE);
-                        } else if (checkedId == R.id.gd__rb_password) {
-                            ll_music.setVisibility(View.INVISIBLE);
-                            ll_password.setVisibility(View.VISIBLE);
-                            recyclerView.setVisibility(View.GONE);
-                            rc_lg.setVisibility(View.GONE);
-                            ll_finger.setVisibility(View.GONE);
                         } else if (checkedId == R.id.gd__rb_limit) {
                             ll_music.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
-                            rc_lg.setVisibility(View.GONE);
-                            ll_password.setVisibility(View.GONE);
-                            ll_finger.setVisibility(View.GONE);
-                        } else if (checkedId == R.id.gd__rb_language) {
-                            ll_music.setVisibility(View.INVISIBLE);
-                            recyclerView.setVisibility(View.GONE);
-                            rc_lg.setVisibility(View.VISIBLE);
-                            ll_password.setVisibility(View.GONE);
-                            ll_finger.setVisibility(View.GONE);
-                        } else if (checkedId == R.id.gd__rb_finger) {
-                            ll_music.setVisibility(View.INVISIBLE);
-                            recyclerView.setVisibility(View.GONE);
-                            rc_lg.setVisibility(View.GONE);
-                            ll_password.setVisibility(View.GONE);
-                            ll_finger.setVisibility(View.VISIBLE);
                         }
                     }
                 });
@@ -1806,24 +1719,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
                     }
                 });
-
-                EditText edt_old_passwrod = (EditText) view.findViewById(R.id.gd__edt_old_passwrod);
-                EditText edt_new_passwrod = (EditText) view.findViewById(R.id.gd__edt_new_passwrod);
-                EditText edt_confirm_passwrod = (EditText) view.findViewById(R.id.gd__edt_confirm_passwrod);
-                TextView tv_ok = (TextView) view.findViewById(R.id.gd__tv_ok);
-                tv_ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String oldPassword = edt_old_passwrod.getText().toString();
-                        String newPassword = edt_new_passwrod.getText().toString();
-                        String confirmPassword = edt_confirm_passwrod.getText().toString();
-                        ChangePasswordHelper changePasswordHelper = new ChangePasswordHelper(oldPassword, newPassword, confirmPassword, BaseActivity.this);
-                        changePasswordHelper.changePassword();
-                    }
-                });
-
-                initFingerView(view);
-
             }
 
             @Override
@@ -1893,7 +1788,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
     }
 
-    private void initFingerView(View view) {
+    public void initFingerView(View view) {
         CheckBox cbFinger = view.findViewById(R.id.cb_finger);
         String finger = (String) AppTool.getObjectData(mContext, AppConfig.ACTION_KEY_FINGER);
         if (TextUtils.isEmpty(finger)) {
@@ -2557,7 +2452,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         rightMusicTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSetPop(null, Gravity.CENTER);
+                if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    PopGd88Music popGd88Music = new PopGd88Music(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    popGd88Music.showPopupCenterWindow();
+                } else {
+                    showSetPop(null, Gravity.CENTER);
+                }
             }
         });
         rightTv.setOnClickListener(new View.OnClickListener() {
