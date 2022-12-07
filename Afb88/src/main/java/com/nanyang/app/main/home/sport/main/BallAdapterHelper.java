@@ -142,15 +142,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
 
-        if (act.onlyShowOne) {
-            ll_match_outside.setVisibility(View.GONE);
-        } else {
-            if (!StringUtils.isNull(additionMap.get(true)) && !item.outShow && act.hasBet) {
-                ll_match_outside.setVisibility(View.GONE);
-            } else {
-                ll_match_outside.setVisibility(View.VISIBLE);
-            }
-        }
+
 
         if (item.getType() == SportInfo.Type.ITME) {
             matchTitleLl.setVisibility(View.GONE);
@@ -380,7 +372,17 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         }
         updateMixNormalBackground(helper, item);
+        if (act.onlyShowOne) {
 
+            ll_match_outside.setVisibility(View.GONE);
+        } else {
+
+            if (!StringUtils.isNull(additionMap.get(true)) && !item.outShow && act.hasBet) {
+                ll_match_outside.setVisibility(View.GONE);
+            } else {
+                ll_match_outside.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
 
