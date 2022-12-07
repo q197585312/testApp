@@ -241,20 +241,21 @@ public class PopGd88Music extends BasePopupWindow {
     private void showMusicDialog() {
         if (musicDialog == null) {
             musicDialog = new Dialog(context, R.style.Music_Dialog);
-            View view = LayoutInflater.from(context).inflate(R.layout.dialog_music, null);
-            ListView musicListView = view.findViewById(R.id.listView);
+            View view = LayoutInflater.from(context).inflate(R.layout.gd_dialog_music, null);
+            ListView musicListView = view.findViewById(R.id.gd_listView);
             AdapterViewContent<String> viewContent = new AdapterViewContent<>(context, musicListView);
             viewContent.setBaseAdapter(new QuickAdapterImp<String>() {
                 @Override
                 public int getBaseItemResource() {
-                    return R.layout.item_text;
+                    return R.layout.gd_item_text;
                 }
 
                 @Override
                 public void convert(ViewHolder helper, String item, int position) {
-                    helper.setText(R.id.text_tv1, item);
-                    helper.setTextSize(R.id.text_tv1, 12);
-                    helper.setTextColor(R.id.text_tv1, ContextCompat.getColor(context, R.color.gray_dark));
+                    TextView textView = helper.retrieveView(R.id.gd_text_tv1);
+                    textView.setText(item);
+                    textView.setTextSize(12);
+                    textView.setTextColor(ContextCompat.getColor(context, R.color.gray_dark));
                 }
             });
             viewContent.setItemClick(new ItemCLickImp<String>() {

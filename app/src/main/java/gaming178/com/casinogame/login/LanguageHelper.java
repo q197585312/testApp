@@ -10,6 +10,7 @@ import java.util.List;
 
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 
@@ -26,16 +27,16 @@ public class LanguageHelper {
         this.context = context;
         languageItems = new ArrayList<>();
         if (BuildConfig.FLAVOR.isEmpty() || BuildConfig.FLAVOR.equals("gd88")) {
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "EN", "en", "EN-US"));
+            languageItems.add(new MenuItemInfo<>(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_lang_en_flag_gd88 : R.mipmap.gd_lang_en_flag, "EN", "en", "EN-US"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_zh_flag, "ZH", "zh", "ZH-CN"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_hk_flag, "HK", "zh_TW", "ZH-TW"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_vn_flag, "VN", "vi", "EN-IE"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_th_flag, "TH", "th", "TH-TH"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "IN", "my", "EN-AU"));
+            languageItems.add(new MenuItemInfo<>(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_lang_in_flag_gd88 : R.mipmap.gd_lang_in_flag, "IN", "my", "EN-AU"));
         } else if (BuildConfig.FLAVOR.equals("liga365")) {
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "EN", "en", "EN-US"));
+            languageItems.add(new MenuItemInfo<>(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_lang_en_flag_gd88 : R.mipmap.gd_lang_en_flag, "EN", "en", "EN-US"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_zh_flag, "ZH", "zh", "ZH-CN"));
-            languageItems.add(new MenuItemInfo<>(R.mipmap.gd_lang_in_flag, "IN", "my", "EN-AU"));
+            languageItems.add(new MenuItemInfo<>(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_lang_in_flag_gd88 : R.mipmap.gd_lang_in_flag, "IN", "my", "EN-AU"));
         } else {
             BaseActivity baseActivity = (BaseActivity) context;
             if (baseActivity instanceof LoginActivity) {
@@ -65,7 +66,7 @@ public class LanguageHelper {
             if (isItemLanguageSelected(languageItem.getType()))
                 return languageItem;
         }
-        return new MenuItemInfo<>(R.mipmap.gd_lang_en_flag, "English", "en", "EN-US");
+        return new MenuItemInfo<>(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_lang_en_flag_gd88 : R.mipmap.gd_lang_en_flag, "English", "en", "EN-US");
     }
 
     public boolean isItemLanguageSelected(String type) {

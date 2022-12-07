@@ -19,11 +19,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
-                android:background="@drawable/gd_rectangle_brown_top_corner5"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/gd_ll_road_title"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -51,10 +51,11 @@
                         android:textColor="@color/white" />
 
                     <LinearLayout
-                        android:layout_width="38dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/gd_rectangle_b_shape"
+                        android:minWidth="38dp"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -77,10 +78,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="38dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/gd_rectangle_p_shape"
+                        android:minWidth="38dp"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -103,10 +105,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="38dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/gd_rectangle_tie_shape"
+                        android:minWidth="38dp"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -130,10 +133,11 @@
 
                     <LinearLayout
                         android:id="@+id/gd__ll_bp"
-                        android:layout_width="38dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/gd_rectangle_bp_shape"
+                        android:minWidth="38dp"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -157,10 +161,11 @@
 
                     <LinearLayout
                         android:id="@+id/gd__ll_pp"
-                        android:layout_width="38dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/gd_rectangle_pp_shape"
+                        android:minWidth="38dp"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -183,10 +188,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="45dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/gd_rectangle_total_shape"
+                        android:minWidth="45dp"
                         android:orientation="horizontal"
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp">
@@ -218,7 +224,6 @@
                     android:id="@+id/gd__baccarat_status_tv"
                     android:layout_width="24dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
                     android:background="@drawable/gd_rectangle_trans_stroke_white"
                     android:gravity="center"
                     android:minWidth="100dp"

@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <FrameLayout
+            android:id="@+id/gd_fl_limit_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gd_rectangle_brown_top_corner5"

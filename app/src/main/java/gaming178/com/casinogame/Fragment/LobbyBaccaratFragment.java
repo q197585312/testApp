@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -1112,6 +1113,29 @@ public class LobbyBaccaratFragment extends BaseFragment {
             }
         });
         addLayout4(baccaratContentParentLl);
+        if (Gd88Utils.isGd88AndLiga365AndJump()){
+            rootView.findViewById(R.id.gd__ll_baccarat_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            layout2.findViewById(R.id.gd__ll_baccarat_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            layout3.findViewById(R.id.gd__ll_baccarat_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            layout61.findViewById(R.id.gd__ll_baccarat_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            layout62.findViewById(R.id.gd__ll_baccarat_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            layout63.findViewById(R.id.gd__ll_baccarat_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            layout71.findViewById(R.id.gd__ll_baccarat_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            rootView.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout2.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout3.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout61.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout62.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout63.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout71.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            rootView.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout2.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout3.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout61.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout62.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout63.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            layout71.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+        }
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             if (Gd88Utils.isGd88AndLiga365AndJump()){
                 View view = new View(mContext);

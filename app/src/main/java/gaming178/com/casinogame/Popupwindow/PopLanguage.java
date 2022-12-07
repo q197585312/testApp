@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
@@ -52,14 +53,19 @@ public class PopLanguage extends BasePopupWindow {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
             @Override
             public void onItemClick(View view, MenuItemInfo<String> item, int position) {
-                AppTool.setAppLanguage(context, item.getType());
-                activity.recreate();
+                AppTool.setAppLanguage(activity, item.getType());
+                if (activity instanceof LobbyActivity) {
+                    activity.skipAct(LobbyActivity.class);
+                    activity.finish();
+                } else {
+                    activity.recreate();
+                }
             }
         });
         rcLg.setAdapter(adapter);
     }
 
-    public void setDarkBg(){
+    public void setDarkBg() {
         ll_parent.setBackgroundResource(R.drawable.gd_language_bg_dark);
     }
 }

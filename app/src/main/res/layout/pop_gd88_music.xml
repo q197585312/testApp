@@ -318,7 +318,7 @@
                     android:layout_marginBottom="8dp"
                     android:background="#FF9501"
                     android:gravity="center"
-                    android:text="@string/sure"
+                    android:text="@string/gd_confirm"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>

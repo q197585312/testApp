@@ -2,7 +2,7 @@
     android:id="@+id/ll_lobby_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/gd_home_bottom_land"
+    android:background="@mipmap/gd_home_bottom_land_gd88"
     android:orientation="vertical">
 
     <include
@@ -35,7 +35,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/gd_notice_home" />
+                    android:src="@mipmap/gd_notice_home_gd88" />
 
                 <gaming178.com.casinogame.Control.AutoScrollTextView
                     android:id="@+id/gd__hall_game_bottom_prompt_tv"
@@ -61,7 +61,7 @@
                     android:id="@+id/gd__tv_home_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/home_money"
+                    android:drawableLeft="@mipmap/home_money_gd88"
                     android:drawablePadding="3dp"
                     android:gravity="center"
                     android:text="xxx"
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:drawableLeft="@mipmap/home_user"
+                    android:drawableLeft="@mipmap/home_user_gd88"
                     android:drawablePadding="3dp"
                     android:gravity="center"
                     android:text="xxx"

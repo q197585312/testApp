@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gd_fl_roulette_road_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@mipmap/gd_way_bg"
@@ -11,6 +12,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/gd_ll_road_title"
             android:layout_width="match_parent"
             android:layout_height="24dp"
             android:background="@drawable/gd_rectangle_brown_top_corner5"
@@ -46,10 +48,11 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="40dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:background="@drawable/gd_rectangle_b_shape"
                     android:gravity="center"
+                    android:minWidth="40dp"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp">
@@ -71,12 +74,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="40dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="0.11dp"
                     android:background="@drawable/gd_rectangle_black_shape"
                     android:gravity="center"
+                    android:minWidth="40dp"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp">
@@ -98,11 +102,12 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="40dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/gd_rectangle_tie_shape"
                     android:gravity="center"
+                    android:minWidth="40dp"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp">

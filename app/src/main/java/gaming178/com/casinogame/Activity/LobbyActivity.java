@@ -444,6 +444,7 @@ public class LobbyActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                    AppTool.setAppLanguage(mContext, AppTool.getAppLanguage(mContext));
                     PopGd88Music popGd88Music = new PopGd88Music(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                     popGd88Music.showPopupCenterWindow();
                 } else {
@@ -719,15 +720,15 @@ public class LobbyActivity extends BaseActivity {
             gridviewContentGv.setLayoutManager(layoutManager);
         } else {
             itemHeight = itemWidth + UIUtil.dip2px(mContext, 40);
-            if (TextUtils.isEmpty(BuildConfig.FLAVOR)){
-                itemHeight = itemWidth;
-                ll_content_bg.setBackgroundResource(0);
-                tv_home_close_game.setVisibility(View.GONE);
-                ll_bottom.setVisibility(View.GONE);
-                tv_home_deposit_l.setVisibility(View.GONE);
-                tv_home_withdraw_l.setVisibility(View.GONE);
-                tv_lg.setVisibility(View.GONE);
-            }
+//            if (TextUtils.isEmpty(BuildConfig.FLAVOR)){
+//                itemHeight = itemWidth;
+//                ll_content_bg.setBackgroundResource(0);
+//                tv_home_close_game.setVisibility(View.GONE);
+//                ll_bottom.setVisibility(View.GONE);
+//                tv_home_deposit_l.setVisibility(View.GONE);
+//                tv_home_withdraw_l.setVisibility(View.GONE);
+//                tv_lg.setVisibility(View.GONE);
+//            }
             ll_parent.setGravity(Gravity.BOTTOM);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ll_content_bg.getLayoutParams();
             params.height = ll_parent.getHeight() - itemHeight - UIUtil.dip2px(mContext, dp);
@@ -740,11 +741,12 @@ public class LobbyActivity extends BaseActivity {
             tv_lg.setText(languageItem.getText());
             tv_lg.setCompoundDrawablesWithIntrinsicBounds(languageItem.getRes(), 0, 0, 0);
         }
-        adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), R.layout.gd_item_hall_game) {
+        adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), Gd88Utils.isGd88AndLiga365AndJump() ? R.layout.gd_item_hall_game_gd88 : R.layout.gd_item_hall_game) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, HallGameItemBean item) {
                 RelativeLayout rl_parent = holder.getRelativeLayout(R.id.gd_rl_parent);
                 ImageView imgTopLeftNew = holder.getImageView(R.id.img_top_left_new);
+                TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
                 ViewGroup.LayoutParams layoutParams = rl_parent.getLayoutParams();
                 layoutParams.width = itemWidth;
                 layoutParams.height = itemHeight;
@@ -756,6 +758,12 @@ public class LobbyActivity extends BaseActivity {
                     lp.width = itemWidth;
                     lp.height = itemWidth;
                     rl_content.setLayoutParams(lp);
+                    if (item.getGameType() == AppConfig.cockfighting) {
+                        textView.setSingleLine(true);
+                        textView.setEllipsize(TextUtils.TruncateAt.valueOf("END"));
+                    } else {
+                        textView.setSingleLine(false);
+                    }
                 }
                 ImageView imageView = holder.getImageView(R.id.gd__hall_game_pic_iv);
                 Bitmap bitmap = BitmapTool.toRoundCorner(BitmapFactory.decodeResource(getResources(), item.getImageRes()), ScreenUtil.dip2px(mContext, 5));
@@ -772,7 +780,6 @@ public class LobbyActivity extends BaseActivity {
                 } else {
                     imgTopLeftNew.setVisibility(View.GONE);
                 }
-                TextView textView = holder.getTextView(R.id.gd__hall_game_title_tv);
                 textView.setText(item.getTitle());
                 if (position == clickItem) {
                     if (Gd88Utils.isGd88AndLiga365AndJump()) {
@@ -780,7 +787,11 @@ public class LobbyActivity extends BaseActivity {
                     } else {
                         rl_parent.setBackgroundResource(R.mipmap.home_game_select);
                     }
-                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
+                    if (Gd88Utils.isGd88AndLiga365AndJump()) {
+                        textView.setTextColor(Color.WHITE);
+                    } else {
+                        textView.setTextColor(ContextCompat.getColor(mContext, R.color.home_select_color));
+                    }
                 } else {
                     if (BuildConfig.FLAVOR.equals("hokicasino88") || BuildConfig.FLAVOR.equals("doacasino") || BuildConfig.FLAVOR.equals("ularnaga") ||
                             BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("wargacasino") ||
@@ -792,7 +803,7 @@ public class LobbyActivity extends BaseActivity {
                         rl_parent.setBackgroundResource(R.mipmap.home_game_no_select);
                     }
                     if (BuildConfig.FLAVOR.equals("hitamslot") || BuildConfig.FLAVOR.equals("ratucasino88") || BuildConfig.FLAVOR.equals("depocasino") ||
-                            BuildConfig.FLAVOR.equals("garudakasino") || BuildConfig.FLAVOR.equals("ahlicasino")) {
+                            BuildConfig.FLAVOR.equals("garudakasino") || BuildConfig.FLAVOR.equals("ahlicasino") || Gd88Utils.isGd88AndLiga365AndJump()) {
                         textView.setTextColor(Color.WHITE);
                     } else if (BuildConfig.FLAVOR.equals("ularnaga")) {
                         textView.setTextColor(ContextCompat.getColor(mContext, R.color.ularnaga_home_no_select_color));
@@ -1218,15 +1229,15 @@ public class LobbyActivity extends BaseActivity {
     private void setAdapterData() {
         ArrayList<HallGameItemBean> hallGameItemBeenS = new ArrayList<>();
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_b, getString(R.string.baccarat), AppConfig.baccarat));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_s, getString(R.string.sicbo), AppConfig.sicbo));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_b_gd88 : R.mipmap.home_b, getString(R.string.baccarat), AppConfig.baccarat));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_dt_gd88 : R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_r_gd88 : R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_s_gd88 : R.mipmap.home_s, getString(R.string.sicbo), AppConfig.sicbo));
         } else {
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_b, getString(R.string.baccarat), AppConfig.baccarat));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.home_s, getString(R.string.sicbo), AppConfig.sicbo));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_b_gd88 : R.mipmap.home_b, getString(R.string.baccarat), AppConfig.baccarat));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_dt_gd88 : R.mipmap.home_dt, getString(R.string.dragon_tiger), AppConfig.dragon_tiger));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_r_gd88 : R.mipmap.home_r, getString(R.string.roulette), AppConfig.roulette));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.home_s_gd88 : R.mipmap.home_s, getString(R.string.sicbo), AppConfig.sicbo));
 
             if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
                 hallGameItemBeenS.addAll(Gd88Utils.getLobbyGameList(this));
@@ -1261,7 +1272,11 @@ public class LobbyActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.gd_activity_main_tab;
+        if (Gd88Utils.isGd88AndLiga365AndJump()) {
+            return R.layout.gd_activity_main_tab_gd88;
+        } else {
+            return R.layout.gd_activity_main_tab;
+        }
     }
 
     @Override

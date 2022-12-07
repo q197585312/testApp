@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,10 +27,9 @@ import java.util.List;
 import butterknife.BindView;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
-import gaming178.com.casinogame.Activity.LobbyActivity;
-import gaming178.com.casinogame.Activity.LobbySicboActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
 import gaming178.com.casinogame.Util.AppConfig;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
@@ -223,6 +223,11 @@ public class LobbySicboFragment extends BaseFragment {
     ImageView img_head;
 
     public void InitControl() {
+        if (Gd88Utils.isGd88AndLiga365AndJump()){
+            rootView.findViewById(R.id.gd_fl_sicbo_road_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            rootView.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            rootView.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+        }
         density = ScreenUtil.getDisplayMetrics(mContext).density;
         baseActivity.girlLayout = (LinearLayout) rootView.findViewById(R.id.gd__ll_layout_girl);
         if (baseActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {

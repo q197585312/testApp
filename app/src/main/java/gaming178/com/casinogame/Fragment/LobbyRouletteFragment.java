@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,11 +26,10 @@ import java.util.List;
 import butterknife.BindView;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.baccaratgame.R2;
-import gaming178.com.casinogame.Activity.LobbyActivity;
-import gaming178.com.casinogame.Activity.LobbyRouletteActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Bean.Roulette;
 import gaming178.com.casinogame.Util.AppConfig;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
@@ -234,6 +234,11 @@ public class LobbyRouletteFragment extends BaseFragment {
     }
 
     public void initControl() {
+        if (Gd88Utils.isGd88AndLiga365AndJump()){
+            rootView.findViewById(R.id.gd_fl_roulette_road_content).setBackgroundResource(R.mipmap.gd_way_bg_gd88);
+            rootView.findViewById(R.id.gd_ll_road_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+            rootView.findViewById(R.id.gd_fl_limit_title).setBackgroundColor(ContextCompat.getColor(mContext,R.color.gd_lobby_road_title_bg));
+        }
         tv_roulette_timer01 = (TextView) rootView.findViewById(R.id.gd__roulette_status_tv);
         tv_game_number01 = (TextView) rootView.findViewById(R.id.gd__text_shoe_game_number);
         tv_roulette_red01 = (TextView) rootView.findViewById(R.id.gd__text_red);

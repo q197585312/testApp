@@ -120,9 +120,9 @@ public class Gd88Utils {
     public static List<HallGameItemBean> getLobbyGameList(Context context) {
         List<HallGameItemBean> hallGameItemBeenS = new ArrayList<>();
 
-        int slot = R.mipmap.gd_slots;
+        int slot = Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_slots_gd88 : R.mipmap.gd_slots;
         if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            slot = R.mipmap.gd_slots_v;
+            slot = Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_slots_v_gd88 : R.mipmap.gd_slots_v;
         }
         hallGameItemBeenS.add(new HallGameItemBean(slot, context.getString(R.string.slots), AppConfig.slots));
 
@@ -133,7 +133,7 @@ public class Gd88Utils {
         }
 
         if (WebSiteUrl.GameType != 3 && !BuildConfig.FLAVOR.equals("liga365")) {
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_sport_afb1188, context.getString(R.string.afb1188), AppConfig.afb1188));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_sport_afb1188_gd88 : R.mipmap.gd_sport_afb1188, context.getString(R.string.afb1188), AppConfig.afb1188));
         }
 
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
@@ -150,10 +150,10 @@ public class Gd88Utils {
         }
 
         if (!BuildConfig.FLAVOR.equals("ahlicasino")) {
-            hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
+            hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_cock_fighting_gd88 : R.mipmap.gd_cock_fighting, context.getString(R.string.cock_fighting), AppConfig.cockfighting));
         }
 
-        hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_cq_slots, context.getString(R.string.cq), AppConfig.cq9));
+        hallGameItemBeenS.add(new HallGameItemBean(Gd88Utils.isGd88AndLiga365AndJump() ? R.mipmap.gd_cq_slots_gd88 : R.mipmap.gd_cq_slots, context.getString(R.string.cq), AppConfig.cq9));
 
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.king_kong, context.getString(R.string.king_kong), AppConfig.kingKong));
@@ -231,13 +231,7 @@ public class Gd88Utils {
 
     public static boolean isGd88AndLiga365AndJump() {
         String flavor = BuildConfig.FLAVOR;
-//        if (TextUtils.isEmpty(flavor) || flavor.equals("gd88") || flavor.equals("liga365")) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-
-        if (!TextUtils.isEmpty(flavor) && (flavor.equals("gd88") || flavor.equals("liga365"))) {
+        if (TextUtils.isEmpty(flavor) || flavor.equals("gd88") || flavor.equals("liga365")) {
             return true;
         } else {
             return false;

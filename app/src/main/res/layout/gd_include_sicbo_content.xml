@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gd_fl_sicbo_road_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@mipmap/gd_way_bg"
@@ -11,6 +12,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/gd_ll_road_title"
             android:layout_width="match_parent"
             android:layout_height="24dp"
             android:background="@drawable/gd_rectangle_brown_top_corner5"
@@ -37,9 +39,10 @@
                 android:textColor="@color/white" />
 
             <LinearLayout
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gd_rectangle_p_shape"
+                android:minWidth="40dp"
                 android:orientation="horizontal"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp">
@@ -61,10 +64,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/gd_rectangle_p_shape"
+                android:minWidth="40dp"
                 android:orientation="horizontal"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp">
@@ -86,10 +90,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/gd_rectangle_tie_shape"
+                android:minWidth="40dp"
                 android:orientation="horizontal"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp">
