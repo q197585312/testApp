@@ -79,7 +79,7 @@ android {
     if (!rootProject.ext.isGd88LibraryModule.toBoolean()) {
         productFlavors {
             gd88 {
-                versionName '3.97'
+                versionName '3.98'
                 buildConfigField "String", "Labelid", '"48"'
                 applicationId 'gaming178.com.baccaratgame'
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gd88"]
@@ -92,7 +92,7 @@ android {
                 buildConfigField "String", "loginjsp", '"lglogin.jsp"'
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "liga365"]
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '3.87'
+                versionName '3.88'
             }
             ahlicasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ahlicasino"]
