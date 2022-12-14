@@ -47,7 +47,7 @@ public class PopLanguage extends BasePopupWindow {
                 ImageView imageView = holder.getImageView(R.id.img_lg);
                 TextView textView = holder.getTextView(R.id.tv_lg);
                 imageView.setImageResource(item.getRes());
-                textView.setText(item.getText());
+                textView.setText(item.getSimpleText());
             }
         };
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {

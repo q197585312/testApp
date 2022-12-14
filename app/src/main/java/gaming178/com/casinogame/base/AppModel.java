@@ -1073,7 +1073,7 @@ public class AppModel extends ViewModel {
 
 
         if (point % 2 == 0) {
-            if (SystemTool.getLanguage(ctx).equals("zh")) {
+            if (SystemTool.getLanguage(ctx).equals("zh") || SystemTool.getLanguage(ctx).equals("zh_TW")) {
                 evenOdd = "双";
                 waiDic = "围";
             } else {
@@ -1081,7 +1081,7 @@ public class AppModel extends ViewModel {
                 waiDic = "T";
             }
         } else {
-            if (SystemTool.getLanguage(ctx).equals("zh")) {
+            if (SystemTool.getLanguage(ctx).equals("zh") || SystemTool.getLanguage(ctx).equals("zh_TW")) {
                 evenOdd = "单";
                 waiDic = "围";
             } else {
@@ -2042,7 +2042,7 @@ public class AppModel extends ViewModel {
                 //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
                 baccarat.setBigRoadOld(baccarat.getBigRoad());
                 int[][] road;
-                if (SystemTool.getLanguage(mContext).equals("zh")) {
+                if (SystemTool.getLanguage(mContext).equals("zh") || SystemTool.getLanguage(mContext).equals("zh_TW")) {
                     dragon_road = "龍";
                     tiger_road = "虎";
                     tie_road = "和";
@@ -2274,7 +2274,7 @@ public class AppModel extends ViewModel {
                         }
                     }
                     int[][] road;
-                    if (SystemTool.getLanguage(mContext).equals("zh")) {
+                    if (SystemTool.getLanguage(mContext).equals("zh") || SystemTool.getLanguage(mContext).equals("zh_TW")) {
                         banker_road = "庄";
                         player_road = "闲";
                         tie_road = "和";
@@ -3638,8 +3638,8 @@ public class AppModel extends ViewModel {
     }
 
     public HttpClient getHttpClient() {
-        if(httpClient==null)
-            httpClient=new HttpClient();
+        if (httpClient == null)
+            httpClient = new HttpClient();
         return httpClient;
     }
 
@@ -3726,7 +3726,7 @@ public class AppModel extends ViewModel {
 
     public void startFrontMuzicService(String action, int index, ComponentName component, Context ctx, int volume) {
         try {
-            if (!isFrontMusicOpen()){
+            if (!isFrontMusicOpen()) {
                 return;
             }
             BaseActivity activity = (BaseActivity) ctx;

@@ -738,7 +738,7 @@ public class LobbyActivity extends BaseActivity {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
             gridviewContentGv.setLayoutManager(linearLayoutManager);
             MenuItemInfo<String> languageItem = new LanguageHelper(mContext).getLanguageItem();
-            tv_lg.setText(languageItem.getText());
+            tv_lg.setText(languageItem.getSimpleText());
             tv_lg.setCompoundDrawablesWithIntrinsicBounds(languageItem.getRes(), 0, 0, 0);
         }
         adapterViewContent = new BaseRecyclerAdapter<HallGameItemBean>(mContext, new ArrayList<HallGameItemBean>(), Gd88Utils.isGd88AndLiga365AndJump() ? R.layout.gd_item_hall_game_gd88 : R.layout.gd_item_hall_game) {
@@ -780,7 +780,7 @@ public class LobbyActivity extends BaseActivity {
                 } else {
                     imgTopLeftNew.setVisibility(View.GONE);
                 }
-                textView.setText(item.getTitle());
+                textView.setText(item.getTitle().toUpperCase());
                 if (position == clickItem) {
                     if (Gd88Utils.isGd88AndLiga365AndJump()) {
                         rl_content.setBackgroundResource(R.drawable.gd88_liga365_home_item);
