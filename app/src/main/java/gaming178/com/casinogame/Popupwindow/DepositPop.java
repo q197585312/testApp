@@ -57,6 +57,7 @@ public class DepositPop extends BasePopupWindow {
     private ImageView ivClose;
     private RelativeLayout rl_title;
     private TextView tv_bottom_title;
+    private ImageView gd_deposit_img;
     Dialog bankDialog;
 
     public DepositPop(Context context, View v, int width, int height) {
@@ -242,6 +243,10 @@ public class DepositPop extends BasePopupWindow {
         lstbank1 = (ListView) view.findViewById(R.id.gd__lv_bank_list1);
         ivClose = (ImageView) view.findViewById(R.id.gd__iv_pop_deposit_close);
         edtRemark = (EditText) view.findViewById(R.id.gd__edt_remark);
+        gd_deposit_img = (ImageView) view.findViewById(R.id.gd_deposit_img);
+        if (BuildConfig.FLAVOR.equals("rolet303")) {
+            gd_deposit_img.setVisibility(View.VISIBLE);
+        }
 
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
