@@ -244,7 +244,7 @@ public class DepositPop extends BasePopupWindow {
         ivClose = (ImageView) view.findViewById(R.id.gd__iv_pop_deposit_close);
         edtRemark = (EditText) view.findViewById(R.id.gd__edt_remark);
         gd_deposit_img = (ImageView) view.findViewById(R.id.gd_deposit_img);
-        if (BuildConfig.FLAVOR.equals("rolet303")) {
+        if (BuildConfig.FLAVOR.equals("rolet303") || BuildConfig.FLAVOR.equals("casino288") || BuildConfig.FLAVOR.equals("casino188")) {
             gd_deposit_img.setVisibility(View.VISIBLE);
         }
 

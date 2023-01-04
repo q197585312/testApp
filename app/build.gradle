@@ -110,7 +110,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casino188"]
                 buildConfigField "String", "Labelid", '"109"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
+                versionName '4.43'
             }
             casino388 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "388casino"]
@@ -308,7 +308,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "casino288"]
                 buildConfigField "String", "Labelid", '"222"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
+                versionName '4.43'
             }
             rolet303 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rolet303"]

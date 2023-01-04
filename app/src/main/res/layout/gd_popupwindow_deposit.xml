@@ -385,7 +385,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@mipmap/rolet303_deposit_img"
+                android:background="@mipmap/gd_deposit_img"
                 android:visibility="gone"></ImageView>
 
             <TextView
