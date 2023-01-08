@@ -1654,6 +1654,10 @@ public class LoginActivity extends BaseActivity {
             ahlTranslationY(img_animation4);
         }
 
+        if (BuildConfig.FLAVOR.equals("royalkasino")) {
+            goNetWA(1);
+        }
+
         if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365") &&
                 !BuildConfig.FLAVOR.equals("glxcasino") && !BuildConfig.FLAVOR.equals("masterbaccarat") && !BuildConfig.FLAVOR.equals("mejaemas") &&
                 !BuildConfig.FLAVOR.equals("rascasino")) {
@@ -1941,6 +1945,14 @@ public class LoginActivity extends BaseActivity {
                                         Gd88Utils.goBrowser(mContext, currentWABean.getLuckyDragon());
                                     }
                                 } else if (type == 4) {
+                                    if (!TextUtils.isEmpty(currentWABean.get365KasinoPopup())) {
+                                        PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                        popImg.setLoadUrl(currentWABean.get365KasinoPopup());
+                                        popImg.showPopupCenterWindow();
+                                    }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("royalkasino")) {
+                                if (type == 1) {
                                     if (!TextUtils.isEmpty(currentWABean.get365KasinoPopup())) {
                                         PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                                         popImg.setLoadUrl(currentWABean.get365KasinoPopup());
