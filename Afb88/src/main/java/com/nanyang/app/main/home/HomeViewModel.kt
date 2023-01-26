@@ -74,16 +74,16 @@ public class HomeViewModel : BaseViewModel() {
                     headers.clear()
 
                     loadAllUi(allImage)
-                    println("allImage.left:" + allImage.left)
-                    println("allImage.header:" + allImage.header)
+//                    println("allImage.left:" + allImage.left)
+//                    println("allImage.header:" + allImage.header)
                     allImage.left.map { itMap ->
                         when (itMap.type) {
-                            "all" -> itMap.text = "ALL GAME"
-                            "sport" -> itMap.text = "SportBook"
-                            "casino" -> itMap.text = "Casino"
-                            "slot" -> itMap.text = "slot"
-                            "egame" -> itMap.text = "E-Game"
-                            else -> itMap.text = "Lottery And Keno"
+                            "all" -> itMap.text = R.string.all_game//"ALL GAME"
+                            "sport" -> itMap.text = R.string.SportBook//"SportBook"
+                            "casino" -> itMap.text = R.string.Casino//"Casino"
+                            "slot" -> itMap.text = R.string.slot//"slot"
+                            "egame" -> itMap.text = R.string.e_sport//"E-Game"
+                            else -> itMap.text = R.string.lottery_and_keno//"Lottery And Keno"
                         }
                     }
                     left.addAll(allImage.left)
@@ -93,7 +93,7 @@ public class HomeViewModel : BaseViewModel() {
                             var imgSelct = leftSelect[index].img
                             left[index].imgSelect = imgSelct
                             left[index].imgNoSelect = left[index].img
-                            left[index].text = ""
+                            left[index].text = R.string.no_data
                             if (index == 0) {
                                 left[index].img = imgSelct
                             }

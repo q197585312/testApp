@@ -21,7 +21,7 @@
     <string name="Poker">撲克</string>
     <string name="Lottery">彩票</string>
     <string name="Roulette">輪盤</string>
-    <string name="Casino">娛樂城</string>
+    <string name="Casino">賭場</string>
     <string name="Discount">優惠</string>
     <string name="Logout">登出</string>
     <string name="Edit_information">編輯個人信息</string>
@@ -638,4 +638,8 @@
     <string name="pop_up_without_live_centre">無現場中心彈出</string>
     <string name="Excluding">不包括</string>
     <string name="want_to_bet">您確定要投注混合過關嗎?</string>
+    <string name="all_game">全部 遊戲</string>
+    <string name="slot">老虎機</string>
+    <string name="e_game">E-Game</string>
+    <string name="e_sport">电子竞技</string>
 </resources>

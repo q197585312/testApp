@@ -6,7 +6,7 @@ data class Main(
     val img: String,
     val type: String,
     var number: String = "0",
-    var gameName: String,
+    var gameName: String?,
 
 ) : Comparable<Main> {
     override fun compareTo(other: Main): Int {
@@ -19,4 +19,6 @@ data class Main(
             -1
         }
     }
+    var  name=""
+    get() = gameName?:g
 }

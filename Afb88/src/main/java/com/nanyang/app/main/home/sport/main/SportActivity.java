@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,9 @@ import android.widget.TextView;
 
 import androidx.annotation.IdRes;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +37,7 @@ import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BR;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
@@ -44,11 +48,13 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
+import com.nanyang.app.databinding.SportOthersContentBinding;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.EventShowBall;
+import com.nanyang.app.main.home.OnViewClickListener;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
@@ -60,6 +66,7 @@ import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseApplication;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.utils.GZipUtil;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -88,6 +95,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
+import kotlin.Unit;
 
 public class SportActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String>, IBetOrderView {
     private final String GUIDE_KEY = "GUIDE";
@@ -159,6 +167,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     TextView tvLeagueMain;
     @BindView(R.id.iv_sort_time)
     ImageView ivSortTime;
+    @BindView(R.id.fl_main)
+    public FrameLayout flMain;
     @BindView(R.id.fl_main_content)
     public FrameLayout flContent;
     @BindView(R.id.tv_record)
@@ -398,7 +408,56 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
         });
 
-        MenuItemInfo<String> languageItem = new LanguageHelper(mContext).getLanguageItem();
+        initOtherContent();
+    }
+
+    public void clickOthers(View view) {
+        viewModel.loadOtherType(3);
+    }
+
+    public void clickSlots(View view) {
+        viewModel.loadOtherType(2);
+    }
+
+    public void clickCasino(View view) {
+        viewModel.loadOtherType(1);
+    }
+
+    SportOtherViewModel viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(BaseApplication.getInstance()).create(SportOtherViewModel.class);
+
+    private void initOtherContent() {
+//        mBinding = DataBindingUtil.inflate(inflater,layoutId,null,false )
+
+        SportOthersContentBinding inflate = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.sport_others_content, null, false);
+        inflate.setVariable(BR.viewModel, viewModel);
+        inflate.setVariable(BR.viewClick, new OnViewClickListener() {
+            @Override
+            public void onClick(@NotNull View v) {
+                viewModel.getShowContent().setValue(false);
+            }
+        });
+        viewModel.setOnItemClicked(item -> {
+            String g = item.getG();
+            if (g.equals("COCK FIGHT") || g.equals("KENO") || g.equals("LOTTERY")) {
+                g = "1";
+            }
+            if (getApp().updateOtherMap().containsKey(g)) {
+                (getBaseActivity().presenter).clickGdGameItem(g);
+            }
+
+            return Unit.INSTANCE;
+        });
+
+        flMain.addView(inflate.getRoot(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        viewModel.loadOtherType(0);
+        viewModel.getShowContent().observe(this,aBoolean -> {
+            System.out.println("getShowContent.status:" + aBoolean);
+            if(aBoolean){
+                inflate.getRoot().setVisibility(View.VISIBLE);
+            }else{
+                inflate.getRoot().setVisibility(View.GONE);
+            }
+        });
     }
 
     BaseRecyclerAdapter<SportIdBean> leftSportAdapter;
@@ -727,15 +786,18 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickCup(View view) {
+        viewModel.getShowContent().setValue(false);
         currentFragment.presenter.getStateHelper().createChoosePop(presenter.mApiWrapper, view);
     }
 
 
     public void clickCollectionStar(View view) {
+        viewModel.getShowContent().setValue(false);
         currentFragment.collection((ImageView) view);
     }
 
     public void clickBets(View view) {
+        viewModel.getShowContent().setValue(false);
         afbDrawerViewHolder.goRecord();
     }
 
@@ -810,7 +872,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     Map<String, String> numMap = new HashMap<>();
 
     public void clickLeftMenu(final View view) {
-
+        viewModel.getShowContent().setValue(false);
         boolean hasGone = ll_home_left.getVisibility() == View.GONE;
         if (hasGone) {
             int checkedRadioButtonId = games_switch_rg.getCheckedRadioButtonId();
@@ -893,6 +955,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickAllRunning(View view) {
+        viewModel.getShowContent().setValue(false);
         setType("Running");
         dateClickPosition = 1;
         MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
@@ -961,6 +1024,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickSportWayRun(final View view) {
+        viewModel.getShowContent().setValue(false);
         if (currentFragment != null && currentFragment instanceof BaseAllFragment || notClickType) {
             return;
         }
@@ -1046,10 +1110,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickMoreMenu(View view) {
+        viewModel.getShowContent().setValue(false);
         drawerLayout.openDrawer(Gravity.RIGHT);
     }
 
     public void clickOrder(View view) {
+        viewModel.getShowContent().setValue(false);
         currentFragment.clickOrder();
     }
 
@@ -1091,6 +1157,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickTop() {
+        viewModel.getShowContent().setValue(false);
         currentFragment.checkTop(tvLeagueMain, tvTopRightOval);
     }
 
@@ -1441,6 +1508,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickTopLeft(View view) {
+
         clickTop();
         ll_home_left.setVisibility(View.GONE);
     }
@@ -1457,10 +1525,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickPcType(View view) {
+        viewModel.getShowContent().setValue(false);
         presenter.goWebPc(BuildConfig.PC_URL);
     }
 
     public void onChangeMatchClick(View view) {
+        viewModel.getShowContent().setValue(false);
         onlyShowOne = !onlyShowOne;
         if (!onlyShowOne)
             closeTv(view);
@@ -1474,6 +1544,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickRunTitle(final View view) {
+        viewModel.getShowContent().setValue(false);
         showRunMatchesPop();
     }
 
@@ -1517,6 +1588,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickAllContracted(View view) {
+        viewModel.getShowContent().setValue(false);
         showLoadingDialog();
         boolean contracted = currentFragment.getPresenter().getStateHelper().getAdapterHelper().clickAllContracted();
 

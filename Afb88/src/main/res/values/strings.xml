@@ -702,4 +702,10 @@
     <string name="pop_up_without_live_centre">Pop Up without Live Centre</string>
     <string name="Excluding">Excluding</string>
     <string name="want_to_bet">Are you sure you want to bet on Mix Parlay?</string>
+    <string name="all_game">ALL GAME</string>
+    <string name="slot">SLOT</string>
+    <string name="e_game">E-Game</string>
+    <string name="e_sport" >ESPORTS</string>
+    <string name="lottery_and_keno">Lottery And Keno</string>
+    <string name="no_data" ></string>
 </resources>

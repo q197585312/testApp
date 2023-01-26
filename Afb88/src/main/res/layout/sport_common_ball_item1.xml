@@ -207,7 +207,7 @@
         android:textSize="13sp" />
 
     <ImageView
-        app:layout_constraintStart_toEndOf="@+id/module_match_has_p_tv"
+        app:layout_constraintStart_toEndOf="@+id/module_right_mark_tv"
         app:layout_constraintTop_toTopOf="@+id/module_match_collection_tv"
         app:layout_constraintBottom_toBottomOf="@+id/module_match_collection_tv"
         android:id="@+id/iv_hall_btn"
@@ -218,7 +218,7 @@
         android:visibility="visible" />
 
     <TextView
-        app:layout_constraintStart_toEndOf="@+id/iv_hall_btn"
+        app:layout_constraintStart_toEndOf="@+id/module_match_has_p_tv"
         app:layout_constraintTop_toTopOf="@+id/module_match_collection_tv"
         app:layout_constraintBottom_toBottomOf="@+id/module_match_collection_tv"
         android:id="@+id/module_right_mark_tv"

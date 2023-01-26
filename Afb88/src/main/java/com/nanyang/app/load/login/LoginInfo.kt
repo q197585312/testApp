@@ -273,4 +273,5 @@ open class JsonBaseBean:Serializable{
     }
 }
 open class RequestBaseBean(open val ACT: String): JsonBaseBean()
-class LiveTvBean(ACT: String, val GLiveId:String ):RequestBaseBean(ACT)
+class LiveTvBeanGL(ACT: String, val GLiveId:String ):RequestBaseBean(ACT)
+class LiveTvBeanIMG(ACT: String, val IMGId:String ):RequestBaseBean(ACT)

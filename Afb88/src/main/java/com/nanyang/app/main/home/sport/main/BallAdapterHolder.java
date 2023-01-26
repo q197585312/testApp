@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -51,10 +52,10 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/3/12 0012.
  */
 
-public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
+public class BallAdapterHolder<I extends BallInfo> extends SportAdapterHelper<I> {
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
-    public final SportActivity act;
+    public SportActivity act;
     private boolean allowedEurope = true;
     private BaseMixStyleHandler handler;
     private String curCode = "";
@@ -83,7 +84,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
 
-    public BallAdapterHelper(Context context) {
+    public BallAdapterHolder(Context context) {
         this.context = context;
         act = (SportActivity) this.context;
         if (act != null && act.getApp().getSettingAllDataBean() != null)
@@ -97,19 +98,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
 
-        if (act.onlyShowOne && additionMap.get(true) != null && !item.getSocOddsId().equals(additionMap.get(true))) {
-            ViewGroup.LayoutParams layoutParams = helper.getView(R.id.content_parent_ll).getLayoutParams();
-            layoutParams.height = 0;
-            helper.getView(R.id.content_parent_ll).setLayoutParams(layoutParams);
 
-//            helper.getView(R.id.content_parent_ll).setVisibility(View.GONE);
-            return;
-        } else {
-            ViewGroup.LayoutParams layoutParams = helper.getView(R.id.content_parent_ll).getLayoutParams();
-            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            helper.getView(R.id.content_parent_ll).setLayoutParams(layoutParams);
-//            helper.getView(R.id.content_parent_ll).setVisibility(View.VISIBLE);
-        }
 
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
@@ -142,15 +131,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
 
-        if (act.onlyShowOne) {
-            ll_match_outside.setVisibility(View.GONE);
-        } else {
-            if (!StringUtils.isNull(additionMap.get(true)) && !item.outShow && act.hasBet) {
-                ll_match_outside.setVisibility(View.GONE);
-            } else {
-                ll_match_outside.setVisibility(View.VISIBLE);
-            }
-        }
+
 
         if (item.getType() == SportInfo.Type.ITME) {
             matchTitleLl.setVisibility(View.GONE);
@@ -219,7 +200,36 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             parent.setVisibility(View.GONE);
             ll_title_list.setVisibility(View.GONE);
         }
+        if (act.onlyShowOne && additionMap.get(true) != null && !item.getSocOddsId().equals(additionMap.get(true))) {
+            ViewGroup.LayoutParams layoutParams = helper.getView(R.id.content_parent_ll).getLayoutParams();
+            layoutParams.height = 0;
+            helper.getView(R.id.content_parent_ll).setLayoutParams(layoutParams);
 
+//            helper.getView(R.id.content_parent_ll).setVisibility(View.GONE);
+            return;
+        } else {
+            ViewGroup.LayoutParams layoutParams = helper.getView(R.id.content_parent_ll).getLayoutParams();
+            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            helper.getView(R.id.content_parent_ll).setLayoutParams(layoutParams);
+//            helper.getView(R.id.content_parent_ll).setVisibility(View.VISIBLE);
+        }
+        if (act.onlyShowOne) {
+
+            ll_match_outside.setVisibility(View.GONE);
+        } else {
+
+            if (!StringUtils.isNull(additionMap.get(true)) && !item.outShow && act.hasBet) {
+                ll_match_outside.setVisibility(View.GONE);
+            } else {
+                ll_match_outside.setVisibility(View.VISIBLE);
+                extracted(helper, position, item);
+            }
+        }
+
+
+    }
+
+    private void extracted(MyRecyclerViewHolder helper, int position, I item) {
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
         onConvertHall(item, ivHall, position);
@@ -380,7 +390,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         }
         updateMixNormalBackground(helper, item);
-
     }
 
 
@@ -2345,3 +2354,4 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
 }
+

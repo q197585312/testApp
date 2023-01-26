@@ -11,7 +11,7 @@
     <color name="blue1">#5a96dd</color>
     <color name="trans_blue_dark">#bb5a96dd</color>
     <color name="trans_blue_light">#225a96dd</color>
-    <color name="blue_300">#42c6ff</color>
+    <color name="blue_300">#FED8D7</color>
     <color name="blue_max">#181761</color>
     <color name="white">@android:color/white</color>
     <!--black-grey-->
@@ -59,6 +59,7 @@
     <color name="brown_black_bg1">#544b3a</color>
     <color name="orange_text_balance">#d2560b</color>
     <color name="orange_dealer_name">#f97704</color>
+    <color name="pink_light">#FED8D7</color>
 
     <color name="colorPrimary">#607d8b</color>
     <color name="colorPrimaryDark">#455a64</color>

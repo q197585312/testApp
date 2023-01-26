@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nanyang.app.main.home.sport.main.SportOtherViewModel" />
+        <variable
+            name="viewClick"
+            type="com.nanyang.app.main.home.OnViewClickListener" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@{viewModel.parentBg}"
+        >
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_content_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            app:itemBinding="@{viewModel.mainItemBinding}"
+            app:items="@{viewModel.mainContent}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_weight="3"
+            tools:listitem="@layout/item_sport_image" />
+        <TextView
+            android:id="@+id/tvClose"
+            android:onClick="@{(v)->viewClick.onClick(v)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="14dp"
+            android:textStyle="bold"
+            android:drawablePadding="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:drawableStart="@android:drawable/ic_delete"
+            android:text="Close"
+            android:background="@drawable/gd_shape_pink_r_20"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

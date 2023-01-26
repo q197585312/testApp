@@ -563,4 +563,7 @@
     <string name="MYR">มาเลย์</string>
     <string name="placing_a_bet">You can view the video after placing a bet</string>
     <string name="prompt">Prompt</string>
+    <string name="slot">สล็อต</string>
+    <string name="e_game">อี สปอร์ต</string>
+    <string name="e_sport">อี สปอร์ต</string>
 </resources>

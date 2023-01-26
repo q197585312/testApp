@@ -341,20 +341,7 @@
                         app:layout_constraintRight_toLeftOf="@+id/iv_sort_time"
                         app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
 
-                    <ImageView
-                        android:id="@+id/iv_sort_time"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="@mipmap/rectangle_bg_shadow"
-                        android:contentDescription="@null"
-                        android:onClick="clickSortByTime"
-                        android:padding="5dp"
-                        android:src="@mipmap/sport_game_clock_white"
 
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
-                        app:layout_constraintEnd_toEndOf="@+id/ll_line1"
-                        app:layout_constraintLeft_toRightOf="@+id/match_collection_fl"
-                        app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
 
 
                     <TextView
@@ -372,8 +359,68 @@
                         android:textColor="@color/white"
                         android:textSize="8sp"
                         android:visibility="gone"
+                        tools:visibility="visible"
                         app:layout_constraintStart_toStartOf="@+id/match_collection_fl"
                         app:layout_constraintTop_toTopOf="@+id/match_collection_fl" />
+
+                    <ImageView
+                        android:id="@+id/iv_sort_time"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/rectangle_bg_shadow"
+                        android:contentDescription="@null"
+                        android:onClick="clickSortByTime"
+                        android:padding="5dp"
+                        android:src="@mipmap/sport_game_clock_white"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_casino"
+                        app:layout_constraintLeft_toRightOf="@+id/match_collection_fl"
+                        app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
+                    <ImageView
+                        android:id="@+id/iv_casino"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/rectangle_bg_shadow"
+                        android:contentDescription="@null"
+                        android:onClick="clickCasino"
+                        android:padding="5dp"
+                        android:src="@drawable/home_casino"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_slots"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_sort_time"
+                        app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
+
+                    <ImageView
+                        android:id="@+id/iv_slots"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/rectangle_bg_shadow"
+                        android:contentDescription="@null"
+                        android:onClick="clickSlots"
+                        android:padding="5dp"
+                        android:src="@drawable/home_slots"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_others"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_casino"
+                        app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
+
+                    <ImageView
+                        android:id="@+id/iv_others"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/rectangle_bg_shadow"
+                        android:contentDescription="@null"
+                        android:onClick="clickOthers"
+                        android:padding="5dp"
+                        android:src="@drawable/home_others_04"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
+
+                        app:layout_constraintLeft_toRightOf="@+id/iv_slots"
+                        app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
 
 
                     <View
@@ -418,6 +465,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <FrameLayout
+                    android:id="@+id/fl_main"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">

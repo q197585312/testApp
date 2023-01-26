@@ -482,5 +482,8 @@
     <string name="FH_">FH.</string>
     <string name="placing_a_bet">You can view the video after placing a bet</string>
     <string name="prompt">Prompt</string>
+    <string name="slot">SLOT</string>
+    <string name="e_game">E-Game</string>
+    <string name="e_sport">E SPORTS</string>
 
 </resources>

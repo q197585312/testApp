@@ -9,7 +9,8 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.load.login.LiveTvBean;
+import com.nanyang.app.load.login.LiveTvBeanGL;
+import com.nanyang.app.load.login.LiveTvBeanIMG;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -65,13 +66,17 @@ public class LivePlayHelper {
         holder.tv_title_live_stream.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (itemBall.getTvPathIBC().contains("GL")) {
-                    String tvPathIBC = itemBall.getTvPathIBC();
+                String tvPathIBC = itemBall.getTvPathIBC();
+                if (tvPathIBC.contains("GL")) {
+
                     LogUtil.d("tvPathIBC", "tvPathIBC:" + tvPathIBC);
                     if (tvPathIBC.contains("GL")) {
-                        loadWebViewPlay(tvPathIBC);
+                        loadWebViewPlayGL(tvPathIBC);
                     }
-                } else {
+                }else if(tvPathIBC.contains("img")){
+                    loadWebViewPlayIMG(tvPathIBC);
+                }
+                else {
                     onResumePlay();
                 }
             }
@@ -193,9 +198,9 @@ public class LivePlayHelper {
         } else {
             String tvPathIBC = itemBall.getTvPathIBC();
             LogUtil.d("tvPathIBC", "tvPathIBC:" + tvPathIBC);
-            if (tvPathIBC.contains("GL")) {
+            if (tvPathIBC.contains("GL") || tvPathIBC.contains("GL")) {
 
-                loadWebViewPlay(tvPathIBC);
+                loadWebViewPlayGL(tvPathIBC);
 
             } else {
                 onResumeWeb();
@@ -207,9 +212,34 @@ public class LivePlayHelper {
         holder.tv_run_match_away_score.setText(itemBall.getRunAwayScore());
     }
 
-    public void loadWebViewPlay(String tvPathIBC) {
+    /**
+     * type: "POST",
+     * url: '/api/pgGetTVID',
+     * async: true,
+     * contentType: "application/json; charset=utf-8",
+     * dataType: "json",
+     * data: '{"ACT":"GeIMGUrl","IMGId":"' + imgid + '"}',
+     */
+    public void loadWebViewPlayIMG(String tvPathIBC) {
+        String gliveid = tvPathIBC.replace("img", "");
+        LiveTvBeanIMG bean = new LiveTvBeanIMG("GeIMGUrl", gliveid);
+
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), bean.toJson());
+
+        context.presenter.doRetrofitApiOnUiThread(ApiServiceKt.Companion.getInstance().doPostJson(BuildConfig.HOST_AFB + "api/pgGetTVID", body), new BaseConsumer<String>(context) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                LogUtil.d("tvPathIBC", "data:" + data);
+                JSONObject json = new JSONObject(data);
+                String url = json.optString("data");
+                onResumeWebPlay(url);
+            }
+        });
+    }
+
+    public void loadWebViewPlayGL(String tvPathIBC) {
         String gliveid = tvPathIBC.replace("GL", "");
-        LiveTvBean bean = new LiveTvBean("GetGliveUrl", gliveid);
+        LiveTvBeanGL bean = new LiveTvBeanGL("GetGliveUrl", gliveid);
 
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), bean.toJson());
 
