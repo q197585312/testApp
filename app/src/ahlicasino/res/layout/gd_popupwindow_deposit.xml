@@ -453,4 +453,11 @@
         android:textSize="10sp"
         android:visibility="gone" />
 
+    <ImageView
+        android:id="@+id/gd_deposit_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/gd_deposit_img"
+        android:visibility="gone"></ImageView>
 </LinearLayout>

@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/gd__ll_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp">
@@ -99,7 +100,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/gd__ll_container"
+            android:id="@+id/ll_sbocasino77"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -138,7 +139,7 @@
                         android:background="@drawable/input_text_bg"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -334,7 +335,7 @@
             android:id="@+id/gd_img_login_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/gd__ll_container"
+            android:layout_above="@id/ll_sbocasino77"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:src="@mipmap/gd_app_logo" />
@@ -364,7 +365,6 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/ll_sbocasino77"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="55dp"
