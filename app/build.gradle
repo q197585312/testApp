@@ -283,7 +283,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wargacasino"]
                 buildConfigField "String", "Labelid", '"142"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.43'
+                versionName '4.44'
             }
 
             hokicasino88 {
@@ -319,20 +319,6 @@ android {
             oricasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oricasino"]
                 buildConfigField "String", "Labelid", '"224"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
-
-            }
-            istanacasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "istanacasino"]
-                buildConfigField "String", "Labelid", '"137"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
-
-            }
-            rascasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rascasino"]
-                buildConfigField "String", "Labelid", '"26"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.42'
 

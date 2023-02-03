@@ -1243,12 +1243,10 @@ public class LobbyActivity extends BaseActivity {
                 hallGameItemBeenS.addAll(Gd88Utils.getLobbyGameList(this));
             }
 
-            if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("wargacasino") || BuildConfig.FLAVOR.equals("ratucasino88") ||
+            if (BuildConfig.FLAVOR.equals("oricasino") || BuildConfig.FLAVOR.equals("ratucasino88") ||
                     BuildConfig.FLAVOR.equals("depocasino") || BuildConfig.FLAVOR.equals("ularnaga") || BuildConfig.FLAVOR.equals("mainkasino")) {
                 if (BuildConfig.FLAVOR.equals("oricasino")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.249/"));
-                } else if (BuildConfig.FLAVOR.equals("wargacasino")) {
-                    hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "http://202.95.10.248/"));
                 } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
                     hallGameItemBeenS.add(new HallGameItemBean(R.mipmap.gd_bandarq, getString(R.string.bandarq), AppConfig.bandarq, "https://b.link/arenaqq"));
                 } else if (BuildConfig.FLAVOR.equals("depocasino")) {
