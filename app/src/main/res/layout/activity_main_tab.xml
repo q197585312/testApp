@@ -1,0 +1,266 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar_layout"
+        android:visibility="gone"></include>
+
+    <FrameLayout
+        android:id="@+id/fl_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_home_normal"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#1E2230">
+
+        <RadioGroup
+            android:id="@+id/rg_home"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="#2E354D"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_deposit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_home_deposit"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/deposit"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_withdraw"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_home_withdraw"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/withdraw"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:button="@null"
+                android:clickable="false"
+                android:drawableTop="@drawable/selector_home_withdraw"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="@string/withdraw"
+                android:textColor="@color/white"
+                android:visibility="invisible" />
+
+            <RadioButton
+                android:id="@+id/rb_contact"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_home_contact"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/contact"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_user"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_home_user"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/user"
+                android:textColor="@color/white" />
+
+        </RadioGroup>
+
+
+        <ImageView
+            android:id="@+id/img_home"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:src="@mipmap/circular" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:clickable="false"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"></View>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"></View>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:clickable="false"></View>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:gravity="right"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/tv_msg_count"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/shape_red_msg_box"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"></View>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_home_my2bet"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#1E2230"
+        android:visibility="visible">
+
+        <RadioGroup
+            android:id="@+id/rg_home_my2bet"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="#2E354D"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_contact_my2bet"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_home_contact"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/contact"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.1"
+                android:button="@null"
+                android:clickable="false"
+                android:drawableTop="@drawable/selector_home_withdraw"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="@string/withdraw"
+                android:textColor="@color/white"
+                android:visibility="invisible" />
+
+
+            <RadioButton
+                android:id="@+id/rb_user_my2bet"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:button="@null"
+                android:drawableTop="@drawable/selector_home_user"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/user"
+                android:textColor="@color/white" />
+
+        </RadioGroup>
+
+
+        <ImageView
+            android:id="@+id/img_home_my2bet"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:src="@mipmap/circular" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:clickable="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:clickable="false"
+                android:gravity="right"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/tv_msg_count_my2bet"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/shape_red_msg_box"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.1"
+                android:clickable="false"></View>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:clickable="false"></View>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

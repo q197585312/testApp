@@ -1,189 +1,341 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="gaming178.com.baccaratgame">
-    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    package="nanyang.com.dig88">
+
+    <!-- Required -->
+    <permission
+        android:name="nanyang.com.dig88.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="nanyang.com.dig88.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!-- Optional for location -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.nfc.hce" />
+
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
-        android:name="gaming178.com.casinogame.Util.AfbApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/gd_logo"
+        android:name=".Activity.DigApp"
+        android:configChanges="locale|keyboardHidden|orientation|screenSize"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:largeHeap="true"
-        android:supportsRtl="true"
-        android:theme="@style/AppBaseTheme"
-        tools:replace="label,allowBackup">
+        android:theme="@style/AppTheme">
         <activity
-            android:name="gaming178.com.casinogame.Activity.WelcomeActivity"
-            android:exported="true"
+            android:name=".load.WelcomeActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".Activity.MainTabActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+        </activity>
+        <activity
+            android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Table.BallGameActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Table.BetOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Table.BetParDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".Activity.gd88StatementActivity" />
+        <activity
+            android:name=".Table.SelectLeagueActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Table.VsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Table.GameCollectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Table.ClearanceBetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.RTGGameActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.ActivityFragmentShow"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Table.BetSettlementFirstActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.CommonDataListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Table.BetSettlementSecondActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SaGamingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.AFBCasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.PPCasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.N2CasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Table.BetSettlementThirdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.LiveChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.AgFishActivity"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".Activity.NumberGameSingleTableActivity"
+            android:label="真人游戏大厅"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.LiveDigNumberActivity"
+            android:label="真人游戏大厅"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.AutoNumberActivity"
+            android:label="数字游戏大厅"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.LiveGameNumberSingleTableActivity"
+            android:label="真人数字游戏单桌"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.LiveDDigBetActivity"
+            android:label="真人数字游戏D主页"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.LiveEDigBetActivity"
+            android:label="真人数字游戏E主页"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.LiveFDigBetActivity"
+            android:label="真人数字游戏F主页"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.LiveGDigBetActivity"
+            android:label="真人数字游戏G主页"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".Lottery.LotteryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="彩票"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ThaiLottery.ThaiLotteryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.RegisterActivity"
+            android:label="注册"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- -->
+        <activity
+            android:name=".Activity.ResultListActivity"
+            android:label="结果列表"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".Activity.PersonResultListActivity"
+            android:label="真人游戏结果列表"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".Keno.KenoHomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".Activity.DigWebActivity"
+            android:label="真人游戏结果列表"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".Activity.AfbsportsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Home.GameWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SexyCasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.CockfightActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.IbetPokerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.UsportsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SsportsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.WMCasinoActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.W88CasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.IsportsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.EvoCasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.FfylPokerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.KYPokerActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Lottery4D.Lottery4DActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Activity.AgCasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SlotsGame.SlotsGameActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SlotsGame.SlotsGameWebActivity" />
+        <activity
+            android:name=".Activity.klasPokerActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activity.GoldCasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.DgCasinoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewKeno.NewKenoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TxtActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Forex.ForexActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.DesipotWebActitvity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Gd88WebActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name=".Activity.AffiliateRegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity android:name=".Activity.AllBetActivity" />
+        <activity android:name=".Activity.ChinaLotteryActivity" />
+        <activity android:name=".Activity.MsgBoxActivity" />
+        <activity android:name=".Activity.IgLotteryActivity" />
+        <activity android:name=".Home.SwitchLanguageActivity" />
+        <activity
+            android:name=".Home.GameContentActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.Scr888ChangePasswordActivity" />
+        <activity android:name=".Activity.ForgotPasswordActivity" />
+
+        <meta-data
+            android:name="design_height"
+            android:value="800"></meta-data>
+        <meta-data
+            android:name="design_width"
+            android:value="480"></meta-data>
+
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/logo" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter><action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="dig88"
-                    android:scheme="skipdig88" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name="gaming178.com.casinogame.load.LoginKtActivity">
 
-        </activity>
-        <activity
-            android:name="gaming178.com.casinogame.Activity.LobbyActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.RegisterActivity"
-            android:configChanges="keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="gaming178.com.casinogame.login.LoginActivity"
-            android:configChanges="keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.LobbyBaccaratActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.LobbyDragonTigerActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.LobbyRouletteActivity"
-            android:configChanges="keyboardHidden|screenSize">
-            <!--   -->
-        </activity>
-        <activity
-            android:name="gaming178.com.casinogame.Activity.SlotsGameActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.CQSlotsGameActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.PragmaticGameActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.PragmaticCasinoActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.KingKongGameActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.HabaGameActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.PGGameActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.AfbCasinoActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.SlotsWebActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.CockFightingWebActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.LG88WebActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.We1PokerWebActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.DsvCasinoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.LobbySicboActivity"
-            android:configChanges="keyboardHidden|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.ReportFormActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.SelectSeatActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.ChangePasswordActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.DragonTigerActivity"
-            android:configChanges="keyboardHidden|screenSize"></activity>
-        <activity
-            android:name="gaming178.com.casinogame.Activity.BaccaratActivity"
-            android:configChanges="keyboardHidden|screenSize">
-
-        </activity>
-        <activity
-            android:name="gaming178.com.casinogame.Activity.HomeGuideActivity"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name="gaming178.com.casinogame.Activity.SicboActivity"
-            android:configChanges="keyboardHidden|screenSize">
-
-        </activity>
-        <activity
-            android:name="gaming178.com.casinogame.Activity.RouletteActivity"
-            android:configChanges="keyboardHidden|screenSize">
-            <!-- <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
-
-        </activity>
-
-
-        <meta-data
-            android:name="design_width"
-            android:value="480" />
-        <meta-data
-            android:name="design_height"
-            android:value="800" />
-
-        <service android:name="gaming178.com.casinogame.Util.BackgroudMuzicService" />
-        <service android:name="gaming178.com.casinogame.Util.FrontMuzicService" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
     </application>
+
 
 </manifest>

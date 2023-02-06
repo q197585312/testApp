@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+<TextView
+    android:id="@+id/order_item_tv1"
+    style="@style/text_wrap_black10"
+    android:padding="1dp"
+    />
+    <TextView
+        android:id="@+id/order_item_tv2"
+        style="@style/text_wrap_black10"
+        android:padding="1dp"
+        />
+    <TextView
+        android:id="@+id/order_item_tv3"
+        style="@style/text_wrap_black10"
+        android:padding="1dp"
+        />
+    <TextView
+        android:id="@+id/order_item_tv4"
+        style="@style/text_wrap_black10"
+        android:padding="1dp"
+        />
+    <TextView
+        android:id="@+id/order_item_tv5"
+        style="@style/text_wrap_black10"
+        android:padding="1dp"
+        />
+    <LinearLayout
+        style="@style/style_match_wrap"
+        android:orientation="horizontal"
+        android:padding="1dp">
+    <TextView
+        android:id="@+id/order_item_tv51"
+    style="@style/text_wrap_black10"
+        android:background="@drawable/rectangle_green_allradius2"
+        android:padding="2dp"
+        android:textColor="@color/white"
+        />
+        <TextView android:id="@+id/order_item_tv52"
+            style="@style/style_wrap_wrap"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="2"
+            android:textColor="@color/red_pink_word"
+            />
+    /></LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/green_white_thick_line" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/grey_dialog_background" />
+
+
+</LinearLayout>

@@ -1,0 +1,2302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/black"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/toolbar_layout"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:background="@drawable/title_no_conor_shape"
+
+            >
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="80dip"
+                android:layout_height="60dip"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/v1_player_med_back"
+                />
+            <TextView
+                android:id="@+id/tv_titletop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text=""
+                android:textColor="@color/blue"
+                android:textSize="20dip"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="200dip"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dig_no_conor_big_shape"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <RelativeLayout
+                                    android:id="@+id/rl1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    >
+                                    <TextView
+                                        android:id="@+id/tv_time"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:gravity="center"
+                                        android:text="00:00"
+
+                                        android:textColor="#Ffffff"
+                                        android:textSize="30dip"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:id="@+id/rl2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/rl1"
+                                    android:layout_marginTop="25dip"
+                                    android:gravity="center"
+                                    >
+                                    <Button
+                                        android:id="@+id/btn_login"
+                                        android:layout_width="45dip"
+                                        android:layout_height="45dip"
+                                        android:layout_marginLeft="20dip"
+                                        android:background="@drawable/toback"
+                                        android:gravity="center"
+                                        android:textColor="#da603c"
+                                        />
+                                    <ImageView
+                                        android:id="@+id/refresh_list"
+                                        android:layout_width="45dip"
+                                        android:layout_height="45dip"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="@dimen/dimen_5dp"
+                                        android:layout_marginRight="20dip"
+                                        android:src="@drawable/refresh_numlist"
+                                        />
+
+                                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/tv_cycle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="25dip"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="5dip"
+                                    android:background="@drawable/dig_no_conor_orange_shape"
+                                    android:gravity="center"
+                                    android:text="20151026130"
+                                    android:textColor="#666666"
+                                    />
+
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 直播视频-->
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="200dip"
+                    android:layout_weight="1.3"
+                    android:background="@drawable/dig_no_conor_redhall_shape"
+                    android:orientation="vertical"
+                    >
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+                        <nanyang.com.dig88.Ijkplayer.IjkVideoView
+                            android:id="@+id/b_imageView_video"
+                            android:layout_width="412.5dip"
+                            android:layout_height="200dip"
+                            android:scaleType="fitXY" >
+                        </nanyang.com.dig88.Ijkplayer.IjkVideoView>
+
+                        <Button
+                            android:id="@+id/b_btn_video_reload"
+                            android:layout_width="40dip"
+                            android:layout_height="40dip"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginRight="10dip"
+                            android:layout_marginBottom="5dip"
+                            android:background="@drawable/stop_video"
+                            android:onClick="OnClickVideo" />
+
+                        <TextView
+                            android:id="@+id/b_text_video"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Load....."
+                            android:textColor="#FFFF"
+                            android:textSize="20sp"
+                            android:typeface="serif"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/b_voice"
+                            android:layout_width="70dip"
+                            android:layout_height="50dip"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginRight="90dip"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/btn_voice"
+                            android:onClick="OnClickVoice"
+                            android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/videoErrorMesseg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Video Delay please check you network Please click the play button to reconnect"
+                            android:textColor="#fae204"
+                            android:textSize="20sp"
+                            android:typeface="serif"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- 最右边的结果列表-->
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="200dip"
+                    android:layout_weight="1.1"
+                    >
+                    <!-- 球的-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        >
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dip"
+                            android:background="#f1f1f1"
+                            android:gravity="center"
+                            >
+                            <TextView
+                                android:id="@+id/tv_ball_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="20dip"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="11dp"
+                                />
+                            <TextView
+                                android:id="@+id/tv_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:text="@string/gengduo"
+                                android:textColor="@color/black"
+                                android:textSize="11dp"
+                                />
+
+                        </RelativeLayout>
+                        <ListView
+                            android:id="@+id/lv_ball_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dip"
+                            android:background="@color/white"
+                            android:divider="@null"
+                            >
+                        </ListView>
+                        <TextView
+                            android:id="@+id/tv_nodata"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dip"
+                            android:gravity="center"
+                            android:text="暂无数据"
+                            android:visibility="gone"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- end-->
+            <FrameLayout
+                android:id="@+id/fragment_game_hall_one"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <!-- start2-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dip"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="80dip" >
+
+                            <TextView
+                                android:id="@+id/ivtop1"
+                                android:layout_width="40dip"
+                                android:layout_height="40dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="@color/white"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:id="@+id/ivtop2"
+                                android:layout_width="40dip"
+                                android:layout_height="40dip"
+                                android:layout_marginLeft="5dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:id="@+id/ivtop3"
+                                android:layout_width="40dip"
+                                android:layout_height="40dip"
+                                android:layout_marginLeft="5dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:id="@+id/ivtop4"
+                                android:layout_width="40dip"
+                                android:layout_height="40dip"
+                                android:layout_marginLeft="5dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/white"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:id="@+id/ivtop5"
+                                android:layout_width="40dip"
+                                android:layout_height="40dip"
+                                android:layout_marginLeft="5dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="@color/white"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:id="@+id/ivtop6"
+                                android:layout_width="40dip"
+                                android:layout_height="40dip"
+                                android:layout_marginLeft="5dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="6"
+                                android:textColor="@color/white"
+                                android:textSize="16dip" />
+                            <TextView
+                                android:id="@+id/ivtop7"
+                                android:layout_width="40dip"
+                                android:layout_height="40dip"
+                                android:layout_marginLeft="5dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="7"
+                                android:textColor="@color/white"
+                                android:textSize="16dip" />
+                        </LinearLayout>
+                        <!-- 第一次行 start -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dip"
+                            android:layout_marginLeft="45dip"
+                            android:layout_marginTop="7dip"
+                            android:layout_marginRight="129dip"
+                            android:background="@drawable/content_no_conor_shape362"
+                            android:orientation="horizontal"
+                            android:weightSum="1" >
+
+                            <LinearLayout
+                                android:id="@+id/ll_small1"
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/tv1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="小"
+                                    android:textColor="@color/white"
+                                    android:textSize="17dip"
+                                    />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="4dip"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_big1"
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/tv2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="17dip"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!-- 第一次行 end -->
+                        <!-- 第二行 start -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dip"
+                            android:layout_marginTop="5dip"
+                            android:orientation="horizontal" >
+
+                            <LinearLayout
+                                android:layout_width="40dip"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/content_no_conor_shape361" >
+
+                                <TextView
+                                    android:id="@+id/iv_center"
+                                    android:layout_width="40dip"
+                                    android:layout_height="40dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dip"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="21" >
+                                <!-- 1 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="5dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_one"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="1dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="01"
+                                            android:textColor="@color/black"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_two"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="02"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 2 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_three"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="1dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="03"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_four"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="04"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 3 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_five"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="1dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="05"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_six"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="06"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 4 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_seven"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="07"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_eghit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="08"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 5 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_nine"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="09"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_ten"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="10"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 6 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_eleven"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="11"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twlve"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="12"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 7 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_thirteen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="13"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_fourty"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="14"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 8 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_fifty"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="15"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_sixty"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="16"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 9 -->
+
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_seventy"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="17"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_eghity"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="18"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 10 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="4dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_ninety"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="19"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="20"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 11 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentyone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="21"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentytwo1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="22"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 12 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentythree1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="23"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentyfour1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="24"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 13 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentyfive1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="25"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentysix1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="26"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 14-->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentyseven"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="27"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenteghit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="28"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 15 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twentynine"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="29"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threety11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="30"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 16 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetyone1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="31"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetytwo1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="32"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 17 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetythree1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="33"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetyfour1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="34"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 18 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetyfive1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="35"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetysix1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="36"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <!-- 单 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="57dip"
+                                    android:layout_marginLeft="4dip"
+                                    android:layout_weight="1.4"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_simgle11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_dan1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:singleLine="true"
+                                            android:text="单"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_double11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_shuang1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:singleLine="true"
+                                            android:text="双"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 小双 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="57dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="1.4"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_smalldouble1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_xiaoshuang1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="S\nODD"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_bigdouble11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_dashuang1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="B\nODD"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 小单 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="57dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="1.4"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_smallsimgle1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_xiaodan1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="S\nEVEN"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_bigsimgle1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_dadan1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="B\nEVEN"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!-- 第二行 end -->
+                        <!-- 第一次行 start -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dip"
+                            android:layout_marginLeft="45dip"
+                            android:layout_marginTop="7dip"
+                            android:layout_marginRight="129dip"
+                            android:background="@drawable/content_no_conor_shape362"
+                            android:orientation="horizontal"
+                            android:weightSum="1" >
+
+                            <LinearLayout
+                                android:id="@+id/ll_small2"
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/tv3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="小"
+                                    android:textColor="@color/white"
+                                    android:textSize="17dip"
+                                    />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="4dip"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_big2"
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/tv4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="17dip"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!-- 第一次行 end -->
+                        <!-- 第二行 start -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dip"
+                            android:layout_marginTop="5dip"
+                            android:orientation="horizontal" >
+
+                            <LinearLayout
+                                android:layout_width="40dip"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/content_no_conor_shape361" >
+
+                                <TextView
+                                    android:id="@+id/iv_bottom"
+                                    android:layout_width="40dip"
+                                    android:layout_height="40dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dip"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="21" >
+                                <!-- 1 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="5dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_one1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="1dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="01"
+                                            android:textColor="@color/black"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_two1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="02"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 2 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_three1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="1dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="03"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_four1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="04"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 3 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_five1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="1dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="05"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_six1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="06"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 4 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_seven1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="07"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_eghit1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="08"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 5 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_nine1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="09"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_ten1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="10"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 6 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_eleven1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="11"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_tweeve1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="12"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 7 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_thirteen1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="13"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_fourty1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="14"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 8 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_fifty1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="15"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_sixty1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="16"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 9 -->
+
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_seventy1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="17"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_ehgity1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="18"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 10 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="4dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_ninety1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="19"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="20"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 11 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1one"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="21"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1two"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="22"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 12 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1three"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="23"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1four"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="24"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 13 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1five"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="25"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1six"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="26"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 14-->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1seven"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="27"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1ehgit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="28"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 15 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_twenty1nine"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="29"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threety"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="30"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 16 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetyone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="31"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetytwo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="32"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 17 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetythree"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="33"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetyfour"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="34"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 18 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="56dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="0.9"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetyfive"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="35"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_threetysix"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.45"
+                                        android:background="@drawable/dig_no_conor_redhall_shape36"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="36"
+                                            android:textColor="@color/black" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <!-- 单 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="57dip"
+                                    android:layout_marginLeft="4dip"
+                                    android:layout_weight="1.4"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_simgle1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_dan2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:singleLine="true"
+                                            android:text="单"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_double1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_shuang2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:singleLine="true"
+                                            android:text="双"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 小双 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="57dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="1.4"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_smalldouble11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_xiaoshuang2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="S\nODD"
+
+                                            android:textColor="@color/white"
+
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_bigdouble1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_dashuang2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="B\nODD"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <!-- 小单 -->
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="57dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_weight="1.4"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_smallsimgle11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_xiaodan2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="S\nEVEN"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_bigsimgle11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginTop="2dip"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/content_no_conor_shape362"
+                                        android:gravity="center" >
+
+                                        <TextView
+                                            android:id="@+id/tv_dadan2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="B\nEVEN"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dip"
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!-- 第二行 end -->
+                    </LinearLayout>
+                    <!-- end2-->
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_toumingdu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#b0000000"
+                    android:visibility="gone"/>
+                />
+                <!--大 小 双 单 红 黄 蓝 end-->
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/rl_dialog1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dip"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+                        <ProgressBar
+                            android:id="@+id/loading"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:indeterminate="true"
+                            android:indeterminateDrawable="@drawable/progress_loading"
+                            android:indeterminateDuration="700" />
+
+                        <TextView
+                            android:id="@+id/progress_dialog_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:gravity="center"
+
+
+                            android:text="@string/kaijiangzhong"
+                            android:textColor="@color/orange"
+                            android:textSize="20dip" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

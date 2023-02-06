@@ -82,7 +82,7 @@
         <attr name="dividerColor" format="color" />
         <attr name="indicatorHeight" format="dimension" />
         <attr name="underlineHeight" format="dimension" />
-
+        <attr name="tabBackground" format="reference" />
         <attr name="dividerPad" format="dimension" />
         <attr name="tabPaddingLeftRight" format="dimension" />
         <attr name="scrollOffset" format="dimension" />

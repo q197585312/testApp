@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <include layout="@layout/toolbar_layout"/>
+
+    <xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip
+        android:id="@+id/ballgame_tabs_pstabs"
+        android:layout_width="match_parent"
+        android:layout_height="25dip"
+        android:background="@color/blue_table"
+        app:indicatorColor="@color/white"
+        app:indicatorHeight="0dp"
+        app:underlineHeight="0.1dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ballgame_pager_vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:context=".MainActivity" />
+    <View
+        style="@style/line_horizontal_grey1"
+        android:background="@color/black_grey"/>
+    <LinearLayout
+        android:id="@+id/ballgame_bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey_dialog_background"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/ballgame_refresh_btn"
+            style="@style/rb_main_style"
+            android:background="@null"
+            android:checked="true"
+            android:clickable="true"
+            android:drawableTop="@mipmap/oval_black_refresh_black"
+            android:onClick="clickRefresh"
+            android:paddingTop="5dp"
+            android:text="@string/refresh"
+            android:textColor="@color/grey_dark"
+            android:textSize="10sp" />
+        <TextView
+            android:id="@+id/ballgame_collection_btn"
+            style="@style/rb_main_style"
+            android:background="@null"
+            android:checked="true"
+            android:clickable="true"
+            android:drawableTop="@mipmap/oval_black_star_black"
+            android:onClick="clickCollection"
+            android:paddingTop="5dp"
+            android:text="@string/collection"
+            android:textColor="@color/grey_dark"
+            android:textSize="10sp" />
+        <TextView
+            android:id="@+id/ballgame_menu_btn"
+            style="@style/rb_main_style"
+            android:background="@null"
+            android:clickable="true"
+            android:drawableTop="@mipmap/oval_black_menu_black"
+            android:onClick="clickMenu"
+            android:paddingTop="5dp"
+            android:text="@string/menu"
+            android:textColor="@color/grey_dark"
+            android:textSize="10sp" />
+        <CheckBox
+            android:id="@+id/ballgame_clearance_rb"
+            style="@style/rb_main_style"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:button="@null"
+            android:drawableTop="@mipmap/oval_black_msg_order_black"
+            android:paddingTop="5dp"
+            android:text="@string/clearance"
+            android:textColor="@color/grey_dark"
+            android:textSize="10sp" />
+    </LinearLayout>
+</LinearLayout>

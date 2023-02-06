@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:focusable="true"
+android:focusableInTouchMode="true"
+android:orientation="horizontal"
+android:padding="5dp">
+
+<EditText
+    android:id="@+id/colok_content_edt1"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:imeOptions="flagNoExtractUi"
+    android:inputType="number"
+    android:maxLength="2"
+    android:textColor="@color/black" />
+
+<EditText
+    android:id="@+id/colok_content_edt2"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dip"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:imeOptions="flagNoExtractUi"
+    android:inputType="number|numberDecimal"
+    android:maxLength="6"
+    android:textColor="@color/black" />
+
+<TextView
+    android:id="@+id/colok_content_edt3"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dip"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+
+    android:textColor="@color/black" />
+
+<EditText
+    android:id="@+id/colok_content_edt4"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dip"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:imeOptions="flagNoExtractUi"
+    android:inputType="number"
+    android:maxLength="3"
+    android:textColor="@color/black" />
+
+<EditText
+    android:id="@+id/colok_content_edt5"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dip"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:imeOptions="flagNoExtractUi"
+    android:inputType="number|numberDecimal"
+    android:maxLength="6"
+    android:textColor="@color/black" />
+
+<TextView
+    android:id="@+id/colok_content_edt6"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dip"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:textColor="@color/black" />
+</LinearLayout>

@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/base_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/normal_white_bg"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="13dp">
+
+            <EditText
+                android:id="@+id/register_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:hint="@string/zhucezhanghao1"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="#c3c3c8"
+                android:textSize="15dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <TextView
+                android:id="@+id/register_account_name_cunzai"
+                style="@style/RegisterEditTextTip"
+                android:text="@string/cunzai"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/register_step1_account_name_tip_tv"
+                style="@style/RegisterEditTextTip"
+                android:text="@string/sorrynamecuo"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/register_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dip"
+                android:background="@null"
+                android:hint="@string/mima"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:password="true"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#c3c3c8"
+                android:textSize="15dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <TextView
+                android:id="@+id/register_step1_password_error"
+                style="@style/RegisterEditTextTip"
+                android:text="@string/sorrypswcuo"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/register_again_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dip"
+                android:background="@null"
+                android:hint="@string/zhucequemi"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:password="true"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#c3c3c8"
+                android:textSize="15dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <TextView
+                android:id="@+id/register_step1_password_tip_tv"
+                style="@style/RegisterEditTextTip"
+                android:text="@string/sorrynopipei"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dip"
+                android:background="@null"
+                android:hint="@string/dianziyoujian"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#c3c3c8"
+                android:textSize="15dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <TextView
+                android:id="@+id/mail_error"
+                style="@style/RegisterEditTextTip"
+                android:text="@string/sorryyouxcuo"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/ll_bank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/choice_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dip"
+                    android:drawableRight="@mipmap/drop"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:text="@string/zhucexuan"
+                    android:textColor="#c3c3c8"
+                    android:textSize="15dip" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#DFE2EE"></View>
+
+                <EditText
+                    android:id="@+id/bank_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dip"
+                    android:background="@null"
+                    android:hint="@string/zhucezhanghu"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="#c3c3c8"
+                    android:textSize="15dip" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#DFE2EE"></View>
+
+                <TextView
+                    android:id="@+id/bank_username_error"
+                    style="@style/RegisterEditTextTip"
+                    android:text="@string/sorrychancuo"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/bank_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dip"
+                    android:background="@null"
+                    android:hint="@string/zhucezhanghao"
+                    android:inputType="number"
+                    android:maxLength="16"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="#c3c3c8"
+                    android:textSize="15dip" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#DFE2EE"></View>
+
+                <TextView
+                    android:id="@+id/bank_accout_error"
+                    style="@style/RegisterEditTextTip"
+                    android:text="Anda harus memasukkan nomor rekening, minimal 8 - 16!"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/money_lei"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dip"
+                android:drawableRight="@mipmap/drop"
+                android:gravity="center|left"
+                android:padding="8dp"
+                android:text="@string/zhucebibie"
+                android:textColor="#c3c3c8"
+                android:textSize="15dip"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <EditText
+                android:id="@+id/tuijian_person"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dip"
+                android:background="@null"
+                android:hint="@string/zhucetui"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#c3c3c8"
+                android:textSize="15dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dip"
+                android:background="@null"
+                android:hint="@string/regphone"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#c3c3c8"
+                android:textSize="15dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <TextView
+                android:id="@+id/phone_number_error"
+                style="@style/RegisterEditTextTip"
+                android:text="@string/sorrtshucuo"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dip"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/yanzhengma"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@null"
+                    android:hint="@string/yanzhengma"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="#c3c3c8"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:id="@+id/tv_yanzhengma"
+                    android:layout_width="0dip"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/dig_conor_yanzhengma_shape"
+                    android:gravity="center"
+                    android:text="15777"
+                    android:textColor="#6B7CB4"
+                    android:textSize="17dip"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DFE2EE"></View>
+
+            <TextView
+                android:id="@+id/yanzhengma_error"
+                style="@style/RegisterEditTextTip"
+                android:text="Captcha error"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_regist"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/home_login_bg"
+            android:gravity="center"
+            android:text="@string/register"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dip" />
+    </LinearLayout>
+
+
+</LinearLayout>

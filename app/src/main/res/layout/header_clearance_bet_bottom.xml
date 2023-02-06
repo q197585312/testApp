@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selectable_text_parent_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/header_clearance_select_ll"
+        style="@style/style_match_wrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp">
+        <ImageView
+            android:id="@+id/header_clearance_more_mark_iv"
+            style="@style/style_wrap_wrap"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/oval_blue_light_arrow_down"/>
+        <LinearLayout
+
+            style="@style/style_wrap_wrap"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/header_clearance_amount_tv"
+                style="@style/text_wrap_black12"
+                android:text="5 X 12注" />
+        </LinearLayout>
+        <TextView
+            style="@style/text_wrap_black12"
+            android:layout_gravity="center_vertical" />
+        <EditText
+            android:id="@+id/header_clearance_odds_edt"
+            style="@style/text_wrap_black12"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="3dp"
+            android:background="@drawable/rectangle_green_graystroke_radius5"
+            android:inputType="number" />
+    </LinearLayout>
+
+</LinearLayout>

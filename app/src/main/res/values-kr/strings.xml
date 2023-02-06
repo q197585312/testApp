@@ -1,0 +1,825 @@
+<resources>
+    <!-- 泰国彩票 -->
+    <string name="fast_bet">FAST BET</string>
+    <string name="D1">1D</string>
+    <string name="D2">2D</string>
+    <string name="D3">3D</string>
+    <string name="top_1d">1D TOP</string>
+    <string name="bottom_1d">1D BOTTOM</string>
+    <string name="enter_correct_number">올바른 번호를 입력 해주세요</string>
+    <string name="choice_big_small">크기를 선택하세요</string>
+    <string name="top_amount">Top 양</string>
+    <string name="infront_amount">Infront 양</string>
+    <string name="bottom_amount">Bottom 양</string>
+    <string name="toproll_amount">Top Roll 양</string>
+    <string name="top_amount_2d">Top 양</string>
+    <string name="top_amount_3d">Top 양</string>
+    <string name="bottom_amount_2d">Bottom 양</string>
+    <string name="toproll_amount_2d">Top Roll 양</string>
+    <string name="toproll_amount_3d">Top Roll 양</string>
+    <string name="infront_amount_3d">Infront 양</string>
+    <string name="bottom_amount_3d">Bottom 양</string>
+    <!-- 转账界面 -->
+    <string name="master_acc">메인 게임 :</string>
+    <string name="saba_yue_money">SABA 스포츠 (잔액) :</string>
+    <string name="saba_noclear_money">SABA 스포츠(진행중) :</string>
+    <string name="list2_ib">SBO SPORTS</string>
+    <string name="klaspoker_game_money">KlasPoker(잔액) :</string>
+    <string name="Joker123_game_money">Joker123(잔액) :</string>
+    <string name="newkeno_game_money">NewKeno(잔액) :</string>
+    <string name="transfer_to_newkeno">NewKeno와 베팅 할 금액을 양도하십시오.</string>
+    <string name="afbcasheu_klaspoker_game_money">Afbcash Poker(잔액) :</string>
+    <string name="from">이동전게임：</string>
+    <string name="to">이동후게임：</string>
+    <string name="write_money">이동할 금액：</string>
+    <string name="btn_submit">신청</string>
+    <string name="transferacc">머니이동</string>
+    <string name="list1_master_acc">주요 계정</string>
+    <string name="list2_saba">SABA 스포츠</string>
+    <string name="list4_pt">PT Slots</string>
+    <string name="list5_klaspoker">KlasPoker</string>
+    <string name="money_null">죄송합니다 롤오버 금액은 비워 둘 숫자 없습니다</string>
+    <string name="choice_again">새를 선택하세요</string>
+    <string name="transferacc_list">머니이동 내역</string>
+    <string name="All_Markets">모든 핸디캡</string>
+    <string name="main_Markets">메인 플레이트 입</string>
+    <string name="more_Markets">더 장난기있는 접시 입</string>
+    <!-- 程序异常处理字符串 -->
+    <!--afb33不同-->
+    <!--afb不同-->
+    <string name="withdraw_bonus">보너스를 철회</string>
+    <string name="regex_password">비밀번호는 문자와 숫자의 경우를 포함해야합니다</string>
+    <string name="change_passwor_succ">암호 변경 성공</string>
+    <string name="change_passwor_fail">암호 변경 실패</string>
+    <string name="recharge_card">충전 카드</string>
+    <string name="recharge_card_num">카드 번호.</string>
+    <string name="recharge_card_passwrod">카드 비밀번호</string>
+    <string name="recharge_card_num_error">충전 카드 번호는 비워 둘 수 없습니다</string>
+    <string name="recharge_card_passwrod_error">충전 카드 암호는 비워 둘 수 없습니다</string>
+    <string name="recharge_card_succeed">성공적으로 재충전</string>
+    <string name="recharge_card_fail">충전 실패</string>
+    <!--t28不同-->
+    <string name="withdraw_bonus_error">Failed to Withdraw Bonus, Please check your bonus record!</string>
+    <string name="transfer_bouns_error">amount need bigger than</string>
+    <!--we1play不同-->
+    <!--idafb不同-->
+    <!--wsands不同-->
+    <!--ezw888不同-->
+    <!--wanbao33不同-->
+    <!--88gasia不同-->
+
+    <!--ubet368不同-->
+
+    <string name="crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="crash_mail_passwd">Nangyangkeji123</string>
+    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="crash_mail_port">465</string>
+
+    <!--prompt-->
+    <string name="selected_all">모두선택</string>
+    <string name="reverse_selection">역방향</string>
+    <string name="coming_soon">출시예정...</string>
+    <string name="submit">배팅금액</string>
+    <string name="select_date">선택 일</string>
+    <string name="no_records">없음데이터레코드없음</string>
+    <string name="update_msg">브로, 지금 새 버전 빠른 다복권로드!</string>
+    <string name="version_update">업데이트 버전</string>
+    <string name="update">최신 정보</string>
+    <string name="app_update">최신 정보 App</string>
+    <string name="later">후에</string>
+    <string name="failed_to_login">로그인하지못했습니다</string>
+    <string name="invalid_amount_bet">잘못된 금액 내기</string>
+    <string name="current_version">현재 버전</string>
+    <string name="new_version">새 버전</string>
+    <!--base-->
+
+    <string name="six_day">6day</string>
+    <string name="bet_amount">금액</string>
+    <string name="encounter">교전</string>
+    <string name="amount">금액</string>
+    <string name="bet">내기</string>
+    <string name="delete">삭제</string>
+    <string name="date">날짜</string>
+    <string name="betting_state">상태</string>
+    <string name="amount_of_effective">유효한</string>
+    <string name="win_or_lose">승 / 패</string>
+    <string name="commission">위원회</string>
+    <string name="match">경기</string>
+    <string name="state">상태</string>
+    <string name="result">결과</string>
+    <string name="Running">달리는</string>
+    <string name="input_bet_amount_please">입력 베팅 금액하시기 바랍니다</string>
+    <string name="odds">배당</string>
+    <string name="max_bet">최대베팅:</string>
+    <string name="min_bet">최소베팅:</string>
+    <string name="connect_server_fail">로그인하지 못했습니다</string>
+    <string name="clearance_should_be_more_than_three">Mix parlay 개 이상이어야한다</string>
+
+    <!--RegisterActivity-->
+    <string name="input_username">아이디</string>
+    <string name="input_password">비밀번호</string>
+    <string name="register">신규가입</string>
+    <string name="login">로그인</string>
+    <string name="username_cannot_null">아이디를 입력해주세요</string>
+    <string name="password_cannot_null">비밀번호를 입력해주세요</string>
+    <string name="username_error">사용자 이름 오류</string>
+    <string name="password_error">잘못된 암호</string>
+
+    <!--MainTab Bottom-->
+    <!--MainHomeFragment-->
+
+    <string name="live_entertainment">카지노</string>
+    <string name="keno">키노</string>
+    <string name="number">숫자게임</string>
+    <string name="game">슬롯머신</string>
+    <string name="tw_game">복권</string>
+    <string name="texas_holdem">텍사스포커</string>
+    <string name="promotions">공지사항</string>
+    <!--Button-->
+    <string name="enter">들어가다</string>
+
+    <!--HomeFragment-->
+    <!--SportFragment-->
+    <string name="i_sport_betting">SABA 스포츠</string>
+    <string name="s_sport_betting">SBO 스포츠</string>
+    <string name="afb_sport_betting">AFB 스포츠</string>
+    <string name="afb2_sport_betting">AFB2 스포츠</string>
+
+    <!--CasinoFragment-->
+    <string name="ob_live_entertainment">ALLBET 카지노</string>
+    <string name="wm_live_entertainment">WM 카지노</string>
+    <string name="sexy_live_entertainment">Sexy 카지노</string>
+    <string name="evo_live_entertainment">Evo 카지노</string>
+    <string name="w88_live_entertainment">W88 카지노</string>
+    <string name="gold_live_entertainment">GOLD 카지노</string>
+    <string name="dg_live_entertainment">DG 카지노</string>
+    <string name="ag_live_entertainment">AG 카지노</string>
+    <string name="sa_live_entertainment">SA GAMING 카지노</string>
+    <string name="gd_live_entertainment">GD 카지노 </string>
+    <!--KenoFragment-->
+    <string name="indonesia_lottery">복권</string>
+    <!--NumberFragment-->
+    <string name="live_number">라이브 숫자게임</string>
+
+    <!---->
+    <!--게임Fragment-->
+    <string name="poker">포커</string>
+    <!--TWGameGragement-->
+    <!--BallGameActivity-->
+    <!--topTab-->
+    <string name="football">축구</string>
+    <string name="other">AOS</string>
+    <string name="tennis">테니스</string>
+    <string name="basketball">농구</string>
+    <string name="rugby">럭비</string>
+
+    <string name="refresh">새롭게하다</string>
+    <string name="menu">메뉴</string>
+    <string name="collection">숫자집</string>
+    <string name="clearance">Clearance</string>
+
+    <string name="not_settled">정착되지않음</string>
+    <string name="settled">안정된</string>
+    <string name="selected_compared">경기를선택</string>
+    <string name="sort_by_time">Sort By Time</string>
+    <string name="end_push">End Push</string>
+    <string name="score_push">Score Push</string>
+
+    <string name="today">오늘</string>
+    <string name="early">이른</string>
+    <!--FootballGameFragment-->
+    <string name="games">합계</string>
+    <string name="present">선물</string>
+    <string name="matchs">성냥</string>
+    <string name="full_half_court_hdp">FULL HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FULL O/U</string>
+    <string name="full_half_court_ou">HALF HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HALF O/U</string>
+    <!--VsActivity-->
+    <string name="scaleplate_asianplate">  Scaleplate/Asianplate  </string>
+    <string name="correct_score">Correct Score</string>
+    <string name="back">뒤로</string>
+    <!--ScaleFragment-->
+    <string name="full_time">Full Time</string>
+    <string name="half_time">First Half</string>
+    <string name="home_and_away">Home And Away</string>
+    <string name="double_chance">Double Chance</string>
+    <string name="half_full_time">Half/Full Time</string>
+    <string name="first_last_goal">First/Last Goal</string>
+    <string name="total_goals">Total Goals</string>
+    <string name="correct_full">FT Correct Score</string>
+    <string name="correct_half">FH Correct Score</string>
+    <!--betting-->
+    <string name="draw">Draw</string>
+    <string name="odd">홀수</string>
+    <string name="x1">1x</string>
+    <string name="x12">12</string>
+    <string name="even">짝수</string>
+    <string name="x2">x2</string>
+    <string name="last_goal">Last Goal</string>
+    <string name="no_goal">No Goal</string>
+    <string name="under">Under</string>
+    <string name="over">Over</string>
+    <string name="Input_the_amount_of_bets_please">입력 베팅의 금액하시기 바랍니다</string>
+    <string name="odd_even">홀수/짝수</string>
+    <string name="first_goal">First Goal</string>
+    <string name="h1">1</string>
+    <string name="dx">x</string>
+    <string name="a2">2</string>
+    <string name="against">Against</string>
+    <string name="hh">HH</string>
+    <string name="hd">HD</string>
+    <string name="ha">HA</string>
+    <string name="dh">DH</string>
+    <string name="dd">DD</string>
+    <string name="da">DA</string>
+    <string name="ah">AH</string>
+    <string name="ad">AD</string>
+    <string name="aa">AA</string>
+    <string name="statement">진술</string>
+    <string name="event">행사</string>
+    <string name="detail">세부묘사</string>
+    <string name="betting_amount">베팅금액</string>
+    <!--Prompt_Dialog-->
+    <string name="mix_parlay">Mix Parlay</string>
+    <string name="no_data">자료 없음</string>
+    <string name="pull_down_to_load_previous">머니이동</string>
+    <string name="pull_down_to_refresh">새로 고침</string>
+    <string name="not_allowed_to_bet">내기 허용되지 않음</string>
+    <string name="edit">편집하다</string>
+    <string name="betting_terms">betting_terms:</string>
+    <string name="confirm_or_not">확인?</string>
+    <string name="cancel">취소</string>
+    <string name="sure">확인</string>
+    <string name="win">승리</string>
+    <string name="double_click_exit_application">두 번 클릭하여 종료 응용 프로그램</string>
+    <string name="min">최소</string>
+    <string name="do_you_bet_again">다시 내기?</string>
+    <string name="bet_order_number">Bet order</string>
+    <string name="date_time">날짜/시각</string>
+    <string name="game_type">게임유형</string>
+    <string name="est_payout">Est payout</string>
+    <string name="not_started"> </string>
+
+    <!-- lottery layout-->
+
+    <string name="caipiao"></string>
+
+    <!-- lottery activity-->  <!-- seven layout-->
+
+    <string name="zhuhe">콤비네이션</string>
+    <string name="shengxiao">SHIO</string>
+    <string name="colok">COLOK</string>
+    <string name="alternate">ALTERNATE</string>
+    <string name="speailpeilv">SPECIALS</string>
+    <string name="number_lottery">숫자</string>
+    <string name="amount_lottery">금액</string>
+    <string name="net_amount">금액</string>
+    <string name="zonge">전체 금액:</string>
+    <string name="zongtouzhue">전체 베팅금액:</string>
+    <string name="queding">신청</string>
+    <string name="xiazhusuccess">베팅성공</string>
+    <string name="discount2d">할인 2D</string>
+    <string name="odds2d">배당 2D</string>
+    <string name="xiazhucuowu">bet wrong information</string>
+    <string name="huiyuanbupipei">session_id members do not match</string>
+    <string name="big_small">빅 스몰</string>
+
+    <string name="peilv">배당:1.9</string>
+    <string name="big">빅</string>
+    <string name="even_odd">짝수홀수</string>
+    <string name="odd_lottery">홀수</string>
+    <string name="even_lottery">짝수</string>
+    <string name="small_even">스몰짝수</string>
+    <string name="small_odd">스몰홀수</string>
+    <string name="big_even">빅짝수</string>
+    <string name="big_odd">빅홀수</string>
+    <string name="shenxiao">SHIO</string>
+    <string name="yang">양</string>
+    <string name="ma">말</string>
+    <string name="she">뱀</string>
+    <string name="lon">용</string>
+    <string name="tu">토끼</string>
+    <string name="hu">호랑이</string>
+    <string name="niu">소</string>
+    <string name="shu">쥐</string>
+    <string name="zhu">돼지</string>
+    <string name="gou">개</string>
+    <string name="ji">닭</string>
+    <string name="hou">원숭이</string>
+    <string name="colok_number">Colok Number</string>
+    <string name="weizhi">위치</string>
+    <string name="twodjine">2D 금액</string>
+    <string name="threedjine">3D 금액</string>
+    <string name="fourdjine">4D 금액</string>
+    <string name="bianhao">No</string>
+    <string name="riqi">날짜</string>
+    <string name="guojia">시장</string>
+    <string name="qihao">게임 ID </string>
+    <string name="mingchen">이름</string>
+    <string name="wanfa">유형</string>
+    <string name="sorrynodata"></string>
+    <string name="youxi">경기</string>
+    <string name="kaijiangtime">시작 시간</string>
+    <string name="jieguo">결과</string>
+    <string name="caipiaogzuize">복권 (인도네시아규칙)</string>
+
+    <!--dig game-->
+    <string name="shuzidating">숫자</string>
+    <string name="xiazhuzhong">the bet</string>
+
+    <string name="hong">빨강</string>
+    <string name="huang">노랑</string>
+    <string name="lan">파랑</string>
+    <string name="qingchashumu">입력 금액을 확인하시기 바랍니다</string>
+    <string name="xiazhuzuixiao">최소 베팅 이상</string>
+    <string name="xiazhuzuida">그것은 최대 베팅보다 클 숫자 없다</string>
+    <string name="xiazhucaoguo">betting more than the website always betting limits</string>
+    <string name="daojishiend">카복권트 다복권이 닫혀있다</string>
+    <string name="all">전체</string>
+    <string name="qingchu">취소</string>
+    <string name="touzhu">신청</string>
+    <string name="kaijiangzhong">로드중...</string>
+    <string name="gengduo">더</string>
+    <string name="jieguolist">결과</string>
+    <string name="sorrynohaoma">어떤숫자를선택하지!</string>
+    <!-- person game-->
+    <string name="jinesedui">골드</string>
+    <string name="yinsedui">실버</string>
+    <string name="hei">검정</string>
+    <string name="qinjinrutouzhu">게임을입력하세요</string>
+    <string name="yanse">색깔</string>
+    <string name="sanjun">식보쓰리포스</string>
+    <string name="yingcaoyijia">ENG/ITA</string>
+    <string name="xiajiadejia">SPA/GER</string>
+    <string name="fajiahecao">FRA/HOL</string>
+    <string name="fenzujingcai">그룹</string>
+    <string name="daorxiao">빅/스몰</string>
+    <string name="julebuxuanze">6 유럽리그에서 48 클럽을선택</string>
+    <string name="peilv45">배당 : (x) 45</string>
+    <string name="peilv455">배당 : (x) 4.5</string>
+
+    <string name="yingcaoyingelan">EPL(England)</string>
+
+    <string name="xijiaxibanya">LA LIGA (Spain)</string>
+
+
+    <string name="julebu48">Choose from six European league club 48</string>
+    <string name="fajiafaguo">LIGUE1(France)</string>
+
+
+    <string name="yingcaogelan">EPL (England)</string>
+    <string name="yijiadali">SERIE A(Italy)</string>
+    <string name="xiajiaxiya">LA LIGA (Spain)</string>
+    <string name="dejiadeguo">Bundesliga (Germany)</string>
+    <string name="hecaohe">Eredivisie (Holland)</string>
+
+    <string name="zhushu">그룹</string>
+    <string name="fajiaguo">LIGUE 1(France)</string>
+    <string name="qiuduiyanse">CLUB COLOR</string>
+    <string name="weigu">WAI주사위</string>
+    <string name="quanwei">모든주사위</string>
+    <string name="nodata">No data</string>
+    <string name="da17">빅（1.9）\n 11 to17</string>
+    <string name="shuangdan">짝수홀수</string>
+    <string name="honghei">색깔</string>
+
+    <string name="zhengjiazai">로드중...</string>
+    <string name="sorryyancuowu">Captcha error</string>
+    <string name="sorrtshucuo">당신은, 길이는 6 - 20 입력번호한다!</string>
+    <string name="sorryyouxcuo">이러한 XXX@XXX.XXX과같이입력해야합니다이메일!</string>
+    <string name="sorrychancuo">은행계좌는특숫자문자를포함할숫자없습니다, 길이는 2 - 20!</string>
+    <string name="sorrynopipei">두번째비밀번호가일치하지않습니다!</string>
+    <string name="sorrypswcuo">암호가있어야합니다 :숫자와문자, 길이가 8 - 20!</string>
+    <string name="sorrypswcuo1">암호가있어야합니다 :숫자와문자, 길이가 7 - 10!</string>
+    <string name="sorrynamecuo">당신은입력알파벳또는숫자, 길이가 6 ~ 9를하다해야!</string>
+    <string name="email">이메일</string>
+    <string name="jibenxinxi">기본정보</string>
+    <string name="xiumima">비밀번호변경</string>
+    <string name="scr_xiumima">SCR888 암호변경</string>
+    <string name="new_password">새 암호</string>
+    <string name="cunkuanzx">입금신청</string>
+    <string name="qukuanzx">출금신청</string>
+    <string name="xiazhujilu">배팅내역</string>
+    <string name="wancenjilu">게임기록</string>
+    <string name="honglizx">보너스</string>
+    <string name="yuyanqiehuan">언어</string>
+    <string name="zhanghum">사용자이름</string>
+    <string name="tuijianlianjie">추천링크</string>
+    <string name="dianhua">전화번호</string>
+    <string name="qukuanzh">출금 입금주</string>
+    <string name="qukuanzho">출금 계좌번호</string>
+    <string name="yinhangm">출금은행</string>
+    <string name="leijijiang">토탈 보너스</string>
+    <string name="shengyujiang">마지막보너스</string>
+    <string name="mimaerror">새암호와동일하지암호확인！</string>
+    <string name="errornull">필드확인암호를지울숫자없습니다！</string>
+    <string name="newmimanull">이필드를새암호를지울숫자없습니다！</string>
+    <string name="oldmimanull">이필드를머니이동암호빈숫자없습니다！</string>
+    <string name="xiumisucess">Modify the success</string>
+    <string name="mimaerrorx">암호작성되지또는길이보다 6</string>
+    <string name="qingxuanyh">은행을선택하세요</string>
+    <string name="deposit">입금신청</string>
+    <string name="cunkuansus">보증금은 성공했다</string>
+    <string name="tijiaosibai">입금은 입금 기록을 확인하시기 바랍니다 실패</string>
+    <string name="cunkuanlist">입금내역</string>
+    <string name="nojilu">없음데이터레코드없음!</string>
+    <string name="withdraw">출금신청</string>
+    <string name="qukuanlist">출금 내역</string>
+    <string name="qukuansucces">인출 성공</string>
+    <string name="jine1">금액</string>
+    <string name="xiahzujilu">Bet on record</string>
+    <string name="eightqihuo">855 forex</string>
+    <string name="no">No：</string>
+    <string name="youxitype">경기:</string>
+    <string name="youxitype1">경기</string>
+    <string name="youxi1">시장：</string>
+    <string name="wanfa1">유형：</string>
+    <string name="haoma1">숫자：</string>
+    <string name="peilv1">배당：</string>
+    <string name="youhui1">할인：</string>
+    <string name="xiazhujine">베팅금액</string>
+    <string name="qihao1">게임 ID ：</string>
+    <string name="deal_num">전송 ID：</string>
+    <string name="xiazhushijian">베팅시간：</string>
+    <string name="xiazhushijian1">베팅시간</string>
+    <string name="shuying">승리손실：</string>
+    <string name="shurujine">금액을 입력</string>
+    <string name="shenqingsuccess">전송 보너스 응용 프로그램이 성공</string>
+    <string name="chongfu">보너스를전송하는데실패, 송금기록을확인하시기바랍니다.</string>
+    <string name="zhuankuanhl">전송보너스</string>
+    <string name="hongleix">보너스유형:</string>
+    <string name="leixing">유형:</string>
+    <string name="shijian">시간：</string>
+    <string name="fenlei">범주：</string>
+    <string name="zhuangtai">상태：</string>
+    <string name="bianhao1">No：</string>
+    <string name="shengqinghl">업데이트보너스</string>
+    <string name="qingxyxm">게임을 선택하세요</string>
+    <string name="qingyxtype">게임을 선택하세요</string>
+    <string name="shibai">업데이트 실패</string>
+    <string name="chongfu1">There is a pending request, cannot repeat application</string>
+    <string name="nohongli">Not yet have a Bonus</string>
+    <string name="qingxyouxm">게임을 선택하세요</string>
+    <string name="beituijianlist">추천목록</string>
+    <string name="kaihutime">오픈시간:</string>
+    <string name="starttime">시작일:</string>
+    <string name="jishutime">종료 날짜:</string>
+    <string name="shengqinglist">보너스목록신청</string>
+    <string name="shengqingtitle">보너스목록신청</string>
+    <string name="qingxshijian">시간을 선택하세요</string>
+    <string name="jieshutime">종료날짜:</string>
+    <string name="chulizhong">복종시키다</string>
+    <string name="chuliwancen">끝</string>
+    <string name="shengqingqx">취소</string>
+    <string name="shenqts">전송보너스:</string>
+    <string name="shengqinghl1">전송횟숫자:</string>
+    <string name="zhanghuyue1">잔액</string>
+    <string name="dangqmima">현재비밀번호</string>
+    <string name="newmima">새로복권 비밀번호</string>
+    <string name="quexinmima">비밀번호확인</string>
+    <string name="xiuga">배팅금액</string>
+    <string name="shijian1">시간：</string>
+    <string name="xuanxiang">옵션：</string>
+    <string name="newshengqing">복종시키다</string>
+    <string name="qitaleix">Other Exception Types</string>
+    <string name="gaunliyuan">실폐</string>
+    <string name="caoshi">시간 제한</string>
+    <string name="houtaichuli">완료</string>
+    <string name="oldmimaerror">머니이동암호오류</string>
+
+    <string name="honglijine">금액:</string>
+    <string name="twomimacuo">두번불일치새암호를입력</string>
+    <string name="mima">비밀번호</string>
+    <string name="zhucequemi">비밀번호확인</string>
+    <string name="zhucexuan">선택해주세요</string>
+    <string name="zhucezhanghu">예금주</string>
+    <string name="zhucezhanghao">계좌번호</string>
+    <string name="zhucetui">추천인</string>
+    <string name="dianziyoujian">이메일</string>
+    <string name="yanzhengma">코드</string>
+    <string name="livenumber">라이브 숫자</string>
+
+
+    <string name="do_you_want_to_load_main">Do you want to return to main page？</string>
+
+    <string name="bet_info">베팅정보:</string>
+    <string name="bet_num">금액：</string>
+    <string name="shijitouzhu">베팅금액：</string>
+    <string name="touzhuhao">진행중인 베팅：</string>
+    <string name="combination">콤비네이션</string>
+    <string name="discount">할인</string>
+    <string name="zodiapeilv">배당</string>
+    <string name="xiazhujinee">베팅금액：</string>
+    <string name="zhucezhanghao1">아이디</string>
+    <string name="teshuzifu">사용자 이름은 특숫자 문자를 사용할 숫자 없습니다</string>
+    <string name="zhanghunouse">잘못된 은행 계좌</string>
+    <string name="xinxierror">등록 정보가 올바르지 않습니다</string>
+    <string name="userexist">사용자 이름이 이미 존재합니다</string>
+    <string name="zhucebibie">통화</string>
+
+    <string name="gaomianyx">Khmer Gaming</string>
+    <string name="mgyx">GD 카지노</string>
+    <string name="tiyubocai1">MG SLOTS</string>
+    <string name="zhenrenyule">스포츠 2</string>
+    <string name="zhenrenyule3">카지노 3</string>
+    <string name="zhenrenyule4">AFB 스포츠</string>
+    <string name="qihuo">W88 카지노</string>
+    <string name="zhenrenyule2">855 FOREX</string>
+    <string name="tiyubocai2">TANGKAS</string>
+    <string name="honglijine1">금액：</string>
+    <string name="yuebuzhu">부족 자금 입금하시기 바랍니다!</string>
+    <string name="double1">짝수 </string>
+    <string name="xiao1">스몰</string>
+    <string name="dandan1">홀수 </string>
+    <string name="cunkuanxiao">금액을인출이상필요</string>
+    <string name="cunkuanda">금액을인출보다필요</string>
+    <string name="qukuanda">금액을 인출 이상 필요</string>
+    <string name="qukuanxiao">금액을 인출보다 필요</string>
+    <string name="leixingcun">유형：입금</string>
+    <string name="feileiqukuan">유형：철숫자</string>
+    <string name="betshibai">베팅은 다시 로그인하세요 실패</string>
+    <string name="cunzai">ID 중복확인</string>
+    <string name="wanpeilv">배당：</string>
+    <string name="beituijianzh">사용자이름:</string>
+    <string name="tuijianbibie">통화：</string>
+    <string name="tuijianlic">아이디：</string>
+    <string name="qiu">볼</string>
+    <string name="saibao">식보볼</string>
+    <string name="nadata">데이터가 없습니다</string>
+    <string name="tdejiadeguo">Bundesliga (Germany)</string>
+    <string name="tfajiafaguo">LIGUE 1 (France)</string>
+    <string name="thecaohelan">Eredivisie (Holland)</string>
+    <string name="txijiaxibanya">LA LIGA (Spain)</string>
+    <string name="banknoexist">은행 계좌가 이미 존재합니다</string>
+    <string name="aleixing">유형：</string>
+    <string name="cunkuanlist1">상태：</string>
+    <string name="lunpan">롤렛볼</string>
+    <string name="zhuhe36qiu">멀티플 36볼</string>
+    <string name="txiaoshuang">S\nEVEN</string>
+    <string name="tdashuang">B\nEVEN</string>
+    <string name="txiaodan">S\nODD</string>
+    <string name="tdadan">B\nODD</string>
+    <string name="honglizhongxin">상태：</string>
+    <string name="helan">Eredivisie\n\n(Holland)</string>
+    <string name="faguo1">LIGUE1\n\n(France)</string>
+    <string name="yincao">EPL\n\n(England)</string>
+
+    <string name="dejia">Bundesliga
+                         </string>
+    <string name="xiane">이하공칭보다제한베팅！</string>
+    <string name="xibanya">(Spain)</string>
+    <string name="deguo">(Germany)</string>
+    <string name="xijia">LA LIGA</string>
+    <string name="shuziyouxi1">NUMBER GAMES</string>
+    <string name="caoguobet">최대한도를초과</string>
+    <string name="regphone">핸드폰번호</string>
+    <string name="release_to_load_app">Release To Load</string>
+    <string name="release_to_refresh_app">Release To Refresh</string>
+    <string name="submit_sure">신청</string>
+    <string name="betting_limit_less_than_nominal">이하공칭보다제한베팅!</string>
+    <string name="betting_limit_more_than_nominal">Betting limit more than nominal!</string>
+    <string name="betting_total_limit_more_than_nominal">총최대한도를초과!</string>
+    <string name="pull_up_to_load_next_page">Pull up to load next page</string>
+    <string name="not_enough_balance_please_deposit_first">죄송합니다, 충분한균형을먼저입금하세요!</string>
+    <string name="SINGAPORE">싱가포르</string>
+    <string name="TAIPEI">타이페이</string>
+    <string name="KUALA_LUMPUR">쿠알라룸푸르</string>
+    <string name="HONGKONG">홍콩</string>
+    <string name="MALAYSIA">말레이시아</string>
+    <string name="CHINA">중국</string>
+    <string name="HK4D">홍콩4D</string>
+    <string name="CAMBODIA">캄보디아</string>
+    <string name="MACAU">마카오</string>
+    <string name="CANADA4D">캐나다4D</string>
+    <string name="update_bonus_was_successful">업데이트 배당 성공</string>
+    <string name="full_half_goal">Full/Half/Goal</string>
+    <!--Keno-->
+    <string name="tie">회차</string>
+    <string name="Gold">금</string>
+    <string name="wood">목</string>
+    <string name="water">수</string>
+    <string name="fire">화</string>
+    <string name="earth">토</string>
+    <string name="series">회차</string>
+    <string name="KOREA">한국</string>
+    <string name="JAPAN">일본</string>
+    <string name="VIETNAM">배트남</string>
+    <string name="THAILAND">태국</string>
+    <string name="JAKARTA">자카르타</string>
+    <string name="country_area">나라//회차：</string>
+    <string name="country">국가</string>
+    <string name="country_area1">나라//회차</string>
+    <string name="element5">5 ELEMENT</string>
+    <string name="COMBINATION">조합</string>
+    <string name="EVEN_ODD">EVEN ODD</string>
+    <string name="BIG_SMALL">BIG SMALL</string>
+    <string name="time_left">남은시간</string>
+    <string name="keno_results"> 키노 결과</string>
+    <string name="up">업</string>
+    <string name="down">다운</string>
+    <string name="ODDS">홀수들</string>
+    <string name="EVENS">짝수들</string>
+    <string name="rebetting">다시 배팅하기</string>
+    <string name="hit">히트</string>
+    <string name="up_down">UpDown</string>
+    <string name="odds_evens">ODDS EVENS</string>
+    <string name="total">전체:</string>
+    <string name="zhuzai">PEARL BALL</string>
+    <string name="nominal_betting_limit_exceeded_min">죄송합니다,당신은 금액이 최소 제한보다 작은 내기!</string>
+    <string name="nominal_betting_limit_exceeded_max">죄송합니다, 당신은 금액이 최대 한도를 초과 내기!</string>
+    <string name="small">스몰</string>
+    <string name="version">버젼</string>
+
+    <string name="qieerxi">01 MANCHESTER CITY</string>
+    <string name="mancesitecen">07 MANCHESTER-UNITED</string>
+    <string name="asenna">13 TOTTENHAM HOTSPUR</string>
+    <string name="mancesitelian">19 LIVERPOOL</string>
+    <string name="tuotenamureci">25 CHELSEA</string>
+    <string name="liwupu">31 ARSENAL</string>
+    <string name="lianpudun">37 BURNLEY FC</string>
+    <string name="siwangxi">43 EVERTON</string>
+    <string name="yijiayidali">SERIE A\n\n(Italy)</string>
+    <string name="youwentusi">02 JUVENTUS</string>
+    <string name="luoma">08 NAPOLI</string>
+    <string name="laqiao">14 AS ROMA</string>
+    <string name="fuoluolunsa">20 INTER MILAN</string>
+    <string name="naboli">26 LAZIO</string>
+    <string name="relaya">32 AC MILAN</string>
+    <string name="sangpuduoliya">38 ATLANTA</string>
+    <string name="guojimilan">44 FIORENTINA</string>
+    <string name="dasailuola">03 BARCELONA</string>
+    <string name="huangjiamadeli">09 ATLETICO MADRID</string>
+    <string name="madelijingji">15 REAL MADRID</string>
+    <string name="walunxiya">21 VALENCIA</string>
+    <string name="saiweiliya">27 VILLARREAL</string>
+    <string name="biliyaleiyaer">33 REAL BETIS</string>
+    <string name="bierbae">39 SEVILLA</string>
+    <string name="saierta">45 GETAFE</string>
+    <string name="bairenmulihei">04 BAYERN MUNICH</string>
+    <string name="woerfusibao">10 SCHALKE 04</string>
+    <string name="mengxing">16 TSG HOFFENHEIM</string>
+    <string name="lewokusen">22 BORUSSIA DORTMUND</string>
+    <string name="aogesibao">28 BAYER LEVERKUSEN</string>
+    <string name="shaerke">34 RB LEIPZIG</string>
+    <string name="boluxiyaduo">40 VFB STUTTGART</string>
+    <string name="huofenhaimu">46 FRANKFURT EINTRACHT</string>
+    <string name="balisengerman">05 PARIS SAINT GERMAIN</string>
+    <string name="liang">11 MONACO</string>
+    <string name="molage">17 OLYMPIQUE LYONNAIS</string>
+    <string name="masai">23 OLYMPIQUE DE MARSEILLE</string>
+    <string name="shengaidian">29 RENNES</string>
+    <string name="boerduo">35 GIRONDINS DE BORDEAUX</string>
+    <string name="lier">41 SAINT ETIENNE</string>
+    <string name="mengbiliai">47 NICE</string>
+    <string name="hecaohelan">Eredivisie(Holland)</string>
+    <string name="aiyinghuowen">06 PSV EINDHOVEN</string>
+    <string name="ajitu">12 AJAX AMSTERDAM</string>
+    <string name="helanaerke">18 AZ ALKMAAR</string>
+    <string name="feiyeruode">24 FEYENOORD ROTTERDAM</string>
+    <string name="weitesai">30 FC UTRECHT</string>
+    <string name="zewole">36 SBV VITESEE</string>
+    <string name="hailunweien">42 ADO DEN HAAG</string>
+    <string name="gaoninggen">48 SC HEERENVEEN</string>
+    <string name="forex"> 외환</string>
+    <!--新的注册提示语言-->
+    <string name="w88_game">w88 slots</string>
+    <string name="bestgame_slots">bestgame slots</string>
+    <string name="start_time">시작 시간</string>
+    <string name="end_time">종료 시간</string>
+    <string name="all_choose">모두 선택</string>
+    <string name="casino">라이브 카지노</string>
+    <string name="sports">스포츠</string>
+    <string name="provider">공급자</string>
+    <string name="wash_code">회전율</string>
+    <string name="check_wash_code">베팅금액 확인</string>
+    <string name="MY_market">MY ODDS</string>
+    <string name="ID_market">ID ODDS</string>
+    <string name="HK_market">HK ODDS</string>
+    <string name="EU_market">EU ODDS</string>
+    <string name="remak">말</string>
+    <string name="master_balance">주요 잔액</string>
+    <string name="china_lottery_balance">HC 밸런스</string>
+    <string name="start_game">지금 플레이하기</string>
+    <string name="buy">구매</string>
+    <string name="take_out">전송</string>
+    <string name="try_again_later">처리 중입니다. 나중에 다시 시도하십시오.</string>
+    <string name="total_amount">총액</string>
+    <string name="transfer_center">환승 센터</string>
+    <string name="note">주의</string>
+    <string name="accepted">Accepted</string>
+    <string name="waiting">Waiting</string>
+    <string name="rejected">Rejected</string>
+    <string name="No">No: </string>
+    <string name="Code">Code: </string>
+    <string name="Title">Title: </string>
+    <string name="Join_Date">Join Date: </string>
+    <string name="Start_Date">Start Date: </string>
+    <string name="End_Date">End Date: </string>
+    <string name="Bonus">Bonus: </string>
+    <string name="Turnover">Turnover: </string>
+    <string name="Status">Status: </string>
+    <string name="Promotion_list">Promotion List</string>
+    <string name="type">Type：</string>
+    <string name="game_name">Game name：</string>
+    <string name="bet_list">내기 목록</string>
+    <string name="new_2d_introduce">숫자1 * 숫자2 * 숫자3 # 금액+숫자1 * 숫자2 * 숫자3 # 금액 Or 숫자1X금액 숫자2X금액</string>
+    <string name="Keno">키노</string>
+    <string name="Win_Report">승리 보고서</string>
+    <string name="Result">결과</string>
+    <string name="Rules">규칙</string>
+    <string name="Search">수색</string>
+    <string name="Today">오늘</string>
+    <string name="Yesterday">어제</string>
+    <string name="No1">아니</string>
+    <string name="Dates">날짜</string>
+    <string name="Title1">표제</string>
+    <string name="Result1">결과</string>
+    <string name="Detail">세부 묘사</string>
+    <string name="Over_Under">위에/아래에</string>
+    <string name="Odd_Even">홀수/짝수</string>
+    <string name="Range">범위</string>
+    <string name="Smallest_Number">가장 작은</string>
+    <string name="Biggest_Number">가장 큰</string>
+    <string name="ThisWeek">이번 주</string>
+    <string name="LastWeek">지난주</string>
+    <string name="ThisMonth">이번 달</string>
+    <string name="LastMonth">지난 달</string>
+    <string name="Order_No">주문 번호</string>
+    <string name="Bet_Time">내기 시간</string>
+    <string name="Name">이름</string>
+    <string name="Ticket_Id_TIME">티켓 ID/시간</string>
+    <string name="Type">유형</string>
+    <string name="Bet">내기</string>
+    <string name="Odds">홀수들</string>
+    <string name="RECENT_ORDERS">최근 주문들</string>
+    <string name="Total">합계:</string>
+    <string name="Frequence">빈도</string>
+    <string name="Parlay">파레</string>
+    <string name="BetCredit">베팅 크레딧:</string>
+    <string name="OutStanding">내기 포인트:</string>
+    <string name="LAST_GAMES">마지막 게임</string>
+    <string name="Stake">양:</string>
+    <string name="Max_Payout">최대 지불금</string>
+    <string name="Bet_Limit">베팅 한도</string>
+    <string name="Reset">다시 놓기</string>
+    <string name="OverOdd">이상</string>
+    <string name="OverEven">오버조차</string>
+    <string name="UnderOdd">언더 홀드</string>
+    <string name="UnderEven">언더 이븐</string>
+    <string name="loading">로드 중</string>
+    <string name="Loading_completed">로드 완료 됨</string>
+    <string name="prize">상품</string>
+    <string name="List">번호</string>
+    <string name="pool">수영장</string>
+    <string name="number_4d">번호</string>
+    <string name="period">기간</string>
+    <string name="Bet_Type">벳 유형</string>
+    <string name="Amount">금액</string>
+    <string name="number_must_4">숫자는 4 자리 여야합니다.</string>
+    <string name="right_amount">적절한 금액을 입력하십시오.</string>
+    <string name="sure_bet">내기를 확인하십시오!</string>
+    <string name="pool_period">수영장/기간</string>
+    <string name="Bet_Amount">그러나/금액</string>
+    <string name="Success">성공</string>
+    <string name="need_activate">계정을 활성화하려면 고객 서비스에 문의해야합니다.</string>
+    <string name="best_game_slots">BestGame</string>
+    <string name="netent_game_slots">NETENT 슬롯머신</string>
+    <string name="playstar_game_slots">PLAYSTAR 슬롯머신</string>
+    <string name="xe88_game_slots">Xe88 슬롯머신</string>
+    <string name="haba_game_slots">HABA 슬롯머신</string>
+    <string name="w88_game_slots">W88 슬롯머신</string>
+    <string name="mg_game_slots">MG 슬롯머신</string>
+    <string name="pt_game_slots">PT 슬롯머신</string>
+    <string name="fish_game_slots">Fish 슬롯머신</string>
+    <string name="sa_game_slots">SA 슬롯머신</string>
+    <string name="joker_game_slots">JOKER 슬롯머신</string>
+    <string name="mega_game_slots">Mega888 슬롯머신</string>
+    <string name="jdb_game_slots">JDB 슬롯머신</string>
+    <string name="klasPoker">klasPoker</string>
+    <string name="msg">메시지</string>
+    <string name="set_language">Set Language</string>
+    <string name="lottery4d">Lottery 4D</string>
+    <string name="more">더</string>
+    <string name="user">사용자</string>
+    <string name="contact">접촉</string>
+    <string name="Contact_Us">문의하기</string>
+    <string name="please_login">먼저 로그인을 해주세요</string>
+    <string name="exit_login">로그 아웃</string>
+    <string name="upload_receipt">파일을 선택</string>
+    <string name="No_file_chosen">선택된 파일이 없습니다</string>
+    <string name="withdraw_failed">제출했습니다. 철회 목록을 확인하십시오.</string>
+    <string name="download">다운로드</string>
+    <string name="play_now">지금 플레이</string>
+    <string name="Registration_Time">등록 시간</string>
+    <string name="Last_Login">마지막 로그인</string>
+    <string name="Deposit_Request">입금 요청을 작성해 주셔서 감사합니다 , currency 주소를 복사하십시오 , 주소:</string>
+    <string name="Address_Receive">주소 수신</string>
+    <string name="withdraw_hint1">인출 할 금액을 입력하고 변환하려는 통화를 선택한 다음 해당 월렛 주소를 입력하십시오.,,참고 : 정확한 주소를 입력했는지 확인하십시오.</string>
+    <string name="Withdraw_Password">비밀번호 철회</string>
+    <string name="check">검사</string>
+</resources>
+
+
+
+
+
+

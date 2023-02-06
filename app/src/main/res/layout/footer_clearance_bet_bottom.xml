@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selectable_text_parent_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        style="@style/style_match_wrap"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp">
+
+        <LinearLayout
+            style="@style/style_wrap_wrap"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/footer_clearance_count_tv"
+                style="@style/text_wrap_blue12"
+                android:text="5 X 12注"
+                android:textColor="@color/blue_table_yellow2" />
+            <TextView
+                android:id="@+id/footer_clearance_content_tv"
+                style="@style/text_wrap_black10"
+                android:layout_marginTop="2dp"
+                android:text="投注项:" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/footer_clearance_bet_cancel_btn"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/rectangle_yellow"
+            android:text="@string/cancel"
+            />
+        <Button
+            android:id="@+id/footer_clearance_bet_submit_btn"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/rectangle_yellow"
+            android:text="@string/bet"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

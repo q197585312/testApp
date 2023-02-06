@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#D9AF22">
+
+        <LinearLayout
+            android:id="@+id/ll_bet_result_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:text="@string/Success"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/big"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_big_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="2.0"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/small"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_small_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="2.0"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+                <TextView
+                    android:id="@+id/tv_a_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="A"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_a_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="2.0"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+                <TextView
+                    android:id="@+id/tv_abc_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="ABC"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_abc_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="2.0"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/total"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="2.0"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_bet_sure"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/sure_bet"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:visibility="visible" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_bet_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/number_4d"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/pool_period"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:text="@string/Bet_Amount"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lv_bet_result"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="@null"
+                android:listSelector="@android:color/transparent"></ListView>
+
+            <TextView
+                android:id="@+id/tv_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/lottery_4d_bg_sure"
+                android:gravity="center"
+                android:paddingLeft="30dp"
+                android:paddingTop="5dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="5dp"
+                android:text="@string/sure" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bet_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="@string/List"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="@string/pool"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="@string/number_4d"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="@string/big"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="@string/small"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_title_a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="A"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_title_abc"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="ABC"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/lottery_4d_choice_type"
+                    android:gravity="center"
+                    android:text="@string/period"
+                    android:textColor="@color/selector_lottery_4d_type"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lv_bet_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="@null"
+                android:listSelector="@android:color/transparent"></ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/black"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_sure"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/lottery_4d_bg_sure"
+                    android:gravity="center"
+                    android:text="@string/sure"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/lottery_4d_bg_cancel"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/lottery_4d_bg_money">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/write_money"
+                        android:textColor="@color/selector_lottery_4d_type"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_total_amount"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="5dp"
+                        android:text="0.00"
+                        android:textColor="@color/selector_lottery_4d_type"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

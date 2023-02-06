@@ -1,0 +1,1349 @@
+<?xml version="1.0"?>
+
+<resources>
+    <!-- 泰国彩票 -->
+    <string name="fast_bet">FAST BET</string>
+    <string name="D1">1D</string>
+    <string name="D2">2D</string>
+    <string name="D3">3D</string>
+    <string name="top_1d">1D TOP</string>
+    <string name="bottom_1d">1D BOTTOM</string>
+    <string name="enter_correct_number">Silakan masukkan angka yang benar</string>
+    <string name="choice_big_small">Silakan pilih ukuran</string>
+    <string name="top_amount">Top Jumlah</string>
+    <string name="infront_amount">Infront Jumlah</string>
+    <string name="bottom_amount">Bottom Jumlah</string>
+    <string name="toproll_amount">Top Roll Jumlah</string>
+    <string name="top_amount_2d">Top Jumlah</string>
+    <string name="top_amount_3d">Top Jumlah</string>
+    <string name="bottom_amount_2d">Bottom Jumlah</string>
+    <string name="toproll_amount_2d">Top Roll Jumlah</string>
+    <string name="toproll_amount_3d">Top Roll Jumlah</string>
+    <string name="infront_amount_3d">Infront Jumlah</string>
+    <string name="bottom_amount_3d">Bottom Jumlah</string>
+
+    <string name="master_acc">Akun Utama :</string>
+    <string name="saba_yue_money">SABA SPORTS(Saldo) :</string>
+    <string name="saba_noclear_money">SABA SPORTS(Pending) :</string>
+    <string name="klaspoker_game_money">KlasPoker(Saldo) :</string>
+    <string name="Joker123_game_money">Joker123(Saldo) :</string>
+    <string name="newkeno_game_money">New Keno(Saldo) :</string>
+    <string name="transfer_to_newkeno">Silakan transfer jumlah untuk bertaruh dengan NewKeno</string>
+    <string name="afbcasheu_klaspoker_game_money">Afbcash Poker(Saldo) :</string>
+    <string name="from">Dari：</string>
+    <string name="to">Untuk：</string>
+    <string name="write_money">Jumlah：</string>
+    <string name="btn_submit">KONFIRMASI</string>
+    <string name="transferacc">Transfer</string>
+    <string name="list1_master_acc">Akun Utama</string>
+    <string name="list2_saba">SABA SPORTS</string>
+    <string name="list2_ib">SBO OLAHRAGA</string>
+    <string name="list4_pt">PT Slots</string>
+    <string name="list5_klaspoker">KlasPoker</string>
+    <string name="money_null">Jumlah rollover Maaf tidak boleh kosong</string>
+    <string name="choice_again">Pilih baru</string>
+    <string name="transferacc_list">Daftar Transfer</string>
+    <string name="All_Markets">Semua handicap</string>
+    <string name="main_Markets">Pasar Utama</string>
+    <string name="more_Markets">Pasar Bet lainnya</string>
+    <!-- 程序异常处理字符串 -->
+    <!--afb33不同-->
+    <!--prompt-->
+    <string name="withdraw_bonus"> Penarikan Bonus</string>
+    <string name="regex_password">Sandi harus berisi huruf dan angka kasus</string>
+    <string name="change_passwor_succ">Ubah Password Sukses</string>
+    <string name="change_passwor_fail">Ubah Password Gagal</string>
+    <string name="recharge_card">Kartu Recharge</string>
+    <string name="recharge_card_num">Kartu No.</string>
+    <string name="recharge_card_passwrod">kartu Sandi</string>
+    <string name="recharge_card_num_error">Nomor kartu isi ulang tidak boleh kosong</string>
+    <string name="recharge_card_passwrod_error">Sandi kartu isi ulang tidak boleh kosong</string>
+    <string name="recharge_card_succeed">diisi ulang berhasil</string>
+    <string name="recharge_card_fail">diisi ulang gagal</string>
+    <!--t28不同-->
+    <string name="withdraw_bonus_error">Failed to Withdraw Bonus, Please check your bonus record!</string>
+    <string name="transfer_bouns_error">amount need bigger than</string>
+    <!--we1paly不同-->
+    <!--idafb不同-->
+    <!--wsands不同-->
+    <!--ezw888不同-->
+    <!--wanbao33不同-->
+    <!--88gasia不同-->
+    <!--ocn777不同-->
+    <!--ubet368不同-->
+
+    <string name="crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="crash_mail_passwd">Nangyangkeji123</string>
+    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="crash_mail_port">465</string>
+
+    <string name="selected_all">Pilih Semua</string>
+
+    <string name="reverse_selection">Membalikkan</string>
+
+    <string name="coming_soon">Segera Hadir...</string>
+
+    <string name="submit">KONFIRMASI</string>
+    <string name="mgyx">GD CASINO</string>
+
+    <string name="select_date">Pilih Waktu</string>
+
+    <string name="no_records">tidak tercatat</string>
+
+    <string name="update_msg">Pro, lagi versi yang lebih cepat men-download sekarang!</string>
+
+    <string name="version_update">Memperbarui Versi</string>
+
+    <string name="update">memperbarui</string>
+
+    <string name="app_update">Perbarui APP</string>
+
+    <string name="later">Nanti</string>
+
+    <string name="failed_to_login">Gagal untuk masuk!</string>
+
+    <string name="invalid_amount_bet">Salah nomor taruhan</string>
+    <string name="current_version">Versi sekarang</string>
+    <string name="new_version">Versi baru</string>
+
+    <!--base-->
+
+
+    <string name="six_day">6 day</string>
+
+    <string name="bet_amount">Jumlah</string>
+
+    <string name="encounter">Menghadapi</string>
+
+    <string name="amount">Jumlah</string>
+
+    <string name="bet">Taruhan</string>
+
+    <string name="delete">Dihapus </string>
+
+    <string name="date">Tanggal</string>
+
+    <string name="betting_state">Status</string>
+
+    <string name="amount_of_effective">Efektif</string>
+
+    <string name="win_or_lose">Menang/kalah</string>
+
+    <string name="commission">Komisi</string>
+
+    <string name="match">Pertandingan</string>
+
+    <string name="state">Status</string>
+
+    <string name="result">Hasil</string>
+
+    <string name="Running">BERJALAN</string>
+
+    <string name="input_bet_amount_please">Silahkan masukkan jumlah taruhan</string>
+
+    <string name="odds">Hadiah</string>
+
+    <string name="max_bet">Maks Taruhan:</string>
+
+    <string name="min_bet">Min Taruhan:</string>
+
+    <string name="connect_server_fail">gagal menghubungkan server</string>
+
+    <string name="clearance_should_be_more_than_three">Silahkan pilih sedikitnya 3 item untuk bertaruh</string>
+
+    <!--RegisterActivity-->
+
+
+    <string name="input_username">Akun</string>
+
+    <string name="input_password">Kata Sandi</string>
+
+    <string name="register">Daftar</string>
+    <string name="login">Masuk</string>
+
+    <string name="username_cannot_null">Silahkan masukkan nama Akun</string>
+
+    <string name="password_cannot_null">Silahkan masukkan Kata Sandi</string>
+    <string name="username_error">SALAH ID</string>
+    <string name="password_error">SALAH PASSWORD</string>
+
+    <!--MainTab Bottom-->
+
+
+    <!--MainHomeFragment-->
+
+
+    <string name="live_entertainment">Kasino</string>
+
+    <string name="keno">Keno</string>
+
+    <string name="number">Nomor</string>
+
+    <string name="game">Slot</string>
+
+    <string name="tw_game">LOTERE</string>
+
+    <string name="texas_holdem">TEXAS POKER</string>
+    <string name="texas_holdem1">POKER</string>
+
+    <string name="promotions">Promosi</string>
+
+    <!--Button-->
+
+
+    <string name="enter">Masuk</string>
+
+    <!--HomeFragment-->
+
+
+    <!--SportFragment-->
+    <string name="i_sport_betting">IBC OLAHRAGA</string>
+    <string name="s_sport_betting">SBO OLAHRAGA</string>
+    <string name="afb_sport_betting">AFB OLAHRAGA</string>
+    <string name="afb2_sport_betting">AFB2 OLAHRAGA</string>
+
+    <!--CasinoFragment-->
+    <string name="ob_live_entertainment">ALLBET Kasino</string>
+    <string name="gold_live_entertainment">GOLD Kasino</string>
+    <string name="dg_live_entertainment">DG Kasino</string>
+    <string name="ag_live_entertainment">AG Kasino</string>
+    <string name="sa_live_entertainment">SA Gaming Kasino</string>
+    <string name="gd_live_entertainment">GD Kasino</string>
+    <string name="wm_live_entertainment">WM Kasino</string>
+    <string name="sexy_live_entertainment">Sexy Kasino</string>
+    <string name="evo_live_entertainment">EVO Kasino</string>
+    <string name="w88_live_entertainment">W88 Kasino</string>
+
+    <!--KenoFragment-->
+
+
+    <string name="indonesia_lottery">Lottery</string>
+
+    <!--NumberFragment-->
+
+
+    <string name="live_number">Nomor Live</string>
+
+    <!---->
+
+
+    <!--GamesFragment-->
+
+
+    <string name="poker">Poker</string>
+    <!--TWGameGragement-->
+
+    <!--BallGameActivity-->
+
+
+    <!--topTab-->
+
+
+    <string name="football">Sepak bola</string>
+
+    <string name="other">AOS</string>
+
+    <string name="tennis">Tennis</string>
+
+    <string name="basketball">Bola basket</string>
+
+    <string name="rugby">Rugby</string>
+
+    <string name="refresh">Refresh</string>
+
+    <string name="menu">Pesanan</string>
+
+    <string name="collection">Koleksi</string>
+
+    <string name="clearance">Pembersihan</string>
+
+    <string name="not_settled">Belum diselesaikan</string>
+
+    <string name="settled">Sudah diselesaikan</string>
+
+    <string name="selected_compared">PILIH PERTANDINGAN</string>
+
+    <string name="sort_by_time">Sort By Time</string>
+
+    <string name="end_push">End Push</string>
+
+    <string name="score_push">Score Push</string>
+
+    <string name="today">HARI INI</string>
+
+    <string name="early">AWAL</string>
+
+    <!--FootballGameFragment-->
+
+
+    <string name="games">Jumlah</string>
+
+    <string name="present">Saat ini</string>
+
+    <string name="matchs">PERTANDINGAN</string>
+
+    <string name="full_half_court_hdp">FULL HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FULL O/U</string>
+
+    <string name="full_half_court_ou">HALF HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HALF O/U</string>
+
+    <!--VsActivity-->
+
+
+    <string name="scaleplate_asianplate"> Scaleplate/Asianplate </string>
+
+    <string name="correct_score">Correct Score</string>
+
+    <string name="back">Kembali</string>
+
+    <!--ScaleFragment-->
+
+
+    <string name="full_time">Full Time</string>
+
+    <string name="half_time">First Half</string>
+
+    <string name="home_and_away">Home And Away</string>
+
+    <string name="double_chance">Double Chance</string>
+
+    <string name="half_full_time">Half/Full Time</string>
+
+    <string name="first_last_goal">First/Last Goal</string>
+
+    <string name="total_goals">Total Goals</string>
+
+    <string name="correct_full">FT Correct Score</string>
+
+    <string name="correct_half">FH Correct Score</string>
+
+    <!--betting-->
+
+
+    <string name="draw">Draw</string>
+
+    <string name="odd">Ganjil</string>
+
+    <string name="x1">1x</string>
+
+    <string name="x12">12</string>
+
+    <string name="even">Ganjil</string>
+
+    <string name="x2">x2</string>
+
+    <string name="last_goal">Last Goal</string>
+
+    <string name="no_goal">No Goal</string>
+
+    <string name="under">Under</string>
+
+    <string name="over">Over</string>
+
+    <string name="Input_the_amount_of_bets_please">Silahkan masukkan jumlah taruhan</string>
+
+    <string name="odd_even">Odd/Even</string>
+
+    <string name="first_goal">First Goal</string>
+
+    <string name="h1">1</string>
+
+    <string name="dx">x</string>
+
+    <string name="a2">2</string>
+
+    <string name="against">Against</string>
+
+    <string name="hh">HH</string>
+
+    <string name="hd">HD</string>
+
+    <string name="ha">HA</string>
+
+    <string name="dh">DH</string>
+
+    <string name="dd">DD</string>
+
+    <string name="da">DA</string>
+
+    <string name="ah">AH</string>
+
+    <string name="ad">AD</string>
+
+    <string name="aa">AA</string>
+
+    <string name="statement">Statement</string>
+
+    <string name="event">Event</string>
+
+    <string name="detail">Detail</string>
+
+    <string name="betting_amount">Jumlah Taruhan</string>
+
+    <!--Prompt_Dialog-->
+
+
+    <string name="mix_parlay">Mix Parlay</string>
+
+    <string name="no_data">Tidak ada data</string>
+
+    <string name="pull_down_to_load_previous">Tarik ke bawah untuk memuat sebelumnya</string>
+
+    <string name="pull_down_to_refresh">Menurunkan untuk pemulihan</string>
+
+    <string name="not_allowed_to_bet">Tidak diizinkan untuk bertaruh</string>
+
+    <string name="edit">Edit</string>
+
+    <string name="betting_terms">betting_terms:</string>
+
+    <string name="confirm_or_not">Yakin?</string>
+
+    <string name="cancel">Batal</string>
+
+    <string name="sure">Yakin</string>
+
+    <string name="win">Menang</string>
+
+    <string name="double_click_exit_application">Klik dua kali untuk keluar dari aplikasi</string>
+
+    <string name="min">Min</string>
+
+    <string name="do_you_bet_again">Bertaruh lagi?</string>
+
+    <string name="bet_order_number">agar taruhan</string>
+
+    <string name="date_time">Tanggal/Waktu</string>
+
+    <string name="game_type">Jenis Bermain</string>
+
+    <string name="est_payout">Est payout</string>
+
+    <string name="not_started"> </string>
+
+    <!-- lottery layout-->
+
+
+    <string name="caipiao" />
+
+    <!-- lottery activity-->
+
+
+    <!-- seven layout-->
+
+
+    <string name="zhuhe">KOMBINASI</string>
+
+    <string name="shengxiao">SHIO</string>
+
+    <string name="colok">COLOK</string>
+
+    <string name="alternate">BOLAK BALIK</string>
+
+    <string name="speailpeilv">HADIAH KHUSUS</string>
+
+    <string name="number_lottery">Nomor</string>
+
+    <string name="amount_lottery">Jumlah</string>
+
+    <string name="net_amount">Jumlah bersih</string>
+
+    <string name="zonge">Jumlah Total:</string>
+
+    <string name="zongtouzhue">Jumlah Total Bersih:</string>
+
+    <string name="queding">KONFIRMASI</string>
+
+    <string name="xiazhusuccess">Taruhan berhasil</string>
+
+    <string name="discount2d">DISKON 2D</string>
+
+    <string name="odds2d">HADIAH 2D</string>
+
+    <string name="xiazhucuowu">Informasi taruhan salah</string>
+
+    <string name="huiyuanbupipei">Sesi id anggota tidak cocok</string>
+
+    <string name="big_small">BESAR KECIL</string>
+
+
+    <string name="peilv">Rate:1.9</string>
+
+    <string name="big">BESAR</string>
+
+    <string name="even_odd">GENAP GANJIL</string>
+
+    <string name="odd_lottery">GANJIL</string>
+
+    <string name="even_lottery">GENAP</string>
+
+    <string name="small_even">K GENAP</string>
+
+    <string name="small_odd">K GANJIL</string>
+
+    <string name="big_even">B GENAP</string>
+
+    <string name="big_odd">B GANJIL</string>
+
+    <string name="shenxiao">SHIO</string>
+
+    <string name="yang">KAMBING</string>
+
+    <string name="ma">KUDA</string>
+
+    <string name="she">ULAR</string>
+
+    <string name="lon">NAGA</string>
+
+    <string name="tu">KELINCI</string>
+
+    <string name="hu">HARIMAU</string>
+
+    <string name="niu">KERBAU</string>
+
+    <string name="shu">TIKUS</string>
+
+    <string name="zhu">BABI</string>
+
+    <string name="gou">ANJING</string>
+
+    <string name="ji">AYAM</string>
+
+    <string name="hou">MONYET</string>
+
+    <string name="colok_number">Colok Nomor</string>
+
+    <string name="weizhi">LOKASI</string>
+
+    <string name="twodjine">2D Jumlah</string>
+
+    <string name="threedjine">3D Jumlah</string>
+
+    <string name="fourdjine">4D Jumlah</string>
+
+    <string name="bianhao">No</string>
+
+    <string name="riqi">Tanggal</string>
+
+    <string name="guojia">Pasaran</string>
+
+    <string name="qihao">ID Permainan</string>
+
+    <string name="mingchen">Nama</string>
+
+    <string name="wanfa">Jenis</string>
+
+    <string name="sorrynodata" />
+
+    <string name="youxi">Permainan</string>
+
+    <string name="kaijiangtime">Waktu Buka</string>
+
+    <string name="jieguo">Hasil</string>
+
+    <string name="caipiaogzuize">Aturan Togel(Indonesia)</string>
+
+    <!--dig game-->
+
+
+    <string name="shuzidating">NOMOR</string>
+
+    <string name="xiazhuzhong">Taruhannya</string>
+
+    <string name="hong">MERAH</string>
+
+    <string name="huang">KUNING</string>
+
+    <string name="lan">BIRU</string>
+
+    <string name="qingchashumu">Silahkan periksa jumlah yang di masukkan</string>
+
+    <string name="xiazhuzuixiao">Batas taruhan kurang dari nominal!</string>
+
+    <string name="xiazhuzuida">Melebihi batas maksimum</string>
+
+    <string name="xiazhucaoguo">Taruhan selalu lebih dari batas taruhan website</string>
+
+    <string name="daojishiend">Melebihi batas maksimum</string>
+
+    <string name="all">SEMUA </string>
+
+    <string name="qingchu">HAPUS</string>
+
+    <string name="touzhu">KONFIRMASI</string>
+
+    <string name="kaijiangzhong">Pemuatan...</string>
+
+    <string name="gengduo">Lebih</string>
+
+    <string name="jieguolist">HASIL</string>
+
+    <string name="sorrynohaoma">Tidak ada pilih nomor!</string>
+
+    <!-- person game-->
+
+
+    <string name="jinesedui">EMAS</string>
+
+    <string name="yinsedui">PERAK</string>
+
+    <string name="hei">HITAM</string>
+
+    <string name="qinjinrutouzhu">Silahkan Masuk ke Permainan </string>
+
+    <string name="yanse">WARNA</string>
+
+    <string name="sanjun">THREEFORCES</string>
+
+    <string name="yingcaoyijia">ENG/ITA</string>
+
+    <string name="xiajiadejia">SPA/GER</string>
+
+    <string name="fajiahecao">FRA/HOL</string>
+
+    <string name="fenzujingcai">GROUP</string>
+
+    <string name="daorxiao">BESAR/KECIL</string>
+
+    <string name="julebuxuanze">Pilih 48 Klub Dari 6 Liga Eropa </string>
+
+    <string name="peilv45">Rate : (x) 45</string>
+
+    <string name="peilv455">Rate : (x) 4.5</string>
+
+    <string name="yingcaoyingelan">EPL(England)</string>
+
+
+    <string name="xijiaxibanya">LA LIGA (Spain)</string>
+
+
+    <string name="julebu48">Pilih dari enam liga Eropa 48 Klub</string>
+
+    <string name="fajiafaguo">LIGUE1(France)</string>
+
+
+    <string name="yingcaogelan">EPL (England)</string>
+
+    <string name="yijiadali">SERIE A(Italy)</string>
+
+    <string name="xiajiaxiya">LA LIGA (Spain)</string>
+
+    <string name="dejiadeguo">Bundesliga (Germany)</string>
+
+    <string name="hecaohe">Eredivisie (Holland)</string>
+
+    <string name="zhushu">GRUP</string>
+
+    <string name="fajiaguo">LIGUE 1(France)</string>
+
+    <string name="qiuduiyanse">KLAB WARNA</string>
+
+    <string name="weigu">WAI DICE</string>
+
+    <string name="quanwei">ALL DICE</string>
+
+    <string name="nodata">Tidak ada data</string>
+
+    <string name="da17">BESAR（1.9）\n 11 to17</string>
+
+    <string name="shuangdan">GENAPGANJIL</string>
+
+    <string name="honghei">WARNA</string>
+
+    <string name="zhengjiazai">Pemuatan...</string>
+
+    <string name="sorryyancuowu">kesalahan captcha</string>
+
+    <string name="sorrtshucuo">Anda harus memasukkan nomor rekening, minimal 6 - 20!</string>
+    <string name="sorryyouxcuo">Anda harus memasukkan email seperti XXX@XXX.XXX!</string>
+
+    <string name="sorrychancuo">Nama bank tidak dapat berisi karakter khusus,minimal 2 -20!</string>
+
+    <string name="sorrynopipei">Kata Sandi kedua tidak cocok!</string>
+
+    <string name="sorrypswcuo">Kata sandi harus berisi : angka dan huruf,minimal 8 -20!</string>
+    <string name="sorrynamecuo">Anda harus memasukkan huruf / angka, minimal 6 -9!</string>
+
+    <string name="email">E-mail</string>
+
+    <string name="jibenxinxi">Informasi Dasar</string>
+
+    <string name="xiumima">Ganti Kata Sandi</string>
+    <string name="scr_xiumima">SCR888 Ganti Kata Sandi</string>
+    <string name="new_password">password baru</string>
+    <string name="cunkuanzx">Deposit</string>
+
+    <string name="qukuanzx">Withdraw</string>
+
+    <string name="xiazhujilu">Taruhan Pending</string>
+
+    <string name="wancenjilu">Catatan Taruhan</string>
+
+    <string name="honglizx">Bonus</string>
+
+    <string name="yuyanqiehuan">Bahasa</string>
+
+    <string name="zhanghum">Akun</string>
+
+    <string name="tuijianlianjie">Link Ref</string>
+
+    <string name="dianhua">Telepon</string>
+
+    <string name="qukuanzh">Penarikan Rekening Bank</string>
+    <string name="qukuanzho">Penarikan Nomor Bank</string>
+
+    <string name="yinhangm">Penarikan Bank</string>
+
+    <string name="leijijiang">Total Bonus</string>
+
+    <string name="shengyujiang">Bonus Terakhir</string>
+
+    <string name="mimaerror">Password baru dan konfirmasi password tidak sama！</string>
+
+    <string name="errornull">Kolom konfirmasi password tidak boleh kosong!</string>
+
+    <string name="newmimanull">Kolom password baru tidak boleh kosong!</string>
+
+    <string name="oldmimanull">Kolom password lama tidak boleh kosong！</string>
+
+    <string name="xiumisucess">Sukses Merubah</string>
+
+    <string name="mimaerrorx">Kata Sandi tidak di isi atau panjangnya kurang dari 6</string>
+
+    <string name="qingxuanyh">Silahkan Pilih Bank</string>
+
+    <string name="deposit">Deposit</string>
+
+    <string name="cunkuansus">Setoran berhasil</string>
+
+    <string name="tijiaosibai">Gagal untuk deposit,silahkan periksa catatan deposit anda</string>
+
+    <string name="cunkuanlist">Daftar Deposit</string>
+
+    <string name="nojilu">Tidak ada catatan yang ditemukan!</string>
+
+    <string name="withdraw">Withdraw</string>
+
+    <string name="qukuanlist">Daftar Withdraw</string>
+
+    <string name="qukuansucces">Penarikan berhasil</string>
+
+    <string name="jine1">Jumlah</string>
+
+    <string name="xiahzujilu">Taruhan Pending</string>
+
+    <string name="eightqihuo">855 FOREX</string>
+
+    <string name="no">No：</string>
+
+    <string name="youxitype">Game:</string>
+    <string name="youxitype1">Game</string>
+
+    <string name="youxi1">Pasaran：</string>
+
+    <string name="wanfa1">Jenis：</string>
+
+    <string name="haoma1">NOMOR：</string>
+
+    <string name="peilv1">Nilai：</string>
+    <string name="youhui1">Potongan：</string>
+    <string name="xiazhujine">Jumlah Taruhan</string>
+    <string name="deal_num">ID Transfer：</string>
+    <string name="xiazhushijian">Waktu Taruhan：</string>
+    <string name="xiazhushijian1">Waktu Taruhan</string>
+
+    <string name="shuying">Menang Kalah：</string>
+
+    <string name="shurujine">Silahkan masukkan jumlah</string>
+
+    <string name="shenqingsuccess">Transfer bonus berhasil</string>
+
+    <string name="chongfu">Gagal mentransfer bonus, Silakan periksa catatan transfer Anda.</string>
+
+    <string name="zhuankuanhl">Transfer Bonus</string>
+
+    <string name="hongleix">Jenis Bonus:</string>
+
+    <string name="leixing">Jenis: </string>
+
+    <string name="shijian">Waktu：</string>
+
+    <string name="fenlei">Kategori：</string>
+
+    <string name="zhuangtai">Status：</string>
+
+    <string name="bianhao1">No：</string>
+
+    <string name="shengqinghl">Bonus Referral</string>
+
+    <string name="qingxyxm">Silahkan pilih permainan</string>
+
+    <string name="qingyxtype">Silahkan pilih permainan</string>
+
+    <string name="shibai">Gagal memperbarui</string>
+
+    <string name="chongfu1">Ada permintaan yang tertunda, tidak bisa mengulang aplikasi</string>
+
+    <string name="nohongli">Belum memiliki Bonus</string>
+
+    <string name="qingxyouxm">Silahkan Pilih Permainan</string>
+
+    <string name="beituijianlist">Daftar Referral</string>
+
+    <string name="kaihutime">Waktu Buka:</string>
+
+    <string name="starttime">Mulai Tanggal:</string>
+
+    <string name="jishutime">Berakhir Tanggal:</string>
+
+    <string name="shengqinglist">Terapkan untuk daftar bonus</string>
+
+    <string name="shengqingtitle">Terapkan untuk daftar bonus</string>
+
+    <string name="qingxshijian">Pilih Waktu</string>
+
+    <string name="jieshutime">Waktu Berakhir:</string>
+
+    <string name="chulizhong">Mengajukan</string>
+
+    <string name="chuliwancen">Selesai</string>
+
+    <string name="shengqingqx">Ditutup</string>
+
+    <string name="shenqts">Transfer Bonus:</string>
+
+    <string name="shengqinghl1">Hitungan Transfer:</string>
+
+    <string name="zhanghuyue1">Saldo Akun</string>
+
+    <string name="dangqmima">Kata sandi saat ini</string>
+
+    <string name="newmima">Kata sandi baru</string>
+
+    <string name="quexinmima">Konfirmasi kata sandi</string>
+
+    <string name="xiuga">KONFIRMASI</string>
+
+    <string name="shijian1">Time：</string>
+
+    <string name="xuanxiang">Pilihan：</string>
+
+    <string name="newshengqing">Mengajukan</string>
+
+    <string name="qitaleix">Jenis pengecualian lainnya</string>
+
+    <string name="gaunliyuan">Ditutup</string>
+
+    <string name="caoshi">Waktu Habis</string>
+
+    <string name="houtaichuli">Selesai</string>
+
+    <string name="oldmimaerror">Kesalahan sandi lama</string>
+
+    <string name="honglijine">Jumlah:</string>
+
+    <string name="twomimacuo">Sesi ID anggota telah berakhir</string>
+
+    <string name="mima">Kata Sandi</string>
+    <string name="zhucequemi">Konfirmasi kata sandi</string>
+
+    <string name="zhucexuan">SILAHKAN PILIH</string>
+
+    <string name="zhucezhanghu">Nama Bank</string>
+
+    <string name="zhucezhanghao">No Rekening Bank</string>
+    <string name="zhucetui">Referral</string>
+
+    <string name="dianziyoujian">Email</string>
+
+    <string name="yanzhengma">Kode</string>
+
+    <string name="livenumber">NOMOR LIVE</string>
+
+    <string name="do_you_want_to_load_main">Apakah Anda ingin kembali ke halaman utama?</string>
+
+    <string name="bet_info">INFORMASI TARUHAN:</string>
+
+    <string name="bet_num">Jumlah</string>
+
+    <string name="shijitouzhu">Jumlah bersih：</string>
+
+    <string name="touzhuhao">Bertaruh di</string>
+
+    <string name="combination">KOMBINASI</string>
+
+    <string name="discount">Diskon</string>
+
+    <string name="zodiapeilv">Hadiah</string>
+
+    <string name="xiazhujinee">Jumlah bertaruh：</string>
+    <string name="qihao1">Periode：</string>
+    <string name="zhucezhanghao1">Nama Akun</string>
+
+    <string name="teshuzifu">Nama Akun Berisi Simbol Khusus</string>
+
+    <string name="zhanghunouse">Rekening bank tidak tersedia</string>
+
+    <string name="xinxierror">Informasi Registrasi tidak benar</string>
+
+    <string name="userexist">Nama akun Sudah Ada</string>
+
+    <string name="zhucebibie">Mata Uang</string>
+
+    <string name="gaomianyx">Khmer Gaming</string>
+
+    <string name="tiyubocai1">MG SLOTS</string>
+
+    <string name="zhenrenyule">SPORTS 2</string>
+
+    <string name="zhenrenyule3">CASINO 3</string>
+
+    <string name="zhenrenyule4">AFB SPORTS</string>
+
+    <string name="qihuo">W88 CASINO</string>
+
+    <string name="zhenrenyule2">855 FOREX</string>
+
+    <string name="tiyubocai2">TANGKAS</string>
+
+    <string name="honglijine1">Jumlah：</string>
+
+    <string name="yuebuzhu">Maaf, Saldo tidak cukup,Silahkan melakukan deposit</string>
+
+    <string name="double1">GENAP </string>
+
+    <string name="xiao1">KECIL</string>
+
+    <string name="dandan1">GANJIL </string>
+
+    <string name="cunkuanxiao">Jumlah setoran harus lebih dari</string>
+
+    <string name="cunkuanda">Jumlah setoran harus kurang dari </string>
+
+    <string name="qukuanda">Jumlah penarikan harus lebih dari</string>
+
+    <string name="qukuanxiao">Jumlah penarikan harus kurang dari</string>
+
+    <string name="leixingcun">Jenis ：Deposit</string>
+
+    <string name="feileiqukuan">Jenis ：Penarikan</string>
+
+    <string name="betshibai">Taruhan gagal </string>
+
+    <string name="cunzai">Sudah ada</string>
+
+    <string name="wanpeilv">Odds：</string>
+
+    <string name="beituijianzh">Nama Pengguna:</string>
+
+    <string name="tuijianbibie">Mata Uang：</string>
+
+    <string name="tuijianlic">Nama Pengguna：</string>
+
+    <string name="qiu">BOLA</string>
+
+    <string name="saibao">BOLA SICBO</string>
+
+    <string name="nadata">Tidak ada data</string>
+
+    <string name="tdejiadeguo">Bundesliga (Germany)</string>
+
+    <string name="tfajiafaguo">LIGUE 1 (France)</string>
+
+    <string name="thecaohelan">Eredivisie (Holland)</string>
+
+    <string name="txijiaxibanya">LA LIGA (Spain)</string>
+
+    <string name="banknoexist">Nomor Bank sudah ada</string>
+
+    <string name="aleixing">Jenis ：</string>
+
+    <string name="cunkuanlist1">Status：</string>
+
+    <string name="lunpan">BOLA ROULETTE</string>
+
+    <string name="zhuhe36qiu">KELIPATAN 36 BOLA</string>
+
+    <string name="txiaoshuang">S\nGENAP</string>
+
+    <string name="tdashuang">B\nGENAP</string>
+
+    <string name="txiaodan">S\nGANJIL</string>
+
+    <string name="tdadan">B\nGANJIL</string>
+
+    <string name="honglizhongxin">Status：</string>
+
+    <string name="helan">Eredivisie\n\n(Holland)</string>
+
+    <string name="faguo1">LIGUE1\n\n(France)</string>
+
+    <string name="yincao">EPL\n\n(England)</string>
+
+    <string name="dejia">Bundesliga </string>
+
+    <string name="xiane">Batas taruhan kurang dari nominal!</string>
+
+    <string name="xibanya">(Spain)</string>
+
+    <string name="deguo">(Germany)</string>
+
+    <string name="xijia">LA LIGA</string>
+
+    <string name="shuziyouxi1">NUMBER GAMES</string>
+
+    <string name="caoguobet">Batas taruhan kurang dari Maks Total taruhan！</string>
+
+    <string name="regphone">Telepon</string>
+
+    <string name="release_to_load_app">Menurunkan untuk pemulihan</string>
+
+    <string name="release_to_refresh_app">Lepaskan untuk pemulihan</string>
+
+    <string name="submit_sure">KONFIRMASI</string>
+
+    <string name="betting_limit_less_than_nominal">Batas taruhan kurang dari nominal!</string>
+
+    <string name="betting_limit_more_than_nominal">Batas taruhan lebih dari nominal!</string>
+
+    <string name="betting_total_limit_more_than_nominal">Total batas taruhan lebih dari nominal!</string>
+
+    <string name="pull_up_to_load_next_page">Tarik atas untuk memuat halaman berikutnya</string>
+
+    <string name="not_enough_balance_please_deposit_first">Maaf, Saldo tidak cukup,Silahkan melakukan deposit</string>
+
+    <string name="SINGAPORE">SINGAPORE</string>
+
+    <string name="TAIPEI">TAIPEI</string>
+
+    <string name="KUALA_LUMPUR">KUALA_LUMPUR</string>
+
+    <string name="HONGKONG">HONGKONG</string>
+
+    <string name="MALAYSIA">MALAYSIA</string>
+
+    <string name="CHINA">CHINA</string>
+
+    <string name="HK4D">HK4D</string>
+
+    <string name="CAMBODIA">CAMBODIA</string>
+
+    <string name="MACAU">MACAU</string>
+
+    <string name="CANADA4D">CANADA4D</string>
+
+    <string name="update_bonus_was_successful">Perbarui bonus berhasil</string>
+
+    <string name="full_half_goal">Full/Half/Goal</string>
+    <!--"Keno2Jin"="Emas";
+"Keno2Mu"="Kayu";
+"Keno2Shui"="Air";
+"Keno2Huo"="Api";
+"Keno2Tu"="Bumi";
+"Keno2He"="Seri";
+"Keno2Big"="Besar";
+"Keno2Small"="Kecil";
+"Keno2Shuang"="Genap";
+"Keno2Dan"="Ganjil";
+"Keno2XiaoDan"="K Ganjil";
+"Keno2XiaoShuang"="K Genap";
+"Keno2DaDan"="B Ganjil";
+"Keno2DaShuang"="B Genap";
+
+"Keno2FullXiaoDan"="Kecil Ganjil";
+"Keno2FullXiaoShuang"="Kecil Genap";
+"Keno2FullDaDan"="Besar Ganjil";
+"Keno2FullDaShuang"="Besar Genap";
+
+"Keno2DaXiao"="BIG SMALL";
+"Keno2ShuangDan"="EVEN ODD";
+"Keno2ShangXia"="UP DOWN";
+"Keno2JiOu"="ODDS EVENS";
+"Keno2ZuHe"="COMBINATION";
+"Keno2WuXing"="5 ELEMENT";
+"Keno2Ji"="Ganjil";
+"Keno2Ou"="Genap";
+"Keno2Shang"="Atas";
+"Keno2Xia"="Bawah";
+
+"Keno2BetViewTip1"="INFORMASI BET";
+"Keno2BetViewTip2"="Negara/Area:";
+"Keno2BetViewTip3"="Taruhan Pada:";
+"Keno2BetViewTip4"="Nilai:";
+"Keno2BetViewTip5"="Jumlah:";
+"Keno2BetViewTip6"="Jumlah Bersih:";
+"Keno2BetViewTip7"="Ajukan";
+"Keno2BetViewTip8"="Batal";
+
+"Keno2XuanZe"="Memukul";
+"Keno2PeiLv"="faktor";
+"Keno2Total"="Jumlah";
+"Keno2Jinujieguo"="KEPUTUSAN KENO";
+"Keno2Shengyushijian"="MASA SISA";
+
+"Keno2BetTip1"="Maaf, sila periksa jumlah yang anda masukkan!";
+"Keno2BetTip2"="Maaf, jumlah yang anda buat taruhan kurang daripada had minimum!";
+"Keno2BetTip3"="Maaf, jumlah pertaruhan anda lebih besar daripada had maksimum!";
+"Keno2BetTip4"="Maaf, tidak cukup dana, Silakan deposit Pertama！";
+"Keno2BetTip5"="Maaf, tidak ada hasil yang ditemukan！";
+"Keno2BetTip6"="PEARL BALL";
+
+"DCKeno2Locationhanguo"="KOREA";
+"DCKeno2Locationriben"="JAPAN";
+"DCKeno2Locationyuenan"="VIETNAM";
+"DCKeno2Locationtaiguo"="THAILAND";
+"DCKeno2Locationyinni"="JAKARTA";-->
+    <!--Keno-->
+    <string name="tie">Seri</string>
+    <string name="Gold">Emas</string>
+    <string name="wood">Kayu</string>
+    <string name="water">Air</string>
+    <string name="fire">Api</string>
+    <string name="earth">Bumi</string>
+    <string name="series">PENGELUARAN</string>
+    <string name="KOREA">KOREA</string>
+    <string name="JAPAN">JAPAN</string>
+    <string name="VIETNAM">VIETNAM</string>
+    <string name="THAILAND">THAILAND</string>
+    <string name="JAKARTA">JAKARTA</string>
+    <string name="country_area">Negara/Area：</string>
+    <string name="country_area1">Negara/Area</string>
+    <string name="element5">5 ELEMENT</string>
+    <string name="COMBINATION">COMBINATION</string>
+    <string name="EVEN_ODD">EVEN ODD</string>
+    <string name="BIG_SMALL">BIG SMALL</string>
+    <string name="time_left">MASA SISA</string>
+    <string name="keno_results">Hasil KENO</string>
+    <string name="up">Atas</string>
+    <string name="down">Bawah</string>
+    <string name="ODDS">Ganjil</string>
+    <string name="EVENS">Genap</string>
+    <string name="rebetting">Rebetting</string>
+    <string name="hit">Memukul</string>
+    <string name="up_down">UpDown</string>
+    <string name="odds_evens">ODDS EVENS</string>
+    <string name="total">Jumlah:</string>
+    <string name="zhuzai">PEARL BALL</string>
+    <string name="nominal_betting_limit_exceeded_min">Maaf, jumlah yang anda buat taruhan kurang daripada had minimum!</string>
+    <string name="nominal_betting_limit_exceeded_max">Maaf, jumlah pertaruhan anda lebih besar daripada had maksimum!</string>
+    <string name="small">Kecil</string>
+    <string name="version">versi saat ini</string>
+
+    <string name="qieerxi">01 MANCHESTER CITY</string>
+    <string name="mancesitecen">07 MANCHESTER-UNITED</string>
+    <string name="asenna">13 TOTTENHAM HOTSPUR</string>
+    <string name="mancesitelian">19 LIVERPOOL</string>
+    <string name="tuotenamureci">25 CHELSEA</string>
+    <string name="liwupu">31 ARSENAL</string>
+    <string name="lianpudun">37 BURNLEY FC</string>
+    <string name="siwangxi">43 EVERTON</string>
+    <string name="yijiayidali">SERIE A\n\n(Italy)</string>
+    <string name="youwentusi">02 JUVENTUS</string>
+    <string name="luoma">08 NAPOLI</string>
+    <string name="laqiao">14 AS ROMA</string>
+    <string name="fuoluolunsa">20 INTER MILAN</string>
+    <string name="naboli">26 LAZIO</string>
+    <string name="relaya">32 AC MILAN</string>
+    <string name="sangpuduoliya">38 ATLANTA</string>
+    <string name="guojimilan">44 FIORENTINA</string>
+    <string name="dasailuola">03 BARCELONA</string>
+    <string name="huangjiamadeli">09 ATLETICO MADRID</string>
+    <string name="madelijingji">15 REAL MADRID</string>
+    <string name="walunxiya">21 VALENCIA</string>
+    <string name="saiweiliya">27 VILLARREAL</string>
+    <string name="biliyaleiyaer">33 REAL BETIS</string>
+    <string name="bierbae">39 SEVILLA</string>
+    <string name="saierta">45 GETAFE</string>
+    <string name="bairenmulihei">04 BAYERN MUNICH</string>
+    <string name="woerfusibao">10 SCHALKE 04</string>
+    <string name="mengxing">16 TSG HOFFENHEIM</string>
+    <string name="lewokusen">22 BORUSSIA DORTMUND</string>
+    <string name="aogesibao">28 BAYER LEVERKUSEN</string>
+    <string name="shaerke">34 RB LEIPZIG</string>
+    <string name="boluxiyaduo">40 VFB STUTTGART</string>
+    <string name="huofenhaimu">46 FRANKFURT EINTRACHT</string>
+    <string name="balisengerman">05 PARIS SAINT GERMAIN</string>
+    <string name="liang">11 MONACO</string>
+    <string name="molage">17 OLYMPIQUE LYONNAIS</string>
+    <string name="masai">23 OLYMPIQUE DE MARSEILLE</string>
+    <string name="shengaidian">29 RENNES</string>
+    <string name="boerduo">35 GIRONDINS DE BORDEAUX</string>
+    <string name="lier">41 SAINT ETIENNE</string>
+    <string name="mengbiliai">47 NICE</string>
+    <string name="hecaohelan">Eredivisie(Holland)</string>
+    <string name="aiyinghuowen">06 PSV EINDHOVEN</string>
+    <string name="ajitu">12 AJAX AMSTERDAM</string>
+    <string name="helanaerke">18 AZ ALKMAAR</string>
+    <string name="feiyeruode">24 FEYENOORD ROTTERDAM</string>
+    <string name="weitesai">30 FC UTRECHT</string>
+    <string name="zewole">36 SBV VITESEE</string>
+    <string name="hailunweien">42 ADO DEN HAAG</string>
+    <string name="gaoninggen">48 SC HEERENVEEN</string>
+    <string name="forex">Forex</string>
+    <string name="w88_game">w88 slots</string>
+    <string name="bestgame_slots">bestgame slots</string>
+    <string name="start_time">Waktu mulai</string>
+    <string name="end_time">Akhir waktu</string>
+    <string name="all_choose">Pilih</string>
+    <string name="casino">Kasino</string>
+    <string name="sports">Olahraga</string>
+    <string name="provider">Pemberi</string>
+    <string name="wash_code">Pergantian</string>
+    <string name="check_wash_code">Turnover</string>
+    <string name="MY_market">MY ODDS</string>
+    <string name="ID_market">ID ODDS</string>
+    <string name="HK_market">HK ODDS</string>
+    <string name="EU_market">EU ODDS</string>
+    <string name="remak">Berita</string>
+    <string name="master_balance">Saldo Utama</string>
+    <string name="china_lottery_balance">HC Keseimbangan</string>
+    <string name="start_game">Main sekarang</string>
+    <string name="buy">Membeli di</string>
+    <string name="take_out">Beli keluar</string>
+    <string name="try_again_later">Sedang diproses, silakan coba lagi nanti</string>
+    <string name="total_amount">Jumlah total</string>
+    <string name="transfer_center">Transfer Center</string>
+    <string name="note">catatan</string>
+    <string name="accepted">Accepted</string>
+    <string name="waiting">Waiting</string>
+    <string name="rejected">Rejected</string>
+    <string name="No">No：</string>
+    <string name="Code">Code：</string>
+    <string name="Title">Judul：</string>
+    <string name="Join_Date">Bergabung Tanggal：</string>
+    <string name="Start_Date">Mulai Tanggal：</string>
+    <string name="End_Date">Tanggal akhir：</string>
+    <string name="Bonus">Bonus：</string>
+    <string name="Turnover">Turnover：</string>
+    <string name="Status">Status：</string>
+    <string name="Promotion_list">Daftar Promosi</string>
+    <string name="type">Jenis：</string>
+    <string name="game_name">Game name：</string>
+    <string name="bet_list">DAFTAR BET</string>
+    <string name="new_2d_introduce">nomor1*nomor2*nomor3#nominal pasangan+nomor1*nomor2*nomor3#nominal pasangan ATAU nomor1 x nominal pasangan nomor2 x nominal pasangan </string>
+    <string name="Keno">Keno</string>
+    <string name="Win_Report">Win Laporan</string>
+    <string name="Result">Hasil</string>
+    <string name="Rules">Aturan</string>
+    <string name="Search">Pencarian</string>
+    <string name="Today">Hari ini</string>
+    <string name="Yesterday">Kemarin</string>
+    <string name="No1">No</string>
+    <string name="Dates">Tanggal</string>
+    <string name="Title1">Judul</string>
+    <string name="Result1">Hasil</string>
+    <string name="Detail">Detail</string>
+    <string name="Over_Under">Besar/Kecil</string>
+    <string name="Odd_Even">ganjil/genap</string>
+    <string name="Range">Jarak</string>
+    <string name="Smallest_Number">Nomor terkecil</string>
+    <string name="Biggest_Number">Nomor terbesar</string>
+    <string name="ThisWeek">Kemarin</string>
+    <string name="LastWeek">Minggu ini</string>
+    <string name="ThisMonth">Minggu lalu</string>
+    <string name="LastMonth">Bulan ini</string>
+    <string name="Order_No">Nomor pesanan</string>
+    <string name="Bet_Time">Waktu bertaruh</string>
+    <string name="Name">Nama</string>
+    <string name="Ticket_Id_TIME">Id tiket/Waktu</string>
+    <string name="Type">Mengetik</string>
+    <string name="Bet">Bertaruh</string>
+    <string name="Odds">Kemungkinan</string>
+    <string name="RECENT_ORDERS">RECENT ORDERS</string>
+    <string name="Total">Total:</string>
+    <string name="Frequence">Frekuensi</string>
+    <string name="Parlay">Parlay</string>
+    <string name="BetCredit">Taruhan kredit:</string>
+    <string name="OutStanding">Titik taruhan:</string>
+    <string name="LAST_GAMES">PERTANDINGAN TERAKHIR</string>
+    <string name="Stake">jumlah:</string>
+    <string name="Max_Payout">Pembayaran Maksimum</string>
+    <string name="Bet_Limit">Membatasi bertaruh</string>
+    <string name="Reset">RESET</string>
+    <string name="OverOdd">OverOdd</string>
+    <string name="OverEven">OverEven</string>
+    <string name="UnderOdd">UnderOdd</string>
+    <string name="UnderEven">UnderEven</string>
+    <string name="loading">Memuat</string>
+    <string name="Loading_completed">Memuat Selesai</string>
+    <string name="prize">Hadiah</string>
+    <string name="List">No</string>
+    <string name="pool">Pools</string>
+    <string name="number_4d">Nomor</string>
+    <string name="period">Periode</string>
+    <string name="Bet_Type">Jenis</string>
+    <string name="Amount">Jumlah</string>
+    <string name="number_must_4">Angka harus 4 digit</string>
+    <string name="right_amount">Harap masukkan jumlah yang sesuai</string>
+    <string name="sure_bet">Silakan konfirmasi taruhan Anda!</string>
+    <string name="pool_period">Pools/Periode</string>
+    <string name="Bet_Amount">Tapi/Jumlah</string>
+    <string name="Success">Keberhasilan</string>
+    <string name="need_activate">Anda perlu menghubungi Layanan Pelanggan kami untuk mengaktifkan akun Anda.</string>
+    <string name="best_game_slots">BestGame</string>
+    <string name="netent_game_slots">NETENT Slot</string>
+    <string name="playstar_game_slots">PLAYSTAR Slot</string>
+    <string name="xe88_game_slots">Xe88 Slot</string>
+    <string name="haba_game_slots">HABA Slot</string>
+    <string name="w88_game_slots">W88 Slot</string>
+    <string name="mg_game_slots">MG Slot</string>
+    <string name="pt_game_slots">PT Slot</string>
+    <string name="fish_game_slots">Fish Slot</string>
+    <string name="sa_game_slots">SA Slot</string>
+    <string name="joker_game_slots">Joker Slot</string>
+    <string name="mega_game_slots">Mega888 Slot</string>
+    <string name="jdb_game_slots">JDB Slot</string>
+    <string name="klasPoker">KlasPoker</string>
+    <string name="msg">Pesan</string>
+    <string name="set_language">Set Language</string>
+    <string name="lottery4d">Lottery 4D</string>
+    <string name="more">Lebih</string>
+    <string name="user">User</string>
+    <string name="contact">Kontak</string>
+    <string name="Contact_Us">Hubungi kami</string>
+    <string name="please_login">Silahkan masuk terlebih dahulu</string>
+    <string name="exit_login">Keluar</string>
+    <string name="upload_receipt">Pilih File</string>
+    <string name="No_file_chosen">Tidak ada file yang dipilih</string>
+    <string name="withdraw_failed">Anda telah mengirimkan, Silakan periksa daftar penarikan</string>
+    <string name="download">Download</string>
+    <string name="play_now">bermain Sekarang</string>
+    <string name="withdraw_hint">Untuk keamanan, kami hanya menerima rekening yang sudah anda daftarkan sebelumnya.</string>
+    <string name="Registration_Time">Waktu Registrasi</string>
+    <string name="Last_Login">Masuk Terakhir</string>
+    <string name="afb88_sports">AFB88 OLAHRAGA</string>
+    <string name="afb88_sports_h5">AFB88_H5 OLAHRAGA</string>
+    <string name="afb1188_sports">AFB OLAHRAGA</string>
+    <string name="Withdraw_Password">Tarik Kata Sandi</string>
+    <string name="FRONT_2D">2D DEPAN</string>
+    <string name="MID_2D">2D TENGAH</string>
+    <string name="check">memeriksa</string>
+    <string name="awbet_username_hint">DIWAJIBKAN 6-9 DIGIT (HURUF AND ANGKA)</string>
+    <string name="awbet_password_hint">PASSWORD HARUS KOMBINASI HURUF DAN ANGKA</string>
+    <string name="awbet_password_again_hint">SAMAKAN DENGAN KATA SANDI DIATAS</string>
+    <string name="awbet_currency_hint">PILIH MATA UANG YANG SESUAI</string>
+    <string name="awbet_fullname_hint">MAKSIMAL 30 KARAKTER</string>
+    <string name="awbet_bank_num_hint">NOMOR REKENING AND NAMA BANK HARUS VALID</string>
+    <string name="awbet_tel_hint">DIREKOMENDASIKAN NOMOR YANG AKTIF WHATSAPP</string>
+    <string name="awbet_referrer_hint">DAPAT DIKOSONGKAN JIKA TIDAK DIPERLUKAN</string>
+    <string name="awbet_code_hint">SESUAIKAN KODE DISAMPING</string>
+    <string name="Select_birth">Pilih tanggal lahirmu</string>
+    <string name="Select_birth_error">isi sesuai dengan data pada kartu ID Anda</string>
+    <string name="is_18">*Saya berusia di atas 18 tahun dan telah membaca <u>syarat &#038; ketentuan yang berlaku</u>, <u>Tanggung Jawab Perjudian</u> &#038; <u>Kebijakan Privasi</u> sebagaimana dipublikasikan di situs</string>
+    <string name="Account_Balance">Saldo</string>
+    <string name="Total_Bonus">Riwayat Bonus</string>
+    <string name="Last_Bonus">Bonus Terakhir</string>
+    <string name="awbet_deposit_hint1">Kirim tanda terima ke livechat kami jika transfer dana menggunakan metode CDM / ATM.</string>
+    <string name="awbet_deposit_hint2">Tolong baca terlebih dahulu syarat dan ketentuan sebelum memilih.</string>
+    <string name="awbet_deposit_hint3">Catatan: Silakan hubungi kami jika transfer dana dari rekening bank lain atau mengalami kesulitan untuk mengisi formulir ini.</string>
+    <string name="awbet_withdraw_hint1">Nomor rekening bank harus sesuai dengan nama lengkap yang terdaftar.</string>
+    <string name="awbet_withdraw_hint2">Catatan: AWbet tidak dapat memproses penarikan jika ada data yang salah atau berbeda. tolong hubungi kami untuk bantuan.</string>
+    <string name="local_bank">LOCAL BANK TRANSFER</string>
+    <string name="help2pay_deposit">Help2Pay Deposit</string>
+    <string name="day">Hari</string>
+    <string name="month">Bulan</string>
+    <string name="year">Tahun</string>
+    <string name="coin365_min">*Setoran minimum 50</string>
+    <string name="coin365_max">*Setoran maximum (tidak terbatas)</string>
+    <string name="without_promotions">Proses Tanpa Bonus</string>
+    <string name="bank_number_empty">Rekening bank tidak boleh kosong</string>
+</resources>

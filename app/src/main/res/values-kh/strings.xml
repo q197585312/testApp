@@ -1,0 +1,867 @@
+<resources>
+    <!-- 泰国彩票 -->
+    <string name="fast_bet">FAST BET</string>
+    <string name="D1">1D</string>
+    <string name="D2">2D</string>
+    <string name="D3">3D</string>
+    <string name="top_1d">1D TOP</string>
+    <string name="bottom_1d">1D BOTTOM</string>
+    <string name="enter_correct_number">សូមបញ្ចូលលេខត្រឹមត្រូវ</string>
+    <string name="choice_big_small">សូមជ្រើសទំហំ</string>
+    <string name="top_amount">Top ចំនួនប្រាក់</string>
+    <string name="infront_amount">Infront ចំនួនប្រាក់</string>
+    <string name="bottom_amount">Bottom ចំនួនប្រាក់</string>
+    <string name="toproll_amount">Top Roll ចំនួនប្រាក់</string>
+    <string name="top_amount_2d">Top ចំនួនប្រាក់</string>
+    <string name="top_amount_3d">Top ចំនួនប្រាក់</string>
+    <string name="bottom_amount_2d">Bottom ចំនួនប្រាក់</string>
+    <string name="toproll_amount_2d">Top Roll ចំនួនប្រាក់</string>
+    <string name="toproll_amount_3d">Top Roll ចំនួនប្រាក់</string>
+    <string name="infront_amount_3d">Infront ចំនួនប្រាក់</string>
+    <string name="bottom_amount_3d">Bottom ចំនួនប្រាក់</string>
+    <!-- 转账界面 -->
+    <string name="master_acc">គណនីចម្បង :</string>
+    <string name="saba_yue_money">កីឡា SABA(គណនី) :</string>
+    <string name="saba_noclear_money">កីឡា SABA(មិនទាន់សម្រេច) :</string>
+    <string name="list2_ib">SBO SPORTS</string>
+    <string name="klaspoker_game_money">KlasPoker(គណនី) :</string>
+    <string name="Joker123_game_money">Joker123(គណនី) :</string>
+    <string name="newkeno_game_money">New Keno(គណនី) :</string>
+    <string name="transfer_to_newkeno">សូមផ្ទេរចំនួនទឹកប្រាក់ដើម្បីភ្នាល់ជាមួយ NewKeno</string>
+    <string name="afbcasheu_klaspoker_game_money">Afbcash Poker(គណនី) :</string>
+    <string name="from">ពី：</string>
+    <string name="to">ទៅ：</string>
+    <string name="write_money">ចំនួនទឹកប្រាក់：</string>
+    <string name="btn_submit">ដាក់ស្នើរ</string>
+    <string name="transferacc">សេវាផ្ទេរប្រាក់</string>
+    <string name="list1_master_acc">គណនីចម្បង</string>
+    <string name="list2_saba">កីឡា SABA</string>
+    <string name="list4_pt">PT Slots</string>
+    <string name="list5_klaspoker">KlasPoker</string>
+    <string name="money_null">ចំនួនទឹកប្រាក់ភ្នាល់វិលជុំសូមអភ័យទោសមិនអាចទទេ</string>
+    <string name="choice_again">សូមជ្រើសថ្មីនេះ</string>
+    <string name="transferacc_list">បញ្ជីការផ្ទេរ</string>
+    <string name="All_Markets">ហាងឆេងគោល</string>
+    <string name="main_Markets">បន្ទាប់បន្សំ</string>
+    <string name="more_Markets">ទាំងអស់</string>
+    <!-- 程序异常处理字符串 -->
+    <!--afb33不同-->
+    <!--afb不同-->
+    <string name="withdraw_bonus">ដកប្រាក់រង្វាន់</string>
+    <string name="regex_password">ពាក្យសម្ងាត់ត្រូវតែមានអក្សរនិងលេខករណី</string>
+    <string name="change_passwor_succ">ផ្លាស់ប្តូរពាក្យសម្ងាត់ជោគជ័យ</string>
+    <string name="change_passwor_fail">ផ្លាស់ប្តូរពាក្យសម្ងាត់បរាជ័យ</string>
+    <string name="recharge_card">បញ្ចូលទឹកប្រាក់កាត</string>
+    <string name="recharge_card_num">កាតលេខ</string>
+    <string name="recharge_card_passwrod">ពាក្យសម្ងាត់កាត</string>
+    <string name="recharge_card_num_error">កាតបញ្ចូលទឹកប្រាក់ចំនួនមិនអាចទទេ</string>
+    <string name="recharge_card_passwrod_error">ពាក្យសម្ងាត់កាតបញ្ចូលទឹកប្រាក់មិនអាចទទេ</string>
+    <string name="recharge_card_succeed">បញ្ចូលដោយជោគជ័យ</string>
+    <string name="recharge_card_fail">បញ្ចូលបរាជ័យ</string>
+    <!--t28不同-->
+    <string name="withdraw_bonus_error">Failed to Withdraw Bonus, Please check your bonus record!</string>
+    <string name="transfer_bouns_error">amount need bigger than</string>
+    <!--we1paly不同-->
+    <!--idafb不同-->
+    <!--wsands不同-->
+    <!--ezw888不同-->
+    <!--wanbao33不同-->
+    <!--88gasia不同-->
+    <!--ocn777不同-->
+    <!--ubet368不同-->
+
+    <string name="crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="crash_mail_passwd">Nangyangkeji123</string>
+    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="crash_mail_port">465</string>
+    <!--base-->
+    <string name="update_msg">កំណែថ្មីលឿនជាងមុនក្នុងការទាញយកនៅពេលនេះ!</string>
+    <string name="version_update">ធ្វើឱ្យទាន់សម័យកំណែ</string>
+    <string name="update">ធ្វើឱ្យទាន់សម័យ</string>
+    <string name="app_update">ធ្វើឱ្យទាន់សម័យកម្មវិធីដែលបាន</string>
+    <string name="later">ក្រោយមកទៀត</string>
+    <string name="failed_to_login">ការចូលបានបរាជ័យ</string>
+    <string name="invalid_amount_bet">Invalid amount bet</string>
+    <string name="current_version">កំណែបច្ចុប្បន្ន</string>
+    <string name="new_version">កំណែថ្មី</string>
+    <!--Prompt-->
+    <string name="double_click_exit_application">ចុចទ្វេដងដើម្បីចេញពីកម្មវិធី</string>
+    <string name="mix_parlay">Mix Parlay</string>
+    <string name="no_data">បច្ចុប្បន្ននេះមិនមានទិន្នន័យ</string>
+    <string name="pull_down_to_load_previous">ទម្លាក់ចុះមុនផ្ទុក</string>
+    <string name="pull_down_to_refresh">ធ្វើឱ្យស្រស់ទាញចុះ</string>
+    <string name="not_allowed_to_bet">បច្ចុប្បន្ននេះវាមិនបានអនុញ្ញាតឱ្យភ្នាល់មិនបាន</string>
+    <string name="edit">កម្មវិធីនិពន្ធ</string>
+    <string name="betting_terms">ធាតុនៃការភ្នាល់:</string>
+    <string name="win">ការទទួលជ័យជម្នះ</string>
+    <string name="selected_all">ជ្រើសទាំងអស់</string>
+    <string name="reverse_selection">មិនជ្រើស</string>
+    <string name="coming_soon">ក្រោមការសាងសង់...</string>
+    <string name="sure">ចាកចេញ</string>
+    <string name="confirm_or_not">បញ្ជាក់វា?</string>
+    <string name="cancel">បោះបង់</string>
+    <string name="submit">ដាក់ស្នើ</string>
+    <string name="select_date">ជ្រើសរើសថ្ងៃ</string>
+    <string name="six_day">6day</string>
+    <string name="no_records">no records</string>
+    <!--base-->
+
+    <string name="bet_amount">ចំនួនទឹកប្រាក់នៃការភ្នាល់</string>
+    <string name="encounter">ប្រឆាំងនឹងការ</string>
+    <string name="amount">ចំនួនទឹកប្រាក់</string>
+
+    <string name="bet">ការភ្នាល់</string>
+    <string name="delete">លុប</string>
+    <string name="date">កាលបរិច្ឆេទ</string>
+    <string name="betting_state">ស្ថានភាព</string>
+    <string name="amount_of_effective">ចំនួនទឹកប្រាក់ដែលមានប្រសិទ្ធិភាព</string>
+    <string name="win_or_lose">ចាញ់និងឈ្នះ</string>
+    <string name="commission">គណៈកម្មការ</string>
+    <string name="match">ព្រឹត្តការណ៍</string>
+    <string name="state">ស្ថានភាព</string>
+    <string name="result">លទ្ឋផល</string>
+    <string name="Running">RUNNING</string>
+    <string name="input_bet_amount_please">សូមបញ្ចូលទឹកប្រាក់ភ្នាល់ចំនួនទឹកប្រាក់</string>
+    <string name="odds">ហាងឆេង</string>
+    <string name="max_bet">ភ្នាល់អតិបរមា</string>
+    <string name="min_bet">ការភ្នាល់អប្បបរមា</string>
+    <string name="connect_server_fail">បានបរាជ័យក្នុងការតភ្ជាប់ទៅម៉ាស៊ីនបម្រើ</string>
+    <string name="clearance_should_be_more_than_three">ចាក់បកចាំបាច់ត្រូវជ្រើសយ៉ាងហោចណាស់បីដងឬច្រើនជាងនេះនៅក្នុងការប្រកួតលីកនេះ</string>
+
+    <!--RegisterActivity-->
+    <string name="input_username">គណនី</string>
+    <string name="input_password">ពាក្យសម្ងាត់</string>
+    <string name="register"> ចុះឈ្មោះ</string>
+    <string name="login">ចូល</string>
+    <string name="username_cannot_null">ឈ្មោះអ្នកប្រើមិនអាចទទេ</string>
+    <string name="password_cannot_null">ពាក្យសម្ងាត់មិនអាចទទេ</string>
+    <string name="username_error">កំហុសអ្នកប្រើ</string>
+    <string name="password_error">ពាក្យសម្ងាត់មិនត្រឹមត្រូវ</string>
+
+    <!--MainTab Bottom-->
+    <!--MainHomeFragment-->
+
+    <string name="live_entertainment">កាស៊ីណូ</string>
+    <string name="keno">គីណូ</string>
+    <string name="number">ល្បែងលេខ</string>
+    <string name="game">ស្លតហ្គេម</string>
+    <string name="tw_game"> ឆ្នោត</string>
+    <string name="texas_holdem">ល្បែងបៀ</string>
+    <string name="promotions">ការផ្តល់ជូន</string>
+    <!--Button-->
+    <string name="enter">បញ្ចូល</string>
+
+    <!--HomeFragment-->
+    <!--SportFragment-->
+    <string name="i_sport_betting">I កីឡា</string>
+    <string name="s_sport_betting">S កីឡា​</string>
+    <string name="afb_sport_betting">AFB កីឡា</string>
+    <string name="afb2_sport_betting">AFB2 កីឡា</string>
+    <!--EntertainmentFragment-->
+    <string name="ob_live_entertainment">ALLBET កាស៊ីណូ</string>
+    <string name="wm_live_entertainment">WM កាស៊ីណូ</string>
+    <string name="sexy_live_entertainment">Sexy កាស៊ីណូ</string>
+    <string name="evo_live_entertainment">Evo កាស៊ីណូ</string>
+    <string name="w88_live_entertainment">W88 កាស៊ីណូ</string>
+    <string name="gold_live_entertainment">GOLD កាស៊ីណូ</string>
+    <string name="dg_live_entertainment">DG កាស៊ីណូ</string>
+    <string name="ag_live_entertainment">AG កាស៊ីណូ</string>
+    <string name="sa_live_entertainment">SA GAMING កាស៊ីណូ</string>
+    <string name="gd_live_entertainment">GD កាស៊ីណូ </string>
+    <!--KenoHomeFragment-->
+    <string name="indonesia_lottery">ឆ្នោត</string>
+    <!--DigitalGamesFragment-->
+    <string name="live_number">លេខផ្សាយផ្ទាល់</string>
+    <!--GamesFragment-->
+    <string name="poker">ល្បែងបៀ</string>
+    <!--TWGameGragement-->
+    <!--BallGameActivity-->
+    <!--topTab-->
+    <string name="football">កីឡាបាល់ទាត់</string>
+    <string name="other">ផ្សេងទៀត</string>
+    <string name="tennis">កីឡាវាយកូនបាល់</string>
+    <string name="basketball">កីឡាបាល់បោះ</string>
+    <string name="rugby">កីឡាបាល់ឱប</string>
+
+    <string name="refresh">ផ្ទុកទិន្នន័យជាថ្មី</string>
+    <string name="menu">ម៉ឺនុយ</string>
+    <string name="collection">ការប្រមូល</string>
+    <string name="clearance">ការបោសសំអាត</string>
+
+    <string name="not_settled">មិនទាន់ដោះស្រាយ</string>
+    <string name="settled">ការទូទាត់</string>
+    <string name="selected_compared">ជ្រើស League បាន</string>
+    <string name="sort_by_time">តម្រៀបតាមពេលវេលា</string>
+    <string name="end_push">លទ្ធផលនៃការជំរុញ</string>
+    <string name="score_push">ពិន្ទុជំរុញ</string>
+
+    <string name="today">TODAY</string>
+    <string name="early">EARLY</string>
+
+
+    <!--FootballGameFragment-->
+    <string name="games">Total</string>
+    <string name="present">Present</string>
+    <string name="matchs">Matchs</string>
+    <string name="full_half_court_hdp">FULL HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FULL O/U</string>
+    <string name="full_half_court_ou">HALF HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HALF O/U</string>
+    <!--VsActivity-->
+    <string name="scaleplate_asianplate">  Scaleplate/Asianplate  </string>
+    <string name="correct_score">Correct Score</string>
+    <string name="back">Back</string>
+    <!--ScaleFragment-->
+    <string name="full_time">Full Court</string>
+    <string name="half_time">Half Court</string>
+    <string name="home_and_away">Home And Away</string>
+    <string name="double_chance">Double Chance</string>
+    <string name="half_full_time">Half/Full Court</string>
+    <string name="first_last_goal">First/Last Goal</string>
+    <string name="total_goals">Total Goals</string>
+    <string name="correct_full">Correct Full </string>
+    <string name="correct_half">Correct Half</string>
+    <!--betting-->
+    <string name="draw">Draw</string>
+    <string name="odd">សេស</string>
+    <string name="x1">1x</string>
+    <string name="x12">12</string>
+    <string name="even">គូរ</string>
+    <string name="x2">x2</string>
+    <string name="last_goal">Last Goal</string>
+    <string name="no_goal">No Goal</string>
+    <string name="under">Under</string>
+    <string name="over">Over</string>
+    <string name="Input_the_amount_of_bets_please">Input the amount of bets please</string>
+    <string name="odd_even">Odd/Even</string>
+    <string name="first_goal">First Goal</string>
+    <string name="h1">1</string>
+    <string name="dx">x</string>
+    <string name="a2">2</string>
+    <string name="against">Against</string>
+    <string name="hh">HH</string>
+    <string name="hd">HD</string>
+    <string name="ha">HA</string>
+    <string name="dh">DH</string>
+    <string name="dd">DD</string>
+    <string name="da">DA</string>
+    <string name="ah">AH</string>
+    <string name="ad">AD</string>
+    <string name="aa">AA</string>
+    <string name="statement">Statement</string>
+    <string name="event">Event</string>
+    <string name="detail">Detail</string>
+    <string name="betting_amount">Bet Amount</string>
+
+    <!-- lottery layout-->
+    <string name="caipiao"></string>
+    <!-- lottery activity-->
+    <string name="zhuhe">ការរួមបញ្ចូលគ្នា</string>
+    <string name="shengxiao">Shio</string>
+    <string name="colok">COLOK</string>
+    <string name="alternate"> ជំនួស</string>
+    <string name="speailpeilv">ហាងឆេងពិសេស</string>
+    <string name="number_lottery">លេខ</string>
+    <string name="amount_lottery"> ចំនួនប្រាក់</string>
+    <string name="net_amount"> ប្រាក់ភ្នាល់សរុប</string>
+    <string name="zonge">ចំនួនសរុប :</string>
+    <string name="zongtouzhue">ទឹកប្រាក់ភ្នាល់សរុប:</string>
+    <string name="queding">ដាក់ស្នើរ</string>
+    <string name="xiazhusuccess">ភ្នាល់ទទួលបានភាពជោគជ័យ</string>
+    <string name="discount2d"> បញ្ចុះតម្លៃ2D</string>
+
+    <string name="odds2d">ហាងឆេង2D:</string>
+    <string name="xiazhucuowu">ចាក់ភ្នាល់ខុសព</string>
+    <string name="huiyuanbupipei">លេខសម្គាល់សម័យដែលមិនផ្គូផ្គងជាសមាជិក</string>
+
+
+    <string name="big_small"> ធំ តូច</string>
+    <string name="peilv">ហាងឆេង</string>
+    <string name="big">ធំ</string>
+    <string name="small">តូច</string>
+    <string name="even_odd"> គូ សេស</string>
+    <string name="odd_lottery"> សេស</string>
+    <string name="even_lottery"> គូ</string>
+    <string name="small_even"> តូច គូ</string>
+    <string name="small_odd"> តូច សេស</string>
+    <string name="big_even"> ធំ គូ</string>
+    <string name="big_odd"> ធំ សេស</string>
+    <string name="shenxiao">SHIO</string>
+    <string name="yang"> សត្វពពែ</string>
+    <string name="ma"> សត្វសេះ</string>
+    <string name="she"> សត្វពស់</string>
+    <string name="lon"> សត្វនាគ</string>
+    <string name="tu"> សត្វទន្សាយ</string>
+    <string name="hu"> សត្វខ្លា</string>
+    <string name="niu"> សត្វក្របី</string>
+    <string name="shu"> សត្វកណ្តុរ </string>
+    <string name="zhu"> សត្វជ្រូក</string>
+    <string name="gou"> សត្វឆ្កែ</string>
+    <string name="ji"> សត្វមាន់</string>
+    <string name="hou"> សត្វស្វា</string>
+    <string name="colok_number">Colok Number</string>
+    <string name="weizhi">ទីតាំង</string>
+    <string name="twodjine">2Dចំនួនទឹកប្រាក់</string>
+    <string name="threedjine">3Dចំនួនទឹកប្រាក់</string>
+    <string name="fourdjine">4Dចំនួនទឹកប្រាក់</string>
+    <string name="bianhao">លេខ</string>
+    <string name="riqi">កាលបរិច្ឆេទ</string>
+    <string name="guojia">ប្រទេស </string>
+    <string name="qihao"> លេខយោង</string>
+    <string name="mingchen">ឈ្មោះ</string>
+    <string name="wanfa">លេង</string>
+    <string name="sorrynodata">សូមអភ័យទោស, កំណត់ត្រាគ្មានរកឃើញ!</string>
+    <string name="youxi">ការលេងហ្គេម</string>
+    <string name="kaijiangtime">ពេលវេលាឆ្នោត</string>
+    <string name="jieguo">លទ្ធផល</string>
+    <string name="caipiaogzuize">ឆ្នោត(ការគ្រប់គ្រងរបស់ឥណ្ឌូនេស៊ី)</string>
+    <!-- dig game-->
+    <string name="shuzidating">សាលប្រកួតជាឌីជីថល</string>
+    <string name="xiazhuzhong">ការភ្នាល់</string>
+    <string name="hong">ក្រហម</string>
+    <string name="huang">លឿង</string>
+    <string name="lan">ខៀវ</string>
+    <string name="qingchashumu">សូមពិនិត្យមើលពីចំនួនដែលអ្នកបានបញ្ចូល</string>
+    <string name="xiazhuzuixiao">ទឹកប្រាក់ភ្នាល់គឺតិចជាងចំនួនកំណត់ជាអប្បបរមា</string>
+    <string name="xiazhuzuida">ចំនួនទឹកប្រាក់ដែលលើសពីដែនកំណត់អតិបរមា</string>
+    <string name="xiazhucaoguo">ការភ្នាល់ទឹកប្រាក់សរុបជាងភ្នាល់គេហទំព័ររបស់ដែនកំណត់</string>
+    <string name="daojishiend">ការរាប់ថយក្រោយបានបញ្ចប់</string>
+    <string name="all">ទាំងមូល</string>
+    <string name="qingchu">យកចេញ</string>
+    <string name="touzhu">ការភ្នាល់</string>
+    <string name="kaijiangzhong"> កំពុងផ្ទុក...</string>
+    <string name="gengduo">ច្រើនទៀត</string>
+    <string name="jieguolist">បញ្ជីលទ្ធផល</string>
+    <string name="sorrynohaoma">សូមទោសអ្នកមិនបានជ្រើសលេខណា!</string>
+    <!-- person game-->
+    <string name="jinesedui">ក្រុមពណ៌មាស</string>
+    <string name="yinsedui">ក្រុមពណ៌ប្រាក់</string>
+    <string name="hei">ខ្មៅ</string>
+    <string name="qinjinrutouzhu">សូមចូលទៅកាន់ហ្គេម</string>
+    <string name="yanse">ពណ៌</string>
+    <string name="sanjun">THREEFOCES</string>
+    <string name="yingcaoyijia">ENG/ITA</string>
+    <string name="xiajiadejia">SPA/GER</string>
+    <string name="fajiahecao">FRA/HOL</string>
+    <string name="fenzujingcai">GROUP</string>
+    <string name="daorxiao">ធំ/តូច</string>
+
+    <string name="julebuxuanze">Select 48 Club From 6 European League</string>
+    <string name="peilv45">អត្រា : (x) 45</string>
+    <string name="peilv455">Rate : (x) 4.5</string>
+
+    <string name="yingcaoyingelan">EPL(England)</string>
+
+    <string name="yingcaogelan">EPL (England)</string>
+    <string name="yijiadali">SERIE A(Italy)</string>
+    <string name="xiajiaxiya">LA LIGA (Spain)</string>
+    <string name="dejiadeguo">Bundesliga (Germany)</string>
+    <string name="hecaohe">Eredivisie (Holland)</string>
+
+    <string name="zhushu">ជាក្រុម</string>
+    <string name="fajiaguo">French(France)</string>
+    <string name="qiuduiyanse">ក្រុមការណ៍</string>
+    <string name="weigu">WAI DICE</string>
+    <string name="quanwei">ALL DICE</string>
+    <string name="nodata">គ្មានទិន្នន័យ</string>
+    <string name="da17"> ធំ（1.9）\n 11 to17</string>
+    <string name="shuangdan">ទ្វេរដងនៅលីវ</string>
+    <string name="honghei">ក្រហមនិងខ្មៅ</string>
+
+    <string name="zhengjiazai"> កំពុង់ផ្ទុក</string>
+    <string name="sorryyancuowu">ខ្ញុំសោកស្តាយ, សូមបញ្ចូលកូដផ្ទៀងផ្ទាត់នោះត្រឹមត្រូវ!</string>
+    <string name="sorrtshucuo">សូមអភ័យទោស, អ្នកត្រូវបញ្ចូលលេខ ចាប់ពី 6​ ដល់​ 20 តួ！</string>
+    <string name="sorryyouxcuo">សូមបញ្ចូលអ៊ីម៉ែលអោយបានត្រឹមត្រូវ ឧទាហរណ៏： XXX@XXX.XXX !</string>
+    <string name="sorrychancuo">គណនីធនាគារមិនអាចមានតួអក្សរពិសេសប្រវែងគឺ 2 ទៅ 20!</string>
+    <string name="sorrynopipei">ពាក្យសម្ងាត់ទាំងពីរមិនដូចគ្នាឡើយ!</string>
+    <string name="sorrypswcuo">ពាក្យសម្ងាត់ត្រូវតែមាន: លេខនិងអក្សរប្រវែង 8 ទៅ 20!</string>
+    <string name="sorrypswcuo1">ពាក្យសម្ងាត់ត្រូវតែមាន: លេខនិងអក្សរប្រវែង 7 ទៅ 10!</string>
+    <string name="sorrynamecuo">សូមអភ័យទោស, អ្នកត្រូវតែបញ្ចូលលេខឬអក្សរ ចាប់ពី 6​ ដល់​ 9 តួ！</string>
+    <string name="email">សារអេឡិចត្រូនិច</string>
+    <string name="jibenxinxi">ពត៌មានមូលដ្ឋាន</string>
+    <string name="xiumima">ប្តូរពាក្យសំងាត់</string>
+    <string name="new_password">ពាក្យសម្ងាត់ថ្មី</string>
+    <string name="scr_xiumima">SCR888 ប្តូរពាក្យសំងាត់</string>
+    <string name="cunkuanzx">ការដាក់ប្រាក់</string>
+    <string name="qukuanzx"> ការដកប្រាក់់</string>
+    <string name="xiazhujilu"> របាយការណ៍ភ្នាល់់</string>
+    <string name="wancenjilu">កំណត់ត្រាពេញលេញ</string>
+    <string name="honglizx">ប្រាក់បន្ថែម</string>
+    <string name="yuyanqiehuan">ប្តូរភាសា</string>
+    <string name="zhanghum">ឈ្មោះអ្នកប្រើ</string>
+    <string name="tuijianlianjie"> ភ្ជាប់បណ្តាញ៍</string>
+    <string name="dianhua">លេខទូរស័ព្ទ</string>
+    <string name="qukuanzh">ឈ្មោះគណនី់</string>
+    <string name="qukuanzho">លេខគណនី់</string>
+    <string name="yinhangm"> ឈ្មោះធនាគាររ</string>
+    <string name="leijijiang">ប្រាក់រង្វាន់សរុប</string>
+    <string name="shengyujiang">ប្រាក់រង្វាន់ចុងក្រោយ</string>
+    <string name="mimaerror">ពាក្យសម្ងាត់និងកំណត់ពាក្យសម្ងាត់មិនត្រូវគ្នា！</string>
+    <string name="errornull">កំណត់នូវពាក្យសម្ងាត់មិនអាចទទេ！</string>
+    <string name="newmimanull">ពាក្យសម្ងាត់ថ្មីមិនអាចទទេ！</string>
+    <string name="oldmimanull">ពាក្យសម្ងាត់ចាស់មិនអាចទទេ！</string>
+    <string name="xiumisucess">កែប្រែការទទួលបានជោគជ័យ</string>
+    <string name="mimaerrorx">ពាក្យសម្ងាត់ដែលមិនត្រូវបានបំពេញឬប្រវែងតិចជាង 6</string>
+    <string name="qingxuanyh">សូមជ្រើសរើសធនាគារ</string>
+    <string name="deposit"> ការដាក់ប្រាក់</string>
+    <string name="cunkuansus">ការដាក់ប្រាក់ទទួលបានភាពជោគជ័យ</string>
+    <string name="tijiaosibai">អ្នកបានដាក់ស្នើរួចទៅហើយ, សូមពិនិត្យមើលកំណត់ត្រារបស់កម្មវិធី</string>
+    <string name="cunkuanlist"> បញ្ជីដាក់ប្រាក់</string>
+    <string name="nojilu">គ្មានកំណត់ត្រា</string>
+    <string name="withdraw">ការដកប្រាក់</string>
+    <string name="qukuanlist">បញ្ជីដកប្រាក់</string>
+    <string name="qukuansucces">ការដកប្រាក់បានជោគជ័យ</string>
+    <string name="jine1">ទឹកប្រាក់</string>
+    <string name="xiahzujilu">កំណត់ត្រាភ្នាល់</string>
+    <string name="eightqihuo">855 កិច្ចសន្យាអនាគត</string>
+    <string name="no">លេខរៀង：</string>
+    <string name="youxitype">ហ្គេម:</string>
+    <string name="youxitype1">ហ្គេម</string>
+    <string name="youxi1">ពូល：</string>
+    <string name="wanfa1">ប្រភេទ：</string>
+    <string name="haoma1">លេខ：</string>
+    <string name="peilv1">អត្រា :</string>
+    <string name="youhui1">បញ្ចុះតម្លៃះ：</string>
+    <string name="xiazhujine">ចំនួនទឹកប្រាក់ភ្នាល់</string>
+    <string name="qihao1">លេខយោង：</string>
+    <string name="deal_num">សេវាផ្ទេរប្រាក់ ID：</string>
+    <string name="xiazhushijian">ពេលភ្នាល់：</string>
+    <string name="xiazhushijian1">ពេលភ្នាល់</string>
+    <string name="shuying">ឈ្នះ/ចាញ់់：</string>
+    <string name="shurujine">សូមបញ្ចូលចំនួនទឹកប្រាក់ដែល</string>
+    <string name="shenqingsuccess">ការផ្ទេរប្រាក់បន្ថែមបានជោគជ័យ</string>
+    <string name="chongfu"> ការផ្ទេរប្រាក់បន្ថែមបរាជ័យ, សូមពិនិត្យមើលកំណត់ត្រាផ្ទេរប្រាក់របស់លោកអ្នក</string>
+    <string name="zhuankuanhl">ផ្ទេរប្រាក់បន្ថែម</string>
+    <string name="hongleix">ប្រភេទប្រាក់រង្វាន់:</string>
+    <string name="leixing">ប្រភេទ:</string>
+    <string name="shijian"> ម៉ោង：</string>
+    <string name="fenlei">ប្រភេទ：</string>
+    <string name="zhuangtai">ស្ថានភាព：</string>
+    <string name="bianhao1">លេខរៀង：</string>
+    <string name="shengqinghl">ប្រាក់រង្វាន់របស់កម្មវិធី</string>
+    <string name="qingxyxm">សូមជ្រើសរើសហ្គេម</string>
+    <string name="qingyxtype">សូមជ្រើសប្រភេទការប្រកួតនេះ</string>
+    <string name="shibai">ការខកខាន</string>
+    <string name="chongfu1">មានសំណើសុំមួយគឺកម្មវិធីនេះមិនអាចត្រូវបានធ្វើម្តងទៀត</string>
+    <string name="nohongli"> មិនមានប្រាក់បន្ថែម</string>
+    <string name="qingxyouxm">សូមជ្រើសរើសហ្គេម</string>
+    <string name="beituijianlist">បញ្ជីអ្នកណែនាំ</string>
+    <string name="kaihutime"> ម៉ោងបើក:</string>
+    <string name="starttime">ថ្ងៃចាប់ផ្តើម </string>
+    <string name="jishutime">កាលបរិច្ឆេទបញ្ចប់ </string>
+    <string name="shengqinglist">បញ្ជីប្រាក់រង្វាន់របស់កម្មវិធី:</string>
+    <string name="shengqingtitle">អនុវត្តន៍ទៅលើប្រាក់រង្វាន់</string>
+    <string name="qingxshijian">សូមជ្រើសពេលវេលាមួយ</string>
+    <string name="jieshutime"> ពេលវេលាបញ្ចប់:</string>
+    <string name="chulizhong">ដំណើរការ</string>
+    <string name="chuliwancen">ដំណើរការត្រូវបានបញ្ចប់</string>
+    <string name="shengqingqx">កម្មវិធីនេះត្រូវបានលុបចោល</string>
+    <string name="shenqts"> ផ្ទេរប្រាក់រង្វាន់:</string>
+    <string name="shengqinghl1">ចំនួនផ្ទេរប្រាក់:</string>
+    <string name="zhanghuyue1">សមតុល្យគណនី</string>
+    <string name="dangqmima">ពាក្យសំងាត់បច្ចុប្បន្ន</string>
+    <string name="newmima">ពាក្យសំងាត់ថ្មីី</string>
+    <string name="quexinmima">បញ្ជាក់ពាក្យសំងាត់ថ្មី់</string>
+    <string name="xiuga">ដាក់ស្នើរ</string>
+    <string name="shijian1">ពេលវេលា：</string>
+    <string name="xuanxiang"> ផ្សេងៗ：</string>
+    <string name="newshengqing">កំពុងដាក់ស្នើរី</string>
+    <string name="qitaleix">ប្រភេទជាករណីលើកលែងផ្សេងទៀត</string>
+    <string name="gaunliyuan">បិទ</string>
+    <string name="caoshi">អស់ពេល</string>
+    <string name="houtaichuli">បញ្ចប់</string>
+    <string name="oldmimaerror">កំហុសពាក្យសម្ងាត់ដើម</string>
+    <string name="twomimacuo">ពាក្យសម្ងាត់ទាំងពីរមិនត្រូវគ្នា</string>
+    <string name="min">នាទី</string>
+    <string name="do_you_bet_again">ចាក់ភ្នាល់ឡើងវិញ?</string>
+    <string name="bet_order_number">លេខចាក់ភ្នាល់</string>
+    <string name="date_time">កាលបរិច្ឆេទ/ពេលវេលា</string>
+    <string name="game_type">ប្រភេទល្បែង</string>
+    <string name="est_payout">ការឈ្នះការប៉ាន់ប្រមាណ</string>
+    <string name="not_started"> </string>
+    <string name="dianziyoujian"> សារអេឡិចត្រូនិច</string>
+    <string name="honglijine">ចំនួនទឹកប្រាក់：</string>
+    <string name="do_you_want_to_load_main">Do you want to return to main page？</string>
+    <string name="mima">ពាក្យសំងាត់</string>
+    <string name="zhucequemi">បញ្ជាក់ពាក្យសំងាត់</string>
+    <string name="zhucexuan">សូមជ្រើសរើស</string>
+    <string name="zhucezhanghu">ឈ្មោះគណនី</string>
+    <string name="zhucezhanghao">លេខគណនី</string>
+    <string name="zhucetui"> អ្នកណែនាំ</string>
+    <string name="yanzhengma">លេខកូដសុវត្ថិភាព</string>
+    <string name="livenumber">សាលហ្គេមលេងផ្ទាល់</string>
+
+    <string name="bet_info">ពត៌មាន នៃការភ្នាល់</string>
+    <string name="bet_num">ចំនួនប្រាក់：</string>
+    <string name="shijitouzhu">ចំនួនប្រាក់សរុប：</string>
+    <string name="touzhuhao">បើកភ្នាល់：</string>
+    <string name="combination">រួមបញ្ចូលគ្នា</string>
+
+    <string name="discount">បញ្ចុះតម្លៃ</string>
+    <string name="zodiapeilv">ហាងឆេង</string>
+    <string name="xiazhujinee">ចំនួនប្រាក់ភ្នាល់：</string>
+    <string name="zhucezhanghao1">ឈ្មោះគណនី</string>
+    <string name="teshuzifu">ឈ្មោះអ្នកប្រើដែលមាននិមិត្តសញ្ញាពិសេស</string>
+    <string name="zhanghunouse">គណនីធនាគារនេះគឺជាការមិនអាចប្រើបាន</string>
+    <string name="xinxierror">ការចុះឈ្មោះមិនត្រឹមត្រូវព</string>
+    <string name="userexist">ឈ្មោះអ្នកប្រើរួចហើយ</string>
+    <string name="zhucebibie">រូបិយប័ណ្ណ</string>
+    <string name="gaomianyx">Khmer Gaming</string>
+    <string name="mgyx">GD CASINO</string>
+    <string name="tiyubocai1">MG ស្លតហ្គេម</string>
+    <string name="zhenrenyule">SPORTS 2</string>
+    <string name="zhenrenyule3">CASINO 3</string>
+    <string name="zhenrenyule4">SPORTS 1</string>
+    <string name="qihuo">CASINO 1</string>
+    <string name="zhenrenyule2">855 FOREX</string>
+    <string name="tiyubocai2">TANGKAS</string>
+    <string name="casion2">CASINO 2</string>
+    <string name="honglijine1">ចំនួនទឹកប្រាក់：</string>
+    <string name="yuebuzhu">សូមអភ័យទោស, ការខ្វះខាតតុល្យភាពបច្ចុប្បន្នរបស់អ្នក, សូមធ្វើការដាក់ប្រាក់ចូលទៅក្នុងប្រតិបត្ដិការផ្តោអ្នកប្រើដែលបាន!</string>
+    <string name="double1"> គូ</string>
+    <string name="xiao1">តូច</string>
+    <string name="dandan1"> សេស</string>
+    <string name="cunkuanxiao"> ចំនួនទឹកប្រាក់ត្រូវតែធំជាង  </string>
+    <string name="cunkuanda"> ចំនួនទឹកប្រាក់ត្រូវតែតិចជាង </string>
+    <string name="qukuanda"> ចំនួនទឹកប្រាក់ត្រូវតែធំជាង </string>
+    <string name="qukuanxiao">ចំនួនទឹកប្រាក់ត្រូវតែតិចជាង </string>
+    <string name="leixingcun"> ប្រភេទ：ការដាក់ប្រាក់</string>
+    <string name="feileiqukuan">ប្រភេទ：ដកចេញ</string>
+    <string name="betshibai">ភ្នាល់បរាជ័យសូមចូលម្តងទៀត</string>
+    <string name="cunzai">រួចហើយ</string>
+    <string name="wanpeilv">ហាងឆេង：</string>
+    <string name="beituijianzh">ឈ្មោះអ្នកប្រើ:</string>
+    <string name="tuijianbibie"> រូបិយប័ណ្ណ：</string>
+    <string name="tuijianlic">ឈ្មោះអ្នកប្រើ：</string>
+    <string name="qiu">បាល់</string>
+    <string name="saibao">គ្រាប់ឡុកឡាក់</string>
+    <string name="nadata">មិនមានទិន្នន័យ</string>
+
+    <string name="tdejiadeguo">Bundesliga (Germany)</string>
+    <string name="tfajiafaguo">LIGUE 1 (France)</string>
+    <string name="thecaohelan">Eredivisie (Holland)</string>
+    <string name="txijiaxibanya">LA LIGA (Spain)</string>
+    <string name="banknoexist">គណនីធនាគាររួចហើយ</string>
+    <string name="aleixing">ប្រភេទ：</string>
+    <string name="cunkuanlist1">ស្ថានភាព：</string>
+    <string name="lunpan">គ្រាប់រ៉ូឡែត</string>
+    <string name="zhuhe36qiu">ច្រើនជាង36គ្រាប់</string>
+    <string name="txiaoshuang"> តូច គូ</string>
+    <string name="tdashuang"> ធំ គូ</string>
+    <string name="txiaodan"> តូច សេស</string>
+    <string name="tdadan"> ធំ សេស</string>
+    <string name="honglizhongxin">ស្ថានភាព：</string>
+    <string name="helan">Eredivisie\n\n(Holland)</string>
+
+    <string name="faguo1">LIGUE1\n\n(France)</string>
+    <string name="yincao">EPL\n\n(England)</string>
+    <string name="dejia">Bundesliga</string>
+    <string name="xiane">សូមទោស, ចំនួនទឹកប្រាក់ដែលអ្នកភ្នាល់តិចជាងដែនកំណត់អប្បបរមា！</string>
+    <string name="xibanya">(Spain)</string>
+    <string name="deguo">(Germany)</string>
+    <string name="xijia">LA LIGA</string>
+    <string name="shuziyouxi1">លទ្ធផល</string>
+    <string name="caoguobet">លើសដែនកំណត់ភ្នាល់គ្រាប់បាល់</string>
+    <string name="regphone">លេខទូរស័ព្ទ</string>
+    <string name="release_to_load_app">Release To Load</string>
+    <string name="release_to_refresh_app">Release To Refresh</string>
+    <string name="submit_sure">SUBMIT</string>
+    <string name="betting_limit_less_than_nominal">Betting limit less than nominal!</string>
+    <string name="betting_limit_more_than_nominal">Betting limit more than nominal!</string>
+    <string name="betting_total_limit_more_than_nominal">Betting total limit more than nominal!</string>
+    <string name="pull_up_to_load_next_page">Pull up to load next page</string>
+    <string name="not_enough_balance_please_deposit_first">សូមអភ័យទោស សមតុល្យទឹកប្រាក់មិនគ្រប់គ្រាន់, សូមធ្វើការដាក់ប្រាក់ជាមុន</string>
+    <string name="SINGAPORE"> ប្រទេសសឹង្ហបុរី</string>
+    <string name="TAIPEI">ទីក្រុងតៃបិ</string>
+    <string name="KUALA_LUMPUR"> ទីក្រុងគូឡាឡាំពួ</string>
+    <string name="HONGKONG">ទីក្រុងហុងកុង</string>
+    <string name="MALAYSIA">ប្រទេសម៉ាឡស៊ី</string>
+    <string name="CHINA"> ប្រទេសចិន</string>
+    <string name="HK4D"> ទីក្រុងហុងកុង4D</string>
+    <string name="CAMBODIA"> កម្ពុជា</string>
+    <string name="MACAU"> ម៉ាកាវ</string>
+    <string name="CANADA4D"> ប្រទេសកាណាដា4D </string>
+    <string name="update_bonus_was_successful">ការទាញ់យកប្រាក់រង្វាន់របស់កម្មវិធីបានជោគជ័យ</string>
+    <string name="full_half_goal">Full/Half/Goal</string>
+    <string name="tie">ស្មើ</string>
+    <string name="Gold">មាស</string>
+    <string name="wood">ឈើ</string>
+    <string name="water">ទឹក</string>
+    <string name="fire">ភ្លើង</string>
+    <string name="earth">ដី</string>
+    <string name="series">លេខយោង</string>
+    <string name="KOREA">ប្រទេសកូរ៉េ</string>
+    <string name="JAPAN">ប្រទេសជប៉ុន</string>
+    <string name="VIETNAM">ប្រទេសវៀតណាម</string>
+    <string name="THAILAND">ប្រទេសថៃ</string>
+    <string name="JAKARTA">ទីក្រុងចាកាតា</string>
+    <string name="country_area">ប្រទេស / តំបន់：</string>
+    <string name="country_area1">ប្រទេស / តំបន់</string>
+    <string name="element5">5 ELEMENT</string>
+    <string name="COMBINATION">COMBINATION</string>
+    <string name="EVEN_ODD">EVEN ODD</string>
+    <string name="BIG_SMALL">BIG SMALL</string>
+    <string name="time_left">ពេលវេលានៅសល់</string>
+    <string name="keno_results"> លទ្ធផលគីណូ</string>
+    <string name="up">លើ</string>
+    <string name="down">ក្រោម</string>
+    <string name="ODDS">គ្រាប់សេស</string>
+    <string name="EVENS">គ្រាប់គូរ</string>
+    <string name="rebetting">ភ្នាល់ម្តងទៀត</string>
+    <string name="hit">ប៉ះ</string>
+    <string name="up_down">UpDown</string>
+    <string name="odds_evens">ODDS EVENS</string>
+    <string name="total">ព័ត៌មាន:</string>
+    <string name="zhuzai">PEARL BALL</string>
+    <string name="nominal_betting_limit_exceeded_min"> សូមអភ័យទោស, ចំនួនទឹកប្រាក់ដែលអ្នកផ្តល់តិចជាងចំនួនកំណត់ជាអប្បបរាម!</string>
+    <string name="nominal_betting_limit_exceeded_max">សូមអភ័យទោស,  ចំនួនទឹកប្រាក់ដែលអ្នកភ្នាល់ច្រើនជាងចំនួនកំណត់អតិបរមា！</string>
+    <string name="version">កំណែបច្ចុប្បន្ន</string>
+
+
+    <string name="qieerxi">01 MANCHESTER CITY</string>
+    <string name="mancesitecen">07 MANCHESTER-UNITED</string>
+    <string name="asenna">13 TOTTENHAM HOTSPUR</string>
+    <string name="mancesitelian">19 LIVERPOOL</string>
+    <string name="tuotenamureci">25 CHELSEA</string>
+    <string name="liwupu">31 ARSENAL</string>
+    <string name="lianpudun">37 BURNLEY FC</string>
+    <string name="siwangxi">43 EVERTON</string>
+    <string name="yijiayidali">SERIE A\n\n(Italy)</string>
+    <string name="youwentusi">02 JUVENTUS</string>
+    <string name="luoma">08 NAPOLI</string>
+    <string name="laqiao">14 AS ROMA</string>
+    <string name="fuoluolunsa">20 INTER MILAN</string>
+    <string name="naboli">26 LAZIO</string>
+    <string name="relaya">32 AC MILAN</string>
+    <string name="sangpuduoliya">38 ATLANTA</string>
+    <string name="guojimilan">44 FIORENTINA</string>
+
+    <string name="xijiaxibanya">LA LIGA (Spain)</string>
+
+    <string name="dasailuola">03 BARCELONA</string>
+    <string name="huangjiamadeli">09 ATLETICO MADRID</string>
+    <string name="madelijingji">15 REAL MADRID</string>
+    <string name="walunxiya">21 VALENCIA</string>
+    <string name="saiweiliya">27 VILLARREAL</string>
+    <string name="biliyaleiyaer">33 REAL BETIS</string>
+    <string name="bierbae">39 SEVILLA</string>
+    <string name="saierta">45 GETAFE</string>
+    <string name="bairenmulihei">04 BAYERN MUNICH</string>
+    <string name="woerfusibao">10 SCHALKE 04</string>
+    <string name="mengxing">16 TSG HOFFENHEIM</string>
+    <string name="lewokusen">22 BORUSSIA DORTMUND</string>
+    <string name="aogesibao">28 BAYER LEVERKUSEN</string>
+    <string name="shaerke">34 RB LEIPZIG</string>
+    <string name="boluxiyaduo">40 VFB STUTTGART</string>
+    <string name="huofenhaimu">46 FRANKFURT EINTRACHT</string>
+
+    <string name="julebu48">ជ្រើសពីការប្រកួតលីកនៅតំបន់អឺរ៉ុបក្លិបធំចំនួនប្រាំមួយ 48</string>
+    <string name="fajiafaguo">LIGUE1(France)</string>
+
+    <string name="balisengerman">05 PARIS SAINT GERMAIN</string>
+    <string name="liang">11 MONACO</string>
+    <string name="molage">17 OLYMPIQUE LYONNAIS</string>
+    <string name="masai">23 OLYMPIQUE DE MARSEILLE</string>
+    <string name="shengaidian">29 RENNES</string>
+    <string name="boerduo">35 GIRONDINS DE BORDEAUX</string>
+    <string name="lier">41 SAINT ETIENNE</string>
+    <string name="mengbiliai">47 NICE</string>
+    <string name="hecaohelan">Eredivisie(Holland)</string>
+    <string name="aiyinghuowen">06 PSV EINDHOVEN</string>
+    <string name="ajitu">12 AJAX AMSTERDAM</string>
+    <string name="helanaerke">18 AZ ALKMAAR</string>
+    <string name="feiyeruode">24 FEYENOORD ROTTERDAM</string>
+    <string name="weitesai">30 FC UTRECHT</string>
+    <string name="zewole">36 SBV VITESEE</string>
+    <string name="hailunweien">42 ADO DEN HAAG</string>
+    <string name="gaoninggen">48 SC HEERENVEEN</string>
+    <string name="forex">ល្បែងហិរញ្ញវត្ថុ</string>
+    <string name="w88_game">w88 ស្លតហ្គេម</string>
+    <string name="bestgame_slots">bestgame ស្លតហ្គេម</string>
+    <string name="start_time">ការចាប់ផ្តើមកាលបរិច្ឆេទ</string>
+    <string name="end_time">កាលបរិច្ឆេទបញ្ចប់</string>
+    <string name="all_choose">ជ្រើសទាំងអស់</string>
+    <string name="casino">កាស៊ីណូ</string>
+    <string name="sports">កីឡា</string>
+    <string name="provider">អ្នកផ្តល់សេវា</string>
+    <string name="wash_code">ចំណូល</string>
+    <string name="check_wash_code">ពិនិត្យចំណូល</string>
+    <string name="check_wash_code1">ពិនិត្យចំណូល</string>
+    <string name="MY_market">MY ODDS</string>
+    <string name="ID_market">ID ODDS</string>
+    <string name="HK_market">HK ODDS</string>
+    <string name="EU_market">EU ODDS</string>
+    <string name="remak">Remark</string>
+    <string name="master_balance">សមតុល្យគណនី</string>
+    <string name="china_lottery_balance">HC តុល្យភាព</string>
+    <string name="start_game">ចូលលេង</string>
+    <string name="buy">ទិញចូល</string>
+    <string name="take_out">ទិញចេញ</string>
+    <string name="try_again_later">កំពុងដំណើរការសូមព្យាយាមម្តងទៀតពេលក្រោយ</string>
+    <string name="total_amount">ចំនួន​សរុប</string>
+    <string name="transfer_center">មជ្ឈមណ្ឌលផ្ទេរ</string>
+    <string name="note">ចំណាំ</string>
+    <string name="accepted">Accepted</string>
+    <string name="waiting">Waiting</string>
+    <string name="rejected">Rejected</string>
+    <string name="No">No: </string>
+    <string name="Code">Code: </string>
+    <string name="Title">Title: </string>
+    <string name="Join_Date">Join Date: </string>
+    <string name="Start_Date">Start Date: </string>
+    <string name="End_Date">End Date: </string>
+    <string name="Bonus">Bonus: </string>
+    <string name="Turnover">Turnover: </string>
+    <string name="Status">Status: </string>
+    <string name="Promotion_list">បញ្ជីការផ្តល់ជូន</string>
+    <string name="Auto_promotion">បញ្ជីការផ្ដល់ជូនស្វ័យប្រវត្តិ</string>
+    <string name="type">Type：</string>
+    <string name="game_name">Game name：</string>
+    <string name="bet_list">បញ្ជីភ្នាល់</string>
+    <string name="new_2d_introduce">លេខ1 * លេខ2 * លេខ3 # ចំនួនទឹកប្រាក់+លេខ1 * លេខ2 * លេខ3 # ចំនួនទឹកប្រាក់ Or លេខ1Xចំនួនទឹកប្រាក់ លេខ2Xចំនួនទឹកប្រាក់</string>
+    <string name="Keno">គីណូ</string>
+    <string name="Win_Report">របាយការណ៍ឈ្នះ</string>
+    <string name="Result">លទ្ធផល</string>
+    <string name="Rules">ច្បាប់</string>
+    <string name="Search">ស្វែងរក</string>
+    <string name="Today">ថ្ងៃនេះ</string>
+    <string name="Yesterday">កាលម្សិលមិញ</string>
+    <string name="No1">ល.រ</string>
+    <string name="Dates">កាលបរិច្ឆេទ</string>
+    <string name="Title1">ចំណងជើង</string>
+    <string name="Result1">លទ្ធផល</string>
+    <string name="Detail">លំអិត</string>
+    <string name="Over_Under">លើ/ក្រោម</string>
+    <string name="Odd_Even">សេស​/គូ</string>
+    <string name="Range">ចន្លោះ</string>
+    <string name="Smallest_Number">លេខតូចបំផុត</string>
+    <string name="Biggest_Number">លេខធំបំផុត</string>
+    <string name="ThisWeek">សប្ដាហ៏នេះ</string>
+    <string name="LastWeek">សប្តាហ៍មុន</string>
+    <string name="ThisMonth">ខែ​នេះ</string>
+    <string name="LastMonth">ខែមុន</string>
+    <string name="Order_No">លំដាប់លេខ</string>
+    <string name="Bet_Time">ពេលវេលាភ្នាល់</string>
+    <string name="Name">ឈ្មោះ</string>
+    <string name="Ticket_Id_TIME">កំណត់ត្រា/ពេលវេលា</string>
+    <string name="Type">ប្រភេទ</string>
+    <string name="Bet">ការភ្នាល់</string>
+    <string name="Odds">ការសង</string>
+    <string name="RECENT_ORDERS">ភ្នាល់ចុងក្រោយ</string>
+    <string name="Total">សរុប:</string>
+    <string name="Frequence">ប្រេកង់</string>
+    <string name="Parlay">បន្សំ</string>
+    <string name="BetCredit">គណនី:</string>
+    <string name="OutStanding">ពិន្ទុភ្នាល់:</string>
+    <string name="LAST_GAMES">លទ្ធផលចុងក្រោយ</string>
+    <string name="Stake">ចំនួនទឹកប្រាក់:</string>
+    <string name="Max_Payout">ការសងធំបំផុត</string>
+    <string name="Bet_Limit">កំរឹតនៃការភ្នាល់</string>
+    <string name="Reset">លុប​</string>
+    <string name="OverOdd">លើសេស</string>
+    <string name="OverEven">លើគូ</string>
+    <string name="UnderOdd">ក្រោមសេស</string>
+    <string name="UnderEven">ក្រោមគូ</string>
+    <string name="loading">កំពុងផ្ទុក</string>
+    <string name="Loading_completed">កំពុងដំណើរការបានបញ្ចប់</string>
+    <string name="prize">រង្វាន់</string>
+    <string name="List">លេខរៀង</string>
+    <string name="pool">អាង</string>
+    <string name="number_4d">ចំនួន</string>
+    <string name="period">រយៈពេល</string>
+    <string name="Bet_Type">ប្រភេទភ្នាល់</string>
+    <string name="Amount">ចំនួន</string>
+    <string name="number_must_4">លេខត្រូវ 4 ខ្ទង់</string>
+    <string name="right_amount">សូមបញ្ចូលចំនួនទឹកប្រាក់សមរម្យ</string>
+    <string name="sure_bet">សូមបញ្ជាក់ការភ្នាល់របស់អ្នក!</string>
+    <string name="pool_period">អាង/រយៈពេល</string>
+    <string name="Bet_Amount">ប៉ុន្តែ/ចំនួន</string>
+    <string name="Success">ជោគជ័យ។</string>
+    <string name="best_game_slots">BestGame</string>
+    <string name="netent_game_slots">NETENT ស្លតហ្គេម</string>
+    <string name="playstar_game_slots">PLAYSTAR ស្លតហ្គេម</string>
+    <string name="xe88_game_slots">Xe88 ស្លតហ្គេម</string>
+    <string name="haba_game_slots">HABA ស្លតហ្គេម</string>
+    <string name="w88_game_slots">W88 ស្លតហ្គេម</string>
+    <string name="mg_game_slots">MG ស្លតហ្គេម</string>
+    <string name="pt_game_slots">PT ស្លតហ្គេម</string>
+    <string name="fish_game_slots">បាញ់ត្រី</string>
+    <string name="sa_game_slots">SA ស្លតហ្គេម</string>
+    <string name="joker_game_slots">JOKER ស្លតហ្គេម</string>
+    <string name="mega_game_slots">Mega888 ស្លតហ្គេម</string>
+    <string name="jdb_game_slots">JDB ស្លតហ្គេម</string>
+    <string name="klasPoker">klasPoker</string>
+    <string name="msg">សារ</string>
+    <string name="set_language">Set Language</string>
+    <string name="lottery4d">Lottery 4D</string>
+    <string name="more">ច្រើនទៀត</string>
+    <string name="user">អ្នក​ប្រើ</string>
+    <string name="contact">ទំនាក់ទំនង</string>
+    <string name="Contact_Us">ទំនាក់ទំនងយើងខ្ងុំ</string>
+    <string name="please_login">សូមចូលមុន</string>
+    <string name="exit_login">ចាកចេញ</string>
+    <string name="upload_receipt">ជ្រើសរើស​ឯកសារ</string>
+    <string name="No_file_chosen">គ្មានឯកសារត្រូវបានជ្រើសរើសទេ។</string>
+    <string name="withdraw_failed">អ្នកបានដាក់ស្នើសូមពិនិត្យមើលបញ្ជីដកប្រាក់</string>
+    <string name="Account_Balance">សមតុល្យគណនី</string>
+    <string name="Total_Bonus">ប្រាក់រង្វាន់សរុប</string>
+    <string name="Last_Bonus">ប្រាក់បន្ថែម</string>
+    <string name="download">ទាញយក</string>
+    <string name="play_now">លេងឥឡូវ</string>
+    <string name="Registration_Time">កាលបរិច្ឆេទចុះឈ្មោះ</string>
+    <string name="Last_Login">ចូលលើកចុងក្រោយ</string>
+    <string name="welcome">សូមស្វាគមន៍។</string>
+    <string name="ongdo_poker">អ៊ុងឌូ</string>
+    <string name="transfer_ongdo_poker">អ៊ុងឌូ</string>
+    <string name="poker_poker">ប៉ក់</string>
+    <string name="transfer_poker_poker">ប៉ក់</string>
+    <string name="ham_poker">ហាំ</string>
+    <string name="transfer_ham_poker">ហាំ</string>
+    <string name="tienlen_poker">ទៀនលេន</string>
+    <string name="transfer_tienlen_poker">ទៀនលេន</string>
+    <string name="kla_klouk_poker">ខ្លាឃ្លោក</string>
+    <string name="transfer_kla_klouk_poker">ខ្លាឃ្លោក</string>
+    <string name="sikuthai_poker">ស៊ីគូរថៃ</string>
+    <string name="transfer_sikuthai_Poker">ស៊ីគូរថៃ</string>
+    <string name="Failed">បានបរាជ័យ។</string>
+    <string name="bet_detail">ភ្នាល់លម្អិត:</string>
+    <string name="click_below">សូមត្រួតពិនិត្យរបាយការណ៏ភ្នាល់របស់អ្នកនៅក្នុងហ្គេម សូមចុចតំណភ្ជាប់នៅខាងក្រោម, សូមអរគុណ!</string>
+    <string name="h5_web">ហប ៥</string>
+    <string name="Desktop">កុំព្យូរទ័រលើតុ</string>
+    <string name="Balance">គណនី</string>
+    <string name="balance_must_more_than">គណនី ត្រូវច្រើនជាង</string>
+    <string name="Withdraw_Password">ដកលេខសម្ងាត់។</string>
+    <string name="enter_password">กรุณาใส่รหัสผ่านของคุณ</string>
+    <string name="select_currency">กรุณาเลือกสกุลเงิน</string>
+    <string name="select_domain">กรุณาเลือกโดเมน</string>
+    <string name="enter_tel">กรุณาใส่หมายเลขโทรศัพท์</string>
+    <string name="Affiliate_Signup">ភ្នាក់ងារ បង្កើតគណនី</string>
+    <string name="Affiliate_Account_Name">ភ្នាក់ងារ ឈ្មោះប្រើប្រាស់ :</string>
+    <string name="First_Name">នាមត្រកូល</string>
+    <string name="Last_Name">នាមខ្លួន</string>
+    <string name="check">ពិនិត្យ</string>
+    <string name="dig88_withdraw_hint">សូមពិនិត្យ លេខទូរស័ព្ទរបស់លោកអ្នកឱ្យបានត្រឹមត្រូវ ដើម្បីទទួលបានសារ ពីការដកប្រាក់។ ប្រសិនបើចង់ធ្វើការផ្លាស់ប្តួរលេខទូរស័ព្ទ,សូមទាក់ទង សេវាបំរើអតិថិជន។</string>
+    <string name="dig88_poker">ខ្មែរហ្គេម</string>
+    <string name="day">ថ្ងៃ</string>
+    <string name="month">ខែ</string>
+    <string name="year">ឆ្នាំ</string>
+    <string name="Normal_Register">ការចុះឈ្មោះធម្មតា</string>
+    <string name="Fast_Register">ការចុះឈ្មោះរហ័ស</string>
+    <string name="Cockfight">មាន់ជល់</string>
+    <string name="select_birthday">សូមជ្រើសរើសថ្ងៃកំណើត</string>
+    <string name="date_of_birth">ថ្ងៃខែឆ្នាំកំណើត</string>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

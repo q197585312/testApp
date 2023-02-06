@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C1C1C1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:text="@string/top_1d"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/thai_lottery_top_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="70dp"
+                android:text="优惠 :12%"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/thai_lottery_top_odds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:text="赔率 :3"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="||"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="4dp"
+                android:text="@string/bottom_1d"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/thai_lottery_botton_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="70dp"
+                android:text="优惠 :12%"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/thai_lottery_botton_odds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:text="赔率 :3"
+                android:textSize="11sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/top_1d"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/amount_lottery"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/net_amount"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/bottom_1d"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/amount_lottery"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/net_amount"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>
