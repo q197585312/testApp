@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gd__ll_good_road_parent"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_gravity="bottom"
+    android:background="@mipmap/gd_good_road"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:visibility="gone">
+
+    <ImageView
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="2dp"
+        android:src="@mipmap/gd_good" />
+
+    <TextView
+        android:id="@+id/gd__tv_good_road_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:text="大路单挑"
+        android:textColor="@color/white" />
+
+</LinearLayout>

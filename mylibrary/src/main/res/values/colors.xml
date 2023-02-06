@@ -14,7 +14,6 @@
     <color name="blue_300">#FED8D7</color>
     <color name="blue_max">#181761</color>
     <color name="white">@android:color/white</color>
-    <color name="green500_trans">#9958d45d</color>
     <!--black-grey-->
     <color name="black">@android:color/black</color>
     <color name="black_grey">#333333</color>

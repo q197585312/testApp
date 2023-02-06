@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/yellow_gold">
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/gd__rv_list"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_margin="3dp"
+    android:background="@color/afb88_home_color"
+    android:divider="@null"
+    android:gravity="bottom"
+    android:scrollbars="none"
+    >
+</androidx.recyclerview.widget.RecyclerView>
+</FrameLayout>

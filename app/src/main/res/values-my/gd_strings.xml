@@ -1,0 +1,250 @@
+<resources>
+    <!-- 程序异常处理字符串 -->
+    <string name="gd_crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="gd_crash_mail_passwd">Nangyangkeji123</string>
+    <string name="gd_crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="gd_crash_mail_port">465</string>
+
+    <!--登录 -->
+    <string name="input_username">Nama Pengguna</string>
+    <string name="input_password">Kata sandi</string>
+    <string name="gd_login">Masuk</string>
+    <string name="logining">Masuk.....</string>
+    <string name="afb88_right">Copyright © gd88.org  2014   Powered only receive aged 18 players</string>
+    <!--afb88跳转-->
+    <string name="SportBook">SportsBook</string>
+    <string name="Live_Casino">Live Casino</string>
+    <string name="Financial">Financial</string>
+    <string name="Europe_View">Europe View</string>
+    <string name="Specials_4D">4D Specials</string>
+    <string name="gd_Huay_Thai">HUAY THAI</string>
+    <string name="Huay_Thai">MUAY THAI</string>
+    <string name="E_Sport">E-Sports</string>
+    <string name="Myanmar_Odds">Myanmar Odds</string>
+    <string name="Keno">Keno</string>
+    <string name="Poker">Poker</string>
+    <string name="Lottery">Lottery</string>
+    <string name="coming_soon">Coming soon...</string>
+    <!--大厅 -->
+    <string name="baccarat">Bakarat</string>
+    <string name="roulette">Roulette</string>
+    <string name="sicbo">Sicbo</string>
+    <string name="dragon_tiger">Dragon Tiger</string>
+
+    <!--轮盘大厅 -->
+    <string name="gd_red">RED</string>
+    <string name="gd_black">BLACK</string>
+    <string name="gd_zero">ZERO</string>
+    <string name="gd_even">EVEN</string>
+    <string name="gd_odd">ODD</string>
+    <string name="gd_big">BIG</string>
+    <string name="gd_small">SMALL</string>
+    <string name="orphelins">Orphelins</string>
+    <string name="red_acronym">R</string>
+    <string name="black_acronym">B</string>
+    <string name="zero_acronym">Z</string>
+    <string name="even_acronym">E</string>
+    <string name="odd_acronym">O</string>
+    <string name="left_bet">The Third Cylinder</string>
+    <string name="right_bet">Neighbors Of Zero</string>
+    <string name="zero_roulette">Zero</string>
+
+    <!--百家乐 -->
+    <string name="show_bet_sucess">BET SUCCESS : </string>
+    <string name="show_bet_error">BET NO SUCCESS</string>
+    <string name="show_win">WIN </string>
+    <string name="show_loss">You have lost </string>
+    <string name="show_back_lobby">You have no bet for 5 times,\n system will return to main menu</string>
+    <string name="banker">Banker</string>
+    <string name="player">Player</string>
+    <string name="tie">Tie </string>
+    <string name="tie_dragon_tiger">TIE</string>
+    <string name="banker1">B </string>
+    <string name="player1">P </string>
+    <string name="tie1">T </string>
+    <string name="total">Total </string>
+    <string name="BP1">BP </string>
+    <string name="PP1">PP </string>
+    <string name="BP">BP </string>
+    <string name="PP">PP </string>
+    <string name="POOL">POOL </string>
+    <string name="LIMIT">LIMIT </string>
+    <string name="select_limit">LIMIT</string>
+    <string name="START_DEALING">START DEALING</string>
+    <string name="OK">OK </string>
+    <string name="gd_Cancel">Cancel </string>
+    <string name="gd_Repeat">Repeat </string>
+    <string name="banker_m">B</string>
+    <string name="player_m">P</string>
+    <string name="tie_m">Tie</string>
+    <!--登录失败 -->
+
+    <string name="login_network_error">Login server error</string>
+    <string name="login_username_error">User Name/Password input error</string>
+    <string name="login_already">User has already login</string>
+    <string name="login_data_error">Login data error</string>
+
+    <!--sicbo -->
+    <string name="big_small">B/S</string>
+    <string name="even_odd">O/E</string>
+    <string name="threeforce">THREE</string>
+    <string name="ninewaycard">NINEWAY</string>
+    <string name="pairs">PAIRS</string>
+    <string name="wai_dice">WAI DICE</string>
+    <string name="all_dice">ALL DICE</string>
+    <string name="combination">COMBINATION</string>
+    <string name="points">P</string>
+    <string name="number">No</string>
+    <string name="gd_E">E</string>
+    <string name="gd_S">S</string>
+    <string name="gd_T">T</string>
+    <string name="gd_B">B</string>
+    <string name="gd_O">O</string>
+    <!--轮盘 -->
+    <string name="min_max">Min/Max</string>
+    <string name="single">Single</string>
+    <string name="split">Split</string>
+    <string name="street">Street</string>
+    <string name="corner">Corner</string>
+    <string name="line">Line</string>
+    <string name="dozen">Dozen</string>
+    <string name="colume">Colume</string>
+    <string name="even_lp">Even</string>
+    <string name="gd_result">Result:</string>
+    <string name="show_limit_over_max">Sorry,over max</string>
+
+    <string name="show_limit_column">Can not be bet column in the same game</string>
+    <string name="show_limit_row">Can not be bet row in the same game</string>
+    <string name="show_limit_big_small">Can not be bet big/small in the same game</string>
+    <string name="show_limit_odd_even">Can not be bet odd/even in the same game</string>
+    <string name="show_limit_red_black">Can not be bet red/black in the same game</string>
+    <string name="show_limit_banker_player">Banker/Player can not be at the same time bet</string>
+
+    <string name="server_network_error">Connect server network error</string>
+    <string name="choose_language">Choose Language</string>
+
+    <string name="language">Bahasa</string>
+    <string name="report">Laporan</string>
+    <string name="setting">Setting</string>
+    <string name="logout">Keluar</string>
+    <string name="transaction_record">Histori Transaksi</string>
+
+    <string name="sure">Sure</string>
+    <string name="sure_logout">Are you sure logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="music_setting">Music setting</string>
+    <string name="music1">Music 1</string>
+    <string name="music2">Music 2</string>
+    <string name="music3">Music 3</string>
+    <string name="music4">Music 4</string>
+    <string name="music5">Music 5</string>
+    <string name="music6">Music 6</string>
+    <string name="music_background_volume">Background volume</string>
+    <string name="music_front_volume">Front volume</string>
+
+    <!--龙虎 -->
+    <string name="dragon1">DRAGON </string>
+    <string name="tiger1">TIGER </string>
+    <string name="dragon_odd1">D ODD </string>
+    <string name="tiger_odd1">T ODD </string>
+    <string name="dragon_red1">D RED </string>
+    <string name="tiger_red1">T RED </string>
+    <string name="dragon_even1">D EVEN </string>
+    <string name="tiger_even1">T EVEN </string>
+    <string name="dragon_black1">D BLACK </string>
+    <string name="tiger_black1">T BLACK </string>
+    <string name="dragon">DRAGON</string>
+    <string name="tiger">TIGER</string>
+    <string name="show_limit_dragon_tiger">Dragon,tiger can not be at the same time bet</string>
+    <string name="gd_enter">ENTER</string>
+    <string name="MUSIC">Musik</string>
+    <string name="gd_b">B</string>
+    <string name="gd_p">P</string>
+    <string name="bad_luck">Oh no ,Bad luck.</string>
+    <string name="chat">Chat</string>
+    <string name="emoticons">Emoticons</string>
+    <string name="game_to_end">Let\'s game to the end.</string>
+    <string name="make_friends">Let\'s make a friend.</string>
+    <string name="nice_to_meet">Hello everyone ,nice to meet you!</string>
+    <string name="no_commission_baccarat" >No Commission Baccarat!</string>
+    <string name="one_more_banker">Come on,one more banker.</string>
+    <string name="please_select_chips">Please select chips!</string>
+    <string name="records">Records</string>
+    <string name="see_you">See you everyone.</string>
+    <string name="sure_to_win">Ha ha ha ,Sure to win!</string>
+    <string name="TABLE">Table</string>
+    <string name="one_more_player">Come on,one more player.</string>
+    <string name="login_site">Situs Login</string>
+    <string name="error_site">Salah Site!</string>
+    <string name="remember_me">Ingat saya</string>
+    <string name="gd_update_msg">Pro, lagi versi yang lebih cepat men-download sekarang!</string>
+    <string name="gd_version_update">Memperbarui Versi</string>
+    <string name="update">memperbarui</string>
+    <string name="app_update">Perbarui APP</string>
+    <string name="flip_0">Click the button  to adjust the poker position</string>
+    <string name="flip_l">Swipe up and down with one hand</string>
+    <string name="flip_t">Swipe up and down with both hands</string>
+    <string name="o_t_t">One dice 1：1   Two dices 1：2   Three dices 1：3</string>
+    <string name="Insufficient">Dana yang tidak mencukupi</string>
+    <string name="game_close">MAINTENANCE</string>
+    <string name="start_bet">START BET</string>
+    <string name="end_bet">STOP BET</string>
+    <string name="slots">SLOTS</string>
+    <string name="cq">CQ9 SLOTS</string>
+    <string name="cock_fighting">Ayam Laga</string>
+    <string name="dragon_tiger_game_number_limit">Sesudah game ID ke 30 keatas hanya bisa pasang di Dragon / Tiger / Tie saja</string>
+    <string name="Shuffling">Shuffling</string>
+    <string name="Genre">Genre</string>
+    <string name="dr">@string/dragon</string>
+    <string name="ti">@string/tiger</string>
+    <string name="register">DAFTAR</string>
+    <string name="gd_username">ID Pengguna</string>
+    <string name="gd_password">kata sandi</string>
+    <string name="gd_password_up">KATA SANDI</string>
+    <string name="verify_password">pengulangan kata sandi</string>
+    <string name="telephone_number">nomor telepon</string>
+    <string name="email">email</string>
+    <string name="full_name">nama lengkap</string>
+    <string name="choice_bank">nama bank</string>
+    <string name="bank_account">nama di rekening</string>
+    <string name="bank_number">Nomor rekening</string>
+    <string name="gd_remark">Remark</string>
+    <string name="gd_code">kode validasi</string>
+    <string name="gd_deposit">Setoran</string>
+    <string name="gd_home">Beranda</string>
+    <string name="gd_withdrawal">Penarikan</string>
+    <string name="gd_Referrer">Referensi</string>
+    <string name="katasandi">Kata Sandi</string>
+    <string name="gd_cancel">Cancel</string>
+    <string name="Copy_Address">Salin Link Referral Anda</string>
+    <string name="Copy_Success">Salin Sukses</string>
+    <string name="Open_Address">Buka Link</string>
+    <string name="Referrer_Title">salin kode referensi Anda dan daftarkan teman Anda sebanyak mungkin</string>
+    <string name="referral_list">List Refernsi</string>
+    <string name="PROMOTION">Promo</string>
+    <string name="CONTACT">Hubungi Kami</string>
+    <string name="WINNER">Pemenang</string>
+    <string name="member_center">Pusat Anggota</string>
+    <string name="Live_Chat">Obrolan Langsung</string>
+    <string name="user_limit">akun harus menggunakan karakter:a-z A-Z 0-9 _- dan panjang 4-25</string>
+    <string name="search_game">Cari Game</string>
+    <string name="fingerprint">Sidik Jari</string>
+    <string name="use_fingerprint">Gunakan Sidik Jari Untuk Masuk</string>
+    <string name="Fingerprint_verification">Verifikasi sidik jari</string>
+    <string name="Please_press_fingerprint">Silakan tekan sidik jari</string>
+    <string name="verification_failed">verifikasi gagal</string>
+    <string name="not_support">Perangkat Anda tidak mendukung sidik jari</string>
+    <string name="after_verify">Harap verifikasi setelah memasukkan sidik jari Anda di sistem</string>
+    <string name="special_bonus">BONUS SPESIAL</string>
+    <string name="vip_service">LAYANAN VIP</string>
+    <string name="submit_ok">Konfirmasi</string>
+    <string name="gd_login_first">Silahkan login terlebih dahulu.</string>
+</resources>
+
+
+
+
+
+

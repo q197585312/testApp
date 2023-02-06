@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusable="true">
+
+    <FrameLayout
+        android:layout_width="435px"
+        android:layout_height="690px"
+        android:layout_gravity="center_horizontal"
+        android:focusable="true">
+
+        <FrameLayout
+            android:id="@+id/gd__sibao_bet_bg"
+            android:layout_width="435px"
+            android:layout_height="660px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20px"
+            android:background="@mipmap/gd_sicbo_bet_bg_h">
+
+            <FrameLayout
+                android:id="@+id/gd__fl_vedio_location_parent"
+                android:layout_width="125px"
+                android:layout_height="91px"
+                android:layout_gravity="left"
+                android:background="@drawable/gd_rectangle_trans_stroke_sic"
+                android:onClick="clickLimitList"
+                android:orientation="vertical"
+                android:padding="1px">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"></View>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/gd__tv_table_game_number"
+                android:layout_width="125px"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110px"
+                android:background="@drawable/shape_sic_table_number"
+                android:gravity="center"
+                android:paddingTop="3px"
+                android:paddingBottom="3px"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <FrameLayout
+                android:layout_width="125px"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="155px">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal">
+
+                    <gaming178.com.casinogame.Util.CountDownView
+                        android:id="@+id/gd__countdown_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/gd__tv_table_timer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="22px"
+                        android:textStyle="bold"
+                        app:layout_auto_basewidth="height" />
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_all_dice"
+                android:layout_width="123px"
+                android:layout_height="101px"
+                android:layout_marginTop="222px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_three_forces_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickTriple" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_big_f1"
+                android:layout_width="106px"
+                android:layout_height="100px"
+                android:layout_gravity="bottom">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_big_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickBig" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_even_f1"
+                android:layout_width="107px"
+                android:layout_height="100px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="109px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_even_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickEven" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_odd_f1"
+                android:layout_width="106px"
+                android:layout_height="100px"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="219px"
+                android:onClick="clickOdd">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_odd_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickOdd" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_small_f1"
+                android:layout_width="107px"
+                android:layout_height="100px"
+                android:layout_gravity="bottom|right"
+                android:onClick="clickSmall">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_small_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickSmall" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_dices6_f1"
+                android:layout_width="49px"
+                android:layout_height="80px"
+                android:layout_marginLeft="132px"
+                android:layout_marginTop="166px"
+                android:onClick="clickTriple6">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_dices6_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickTriple6" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_dices5_f1"
+                android:layout_width="49px"
+                android:layout_height="80px"
+                android:layout_marginLeft="182px"
+                android:layout_marginTop="166px"
+                android:onClick="clickTriple5">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_dices5_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickTriple5" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_dices4_f1"
+                android:layout_width="48px"
+                android:layout_height="80px"
+                android:layout_marginLeft="233px"
+                android:layout_marginTop="166px"
+                android:onClick="clickTriple4">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_dices4_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickTriple4" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_dices3_f1"
+                android:layout_width="50px"
+                android:layout_height="80px"
+                android:layout_marginLeft="283px"
+                android:layout_marginTop="166px"
+                android:onClick="clickTriple3">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_dices3_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickTriple3" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_dices2_f1"
+                android:layout_width="50px"
+                android:layout_height="80px"
+                android:layout_marginLeft="334px"
+                android:layout_marginTop="166px"
+                android:onClick="clickTriple2">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_dices2_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickTriple2" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_dices1_f1"
+                android:layout_width="50px"
+                android:layout_height="80px"
+                android:layout_gravity="right"
+                android:layout_marginTop="166px"
+                android:onClick="clickTriple1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_dices1_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickTriple1" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_pairs6"
+                android:layout_width="49px"
+                android:layout_height="77px"
+                android:layout_marginLeft="132px"
+                android:layout_marginTop="246px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_pairs6_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPairs6" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_pairs5"
+                android:layout_width="49px"
+                android:layout_height="77px"
+                android:layout_marginLeft="182px"
+                android:layout_marginTop="246px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_pairs5_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPairs5" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_pairs4"
+                android:layout_width="48px"
+                android:layout_height="77px"
+                android:layout_marginLeft="233px"
+                android:layout_marginTop="246px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_pairs4_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPairs4" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_pairs3"
+                android:layout_width="49px"
+                android:layout_height="77px"
+                android:layout_marginLeft="283px"
+                android:layout_marginTop="246px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_pairs3_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPairs3" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_pairs2"
+                android:layout_width="50px"
+                android:layout_height="77px"
+                android:layout_marginLeft="334px"
+                android:layout_marginTop="246px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_pairs2_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPairs2" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_pairs1"
+                android:layout_width="50px"
+                android:layout_height="77px"
+                android:layout_gravity="right"
+                android:layout_marginTop="246px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_pairs1_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPairs1" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points17"
+                android:layout_width="62px"
+                android:layout_height="64px"
+                android:layout_marginTop="333px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points17_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint17" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points16"
+                android:layout_width="61px"
+                android:layout_height="64px"
+                android:layout_marginLeft="63px"
+                android:layout_marginTop="333px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points16_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint16" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points15"
+                android:layout_width="61px"
+                android:layout_height="64px"
+                android:layout_marginLeft="125px"
+                android:layout_marginTop="333px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points15_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint15" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points14"
+                android:layout_width="61px"
+                android:layout_height="64px"
+                android:layout_marginLeft="187px"
+                android:layout_marginTop="333px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points14_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint14" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points13"
+                android:layout_width="60px"
+                android:layout_height="64px"
+                android:layout_marginLeft="250px"
+                android:layout_marginTop="333px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points13_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint13" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points12"
+                android:layout_width="59px"
+                android:layout_height="64px"
+                android:layout_marginLeft="312px"
+                android:layout_marginTop="333px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points12_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint12" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points11"
+                android:layout_width="62px"
+                android:layout_height="64px"
+                android:layout_gravity="right"
+                android:layout_marginTop="333px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points11_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint11" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points10"
+                android:layout_width="62px"
+                android:layout_height="64px"
+                android:layout_marginTop="398px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points10_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint10" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points9"
+                android:layout_width="61px"
+                android:layout_height="64px"
+                android:layout_marginLeft="63px"
+                android:layout_marginTop="398px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points9_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint9" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points8"
+                android:layout_width="61px"
+                android:layout_height="64px"
+                android:layout_marginLeft="125px"
+                android:layout_marginTop="398px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points8_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint8" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points7"
+                android:layout_width="61px"
+                android:layout_height="64px"
+                android:layout_marginLeft="187px"
+                android:layout_marginTop="398px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points7_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint7" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points6"
+                android:layout_width="60px"
+                android:layout_height="64px"
+                android:layout_marginLeft="250px"
+                android:layout_marginTop="398px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points6_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint6" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points5"
+                android:layout_width="60px"
+                android:layout_height="64px"
+                android:layout_marginLeft="311px"
+                android:layout_marginTop="398px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points5_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint5" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_points4"
+                android:layout_width="62px"
+                android:layout_height="64px"
+                android:layout_gravity="right"
+                android:layout_marginTop="398px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_points4_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickPoint4" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination56"
+                android:layout_width="59px"
+                android:layout_height="44px"
+                android:layout_marginLeft="132px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination56_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination56" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination46"
+                android:layout_width="60px"
+                android:layout_height="44px"
+                android:layout_marginLeft="192px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination46_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination46" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination45"
+                android:layout_width="60px"
+                android:layout_height="44px"
+                android:layout_marginLeft="253px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination45_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination45" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination36"
+                android:layout_width="59px"
+                android:layout_height="44px"
+                android:layout_marginLeft="314px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination36_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination36" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination35"
+                android:layout_width="60px"
+                android:layout_height="44px"
+                android:layout_gravity="right"
+                android:layout_marginLeft="314px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination35_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination35" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination34"
+                android:layout_width="59px"
+                android:layout_height="44px"
+                android:layout_marginLeft="132px"
+                android:layout_marginTop="45px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination34_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination34" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination26"
+                android:layout_width="60px"
+                android:layout_height="44px"
+                android:layout_marginLeft="192px"
+                android:layout_marginTop="45px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination26_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination26" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination25"
+                android:layout_width="60px"
+                android:layout_height="44px"
+                android:layout_marginLeft="253px"
+                android:layout_marginTop="45px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination25_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination25" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination24"
+                android:layout_width="59px"
+                android:layout_height="44px"
+                android:layout_marginLeft="314px"
+                android:layout_marginTop="45px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination24_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination24" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination23"
+                android:layout_width="60px"
+                android:layout_height="44px"
+                android:layout_gravity="right"
+                android:layout_marginTop="45px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination23_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination23" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination16"
+                android:layout_width="59px"
+                android:layout_height="43px"
+                android:layout_marginLeft="132px"
+                android:layout_marginTop="90px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination16_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination16" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination15"
+                android:layout_width="60px"
+                android:layout_height="43px"
+                android:layout_marginLeft="192px"
+                android:layout_marginTop="90px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination15_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination15" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination14"
+                android:layout_width="60px"
+                android:layout_height="43px"
+                android:layout_marginLeft="253px"
+                android:layout_marginTop="90px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination14_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination14" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination13"
+                android:layout_width="59px"
+                android:layout_height="43px"
+                android:layout_marginLeft="314px"
+                android:layout_marginTop="90px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination13_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination13" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_combination12"
+                android:layout_width="60px"
+                android:layout_height="43px"
+                android:layout_gravity="right"
+                android:layout_marginTop="90px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_combination12_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickCombination12" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_single6"
+                android:layout_width="72px"
+                android:layout_height="65px"
+                android:layout_marginTop="463px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_single6_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickSingle6" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_single5"
+                android:layout_width="70px"
+                android:layout_height="65px"
+                android:layout_marginLeft="73px"
+                android:layout_marginTop="463px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_single5_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickSingle5" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_single4"
+                android:layout_width="72px"
+                android:layout_height="65px"
+                android:layout_marginLeft="145px"
+                android:layout_marginTop="463px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_single4_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickSingle4" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_single3"
+                android:layout_width="72px"
+                android:layout_height="65px"
+                android:layout_marginLeft="218px"
+                android:layout_marginTop="463px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_single3_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickSingle3" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_single2"
+                android:layout_width="70px"
+                android:layout_height="65px"
+                android:layout_marginLeft="291px"
+                android:layout_marginTop="463px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_single2_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickSingle2" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_sicbo_single1"
+                android:layout_width="72px"
+                android:layout_height="65px"
+                android:layout_gravity="right"
+                android:layout_marginTop="463px">
+
+                <ImageView
+                    android:id="@+id/gd__iv_sicbo_single1_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gd_table_sicbo_p_all"
+                    android:clickable="true"
+                    android:onClick="clickSingle1" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/gd__fl_vedio_parent"
+                android:layout_width="20dp"
+                android:layout_height="8dp"
+                android:visibility="invisible">
+
+                <FrameLayout
+                    android:id="@+id/gd__fl_surface_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/gd_rectangle_trans_stroke_sic"
+                    android:padding="1px">
+
+                    <cn.nodemedia.NodePlayerView
+                        android:id="@+id/gd__surface"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
+                </FrameLayout>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+    </FrameLayout>
+</FrameLayout>

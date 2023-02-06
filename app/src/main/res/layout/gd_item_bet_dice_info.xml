@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/grey_background"
+    android:gravity="center"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/gd__iv_dice_1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:src="@mipmap/gd_dice1" />
+    <ImageView
+        android:id="@+id/gd__iv_dice_2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:src="@mipmap/gd_dice2" />
+    <ImageView
+        android:id="@+id/gd__iv_dice_3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        android:src="@mipmap/gd_dice3" />
+    <TextView
+        android:id="@+id/gd__iv_dice_bs_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/gd_rectangle_white_stroke_grey"
+        android:gravity="center"
+        android:minWidth="20dp"
+        android:text="@string/gd_big"
+        android:textColor="@color/yellow_brown_white_word" />
+    <TextView
+        android:id="@+id/gd__iv_dice_oe_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/gd_rectangle_white_stroke_grey"
+        android:gravity="center"
+        android:minWidth="20dp"
+        android:text="@string/gd_even"
+        android:textColor="@color/yellow_brown_white_word"  />
+    <TextView
+        android:id="@+id/gd__iv_dice_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/gd_rectangle_white_stroke_grey"
+        android:gravity="center"
+        android:minWidth="20dp"
+        android:text="10"
+        android:textColor="@color/grey_dark_word"  />
+</LinearLayout>
+

@@ -132,17 +132,17 @@ public class ApiManager {
             sc = SSLContext.getInstance("SSL");
             sc.init(null, new TrustManager[]{new X509TrustManager() {
                 @Override
-                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 
                 }
 
                 @Override
-                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+                public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 
                 }
 
                 @Override
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                public X509Certificate[] getAcceptedIssuers() {
                     return null;
                 }
             }}, new SecureRandom());

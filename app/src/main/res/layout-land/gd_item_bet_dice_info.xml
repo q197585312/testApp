@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp">
+
+        <ImageView
+            android:id="@+id/gd__iv_dice_1"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:src="@mipmap/gd_dice1" />
+
+
+        <ImageView
+            android:id="@+id/gd__iv_dice_2"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="3dp"
+            android:src="@mipmap/gd_dice1" />
+
+
+        <ImageView
+            android:id="@+id/gd__iv_dice_3"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="3dp"
+            android:src="@mipmap/gd_dice1" />
+
+
+        <TextView
+            android:id="@+id/gd__iv_dice_tv"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="3dp"
+            android:background="@drawable/rectangle_sicbo_green"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/gd__iv_dice_bs_tv"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="3dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/gd__iv_dice_oe_tv"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="3dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -14,7 +14,7 @@ public class ConfigurationManager {
 
     Context context;
 
-   public android.content.res.Configuration getConfiguration(){
+   public Configuration getConfiguration(){
        return context.getResources().getConfiguration();
    }
     public void getInfo(){

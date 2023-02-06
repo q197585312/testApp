@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><!--  android:background="@drawable/rectangle_green_green_black_corner_hall_selector_"-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gd_rl_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="6dp"
+    android:layout_marginBottom="6dp"
+    android:background="@mipmap/home_game_no_select"
+    android:paddingBottom="3dp">
+
+    <ImageView
+        android:id="@+id/gd__hall_game_pic_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/img_top_left_new"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/game_left_top_new"
+        android:visibility="gone"></ImageView>
+
+    <TextView
+        android:id="@+id/gd__hall_game_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="true"
+        android:textColor="@color/home_no_select_color"
+        android:textSize="10sp" />
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></RelativeLayout>
+</RelativeLayout>

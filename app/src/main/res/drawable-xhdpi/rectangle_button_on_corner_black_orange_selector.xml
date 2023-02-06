@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/rectangle_button_no_corner_orange" android:state_checked="true"></item>
-    <item android:drawable="@drawable/rectangle_button_no_corner_orange" android:state_selected="true"></item>
-    <item android:drawable="@drawable/rectangle_button_no_corner_orange" android:state_pressed="true"></item>
-    <item android:drawable="@drawable/rectangle_button_no_corner_grey_black"></item>
-</selector>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" >
-<!-- 灰色边框白色填充的圆形 -->
-    <solid android:color="#333333" />
-
-    <corners android:radius="3dip"/>
-    <stroke android:width="1dip" android:color="#333333"/>
-
-</shape>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="languageModel"
+            type="gaming178.com.casinogame.load.LanguageModel" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/rectangle_white_corners8"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/gd__tv_title"
+                style="@style/text_match_grey18"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/choose_language"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+
+                android:textStyle="bold" />
+
+            <View
+                style="@style/line_horizontal_grey1"
+                android:background="@color/grey_light" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gd__base_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:itemBinding="@{languageModel.itemBinding}"
+                app:items="@{languageModel.items}"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/gd__view_weight1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.75" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/gd_triangle_white_bottom" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="2" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/gd__title"
+        layout="@layout/toolbar_layout" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/gd__web_wv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
+
+        <ImageView
+            android:id="@+id/gd__img_exit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/gd_exit" />
+    </FrameLayout>
+</LinearLayout>

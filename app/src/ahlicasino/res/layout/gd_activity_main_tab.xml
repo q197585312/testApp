@@ -1,0 +1,651 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_lobby_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar_layout"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_top_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_top_1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="100dp"
+                android:src="@mipmap/gd_title_logo" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></View>
+
+            <TextView
+                android:id="@+id/tv_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_home_black"
+                android:drawableLeft="@mipmap/home_set"
+                android:drawablePadding="4dp"
+                android:paddingLeft="6dp"
+                android:paddingTop="3dp"
+                android:paddingRight="6dp"
+                android:paddingBottom="3dp"
+                android:text="@string/setting"
+                android:textAllCaps="true"
+                android:textColor="@color/white"></TextView>
+
+            <TextView
+                android:id="@+id/tv_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/shape_home_black"
+                android:drawableLeft="@mipmap/home_lg"
+                android:drawablePadding="4dp"
+                android:paddingLeft="6dp"
+                android:paddingTop="3dp"
+                android:paddingRight="6dp"
+                android:paddingBottom="3dp"
+                android:text="@string/language"
+                android:textAllCaps="true"
+                android:textColor="@color/white"></TextView>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="#1B232E"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ahl_lobby_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/gd_arrow_left_back"
+                    android:visibility="gone"></ImageView>
+
+                <LinearLayout
+                    android:id="@+id/ahl_ll_user1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/shape_ahl_money_bg"
+                        android:padding="6dp"
+                        android:src="@mipmap/ahl_user"></ImageView>
+
+                    <TextView
+                        android:id="@+id/gd__tv_home_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="xxx"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <ImageView
+                android:id="@+id/gd_img_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:maxWidth="100dp"
+                android:src="@mipmap/gd_title_logo" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ahl_ll_user2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/shape_ahl_money_bg"
+                        android:padding="6dp"
+                        android:src="@mipmap/ahl_user"></ImageView>
+
+                    <TextView
+                        android:id="@+id/ahl_tv_home_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="xxxxxxx"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/shape_ahl_money_bg"
+                        android:gravity="center"
+                        android:text="Rp."
+                        android:textColor="#F7BB27"></TextView>
+
+                    <TextView
+                        android:id="@+id/gd__tv_home_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="xxx"
+                        android:textColor="#F7BB27"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_switch_account"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/home_yellow_button"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="@string/logout"
+                android:textAllCaps="true"
+                android:textColor="@color/home_select_color"
+                android:visibility="gone"></TextView>
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/apps_bg">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/hero_bg"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/gd__ll_notice"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/gd_notice_home" />
+
+                            <gaming178.com.casinogame.Control.AutoScrollTextView
+                                android:id="@+id/gd__hall_game_bottom_prompt_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:visibility="gone">
+
+                        <gaming178.com.casinogame.Util.BannerViewPager
+                            android:id="@+id/auto_viewpager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:id="@+id/in_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/black"
+                    android:gravity="center"
+                    android:text="Play Your Favourite Games"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold"></TextView>
+
+                <FrameLayout
+                    android:id="@+id/view_game_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/fl_my_game"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <View
+                                android:id="@+id/view_item"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="8dp"
+                                android:layout_weight="1" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="8dp"
+                                android:layout_weight="1" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="8dp"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/gd__gridview_content_gv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="8dp"
+                            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ahl_game_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@mipmap/apps_bg"
+                            android:orientation="vertical"
+                            android:paddingLeft="8dp"
+                            android:visibility="visible">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/ahl_lobby_title_bg"
+                                android:paddingLeft="15dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp"
+                                android:text="Live Casino"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"></TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rc_liveCasino"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"></androidx.recyclerview.widget.RecyclerView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/ahl_lobby_title_bg"
+                                android:paddingLeft="15dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp"
+                                android:text="Slot Online"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"></TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rc_slotOnline"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"></androidx.recyclerview.widget.RecyclerView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/ahl_lobby_title_bg"
+                                android:paddingLeft="15dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp"
+                                android:text="Sportbook / Judi Bola"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"></TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rc_sportBook_JudiBola"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"></androidx.recyclerview.widget.RecyclerView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:background="@drawable/ahl_lobby_title_bg"
+                                android:paddingLeft="15dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp"
+                                android:text="Poker Online"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"></TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rc_pokerOnline"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"></androidx.recyclerview.widget.RecyclerView>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="90dp"></View>
+                        </LinearLayout>
+
+                    </FrameLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:id="@+id/ll_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/hokicasino_home_bottom"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/view_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:visibility="gone"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/view_1"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"></View>
+
+                    <TextView
+                        android:id="@+id/tv_home_deposit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/gd_home_deposit"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="@string/gd_deposit"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"></TextView>
+
+                    <View
+                        android:id="@+id/view_2"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"></View>
+
+
+                    <TextView
+                        android:id="@+id/tv_home_withdraw"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/gd_home_withdraw"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="@string/gd_withdrawal"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"></TextView>
+
+                    <View
+                        android:id="@+id/view_3"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"></View>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"></View>
+
+                    <View
+                        android:id="@+id/view_4"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"></View>
+
+                    <TextView
+                        android:id="@+id/tv_home_live_chat"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/gd_home_live_chat"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="Contact"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:visibility="visible"></TextView>
+
+                    <View
+                        android:id="@+id/view_5"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"></View>
+
+                    <TextView
+                        android:id="@+id/tv_home_logout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/gd_home_exit"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="@string/logout"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"></TextView>
+
+                    <View
+                        android:id="@+id/view_6"
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"></View>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:visibility="gone"></View>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape_ahl_set_out_bg"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tv_home_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_ahl_set_bg"></TextView>
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/gd_home_home"></ImageView>
+            </FrameLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_content_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/home_show_content_bg"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/tv_home_close_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:drawableRight="@mipmap/xx"
+                    android:gravity="center"
+                    android:text="@string/baccarat"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"></TextView>
+
+                <FrameLayout
+                    android:id="@+id/fl_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"></FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_switch_account_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></TextView>
+
+    <TextView
+        android:id="@+id/tv_home_deposit_l"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></TextView>
+
+    <TextView
+        android:id="@+id/tv_home_withdraw_l"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></TextView>
+</LinearLayout>

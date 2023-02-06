@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_bet_parent_1"
+        android:layout_width="match_parent"
+        android:layout_height="262px"
+        android:layout_marginLeft="5px"
+        android:layout_marginTop="180px"
+        android:layout_marginRight="5px"
+        android:background="@mipmap/dv"
+        android:orientation="vertical"></LinearLayout>
+
+    <FrameLayout
+        android:layout_width="520px"
+        android:layout_height="185px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="8px"
+        android:layout_marginTop="217px">
+
+        <ImageView
+            android:layout_width="90px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="50px"
+            android:background="@mipmap/gd_dragon_trans" />
+
+        <ImageView
+            android:layout_width="90px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="70px"
+            android:background="@mipmap/gd_tiger_trans" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="262px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5px"
+        android:layout_marginTop="180px"
+        android:layout_marginRight="5px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="114px"
+            android:layout_marginTop="2px"
+            android:layout_marginRight="1px"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3.5px"
+                android:layout_marginBottom="4px"
+                android:layout_weight="1.40"
+                android:paddingRight="9px"
+                android:paddingBottom="1px">
+
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_dragon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="0.91"
+                android:paddingLeft="2px"
+                android:paddingTop="1px"
+                android:paddingRight="6px"
+                android:paddingBottom="3px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_tie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="1.37"
+                android:paddingLeft="7px"
+                android:paddingBottom="2px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_tiger"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingTop="5px"
+                android:paddingRight="7px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_dragon_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingLeft="1px"
+                android:paddingTop="5px"
+                android:paddingRight="5px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_dragon_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingLeft="4px"
+                android:paddingTop="5px"
+                android:paddingRight="3px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_tiger_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4px"
+                android:layout_marginRight="1px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingLeft="5px"
+                android:paddingTop="5px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_tiger_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="61px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingTop="7px"
+                android:paddingRight="7px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_dragon_odd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingLeft="1px"
+                android:paddingTop="7px"
+                android:paddingRight="5px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_dragon_even"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingLeft="5px"
+                android:paddingTop="7px"
+                android:paddingRight="4px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_tiger_odd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:paddingLeft="8px"
+                android:paddingTop="7px"
+                android:paddingRight="1px">
+
+                <ImageView
+                    android:id="@+id/gd__img_bet_bg_tiger_even"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gd__fl_baccarat_b_table"
+        android:layout_width="match_parent"
+        android:layout_height="262px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5px"
+        android:layout_marginTop="180px"
+        android:layout_marginRight="5px"
+        android:background="@mipmap/gd_dragon_tiger_bet_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="114px"
+            android:layout_marginTop="2px"
+            android:layout_marginRight="1px"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3.5px"
+                android:layout_marginBottom="4px"
+                android:layout_weight="1.40">
+
+
+                <ImageView
+                    android:id="@+id/gd__iv_dragon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="clickDragon" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_dragon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/dragon"
+                    android:textColor="@color/red"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="1:1"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="0.91">
+
+                <ImageView
+                    android:id="@+id/gd__iv_tie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:onClick="clickTie"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="1:8"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_tie_dragon_tiger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/tie_dragon_tiger"
+                    android:textColor="@color/gd_green500"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="3px"
+                android:layout_weight="1.37">
+
+                <ImageView
+                    android:id="@+id/gd__iv_tiger"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:onClick="clickTiger"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_tiger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/tiger"
+                    android:textColor="@color/blue_height"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="1:1"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/trans_white_dark" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_dragon_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickDragonRed"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_red"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="9dp"
+                    android:text="1:0.9"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_dragon_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickDragonBlack"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_black"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="9dp"
+                    android:text="1:0.9"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_tiger_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickTigerRed"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_red1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_red"
+                    android:textColor="@color/blue_height"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="9dp"
+                    android:text="1:0.9"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4px"
+                android:layout_marginRight="1px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_tiger_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickTigerBlack"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_black1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_black"
+                    android:textColor="@color/blue_height"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="9dp"
+                    android:text="1:0.9"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/trans_white_dark" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_dragon_odd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickDragonOdd"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_odd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_odd"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:text="1:0.75"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_dragon_even"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickDragonEven"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_even"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_even"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:text="1:1.05"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_tiger_odd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickTigerOdd"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_odd1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_odd"
+                    android:textColor="@color/blue_height"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:text="1:0.75"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/trans_white_dark" />-->
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="2px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/gd__iv_tiger_even"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:onClick="clickTigerEven"
+                    android:visibility="visible" />
+
+                <gaming178.com.casinogame.Util.SkewTexView
+                    android:id="@+id/gd__tv_even1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/gd_even"
+                    android:textColor="@color/blue_height"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:text="1:1.05"
+                    android:textColor="@color/yellow_gold"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="480px"
+        android:layout_height="220px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="92px"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/gd__fl_dragon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:layout_weight="1"></FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_tie"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_tiger"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20px"
+            android:layout_weight="1"></FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="146px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="208px"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/gd__fl_dragon_red"
+            android:layout_width="140px"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/gd__fl_dragon_black"
+            android:layout_width="140px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="110px">
+
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/gd__fl_tiger_red"
+            android:layout_width="140px"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="110px">
+
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/gd__fl_tiger_black"
+            android:layout_width="140px"
+            android:layout_height="match_parent"
+            android:layout_gravity="right">
+
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="146px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="280px"
+        android:layout_weight="1">
+
+
+        <FrameLayout
+            android:id="@+id/gd__fl_dragon_odd"
+            android:layout_width="140px"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/gd__fl_dragon_even"
+            android:layout_width="140px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="110px">
+
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/gd__fl_tiger_odd"
+            android:layout_width="140px"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="110px">
+
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/gd__fl_tiger_even"
+            android:layout_width="140px"
+            android:layout_height="match_parent"
+            android:layout_gravity="right">
+
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <View style="@style/line_horizontal_grey1"/>
-    <include layout="@layout/base_gridview_content"/>
-    <View style="@style/line_horizontal_grey1"/>
-</LinearLayout>

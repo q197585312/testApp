@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gd__hall_game_parent_super"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/black_grey"
+    android:orientation="vertical">
+    <include layout="@layout/toolbar_layout" />
+
+    <FrameLayout
+       style="@style/style_weight_vertical">
+        <include layout="@layout/include_gridview"/>
+    </FrameLayout>
+    <LinearLayout
+        style="@style/style_match_wrap_padding5"
+        android:background="@color/trans_black"
+        android:gravity="center_vertical"
+       android:orientation="horizontal">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/gd_alarm_brown"/>
+        <gaming178.com.casinogame.Control.AutoScrollTextView
+            android:id="@+id/gd__hall_game_bottom_prompt_tv"
+            style="@style/text_wrap_bold_grey18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="  "
+            android:textColor="@color/yellow_brown_word"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+    </LinearLayout>
+</LinearLayout>

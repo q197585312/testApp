@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/grey_background"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <HorizontalScrollView
+                android:id="@+id/gd__hv_bigsmall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scrollbars="none">
+                <include layout="@layout/gd_include_sicbo_grid_layout" />
+            </HorizontalScrollView>
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_default_bg"/>
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:background="@color/grey_default_bg"/>
+            <HorizontalScrollView
+                android:id="@+id/gd__hv_evenodd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scrollbars="none">
+                <include layout="@layout/gd_include_sicbo_grid_layout" />
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+
+
+    <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
+        android:id="@+id/gd__lv_table_results_h"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:scrollbars="none"
+       />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        >
+        <TextView
+            android:id="@+id/gd__text_shoe_game_number"
+            style="@style/text_wrap_black12"
+            android:layout_width="60dp"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/grey_dark_word"
+            android:visibility="gone" />
+        <TextView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/gd_rectangle_blue_solid"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="@string/gd_E"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+        <TextView
+            android:id="@+id/gd__text_even"
+            style="@style/text_wrap_black12"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/grey_dark_word" />
+
+        <TextView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/gd_oval_blue_solid"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="@string/gd_S"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+        <TextView
+
+            android:id="@+id/gd__text_small"
+            style="@style/text_wrap_black12"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/grey_dark_word" />
+
+        <TextView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/gd_oval_green_solid"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="@string/gd_T"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+        <TextView
+            android:id="@+id/gd__text_waidic"
+            style="@style/text_wrap_black12"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/grey_dark_word" />
+        <TextView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/gd_oval_red_solid"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="@string/gd_B"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+        <TextView
+            android:id="@+id/gd__text_big"
+            style="@style/text_wrap_black12"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/grey_dark_word" />
+
+        <TextView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/gd_rectangle_red_solid"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="@string/gd_O"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+        <TextView
+            android:id="@+id/gd__text_odd"
+            style="@style/text_wrap_black12"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/grey_dark_word" />
+    </LinearLayout>
+</LinearLayout>
