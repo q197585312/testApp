@@ -256,7 +256,7 @@ public class LobbyActivity extends BaseActivity {
         super.onAfbLoginSucceed();
 //        initUI();
 //        startUpdateStatusThread();
-
+        //a
         if (fl_home.getChildCount() == 0) {
             switchFragment(0);
             initBar();
