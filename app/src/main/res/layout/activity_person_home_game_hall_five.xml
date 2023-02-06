@@ -1,0 +1,2389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/black"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/toolbar_layout"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:background="@drawable/title_no_conor_shape"
+
+            >
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="80dip"
+                android:layout_height="60dip"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/v1_player_med_back"
+                />
+            <TextView
+                android:id="@+id/tv_titletop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text=""
+                android:textColor="@color/blue"
+                android:textSize="20dip"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="200dip"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dig_no_conor_big_shape"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <RelativeLayout
+                                    android:id="@+id/rl1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    >
+                                    <TextView
+                                        android:id="@+id/tv_time"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:gravity="center"
+                                        android:text="00:00"
+                                        android:textColor="#Ffffff"
+                                        android:textSize="30dip"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:id="@+id/rl2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/rl1"
+                                    android:layout_marginTop="25dip"
+                                    android:gravity="center"
+                                    >
+                                    <Button
+                                        android:id="@+id/btn_login"
+                                        android:layout_width="45dip"
+                                        android:layout_height="45dip"
+                                        android:layout_marginLeft="20dip"
+                                        android:background="@drawable/toback"
+                                        android:gravity="center"
+                                        android:textColor="#da603c"
+                                        />
+                                    <ImageView
+                                        android:id="@+id/refresh_list"
+                                        android:layout_width="45dip"
+                                        android:layout_height="45dip"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="@dimen/dimen_5dp"
+                                        android:layout_marginRight="20dip"
+                                        android:src="@drawable/refresh_numlist"
+                                        />
+
+                                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/tv_cycle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="25dip"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="5dip"
+                                    android:background="@drawable/dig_no_conor_orange_shape"
+                                    android:gravity="center"
+                                    android:text="20151026130"
+                                    android:textColor="#666666"
+                                    />
+
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 直播视频-->
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="200dip"
+                    android:layout_weight="1.3"
+                    android:background="@drawable/dig_no_conor_redhall_shape"
+                    android:orientation="vertical"
+                    >
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+
+                        <nanyang.com.dig88.Ijkplayer.IjkVideoView
+                            android:id="@+id/b_imageView_video"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:scaleType="fitXY" >
+                        </nanyang.com.dig88.Ijkplayer.IjkVideoView>
+
+                        <Button
+                            android:id="@+id/b_btn_video_reload"
+                            android:layout_width="40dip"
+                            android:layout_height="40dip"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginRight="10dip"
+                            android:layout_marginBottom="5dip"
+                            android:background="@drawable/stop_video"
+                            android:onClick="OnClickVideo" />
+
+                        <TextView
+                            android:id="@+id/b_text_video"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Load....."
+                            android:textColor="#FFFF"
+                            android:textSize="20sp"
+                            android:typeface="serif"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/b_voice"
+                            android:layout_width="70dip"
+                            android:layout_height="50dip"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginRight="90dip"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/btn_voice"
+                            android:onClick="OnClickVoice"
+                            android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/videoErrorMesseg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Video Delay please check you network Please click the play button to reconnect"
+                            android:textColor="#fae204"
+                            android:textSize="20sp"
+                            android:typeface="serif"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- 最右边的结果列表-->
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="200dip"
+
+                    android:layout_weight="1"
+                    >
+                    <!-- 球的-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        >
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dip"
+                            android:background="#f1f1f1"
+                            android:gravity="center"
+                            >
+                            <TextView
+                                android:id="@+id/tv_ball_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="20dip"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="11dp"
+                                />
+                            <TextView
+                                android:id="@+id/tv_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:text="@string/gengduo"
+                                android:textColor="@color/black"
+                                android:textSize="11dp"
+                                />
+
+                        </RelativeLayout>
+                        <ListView
+                            android:id="@+id/lv_ball_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dip"
+                            android:background="@color/white"
+                            android:divider="@null"
+                            >
+                        </ListView>
+                        <TextView
+                            android:id="@+id/tv_nodata"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dip"
+                            android:gravity="center"
+                            android:text="@string/nadata"
+                            android:visibility="gone"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        <FrameLayout
+            android:id="@+id/fragment_game_hall_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <!-- end-->
+            <!-- start2-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical" >
+
+                <!-- 第一行 start -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dip"
+                    android:layout_marginTop="10dip"
+                    android:background="@drawable/saibao_shape"
+                    android:orientation="horizontal"
+
+                    android:weightSum="7" >
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="center" >
+                        </LinearLayout>
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.45"
+                        android:background="@drawable/content_no_conor_lunpa1"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/tv_pairs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1:9"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.04"
+                        android:background="@drawable/content_no_conor_lunpa1"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/tv_weigu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1:9"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/content_no_conor_lunpa1"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/tv_allweigu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1:9"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/content_no_conor_lunpa1"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/tv_weigu456"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1:9"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:background="@drawable/content_no_conor_lunpa1"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/tv_allpairs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1:9"
+                            android:textColor="@color/white"  />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black" />
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.3"
+                        android:gravity="center" >
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- 第一行 end -->
+
+
+                <!-- 第二行start -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/saibao_shape"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dip"
+                        android:orientation="horizontal"
+                        android:weightSum="7" >
+
+                        <!-- 第二行 1 -->
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.7"
+                            android:orientation="vertical" >
+                            <LinearLayout
+                                android:id="@+id/ll_tvdouble"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.45"
+                                android:background="@drawable/content_no_conor_lunpa1"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/tv_even"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="双 "
+                                    android:textColor="#ffd700"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_tvsmall"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.45"
+                                android:background="@drawable/content_no_conor_lunpa1"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/tv_small"
+                                    android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="小1.9\n 4to10"
+                                    android:textColor="#ffd700"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+                        <!-- 第二行 2 -->
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.45"
+                            android:orientation="horizontal" >
+
+                            <LinearLayout
+                                android:id="@+id/ll_ivoneball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.433"
+                                android:background="@drawable/content_no_conor_lunpa1"
+                                android:gravity="center"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:layout_marginTop="10dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_ivtwoball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.433"
+                                android:background="@drawable/content_no_conor_lunpa1"
+                                android:gravity="center"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:layout_marginTop="10dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_ivthreeball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.433"
+                                android:background="@drawable/content_no_conor_lunpa1"
+                                android:gravity="center"
+                                android:orientation="vertical" >
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:layout_marginTop="10dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <!-- 第二行 3 -->
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.04"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv3oneball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.3466"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white" />
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv3twoball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.3466"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white" />
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv3threeball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.3466"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white" />
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <!-- 第二行 4 -->
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivallball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="2"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="5"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="5"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="5"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="6"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="6"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                                <TextView
+                                    android:layout_width="12dip"
+                                    android:layout_height="12dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="6"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+                        <!-- 第二行 5 -->
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv3fourball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.33"
+                                android:gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:layout_width="18dip"
+                                    android:layout_height="18dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="18dip"
+                                    android:layout_height="18dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+
+                                    android:text="4"
+                                    android:textColor="@color/white" />
+                                <TextView
+                                    android:layout_width="18dip"
+                                    android:layout_height="18dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+
+                                    android:text="4"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv3fiveball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.33"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="5"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+
+                                    android:text="5"
+                                    android:textColor="@color/white" />
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+
+                                    android:text="5"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv3sixball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.33"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="6"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+
+                                    android:text="6"
+                                    android:textColor="@color/white" />
+                                <TextView
+                                    android:layout_width="17dip"
+                                    android:layout_height="17dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+
+                                    android:text="6"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+                        <!-- 第二行 6 -->
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.2"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:orientation="horizontal" >
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv2fourball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.4"
+                                android:gravity="center"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:layout_marginTop="10dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="4"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv2fiveball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.4"
+                                android:gravity="center"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="5"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:layout_marginTop="10dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="5"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_iv2sixball"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.4"
+                                android:gravity="center"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="6"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="20dip"
+                                    android:layout_height="20dip"
+                                    android:layout_marginTop="10dip"
+                                    android:background="@drawable/over_yuan"
+                                    android:gravity="center"
+                                    android:text="6"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+                        <!-- 第二行 7 -->
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.7"
+                            android:orientation="vertical" >
+                            <LinearLayout
+                                android:id="@+id/ll_tvsimgle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.45"
+                                android:background="@drawable/content_no_conor_lunpa1"
+                                android:gravity="center" >
+                                <TextView
+                                    android:id="@+id/tv_odd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="单 "
+                                    android:textColor="#ffd700"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_tvbig"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.45"
+                                android:background="@drawable/content_no_conor_lunpa1"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/tv_big"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/da17"
+                                    android:textColor="#ffd700"
+                                    android:textSize="10dip" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- 从第二行结束 end -->
+                <!-- 从第三行开始 start -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/saibao_shape"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dip"
+                        android:orientation="horizontal"
+                        android:weightSum="14" >
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv4simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="4"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_4bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv5simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="5"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_5bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv6simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="6"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_6bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv7simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="7"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_7bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv8simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="8"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_8bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv9simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="9"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_9bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv10simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="10"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_10bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv11simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="11"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_11bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv12simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="12"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_12bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv13simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="13"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_13bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv14simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="14"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_14bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv15simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="15"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_15bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv16simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="16"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_16bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_iv17simgle"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="17"
+                                android:textColor="#ffffff"
+                                android:textSize="13dip" />
+
+                            <TextView
+                                android:id="@+id/tv_17bet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1/51"
+                                android:textColor="#ffffff"
+                                android:textSize="10dip" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dip"
+                        android:layout_marginTop="1dp"
+                        android:orientation="horizontal"
+                        android:weightSum="16" >
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.4"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:id="@+id/sixfenone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dip"
+                                android:text="1/6"
+                                android:textColor="#ffffff"
+                                android:textSize="15dip" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivonetwoball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivonethreeball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivonefourball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivonefiveball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivonesixball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="6"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivtwothreeball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivtwofourball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivtwofiveball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivtwosixball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="6"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivthreefourball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivthreefiveball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivthreesixball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="6"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivfourfiveball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivfoursixball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="6"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivfivesixball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.974"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="20dip"
+                                android:layout_height="20dip"
+                                android:layout_marginTop="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="6"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- 从第三行结束 end -->
+
+
+                <!-- 最后一行开始start -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dip"
+                        android:orientation="horizontal"
+                        android:weightSum="6" >
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivbottom1ball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ONE"
+                                android:textColor="@color/white"
+                                android:textSize="15dip" />
+
+                            <TextView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivbottom2ball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dip"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TWO"
+                                android:textColor="@color/white"
+                                android:textSize="15dip" />
+
+                            <TextView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivbottom3ball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dip"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="2dip"
+                                android:text="THREE"
+                                android:textColor="@color/white"
+                                android:textSize="15dip" />
+
+                            <TextView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivbottom4ball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dip"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="2dip"
+                                android:text="FOUR"
+                                android:textColor="@color/white"
+                                android:textSize="15dip" />
+
+                            <TextView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivbottom5ball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dip"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FIVE"
+                                android:textColor="@color/white"
+                                android:textSize="15dip" />
+
+                            <TextView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ivbottom6ball"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dip"
+                            android:layout_weight="1"
+                            android:background="@drawable/content_no_conor_lunpa1"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SIX"
+                                android:textColor="@color/white"
+                                android:textSize="15dip" />
+
+                            <TextView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="10dip"
+                                android:background="@drawable/over_yuan"
+                                android:gravity="center"
+                                android:text="6"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- 最后一行结束 end -->
+
+            </LinearLayout>
+
+            <!-- end2-->
+        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_toumingdu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#b0000000"
+                android:visibility="gone"/>
+            />
+            <!--大 小 双 单 红 黄 蓝 end-->
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_dialog1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dip"
+                android:orientation="vertical"
+                android:visibility="gone" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
+                    <ProgressBar
+                        android:id="@+id/loading"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:indeterminate="true"
+
+                        android:indeterminateDrawable="@drawable/progress_loading"
+                        android:indeterminateDuration="700" />
+
+                    <TextView
+                        android:id="@+id/progress_dialog_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:text="@string/kaijiangzhong"
+                        android:textColor="@color/orange"
+                        android:textSize="20dip" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </FrameLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--white-->
+    <color name="white_popupwindow">#f6f6f6</color>
+    <color name="grey_selected_bg">#f2f4ef</color>
+    <!--black-->
+    <!--black-->
+
+    <color name="gray">#969696</color>
+    <!-- title1 -->
+
+
+    <color name="black_title">#3d3d3d</color>
+    <!--blue-->
+    <color name="blue_table">#66a3ed</color>
+    <color name="blue_table_yellow1">#ff9900</color>
+    <color name="blue_table_yellow2">#ffcc00</color>
+    <color name="blue_grey">#5b8ec0</color>
+    <color name="blue_oval_menu">#6eadea</color>
+    <!--orange-->
+
+    <color name="orange">#FF9800</color>
+
+
+    <color name="orange_dark">#F57C00</color>
+    <color name="orange_word">#fa4400</color>
+    <!--red-->
+    <color name="red_pink_word">#f9003b</color>
+    <color name="red_table_title">#b64632</color>
+    <color name="red">#d91600</color>
+
+    <color name="default_shadow_color">@color/grey_background</color>
+    <color name="white_page">#fff7e3</color>
+    <color name="white">#ffffff</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="transparent">#00000000</color>
+    <!-- 大小 双单 背景  -->
+    <!-- 选中 -->
+    <color name="xuanzhong">#4c4c4c</color>
+    <!-- 不选中 -->
+    <color name="noxuanzhong">#333333</color>
+    <color name="black">#000000</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <!--sbobet_table_color-->
+    <!--7fun7_table_color-->
+    <!--球网新的背景色-->
+    <color name="sports_match">#23A22B</color>
+    <color name="clash">#1B9133</color>
+    <color name="listView_table_title">#94E49D</color>
+    <color name="listView_bg">#C9EBD5</color>
+    <color name="listView_live_color">#AD0D12</color>
+    <color name="listView_viewpager_text_color">#70AD77</color>
+    <color name="listView_viewpager_text_flicker_color">#0d5924</color>
+    <color name="vs_time">#17AE47</color>
+    <color name="vs_3_choice">#A3E9AD</color>
+    <color name="vs_1x2_bg">#4CB050</color>
+    <color name="green_white_thick_line">#aad6b8</color>
+    <color name="grey_dialog_background">#f0f0f0</color>
+    <color name="date_bg">#36AE4C</color>
+    <color name="clearance_bg">#4CB04F</color>
+    <color name="green_light_title">#8eeaac</color>
+    <color name="green_light_white">#FFC9EBD5</color>
+    <!--666startbet的titlebar颜色-->
+    <!-- 灰色 -->
+    <!--头部刷新时候的四种颜色-->
+    <color name="refresh_color_1">#ff00ddff</color>
+    <color name="refresh_color_2">#ff99cc00</color>
+    <color name="refresh_color_3">#ffffbb33</color>
+    <color name="refresh_color_4">#ffff4444</color>
+    <color name="home_pic_color">#E6FBFF</color>
+    <color name="home_text_color">#000000</color>
+    <color name="red_toolbar_bottom">#2ab6f2</color>
+    <color name="app_title_bg">#1B79F6</color>
+    <color name="content_bg_green">#E6FBFF</color>
+    <color name="dialog_color1">#1B79F6</color>
+    <color name="gray_color">#AAAAAA</color>
+    <color name="home_register_color">#FFCC00</color>
+    <!--新版dig88不同app颜色区分-->
+    <color name="select_bg">#FE982A</color>
+    <color name="title_bg_color">#1C78F6</color>
+    <color name="user_oval_color">#1267D8</color>
+    <color name="pop_list_bg">#B4D4FF</color>
+
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/normal_white_bg"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+
+        <TextView
+            android:id="@+id/tv_game_type"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:drawableRight="@mipmap/drop"
+            android:padding="10dp"
+            android:text="@string/qingxyouxm"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DFE2EE"></View>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_queren"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rectangle_button_red_selector"
+        android:gravity="center"
+        android:onClick="clickRegister"
+        android:text="@string/queding"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="15dip" />
+
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="@string/jf58_bonus_hint"
+        android:textColor="@color/red"
+        android:visibility="gone" />
+
+</LinearLayout>

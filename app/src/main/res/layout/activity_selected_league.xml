@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/grey_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout"/>
+    <FrameLayout
+        style="@style/style_weight_vertical">
+        <include layout="@layout/include_listview"/>
+    </FrameLayout>
+    <View
+        style="@style/line_horizontal_grey1"/>
+    <LinearLayout
+        style="@style/style_match_wrap"
+        android:background="@color/grey_dialog_background"
+        android:orientation="vertical"
+        android:visibility="visible">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/detail_top_vp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" >
+        </android.support.v4.view.ViewPager>
+
+       <View
+          style="@style/line_horizontal_grey1"
+           android:background="@color/black_grey"/>
+        <TextView
+            style="@style/text_match_black12"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="clickSubmit"
+            android:padding="10dp"
+            android:text="@string/submit" />
+
+    </LinearLayout>
+
+</LinearLayout>

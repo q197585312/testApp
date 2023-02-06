@@ -1,0 +1,829 @@
+<resources>
+    <!-- 泰国彩票 -->
+    <string name="fast_bet">FAST BET</string>
+    <string name="D1">1D</string>
+    <string name="D2">2D</string>
+    <string name="D3">3D</string>
+    <string name="top_1d">1D TOP</string>
+    <string name="bottom_1d">1D BOTTOM</string>
+    <string name="enter_correct_number">Please enter the correct number</string>
+    <string name="choice_big_small">Please select a size</string>
+    <string name="top_amount">Top Amount</string>
+    <string name="infront_amount">Infront Amount</string>
+    <string name="bottom_amount">Bottom Amount</string>
+    <string name="toproll_amount">Top Roll Amount</string>
+    <string name="top_amount_2d">Top Amount</string>
+    <string name="top_amount_3d">Top Amount</string>
+    <string name="bottom_amount_2d">Bottom Amount</string>
+    <string name="toproll_amount_2d">Top Roll Amount</string>
+    <string name="toproll_amount_3d">Top Roll Amount</string>
+    <string name="infront_amount_3d">Infront Amount</string>
+    <string name="bottom_amount_3d">Bottom Amount</string>
+    <!-- 转账界面 -->
+    <string name="master_acc">Main Balance :</string>
+    <string name="saba_yue_money">SABA SPORTS(Balance) :</string>
+    <string name="saba_noclear_money">SABA SPORTS(Pending) :</string>
+    <string name="klaspoker_game_money">KlasPoker(Balance) :</string>
+    <string name="Joker123_game_money">Joker123(Balance) :</string>
+    <string name="newkeno_game_money">New Keno(Balance) :</string>
+    <string name="transfer_to_newkeno">Please transfer any amount to bet with NewKeno</string>
+    <string name="afbcasheu_klaspoker_game_money">Afbcash Poker(余额) :</string>
+    <string name="from">From：</string>
+    <string name="to">To：</string>
+    <string name="write_money">Amount：</string>
+    <string name="btn_submit">Submit</string>
+    <string name="transferacc">Transfer</string>
+    <string name="list1_master_acc">Main Account</string>
+    <string name="list2_saba">SABA SPORTS</string>
+    <string name="list2_ib">SBO SPORTS</string>
+    <string name="list4_pt">PT Slots</string>
+    <string name="list5_klaspoker">KlasPoker</string>
+    <string name="money_null">Sorry the amount can not be transferred to empty</string>
+    <string name="choice_again">Please select a new one</string>
+    <string name="transferacc_list">Transfer List</string>
+    <string name="All_Markets">All Markets</string>
+    <string name="main_Markets">Main Markets</string>
+    <string name="more_Markets">Other Bet Markets</string>
+    <!-- 程序异常处理字符串 -->
+    <!--afb33不同-->
+    <!--afb不同-->
+    <string name="withdraw_bonus">Withdraw bonus</string>
+    <string name="regex_password">Password must contain a letter case and Numbers</string>
+    <string name="new_password">The new password</string>
+    <string name="recharge_card">Recharge Cards</string>
+    <string name="recharge_card_num">Recharge Card No.</string>
+    <string name="recharge_card_passwrod">Recharge Card Password</string>
+    <string name="recharge_card_num_error">Recharge card number cannot be empty</string>
+    <string name="recharge_card_passwrod_error">Recharge card password cannot be empty</string>
+    <string name="recharge_card_succeed">recharged successfully</string>
+    <string name="recharge_card_fail">recharged failed</string>
+    <string name="change_passwor_succ">Change the password successfully</string>
+    <string name="change_passwor_fail">Change the password failure</string>
+    <!--t28不同-->
+    <string name="withdraw_bonus_error">Failed to Withdraw Bonus, Please check your bonus record!</string>
+    <string name="transfer_bouns_error">amount need bigger than</string>
+    <!--we1paly不同-->
+    <!--idafb不同-->
+    <!--wsands不同-->
+    <!--ezw888不同-->
+    <!--wanbao33不同-->
+    <!--88gasia不同-->
+    <!--ocn777不同-->
+    <!--ubet368不同-->
+
+    <string name="crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="crash_mail_passwd">Nangyangkeji123</string>
+    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="crash_mail_port">465</string>
+
+    <!--prompt-->
+    <string name="selected_all">Select All</string>
+    <string name="reverse_selection">Reverse Selection</string>
+    <string name="coming_soon">Coming Soon...</string>
+    <string name="submit">Submit</string>
+    <string name="select_date">select date</string>
+    <string name="no_records">no records</string>
+    <string name="update_msg">Pro, a new version faster download now!</string>
+    <string name="version_update">Update Version</string>
+    <string name="update">Update</string>
+    <string name="app_update">Update App</string>
+    <string name="later">Later</string>
+    <string name="failed_to_login">failed to login</string>
+    <string name="invalid_amount_bet">Invalid amount bet</string>
+    <string name="current_version">current version</string>
+    <string name="new_version">new version</string>
+    <!--base-->
+    <string name="six_day">6day</string>
+    <string name="bet_amount">amount</string>
+    <string name="encounter">Encounter</string>
+    <string name="amount">Amount</string>
+    <string name="bet">Bet</string>
+    <string name="delete">Delete</string>
+    <string name="date">Date</string>
+    <string name="betting_state">State</string>
+    <string name="amount_of_effective">Effective</string>
+    <string name="win_or_lose">Win/Lose</string>
+    <string name="commission">Commission</string>
+    <string name="match">Match</string>
+    <string name="state">State</string>
+    <string name="result">Result</string>
+    <string name="Running">RUNNING</string>
+    <string name="input_bet_amount_please">Input bet amount please</string>
+    <string name="odds">Odds</string>
+    <string name="max_bet">Max Bet:</string>
+    <string name="min_bet">Min Bet:</string>
+    <string name="connect_server_fail">Failed to Login</string>
+    <string name="clearance_should_be_more_than_three">Mix parlay should be more than three</string>
+
+    <!--RegisterActivity-->
+    <string name="input_username">Username</string>
+    <string name="input_password">Password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="username_cannot_null">Username cannot empty</string>
+    <string name="password_cannot_null">Password cannot empty</string>
+    <string name="username_error">username error</string>
+    <string name="password_error">wrong password</string>
+
+    <!--MainTab Bottom-->
+    <!--MainHomeFragment-->
+
+    <string name="live_entertainment">Casino</string>
+    <string name="keno">Keno</string>
+    <string name="number">Number</string>
+    <string name="game">Slots</string>
+    <string name="tw_game">Lottery</string>
+    <string name="texas_holdem">Texas Poker</string>
+    <string name="promotions">Promotion</string>
+    <!--Button-->
+    <string name="enter">Enter</string>
+
+    <!--HomeFragment-->
+    <!--SportFragment-->
+    <string name="i_sport_betting">IBC Sports</string>
+    <string name="s_sport_betting">SBO Sports</string>
+    <string name="afb_sport_betting">AFB SPORTS</string>
+    <string name="afb2_sport_betting">AFB2 SPORTS</string>
+    <!--CasinoFragment-->
+    <string name="ob_live_entertainment">ALLBET Casino</string>
+    <string name="gold_live_entertainment">GOLD Casino</string>
+    <string name="dg_live_entertainment">DG Casino</string>
+    <string name="ag_live_entertainment">AG Casino</string>
+    <string name="sa_live_entertainment">SA Casino</string>
+    <string name="afb_live_entertainment">AFB Casino</string>
+    <string name="pp_live_entertainment">PP Casino</string>
+    <string name="n2_live_entertainment">N2live Casino</string>
+    <string name="gd_live_entertainment">GD Casino</string>
+    <!--KenoHomeFragment-->
+    <string name="indonesia_lottery">Lottery</string>
+    <!--NumberFragment-->
+    <string name="live_number">Live Number</string>
+
+    <!---->
+    <!--GamesFragment-->
+    <string name="poker">Poker</string>
+    <!--TWGameGragement-->
+    <!--BallGameActivity-->
+    <!--topTab-->
+    <string name="football">Soccer</string>
+    <string name="other">AOS</string>
+    <string name="tennis">Tennis</string>
+    <string name="basketball">Basketball</string>
+    <string name="rugby">Rugby</string>
+
+    <string name="refresh">Refresh</string>
+    <string name="menu">Menu</string>
+    <string name="collection">Collection</string>
+    <string name="clearance">Clearance</string>
+
+    <string name="not_settled">Not Settled</string>
+    <string name="settled">Settled</string>
+    <string name="selected_compared">Choose Matches</string>
+    <string name="sort_by_time">Sort By Time</string>
+    <string name="end_push">End Push</string>
+    <string name="score_push">Score Push</string>
+
+    <string name="today">TODAY</string>
+    <string name="early">EARLY</string>
+    <!--FootballGameFragment-->
+    <string name="games">Total</string>
+    <string name="present">Present</string>
+    <string name="matchs">Matchs</string>
+    <string name="full_half_court_hdp">FULL HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FULL O/U</string>
+    <string name="full_half_court_ou">HALF HDP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HALF O/U</string>
+    <!--VsActivity-->
+    <string name="scaleplate_asianplate">  Scaleplate/Asianplate  </string>
+    <string name="correct_score">Correct Score</string>
+    <string name="back">Back</string>
+    <!--ScaleFragment-->
+    <string name="full_time">Full Time</string>
+    <string name="half_time">First Half</string>
+    <string name="home_and_away">Home And Away</string>
+    <string name="double_chance">Double Chance</string>
+    <string name="half_full_time">Half/Full Time</string>
+    <string name="first_last_goal">First/Last Goal</string>
+    <string name="total_goals">Total Goals</string>
+    <string name="correct_full">FT Correct Score</string>
+    <string name="correct_half">FH Correct Score</string>
+    <!--betting-->
+    <string name="draw">Draw</string>
+    <string name="odd">Odd</string>
+    <string name="x1">1x</string>
+    <string name="x12">12</string>
+    <string name="even">Even</string>
+    <string name="x2">x2</string>
+    <string name="last_goal">Last Goal</string>
+    <string name="no_goal">No Goal</string>
+    <string name="under">Under</string>
+    <string name="over">Over</string>
+    <string name="Input_the_amount_of_bets_please">Input the amount of bets please</string>
+    <string name="odd_even">Odd/Even</string>
+    <string name="first_goal">First Goal</string>
+    <string name="h1">1</string>
+    <string name="dx">x</string>
+    <string name="a2">2</string>
+    <string name="against">Against</string>
+    <string name="hh">HH</string>
+    <string name="hd">HD</string>
+    <string name="ha">HA</string>
+    <string name="dh">DH</string>
+    <string name="dd">DD</string>
+    <string name="da">DA</string>
+    <string name="ah">AH</string>
+    <string name="ad">AD</string>
+    <string name="aa">AA</string>
+    <string name="statement">Statement</string>
+    <string name="event">Event</string>
+    <string name="detail">Detail</string>
+    <string name="betting_amount">Bet Amount</string>
+    <!--Prompt_Dialog-->
+    <string name="mix_parlay">Mix Parlay</string>
+    <string name="no_data">no data</string>
+    <string name="pull_down_to_load_previous">Pull down to load previous</string>
+    <string name="pull_down_to_refresh">pull down to refresh</string>
+    <string name="not_allowed_to_bet">not allowed to bet</string>
+    <string name="edit">Edit</string>
+    <string name="betting_terms">Betting terms:</string>
+    <string name="confirm_or_not">Sure?</string>
+    <string name="cancel">Cancel</string>
+    <string name="sure">Sure</string>
+    <string name="win">Win</string>
+    <string name="double_click_exit_application">Double click exit application</string>
+    <string name="min">Min</string>
+    <string name="do_you_bet_again">Bet again?</string>
+    <string name="bet_order_number">Bet order</string>
+    <string name="date_time">Date/time</string>
+    <string name="game_type">Game type</string>
+    <string name="est_payout">Est payout</string>
+    <string name="not_started"> </string>
+
+    <!-- lottery layout-->
+
+    <string name="caipiao"></string>
+
+    <!-- lottery activity-->  <!-- seven layout-->
+
+    <string name="zhuhe">COMBINATION</string>
+    <string name="shengxiao">SHIO</string>
+    <string name="colok">COLOK</string>
+    <string name="alternate">ALTERNATE</string>
+    <string name="speailpeilv">SPECIALS</string>
+    <string name="number_lottery">Number</string>
+    <string name="amount_lottery">Amount</string>
+    <string name="net_amount">Net Amount</string>
+    <string name="zonge">Total Amount:</string>
+    <string name="zongtouzhue">Total Net Amount:</string>
+    <string name="queding">Submit</string>
+    <string name="xiazhusuccess">Bet success</string>
+    <string name="discount2d">DISCOUNT 2D</string>
+    <string name="odds2d">ODDS 2D</string>
+    <string name="xiazhucuowu">bet wrong information</string>
+    <string name="huiyuanbupipei">session_id members do not match</string>
+    <string name="big_small">BIG SMALL</string>
+
+    <string name="peilv">Rate:1.9</string>
+    <string name="big">BIG</string>
+    <string name="small">SMALL</string>
+    <string name="even_odd">EVEN ODD</string>
+    <string name="odd_lottery">ODD</string>
+    <string name="even_lottery">EVEN</string>
+    <string name="small_even">S EVEN</string>
+    <string name="small_odd">S ODD</string>
+    <string name="big_even">B EVEN</string>
+    <string name="big_odd">B ODD</string>
+    <string name="shenxiao">SHIO</string>
+    <string name="yang">GOAT</string>
+    <string name="ma">HORSE</string>
+    <string name="she">SNAKE</string>
+    <string name="lon">DRAGON</string>
+    <string name="tu">RABBIT</string>
+    <string name="hu">TIGER</string>
+    <string name="niu">BUFFALO</string>
+    <string name="shu">RATS</string>
+    <string name="zhu">PIG</string>
+    <string name="gou">DOG</string>
+    <string name="ji">CHICKEN</string>
+    <string name="hou">MONKEY</string>
+    <string name="colok_number">Colok Number</string>
+    <string name="weizhi">LOCATION</string>
+    <string name="twodjine">2D Amount</string>
+    <string name="threedjine">3D Amount</string>
+    <string name="fourdjine">4D Amount</string>
+    <string name="bianhao">No</string>
+    <string name="riqi">Date</string>
+    <string name="guojia">Pool</string>
+    <string name="qihao">GameID</string>
+    <string name="mingchen">Names</string>
+    <string name="wanfa">Type</string>
+    <string name="sorrynodata"></string>
+    <string name="youxi">Game</string>
+    <string name="kaijiangtime">Open Time</string>
+    <string name="jieguo">Result</string>
+    <string name="caipiaogzuize">Lottery rules (Indonesia)</string>
+
+    <!--dig game-->
+    <string name="shuzidating">NUMBER</string>
+    <string name="xiazhuzhong">the bet</string>
+
+    <string name="hong">RED</string>
+    <string name="huang">YELLOW</string>
+    <string name="lan">BLUE</string>
+    <string name="qingchashumu">Please check input amount</string>
+    <string name="xiazhuzuixiao">bet amount is lower than the minimum limit</string>
+    <string name="xiazhuzuida">bet more than maximum limit</string>
+    <string name="xiazhucaoguo">betting more than the website always betting limits</string>
+    <string name="daojishiend">the countdown is over</string>
+    <string name="all">ALL</string>
+    <string name="qingchu">CLEAR</string>
+    <string name="touzhu">SUBMIT</string>
+    <string name="kaijiangzhong">loading...</string>
+    <string name="gengduo">MORE</string>
+    <string name="jieguolist">RESULTS</string>
+    <string name="sorrynohaoma">No number choosed!</string>
+    <!-- person game-->
+    <string name="jinesedui">GOLD</string>
+    <string name="yinsedui">SILVER</string>
+    <string name="hei">BLACK</string>
+    <string name="qinjinrutouzhu">Please Enter Game </string>
+    <string name="yanse">COLOR</string>
+    <string name="sanjun">THREEFORCES</string>
+    <string name="yingcaoyijia">ENG/ITA</string>
+    <string name="xiajiadejia">SPA/GER</string>
+    <string name="fajiahecao">FRA/HOL</string>
+    <string name="fenzujingcai">GROUP</string>
+    <string name="daorxiao">BIG/SMALL</string>
+    <string name="julebuxuanze">Select 48 Club From 6 European League</string>
+    <string name="peilv45">Rate : (x) 45</string>
+    <string name="peilv455">Rate : (x) 4.5</string>
+
+    <string name="yingcaoyingelan">EPL(England)</string>
+
+    <string name="yingcaogelan">EPL (England)</string>
+    <string name="yijiadali">SERIE A(Italy)</string>
+    <string name="xiajiaxiya">LA LIGA (Spain)</string>
+    <string name="dejiadeguo">Bundesliga (Germany)</string>
+    <string name="hecaohe">Eredivisie (Holland)</string>
+
+    <string name="zhushu">GROUP</string>
+    <string name="fajiaguo">LIGUE 1(France)</string>
+    <string name="qiuduiyanse">CLUB COLOR</string>
+    <string name="weigu">WAI DICE</string>
+    <string name="quanwei">ALL DICE</string>
+    <string name="nodata">No data</string>
+    <string name="da17">BIG（1.9）\n 11 to17</string>
+    <string name="shuangdan">EVEN ODD</string>
+    <string name="honghei">COLOR</string>
+
+    <string name="zhengjiazai">loading...</string>
+    <string name="sorryyancuowu">Captcha error</string>
+    <string name="sorrtshucuo">You should input number,length is 6 to 20!</string>
+    <string name="sorryyouxcuo">You should input email such as XXX@XXX.XXX!</string>
+    <string name="sorrychancuo">Bank Account can not contain special characters,length is 2 to 20!</string>
+    <string name="sorrynopipei">Second passwords do not match!</string>
+    <string name="sorrypswcuo">The password must contain: numbers and letters,length is 8 to 20!</string>
+    <string name="sorrypswcuo1">The password must contain: numbers and letters,length is 7 to 10!</string>
+    <string name="sorrynamecuo">You should input alphabet or number,length is 6 to 9!</string>
+    <string name="email">E-mail</string>
+    <string name="jibenxinxi">Basic Information</string>
+    <string name="xiumima">Change Password</string>
+    <string name="scr_xiumima">SCR888 Change password</string>
+    <string name="cunkuanzx">Deposit</string>
+    <string name="qukuanzx">Withdraw</string>
+    <string name="xiazhujilu">Bet Reports</string>
+    <string name="wancenjilu">Statements</string>
+    <string name="honglizx">Bonus</string>
+    <string name="yuyanqiehuan">Languages</string>
+    <string name="zhanghum">Account</string>
+    <string name="tuijianlianjie">Ref Link</string>
+    <string name="dianhua">Phone</string>
+    <string name="qukuanzh">Withdrawal Bank Account Name</string>
+    <string name="qukuanzho">Withdrawal Bank No</string>
+    <string name="yinhangm">Bank Name</string>
+    <string name="leijijiang">Total Bonus</string>
+    <string name="shengyujiang">Last Bonus</string>
+    <string name="mimaerror">New password and confirm password not the same！</string>
+    <string name="errornull">Field confirm password cannot empty！</string>
+    <string name="newmimanull">Field new password cannot empty！</string>
+    <string name="oldmimanull">Field old password cannot empty！</string>
+    <string name="xiumisucess">Modify the success</string>
+    <string name="mimaerrorx">Did not fill in or password length less than 6</string>
+    <string name="qingxuanyh">Please select bank</string>
+    <string name="deposit">Deposit</string>
+    <string name="cunkuansus">Deposit successfully</string>
+    <string name="tijiaosibai">Failed to Deposit, Please check your deposit records</string>
+    <string name="cunkuanlist">Deposit List</string>
+    <string name="nojilu">No record found!</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="qukuanlist">Withdraw List</string>
+    <string name="qukuansucces">Withdraw Success</string>
+    <string name="jine1">Amount</string>
+    <string name="xiahzujilu">Bet Reports</string>
+    <string name="eightqihuo">855 forex</string>
+    <string name="no">No：</string>
+    <string name="youxitype">Game:</string>
+    <string name="youxitype1">Game</string>
+    <string name="youxi1">Pool：</string>
+    <string name="wanfa1">Type：</string>
+    <string name="haoma1">NUMBER：</string>
+    <string name="peilv1">Rate：</string>
+    <string name="youhui1">Discount：</string>
+    <string name="xiazhujine">Bet Amount</string>
+    <string name="qihao1">GameID：</string>
+    <string name="deal_num">Transfer ID：</string>
+    <string name="xiazhushijian">Bet Time：</string>
+    <string name="xiazhushijian1">Bet Time</string>
+    <string name="shuying">WinLoss：</string>
+    <string name="shurujine">Please enter the amount</string>
+    <string name="shenqingsuccess">Transfer bonus was successful</string>
+    <string name="chongfu">Failed to transfer bonus, Please check your transfer records</string>
+    <string name="zhuankuanhl">Transfer Bonus</string>
+    <string name="hongleix">Bonus type:</string>
+    <string name="leixing">Type : </string>
+    <string name="shijian">Time：</string>
+    <string name="fenlei">Category：</string>
+    <string name="zhuangtai">State：</string>
+    <string name="bianhao1">No：</string>
+    <string name="shengqinghl">Update Bonus</string>
+    <string name="qingxyxm">Please Select Game</string>
+    <string name="qingyxtype">Please Select Game</string>
+    <string name="shibai">Update Failure</string>
+    <string name="chongfu1">There is a pending request, cannot repeat application</string>
+    <string name="nohongli">Not yet have a Bonus</string>
+    <string name="qingxyouxm">Please Select Game</string>
+    <string name="beituijianlist">Referral List</string>
+    <string name="kaihutime">Open Time:</string>
+    <string name="starttime">Start Date:</string>
+    <string name="jishutime">End Date:</string>
+    <string name="shengqinglist">Apply For Bonus List</string>
+    <string name="shengqingtitle">Apply For Bonus List</string>
+    <string name="qingxshijian">Please select a time</string>
+    <string name="jieshutime">End Time:</string>
+    <string name="chulizhong">Submitting</string>
+    <string name="chuliwancen">Finish</string>
+    <string name="shengqingqx">Be closed</string>
+    <string name="shenqts">Transfer Bonus:</string>
+    <string name="shengqinghl1">Transfer Count:</string>
+    <string name="zhanghuyue1">Balance</string>
+    <string name="dangqmima">Current Password</string>
+    <string name="newmima">New Password</string>
+    <string name="quexinmima">Confirm Password</string>
+    <string name="xiuga">Submit</string>
+    <string name="shijian1">Time：</string>
+    <string name="xuanxiang">Options：</string>
+    <string name="newshengqing">Submitting</string>
+    <string name="qitaleix">Other Exception Types</string>
+    <string name="gaunliyuan">Rejected</string>
+    <string name="caoshi">Timeout</string>
+    <string name="houtaichuli">Successful</string>
+    <string name="oldmimaerror">Old password error</string>
+
+    <string name="honglijine">Amount:</string>
+    <string name="twomimacuo">The two passwords do not match</string>
+
+    <string name="mima">Password</string>
+    <string name="zhucequemi">Confirm Password</string>
+    <string name="zhucexuan">Please select</string>
+    <string name="zhucezhanghu">Bank Account</string>
+    <string name="zhucezhanghao">Bank No</string>
+    <string name="zhucetui">Referral</string>
+    <string name="dianziyoujian">Email</string>
+    <string name="yanzhengma">Code</string>
+    <string name="livenumber">LIVE NUMBER</string>
+
+
+    <string name="do_you_want_to_load_main">Do you want to return to main page？</string>
+
+    <string name="bet_info">BET INFORMATION:</string>
+    <string name="bet_num">Amount：</string>
+    <string name="shijitouzhu">Net Amount：</string>
+    <string name="touzhuhao">Bet On：</string>
+    <string name="combination">COMBINATION</string>
+    <string name="discount">Discount</string>
+    <string name="zodiapeilv">Odds</string>
+    <string name="xiazhujinee">Bet Amount：</string>
+    <string name="zhucezhanghao1">Account Name</string>
+    <string name="teshuzifu">Account Name Contains Special Symbols</string>
+    <string name="zhanghunouse">Bank Account Is Not Available</string>
+    <string name="xinxierror">Registration Information Is Incorrect</string>
+    <string name="userexist">Account Name Already Exists</string>
+    <string name="zhucebibie">Currency</string>
+
+    <string name="gaomianyx">Khmer Gaming</string>
+    <string name="mgyx">CASINO 4</string>
+    <string name="tiyubocai1">MG SLOTS</string>
+    <string name="zhenrenyule">SPORTS 2</string>
+    <string name="zhenrenyule3">CASINO 3</string>
+    <string name="zhenrenyule4">SPORTS 1</string>
+    <string name="qihuo">CASINO 1</string>
+    <string name="zhenrenyule2">855 FOREX</string>
+    <string name="tiyubocai2">TANGKAS</string>
+    <string name="casion2">CASINO 2</string>
+    <string name="honglijine1">Amount：</string>
+    <string name="yuebuzhu">Sorry,not enough balance,please deposit first!</string>
+    <string name="double1">EVEN </string>
+    <string name="xiao1">SMALL</string>
+    <string name="dandan1">ODD </string>
+    <string name="cunkuanxiao">Deposit Amount need more than</string>
+    <string name="cunkuanda">Deposit Amount need less than</string>
+    <string name="qukuanda">WithDraw Amount need more than</string>
+    <string name="qukuanxiao">WithDraw Amount need less than</string>
+    <string name="leixingcun">ID：Deposit</string>
+    <string name="feileiqukuan">Type：WithDrawal</string>
+    <string name="betshibai">Bet failed, please relogin</string>
+    <string name="cunzai">already exist</string>
+    <string name="wanpeilv">Odds：</string>
+    <string name="beituijianzh">User Name:</string>
+    <string name="tuijianbibie">Currency：</string>
+    <string name="tuijianlic">User Name：</string>
+    <string name="qiu">BALLS</string>
+    <string name="saibao">SICBO BALLS</string>
+    <string name="nadata">No data</string>
+    <string name="tdejiadeguo">Bundesliga (Germany)</string>
+    <string name="tfajiafaguo">LIGUE 1 (France)</string>
+    <string name="thecaohelan">Eredivisie (Holland)</string>
+    <string name="txijiaxibanya">LA LIGA (Spain)</string>
+    <string name="banknoexist">Bank no already exist</string>
+    <string name="aleixing">Type：</string>
+    <string name="cunkuanlist1">Status：</string>
+    <string name="lunpan">ROULETTE BALLS</string>
+    <string name="zhuhe36qiu">MULTIPLE 36BALLS</string>
+    <string name="txiaoshuang">S\nEVEN</string>
+    <string name="tdashuang">B\nEVEN</string>
+    <string name="txiaodan">S\nODD</string>
+    <string name="tdadan">B\nODD</string>
+    <string name="honglizhongxin">Status：</string>
+    <string name="helan">Eredivisie\n\n(Holland)</string>
+    <string name="faguo1">LIGUE1\n\n(France)</string>
+    <string name="yincao">EPL\n\n(England)</string>
+
+    <string name="dejia">Bundesliga
+                         </string>
+    <string name="xiane">Betting limit less than nominal！</string>
+    <string name="xibanya">(Spain)</string>
+    <string name="deguo">(Germany)</string>
+    <string name="xijia">LA LIGA</string>
+    <string name="shuziyouxi1">NUMBER GAMES</string>
+    <string name="caoguobet">Betting limit less than Max Total bet！</string>
+    <string name="regphone">Phone Number</string>
+    <string name="release_to_load_app">Release To Load</string>
+    <string name="release_to_refresh_app">Release To Refresh</string>
+    <string name="submit_sure">SUBMIT</string>
+    <string name="betting_limit_less_than_nominal">Betting limit less than nominal!</string>
+    <string name="betting_limit_more_than_nominal">Betting limit more than nominal!</string>
+    <string name="betting_total_limit_more_than_nominal">Betting total limit more than nominal!</string>
+    <string name="pull_up_to_load_next_page">Pull up to load next page</string>
+    <string name="not_enough_balance_please_deposit_first">Sorry, not enough balance, Please deposit first!</string>
+    <string name="SINGAPORE">SINGAPORE</string>
+    <string name="TAIPEI">TAIPEI</string>
+    <string name="KUALA_LUMPUR">KUALA_LUMPUR</string>
+    <string name="HONGKONG">HONGKONG</string>
+    <string name="MALAYSIA">MALAYSIA</string>
+    <string name="CHINA">CHINA</string>
+    <string name="HK4D">HK4D</string>
+    <string name="CAMBODIA">CAMBODIA</string>
+    <string name="MACAU">MACAU</string>
+    <string name="CANADA4D">CANADA4D</string>
+    <string name="update_bonus_was_successful">Update bonus was successful</string>
+    <string name="full_half_goal">Full/Half/Goal</string>
+    <string name="tie">Tie</string>
+    <string name="Gold">Gold</string>
+    <string name="wood">Wood</string>
+    <string name="water">Water</string>
+    <string name="fire">Fire</string>
+    <string name="earth">Earth</string>
+    <string name="series">DRAW</string>
+    <string name="KOREA">KOREA</string>
+    <string name="JAPAN">JAPAN</string>
+    <string name="VIETNAM">VIETNAM</string>
+    <string name="THAILAND">THAILAND</string>
+    <string name="JAKARTA">JAKARTA</string>
+    <string name="country_area">Country/Area：</string>
+    <string name="country">Country</string>
+    <string name="country_area1">Country/Area</string>
+    <string name="element5">5 ELEMENT</string>
+    <string name="COMBINATION">COMBINATION</string>
+    <string name="EVEN_ODD">EVEN ODD</string>
+    <string name="BIG_SMALL">BIG SMALL</string>
+    <string name="time_left">LEFT TIME</string>
+    <string name="keno_results">KENO Results</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="ODDS">Odds</string>
+    <string name="EVENS">Evens</string>
+    <string name="rebetting">Rebetting</string>
+    <string name="hit">Hit</string>
+    <string name="up_down">UpDown</string>
+    <string name="odds_evens">ODDS EVENS</string>
+    <string name="total">Total:</string>
+    <string name="zhuzai">PEARL BALL</string>
+    <string name="nominal_betting_limit_exceeded_min">Betting limit less nominal!</string>
+    <string name="nominal_betting_limit_exceeded_max">Nominal betting limit exceeded!</string>
+    <string name="version">Current Version</string>
+
+
+    <string name="qieerxi">01 MANCHESTER CITY</string>
+    <string name="mancesitecen">07 MANCHESTER-UNITED</string>
+    <string name="asenna">13 TOTTENHAM HOTSPUR</string>
+    <string name="mancesitelian">19 LIVERPOOL</string>
+    <string name="tuotenamureci">25 CHELSEA</string>
+    <string name="liwupu">31 ARSENAL</string>
+    <string name="lianpudun">37 BURNLEY FC</string>
+    <string name="siwangxi">43 EVERTON</string>
+    <string name="yijiayidali">SERIE A\n\n(Italy)</string>
+    <string name="youwentusi">02 JUVENTUS</string>
+    <string name="luoma">08 NAPOLI</string>
+    <string name="laqiao">14 AS ROMA</string>
+    <string name="fuoluolunsa">20 INTER MILAN</string>
+    <string name="naboli">26 LAZIO</string>
+    <string name="relaya">32 AC MILAN</string>
+    <string name="sangpuduoliya">38 ATLANTA</string>
+    <string name="guojimilan">44 FIORENTINA</string>
+
+    <string name="xijiaxibanya">LA LIGA (Spain)</string>
+
+    <string name="dasailuola">03 BARCELONA</string>
+    <string name="huangjiamadeli">09 ATLETICO MADRID</string>
+    <string name="madelijingji">15 REAL MADRID</string>
+    <string name="walunxiya">21 VALENCIA</string>
+    <string name="saiweiliya">27 VILLARREAL</string>
+    <string name="biliyaleiyaer">33 REAL BETIS</string>
+    <string name="bierbae">39 SEVILLA</string>
+    <string name="saierta">45 GETAFE</string>
+    <string name="bairenmulihei">04 BAYERN MUNICH</string>
+    <string name="woerfusibao">10 SCHALKE 04</string>
+    <string name="mengxing">16 TSG HOFFENHEIM</string>
+    <string name="lewokusen">22 BORUSSIA DORTMUND</string>
+    <string name="aogesibao">28 BAYER LEVERKUSEN</string>
+    <string name="shaerke">34 RB LEIPZIG</string>
+    <string name="boluxiyaduo">40 VFB STUTTGART</string>
+    <string name="huofenhaimu">46 FRANKFURT EINTRACHT</string>
+
+    <string name="julebu48">Choose from six European league club 48</string>
+    <string name="fajiafaguo">LIGUE1(France)</string>
+
+    <string name="balisengerman">05 PARIS SAINT GERMAIN</string>
+    <string name="liang">11 MONACO</string>
+    <string name="molage">17 OLYMPIQUE LYONNAIS</string>
+    <string name="masai">23 OLYMPIQUE DE MARSEILLE</string>
+    <string name="shengaidian">29 RENNES</string>
+    <string name="boerduo">35 GIRONDINS DE BORDEAUX</string>
+    <string name="lier">41 SAINT ETIENNE</string>
+    <string name="mengbiliai">47 NICE</string>
+    <string name="hecaohelan">Eredivisie(Holland)</string>
+    <string name="aiyinghuowen">06 PSV EINDHOVEN</string>
+    <string name="ajitu">12 AJAX AMSTERDAM</string>
+    <string name="helanaerke">18 AZ ALKMAAR</string>
+    <string name="feiyeruode">24 FEYENOORD ROTTERDAM</string>
+    <string name="weitesai">30 FC UTRECHT</string>
+    <string name="zewole">36 SBV VITESEE</string>
+    <string name="hailunweien">42 ADO DEN HAAG</string>
+    <string name="gaoninggen">48 SC HEERENVEEN</string>
+    <string name="forex">Forex</string>
+    <string name="w88_game">w88 slots</string>
+    <string name="bestgame_slots">bestgame slots</string>
+    <string name="start_time">Start Date</string>
+    <string name="end_time">End Date</string>
+    <string name="all_choose">Select All</string>
+    <string name="casino">Casino</string>
+    <string name="sports">Sports</string>
+    <string name="provider">Provider</string>
+    <string name="wash_code">Turnover</string>
+    <string name="check_wash_code">Turnover Checking</string>
+    <string name="MY_market">MY ODDS</string>
+    <string name="ID_market">ID ODDS</string>
+    <string name="HK_market">HK ODDS</string>
+    <string name="EU_market">EU ODDS</string>
+    <string name="remak">Remark</string>
+    <string name="master_balance">Main Balance</string>
+    <string name="china_lottery_balance">HC Balance</string>
+    <string name="start_game">Play Now</string>
+    <string name="buy">Buy In</string>
+    <string name="take_out">Buy Out</string>
+    <string name="try_again_later">Is in processing, please try again later</string>
+    <string name="total_amount">Total amount</string>
+    <string name="transfer_center">Transfer Center</string>
+    <string name="note">Note</string>
+    <string name="accepted">Accepted</string>
+    <string name="waiting">Waiting</string>
+    <string name="rejected">Rejected</string>
+    <string name="No">No：</string>
+    <string name="Code">Code：</string>
+    <string name="Title">Title：</string>
+    <string name="Join_Date">Join Date：</string>
+    <string name="Start_Date">Start Date：</string>
+    <string name="End_Date">End Date：</string>
+    <string name="Bonus">Bonus：</string>
+    <string name="Turnover">Turnover：</string>
+    <string name="Status">Status：</string>
+    <string name="Promotion_list">Promotion List</string>
+    <string name="Auto_promotion">Auto Promotion</string>
+    <string name="type">Type：</string>
+    <string name="game_name">Game name：</string>
+    <string name="bet_list">BET LIST</string>
+    <string name="new_2d_introduce">Number1 * Number2 * Number3 # Amount+Number1 * Number2 * Number3 # Amount Or Number1XAmount Number2XAmount</string>
+    <string name="Keno">Keno</string>
+    <string name="Win_Report">Win Report</string>
+    <string name="Result">Result</string>
+    <string name="Rules">Rules</string>
+    <string name="Search">Search</string>
+    <string name="Today">Today</string>
+    <string name="Yesterday">Yesterday</string>
+    <string name="No1">No</string>
+    <string name="Dates">Dates</string>
+    <string name="Title1">Title</string>
+    <string name="Result1">Result</string>
+    <string name="Detail">Detail</string>
+    <string name="Over_Under">Over/Under</string>
+    <string name="Odd_Even">Odd/Even</string>
+    <string name="Range">Range</string>
+    <string name="Smallest_Number">Smallest Number</string>
+    <string name="Biggest_Number">Biggest Number</string>
+    <string name="ThisWeek">ThisWeek</string>
+    <string name="LastWeek">LastWeek</string>
+    <string name="ThisMonth">ThisMonth</string>
+    <string name="LastMonth">LastMonth</string>
+    <string name="Order_No">Order No</string>
+    <string name="Bet_Time">Bet Time</string>
+    <string name="Name">Name</string>
+    <string name="Ticket_Id_TIME">Ticket Id/TIME</string>
+    <string name="Type">Type</string>
+    <string name="Bet">Bet</string>
+    <string name="Odds">Odds</string>
+    <string name="RECENT_ORDERS">RECENT ORDERS</string>
+    <string name="Total">Total:</string>
+    <string name="Frequence">Frequence</string>
+    <string name="Parlay">Parlay</string>
+    <string name="BetCredit">BetCredit:</string>
+    <string name="OutStanding">OutStanding:</string>
+    <string name="LAST_GAMES">LAST GAMES</string>
+    <string name="Stake">Stake:</string>
+    <string name="Max_Payout">Max Payout</string>
+    <string name="Bet_Limit">Bet Limit</string>
+    <string name="Reset">RESET</string>
+    <string name="OverOdd">OverOdd</string>
+    <string name="OverEven">OverEven</string>
+    <string name="UnderOdd">UnderOdd</string>
+    <string name="UnderEven">UnderEven</string>
+    <string name="loading">Loading</string>
+    <string name="Loading_completed">Loading Completed</string>
+    <string name="prize">PRIZE</string>
+    <string name="List">No</string>
+    <string name="pool">Pools</string>
+    <string name="number_4d">Number</string>
+    <string name="period">Period</string>
+    <string name="Bet_Type">Bet Type</string>
+    <string name="Amount">Amount</string>
+    <string name="number_must_4">Number must be 4 digits</string>
+    <string name="right_amount">Please enter the appropriate amount</string>
+    <string name="sure_bet">Please confirm your bet!</string>
+    <string name="pool_period">Pools/Period</string>
+    <string name="Bet_Amount">Bet/Amount</string>
+    <string name="Success">Success</string>
+    <string name="need_activate">You need to contact our Customer Service in order to activate your account.</string>
+    <string name="wm_live_entertainment">WM Casino</string>
+    <string name="sexy_live_entertainment">Sexy Casino</string>
+    <string name="evo_live_entertainment">EVO Casino</string>
+    <string name="w88_live_entertainment">W88 Casino</string>
+    <string name="best_game_slots">BestGame</string>
+    <string name="netent_game_slots">NETENT Game</string>
+    <string name="playstar_game_slots">PLAYSTAR Game</string>
+    <string name="xe88_game_slots">Xe88 Game</string>
+    <string name="haba_game_slots">HABA Game</string>
+    <string name="w88_game_slots">W88 Game</string>
+    <string name="mg_game_slots">MG Game</string>
+    <string name="pt_game_slots">PT Game</string>
+    <string name="fish_game_slots">Fish Game</string>
+    <string name="sa_game_slots">SA Game</string>
+    <string name="joker_game_slots">JOKER Game</string>
+    <string name="mega_game_slots">Mega888 Game</string>
+    <string name="jdb_game_slots">JDB Game</string>
+    <string name="pp_game_slots">PP Game</string>
+    <string name="rtg_game_slots">RTG Game</string>
+    <string name="klasPoker">KlasPoker</string>
+    <string name="hc_lottery">HC Lottery</string>
+    <string name="ig_lottery">IG Lottery</string>
+    <string name="thai_lottery">Thai Lottery</string>
+    <string name="new_keno">New Keno</string>
+    <string name="msg">Message</string>
+    <string name="set_language">Set Language</string>
+    <string name="lottery4d">4D Lottery</string>
+    <string name="more">More</string>
+    <string name="user">User</string>
+    <string name="contact">Contact</string>
+    <string name="Contact_Us">Contact Us</string>
+    <string name="please_login">Please Login First</string>
+    <string name="exit_login">Logout</string>
+    <string name="upload_receipt">Choose File</string>
+    <string name="No_file_chosen">No file chosen</string>
+    <string name="withdraw_failed">You have submitted,Please check withdraw list</string>
+    <string name="download">Download</string>
+    <string name="play_now">Play Now</string>
+    <string name="Withdraw_Password">Withdraw Password</string>
+    <string name="check">check</string>
+</resources>
+
+
+
+
+
+
