@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/base_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout"></include>
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#DDDDDD"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_keno4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_new_keno_type_bg"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/Keno"
+            android:textColor="@color/selector_new_keno_type"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/rb_keno3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/selector_new_keno_type_bg"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/Keno"
+            android:textColor="@color/selector_new_keno_type"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/rb_keno2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/selector_new_keno_type_bg"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/Keno"
+            android:textColor="@color/selector_new_keno_type"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/rb_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/selector_new_keno_type_bg"
+            android:button="@null"
+            android:checked="false"
+            android:padding="5dp"
+            android:text="@string/Win_Report"
+            android:textColor="@color/selector_new_keno_type" />
+
+        <RadioButton
+            android:id="@+id/rb_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/selector_new_keno_type_bg"
+            android:button="@null"
+            android:checked="false"
+            android:padding="5dp"
+            android:text="@string/Result"
+            android:textColor="@color/selector_new_keno_type" />
+
+        <RadioButton
+            android:id="@+id/rb_rule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/selector_new_keno_type_bg"
+            android:button="@null"
+            android:checked="false"
+            android:padding="5dp"
+            android:text="@string/Rules"
+            android:textColor="@color/selector_new_keno_type" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

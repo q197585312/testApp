@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/vs_row_foot_ll"
+style="@style/style_match_wrap"
+android:orientation="vertical">
+<View
+    style="@style/line_horizontal_gradient_grey10"
+    />
+
+</LinearLayout>

@@ -1,77 +1,55 @@
 package gaming178.com.mylibrary.base.component;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.widget.Toolbar;
-
-import com.zhy.autolayout.AutoLayoutActivity;
+import android.widget.Toolbar;
 
 import butterknife.ButterKnife;
-import gaming178.com.mylibrary.R;
-import gaming178.com.mylibrary.allinone.util.AppTool;
-import gaming178.com.mylibrary.allinone.util.BlockDialog;
 
 
-public abstract class BaseActivity extends AutoLayoutActivity {
-    protected Toolbar toolbar;
+public abstract class BaseActivity extends com.unkonw.testapp.libs.base.BaseActivity {
+    public Toolbar toolbar;
     public TextView titleTv;
-    public ImageView imgCenter;
-    protected TextView tvCenterTitle;
-    protected Context mContext;
-
-    //    protected LinearLayout searchLl;
-//    protected AutoCompleteTextView searchEdt;
-    public LinearLayout setLayout;
-    protected Button searchSubmitBtn;
-
-
-    public TextView backTv;
-
-    public BlockDialog dialog;
+    public Context mContext;
+    public LinearLayout searchLl;
+    public AutoCompleteTextView searchEdt;
+    public Button searchSubmitBtn;
+    public TextView rightTv;
+    public TextView msgTv;
+    public TextView leftImg;
+    public TextView rightTv2;
     public boolean isAttached;
-    protected View baseContentView;
-
+    public FrameLayout msgLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
-            // Activity was brought to front and not created,
-            // Thus finishing this will get us to the last viewed activity
-            finish();
-            return;
-        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         if (getLayoutRes() == 0)
             setContentView(getLayoutView());
         else
             setContentView(getLayoutRes());
         mContext = this;
         ButterKnife.bind(this);
-        setDialog(new BlockDialog(mContext, getString(R.string.loading)));
         initView();
+        RequestUtils.init(mContext);
         initData(savedInstanceState);
-
     }
 
     @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        this.baseContentView = view;
-    }
-
-    @Override
-    public void setContentView(int res) {
-        View view = LayoutInflater.from(this).inflate(res, null);
-        setContentView(view);
+    protected void onStop() {
+        super.onStop();
+        RequestUtils.cancelAll(mContext);
     }
 
     protected View getLayoutView() {
@@ -79,14 +57,17 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     }
 
     protected void initToolBar() {
-        toolbar =findViewById(R.id.toolbar);
-
-        setLayout = (LinearLayout) findViewById(R.id.layout_set);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.title_bg_color));
+        msgLayout = (FrameLayout) findViewById(R.id.msg_layout);
+        msgTv = (TextView) findViewById(R.id.msg_tv);
         titleTv = (TextView) findViewById(R.id.toolbar_title);
-        tvCenterTitle = (TextView) findViewById(R.id.tv_center_title);
-        imgCenter = (ImageView) findViewById(R.id.gd_img_center);
-        backTv = (TextView) findViewById(R.id.toolbar_back_tv);
-/*
+        rightTv = (TextView) findViewById(R.id.toolbar_right_tv);
+        rightTv2 = (TextView) findViewById(R.id.toolbar_right_tv2);
+        leftImg = (TextView) findViewById(R.id.toolbar_left_img);
+        if (titleTv != null)
+            titleTv.setText("");
+
         searchLl = (LinearLayout) findViewById(R.id.search_parent_ll);
         searchEdt = (AutoCompleteTextView) findViewById(R.id.search_content_edt);
         searchSubmitBtn = (Button) findViewById(R.id.search_submit_btn);
@@ -96,7 +77,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
                 public void onClick(View v) {
                     clickSearch(v);
                 }
-            });*/
+            });
         if (toolbar != null) {
             toolbar.setTitle("");
             setSupportActionBar(toolbar);
@@ -110,9 +91,9 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         }
     }
 
-/*    protected void clickSearch(View v) {
+    protected void clickSearch(View v) {
         searchEdt.setText("");
-    }*/
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -124,7 +105,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         finish();
     }
 
-    protected void initView() {
+    public void initView() {
         initToolBar();
     }
 
@@ -133,38 +114,20 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
     protected abstract int getLayoutRes();
 
-    public void setDialog(BlockDialog dialog) {
-        this.dialog = dialog;
-    }
-
-    public void showBlockDialog() {
-        if (getWindow().isActive() && !isFinishing() && isAttached && dialog != null) {
-            try {
-                dialog.dismiss();
-                dialog.show();
-            } catch (Exception e) {
-
-            }
-        }
-    }
-
-
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        dismissBlockDialog();
-
     }
 
-    public void dismissBlockDialog() {
-        if (!isFinishing() && dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     @Override

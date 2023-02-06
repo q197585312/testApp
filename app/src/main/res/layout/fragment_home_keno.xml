@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_big"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="@string/big"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_big_odds"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="1.95"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_tie"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rectangle_button_corner5_white_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tie"
+                                    android:textColor="@color/black_title" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_tie_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_small"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:onClick="clickSmall"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="@string/small"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_small_odds"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_odd"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:onClick="clickOdd"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="@string/odd"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_odd_odds"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="1.95"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_even"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:onClick="clickEven"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="@string/even"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_even_odds"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_small_even"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/small_even"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_seven_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_small_odd"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/small_odd"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_sodd_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_big_even"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/big_even"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_beven_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_big_odd"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/rectangle_button_corner5_black_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/big_odd"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_bodd_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_gold"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rectangle_button_corner5_white_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Gold"
+                                    android:textColor="@color/black_title" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_gold_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_wood"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rectangle_button_corner5_white_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/wood"
+                                    android:textColor="@color/black_title" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_wood_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_water"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rectangle_button_corner5_white_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/water"
+                                    android:textColor="@color/black_title" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_water_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_fire"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rectangle_button_corner5_white_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/fire"
+                                    android:textColor="@color/black_title" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_fire_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_bet_earth"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rectangle_button_corner5_white_orange_selector"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/earth"
+                                    android:textColor="@color/black_title" />
+
+                                <TextView
+                                    android:id="@+id/tv_keno_earth_odds"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Big"
+                                    android:textColor="@color/orange_dark" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:id="@+id/fl_keno_progress_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/trans_black"
+                        android:clickable="true"
+                        android:visibility="gone">
+
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:indeterminateDrawable="@drawable/progress_loading"
+                            android:indeterminateDuration="700" />
+                    </FrameLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_keno_timer"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="00:00"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/series"
+                                android:textColor="@color/gray_dark" />
+
+                            <TextView
+                                android:id="@+id/tv_keno_series_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="15747"
+                                android:textColor="@color/orange_dark"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="3dp"
+                        android:background="@color/black_grey"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_keno_country"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CHINA"
+                                android:textColor="@color/gray_dark" />
+
+                            <TextView
+                                android:id="@+id/tv_enter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="60dp"
+                                android:background="@drawable/btn_numberlist"
+                                android:clickable="true"
+                                android:onClick="clickEnter" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <GridView
+                                android:id="@+id/fgv_keno_result_header"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:horizontalSpacing="0.5dp"
+                                android:numColumns="5"
+                                android:verticalSpacing="0.5dp" />
+
+                            <GridView
+                                android:id="@+id/fgv_keno_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:horizontalSpacing="0.5dp"
+                                android:numColumns="5"
+                                android:verticalSpacing="0.5dp">
+
+                            </GridView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/rectangle_button_on_corner_black_orange_selector"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="B&amp;S"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/rectangle_button_on_corner_black_orange_selector"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="U&amp;D"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/rectangle_button_on_corner_black_orange_selector"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="S&amp;D"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/rectangle_button_on_corner_black_orange_selector"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="O&amp;E"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/rectangle_button_on_corner_black_orange_selector"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="C&amp;O"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/rectangle_button_on_corner_black_orange_selector"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="5&amp;E"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <xs.com.mylibrary.myview.mylistview.HorizontalListView
+                    android:id="@+id/hlst_keno_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="5dp"
+                    android:numColumns="24">
+
+                </xs.com.mylibrary.myview.mylistview.HorizontalListView>
+            </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/listView_bg"
+    android:gravity="center"
+    android:orientation="vertical">
+    <View android:id="@+id/module_match_head_v"
+        style="@style/style_match_wrap_padding5"
+        android:layout_height="20dp"
+        />
+    <include android:id="@+id/module_match_title_tv" layout="@layout/item_table_header_first"/>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <FrameLayout
+            style="@style/style_wrap_wrap"
+           android:gravity="center">
+        <TextView
+
+            android:id="@+id/module_match_collection_tv"
+            style="@style/text_wrap_grey12"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/star_outline_grey"
+            android:gravity="center"
+            android:textSize="10sp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/module_match_left1_ll"
+            style="@style/style_wrap_wrap"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/module_match_live_iv"
+                style="@style/style_wrap_wrap"
+                android:layout_width="28dp"
+                android:background="@mipmap/live_green_left_arrow_white"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textSize="7sp"
+                android:visibility="visible" />
+            <TextView
+                android:id="@+id/module_match_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:text="03/11"
+                android:textColor="@color/listView_live_color"
+                android:textSize="10sp" />
+            <TextView
+                android:id="@+id/module_match_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLength="5"
+                android:singleLine="true"
+                android:text="03/11"
+                android:textColor="@color/listView_live_color"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/module_match_left2_ll"
+            style="@style/style_weight_horizontal"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="3dp"
+            >
+            <LinearLayout
+                style="@style/style_wrap_wrap"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/module_match_home_rea_card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rectangle_red"
+                    android:gravity="center"
+                    android:paddingLeft="1dp"
+                    android:paddingRight="1dp"
+                    android:textColor="@color/white"
+                    android:textSize="9dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    />
+            <TextView
+                android:id="@+id/module_match_home_team_tv"
+                style="@style/text_wrap_home_away_size"
+                android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="zheshiyigeceshi mingz " />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/style_wrap_wrap"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/module_match_away_rea_card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/rectangle_red_card1"
+                    android:gravity="center"
+                    android:paddingLeft="1dp"
+                    android:paddingRight="1dp"
+                    android:textColor="@color/white"
+                    android:textSize="9dp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    />
+            <TextView
+                android:id="@+id/module_match_visiting_team_tv"
+                style="@style/text_wrap_home_away_size"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="zheshiyigeceshi mingz " />
+                </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_running_match_bg"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:background="@mipmap/soccer_hall"
+            android:visibility="gone" />
+        <View
+            android:layout_width="0.8dp"
+            android:layout_height="match_parent"
+            android:background="@color/green_white_thick_line" />
+
+        <View
+            android:layout_width="0.8dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_dialog_background" />
+
+        <nanyang.com.dig88.LinkedViewPager.ViewPager
+            android:id="@+id/module_center_vp"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="0.8dp"
+            android:layout_height="match_parent"
+            android:background="@color/green_white_thick_line" />
+
+        <View
+            android:layout_width="0.8dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_dialog_background" />
+
+        <TextView
+            android:id="@+id/module_right_mark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:drawableRight="@mipmap/add_circle_outline_small_grey500"
+            android:textSize="20sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/green_white_thick_line" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.1dp"
+        android:background="@color/grey_dialog_background" />
+
+</LinearLayout>

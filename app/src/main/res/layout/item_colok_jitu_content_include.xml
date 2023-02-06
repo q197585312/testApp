@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:focusable="true"
+android:focusableInTouchMode="true"
+android:orientation="horizontal"
+android:padding="3dp">
+
+<EditText
+    android:id="@+id/colok_content_edt1"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:imeOptions="flagNoExtractUi"
+    android:inputType="number"
+    android:maxLength="1"
+    android:textColor="@color/black" />
+
+<RadioGroup
+    android:id="@+id/colok_location_rg"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_weight="2.6"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    >
+
+    <RadioButton
+        android:id="@+id/colok_location_rb1"
+        android:layout_width="0dip"
+        android:layout_height="30dip"
+        android:layout_weight="1"
+        android:button="@drawable/oval_white_red_center_check_bnt_selector"
+        android:text="AS"
+        android:textSize="10dip" />
+
+    <RadioButton
+        android:id="@+id/colok_location_rb2"
+        android:layout_width="0dip"
+        android:layout_height="30dip"
+        android:layout_weight="1"
+        android:button="@drawable/oval_white_red_center_check_bnt_selector"
+        android:text="KOP"
+        android:textSize="10dip"
+
+        />
+
+    <RadioButton
+        android:id="@+id/colok_location_rb3"
+        android:layout_width="0dip"
+        android:layout_height="30dip"
+        android:layout_weight="1"
+        android:button="@drawable/oval_white_red_center_check_bnt_selector"
+        android:text="KEPALA "
+        android:textSize="10dip" />
+
+    <RadioButton
+        android:id="@+id/colok_location_rb4"
+        android:layout_width="0dip"
+        android:layout_height="30dip"
+        android:layout_weight="1"
+        android:button="@drawable/oval_white_red_center_check_bnt_selector"
+        android:text="EKOR"
+        android:textSize="10dip" />
+</RadioGroup>
+
+<EditText
+    android:id="@+id/colok_content_edt2"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dip"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:imeOptions="flagNoExtractUi"
+    android:inputType="number|numberDecimal"
+    android:maxLength="6"
+    android:textColor="@color/black" />
+
+<TextView
+    android:id="@+id/colok_content_edt3"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dip"
+    android:layout_weight="1"
+    android:background="@drawable/rectangle_greylight_greystoke_corners7"
+    android:gravity="center"
+    android:textColor="@color/black" />
+
+
+</LinearLayout>
