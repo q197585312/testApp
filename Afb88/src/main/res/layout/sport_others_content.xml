@@ -10,7 +10,7 @@
             type="com.nanyang.app.main.home.sport.main.SportOtherViewModel" />
         <variable
             name="viewClick"
-            type="com.nanyang.app.main.home.OnViewClickListener" />
+            type="com.unkonw.testapp.libs.base.OnViewClickListener" />
         <import type="android.view.View"/>
     </data>
 

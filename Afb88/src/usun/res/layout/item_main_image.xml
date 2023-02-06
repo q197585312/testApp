@@ -9,7 +9,7 @@
 
         <variable
             name="itemClick"
-            type="com.nanyang.app.main.home.OnItemClickListener" />
+            type="com.unkonw.testapp.libs.base.OnItemClickListener" />
 
         <variable
             name="itemBean"
@@ -21,7 +21,7 @@
         android:layout_height="140dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:onClick="@{()->itemClick.onItemClick(itemBean)}"
+        android:onClick="@{(v)->itemClick.onItemClick(v,itemBean)}"
         android:paddingBottom="10dp">
 
 

@@ -1,11 +1,12 @@
 package com.nanyang.app.main.home.sport.main
 
 import android.app.Application
+import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import com.nanyang.app.*
 import com.nanyang.app.data.Main
-import com.nanyang.app.main.home.OnItemClickListener
+import com.unkonw.testapp.libs.base.OnItemClickListener
 import com.unkonw.testapp.libs.base.BaseApplication
 import com.unkonw.testapp.libs.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +30,7 @@ class SportOtherViewModel : BaseViewModel() {
     val mainBind: OnItemBind<Main> = OnItemBind { itemBinding, position, item ->
         itemBinding.set(BR.itemBean, R.layout.item_sport_image)
             .bindExtra(BR.itemClick, object : OnItemClickListener<Main> {
-                override fun onItemClick(m: Main) {
+                override fun onItemClick(v: View, m: Main) {
                     onItemClicked(m)
                 }
 

@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sport.dialog;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Administrator on 2020/1/13.
@@ -8,9 +8,9 @@ import android.widget.EditText;
 
 public class CursorEditView {
     String itemSocId;
-    EditText EditView;
+    TextView EditView;
 
-    public CursorEditView(String itemSocId, EditText editView) {
+    public CursorEditView(String itemSocId, TextView editView) {
         this.itemSocId = itemSocId;
         EditView = editView;
     }
@@ -19,7 +19,7 @@ public class CursorEditView {
         return itemSocId;
     }
 
-    public EditText getEditView() {
+    public TextView getEditView() {
         return EditView;
     }
 }

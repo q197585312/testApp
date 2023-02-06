@@ -3,6 +3,7 @@ package com.unkonw.testapp.libs.base
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dxl.base.mvvm.BaseLiveData
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -13,6 +14,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
 
     val defUI: UIChange by lazy { UIChange() }
+    val baseLiveData = BaseLiveData()
 
 
     /**

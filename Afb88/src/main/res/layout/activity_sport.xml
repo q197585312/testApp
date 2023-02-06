@@ -91,14 +91,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAllCaps="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=">"
-                            android:textColor="@color/trans_white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView
@@ -110,7 +110,7 @@
                             android:paddingRight="3dp"
                             android:text="@string/All_Market"
                             android:textAllCaps="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView
@@ -118,7 +118,7 @@
                             android:layout_height="wrap_content"
 
                             android:text=">"
-                            android:textColor="@color/trans_white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView
@@ -131,7 +131,7 @@
                             android:paddingRight="3dp"
                             android:text="@string/MY_ODDS"
                             android:textAllCaps="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView
@@ -139,7 +139,7 @@
                             android:layout_height="wrap_content"
 
                             android:text=">"
-                            android:textColor="@color/trans_white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView
@@ -152,7 +152,7 @@
                             android:paddingRight="3dp"
                             android:text="@string/Five_Major_Match"
                             android:textAllCaps="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
                             app:layout_constraintEnd_toEndOf="@+id/ll_line1"
@@ -164,7 +164,7 @@
                             android:layout_height="wrap_content"
 
                             android:text=">"
-                            android:textColor="@color/trans_white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView
@@ -177,7 +177,7 @@
                             android:paddingRight="3dp"
                             android:text="@string/view2"
                             android:textAllCaps="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/yellow2"
                             android:textSize="13sp" />
 
                         <TextView

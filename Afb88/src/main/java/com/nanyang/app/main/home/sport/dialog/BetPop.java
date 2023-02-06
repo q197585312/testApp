@@ -43,8 +43,10 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.BetCenter.HtmlTagHandler;
 import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
+import com.nanyang.app.main.home.sport.main.MenuItemInfo;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
+import com.nanyang.app.main.home.sport.main.view.BetNumView;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -71,6 +73,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
+import kotlin.Unit;
 
 /**
  * Created by Administrator on 2015/10/27.
@@ -89,11 +92,14 @@ public class BetPop {
     @BindView(R.id.bet_balance_tv)
     TextView betBalanceTv;
     @BindView(R.id.bet_amount_edt)
-    EditText betAmountEdt;
+    TextView betAmountEdt;
     @BindView(R.id.bet_sure_btn)
     TextView betSureBtn;
     @BindView(R.id.rc_bet_chip)
     RecyclerView rcBetChip;
+
+    @BindView(R.id.betNumView)
+    BetNumView betNumView;
     @BindView(R.id.fl_rc_content)
     FrameLayout fl_rc_content;
     @BindView(R.id.rc_bet_content)
@@ -171,6 +177,7 @@ public class BetPop {
         initContent();
 
     }
+
     Dialog parlayDialog;
 
     private void goMixAndClose() {
@@ -197,7 +204,7 @@ public class BetPop {
         }
     }
 
-    private String afterChange(Editable s, double max, EditText betAmountEdt, TextWatcher textWatcher, boolean hasWin) {
+    private String afterChange(Editable s, double max, TextView betAmountEdt, TextWatcher textWatcher, boolean hasWin) {
         if (s.toString().startsWith("0") && s.toString().length() > 1) {
             s.delete(0, 1);
         }
@@ -223,7 +230,7 @@ public class BetPop {
             double maxWin = countMaxPayout(writeMoney);
             tvMaxWin.setText(AfbUtils.scientificCountingToString(AfbUtils.decimalValue((float) maxWin, "0.00")));
         }
-        betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
+//        betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
         return amount;
     }
 
@@ -314,7 +321,7 @@ public class BetPop {
                     activity.afbDrawerViewHolder.switchFragment(activity.afbDrawerViewHolder.getSettingFragment());
                     return;
                 }
-                EditText edt = betAmountEdt;
+                TextView edt = betAmountEdt;
                 CursorEditView cursorEditView = cursorMap.get(true);
                 if (cursorEditView != null && cursorEditView.getEditView() != null) {
                     edt = cursorEditView.getEditView();
@@ -342,7 +349,7 @@ public class BetPop {
                 edt.setText(betAmount + "");
                 edt.setCursorVisible(true);//显示光标
                 edt.requestFocus();
-                edt.setSelection(edt.getText().length());
+//                edt.setSelection(edt.getText().length());
             }
         });
     }
@@ -473,18 +480,7 @@ public class BetPop {
 
 
         });
-        betAmountEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    CursorEditView cursorEditView = new CursorEditView("", betAmountEdt);
-                    cursorMap.put(true, cursorEditView);
-                    betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
-                } else {
-                    betAmountEdt.setBackgroundColor(Color.WHITE);
-                }
-            }
-        });
+
         llBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -547,6 +543,76 @@ public class BetPop {
             }
         });
         initBetChip();
+        MenuItemInfo item1 = new MenuItemInfo();
+        item1.setKeyName("1");
+        MenuItemInfo item2 = new MenuItemInfo();
+        item2.setKeyName("2");
+        MenuItemInfo item3 = new MenuItemInfo();
+        item3.setKeyName("3");
+        MenuItemInfo item4 = new MenuItemInfo();
+        item4.setKeyName("4");
+        MenuItemInfo item5 = new MenuItemInfo();
+        item5.setKeyName("5");
+        MenuItemInfo itemClose = new MenuItemInfo();
+        itemClose.setKeyName("Close");
+        itemClose.setType(1);
+
+        MenuItemInfo item6 = new MenuItemInfo();
+        item6.setKeyName("6");
+
+        MenuItemInfo item7 = new MenuItemInfo();
+        item7.setKeyName("7");
+        MenuItemInfo item8 = new MenuItemInfo();
+        item8.setKeyName("8");
+        MenuItemInfo item9 = new MenuItemInfo();
+        item9.setKeyName("9");
+        MenuItemInfo item0 = new MenuItemInfo();
+        item0.setKeyName("0");
+        MenuItemInfo itemD = new MenuItemInfo();
+        itemD.setItemRes(R.mipmap.ketdel);
+        itemD.setType(2);
+
+        betAmountEdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CursorEditView cursorEditView = new CursorEditView("", betAmountEdt);
+                cursorMap.put(true, cursorEditView);
+                betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
+                betNumView.setVisibility(View.VISIBLE);
+            }
+
+        });
+        betNumView.viewModel.setData(Arrays.asList(item1, item2, item3, item4, item5, itemClose, item6, item7, item8, item9, item0, itemD));
+        betNumView.viewModel.setItemClick((view, menuItemInfo) -> {
+
+            TextView edt = betAmountEdt;
+            CursorEditView cursorEditView = cursorMap.get(true);
+            if (cursorEditView != null && cursorEditView.getEditView() != null) {
+                edt = cursorEditView.getEditView();
+            }
+            String getText = edt.getText().toString();
+            if (menuItemInfo.getType() == 0) {
+
+                String s = edt.getText() + menuItemInfo.getKeyName();
+                edt.setText(s);
+                if (cursorEditView!=null&&cursorEditView.getItemSocId() != null && !cursorEditView.getItemSocId().isEmpty()) {
+                    contentAdapter.notifyDataSetChanged();
+                }
+
+            } else if (menuItemInfo.getType() == 1) {
+                betNumView.setVisibility(View.GONE);
+            } else if (menuItemInfo.getType() == 2) {
+
+                if (getText.length() > 0) {
+                    edt.setText(getText.substring(0, getText.length() - 1));
+                    if (cursorEditView!=null&&cursorEditView.getItemSocId() != null && !cursorEditView.getItemSocId().isEmpty()) {
+                        contentAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            return Unit.INSTANCE;
+        });
     }
 
     private void goBetting() {
@@ -731,7 +797,7 @@ public class BetPop {
         if (cursorMap.get(true) == null || StringUtils.isEmpty(cursorMap.get(true).getItemSocId())) {
             betAmountEdt.setCursorVisible(true);//显示光标
             betAmountEdt.requestFocus();
-            betAmountEdt.setSelection(betAmountEdt.getText().length());
+//            betAmountEdt.setSelection(betAmountEdt.getText().length());
         }
         if (list.size() > 1) {
             webViewPause();
@@ -833,7 +899,7 @@ public class BetPop {
                     TextView bet_module_title_tv = holder.getView(R.id.bet_module_title_tv);
                     TextView bet_module_result_tv = holder.getView(R.id.bet_module_result_tv);
                     View ll_bottom = holder.getView(R.id.ll_bottom);
-                    final EditText edt_single_bet = holder.getView(R.id.edt_single_bet);
+                    final TextView edt_single_bet = holder.getView(R.id.edt_single_bet);
 
                     ImageView imgDelete = holder.getView(R.id.img_delete);
                     TextView tv_order_index = holder.getView(R.id.tv_order_index);
@@ -872,17 +938,16 @@ public class BetPop {
                         tv_order_index.setText(list.size() - position + "");
                         edt_single_bet.setVisibility(View.VISIBLE);
 
-                        edt_single_bet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        edt_single_bet.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onFocusChange(View v, boolean hasFocus) {
-                                if (hasFocus) {
-                                    LogUtil.d("onFocusChange", position);
-                                    CursorEditView cursorEditView = new CursorEditView(socOddsId, edt_single_bet);
-                                    cursorMap.put(true, cursorEditView);
-                                } else {
-                                    // 此处为失去焦点时的处理内容
-                                }
+                            public void onClick(View v) {
+                                LogUtil.d("onFocusChange", position);
+                                CursorEditView cursorEditView = new CursorEditView(socOddsId, edt_single_bet);
+                                cursorMap.put(true, cursorEditView);
+                                betNumView.setVisibility(View.VISIBLE);
+                                betAmountEdt.setBackgroundColor(Color.WHITE);
                             }
+
                         });
                         //如果hashMap不为空，就设置的editText
                         edt_single_bet.addTextChangedListener(new TextWatcher() {
@@ -942,7 +1007,7 @@ public class BetPop {
                     if (cursorMap.get(true) != null && !StringUtils.isEmpty(cursorMap.get(true).getItemSocId()) && cursorMap.get(true).getItemSocId().equals(socOddsId)) {
                         edt_single_bet.setCursorVisible(true);//显示光标
                         edt_single_bet.requestFocus();
-                        edt_single_bet.setSelection(edt_single_bet.getText().length());
+//                        edt_single_bet.setSelection(edt_single_bet.getText().length());
                     } else {
                         edt_single_bet.clearFocus();
                     }

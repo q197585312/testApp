@@ -73,6 +73,11 @@ dependencies {
     api rootProject.ext.dependencies.glide
     api rootProject.ext.dependencies.bdclta
     api rootProject.ext.dependencies.bdclta_rv
+
+    // 刷新库
+    api "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0"
+
     implementation rootProject.ext.dependencies.butterknife
     kapt rootProject.ext.dependencies.butterknife_compiler
 }

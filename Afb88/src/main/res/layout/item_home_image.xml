@@ -6,7 +6,7 @@
 
         <variable
             name="itemClick"
-            type="com.nanyang.app.main.home.OnItemClickListener" />
+            type="com.unkonw.testapp.libs.base.OnItemClickListener" />
 
         <variable
             name="itemBean"
@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->itemClick.onItemClick(itemBean)}"
+        android:onClick="@{(v)->itemClick.onItemClick(v,itemBean)}"
         >
 
         <ImageView

@@ -73,7 +73,7 @@ public class LivePlayHelper {
                     if (tvPathIBC.contains("GL")) {
                         loadWebViewPlayGL(tvPathIBC);
                     }
-                }else if(tvPathIBC.contains("img")){
+                }else if(tvPathIBC.toLowerCase().contains("img")){
                     loadWebViewPlayIMG(tvPathIBC);
                 }
                 else {
@@ -221,7 +221,8 @@ public class LivePlayHelper {
      * data: '{"ACT":"GeIMGUrl","IMGId":"' + imgid + '"}',
      */
     public void loadWebViewPlayIMG(String tvPathIBC) {
-        String gliveid = tvPathIBC.replace("img", "");
+        String gliveid1 = tvPathIBC.replace("img", "");
+        String gliveid = gliveid1.replace("IMG", "");
         LiveTvBeanIMG bean = new LiveTvBeanIMG("GeIMGUrl", gliveid);
 
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), bean.toJson());

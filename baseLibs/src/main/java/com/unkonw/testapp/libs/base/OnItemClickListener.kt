@@ -1,12 +1,13 @@
-package com.nanyang.app.main.home
+package com.unkonw.testapp.libs.base
 
 import android.view.View
 
 interface OnItemClickListener<T> {
 
-    fun onItemClick(m: T)
+    fun onItemClick(v: View,m: T)
 }
 interface OnViewClickListener {
 
     fun onClick(v: View)
 }
+

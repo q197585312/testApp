@@ -9,7 +9,7 @@
             type="float" />
         <variable
             name="itemClick"
-            type="com.nanyang.app.main.home.OnItemClickListener" />
+            type="com.unkonw.testapp.libs.base.OnItemClickListener" />
 
         <variable
             name="itemBean"
@@ -21,7 +21,7 @@
         android:layout_height="90dp"
         app:layoutHeight="@{heightLeft}"
         android:paddingBottom="10dp"
-        android:onClick="@{()->itemClick.onItemClick(itemBean)}">
+        android:onClick="@{(v)->itemClick.onItemClick(v,itemBean)}">
 
         <com.unkonw.testapp.libs.view.CircleImageView
             android:id="@+id/iv_content"

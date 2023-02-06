@@ -23,7 +23,7 @@ import com.nanyang.app.databinding.FragmentHomeTBinding
 import com.nanyang.app.load.login.LoginInfo.LanguageWfBean
 import com.nanyang.app.main.BaseSwitchFragment
 import com.nanyang.app.main.home.HomeViewModel
-import com.nanyang.app.main.home.OnItemClickListener
+import com.unkonw.testapp.libs.base.OnItemClickListener
 import com.unkonw.testapp.libs.base.BaseActivity
 import com.unkonw.testapp.libs.base.BaseApplication
 
@@ -133,7 +133,7 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
 
     private fun onLeftItemClick(): OnItemClickListener<Left> {
         return object : OnItemClickListener<Left> {
-            override fun onItemClick(m: Left) {
+            override fun onItemClick(v:View,m: Left) {
                 println("点几了$m")
                 if (binding.rvContentDetail.visibility == View.VISIBLE) {
                     if (m.type == viewModel.selectedType.value) {
@@ -167,7 +167,7 @@ class HomeFragmentT() : BaseSwitchFragment<IBasePresenter>() {
 
     private fun onItemClick(): OnItemClickListener<Main> {
         return object : OnItemClickListener<Main> {
-            override fun onItemClick(item: Main) {
+            override fun onItemClick(v:View,item: Main) {
 
                 var g = item.g
                 if (g == "COCK FIGHT" || g == "KENO" || g == "LOTTERY") {

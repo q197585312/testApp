@@ -8,6 +8,7 @@ import com.nanyang.app.data.GamesData
 import com.nanyang.app.data.Left
 import com.nanyang.app.data.Main
 import com.unkonw.testapp.libs.base.BaseViewModel
+import com.unkonw.testapp.libs.base.OnItemClickListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.tatarka.bindingcollectionadapter2.ItemBinding

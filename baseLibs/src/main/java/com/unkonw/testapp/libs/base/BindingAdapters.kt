@@ -42,10 +42,12 @@ object BindingAdapterUtil {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["android:src"], requireAll = false)
+    @BindingAdapter(value = ["src"], requireAll = false)
     fun setImageViewResource(imageView: ImageView, resource: Int) {
         imageView.setImageResource(resource);
     }
+
+
 
     @JvmStatic
     @BindingAdapter(value = ["imgUrl"], requireAll = true)
