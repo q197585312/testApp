@@ -302,7 +302,7 @@ public class AfbApplication extends BaseApplication {
 
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running, R.mipmap.white_soccer_small));
         sportMap.put("-1", soccerRunning);
-        sportMap.put("122", soccerEuro_2020);
+//        sportMap.put("122", soccerEuro_2020);
 
         sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
         sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
