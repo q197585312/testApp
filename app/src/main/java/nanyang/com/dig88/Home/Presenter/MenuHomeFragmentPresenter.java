@@ -253,6 +253,7 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
                 sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AFB_CASINO);
                 sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.GD_GAME);
                 sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.PP_CASINO);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.DG_GAME);
                 sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.WM_Casino_GAME);
                 sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.SexyCasino_GAME);
                 sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AG_GAME);

@@ -18,7 +18,7 @@ android {
         gd88_key_config {
             keyAlias 'nykj'
             keyPassword '123456'
-            storeFile file('./gd88.keystore.jks')
+            storeFile file('./afbcash.keystore.jks')
             storePassword '123456'
         }
         rajacasino88_key_config {
@@ -86,10 +86,7 @@ android {
                 buildConfigField "String", "ForgotPassword", '"http://m.afbcash.com/"'
                 buildConfigField "String", "DownLoadAppUrl", '"https://down-hk01-cn2.k-api.com/android_afbcash_release.apk"'
                 buildConfigField "String", "Language", '"zh,kr,en,vn,kh,in,ms,th"'
-                manifestPlaceholders = [
-                        UMENG_CHANNEL_VALUE: "android_afbcash_release",
-                        JPUSH_PKGNAME      : applicationId,
-                ]
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android_afbcash_release"]
             }
         }
 
