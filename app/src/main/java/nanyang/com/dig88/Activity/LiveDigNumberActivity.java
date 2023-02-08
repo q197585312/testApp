@@ -650,7 +650,7 @@ public class LiveDigNumberActivity extends GameBaseActivity implements View.OnCl
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         //初始化List
-        AppTool.setAppLanguage(this, "");
+//        AppTool.setAppLanguage(this, "");
         setTitle(getString(R.string.livenumber));
         format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         blockDialog = new BlockDialog(LiveDigNumberActivity.this, LiveDigNumberActivity.this.getString(R.string.xiazhuzhong));
