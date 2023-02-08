@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Entity.BankAccountDetailBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
@@ -19,7 +20,6 @@ import nanyang.com.dig88.Home.MenuDepositFragment;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 

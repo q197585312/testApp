@@ -15,9 +15,8 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.BankAccountDetailBean;
@@ -35,53 +34,53 @@ import nanyang.com.dig88.load.RegisterPresenter;
  * Created by Administrator on 2015/12/19.
  */
 public class RegisterActivity extends BaseActivity<RegisterPresenter> implements View.OnClickListener {
-    @Bind(R.id.register_name)
+    @BindView(R.id.register_name)
     EditText register_name;
-    @Bind(R.id.register_pwd)
+    @BindView(R.id.register_pwd)
     EditText register_pwd;
-    @Bind(R.id.register_again_pwd)
+    @BindView(R.id.register_again_pwd)
     EditText register_again_pwd;
-    @Bind(R.id.choice_bank)  //选择银行
+    @BindView(R.id.choice_bank)  //选择银行
             TextView choice_bank;
-    @Bind(R.id.bank_username)
+    @BindView(R.id.bank_username)
     EditText bank_username;
-    @Bind(R.id.bank_account)
+    @BindView(R.id.bank_account)
     EditText bank_account;
     //比种类
-    @Bind(R.id.money_lei)
+    @BindView(R.id.money_lei)
     TextView money_lei;  //刚开始的选择
-    @Bind(R.id.tuijian_person)
+    @BindView(R.id.tuijian_person)
     EditText tuijian_person;
-    @Bind(R.id.mail)
+    @BindView(R.id.mail)
     EditText mail;
-    @Bind(R.id.phone_number)
+    @BindView(R.id.phone_number)
     EditText phone_number;
-    @Bind(R.id.yanzhengma)
+    @BindView(R.id.yanzhengma)
     EditText yanzhengma;
-    @Bind(R.id.tv_yanzhengma)
+    @BindView(R.id.tv_yanzhengma)
     TextView tv_yanzhengma;
-    @Bind(R.id.btn_regist)
+    @BindView(R.id.btn_regist)
     Button btn_regist;
     //错误xinx
-    @Bind(R.id.register_account_name_cunzai)
+    @BindView(R.id.register_account_name_cunzai)
     TextView register_account_name_cunzai;
-    @Bind(R.id.register_step1_account_name_tip_tv)
+    @BindView(R.id.register_step1_account_name_tip_tv)
     TextView register_step1_account_name_tip_tv;
-    @Bind(R.id.register_step1_password_error)
+    @BindView(R.id.register_step1_password_error)
     TextView register_step1_password_error;
-    @Bind(R.id.register_step1_password_tip_tv)
+    @BindView(R.id.register_step1_password_tip_tv)
     TextView register_step1_password_tip_tv;
-    @Bind(R.id.bank_username_error)
+    @BindView(R.id.bank_username_error)
     TextView bank_username_error;
-    @Bind(R.id.bank_accout_error)
+    @BindView(R.id.bank_accout_error)
     TextView bank_accout_error;
-    @Bind(R.id.mail_error)
+    @BindView(R.id.mail_error)
     TextView mail_error;
-    @Bind(R.id.phone_number_error)
+    @BindView(R.id.phone_number_error)
     TextView phone_number_error;
-    @Bind(R.id.yanzhengma_error)
+    @BindView(R.id.yanzhengma_error)
     TextView yanzhengma_error;
-    @Bind(R.id.ll_bank)
+    @BindView(R.id.ll_bank)
     LinearLayout llBank;
     public List<BankAccountDetailBean> list1 = new ArrayList<BankAccountDetailBean>();  //货币种类(单单银行)
     //转string

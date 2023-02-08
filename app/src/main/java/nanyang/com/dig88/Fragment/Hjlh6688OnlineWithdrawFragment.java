@@ -102,6 +102,26 @@ public class Hjlh6688OnlineWithdrawFragment extends BaseFragment<Hjlh6688OnlineW
         initContent();
     }
 
+    public void onGetBindingBank(final List<BankInfoBean> bankInfoBeanList) {
+        final List<String> bankNameList = new ArrayList<>();
+        for (int i = 0; i < bankInfoBeanList.size(); i++) {
+            BankInfoBean bankInfoBean = bankInfoBeanList.get(i);
+            String name = bankInfoBean.getName();
+            bankNameList.add(name);
+        }
+        bankNamePop = new BaseListPopWindow(mContext, tvBankName, tvBankName.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT) {
+            @Override
+            public List<String> getContentData() {
+                return bankNameList;
+            }
+
+            @Override
+            public void onClickItem(int position, String item) {
+                tvBankName.setText(item);
+            }
+        };
+    }
+
     private void initContent() {
         info = (VipInfoBean) AppTool.getObjectData(mContext, "vipInfo");
         String bankName = info.getBank_name();

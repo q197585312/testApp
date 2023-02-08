@@ -2,8 +2,6 @@ package nanyang.com.dig88.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -20,8 +21,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.Entity.BankAccountDetailBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
@@ -31,36 +34,34 @@ import nanyang.com.dig88.Home.Presenter.MenuWithdrawPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.UIUtil;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2019/6/20.
  */
 
 public class MenuWithdrawFragment extends BaseFragment<MenuWithdrawPresenter> {
-    @Bind(R.id.tv_toolbar_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @Bind(R.id.tv_toolbar_right)
+    @BindView(R.id.tv_toolbar_right)
     TextView tvToolbarRight;
-    @Bind(R.id.img_toolbar_left)
+    @BindView(R.id.img_toolbar_left)
     ImageView imgToolbarLeft;
-    @Bind(R.id.edt_amount)
+    @BindView(R.id.edt_amount)
     EditText edtAmount;
-    @Bind(R.id.edt_password)
+    @BindView(R.id.edt_password)
     EditText edtPassword;
-    @Bind(R.id.rc_bank)
+    @BindView(R.id.rc_bank)
     RecyclerView rc_bank;
-    @Bind(R.id.ll_afb)
+    @BindView(R.id.ll_afb)
     LinearLayout ll_afb;
     private String ip;
     String amount;
     int minWithdraw = 1;
     int maxWithdraw = 10000;
     String password;
-    @Bind(R.id.tv_bank_name)
+    @BindView(R.id.tv_bank_name)
     TextView tv_bank_name;
-    @Bind(R.id.edt_bank_num)
+    @BindView(R.id.edt_bank_num)
     EditText edt_bank_num;
 
     @Override

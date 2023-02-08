@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.view.indicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,6 @@ import java.util.List;
 import butterknife.BindView;
 import gaming178.com.mylibrary.base.BasePageAdapter;
 import gaming178.com.mylibrary.base.ViewHolder;
-import gaming178.com.mylibrary.indicator.CirclePageIndicator;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Home.Bean.HomeContentListBean;
