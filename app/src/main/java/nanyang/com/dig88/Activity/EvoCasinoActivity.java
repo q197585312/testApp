@@ -71,7 +71,7 @@ public class EvoCasinoActivity extends BaseWebGameActivity {
         showBlockDialog();
         LoginInfoBean s = (LoginInfoBean) AppTool.getObjectData(mContext, "loginInfo");
         String name = s.getUsername();
-        String loginUrl = "https://evogaming.k-api.com/api/login.php?" + "&web_id=" + WebSiteUrl.WebId +
+        String loginUrl = "https://evogaming2.k-api.com/api/login.php?" + "&web_id=" + WebSiteUrl.WebId +
                 "&language=" + getLanguage() + "&username=" + name + "&token=" + getUserInfoBean().getSession_id() + "&platfrom=mobile" + "&ip=" + ip;
         webView.loadUrl(loginUrl);
     }

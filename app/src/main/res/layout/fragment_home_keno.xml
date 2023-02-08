@@ -619,14 +619,14 @@
                         android:textColor="@color/white" />
                 </LinearLayout>
 
-                <xs.com.mylibrary.myview.mylistview.HorizontalListView
+                <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
                     android:id="@+id/hlst_keno_content"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_marginLeft="5dp"
                     android:numColumns="24">
 
-                </xs.com.mylibrary.myview.mylistview.HorizontalListView>
+                </gaming178.com.mylibrary.myview.mylistview.HorizontalListView>
             </LinearLayout>
 
 </LinearLayout>

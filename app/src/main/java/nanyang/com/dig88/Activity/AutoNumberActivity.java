@@ -554,7 +554,7 @@ public class AutoNumberActivity extends GameBaseActivity {
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         //初始化List
-        AppTool.setAppLanguage(context, "");
+//        AppTool.setAppLanguage(context, "");
         setTitle(getString(R.string.shuzidating));
         format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

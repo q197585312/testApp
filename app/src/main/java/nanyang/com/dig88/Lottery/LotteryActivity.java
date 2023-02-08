@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.reflect.TypeToken;
-import com.unkonw.testapp.libs.view.indicator.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +30,7 @@ import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.TimeUtils;
 import gaming178.com.mylibrary.base.ViewHolder;
 import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
 import gaming178.com.mylibrary.popupwindow.AbsListPopupWindow;
 import nanyang.com.dig88.Adapter.MyFragmentPagerAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;

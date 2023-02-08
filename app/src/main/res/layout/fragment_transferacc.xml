@@ -7,7 +7,7 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -95,6 +95,6 @@
                 android:textColor="@color/white"
                 android:textSize="15dip" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

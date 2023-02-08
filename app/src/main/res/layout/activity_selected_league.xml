@@ -16,11 +16,11 @@
         android:background="@color/grey_dialog_background"
         android:orientation="vertical"
         android:visibility="visible">
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/detail_top_vp"
             android:layout_width="match_parent"
             android:layout_height="60dp" >
-        </android.support.v4.view.ViewPager>
+        </androidx.viewpager.widget.ViewPager>
 
        <View
           style="@style/line_horizontal_grey1"

@@ -21,7 +21,7 @@
             android:textColor="@color/white"
             android:textSize="12sp"/>
     </FrameLayout>
-    <xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip
+    <gaming178.com.mylibrary.myview.indicator.PagerSlidingTabStrip
         android:id="@+id/ballgame_tabs_pstabs"
         android:layout_width="match_parent"
         android:layout_height="25dip"
@@ -85,7 +85,7 @@
             android:textColor="@color/white"
             android:textSize="12sp" />
     </LinearLayout>
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/ballgame_pager_vp"
         android:layout_width="match_parent"
         android:layout_height="0dp"

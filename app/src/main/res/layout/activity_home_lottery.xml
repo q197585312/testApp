@@ -6,7 +6,7 @@
 
     <include layout="@layout/toolbar_layout" />
 
-    <xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip
+    <gaming178.com.mylibrary.myview.indicator.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v4.view.ViewPager
+            <androidx.viewpager.widget.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

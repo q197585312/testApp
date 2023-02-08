@@ -93,7 +93,7 @@ android {
                 buildConfigField "String", "DownLoadAppUrl", '"https://down-hk01-cn2.k-api.com/android_afbcash_release.apk"'
                 buildConfigField "String", "Language", '"zh,kr,en,vn,kh,in,ms,th"'
                 manifestPlaceholders = [
-                        UMENG_CHANNEL_VALUE: "afbcash",
+                        UMENG_CHANNEL_VALUE: "android_afbcash_release",
                         JPUSH_PKGNAME      : applicationId,
                 ]
             }

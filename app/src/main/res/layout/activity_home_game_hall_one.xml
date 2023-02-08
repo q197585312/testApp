@@ -170,13 +170,13 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="24dp" />
-                                <xs.com.mylibrary.myview.GroupView.MyViewGroup
+                                <gaming178.com.mylibrary.myview.GroupView.MyViewGroup
                                     android:id="@+id/mvg_ball"
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
                                     android:layout_weight="4.1">
 
-                                </xs.com.mylibrary.myview.GroupView.MyViewGroup>
+                                </gaming178.com.mylibrary.myview.GroupView.MyViewGroup>
 
 
                             </LinearLayout>

@@ -20,7 +20,7 @@
         android:orientation="horizontal"
         android:padding="6dp">
 
-        <gaming178.com.mylibrary.indicator.CirclePageIndicator
+        <gaming178.com.mylibrary.myview.indicator.CirclePageIndicator
             android:id="@+id/detail_top_cpi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

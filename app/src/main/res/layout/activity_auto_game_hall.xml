@@ -128,12 +128,12 @@
                         android:layout_weight="10.5">
 
 
-                            <xs.com.mylibrary.myview.GroupView.MyViewGroup
+                            <gaming178.com.mylibrary.myview.GroupView.MyViewGroup
                                 android:id="@+id/mvg_ball42"
                                 android:layout_width="match_parent"
                                 android:layout_height="105dp">
 
-                            </xs.com.mylibrary.myview.GroupView.MyViewGroup>
+                            </gaming178.com.mylibrary.myview.GroupView.MyViewGroup>
 
                         <View
                             android:id="@+id/ground_line42_v"
@@ -679,12 +679,12 @@
                             android:layout_weight="10.5">
 
 
-                            <xs.com.mylibrary.myview.GroupView.MyViewGroup
+                            <gaming178.com.mylibrary.myview.GroupView.MyViewGroup
                                 android:id="@+id/mvg_ball36"
                                 android:layout_width="match_parent"
                                 android:layout_height="105dp">
 
-                            </xs.com.mylibrary.myview.GroupView.MyViewGroup>
+                            </gaming178.com.mylibrary.myview.GroupView.MyViewGroup>
 
                             <View
                                 android:id="@+id/ground_line36_v"
@@ -1228,12 +1228,12 @@
                             android:layout_weight="10.5">
 
 
-                            <xs.com.mylibrary.myview.GroupView.MyViewGroup
+                            <gaming178.com.mylibrary.myview.GroupView.MyViewGroup
                                 android:id="@+id/mvg_ball24"
                                 android:layout_width="match_parent"
                                 android:layout_height="105dp">
 
-                            </xs.com.mylibrary.myview.GroupView.MyViewGroup>
+                            </gaming178.com.mylibrary.myview.GroupView.MyViewGroup>
 
                             <View
                                 android:id="@+id/ground_line24_v"
@@ -1778,12 +1778,12 @@
                             android:layout_weight="10.5">
 
 
-                            <xs.com.mylibrary.myview.GroupView.MyViewGroup
+                            <gaming178.com.mylibrary.myview.GroupView.MyViewGroup
                                 android:id="@+id/mvg_ball12"
                                 android:layout_width="match_parent"
                                 android:layout_height="105dp">
 
-                            </xs.com.mylibrary.myview.GroupView.MyViewGroup>
+                            </gaming178.com.mylibrary.myview.GroupView.MyViewGroup>
 
                             <View
                                 android:id="@+id/ground_line12_v"
@@ -2327,12 +2327,12 @@
                             android:layout_weight="10.5">
 
 
-                            <xs.com.mylibrary.myview.GroupView.MyViewGroup
+                            <gaming178.com.mylibrary.myview.GroupView.MyViewGroup
                                 android:id="@+id/mvg_ball18"
                                 android:layout_width="match_parent"
                                 android:layout_height="105dp">
 
-                            </xs.com.mylibrary.myview.GroupView.MyViewGroup>
+                            </gaming178.com.mylibrary.myview.GroupView.MyViewGroup>
 
                             <View
                                 android:id="@+id/ground_line18_v"
@@ -2876,12 +2876,12 @@
                             android:layout_weight="10.5">
 
 
-                            <xs.com.mylibrary.myview.GroupView.MyViewGroup
+                            <gaming178.com.mylibrary.myview.GroupView.MyViewGroup
                                 android:id="@+id/mvg_ball30"
                                 android:layout_width="match_parent"
                                 android:layout_height="105dp">
 
-                            </xs.com.mylibrary.myview.GroupView.MyViewGroup>
+                            </gaming178.com.mylibrary.myview.GroupView.MyViewGroup>
 
                             <View
                                 android:id="@+id/ground_line30_v"
