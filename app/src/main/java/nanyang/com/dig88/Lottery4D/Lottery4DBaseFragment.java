@@ -10,22 +10,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TimeZone;
 
 import nanyang.com.dig88.Fragment.BaseFragment;
-import nanyang.com.dig88.Lottery4D.Bean.PeriodNumberBean;
 import nanyang.com.dig88.Lottery4D.Bean.WeekDay;
 import nanyang.com.dig88.Util.HttpClient;
-import nanyang.com.dig88.Util.HttpUtils;
-import nanyang.com.dig88.Util.WebSiteUrl;
 
 /**
  * Created by Administrator on 2018/11/16.

@@ -8,9 +8,10 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
 
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -25,15 +26,18 @@ import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.finalteam.toolsfinal.StringUtils;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
+import gaming178.com.mylibrary.allinone.util.UpdateManager;
 import nanyang.com.dig88.Activity.MainTabActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.IpBean;
 import nanyang.com.dig88.Entity.UpdateAppInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.MCPTool;
 import nanyang.com.dig88.Util.WebSiteUrl;
+
+import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
  * Created by Administrator on 2019/6/20.
@@ -53,17 +57,27 @@ public class MainHomePresenter extends BaseRetrofitPresenter<MainTabActivity> {
 
     public void handleAffiliateId() {
         baseContext.getApp().setAffiliateId("");
-        if (!StringUtils.isEmpty(BuildConfig.AFFILIATE_PACKAGE)) {
-            String packagePath = getPackagePath(baseContext);
-            File file = new File(packagePath);
-            String s = readApk(file);
-            if (!TextUtils.isEmpty(s)) {
-                String[] split = s.split("-");
-                String affiliateId = split[0];
-                String webId = split[1];
-                WebSiteUrl.WebId = webId;
-                baseContext.getApp().setAffiliateId(affiliateId);
-            }
+//        if (!StringUtils.isEmpty(BuildConfig.AFFILIATE_PACKAGE)) {
+//            String packagePath = getPackagePath(baseContext);
+//            File file = new File(packagePath);
+//            String s = readApk(file);
+//            if (!TextUtils.isEmpty(s)) {
+//                String[] split = s.split("-");
+//                String affiliateId = split[0];
+//                String webId = split[1];
+//                WebSiteUrl.WebId = webId;
+//                baseContext.getApp().setAffiliateId(affiliateId);
+//            }
+//        }
+        String packagePath = getPackagePath(baseContext);
+        File file = new File(packagePath);
+        String s = readApk(file);
+        if (!TextUtils.isEmpty(s)) {
+            String[] split = s.split("-");
+            String affiliateId = split[0];
+            String webId = split[1];
+            WebSiteUrl.WebId = webId;
+            baseContext.getApp().setAffiliateId(affiliateId);
         }
     }
 
@@ -141,15 +155,15 @@ public class MainHomePresenter extends BaseRetrofitPresenter<MainTabActivity> {
         updateManager.setLoadTitle(baseContext.getString(R.string.app_update));
         updateManager.setLater(baseContext.getString(R.string.later));
         String affiliateId = baseContext.getApp().getAffiliateId();
-        if (!TextUtils.isEmpty(affiliateId)) {
-            //http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=51003-2&fileName=android_afbcash_release.apk&packgeName=afbcash
-            String downloadUrl = "http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=" + affiliateId + "-" + WebSiteUrl.WebId;
-            downloadUrl += "&fileName=android_" + BuildConfig.AFFILIATE_PACKAGE + "_release.apk" + "&packgeName=" + BuildConfig.AFFILIATE_PACKAGE;
-            updateManager.checkUpdate(downloadUrl);
-        } else {
-            updateManager.checkUpdate(WebSiteUrl.DownLoadAppUrl);
-        }
-
+//        if (!TextUtils.isEmpty(affiliateId)) {
+//            //http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=51003-2&fileName=android_afbcash_release.apk&packgeName=afbcash
+//            String downloadUrl = "http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=" + affiliateId + "-" + WebSiteUrl.WebId;
+//            downloadUrl += "&fileName=android_" + BuildConfig.AFFILIATE_PACKAGE + "_release.apk" + "&packgeName=" + BuildConfig.AFFILIATE_PACKAGE;
+//            updateManager.checkUpdate(downloadUrl);
+//        } else {
+//
+//        }
+        updateManager.checkUpdate(WebSiteUrl.DownLoadAppUrl);
     }
 
     public String getPackagePath(Context context) {
@@ -194,14 +208,6 @@ public class MainHomePresenter extends BaseRetrofitPresenter<MainTabActivity> {
             intent.setData(content_url);
             baseContext.startActivity(intent);
         }
-    }
-
-    public String getPromotionsUrl() {
-        String url = BuildConfig.PromotionsUrl;
-        if (BuildConfig.FLAVOR.equals("q2bet") || BuildConfig.FLAVOR.equals("ibet567")) {
-            url += "&set_lang=" + getLanguage();
-        }
-        return url;
     }
 
     private String getLanguage() {

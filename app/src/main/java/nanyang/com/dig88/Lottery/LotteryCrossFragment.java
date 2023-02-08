@@ -18,17 +18,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
-import nanyang.com.dig88.BuildConfig;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.Entity.LotteryCountBean;
 import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 
 /**
@@ -39,7 +38,7 @@ import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 public class LotteryCrossFragment extends LotteryBaseFragment<CrossBean> {
 
 
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
 
     TextView lotteryDiscount2dTv;
@@ -48,7 +47,7 @@ public class LotteryCrossFragment extends LotteryBaseFragment<CrossBean> {
     TextView lotteryOdds2dTv;
     TextView lotteryOdds3dTv;
     TextView lotteryOdds4dTv;
-    @Bind(R.id.lottery_center_progress_ll)
+    @BindView(R.id.lottery_center_progress_ll)
     View progressView;
     private String discount2D;
     private String discount3D;
@@ -202,13 +201,8 @@ public class LotteryCrossFragment extends LotteryBaseFragment<CrossBean> {
             @Override
             protected void convert(final ViewHolder holder, CrossBean item, final int position) {
                 EditText numberEdt = holder.retrieveView(R.id.cross_number_item_edt);
-                if (BuildConfig.FLAVOR.equals("villabetting")) {
-                    InputFilter[] filters = {new InputFilter.LengthFilter(5)};
-                    numberEdt.setFilters(filters);
-                } else {
-                    InputFilter[] filters = {new InputFilter.LengthFilter(4)};
-                    numberEdt.setFilters(filters);
-                }
+                InputFilter[] filters = {new InputFilter.LengthFilter(4)};
+                numberEdt.setFilters(filters);
                 EditText money2dEdt = holder.retrieveView(R.id.cross_money2d_item_edt);
                 EditText money3dEdt = holder.retrieveView(R.id.cross_money3d_item_edt);
                 EditText money4dEdt = holder.retrieveView(R.id.cross_money4d_item_edt);

@@ -12,7 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BlockDialog;
 
@@ -21,9 +21,9 @@ import nanyang.com.dig88.Util.BlockDialog;
  */
 
 public class Gd88WebActivity extends BaseActivity {
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
-    @Bind(R.id.ll_parent)
+    @BindView(R.id.ll_parent)
     LinearLayout llParent;
     String loadUrl;
     String urlParmars;

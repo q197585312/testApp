@@ -21,7 +21,15 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.TimeUtils;
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.myview.mylistview.PinnedSectionListView;
+import gaming178.com.mylibrary.myview.mylistview.PullToRefreshLayout;
+import gaming178.com.mylibrary.popupwindow.AbsListPopupWindow;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.DigApp;
 import nanyang.com.dig88.LinkedViewPager.ViewPager;
 import nanyang.com.dig88.R;
@@ -31,14 +39,6 @@ import nanyang.com.dig88.Table.entity.MatchBean;
 import nanyang.com.dig88.Table.entity.TableBallgameBean;
 import nanyang.com.dig88.Table.entity.TableModuleBean;
 import nanyang.com.dig88.Table.utils.TableDataHelper;
-import xs.com.mylibrary.allinone.util.TimeUtils;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.myview.mylistview.PinnedSectionListView;
-import xs.com.mylibrary.myview.mylistview.PullToRefreshLayout;
-import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2015/11/2.
@@ -46,30 +46,30 @@ import xs.com.mylibrary.popupwindow.BasePopupWindow;
 public class SoccerGameFragment extends TableBaseFragment {
 
 
-    @Bind(R.id.ballgame_table_refresh_view)
+    @BindView(R.id.ballgame_table_refresh_view)
     PullToRefreshLayout contentSv;
-    @Bind(R.id.ballgame_table_content_explv)
+    @BindView(R.id.ballgame_table_content_explv)
     PinnedSectionListView exlist;
-    @Bind(R.id.ballgame_center_vp)
+    @BindView(R.id.ballgame_center_vp)
     ViewPager headerPager;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     View tool;
-    @Bind(R.id.table_number_tv)
+    @BindView(R.id.table_number_tv)
     TextView numberTv;
-    @Bind(R.id.ballgame_table_bet_count_tv)
+    @BindView(R.id.ballgame_table_bet_count_tv)
     TextView betCount;
-    @Bind(R.id.table_match_mark_tv)
+    @BindView(R.id.table_match_mark_tv)
     TextView markTv;
-    @Bind(R.id.ll_choice_type)
+    @BindView(R.id.ll_choice_type)
     LinearLayout ll_choice_type;
-    @Bind(R.id.iv_all_add)
+    @BindView(R.id.iv_all_add)
     TextView iv_all_add;
-    @Bind(R.id.ll_countryMarket)
+    @BindView(R.id.ll_countryMarket)
     LinearLayout ll_countryMarket;
-    @Bind(R.id.tv_title)
+    @BindView(R.id.tv_title)
     TextView tv_title;
     DigApp digApp;
-    @Bind(R.id.img_word_cup)
+    @BindView(R.id.img_word_cup)
     ImageView img_word_cup;
     BasePopupWindow countryMarket;
     List<String> countryMarketList;

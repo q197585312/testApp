@@ -1,6 +1,7 @@
 package gaming178.com.mylibrary.allinone.util;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -430,5 +431,16 @@ public class AppTool {
         }
         // 判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE
         return packageNames.contains(packageName);
+    }
+
+    public static void appJump(Context context, String packageName, String cls, Bundle bundle) {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        ComponentName comp = new ComponentName(packageName,
+                cls);
+        intent.setComponent(comp);
+        if (bundle != null)
+            intent.putExtras(bundle);
+        context.startActivity(intent);
     }
 }

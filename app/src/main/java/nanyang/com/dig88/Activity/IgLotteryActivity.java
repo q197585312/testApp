@@ -20,8 +20,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Entity.GameMaintenanceBean;
@@ -33,33 +35,31 @@ import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.OkhttpUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
 
 /**
  * Created by Administrator on 2018/3/26.
  */
 
 public class IgLotteryActivity extends BaseActivity {
-    @Bind(R.id.tv_master_balance)
+    @BindView(R.id.tv_master_balance)
     TextView tv_master_balance;
-    @Bind(R.id.tv_lottery_balance)
+    @BindView(R.id.tv_lottery_balance)
     TextView tv_lottery_balance;
-    @Bind(R.id.tv_master_balance_name)
+    @BindView(R.id.tv_master_balance_name)
     TextView tv_master_balance_name;
-    @Bind(R.id.tv_lottery_balance_name)
+    @BindView(R.id.tv_lottery_balance_name)
     TextView tv_lottery_balance_name;
-    @Bind(R.id.edt_buy)
+    @BindView(R.id.edt_buy)
     EditText edt_buy;
-    @Bind(R.id.edt_takeout)
+    @BindView(R.id.edt_takeout)
     EditText edt_takeout;
-    @Bind(R.id.ll_transfer)
+    @BindView(R.id.ll_transfer)
     LinearLayout ll_transfer;
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
-    @Bind(R.id.rl_game_content)
+    @BindView(R.id.rl_game_content)
     RelativeLayout rl_game_content;
-    @Bind(R.id.img_maintenance)
+    @BindView(R.id.img_maintenance)
     ImageView img_maintenance;
     HttpClient httpClient;
     LoginInfoBean s;

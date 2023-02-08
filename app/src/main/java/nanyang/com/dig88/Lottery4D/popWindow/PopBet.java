@@ -2,7 +2,6 @@ package nanyang.com.dig88.Lottery4D.popWindow;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -12,35 +11,27 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import nanyang.com.dig88.Activity.BaseActivity;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Lottery4D.Bean.BetDetailBean;
 import nanyang.com.dig88.Lottery4D.Bean.BetResultBean;
 import nanyang.com.dig88.Lottery4D.Bean.BetResultContentBean;
 import nanyang.com.dig88.Lottery4D.Bean.Lottery4DStatusBean;
 import nanyang.com.dig88.Lottery4D.Bean.SpecialBetDateBean;
-import nanyang.com.dig88.Lottery4D.Bean.StatusBean;
 import nanyang.com.dig88.Lottery4D.Bean.WeekDay;
 import nanyang.com.dig88.Lottery4D.Lottery4DActivity;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.Number;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/11/21.
@@ -48,45 +39,45 @@ import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 public abstract class PopBet extends BasePopupWindow {
     public int contentType = 1;
-    @Bind(R.id.lv_bet_content)
+    @BindView(R.id.lv_bet_content)
     ListView lv_bet_content;
-    @Bind(R.id.tv_sure)
+    @BindView(R.id.tv_sure)
     TextView tv_sure;
-    @Bind(R.id.tv_cancel)
+    @BindView(R.id.tv_cancel)
     TextView tv_cancel;
-    @Bind(R.id.tv_total_amount)
+    @BindView(R.id.tv_total_amount)
     TextView tv_total_amount;
-    @Bind(R.id.ll_bet_result)
+    @BindView(R.id.ll_bet_result)
     LinearLayout ll_bet_result;
-    @Bind(R.id.lv_bet_result)
+    @BindView(R.id.lv_bet_result)
     ListView lv_bet_result;
-    @Bind(R.id.tv_done)
+    @BindView(R.id.tv_done)
     TextView tv_done;
-    @Bind(R.id.ll_bet_content)
+    @BindView(R.id.ll_bet_content)
     LinearLayout ll_bet_content;
-    @Bind(R.id.fl_title)
+    @BindView(R.id.fl_title)
     FrameLayout fl_title;
-    @Bind(R.id.ll_bet_result_title)
+    @BindView(R.id.ll_bet_result_title)
     LinearLayout ll_bet_result_title;
-    @Bind(R.id.tv_big_total)
+    @BindView(R.id.tv_big_total)
     TextView tv_big_total;
-    @Bind(R.id.tv_small_total)
+    @BindView(R.id.tv_small_total)
     TextView tv_small_total;
-    @Bind(R.id.tv_total)
+    @BindView(R.id.tv_total)
     TextView tv_total;
-    @Bind(R.id.tv_bet_sure)
+    @BindView(R.id.tv_bet_sure)
     TextView tv_bet_sure;
-    @Bind(R.id.tv_title_abc)
+    @BindView(R.id.tv_title_abc)
     TextView tv_title_abc;
-    @Bind(R.id.tv_title_a)
+    @BindView(R.id.tv_title_a)
     TextView tv_title_a;
-    @Bind(R.id.tv_a_total)
+    @BindView(R.id.tv_a_total)
     TextView tv_a_total;
-    @Bind(R.id.tv_abc_total)
+    @BindView(R.id.tv_abc_total)
     TextView tv_abc_total;
-    @Bind(R.id.tv_a_total_title)
+    @BindView(R.id.tv_a_total_title)
     TextView tv_a_total_title;
-    @Bind(R.id.tv_abc_total_title)
+    @BindView(R.id.tv_abc_total_title)
     TextView tv_abc_total_title;
     Lottery4DActivity activity;
     String poolId;

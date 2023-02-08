@@ -14,23 +14,23 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.Entity.LotteryCountBean;
 import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by Administrator on 2016/2/24.
  */
 public class LotteryCombinationFragment extends LotteryBaseFragment<CombinationBean> {
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
-    @Bind(R.id.lottery_center_progress_ll)
+    @BindView(R.id.lottery_center_progress_ll)
     View progressView;
     private HashMap<Integer, Integer> selectedMap = new HashMap<>();
     private String period;

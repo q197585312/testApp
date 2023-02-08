@@ -11,9 +11,13 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
+import androidx.appcompat.widget.Toolbar;
 
 import butterknife.ButterKnife;
+import gaming178.com.mylibrary.R;
+import gaming178.com.mylibrary.allinone.RequestUtils;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 
 
 public abstract class BaseActivity extends com.unkonw.testapp.libs.base.BaseActivity {
@@ -31,7 +35,7 @@ public abstract class BaseActivity extends com.unkonw.testapp.libs.base.BaseActi
     public FrameLayout msgLayout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
@@ -127,7 +131,7 @@ public abstract class BaseActivity extends com.unkonw.testapp.libs.base.BaseActi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     @Override

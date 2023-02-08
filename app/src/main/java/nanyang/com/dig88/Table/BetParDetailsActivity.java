@@ -10,7 +10,11 @@ import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.QuickAdapterImp;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.Thread.TableHttpHelper;
@@ -19,17 +23,13 @@ import nanyang.com.dig88.Table.entity.BetOrderBean;
 import nanyang.com.dig88.Table.entity.BetParDetalsBean;
 import nanyang.com.dig88.Table.utils.TableDataHelper;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by Administrator on 2015/12/29.
  */
 public class BetParDetailsActivity extends GameBaseActivity {
     BetOrderBean.DicAllEntity orderInfo;
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
     private AdapterViewContent<BetParDetalsBean.DetailBean> contentAdapter;
     private TextView header1;
@@ -50,7 +50,7 @@ public class BetParDetailsActivity extends GameBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);

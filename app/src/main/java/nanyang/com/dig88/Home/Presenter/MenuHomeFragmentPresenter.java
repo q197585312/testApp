@@ -2,12 +2,10 @@ package nanyang.com.dig88.Home.Presenter;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -23,6 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -33,7 +32,6 @@ import io.reactivex.schedulers.Schedulers;
 import nanyang.com.dig88.Activity.Gd88WebActivity;
 import nanyang.com.dig88.Activity.IbetPokerActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.Afb1188LoginBean;
 import nanyang.com.dig88.Entity.BannerBean;
@@ -50,11 +48,9 @@ import nanyang.com.dig88.Home.GameWebActivity;
 import nanyang.com.dig88.Home.MenuHomeFragment;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ApiService;
-import nanyang.com.dig88.Util.ApkUtils;
 import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.PopIbetPokerTransfer;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -233,203 +229,86 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
                             break;
                     }
                 }
-                if (BuildConfig.FLAVOR.equals("khmergaming") || BuildConfig.FLAVOR.equals("gasia88") || BuildConfig.FLAVOR.equals("onegold77")) {
-                    allGameData.add(AppConfig.Mega888);
-                }
-                if (BuildConfig.FLAVOR.equals("mmbet")) {
-                    allGameData.add(AppConfig.JdbSlots);
-                }
-                if (BuildConfig.FLAVOR.equals("khmergaming") || BuildConfig.FLAVOR.equals("afbcash")) {
-                    allGameData.add(AppConfig.We1poker);
-                }
-                if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                    allGameData.add(AppConfig.Lottery_VN);
-                }
+                allGameData.add(AppConfig.We1poker);
                 List<String> list = initSpecialGameStatus(gameStatusBean, allGameData);
                 menuHomeFragment.getApp().setGameStatusList(list);
                 LinkedHashMap<String, List<String>> gameStatusMap = new LinkedHashMap<>();
-                if (BuildConfig.FLAVOR.equals("ibet567")) {
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.AFB1188_GAME);
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.GD_GAME);
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.DG_GAME);
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.SAGaming_GAME);
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.SexyCasino_GAME);
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.NEW_KENO_GAME);
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.Cockfight);
-                    sortIbet567DataList(gameStatusMap, allGameData, AppConfig.Ibet567_Poker);
-                    gameStatusMap.put(AppConfig.Promotions, null);
-                } else {
-                    List<String> hotGameList = new ArrayList<>();
-                    List<String> casinoList = new ArrayList<>();
-                    List<String> lotteryList = new ArrayList<>();
-                    List<String> sportList = new ArrayList<>();
-                    List<String> numberList = new ArrayList<>();
-                    List<String> ibetPokerList = new ArrayList<>();
-                    List<String> pokerList = new ArrayList<>();
-                    List<String> forexList = new ArrayList<>();
-                    List<String> gameList = new ArrayList<>();
-                    if (BuildConfig.FLAVOR.equals("henbet")) {
-                        sortDataList(gameStatusMap, hotGameList, list, AppConfig.Hot_Game, AppConfig.SexyCasino_GAME);
-                    }
-                    if (BuildConfig.FLAVOR.equals("fun77")) {
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB1188_GAME);
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_h5_GAME);
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB1188_Desktop_GAME);
-                    } else if (BuildConfig.FLAVOR.equals("we1play")) {
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB1188_GAME);
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_h5_GAME);
-                    } else {
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB1188_Desktop_GAME);
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB1188_GAME);
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_h5_Desktop_GAME);
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_h5_GAME);
-                        sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_GAME);
-                    }
-                    sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.SBO_GAME);
-                    sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.IBC_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AFB_CASINO);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.GD_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.PP_CASINO);
-                    if (!BuildConfig.FLAVOR.equals("coin365bet") || (BuildConfig.FLAVOR.equals("coin365bet") && !menuHomeFragment.getCurrency().equals("LTC"))) {
-                        sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.DG_GAME);
-                    }
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.WM_Casino_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.SexyCasino_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AG_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AllBet_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.GOLD_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.SAGaming_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.W88_Casino_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.EVO_Casino_GAME);
-                    sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.N2_CASINO);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PG_SLOTS);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.NETENT_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PLAYSTAR_SLOTS);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PP_Slots);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.RTG_Slots);
-                        if (!menuHomeFragment.getCurrency().equals("IDR")) {
-                            sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Scr888);
-                        }
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.BEST_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.MG_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.HABA_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.W88_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Joker123_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PT_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.SAgaming_Slots_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Mega888);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.JdbSlots);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Xe88_Slot);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.FISHING_GAME);
-                    } else {
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.BEST_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.HABA_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.W88_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.MG_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PT_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Joker123_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.SAgaming_Slots_GAME);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PP_Slots);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.RTG_Slots);
-                        if (!BuildConfig.FLAVOR.equals("kimsa1") && !BuildConfig.FLAVOR.equals("uplay365") && !BuildConfig.FLAVOR.equals("henbet")) {
-                            if (BuildConfig.FLAVOR.equals("mmbet") || BuildConfig.FLAVOR.equals("dig88")) {
-                                sortIbet567DataList(gameStatusMap, allGameData, AppConfig.FISHING_GAME);
-                            } else {
-                                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.FISHING_GAME);
-                            }
-                        }
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Scr888);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Mega888);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.JdbSlots);
-                        sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Xe88_Slot);
-                    }
 
-                    if (!BuildConfig.FLAVOR.equals("fun77") || (BuildConfig.FLAVOR.equals("fun77") && !menuHomeFragment.getCurrency().equals("USD"))) {
-                        if (BuildConfig.FLAVOR.equals("coin365bet") && requestType == 1) {
-                            if (menuHomeFragment.getCurrency().equals("IDR")) {
-                                sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.LOTTERY_GAME);
-                            } else if (menuHomeFragment.getCurrency().equals("THB")) {
-                                sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.THAI_LOTTERY);
-                            }
-                        } else {
-                            sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.LOTTERY_GAME);
-                            sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.THAI_LOTTERY);
-                        }
-                        sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.LOTTERY_4D);
-                        if (BuildConfig.FLAVOR.equals("khmergaming")) {
-                            if (menuHomeFragment.getCurrency().equals("CNY")) {
-                                sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.IG_LOTTERY);
-                                sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.HC_LOTTERY);
-                            }
-                        }
-                    }
-                    if (!BuildConfig.FLAVOR.equals("fun77") || (BuildConfig.FLAVOR.equals("fun77") && !menuHomeFragment.getCurrency().equals("USD"))) {
-                        sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.NUMBER_GAME);
-                        sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.LIVE_NUMBER_GAME);
-                    }
-                    sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.KENO_GAME);
-                    sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.NEW_KENO_GAME);
-                    if (BuildConfig.FLAVOR.equals("henbet")) {
-                        sortIbet567DataList(gameStatusMap, allGameData, AppConfig.FISHING_GAME);
-                    }
-//                    if (BuildConfig.FLAVOR.equals("mmbet") || BuildConfig.FLAVOR.equals("dig88") || BuildConfig.FLAVOR.equals("fun77") ||
-//                            BuildConfig.FLAVOR.equals("kbet789") || BuildConfig.FLAVOR.equals("afbcash") || BuildConfig.FLAVOR.equals("henbet")) {
-//                        sortIbet567DataList(gameStatusMap, allGameData, AppConfig.Cockfight);
-//                    } else {
-//                        sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.Cockfight);
-//                    }
-                    if (!TextUtils.isEmpty(menuHomeFragment.getCurrency())) {
-                        if (menuHomeFragment.getCurrency().equals("USD") || menuHomeFragment.getLocalLanguage().equals("kh") ||
-                                menuHomeFragment.getCurrency().equals("IDR") || menuHomeFragment.getLocalLanguage().equals("in")) {
-                            sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.Cockfight);
-                            numberList.add(AppConfig.Cockfight);
-                            gameStatusMap.put(AppConfig.Cockfight, numberList);
-                        }
-                    }
-                    if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        gameStatusMap.put(AppConfig.Cockfight_X, null);
-                        sortIbet567DataList(gameStatusMap, allGameData, AppConfig.FISHING_GAME);
-                        sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.Lottery_VN);
-                    }
-                    if (!BuildConfig.FLAVOR.equals("fun77") || (BuildConfig.FLAVOR.equals("fun77") && !menuHomeFragment.getCurrency().equals("USD"))) {
-                        sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.We1poker);
-                        sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.POKER_GAME);
-                        sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.KLAS_Poker);
-                        if ((BuildConfig.FLAVOR.equals("khmergaming") || BuildConfig.FLAVOR.equals("dig88")) && menuHomeFragment.getCurrency().equals("USD")) {
-                            sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.Ibet567_Poker);
-                        }
-                        sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.FFYL_POKER_GAME);
-                    }
-                    sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.KY_poker);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        if (menuHomeFragment.getCurrency().equals("USD") || menuHomeFragment.getCurrency().equals("MYR")) {
-                            sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.Ibet567_Poker);
-                        }
-                    }
-                    if (!BuildConfig.FLAVOR.equals("fun77") || (BuildConfig.FLAVOR.equals("fun77") && !menuHomeFragment.getCurrency().equals("USD"))) {
-                        if (!BuildConfig.FLAVOR.equals("u2bet")) {
-                            sortDataList(gameStatusMap, forexList, list, AppConfig.Forex, AppConfig.FOREX_GAME);
-                        }
-                    }
-                    if (BuildConfig.FLAVOR.equals("uplay365")) {
-                        sortIbet567DataList(gameStatusMap, allGameData, AppConfig.FISHING_GAME);
-                        gameStatusMap.put(AppConfig.LiveChat, null);
-                    }
-                    gameStatusMap.put(AppConfig.Promotions, null);
-//                    if (BuildConfig.FLAVOR.equals("mgold1")) {
-//                        gameStatusMap.put(AppConfig.LiveScore, null);
-//                    }
-                    if (BuildConfig.FLAVOR.equals("jf58")) {
-                        gameStatusMap.put(AppConfig.News, null);
-                    }
-                    if (!BuildConfig.FLAVOR.equals("mgold1") && !BuildConfig.FLAVOR.equals("dig88") && !BuildConfig.FLAVOR.equals("afbcash")) {
-                        gameStatusMap.put(AppConfig.More, null);
-                    }
-                    if (BuildConfig.FLAVOR.equals("lct99")) {
-                        gameStatusMap.put(AppConfig.LiveChat, null);
+                List<String> casinoList = new ArrayList<>();
+                List<String> lotteryList = new ArrayList<>();
+                List<String> sportList = new ArrayList<>();
+                List<String> numberList = new ArrayList<>();
+                List<String> pokerList = new ArrayList<>();
+                List<String> forexList = new ArrayList<>();
+                List<String> gameList = new ArrayList<>();
+
+                sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB1188_Desktop_GAME);
+                sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB1188_GAME);
+                sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_h5_Desktop_GAME);
+                sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_h5_GAME);
+                sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.AFB_GAME);
+
+                sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.SBO_GAME);
+                sortDataList(gameStatusMap, sportList, list, AppConfig.Sports, AppConfig.IBC_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AFB_CASINO);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.GD_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.PP_CASINO);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.WM_Casino_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.SexyCasino_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AG_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.AllBet_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.GOLD_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.SAGaming_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.W88_Casino_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.EVO_Casino_GAME);
+                sortDataList(gameStatusMap, casinoList, list, AppConfig.Casino, AppConfig.N2_CASINO);
+
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PG_SLOTS);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.NETENT_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PLAYSTAR_SLOTS);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PP_Slots);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.RTG_Slots);
+                if (!menuHomeFragment.getCurrency().equals("IDR")) {
+                    sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Scr888);
+                }
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.BEST_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.MG_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.HABA_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.W88_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Joker123_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.PT_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.SAgaming_Slots_GAME);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Mega888);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.JdbSlots);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.Xe88_Slot);
+                sortDataList(gameStatusMap, gameList, list, AppConfig.Game, AppConfig.FISHING_GAME);
+
+                sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.LOTTERY_GAME);
+                sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.THAI_LOTTERY);
+                sortDataList(gameStatusMap, lotteryList, list, AppConfig.Lottery, AppConfig.LOTTERY_4D);
+                sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.NUMBER_GAME);
+                sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.LIVE_NUMBER_GAME);
+                sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.KENO_GAME);
+                sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.NEW_KENO_GAME);
+                if (!TextUtils.isEmpty(menuHomeFragment.getCurrency())) {
+                    if (menuHomeFragment.getCurrency().equals("USD") || menuHomeFragment.getLocalLanguage().equals("kh") ||
+                            menuHomeFragment.getCurrency().equals("IDR") || menuHomeFragment.getLocalLanguage().equals("in")) {
+                        sortDataList(gameStatusMap, numberList, list, AppConfig.Number, AppConfig.Cockfight);
+                        numberList.add(AppConfig.Cockfight);
+                        gameStatusMap.put(AppConfig.Cockfight, numberList);
                     }
                 }
+                sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.We1poker);
+                sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.POKER_GAME);
+                sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.KLAS_Poker);
+                sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.FFYL_POKER_GAME);
+                sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.KY_poker);
+                if (menuHomeFragment.getCurrency().equals("USD") || menuHomeFragment.getCurrency().equals("MYR")) {
+                    sortDataList(gameStatusMap, pokerList, list, AppConfig.Poker, AppConfig.Ibet567_Poker);
+                }
+                sortDataList(gameStatusMap, forexList, list, AppConfig.Forex, AppConfig.FOREX_GAME);
+                gameStatusMap.put(AppConfig.Promotions, null);
+
                 List<HomeContentListBean> homeContentListBeanList = new ArrayList<>();
                 Iterator<Map.Entry<String, List<String>>> iterator = gameStatusMap.entrySet().iterator();
                 Dig88Utils.setLang(menuHomeFragment.getContext());
@@ -458,20 +337,11 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
                         case AppConfig.Number:
                             String name = menuHomeFragment.getString(R.string.number);
                             int gamePic = R.mipmap.number;
-                            if (BuildConfig.FLAVOR.equals("fun77") && menuHomeFragment.getCurrency().equals("USD")) {
-                                name = "Keno";
-                                gamePic = R.mipmap.home_keno;
-                            } else if (BuildConfig.FLAVOR.equals("uplay365")) {
-                                name = menuHomeFragment.getString(R.string.keno);
-                            }
                             bean.setGameName(name);
                             bean.setGamePic(gamePic);
                             break;
                         case AppConfig.Poker:
                             String poker = menuHomeFragment.getString(R.string.poker);
-                            if (BuildConfig.FLAVOR.equals("dig88")) {
-                                poker = menuHomeFragment.getString(R.string.dig88_poker);
-                            }
                             bean.setGameName(poker);
                             bean.setGamePic(R.mipmap.poker);
                             break;
@@ -529,10 +399,8 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
                             break;
                         case AppConfig.Cockfight:
                             bean.setGameName(menuHomeFragment.getString(R.string.Cockfight));
-                            if (BuildConfig.FLAVOR.equals("afbcash")) {
-                                if (menuHomeFragment.getCurrency().equals("IDR") || menuHomeFragment.getLocalLanguage().equals("in")) {
-                                    bean.setGameName("Sabung Ayam");
-                                }
+                            if (menuHomeFragment.getCurrency().equals("IDR") || menuHomeFragment.getLocalLanguage().equals("in")) {
+                                bean.setGameName("Sabung Ayam");
                             }
                             bean.setGamePic(R.mipmap.cockfight);
                             break;
@@ -710,29 +578,15 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
         if (gameStatus.equals("1")) {
             String gameName = dataBean.getProvider();
             if (gameName.equals(AppConfig.AFB_GAME)) {
-                if (BuildConfig.FLAVOR.equals("gasia88") || BuildConfig.FLAVOR.equals("fun77") || BuildConfig.FLAVOR.equals("we1play") ||
-                        BuildConfig.FLAVOR.equals("jf58") || BuildConfig.FLAVOR.equals("bbet99") || BuildConfig.FLAVOR.equals("uplay365")) {
-                    allGameData.add(AppConfig.AFB_h5_GAME);
-                } else if (BuildConfig.FLAVOR.equals("afbcash")) {
-                    allGameData.add(gameName);
-                    allGameData.add(AppConfig.AFB_h5_Desktop_GAME);
-                } else {
-                    allGameData.add(gameName);
-                    allGameData.add(AppConfig.AFB_h5_GAME);
-                }
+                allGameData.add(gameName);
+                allGameData.add(AppConfig.AFB_h5_Desktop_GAME);
             } else if (gameName.equals(AppConfig.AFB1188_GAME)) {
-                if (BuildConfig.FLAVOR.equals("afbcash") || BuildConfig.FLAVOR.equals("fun77")) {
-                    allGameData.add(AppConfig.AFB1188_GAME);
-                    allGameData.add(AppConfig.AFB1188_Desktop_GAME);
-                } else {
-                    allGameData.add(AppConfig.AFB1188_GAME);
-                }
+                allGameData.add(AppConfig.AFB1188_GAME);
+                allGameData.add(AppConfig.AFB1188_Desktop_GAME);
             } else if (gameName.equals(AppConfig.Scr888)) {
                 allGameData.add(gameName);
                 if (menuHomeFragment.getCurrency().equals("IDR") || menuHomeFragment.getCurrency().equals("MYR") || menuHomeFragment.getCurrency().equals("THB")) {
-                    if (BuildConfig.FLAVOR.equals("khmergaming") || BuildConfig.FLAVOR.equals("mcd88") || BuildConfig.FLAVOR.equals("afbcash")) {
-                        allGameData.add(AppConfig.Xe88_Slot);
-                    }
+                    allGameData.add(AppConfig.Xe88_Slot);
                 }
             } else {
                 allGameData.add(gameName);
@@ -776,9 +630,6 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
 
     public void getNoticeData() {
         String param = "&web_id=" + WebSiteUrl.WebId + "&lang=" + getLanguage();
-        if (BuildConfig.FLAVOR.equals("f2bet")) {
-            param += "&type=3";
-        }
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(WebSiteUrl.BulletinUrl + param), new BaseConsumer<String>(baseContext) {
                     @Override
                     protected void onBaseGetData(String data) throws JSONException {
@@ -802,58 +653,12 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
 
     public List<Object> getLocalBannerData() {
         List<Object> bannerList = new ArrayList<>();
-        if (BuildConfig.FLAVOR.equals("hjlh6688")) {
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_01));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_02));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_03));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_04));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_05));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_06));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_07));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.hjlh6688_banner_08));
-        } else if (BuildConfig.FLAVOR.equals("bb88sbet") || BuildConfig.FLAVOR.equals("win3888")) {
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.bb88sbet_banner_1));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.bb88sbet_banner_2));
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.bb88sbet_banner_3));
-        } else if (BuildConfig.FLAVOR.equals("k9th")) {
-            if (menuHomeFragment.getLocalLanguage().equals("kh") || menuHomeFragment.getLocalLanguage().equals("vn")) {
-                bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.k9kh_banner_1));
-                bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.k9kh_banner_2));
-                bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.k9kh_banner_3));
-                bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.k9kh_banner_2));
-            }
-        } else if (BuildConfig.FLAVOR.equals("lct99")) {
-            bannerList.add(Uri.parse("https://s3-ap-northeast-1.amazonaws.com/hcgames.3g/content/images/lct99/banners/1.jpg"));
-            bannerList.add(Uri.parse("https://s3-ap-northeast-1.amazonaws.com/hcgames.3g/content/images/lct99/banners/2.jpg"));
-            bannerList.add(Uri.parse("https://s3-ap-northeast-1.amazonaws.com/hcgames.3g/content/images/lct99/banners/3.jpg"));
-            bannerList.add(Uri.parse("https://s3-ap-northeast-1.amazonaws.com/hcgames.3g/content/images/lct99/banners/4.jpg"));
-        } else if (BuildConfig.FLAVOR.equals("henbet")) {
-            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.banner3));
-        } else {
-//            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.banner1));
-//            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.banner2));
-//            bannerList.add(Uri.parse("res://mipmap-xhdpi/" + R.mipmap.banner3));
-            bannerList.add(errorImgUrl);
-        }
+        bannerList.add(errorImgUrl);
         return bannerList;
     }
 
     public void getBannerData() {
         String lg = getLanguage();
-        if (BuildConfig.FLAVOR.equals("fun77")) {
-            if (lg.equals("en")) {
-                lg = "ca";
-            }
-            if (menuHomeFragment.hasLoginInfo()) {
-                if (menuHomeFragment.getCurrency().equals("USD")) {
-                    lg = "ca";
-                }
-            }
-        } else if (BuildConfig.FLAVOR.equals("sbobet")) {
-            lg = "id";
-        } else if (BuildConfig.FLAVOR.equals("omi88")) {
-            lg = "cn";
-        }
         String param = "&web_id=" + WebSiteUrl.WebId + "&lang=" + lg + "&type=banner";
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(WebSiteUrl.BannerUrl + param), new BaseConsumer<String>(baseContext) {
                     @Override
@@ -867,11 +672,6 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
                             for (int i = 0; i < dataList.size(); i++) {
                                 BannerBean.DataBean dataBean = dataList.get(i);
                                 String type = "1";
-                                if (BuildConfig.FLAVOR.equals("ibet567") || BuildConfig.FLAVOR.equals("mmbet") ||
-                                        BuildConfig.FLAVOR.equals("hjlh6688") || BuildConfig.FLAVOR.equals("xslot88") ||
-                                        BuildConfig.FLAVOR.equals("f2bet")) {
-                                    type = "2";
-                                }
                                 if (dataBean.getType().equals(type)) {
                                     bannerList.add(dataBean.getUrl());
                                 }
@@ -921,18 +721,8 @@ public class MenuHomeFragmentPresenter extends BaseRetrofitPresenter<MenuHomeFra
     }
 
     public String getPromotionsUrl() {
-        String url = BuildConfig.PromotionsUrl;
-        if (BuildConfig.FLAVOR.equals("k9th")) {
-            if (getLanguage().equals("in")) {
-                url = "http://m.k9id-v2.com/index.php?page=promotion&from=app" + "&set_lang=" + getLanguage();
-            } else if (getLanguage().equals("kh")) {
-                url = "http://m.k9winkh.com/index.php?page=promotion&from=app&set_lang=kh";
-            } else {
-                url += "&set_lang=" + getLanguage();
-            }
-        } else {
-            url += "&set_lang=" + getLanguage();
-        }
+        String url = "http://m.afbcash.com/index.php?page=promotion&from=app";
+        url += "&set_lang=" + getLanguage();
         return url;
     }
 

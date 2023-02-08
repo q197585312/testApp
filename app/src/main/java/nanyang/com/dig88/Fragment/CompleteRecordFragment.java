@@ -14,12 +14,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Activity.IbetPokerActivity;
 import nanyang.com.dig88.Activity.gd88StatementActivity;
 import nanyang.com.dig88.Adapter.CompleteReportFormAdapter;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.Afb1188StatementBean;
 import nanyang.com.dig88.Entity.AfbSportsStatementBean;
@@ -53,27 +55,24 @@ import nanyang.com.dig88.Util.BaseListPopWindow;
 import nanyang.com.dig88.Util.CalendarPopuWindow;
 import nanyang.com.dig88.Util.DateUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2015/12/21.
  */
 public class CompleteRecordFragment extends BaseFragment<CompleteRecordPresenter> {
-    @Bind(R.id.lv_deposit)
+    @BindView(R.id.lv_deposit)
     ListView lv_deposit;
-    @Bind(R.id.tv_choice_statement)
+    @BindView(R.id.tv_choice_statement)
     TextView tv_choice_statement;
-    @Bind(R.id.tv_start_time)
+    @BindView(R.id.tv_start_time)
     TextView tv_start_time;
-    @Bind(R.id.tv_end_time)
+    @BindView(R.id.tv_end_time)
     TextView tv_end_time;
-    @Bind(R.id.btn_sure)
+    @BindView(R.id.btn_sure)
     Button btn_sure;
-    @Bind(R.id.ll_go_game)
+    @BindView(R.id.ll_go_game)
     LinearLayout llGoGame;
-    @Bind(R.id.btn_go_game)
+    @BindView(R.id.btn_go_game)
     Button btnGoGame;
     String currentGameType;
     String currentGameUrl;
@@ -93,11 +92,7 @@ public class CompleteRecordFragment extends BaseFragment<CompleteRecordPresenter
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         createPresenter(new CompleteRecordPresenter(this));
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            getAct().setTitle(getString(R.string.afb1188_sports) + " " + getString(R.string.wancenjilu));
-        } else {
-            getAct().setTitle(getString(R.string.wancenjilu));
-        }
+        getAct().setTitle(getString(R.string.wancenjilu));
         getAct().setleftViewEnable(true);
         gameContentList = presenter.getGameContentList();
         gameNameList = new ArrayList<>();
@@ -107,13 +102,8 @@ public class CompleteRecordFragment extends BaseFragment<CompleteRecordPresenter
         }
         tv_choice_statement.setText(gameNameList.get(0));
         loginInfoBean = (LoginInfoBean) AppTool.getObjectData(mContext, "loginInfo");
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            currentGameType = AppConfig.Statement_afb1188;
-            currentGameUrl = WebSiteUrl.Afb1188StatementUrl;
-        } else {
-            currentGameType = AppConfig.Statement_statement;
-            currentGameUrl = WebSiteUrl.StatementsList;
-        }
+        currentGameType = AppConfig.Statement_statement;
+        currentGameUrl = WebSiteUrl.StatementsList;
         tv_start_time.setText(DateUtils.getCurrentTime("yyyy-MM-dd") + " 00:00");
         tv_end_time.setText(DateUtils.getCurrentTime("yyyy-MM-dd") + " 23:59");
         search();
@@ -158,9 +148,6 @@ public class CompleteRecordFragment extends BaseFragment<CompleteRecordPresenter
                                 btnGoGame.setText(getString(R.string.ongdo_poker));
                                 llGoGame.setVisibility(View.VISIBLE);
                                 lv_deposit.setVisibility(View.GONE);
-                            }
-                            if (BuildConfig.FLAVOR.equals("ibet567")) {
-                                getAct().setTitle(item + " " + getString(R.string.wancenjilu));
                             }
                         }
                     };

@@ -5,10 +5,11 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentManager;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -17,6 +18,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.TimeUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.popupwindow.AbsListPopupWindow;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
@@ -25,11 +31,6 @@ import nanyang.com.dig88.Entity.ResultListBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.GameBaseActivity;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.TimeUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
 
 /**
  * Created by Administrator on 2016/6/7.
@@ -128,7 +129,7 @@ public class KenoHomeActivity extends GameBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
     }

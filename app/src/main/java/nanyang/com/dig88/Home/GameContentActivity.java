@@ -3,13 +3,13 @@ package nanyang.com.dig88.Home;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -17,14 +17,13 @@ import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.common.ImageDecodeOptions;
-import com.facebook.imagepipeline.common.ImageDecodeOptionsBuilder;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Activity.AFBCasinoActivity;
 import nanyang.com.dig88.Activity.AfbsportsActivity;
 import nanyang.com.dig88.Activity.AgCasinoActivity;
@@ -46,7 +45,6 @@ import nanyang.com.dig88.Activity.SexyCasinoActivity;
 import nanyang.com.dig88.Activity.SsportsActivity;
 import nanyang.com.dig88.Activity.W88CasinoActivity;
 import nanyang.com.dig88.Activity.WMCasinoActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Home.Bean.HomeContentListBean;
 import nanyang.com.dig88.Home.Presenter.GameContentPresenter;
@@ -67,16 +65,15 @@ import nanyang.com.dig88.Util.PopKlasPokerTransfer;
 import nanyang.com.dig88.Util.PopMega888Transfer;
 import nanyang.com.dig88.Util.PopXe88Transfer;
 import nanyang.com.dig88.Util.UIUtil;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by 47184 on 2019/6/25.
  */
 
 public class GameContentActivity extends BaseActivity<GameContentPresenter> {
-    @Bind(R.id.iv_game_picture)
+    @BindView(R.id.iv_game_picture)
     SimpleDraweeView simpleDraweeView;
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<HomeContentListBean> adapter;
 

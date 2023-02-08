@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -13,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
@@ -27,8 +28,9 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.Activity.CockfightActivity;
 import nanyang.com.dig88.Activity.DgCasinoActivity;
@@ -37,7 +39,6 @@ import nanyang.com.dig88.Activity.MsgBoxActivity;
 import nanyang.com.dig88.Activity.RegisterActivity;
 import nanyang.com.dig88.Activity.SaGamingActivity;
 import nanyang.com.dig88.Activity.SexyCasinoActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Fragment.BaseFragment;
@@ -57,50 +58,49 @@ import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.PopWin3888;
 import nanyang.com.dig88.Util.UIUtil;
 import nanyang.com.dig88.Util.ViewPagerAdapter;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2019/6/20.
  */
 
 public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
-    @Bind(R.id.rc_home_content)
+    @BindView(R.id.rc_home_content)
     RecyclerView rcHomeContent;
-    @Bind(R.id.tv_money)
+    @BindView(R.id.tv_money)
     TextView tvMoney;
-    @Bind(R.id.ll_notice)
+    @BindView(R.id.ll_notice)
     LinearLayout llNotice;
-    @Bind(R.id.ll_no_login)
+    @BindView(R.id.ll_no_login)
     LinearLayout llNoLogin;
-    @Bind(R.id.rl_already_login)
+    @BindView(R.id.rl_already_login)
     RelativeLayout rl_already_login;
-    @Bind(R.id.autoScrollLayout)
+    @BindView(R.id.autoScrollLayout)
     AutoScrollLayout autoScrollLayout;
-    @Bind(R.id.tv_username)
+    @BindView(R.id.tv_username)
     TextView tvUsername;
-    @Bind(R.id.tv_toolbar_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @Bind(R.id.tv_toolbar_right)
+    @BindView(R.id.tv_toolbar_right)
     TextView tvToolbarRight;
-    @Bind(R.id.img_toolbar_left)
+    @BindView(R.id.img_toolbar_left)
     ImageView imgToolbarLeft;
-    @Bind(R.id.home_viewpager)
+    @BindView(R.id.home_viewpager)
     AutoScrollViewPager homeViewpager;
-    @Bind(R.id.ll_indicator)
+    @BindView(R.id.ll_indicator)
     LinearLayout llIndicator;
-    @Bind(R.id.tv_home_register)
+    @BindView(R.id.tv_home_register)
     TextView tvHomeRegister;
-    @Bind(R.id.rl_facebook)
+    @BindView(R.id.rl_facebook)
     RelativeLayout rlFacebook;
-    @Bind(R.id.tv_home_login)
+    @BindView(R.id.tv_home_login)
     TextView tvHomeLogin;
-    @Bind(R.id.ll_home_deposit)
+    @BindView(R.id.ll_home_deposit)
     LinearLayout llHomeDeposit;
-    @Bind(R.id.img_message)
+    @BindView(R.id.img_message)
     ImageView imgMessage;
-    @Bind(R.id.rl_message)
+    @BindView(R.id.rl_message)
     RelativeLayout rl_message;
-    @Bind(R.id.tv_msg_count)
+    @BindView(R.id.tv_msg_count)
     TextView tvMsgCount;
     BaseRecyclerAdapter<HomeContentListBean> adapter;
     int rcContentHeight;
@@ -136,33 +136,9 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
                 }
             }
         });
-        if (BuildConfig.FLAVOR.equals("va2888") || BuildConfig.FLAVOR.equals("lemacau999") || BuildConfig.FLAVOR.equals("my2bet")) {
-            tvHomeRegister.setBackgroundResource(R.drawable.shape_gray);
-            tvHomeRegister.setEnabled(false);
-        }
-        if (BuildConfig.FLAVOR.equals("kimsa1")) {
-            rl_message.setVisibility(View.VISIBLE);
-        }
-        if (BuildConfig.FLAVOR.equals("fun77")) {
-            llNotice.setVisibility(View.GONE);
-        } else {
-            presenter.getNoticeData();
-        }
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            rlFacebook.setVisibility(View.VISIBLE);
-            tvHomeLogin.setBackgroundResource(R.drawable.ibet567_home_login_bg);
-        }
+        presenter.getNoticeData();
         imgToolbarLeft.setVisibility(View.INVISIBLE);
-        if (BuildConfig.FLAVOR.equals("club988")) {
-            tvToolbarTitle.setBackgroundResource(R.mipmap.login_logo_club);
-        } else if (BuildConfig.FLAVOR.equals("fun168")) {
-            tvToolbarTitle.setBackgroundResource(0);
-        } else {
-            tvToolbarTitle.setBackgroundResource(R.mipmap.login_logo);
-        }
-        if (BuildConfig.FLAVOR.equals("my2bet")) {
-            llHomeDeposit.setVisibility(View.INVISIBLE);
-        }
+        tvToolbarTitle.setBackgroundResource(R.mipmap.login_logo);
         presenter.getBannerData();
     }
 
@@ -186,11 +162,7 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
                     Uri uri = Uri.parse("res://mipmap-xhdpi/" + item.getGamePic());
                     pic.setImageURI(uri);
                     TextView name = holder.getView(R.id.tv_game_name);
-                    if (BuildConfig.FLAVOR.equals("ibet567")) {
-                        name.setText(item.getGameName().toUpperCase());
-                    } else {
-                        name.setText(item.getGameName());
-                    }
+                    name.setText(item.getGameName());
                 }
             };
             rcHomeContent.setLayoutManager(new GridLayoutManager(mContext, 3));
@@ -285,9 +257,7 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
                             Intent liveChatIntent = new Intent(mContext, GameWebActivity.class);
                             liveChatIntent.putExtra("url", presenter.getLiveChatUrl());
                             liveChatIntent.putExtra("title", item.getGameName());
-                            if (!BuildConfig.FLAVOR.equals("uplay365")) {
-                                startActivity(liveChatIntent);
-                            }
+                            startActivity(liveChatIntent);
                             break;
                         default:
                             List<String> gameList = item.getGameList();
@@ -327,15 +297,6 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
     }
 
     private void initNoLoginContent() {
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            MainTabActivity activity = (MainTabActivity) getAct();
-            activity.setMainName(getString(R.string.h5_web), getString(R.string.Desktop), getString(R.string.promotions));
-            activity.setMainLogo(mContext.getResources().getDrawable(R.drawable.selector_home_h5_web), mContext.getResources().getDrawable(R.drawable.selector_home_desktop), mContext.getResources().getDrawable(R.drawable.selector_home_promotion));
-            activity.setLastFragment(activity.promotionFragment);
-        } else if (BuildConfig.FLAVOR.equals("win3888")) {
-            PopWin3888 popWin3888 = new PopWin3888(mContext, rcHomeContent, screenWidth / 5 * 4, ViewGroup.LayoutParams.WRAP_CONTENT);
-            popWin3888.showPopupCenterWindow();
-        }
         presenter.getLoginContentData(getAct().getApp().getAffiliateId(), 0);
         llNotice.setBackgroundResource(R.drawable.notice_bg);
         rl_already_login.setVisibility(View.GONE);
@@ -343,32 +304,21 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
     }
 
     private void initAlreadyLoginContent() {
-        if (BuildConfig.FLAVOR.equals("afbcash")) {
-            if (getApp().isRegisterFirstIn()) {
-                DialogRegisterFirstIn dialogRegisterFirstIn = new DialogRegisterFirstIn(getAct()) {
-                    @Override
-                    public void onClickIn() {
-                        MainTabActivity activity = (MainTabActivity) getActivity();
-                        activity.switchDepositUi();
-                    }
-                };
-                dialogRegisterFirstIn.show();
-            }
-        } else if (BuildConfig.FLAVOR.equals("win3888")) {
-            PopWin3888 popWin3888 = new PopWin3888(mContext, rcHomeContent, screenWidth / 5 * 4, ViewGroup.LayoutParams.WRAP_CONTENT);
-            popWin3888.showPopupCenterWindow();
+        if (getApp().isRegisterFirstIn()) {
+            DialogRegisterFirstIn dialogRegisterFirstIn = new DialogRegisterFirstIn(getAct()) {
+                @Override
+                public void onClickIn() {
+                    MainTabActivity activity = (MainTabActivity) getActivity();
+                    activity.switchDepositUi();
+                }
+            };
+            dialogRegisterFirstIn.show();
         }
         int set = getUserInfo().getSet();
         presenter.getVipInfoBean(getUserInfo());
         if (set == 1) {
             DialogChangePassword dialogChangePassword = new DialogChangePassword(getAct());
             dialogChangePassword.show();
-        }
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            MainTabActivity activity = (MainTabActivity) getAct();
-            activity.setMainName(getString(R.string.deposit), getString(R.string.withdraw), getString(R.string.user));
-            activity.setMainLogo(mContext.getResources().getDrawable(R.drawable.selector_home_deposit), mContext.getResources().getDrawable(R.drawable.selector_home_withdraw), mContext.getResources().getDrawable(R.drawable.selector_home_user));
-            activity.setLastFragment(activity.userFragment);
         }
         llNotice.setBackgroundResource(R.drawable.notice_bg1);
         rl_already_login.setVisibility(View.VISIBLE);
@@ -393,17 +343,6 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
     public void onGetBannerData(List<Object> dataList) {
         llIndicator.removeAllViews();
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(dataList, llIndicator, mContext);
-        if (BuildConfig.FLAVOR.equals("jf58")) {
-            viewPagerAdapter.setOnImgClickListener(new ViewPagerAdapter.onImgClickListener() {
-                @Override
-                public void onClick() {
-                    Intent intent = new Intent(mContext, GameWebActivity.class);
-                    intent.putExtra("url", presenter.getPromotionsUrl());
-                    intent.putExtra("title", getString(R.string.promotions));
-                    startActivity(intent);
-                }
-            });
-        }
         homeViewpager.removeAllViews();
         homeViewpager.setAdapter(viewPagerAdapter);
     }
@@ -413,11 +352,6 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
         String loginStatus = loginStatusBean.getLoginStatus();
         if (loginStatus.equals("1")) {//1登录成功 2home界面注册跳转到登录
             initAlreadyLoginContent();
-            if (BuildConfig.FLAVOR.equals("fun77")) {
-                if (getCurrency().equals("USD")) {
-                    presenter.getBannerData();
-                }
-            }
         } else if (loginStatus.equals("2")) {
             Intent i = new Intent(mContext, LoginActivity.class);
             i.putExtra("LoginStatusBean", loginStatusBean);
@@ -442,16 +376,7 @@ public class MenuHomeFragment extends BaseFragment<MenuHomeFragmentPresenter> {
                 break;
             case R.id.ll_home_deposit:
                 Intent intent = new Intent(mContext, ActivityFragmentShow.class);
-                if (BuildConfig.FLAVOR.equals("q2bet") || BuildConfig.FLAVOR.equals("ttwin168") ||
-                        BuildConfig.FLAVOR.equals("u2bet") || BuildConfig.FLAVOR.equals("club988") ||
-                        BuildConfig.FLAVOR.equals("afbcash") || BuildConfig.FLAVOR.equals("hjlh6688") ||
-                        BuildConfig.FLAVOR.equals("win3888")) {
-                    intent.putExtra("type", DepositCenterFragment.class.getName());
-                } else if (BuildConfig.FLAVOR.equals("k9th") && getCurrency().equals("THB")) {
-                    intent.putExtra("type", DepositCenterFragment.class.getName());
-                } else {
-                    intent.putExtra("type", MenuDepositFragment.class.getName());
-                }
+                intent.putExtra("type", DepositCenterFragment.class.getName());
                 startActivity(intent);
                 break;
             case R.id.tv_home_register:

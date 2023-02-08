@@ -6,7 +6,6 @@ import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.BankInfoBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.PromotionBean;
@@ -36,44 +35,14 @@ public class Q2betOnlineDepositPresenter extends BaseRetrofitPresenter<Q2betOnli
 
     public List<BankInfoBean> getDepositWayBank() {
         List<BankInfoBean> beanList = new ArrayList<>();
-        if (BuildConfig.FLAVOR.equals("ttwin168")) {
-            beanList.add(new BankInfoBean("mbb", "MBB"));
-            beanList.add(new BankInfoBean("cimb", "CIMB"));
-            beanList.add(new BankInfoBean("hlbb", "HLB"));
-            beanList.add(new BankInfoBean("pbb", "PBB"));
-        } else if (BuildConfig.FLAVOR.equals("club988")) {
-            beanList.add(new BankInfoBean("cimb", "CIMB"));
-            beanList.add(new BankInfoBean("mbb", "MBB"));
-            beanList.add(new BankInfoBean("hlbb", "HLB"));
-            beanList.add(new BankInfoBean("pbb", "PBB"));
-        } else if (BuildConfig.FLAVOR.equals("mgold1")) {
-            beanList.add(new BankInfoBean("KKR", "Kasikorn Bank"));
-            beanList.add(new BankInfoBean("BBL", "Bangkok Bank"));
-            beanList.add(new BankInfoBean("SCB", "Siam Commercial Bank"));
-            beanList.add(new BankInfoBean("KTB", "Krungthai Bank"));
-            beanList.add(new BankInfoBean("BOA", "Krungsri Bank"));
-            beanList.add(new BankInfoBean("TMB", "TMB Bank Public Company Limited"));
-            beanList.add(new BankInfoBean("GSB", "Government Savings Bank"));
-            beanList.add(new BankInfoBean("CIMBT", "CIMB THAI"));
-            beanList.add(new BankInfoBean("KNK", "Kiatnakin Bank"));
-        } else if (BuildConfig.FLAVOR.equals("k9th")) {
-            beanList.add(new BankInfoBean("4", "กรุงเทพ"));
-            beanList.add(new BankInfoBean("7", "ไทยพานิชย์"));
-            beanList.add(new BankInfoBean("10", "กสิกร"));
-        } else {
-            beanList.add(new BankInfoBean("TCB", "Techcombank"));
-            beanList.add(new BankInfoBean("SACOM", "Sacombank"));
-            beanList.add(new BankInfoBean("VCB", "Vietcombank"));
-            if (BuildConfig.FLAVOR.equals("win3888")) {
-                beanList.add(new BankInfoBean("ACB", "ACB - Asia Commercial Bank"));
-            } else {
-                beanList.add(new BankInfoBean("ACB", "Asia Commercial Bank"));
-            }
-            beanList.add(new BankInfoBean("DAB", "DongA Bank"));
-            beanList.add(new BankInfoBean("VTB", "Vietinbank"));
-            beanList.add(new BankInfoBean("BIDV", "Bank for Investment and Development of Vietnam"));
-            beanList.add(new BankInfoBean("EXIM", "Eximbank Vietnam"));
-        }
+        beanList.add(new BankInfoBean("TCB", "Techcombank"));
+        beanList.add(new BankInfoBean("SACOM", "Sacombank"));
+        beanList.add(new BankInfoBean("VCB", "Vietcombank"));
+        beanList.add(new BankInfoBean("ACB", "Asia Commercial Bank"));
+        beanList.add(new BankInfoBean("DAB", "DongA Bank"));
+        beanList.add(new BankInfoBean("VTB", "Vietinbank"));
+        beanList.add(new BankInfoBean("BIDV", "Bank for Investment and Development of Vietnam"));
+        beanList.add(new BankInfoBean("EXIM", "Eximbank Vietnam"));
         return beanList;
     }
 

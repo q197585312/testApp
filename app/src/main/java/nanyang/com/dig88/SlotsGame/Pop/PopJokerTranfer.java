@@ -3,7 +3,6 @@ package nanyang.com.dig88.SlotsGame.Pop;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +18,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
@@ -37,33 +42,29 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.ListviewItemOnclick;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/11/23.
  */
 
 public abstract class PopJokerTranfer extends BasePopupWindow {
-    @Bind(R.id.tv_from)
+    @BindView(R.id.tv_from)
     TextView tv_from;
-    @Bind(R.id.tv_to)
+    @BindView(R.id.tv_to)
     TextView tv_to;
-    @Bind(R.id.edt_amount)
+    @BindView(R.id.edt_amount)
     EditText edt_amount;
-    @Bind(R.id.tv_submit)
+    @BindView(R.id.tv_submit)
     TextView tv_submit;
-    @Bind(R.id.tv_enter)
+    @BindView(R.id.tv_enter)
     TextView tv_enter;
-    @Bind(R.id.tv_joker123_balance)
+    @BindView(R.id.tv_joker123_balance)
     TextView tv_joker123_balance;
-    @Bind(R.id.tv_main_balance)
+    @BindView(R.id.tv_main_balance)
     TextView tv_main_balance;
-    @Bind(R.id.ll_is_show)
+    @BindView(R.id.ll_is_show)
     LinearLayout llIsShow;
-    @Bind(R.id.cb_is_show)
+    @BindView(R.id.cb_is_show)
     CheckBox cbIsShow;
     String[] transfer;
     String master;

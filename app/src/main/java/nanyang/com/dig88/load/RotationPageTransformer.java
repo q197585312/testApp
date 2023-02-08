@@ -1,7 +1,8 @@
 package nanyang.com.dig88.load;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * 用ViewPager实现3D画廊效果的核心类

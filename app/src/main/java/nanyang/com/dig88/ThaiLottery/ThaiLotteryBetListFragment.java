@@ -4,20 +4,20 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.ThaiLottery.bean.ThaiLotteryBetListBean;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2018/8/29.
  */
 
 public class ThaiLotteryBetListFragment extends ThaiLotteryBaseFragment {
-    @Bind(R.id.list_result)
+    @BindView(R.id.list_result)
     ListView list_result;
     QuickBaseAdapter<ThaiLotteryBetListBean.DataBean> adapter;
 

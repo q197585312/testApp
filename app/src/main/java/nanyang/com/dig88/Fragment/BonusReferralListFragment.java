@@ -11,14 +11,14 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Adapter.RecommendListAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Entity.RecommendedListBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
 
 /**
@@ -29,7 +29,7 @@ public class BonusReferralListFragment extends BaseFragment {
     private static final int SUBMIT_ERROR = 1;
     private static final int SUBMIT_NODATA = 2;
     public BlockDialog dialog;
-    @Bind(R.id.lv_deposit)
+    @BindView(R.id.lv_deposit)
     ListView lv_deposit;
     RecommendListAdapter recommendListAdapter;
     private List<RecommendedListBean> listData = new ArrayList<RecommendedListBean>();

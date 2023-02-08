@@ -18,25 +18,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import io.reactivex.Flowable;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.AffNameBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
-import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -109,11 +105,6 @@ public class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                             loginActivity.onLoginSuccess();
                         } else if (msg.equals("-2")) {
                             String errorStr = baseContext.getBaseActivity().getString(R.string.username_error) + " " + loginActivity.getString(R.string.or) + " " + baseContext.getBaseActivity().getString(R.string.password_error);
-                            if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                                if (loginActivity.getLocalLanguage().equals("vn")) {
-                                    errorStr = "Tên đăng nhập hoặc mật khẩu sai";
-                                }
-                            }
                             Exception exception = new Exception(errorStr);
                             throw exception;
                         } else if (msg.equals("-4")) {
@@ -121,13 +112,8 @@ public class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                             Exception exception = new Exception(errorStr);
                             throw exception;
                         } else {
-                            if (BuildConfig.FLAVOR.equals("kbet3")) {
-                                Exception exception = new Exception("Tên đăng nhập và / hoặc mật khẩu không hợp lệ");
-                                throw exception;
-                            } else {
-                                Exception exception = new Exception(loginActivity.getString(R.string.Login_Failed));
-                                throw exception;
-                            }
+                            Exception exception = new Exception(loginActivity.getString(R.string.Login_Failed));
+                            throw exception;
                         }
                     }
                 }, new Consumer<Throwable>() {//错误
@@ -226,21 +212,21 @@ public class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
     }
 
     public void getAffiliateName(final TextView tv) {
-        String affiliateId = loginActivity.getApp().getAffiliateId();
-        if (!TextUtils.isEmpty(BuildConfig.AFFILIATE_PACKAGE)) {
-            if (!TextUtils.isEmpty(affiliateId)) {
-                HashMap<String, String> p = new HashMap<>();
-                p.put("web_id", WebSiteUrl.WebId);
-                p.put("aff_id", affiliateId);
-                doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(WebSiteUrl.AffiliateNameUrl, p), new BaseConsumer<String>(baseContext) {
-                    @Override
-                    protected void onBaseGetData(String data) throws JSONException {
-                        AffNameBean affNameBean = gson.fromJson(data, AffNameBean.class);
-                        tv.setVisibility(View.VISIBLE);
-                        tv.setText(affNameBean.getData().getAff_name());
-                    }
-                });
-            }
-        }
+//        String affiliateId = loginActivity.getApp().getAffiliateId();
+//        if (!TextUtils.isEmpty(BuildConfig.AFFILIATE_PACKAGE)) {
+//            if (!TextUtils.isEmpty(affiliateId)) {
+//                HashMap<String, String> p = new HashMap<>();
+//                p.put("web_id", WebSiteUrl.WebId);
+//                p.put("aff_id", affiliateId);
+//                doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(WebSiteUrl.AffiliateNameUrl, p), new BaseConsumer<String>(baseContext) {
+//                    @Override
+//                    protected void onBaseGetData(String data) throws JSONException {
+//                        AffNameBean affNameBean = gson.fromJson(data, AffNameBean.class);
+//                        tv.setVisibility(View.VISIBLE);
+//                        tv.setText(affNameBean.getData().getAff_name());
+//                    }
+//                });
+//            }
+//        }
     }
 }

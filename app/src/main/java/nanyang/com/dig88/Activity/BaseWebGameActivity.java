@@ -3,13 +3,10 @@ package nanyang.com.dig88.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.text.TextUtils;
 import android.view.View;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -19,9 +16,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
+
 import com.google.gson.Gson;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Entity.GameMaintenanceBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpUtils;
@@ -34,7 +33,7 @@ import nanyang.com.dig88.Util.WebSiteUrl;
 public class BaseWebGameActivity extends BaseActivity {
     public WebView webView;
     public Gson gson = new Gson();
-    @Bind(R.id.img_game_maintenance)
+    @BindView(R.id.img_game_maintenance)
     ImageView img_game_maintenance;
     private int version = Build.VERSION.SDK_INT;
 

@@ -11,9 +11,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
@@ -22,28 +25,25 @@ import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2019/8/30.
  */
 
 public abstract class PopIbetPokerTransfer extends BasePopupWindow {
-    @Bind(R.id.tv_master_balance)
+    @BindView(R.id.tv_master_balance)
     TextView tvMasterBalance;
-    @Bind(R.id.tv_poker_name)
+    @BindView(R.id.tv_poker_name)
     TextView tvPokerName;
-    @Bind(R.id.tv_poker_balance)
+    @BindView(R.id.tv_poker_balance)
     TextView tvPokerBalance;
-    @Bind(R.id.tv_poker_title)
+    @BindView(R.id.tv_poker_title)
     TextView tvPokerTitle;
-    @Bind(R.id.edt_buy)
+    @BindView(R.id.edt_buy)
     EditText edtBuy;
-    @Bind(R.id.edt_takeout)
+    @BindView(R.id.edt_takeout)
     EditText edtTakeout;
-    @Bind(R.id.tv_hint)
+    @BindView(R.id.tv_hint)
     TextView tvHint;
     String amount;
     UserInfoBean u;

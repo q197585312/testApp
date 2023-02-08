@@ -2,8 +2,9 @@ package nanyang.com.dig88.Util;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
+
+import androidx.core.widget.NestedScrollView;
 
 /**
  * Created by Administrator on 2019/12/5.

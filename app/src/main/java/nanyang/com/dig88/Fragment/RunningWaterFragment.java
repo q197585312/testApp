@@ -2,14 +2,11 @@ package nanyang.com.dig88.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -20,9 +17,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
-import nanyang.com.dig88.BuildConfig;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Entity.RunningWaterGameBean;
 import nanyang.com.dig88.Entity.WashWaterBean;
 import nanyang.com.dig88.Fragment.Presenter.RunningWaterPresenter;
@@ -32,32 +31,29 @@ import nanyang.com.dig88.Util.DateUtils;
 import nanyang.com.dig88.Util.NestGridView;
 import nanyang.com.dig88.Util.NestListView;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2017/10/24.
  */
 
 public class RunningWaterFragment extends BaseFragment<RunningWaterPresenter> {
-    @Bind(R.id.tv_start_time)
+    @BindView(R.id.tv_start_time)
     TextView tvStartTime;
-    @Bind(R.id.tv_end_time)
+    @BindView(R.id.tv_end_time)
     TextView tvEndTime;
-    @Bind(R.id.lv_result)
+    @BindView(R.id.lv_result)
     NestListView lvResult;
-    @Bind(R.id.gv_content)
+    @BindView(R.id.gv_content)
     NestGridView gvContent;
-    @Bind(R.id.cb_all)
+    @BindView(R.id.cb_all)
     CheckBox cbAll;
-    @Bind(R.id.cb_casino)
+    @BindView(R.id.cb_casino)
     CheckBox cbCasino;
-    @Bind(R.id.cb_sports)
+    @BindView(R.id.cb_sports)
     CheckBox cbSports;
-    @Bind(R.id.cb_slots)
+    @BindView(R.id.cb_slots)
     CheckBox cbSlots;
-    @Bind(R.id.cb_lottery)
+    @BindView(R.id.cb_lottery)
     CheckBox cbLottery;
     List<RunningWaterGameBean> gamesContentList;
     QuickBaseAdapter<WashWaterBean.DataBean> searchAdapter;
@@ -75,20 +71,10 @@ public class RunningWaterFragment extends BaseFragment<RunningWaterPresenter> {
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         createPresenter(new RunningWaterPresenter(this));
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            getAct().setTitle(getString(R.string.check_wash_code1));
-        } else {
-            getAct().setTitle(getString(R.string.check_wash_code));
-        }
+        getAct().setTitle(getString(R.string.check_wash_code));
         gamesContentList = presenter.getContentData();
         initListData();
         initCheckBoxListener();
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            cbSlots.setVisibility(View.GONE);
-            cbLottery.setVisibility(View.GONE);
-        } else if (BuildConfig.FLAVOR.equals("hjlh6688")) {
-            cbLottery.setVisibility(View.GONE);
-        }
         tvStartTime.setText(DateUtils.getCurrentTime("yyyy-MM-dd") + " 00:00");
         tvEndTime.setText(DateUtils.getCurrentTime("yyyy-MM-dd") + " 23:59");
     }
@@ -182,11 +168,7 @@ public class RunningWaterFragment extends BaseFragment<RunningWaterPresenter> {
                     tv_end_time.setText(getDateParam(2).replace(" ", "\n"));
                     TextView tv_provider = helper.retrieveView(R.id.tv_provider);
                     String localLanguage = getLocalLanguage();
-                    if (localLanguage.equals("zh") || BuildConfig.FLAVOR.equals("ibet567")|| BuildConfig.FLAVOR.equals("henbet")) {
-                        tv_provider.setText(item.getP_cn_name());
-                    } else {
-                        tv_provider.setText(item.getP_name());
-                    }
+                    tv_provider.setText(item.getP_name());
                     TextView tv_washcode = helper.retrieveView(R.id.tv_washcode);
                     String totalAmount = item.getTotal_amount();
                     if (TextUtils.isEmpty(totalAmount)) {
@@ -266,7 +248,7 @@ public class RunningWaterFragment extends BaseFragment<RunningWaterPresenter> {
 
             @Override
             protected void convert(ViewHolder helper, final RunningWaterGameBean item, int position) {
-                TextView textView = helper.getTextView(R.id.game_title);
+                TextView textView = helper.retrieveView(R.id.game_title);
                 LinearLayout ll_parent = helper.retrieveView(R.id.runingwater_game_ll);
                 boolean isSelect = gameSwitchStatusMap.get(item.getValue());
                 if (isSelect) {

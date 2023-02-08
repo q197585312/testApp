@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
-import butterknife.Bind;
+import androidx.annotation.RequiresApi;
+
+import butterknife.BindView;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.Dig88Utils;
@@ -27,9 +28,9 @@ import nanyang.com.dig88.Util.Dig88Utils;
  */
 
 public class SlotsGameWebActivity extends BaseActivity {
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
-    @Bind(R.id.web_left_back)
+    @BindView(R.id.web_left_back)
     ImageView webLeftBack;
     String fishType;
 
@@ -39,7 +40,7 @@ public class SlotsGameWebActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         toolbar.setVisibility(View.GONE);
     }

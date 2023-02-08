@@ -2,11 +2,12 @@ package nanyang.com.dig88.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -14,21 +15,20 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Activity.MainTabActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.GameMenuItem;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by 47184 on 2019/6/24.
  */
 
 public class SwitchLanguageActivity extends BaseActivity {
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<GameMenuItem> adapter;
     private String localLang;
@@ -49,7 +49,7 @@ public class SwitchLanguageActivity extends BaseActivity {
 
     private void initAdapter() {
         List<GameMenuItem> list = new ArrayList<>();
-        String language = BuildConfig.Language;
+        String language = "zh,kr,en,vn,kh,in,ms,th";
         String[] split = language.split(",");
         for (int i = 0; i < split.length; i++) {
             String lg = split[i];

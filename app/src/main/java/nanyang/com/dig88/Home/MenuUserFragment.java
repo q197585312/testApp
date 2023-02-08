@@ -3,54 +3,53 @@ package nanyang.com.dig88.Home;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.Activity.MainTabActivity;
 import nanyang.com.dig88.Activity.MsgBoxActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.UserContentBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.Home.Presenter.MenuUserPresenter;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
 
 /**
  * Created by Administrator on 2019/6/20.
  */
 
 public class MenuUserFragment extends BaseFragment<MenuUserPresenter> {
-    @Bind(R.id.tv_toolbar_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @Bind(R.id.tv_username)
+    @BindView(R.id.tv_username)
     TextView tvUsername;
-    @Bind(R.id.tv_cumulative)
+    @BindView(R.id.tv_cumulative)
     TextView tvCumulative;
-    @Bind(R.id.tv_surplus)
+    @BindView(R.id.tv_surplus)
     TextView tvSurplus;
-    @Bind(R.id.tv_balance)
+    @BindView(R.id.tv_balance)
     TextView tvBalance;
-    @Bind(R.id.tv_total_bonus_name)
+    @BindView(R.id.tv_total_bonus_name)
     TextView tvTotalBonusName;
-    @Bind(R.id.tv_balance_name)
+    @BindView(R.id.tv_balance_name)
     TextView tvBalanceName;
-    @Bind(R.id.tv_last_bonus_name)
+    @BindView(R.id.tv_last_bonus_name)
     TextView tvLastBonusName;
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
-    @Bind(R.id.sdv_user)
+    @BindView(R.id.sdv_user)
     SimpleDraweeView sdvUser;
     BaseRecyclerAdapter<UserContentBean> adapter;
 
@@ -75,14 +74,9 @@ public class MenuUserFragment extends BaseFragment<MenuUserPresenter> {
         tvLastBonusName.setText(getString(R.string.Last_Bonus));
         Uri uri = Uri.parse("res://mipmap-xhdpi/" + R.mipmap.default_useravatar);
         sdvUser.setImageURI(uri);
-        if (BuildConfig.FLAVOR.equals("fun77")) {
+        if (getCurrency().equals("IDR") || getLocalLanguage().equals("in")) {
             tvTotalBonusName.setVisibility(View.GONE);
             tvCumulative.setVisibility(View.GONE);
-        } else if (BuildConfig.FLAVOR.equals("afbcash")) {
-            if (getCurrency().equals("IDR") || getLocalLanguage().equals("in")) {
-                tvTotalBonusName.setVisibility(View.GONE);
-                tvCumulative.setVisibility(View.GONE);
-            }
         }
     }
 

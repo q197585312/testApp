@@ -4,30 +4,29 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import nanyang.com.dig88.Activity.BaseActivity;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/9/14.
  */
 
 public class PopNewKenoPrint extends BasePopupWindow {
-    @Bind(R.id.tv_ticket_id)
+    @BindView(R.id.tv_ticket_id)
     TextView tv_ticket_id;
-    @Bind(R.id.tv_date)
+    @BindView(R.id.tv_date)
     TextView tv_date;
-    @Bind(R.id.tv_account)
+    @BindView(R.id.tv_account)
     TextView tv_account;
-    @Bind(R.id.tv_ticket_id1)
+    @BindView(R.id.tv_ticket_id1)
     TextView tv_ticket_id1;
-    @Bind(R.id.tv_type)
+    @BindView(R.id.tv_type)
     TextView tv_type;
-    @Bind(R.id.tv_bet_points)
+    @BindView(R.id.tv_bet_points)
     TextView tv_bet_points;
-    @Bind(R.id.tv_win_lose)
+    @BindView(R.id.tv_win_lose)
     TextView tv_win_lose;
     public PopNewKenoPrint(Context context, View v, int width, int height) {
         super(context, v, width, height);

@@ -10,12 +10,12 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Activity.presenter.ForgotPasswordPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2019/11/5.
@@ -23,13 +23,13 @@ import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 public class ForgotPasswordActivity extends BaseActivity<ForgotPasswordPresenter> {
 
-    @Bind(R.id.edt_username)
+    @BindView(R.id.edt_username)
     EditText edtUsername;
-    @Bind(R.id.edt_email)
+    @BindView(R.id.edt_email)
     EditText edtEmail;
-    @Bind(R.id.edt_code)
+    @BindView(R.id.edt_code)
     EditText edtCode;
-    @Bind(R.id.tv_code)
+    @BindView(R.id.tv_code)
     TextView tvCode;
     String username;
     String email;

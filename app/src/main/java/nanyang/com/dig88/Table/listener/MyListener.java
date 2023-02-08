@@ -3,7 +3,8 @@ package nanyang.com.dig88.Table.listener;
 import android.os.Handler;
 import android.os.Message;
 
-import xs.com.mylibrary.myview.mylistview.PullToRefreshLayout;
+import gaming178.com.mylibrary.myview.mylistview.PullToRefreshLayout;
+
 
 public class MyListener implements PullToRefreshLayout.OnRefreshListener
 {

@@ -2,25 +2,26 @@ package nanyang.com.dig88.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.ClipboardManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Fragment.Presenter.BasicPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.GameMenuItem;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 
 /**
@@ -28,7 +29,7 @@ import xs.com.mylibrary.allinone.util.AppTool;
  */
 public class BasicFragment extends BaseFragment<BasicPresenter> {
 
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<GameMenuItem> adapter;
     VipInfoBean info;

@@ -13,7 +13,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import nanyang.com.dig88.Activity.BaseActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.DividendCenterListBean;
 import nanyang.com.dig88.R;
 
@@ -81,18 +80,6 @@ public class DividendRecordListAdapter extends BaseAdapter {
             holder.tv_no_data.setVisibility(View.GONE);
             holder.tv_bianhao.setText(context.getString(R.string.bianhao1) + (position + 1));
             String bonus_type = depositListBean.getBonus_type();
-            if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                if (activity.getLocalLanguage().equals("vn")) {
-                    switch (bonus_type) {
-                        case "Transfer Bonus":
-                            bonus_type = "Chuyển thưởng";
-                            break;
-                        case "Withdraw Bonus":
-                            bonus_type = "Rút thưởng";
-                            break;
-                    }
-                }
-            }
             holder.tv_leixing.setText(context.getString(R.string.leixing) + bonus_type);
             holder.tv_time.setText(context.getString(R.string.shijian) + depositListBean.getTime());
 
@@ -108,9 +95,6 @@ public class DividendRecordListAdapter extends BaseAdapter {
             if (!TextUtils.isEmpty(status)) {
                 if (status.equals("Finish")) {
                     String success = context.getString(R.string.Success);
-                    if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        success = "OK";
-                    }
                     holder.tv_zhuangtai.setText(context.getString(R.string.honglizhongxin) + success);
                     holder.tv_zhuangtai.setTextColor(Color.parseColor("#2DCB67"));
                 } else if (status.equals("Submitting")) {

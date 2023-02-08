@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
@@ -20,25 +20,25 @@ import nanyang.com.dig88.Util.WebSiteUrl;
  */
 
 public class ThaiLotteryBigSmallFragment extends ThaiLotteryBaseFragment implements View.OnClickListener {
-    @Bind(R.id.thai_lottery_bigsmall_discount)
+    @BindView(R.id.thai_lottery_bigsmall_discount)
     TextView tv_bigsmall_discount;
-    @Bind(R.id.thai_lottery_bigsmall_odds)
+    @BindView(R.id.thai_lottery_bigsmall_odds)
     TextView tv_bigsmall_odds;
-    @Bind(R.id.thai_lottery_big_radiobtn)
+    @BindView(R.id.thai_lottery_big_radiobtn)
     RadioButton radiobtn_big;
-    @Bind(R.id.thai_lottery_small_radiobtn)
+    @BindView(R.id.thai_lottery_small_radiobtn)
     RadioButton radiobtn_small;
-    @Bind(R.id.thai_lottery_bigsmall_betmoney)
+    @BindView(R.id.thai_lottery_bigsmall_betmoney)
     EditText edt_bigsmall_betmoney;
-    @Bind(R.id.thai_lottery_bigsmall_reallymoney)
+    @BindView(R.id.thai_lottery_bigsmall_reallymoney)
     TextView tv_bigsmall_reallymoney;
-    @Bind(R.id.thai_lottery_bet_ll)
+    @BindView(R.id.thai_lottery_bet_ll)
     LinearLayout ll_bet;
-    @Bind(R.id.lottery_center_progress_ll)
+    @BindView(R.id.lottery_center_progress_ll)
     LinearLayout lottery_center_progress_ll;
-    @Bind(R.id.thai_lottery_big)
+    @BindView(R.id.thai_lottery_big)
     TextView tv_big;
-    @Bind(R.id.thai_lottery_small)
+    @BindView(R.id.thai_lottery_small)
     TextView tv_small;
     private String discountBigSmall;
     private String betMoney;

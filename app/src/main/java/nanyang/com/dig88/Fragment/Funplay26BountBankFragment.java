@@ -15,39 +15,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
-import nanyang.com.dig88.BuildConfig;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Entity.BankAccountDetailBean;
-import nanyang.com.dig88.Entity.BankInfoBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Fragment.Presenter.Funplay26BoundBankPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseContentListPopWindow;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2019/9/27.
  */
 
 public class Funplay26BountBankFragment extends BaseFragment<Funplay26BoundBankPresenter> {
-    @Bind(R.id.tv_choice_bank)
+    @BindView(R.id.tv_choice_bank)
     TextView tvChoiceBank;
-    @Bind(R.id.edt_bank_account)
+    @BindView(R.id.edt_bank_account)
     EditText edtBankAccount;
-    @Bind(R.id.edt_bank_number)
+    @BindView(R.id.edt_bank_number)
     EditText edtBankNumber;
-    @Bind(R.id.edt_code)
+    @BindView(R.id.edt_code)
     EditText edtCode;
-    @Bind(R.id.btn_submit)
+    @BindView(R.id.btn_submit)
     Button btnSubmit;
-    @Bind(R.id.ll_line_tel)
+    @BindView(R.id.ll_line_tel)
     LinearLayout llLineTel;
-    @Bind(R.id.edt_line)
+    @BindView(R.id.edt_line)
     EditText edtLine;
-    @Bind(R.id.edt_tel)
+    @BindView(R.id.edt_tel)
     EditText edtTel;
     String addressbank;
     String accountname;
@@ -110,7 +108,7 @@ public class Funplay26BountBankFragment extends BaseFragment<Funplay26BoundBankP
         switch (v.getId()) {
             case R.id.btn_submit:
                 HashMap<String, String> p = new HashMap<>();
-                if (TextUtils.isEmpty(addressbank) && !BuildConfig.FLAVOR.equals("mgold1")) {
+                if (TextUtils.isEmpty(addressbank)) {
                     ToastUtils.showShort(getString(R.string.qingxuanyh));
                     return;
                 }
@@ -119,30 +117,12 @@ public class Funplay26BountBankFragment extends BaseFragment<Funplay26BoundBankP
                 p.put("web_id", WebSiteUrl.WebId);
                 p.put("user_id", getUserInfo().getUser_id());
                 p.put("session_id", getUserInfo().getSession_id());
-                if (BuildConfig.FLAVOR.equals("mcd88") || BuildConfig.FLAVOR.equals("xslot88")) {
-                    p.put("captcha", "1243");
-                    p.put("bank", addressbank);
-                    p.put("bankaccount", accountname);
-                    p.put("bankno", accountno);
-                    p.put("currency", getUserInfo().getId_mod_currency());
-                    presenter.goBindingBank1(p);
-                } else if (BuildConfig.FLAVOR.equals("mgold1")) {
-                    p.put("full_name", accountname);
-                    p.put("bankaccount", accountname);
-                    p.put("captcha", "1243");
-                    p.put("currency", getUserInfo().getId_mod_currency());
-                    p.put("email", edtLine.getText().toString());
-                    p.put("email_type", "line");
-                    p.put("tel", edtTel.getText().toString());
-                    presenter.goBindingBank1(p);
-                } else {
-                    password = edtCode.getText().toString();
-                    p.put("addressbank", addressbank);
-                    p.put("accountname", accountname);
-                    p.put("accountno", accountno);
-                    p.put("password", password);
-                    presenter.goBindingBank(p);
-                }
+                password = edtCode.getText().toString();
+                p.put("addressbank", addressbank);
+                p.put("accountname", accountname);
+                p.put("accountno", accountno);
+                p.put("password", password);
+                presenter.goBindingBank(p);
                 break;
             case R.id.tv_choice_bank:
                 if (bankList.size() > 0) {
@@ -155,9 +135,7 @@ public class Funplay26BountBankFragment extends BaseFragment<Funplay26BoundBankP
                         @Override
                         public void onClickItem(int position, ContentInfoBean item) {
                             addressbank = item.getContentId();
-                            if (BuildConfig.FLAVOR.equals("afbcash")) {
-                                addressbank = item.getContent();
-                            }
+                            addressbank = item.getContent();
                             tvChoiceBank.setText(item.getContent());
                         }
                     };

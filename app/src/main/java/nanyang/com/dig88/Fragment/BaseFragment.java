@@ -11,28 +11,26 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import androidx.core.app.ActivityCompat;
+
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Activity.DigApp;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BlockDialog;
 import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2015/10/20.
  */
-public abstract class BaseFragment<T extends BaseRetrofitPresenter> extends xs.com.mylibrary.base.component.BaseFragment implements IBaseContext {
+public abstract class BaseFragment<T extends BaseRetrofitPresenter> extends gaming178.com.mylibrary.base.component.BaseFragment implements IBaseContext {
     public int screenWidth;
     public int screenHeight;
     public Gson gson;

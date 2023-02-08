@@ -2,12 +2,14 @@ package nanyang.com.dig88.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.View;
 
+import androidx.fragment.app.FragmentManager;
+
 import org.greenrobot.eventbus.EventBus;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.Fragment.Hjlh6688OnlineWithdrawFragment;
 import nanyang.com.dig88.Home.Bean.LoginStatusBean;
@@ -15,7 +17,6 @@ import nanyang.com.dig88.Home.MenuDepositFragment;
 import nanyang.com.dig88.Home.MenuWithdrawFragment;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.GameBaseActivity;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2019/3/22.

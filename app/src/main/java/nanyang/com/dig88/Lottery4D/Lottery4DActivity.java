@@ -2,15 +2,16 @@ package nanyang.com.dig88.Lottery4D;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.annotation.IdRes;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.gson.Gson;
 
@@ -19,8 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
-import nanyang.com.dig88.Activity.BaseActivity;
+import butterknife.BindView;
 import nanyang.com.dig88.Entity.Lottery4DTitleBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.GameBaseActivity;
@@ -46,9 +46,9 @@ public class Lottery4DActivity extends GameBaseActivity {
     public static String Sarawak = "220";
     public static String GrandDragon = "221";
     public Map<String, String> poolMap;
-    @Bind(R.id.rg_choice_type)
+    @BindView(R.id.rg_choice_type)
     RadioGroup rg_choice_type;
-    @Bind(R.id.tv_animation)
+    @BindView(R.id.tv_animation)
     TextView tvAnimation;
     Lottery4DBaseFragment betFragment;
     Lottery4DBaseFragment betListFragment;

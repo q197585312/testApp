@@ -22,7 +22,7 @@ public abstract class DialogRegisterFirstIn {
     }
 
     public void show() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, xs.com.mylibrary.R.style.dialog);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, gaming178.com.mylibrary.R.style.dialog);
         LayoutInflater inflater = LayoutInflater.from(activity);
         View v = inflater.inflate(R.layout.dialog_register_first_in, null);
         tvIn = v.findViewById(R.id.tv_in);

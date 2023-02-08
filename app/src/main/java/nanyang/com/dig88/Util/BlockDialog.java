@@ -9,8 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.ScreenUtil;
 
 
 public class BlockDialog extends Dialog {

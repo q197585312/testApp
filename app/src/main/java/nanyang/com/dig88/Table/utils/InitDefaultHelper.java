@@ -1,8 +1,6 @@
 package nanyang.com.dig88.Table.utils;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,22 +9,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.BasePageAdapter;
+import gaming178.com.mylibrary.base.ItemCLickImp;
+import gaming178.com.mylibrary.base.QuickAdapterImp;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Entity.RecommendGameBean;
 import nanyang.com.dig88.R;
-import nanyang.com.dig88.Util.DeviceUtils;
 import nanyang.com.dig88.Util.UIUtil;
-import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.BasePageAdapter;
-import xs.com.mylibrary.base.ItemCLickImp;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2015/12/4.

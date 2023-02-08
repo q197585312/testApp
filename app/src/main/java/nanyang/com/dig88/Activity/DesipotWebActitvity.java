@@ -9,7 +9,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BlockDialog;
 
@@ -18,7 +18,7 @@ import nanyang.com.dig88.Util.BlockDialog;
  */
 
 public class DesipotWebActitvity extends BaseActivity {
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
     String loadUrl;
     String urlParmars;

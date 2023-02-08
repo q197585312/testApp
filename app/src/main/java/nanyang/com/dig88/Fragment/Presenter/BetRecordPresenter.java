@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.Afb2BetRecordBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;

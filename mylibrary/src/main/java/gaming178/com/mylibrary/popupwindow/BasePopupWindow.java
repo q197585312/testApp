@@ -140,6 +140,20 @@ public abstract class BasePopupWindow {
 
     }
 
+    public void showPopupCenterWindowBlack() {
+        if (popoWindow == null) {
+            return;
+        }
+        closePopupWindow();
+        popoWindow.setAnimationStyle(R.anim.abc_popup_enter);
+        WindowManager.LayoutParams params = ((Activity) context).getWindow().getAttributes();
+        params.alpha = 0.4f;
+        ((Activity) context).getWindow().setAttributes(params);
+        if (context != null && !((Activity) context).isFinishing()) {
+            popoWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+        }
+    }
+
     public void showPopupDownWindow(int style) {
         closePopupWindow();
         popoWindow.setAnimationStyle(style);

@@ -3,11 +3,12 @@ package nanyang.com.dig88.ThaiLottery;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -16,7 +17,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
 import nanyang.com.dig88.Adapter.MyFragmentPagerAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
@@ -26,9 +30,6 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.GameBaseActivity;
 import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
 
 /**
  * Created by Administrator on 2017/7/19.
@@ -37,17 +38,17 @@ import xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
 public class ThaiLotteryActivity extends GameBaseActivity {
     //    private BaseFragment hotNumberFragment = new HotNumberFragment();
     protected NyVolleyJsonThreadHandler<List<DigGameOddsBean>> gameStateThread;
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     PagerSlidingTabStrip tabStrip;
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager lotteryViewPager;
-    @Bind(R.id.total_amount_tv)
+    @BindView(R.id.total_amount_tv)
     TextView total_amount_tv;
-    @Bind(R.id.bet_total_amount_tv)
+    @BindView(R.id.bet_total_amount_tv)
     TextView bet_total_amount_tv;
-    @Bind(R.id.lottery_bottom_submit_btn)
+    @BindView(R.id.lottery_bottom_submit_btn)
     Button lottery_bottom_submit_btn;
-    @Bind(R.id.lottery_bottom_bet_fl)
+    @BindView(R.id.lottery_bottom_bet_fl)
     LinearLayout lottery_bottom_bet_fl;
     private List<BaseFragment> fragmentsList;
     private ThaiLotteryBaseFragment indexFragment;
@@ -121,7 +122,7 @@ public class ThaiLotteryActivity extends GameBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
     }

@@ -2,12 +2,11 @@ package nanyang.com.dig88.Activity;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
 import nanyang.com.dig88.Util.BlockDialog;
@@ -16,7 +15,7 @@ import nanyang.com.dig88.Util.BlockDialog;
  * Created by Administrator on 2016/2/23.
  */
 public class DigWebActivity extends BaseActivity {
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
     @Override
     protected int getLayoutRes() {

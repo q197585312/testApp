@@ -3,7 +3,6 @@ package nanyang.com.dig88.Lottery4D.popWindow;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +14,18 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Lottery4D.Lottery4DActivity;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ListviewItemOnclick;
-import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2019/2/25.
@@ -35,7 +35,7 @@ public class PopSpecialDateSwitch extends BasePopupWindow {
     public String currentDate;
     public int currentCount;
     Lottery4DActivity activity;
-    @Bind(R.id.tv_choice_date)
+    @BindView(R.id.tv_choice_date)
     TextView tv_choice_date;
     List<String> dateList;
     public PopSpecialDateSwitch(Context context, View v, int width, int height) {
@@ -95,11 +95,6 @@ public class PopSpecialDateSwitch extends BasePopupWindow {
                 mydialog.show();
                 break;
         }
-    }
-
-    @Override
-    public boolean isNeedHide() {
-        return false;
     }
 
     public abstract class Mydialog extends Dialog implements ListviewItemOnclick {

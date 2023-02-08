@@ -1,21 +1,22 @@
 package nanyang.com.dig88.Util;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 
 /**
@@ -23,7 +24,7 @@ import xs.com.mylibrary.popupwindow.BasePopupWindow;
  */
 
 public abstract class BaseContentListPopWindow extends BasePopupWindow {
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<ContentInfoBean> adapter;
 

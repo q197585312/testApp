@@ -2,8 +2,6 @@ package nanyang.com.dig88.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,23 +23,18 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-import butterknife.Bind;
-import nanyang.com.dig88.Entity.LoginInfoBean;
-import nanyang.com.dig88.Entity.SbosportsBean;
-import nanyang.com.dig88.Entity.SsportLoginBean;
-import nanyang.com.dig88.Entity.SsportRegiseBean;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Forex.UsportBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpClient;
-import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
 
 /**
  * Created by Administrator on 2016/10/12.
  */
 public class UsportsActivity extends BaseActivity {
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
     HttpClient httpClient;
     private Thread GetSportTokenThread = null;

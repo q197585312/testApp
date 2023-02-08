@@ -1,9 +1,6 @@
 package nanyang.com.dig88.Util;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
 import android.view.View;
@@ -15,24 +12,21 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 import java.util.HashMap;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.AgFishActivity;
 import nanyang.com.dig88.Activity.BaseActivity;
-import nanyang.com.dig88.Activity.FfylPokerActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Entity.AgFishConfigBean;
-import nanyang.com.dig88.Entity.FFYLPokerBalanceBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/4/23.

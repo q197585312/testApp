@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 
-import butterknife.Bind;
 import butterknife.BindString;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.Thread.ThreadEndT;
@@ -25,42 +27,40 @@ import nanyang.com.dig88.Table.entity.BettingPromptBean;
 import nanyang.com.dig88.Table.utils.BettingDataHelper;
 import nanyang.com.dig88.Util.WebSiteUrl;
 import nanyang.com.dig88.Util.BlockDialog;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2015/10/27.
  */
 public class BetBasePop extends BasePopupWindow {
     Context context;
-    @Bind(R.id.bet_module_title_tv)
+    @BindView(R.id.bet_module_title_tv)
     TextView betModuleTitleTv;
-    @Bind(R.id.bet_home_tv)
+    @BindView(R.id.bet_home_tv)
     TextView betHomeTv;
-    @Bind(R.id.bet_away_tv)
+    @BindView(R.id.bet_away_tv)
     TextView betAwayTv;
-    @Bind(R.id.bet_name_tv)
+    @BindView(R.id.bet_name_tv)
     TextView betNameTv;
-    @Bind(R.id.bet_hdp_tv)
+    @BindView(R.id.bet_hdp_tv)
     TextView betHdpTv;
-    @Bind(R.id.bet_amount_edt)
+    @BindView(R.id.bet_amount_edt)
     EditText betAmountEdt;
-    @Bind(R.id.bet_sure_btn)
+    @BindView(R.id.bet_sure_btn)
     TextView betSureBtn;
     BettingDataHelper helper;
-    @Bind(R.id.bet_max_win_tv)
+    @BindView(R.id.bet_max_win_tv)
     TextView betMaxWinTv;
-    @Bind(R.id.bet_max_bet_tv)
+    @BindView(R.id.bet_max_bet_tv)
     TextView betMaxBetTv;
-    @Bind(R.id.bet_pop_parent_ll)
+    @BindView(R.id.bet_pop_parent_ll)
     View parentV;
-    @Bind(R.id.bet_half_tv)
+    @BindView(R.id.bet_half_tv)
     TextView halfTv;
-    @Bind(R.id.bet_max_payout_tv)
+    @BindView(R.id.bet_max_payout_tv)
     TextView betPayoutTv;
-    @Bind(R.id.ll_wb_bet)
+    @BindView(R.id.ll_wb_bet)
     LinearLayout ll_wb_bet;
-    @Bind(R.id.wb_bet)
+    @BindView(R.id.wb_bet)
     WebView wb_bet;
     @BindString(R.string.loading)
     String loading;

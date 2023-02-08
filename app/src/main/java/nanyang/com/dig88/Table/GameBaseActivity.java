@@ -1,11 +1,9 @@
 package nanyang.com.dig88.Table;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 
 import nanyang.com.dig88.Activity.BaseActivity;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2015/12/22.

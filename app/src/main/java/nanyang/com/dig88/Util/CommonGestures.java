@@ -18,10 +18,11 @@ package nanyang.com.dig88.Util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+
+import androidx.core.view.GestureDetectorCompat;
 
 public class CommonGestures {
 	public static final int SCALE_STATE_BEGIN = 0;

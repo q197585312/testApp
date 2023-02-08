@@ -3,18 +3,17 @@ package nanyang.com.dig88.Table.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -26,6 +25,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.ScreenUtil;
+import gaming178.com.mylibrary.allinone.util.TimeUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.myview.mylistview.PullToRefreshLayout;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.LinkedViewPager.MyPagerAdapter;
@@ -46,11 +50,6 @@ import nanyang.com.dig88.Table.entity.TableModuleBean;
 import nanyang.com.dig88.Table.popupwindow.BetBasePop;
 import nanyang.com.dig88.Util.DeviceUtils;
 import nanyang.com.dig88.Util.WebPop;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.ScreenUtil;
-import xs.com.mylibrary.allinone.util.TimeUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.myview.mylistview.PullToRefreshLayout;
 
 /**
  * Created by Administrator on 2015/11/26.

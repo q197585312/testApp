@@ -2,12 +2,13 @@ package nanyang.com.dig88.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -15,19 +16,17 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.Activity.CommonDataListActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.GameMenuItem;
-import nanyang.com.dig88.Util.WebSiteUrl;
 
 /**
  * Created by Administrator on 2015/12/21. (红利中心)
  */
 public class BonusCenterFragment extends BaseFragment {
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<GameMenuItem> adapter;
 
@@ -48,11 +47,9 @@ public class BonusCenterFragment extends BaseFragment {
     private List<GameMenuItem> getContentData() {
         List<GameMenuItem> list = new ArrayList<>();
         list.add(new GameMenuItem(R.drawable.honglicenter, getString(R.string.honglizx), BonusTransferFragment.class.getName()));
-        if (!BuildConfig.FLAVOR.equals("fun77")) {
-            list.add(new GameMenuItem(R.drawable.tuijianliebiao, getString(R.string.beituijianlist), BonusReferralListFragment.class.getName()));
-            list.add(new GameMenuItem(R.drawable.shengqinghongli, getString(R.string.shengqinghl), BonusUpdateFragment.class.getName()));
-            list.add(new GameMenuItem(R.drawable.hongliliebiao, getString(R.string.shengqinglist), BonusApplyListFragment.class.getName()));
-        }
+        list.add(new GameMenuItem(R.drawable.tuijianliebiao, getString(R.string.beituijianlist), BonusReferralListFragment.class.getName()));
+        list.add(new GameMenuItem(R.drawable.shengqinghongli, getString(R.string.shengqinghl), BonusUpdateFragment.class.getName()));
+        list.add(new GameMenuItem(R.drawable.hongliliebiao, getString(R.string.shengqinglist), BonusApplyListFragment.class.getName()));
         list.add(new GameMenuItem(R.drawable.hongliliebiao, getString(R.string.Promotion_list), null));
         list.add(new GameMenuItem(R.drawable.hongliliebiao, getString(R.string.Auto_promotion), null));
         return list;

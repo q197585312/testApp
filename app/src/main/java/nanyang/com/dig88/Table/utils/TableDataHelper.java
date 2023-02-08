@@ -7,8 +7,9 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import gaming178.com.mylibrary.allinone.util.MyLog;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
 import nanyang.com.dig88.Activity.DigApp;
 import nanyang.com.dig88.Table.Imp.IUpdateTableData;
 import nanyang.com.dig88.Table.Thread.TableHttpHelper;
@@ -34,8 +37,6 @@ import nanyang.com.dig88.Table.entity.TableDataBean;
 import nanyang.com.dig88.Table.entity.TableModuleBean;
 import nanyang.com.dig88.Table.entity.VsOtherDataBean;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.MyLog;
-import xs.com.mylibrary.allinone.util.StringUtils;
 
 /**
  * Created by Administrator on 2015/11/26.
@@ -606,31 +607,31 @@ public class TableDataHelper implements IUpdateTableData {
     }
 
     public void parseUpdate(String jsonData, int model) {
-        try {
-            String jsonS = Html.fromHtml(jsonData).toString().replaceAll("\\n", "%");
-            JSONObject json = JSONObject.fromObject(jsonS);
-            int rid = json.getInt("RId");
-            int oRid = json.getInt("OldRId");
-            ((DigApp) (context.getApplication())).getBallGameInfo().setRId(rid);
-            //如果需要解析JSON数据，首要要生成一个JsonReader对象
-            String testKey = "JSOddsCnt";
-            if (json.get(testKey) != null && model == adapterModelType) {
-                if (updateAddDel(json, rid, oRid)) {
-                    endt.endString("2", model);
-                    endt.endT(tablelistData, model);
-                }
-            } else {
-                TableDataBean t = new Gson().fromJson(jsonData, new TypeToken<TableDataBean>() {
-                }.getType());
-                if (t != null) {
-                    resultInfo = t;
-                    if (adapterModelType == model)
-                        parseTableDataBean(resultInfo, model);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String jsonS = Html.fromHtml(jsonData).toString().replaceAll("\\n", "%");
+//            JSONObject json = JSONObject.fromObject(jsonS);
+//            int rid = json.getInt("RId");
+//            int oRid = json.getInt("OldRId");
+//            ((DigApp) (context.getApplication())).getBallGameInfo().setRId(rid);
+//            //如果需要解析JSON数据，首要要生成一个JsonReader对象
+//            String testKey = "JSOddsCnt";
+//            if (json.get(testKey) != null && model == adapterModelType) {
+//                if (updateAddDel(json, rid, oRid)) {
+//                    endt.endString("2", model);
+//                    endt.endT(tablelistData, model);
+//                }
+//            } else {
+//                TableDataBean t = new Gson().fromJson(jsonData, new TypeToken<TableDataBean>() {
+//                }.getType());
+//                if (t != null) {
+//                    resultInfo = t;
+//                    if (adapterModelType == model)
+//                        parseTableDataBean(resultInfo, model);
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         /*try {
             TableDataBean t = new Gson().fromJson(jsonData, new TypeToken<TableDataBean>() {
             }.getType());
@@ -659,37 +660,37 @@ public class TableDataHelper implements IUpdateTableData {
 
     public boolean updateAddDel(JSONObject json, int rid, int oRid) {
         boolean update = false;
-        int i = oRid + 1;
-        for (; i < rid + 1; i++) {
-            if (json.get("JSUpd_" + i) instanceof JSONObject) {
-                JSONObject jo = (JSONObject) json.get("JSUpd_" + i);
-                Iterator<String> keys = jo.keys();
-                while (keys.hasNext()) {
-                    String key1 = keys.next();
-                    String moduleId = splitModule(key1);
-                    update = update | update(moduleId, key1, (JSONObject) jo.get(key1));
-                }
-            }
-            if (json.get("JSAdd_" + i) instanceof JSONArray) {
-                JSONArray jaAdd = (JSONArray) json.get("JSAdd_" + i);
-                for (int m = 0; m < jaAdd.size(); m++) {
-                    Object[] addS = (Object[]) JSONArray.toArray((JSONArray) jaAdd.get(m));
-                    if (addS != null && addS.length > 0)
-                        update = update | add(addS);
-                }
-            }
-            if (json.get("JSDel_" + i) instanceof JSONArray) {
-                JSONArray jaDel = (JSONArray) json.get("JSDel_" + i);
-                for (int n = 0; n < jaDel.size(); n++) {
-                    Object[] delS = (Object[]) JSONArray.toArray((JSONArray) jaDel.get(n));
-                    if (delS != null && delS.length > 0) {
-                        update = update | del(delS[0].toString());
-                    }
-                }
-            } else {
-                MyLog.w("Error", "Nothing:" + json.get("JSUpd_" + i).toString());
-            }
-        }
+//        int i = oRid + 1;
+//        for (; i < rid + 1; i++) {
+//            if (json.get("JSUpd_" + i) instanceof JSONObject) {
+//                JSONObject jo = (JSONObject) json.get("JSUpd_" + i);
+//                Iterator<String> keys = jo.keys();
+//                while (keys.hasNext()) {
+//                    String key1 = keys.next();
+//                    String moduleId = splitModule(key1);
+//                    update = update | update(moduleId, key1, (JSONObject) jo.get(key1));
+//                }
+//            }
+//            if (json.get("JSAdd_" + i) instanceof JSONArray) {
+//                JSONArray jaAdd = (JSONArray) json.get("JSAdd_" + i);
+//                for (int m = 0; m < jaAdd.size(); m++) {
+//                    Object[] addS = (Object[]) JSONArray.toArray((JSONArray) jaAdd.get(m));
+//                    if (addS != null && addS.length > 0)
+//                        update = update | add(addS);
+//                }
+//            }
+//            if (json.get("JSDel_" + i) instanceof JSONArray) {
+//                JSONArray jaDel = (JSONArray) json.get("JSDel_" + i);
+//                for (int n = 0; n < jaDel.size(); n++) {
+//                    Object[] delS = (Object[]) JSONArray.toArray((JSONArray) jaDel.get(n));
+//                    if (delS != null && delS.length > 0) {
+//                        update = update | del(delS[0].toString());
+//                    }
+//                }
+//            } else {
+//                MyLog.w("Error", "Nothing:" + json.get("JSUpd_" + i).toString());
+//            }
+//        }
         return update;
     }
 
@@ -910,140 +911,140 @@ public class TableDataHelper implements IUpdateTableData {
     private boolean update(String moudleId, String key, JSONObject e) {
 
         boolean change = false;
-        for (Iterator<String> keys = e.keys(); keys.hasNext(); ) {
-            String update = keys.next();
-            int i = 0;
-
-            for (TableModuleBean item : tablelistData) {
-                String itemModuleid = item.getLeagueBean().getModuleId();
-                if (itemModuleid.equals(moudleId)) {
-                    int j = 0;
-                    for (MatchBean bean : item.getRows()) {
-                        String itemKey = bean.getKey();
-                        if (key.equals(itemKey)) {
-                            if (Integer.valueOf(update) == resultInfo.getIsHdpNew()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setIsHdpNew("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getIsHdpNew_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setIsHdpNew("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getIsOUNew()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setIsOUNew("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getIsOUNew_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setIsOUNew("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getOU()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setOU(changeValueF("" + e.get(update)));
-                                allOuClearCheck(i, j, 0);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getOU_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setOU(changeValueF("" + e.get(update)));
-                                allOuClearCheck(i, j, 1);
-                                change = change | true;
-                            } else if (resultInfo.getHdp() == Integer.valueOf(update)) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHdp(changeValueF("" + e.get(update)));
-                                allHdpClearCheck(i, j, 0);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHdp_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHdp(changeValueF("" + e.get(update)));
-                                allHdpClearCheck(i, j, 1);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHomeHdpOdds()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHomeHdpOdds(changeValueS("" + e.get(update)));
-                                allHdpClearCheck(i, j, 0);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHomeHdpOdds_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHomeHdpOdds(changeValueS("" + e.get(update)));
-                                allHdpClearCheck(i, j, 1);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getAwayHdpOdds()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setAwayHdpOdds(changeValueS("" + e.get(update)));
-                                allHdpClearCheck(i, j, 0);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getAwayHdpOdds_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setAwayHdpOdds(changeValueS("" + e.get(update)));
-                                allHdpClearCheck(i, j, 1);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getUnderOdds()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setUnderOdds(changeValueS("" + e.get(update)));
-                                allOuClearCheck(i, j, 0);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getUnderOdds_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setUnderOdds(changeValueS("" + e.get(update)));
-                                allOuClearCheck(i, j, 1);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getOverOdds()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setOverOdds(changeValueS("" + e.get(update)));
-                                allOuClearCheck(i, j, 0);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getOverOdds_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setOverOdds(changeValueS("" + e.get(update)));
-                                allOuClearCheck(i, j, 1);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getIsHomeGive()) {
-                                String HomeGiveNow = tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).getIsHomeGive();
-                                String HomeGiveUpdate = e.get(update).toString();
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setIsHomeGive(HomeGiveUpdate);
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getIsHomeGive_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setIsHomeGive("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getAwayRank()) {
-                                tablelistData.get(i).getRows().get(j).setAwayRank("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHomeRank()) {
-                                tablelistData.get(i).getRows().get(j).setHomeRank("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getLive()) {
-                                tablelistData.get(i).getRows().get(j).setLive("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getStatus()) {
-                                tablelistData.get(i).getRows().get(j).setStatus("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getWorkingDate()) {
-                                tablelistData.get(i).getRows().get(j).setWorkingDate("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getMatchDate()) {
-                                tablelistData.get(i).getRows().get(j).setMatchDate("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getRunAwayScore()) {
-                                tablelistData.get(i).getRows().get(j).setRunAwayScore("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getRunHomeScore()) {
-                                tablelistData.get(i).getRows().get(j).setRunHomeScore("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getCurMinute()) {
-                                tablelistData.get(i).getRows().get(j).setCurMinute(e.get(update) + "");
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHasHdp()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHasHdp("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHasHdp_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHasHdp("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHasOU()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHasOu("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getHasOU_FH()) {
-                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHasOu("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getRCHome()) {
-                                tablelistData.get(i).getRows().get(j).setRCHome("" + e.get(update));
-                                change = change | true;
-                            } else if (Integer.valueOf(update) == resultInfo.getRCAway()) {
-                                tablelistData.get(i).getRows().get(j).setRCAway("" + e.get(update));
-                                change = change | true;
-                            } else {
-                                change = change | false;
-                            }
-                        }
-                        j++;
-                    }
-                }
-                i++;
-            }
-        }
+//        for (Iterator<String> keys = e.keys(); keys.hasNext(); ) {
+//            String update = keys.next();
+//            int i = 0;
+//
+//            for (TableModuleBean item : tablelistData) {
+//                String itemModuleid = item.getLeagueBean().getModuleId();
+//                if (itemModuleid.equals(moudleId)) {
+//                    int j = 0;
+//                    for (MatchBean bean : item.getRows()) {
+//                        String itemKey = bean.getKey();
+//                        if (key.equals(itemKey)) {
+//                            if (Integer.valueOf(update) == resultInfo.getIsHdpNew()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setIsHdpNew("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getIsHdpNew_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setIsHdpNew("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getIsOUNew()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setIsOUNew("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getIsOUNew_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setIsOUNew("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getOU()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setOU(changeValueF("" + e.get(update)));
+//                                allOuClearCheck(i, j, 0);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getOU_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setOU(changeValueF("" + e.get(update)));
+//                                allOuClearCheck(i, j, 1);
+//                                change = change | true;
+//                            } else if (resultInfo.getHdp() == Integer.valueOf(update)) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHdp(changeValueF("" + e.get(update)));
+//                                allHdpClearCheck(i, j, 0);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHdp_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHdp(changeValueF("" + e.get(update)));
+//                                allHdpClearCheck(i, j, 1);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHomeHdpOdds()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHomeHdpOdds(changeValueS("" + e.get(update)));
+//                                allHdpClearCheck(i, j, 0);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHomeHdpOdds_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHomeHdpOdds(changeValueS("" + e.get(update)));
+//                                allHdpClearCheck(i, j, 1);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getAwayHdpOdds()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setAwayHdpOdds(changeValueS("" + e.get(update)));
+//                                allHdpClearCheck(i, j, 0);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getAwayHdpOdds_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setAwayHdpOdds(changeValueS("" + e.get(update)));
+//                                allHdpClearCheck(i, j, 1);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getUnderOdds()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setUnderOdds(changeValueS("" + e.get(update)));
+//                                allOuClearCheck(i, j, 0);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getUnderOdds_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setUnderOdds(changeValueS("" + e.get(update)));
+//                                allOuClearCheck(i, j, 1);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getOverOdds()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setOverOdds(changeValueS("" + e.get(update)));
+//                                allOuClearCheck(i, j, 0);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getOverOdds_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setOverOdds(changeValueS("" + e.get(update)));
+//                                allOuClearCheck(i, j, 1);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getIsHomeGive()) {
+//                                String HomeGiveNow = tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).getIsHomeGive();
+//                                String HomeGiveUpdate = e.get(update).toString();
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setIsHomeGive(HomeGiveUpdate);
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getIsHomeGive_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setIsHomeGive("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getAwayRank()) {
+//                                tablelistData.get(i).getRows().get(j).setAwayRank("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHomeRank()) {
+//                                tablelistData.get(i).getRows().get(j).setHomeRank("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getLive()) {
+//                                tablelistData.get(i).getRows().get(j).setLive("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getStatus()) {
+//                                tablelistData.get(i).getRows().get(j).setStatus("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getWorkingDate()) {
+//                                tablelistData.get(i).getRows().get(j).setWorkingDate("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getMatchDate()) {
+//                                tablelistData.get(i).getRows().get(j).setMatchDate("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getRunAwayScore()) {
+//                                tablelistData.get(i).getRows().get(j).setRunAwayScore("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getRunHomeScore()) {
+//                                tablelistData.get(i).getRows().get(j).setRunHomeScore("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getCurMinute()) {
+//                                tablelistData.get(i).getRows().get(j).setCurMinute(e.get(update) + "");
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHasHdp()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHasHdp("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHasHdp_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHasHdp("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHasOU()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(0).setHasOu("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getHasOU_FH()) {
+//                                tablelistData.get(i).getRows().get(j).getHandicapBeans().get(1).setHasOu("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getRCHome()) {
+//                                tablelistData.get(i).getRows().get(j).setRCHome("" + e.get(update));
+//                                change = change | true;
+//                            } else if (Integer.valueOf(update) == resultInfo.getRCAway()) {
+//                                tablelistData.get(i).getRows().get(j).setRCAway("" + e.get(update));
+//                                change = change | true;
+//                            } else {
+//                                change = change | false;
+//                            }
+//                        }
+//                        j++;
+//                    }
+//                }
+//                i++;
+//            }
+//        }
         return change;
     }
 

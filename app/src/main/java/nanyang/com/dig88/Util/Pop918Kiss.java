@@ -1,5 +1,6 @@
 package nanyang.com.dig88.Util;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +10,12 @@ import android.view.View;
 import com.google.gson.Gson;
 
 import butterknife.OnClick;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.Activity.BaseActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.TransferScrDataBean;
 import nanyang.com.dig88.Fragment.TransferAccFragment;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2019/4/25 0025.
@@ -40,10 +40,6 @@ public class Pop918Kiss extends BasePopupWindow {
         switch (v.getId()) {
             case R.id.kiss918_download:
                 String downloadUrl = "http://tm.d.918kiss.com/";
-                if (BuildConfig.FLAVOR.equals("gasia88") || BuildConfig.FLAVOR.equals("kingclub88") || BuildConfig.FLAVOR.equals("onegold77") ||
-                        BuildConfig.FLAVOR.equals("ttwin168") || BuildConfig.FLAVOR.equals("mcd88")) {
-                    downloadUrl = "http://a1.d.918kiss.com/";
-                }
                 openUrl(downloadUrl);
                 break;
             case R.id.kiss918_transferacc:
@@ -58,6 +54,7 @@ public class Pop918Kiss extends BasePopupWindow {
                     String requestUrl = scrUrl + "&web_id=" + WebSiteUrl.WebId + "&id_user=" + activity.getUserInfoBean().getUser_id()
                             + "&session_id=" + activity.getUserInfoBean().getSession_id() + "&scr888=1";
                     HttpUtils.httpGet(requestUrl, new HttpUtils.RequestCallBack() {
+                        @SuppressLint("WrongConstant")
                         @Override
                         public void onRequestSucceed(String s) {
                             activity.dismissBlockDialog();

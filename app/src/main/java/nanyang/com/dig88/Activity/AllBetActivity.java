@@ -17,21 +17,21 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Entity.AllBetBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.UIUtil;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
 
 /**
  * Created by Administrator on 2016/10/12.
  */
 public class AllBetActivity extends BaseWebGameActivity {
-    @Bind(R.id.web_left_back)
+    @BindView(R.id.web_left_back)
     ImageView exitImgl;
     HttpClient httpClient;
     String requestUrl = "http://obcasino.dig88api.com/api/login.php?";
@@ -51,7 +51,7 @@ public class AllBetActivity extends BaseWebGameActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);

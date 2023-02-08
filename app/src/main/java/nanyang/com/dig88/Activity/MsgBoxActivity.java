@@ -4,18 +4,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import net.sf.json.JSONObject;
-
-import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -23,13 +16,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import butterknife.Bind;
-import nanyang.com.dig88.Entity.MsgNoReadBean;
+import butterknife.BindView;
+import cn.finalteam.toolsfinal.StringUtils;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Entity.MsgTotalDataBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.R;
@@ -39,8 +30,6 @@ import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.PopMsgBox;
 import nanyang.com.dig88.Util.UIUtil;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by 47184 on 2019/3/25.
@@ -48,15 +37,15 @@ import xs.com.mylibrary.base.ViewHolder;
 
 public class MsgBoxActivity extends BaseActivity {
 
-    @Bind(R.id.msg_box_list)
+    @BindView(R.id.msg_box_list)
     ListView listView;
-    @Bind(R.id.msg_text_count)
+    @BindView(R.id.msg_text_count)
     TextView msgTextCount;
-    @Bind(R.id.tv_start_time)
+    @BindView(R.id.tv_start_time)
     TextView tv_start_time;
-    @Bind(R.id.tv_end_time)
+    @BindView(R.id.tv_end_time)
     TextView tv_end_time;
-    @Bind(R.id.btn_submit)
+    @BindView(R.id.btn_submit)
     Button btn_submit;
     Handler handler = new Handler() {
         @Override
@@ -168,10 +157,10 @@ public class MsgBoxActivity extends BaseActivity {
         QuickBaseAdapter<MsgTotalDataBean.DataBean> qb = new QuickBaseAdapter<MsgTotalDataBean.DataBean>(mContext, R.layout.item_msg_box, bean.getData()) {
             @Override
             protected void convert(ViewHolder helper, MsgTotalDataBean.DataBean item, int position) {
-                TextView msgBoxSystem = helper.getTextView(R.id.msg_box_system);
-                TextView msgBoxDate = helper.getTextView(R.id.msg_box_date);
-                TextView msgBoxRead = helper.getTextView(R.id.msg_box_read);
-                TextView msgBoxText = helper.getTextView(R.id.msg_box_text);
+                TextView msgBoxSystem = helper.retrieveView(R.id.msg_box_system);
+                TextView msgBoxDate = helper.retrieveView(R.id.msg_box_date);
+                TextView msgBoxRead = helper.retrieveView(R.id.msg_box_read);
+                TextView msgBoxText = helper.retrieveView(R.id.msg_box_text);
                 msgBoxSystem.setText(item.getCaption());
                 Date date = DateUtils.strToDate(item.getDate_time());
                 SimpleDateFormat sdf = new SimpleDateFormat("MMMM-dd", getLocalLanguage().equals("zh") ? Locale.CHINESE : Locale.ENGLISH);

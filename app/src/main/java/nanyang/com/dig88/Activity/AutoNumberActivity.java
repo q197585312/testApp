@@ -43,8 +43,8 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.BindViewView;
 import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.myview.GroupView.MyViewGroup;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Config.AppConfig;

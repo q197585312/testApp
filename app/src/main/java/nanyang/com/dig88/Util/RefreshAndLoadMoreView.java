@@ -2,9 +2,10 @@ package nanyang.com.dig88.Util;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import nanyang.com.dig88.R;
 

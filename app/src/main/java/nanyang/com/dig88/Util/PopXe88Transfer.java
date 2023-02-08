@@ -15,21 +15,19 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.HashMap;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.BaseActivity;
-import nanyang.com.dig88.Activity.RTGGameActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Entity.LoginInfoBean;
-import nanyang.com.dig88.Entity.RTGbalanceBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Entity.Xe88BalanceBean;
 import nanyang.com.dig88.Home.GameWebActivity;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/4/23.

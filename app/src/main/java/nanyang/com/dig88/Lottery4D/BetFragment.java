@@ -3,7 +3,6 @@ package nanyang.com.dig88.Lottery4D;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.IdRes;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -18,6 +17,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.IdRes;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +28,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.allinone.util.ThreadPoolUtils;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Lottery4D.Bean.DateSpecialBean;
@@ -47,76 +52,71 @@ import nanyang.com.dig88.Util.DateUtils;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.Number;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.allinone.util.ThreadPoolUtils;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2018/11/16.
  */
 
 public class BetFragment extends Lottery4DBaseFragment {
-    @Bind(R.id.rg_choice_bet_type)
+    @BindView(R.id.rg_choice_bet_type)
     RadioGroup rg_choice_bet_type;
-    @Bind(R.id.rb_1)
+    @BindView(R.id.rb_1)
     RadioButton rb_1;
-    @Bind(R.id.rb_2)
+    @BindView(R.id.rb_2)
     RadioButton rb_2;
-    @Bind(R.id.rb_3)
+    @BindView(R.id.rb_3)
     RadioButton rb_3;
-    @Bind(R.id.rb_4)
+    @BindView(R.id.rb_4)
     RadioButton rb_4;
-    @Bind(R.id.rb_5)
+    @BindView(R.id.rb_5)
     RadioButton rb_5;
-    @Bind(R.id.rb_6)
+    @BindView(R.id.rb_6)
     RadioButton rb_6;
-    @Bind(R.id.rb_7)
+    @BindView(R.id.rb_7)
     RadioButton rb_7;
-    @Bind(R.id.rb_8)
+    @BindView(R.id.rb_8)
     RadioButton rb_8;
-    @Bind(R.id.ll_special_switch)
+    @BindView(R.id.ll_special_switch)
     LinearLayout ll_special_switch;
-    @Bind(R.id.ll_special_type_1)
+    @BindView(R.id.ll_special_type_1)
     LinearLayout ll_special_type_1;
-    @Bind(R.id.ll_special_type_2)
+    @BindView(R.id.ll_special_type_2)
     LinearLayout ll_special_type_2;
-    @Bind(R.id.ll_special_type_3)
+    @BindView(R.id.ll_special_type_3)
     LinearLayout ll_special_type_3;
-    @Bind(R.id.ll_special_type_4)
+    @BindView(R.id.ll_special_type_4)
     LinearLayout ll_special_type_4;
-    @Bind(R.id.ll_special_type_5)
+    @BindView(R.id.ll_special_type_5)
     LinearLayout ll_special_type_5;
-    @Bind(R.id.ll_special_type_6)
+    @BindView(R.id.ll_special_type_6)
     LinearLayout ll_special_type_6;
-    @Bind(R.id.ll_special_type_7)
+    @BindView(R.id.ll_special_type_7)
     LinearLayout ll_special_type_7;
-    @Bind(R.id.ll_special_type_8)
+    @BindView(R.id.ll_special_type_8)
     LinearLayout ll_special_type_8;
-    @Bind(R.id.cb_special_type_1)
+    @BindView(R.id.cb_special_type_1)
     CheckBox cb_special_type_1;
-    @Bind(R.id.cb_special_type_2)
+    @BindView(R.id.cb_special_type_2)
     CheckBox cb_special_type_2;
-    @Bind(R.id.cb_special_type_3)
+    @BindView(R.id.cb_special_type_3)
     CheckBox cb_special_type_3;
-    @Bind(R.id.cb_special_type_4)
+    @BindView(R.id.cb_special_type_4)
     CheckBox cb_special_type_4;
-    @Bind(R.id.cb_special_type_5)
+    @BindView(R.id.cb_special_type_5)
     CheckBox cb_special_type_5;
-    @Bind(R.id.cb_special_type_6)
+    @BindView(R.id.cb_special_type_6)
     CheckBox cb_special_type_6;
-    @Bind(R.id.cb_special_type_7)
+    @BindView(R.id.cb_special_type_7)
     CheckBox cb_special_type_7;
-    @Bind(R.id.cb_special_type_8)
+    @BindView(R.id.cb_special_type_8)
     CheckBox cb_special_type_8;
-    @Bind(R.id.ll_normal)
+    @BindView(R.id.ll_normal)
     LinearLayout ll_normal;
-    @Bind(R.id.ll_special)
+    @BindView(R.id.ll_special)
     LinearLayout ll_special;
-    @Bind(R.id.lv_bet)
+    @BindView(R.id.lv_bet)
     ListView lv_bet;
-    @Bind(R.id.tv_amount)
+    @BindView(R.id.tv_amount)
     TextView tv_amount;
     QuickBaseAdapter<Lottery4DStatusBean> adapter;
     String currentYear;

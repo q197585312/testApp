@@ -10,25 +10,25 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Fragment.Presenter.ChangPasswordPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2015/12/21.
  */
 public class ChangePasswordFragment extends BaseFragment<ChangPasswordPresenter> {
-    @Bind(R.id.tv_username)
+    @BindView(R.id.tv_username)
     TextView tvUsername;
-    @Bind(R.id.edt_old_pass)
+    @BindView(R.id.edt_old_pass)
     EditText edtOldPass;
-    @Bind(R.id.edt_new_pass)
+    @BindView(R.id.edt_new_pass)
     EditText edtNewPass;
-    @Bind(R.id.edt_confirm_new_pass)
+    @BindView(R.id.edt_confirm_new_pass)
     EditText edtConfirmNewPass;
     String oldPass;
     String newPass;

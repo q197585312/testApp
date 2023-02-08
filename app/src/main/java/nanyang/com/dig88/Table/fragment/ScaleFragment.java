@@ -16,9 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
 import butterknife.BindColor;
 import butterknife.BindString;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.QuickAdapterImp;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.VsTableRowBean;
 import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.R;
@@ -32,12 +38,6 @@ import nanyang.com.dig88.Table.popupwindow.BetBasePop;
 import nanyang.com.dig88.Table.utils.BettingDataHelper;
 import nanyang.com.dig88.Table.utils.TableAdapterHelper;
 import nanyang.com.dig88.Util.DeviceUtils;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by Administrator on 2015/11/4.
@@ -52,9 +52,9 @@ public class ScaleFragment extends BaseFragment {
     int blackGrey;
 
     AdapterViewContent<VsTableRowBean> content;
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
-    @Bind(R.id.vs_scale_bet_count_tv)
+    @BindView(R.id.vs_scale_bet_count_tv)
     TextView betCountTv;
     private List<VsTableRowBean> data;
     private int betType;

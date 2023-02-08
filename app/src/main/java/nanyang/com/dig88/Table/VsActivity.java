@@ -2,7 +2,6 @@ package nanyang.com.dig88.Table;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -13,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -25,9 +26,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
 import butterknife.BindColor;
 import butterknife.BindString;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
+import gaming178.com.mylibrary.popupwindow.AbsListPopupWindow;
 import nanyang.com.dig88.Adapter.MyFragmentPagerAdapter;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.ScaleBean;
@@ -48,23 +54,18 @@ import nanyang.com.dig88.Table.fragment.ScaleFragment;
 import nanyang.com.dig88.Table.utils.TableAdapterHelper;
 import nanyang.com.dig88.Table.utils.TableDataHelper;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
-import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
 
 /**
  * Created by Administrator on 2015/10/22.
  */
 public class VsActivity extends GameBaseActivity implements View.OnClickListener {
-    @Bind(R.id.ballgame_tabs_pstabs)
+    @BindView(R.id.ballgame_tabs_pstabs)
     PagerSlidingTabStrip ballgameTabsPstabs;
-    @Bind(R.id.ballgame_pager_vp)
+    @BindView(R.id.ballgame_pager_vp)
     ViewPager ballgamePagerVp;
-    @Bind(R.id.ballgame_bottom_ll)
+    @BindView(R.id.ballgame_bottom_ll)
     LinearLayout ballgameBottomLl;
-    @Bind(R.id.vs_time_tv)
+    @BindView(R.id.vs_time_tv)
     TextView timeTv;
     @BindColor(R.color.white)
     int white;
@@ -78,13 +79,13 @@ public class VsActivity extends GameBaseActivity implements View.OnClickListener
     String correct_score;
     @BindColor(R.color.colorPrimaryLight)
     int whiteLight;
-    @Bind(R.id.img_left)
+    @BindView(R.id.img_left)
     ImageView img_left;
-    @Bind(R.id.img_right)
+    @BindView(R.id.img_right)
     ImageView img_right;
-    @Bind(R.id.tv_choice)
+    @BindView(R.id.tv_choice)
     TextView tv_choice;
-    @Bind(R.id.ll_introduce)
+    @BindView(R.id.ll_introduce)
     LinearLayout ll_introduce;
     Handler handler=new Handler();
     private List<BaseFragment> fragmentsList;
@@ -125,7 +126,7 @@ public class VsActivity extends GameBaseActivity implements View.OnClickListener
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);

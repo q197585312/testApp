@@ -8,19 +8,19 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/11/19.
  */
 
 public abstract class PopSwitchBetType extends BasePopupWindow {
-    @Bind(R.id.lv_switch_type)
+    @BindView(R.id.lv_switch_type)
     ListView lv_switch_type;
     QuickBaseAdapter<String> adapter;
     private TextView tvContent;

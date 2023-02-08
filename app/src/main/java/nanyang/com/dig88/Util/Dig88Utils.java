@@ -5,15 +5,13 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nanyang.com.dig88.BuildConfig;
-import xs.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 
 
 /**
@@ -42,24 +40,13 @@ public class Dig88Utils {
 
     public static void setLang(Context mContext) {
         String localLanguage = AppTool.getAppLanguage(mContext);
-        String[] split = BuildConfig.Language.split(",");
+        String[] split = "zh,kr,en,vn,kh,in,ms,th".split(",");
         List<String> langList = new ArrayList<>();
         for (int i = 0; i < split.length; i++) {
             langList.add(split[i]);
         }
         if (!langList.contains(localLanguage)) {
             localLanguage = split[0];
-        }
-        if (BuildConfig.FLAVOR.equals("kbet3") || BuildConfig.FLAVOR.equals("ibet567") || BuildConfig.FLAVOR.equals("hjlh6688") ||
-                BuildConfig.FLAVOR.equals("dig88") || BuildConfig.FLAVOR.equals("jf58")) {
-            if (Dig88Utils.isFirstIn(mContext)) {
-                localLanguage = split[1];
-                if (BuildConfig.FLAVOR.equals("hjlh6688")) {
-                    localLanguage = split[0];
-                } else if (BuildConfig.FLAVOR.equals("jf58")) {
-                    localLanguage = split[2];
-                }
-            }
         }
         AppTool.setAppLanguage(mContext, localLanguage);
     }

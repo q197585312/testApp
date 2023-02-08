@@ -4,13 +4,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,18 +20,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseContentListPopWindow;
 import nanyang.com.dig88.Util.CalendarPopuWindow;
 import nanyang.com.dig88.Util.DateUtils;
-import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.LoadMoreListView;
 import nanyang.com.dig88.Util.MyListviewPopu;
-import nanyang.com.dig88.Util.OkhttpUtils;
 import nanyang.com.dig88.Util.RefreshAndLoadMoreView;
 import nanyang.com.dig88.Util.WebSiteUrl;
 import okhttp3.Call;
@@ -38,28 +40,24 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2018/9/13.
  */
 
 public class WinningFragment extends NewKenoBaseFragment {
-    @Bind(R.id.mRefreshAndLoadMoreView)
+    @BindView(R.id.mRefreshAndLoadMoreView)
     RefreshAndLoadMoreView mRefreshAndLoadMoreView;
-    @Bind(R.id.mLoadMoreListView)
+    @BindView(R.id.mLoadMoreListView)
     LoadMoreListView mLoadMoreListView;
-    @Bind(R.id.tv_from_date)
+    @BindView(R.id.tv_from_date)
     TextView tv_from_date;
-    @Bind(R.id.tv_to_date)
+    @BindView(R.id.tv_to_date)
     TextView tv_to_date;
-    @Bind(R.id.tv_win_type)
+    @BindView(R.id.tv_win_type)
     TextView tv_win_type;
-    @Bind(R.id.tv_rule)
+    @BindView(R.id.tv_rule)
     TextView tv_rule;
     String rule;
     String winningUrl = "http://kgweb.keno6.com/api/api.php?page=keno_new_win_report_submitter";

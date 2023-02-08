@@ -3,13 +3,13 @@ package nanyang.com.dig88.NewKeno.presenter;
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import java.util.HashMap;
 
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -25,7 +25,6 @@ import nanyang.com.dig88.NewKeno.NewKenoUrlBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 

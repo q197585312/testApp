@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
@@ -20,8 +22,6 @@ import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.Entity.ResultListBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
 
 /**
  * ���结果列表�
@@ -29,9 +29,9 @@ import xs.com.mylibrary.base.quick.QuickRequestBean;
  * @author Administrator
  */
 public class ResultListFragment extends LotteryBaseFragment<ResultListBean> {
-    @Bind(R.id.list_result)
+    @BindView(R.id.list_result)
     ListView list_result;
-    @Bind(R.id.nojilu)
+    @BindView(R.id.nojilu)
     TextView nojilu;
 
     @Override

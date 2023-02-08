@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import xs.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.base.ViewHolder;
+
 
 public abstract class MyPagerAdapter<T> extends PagerAdapter {
 	List<T> datas;

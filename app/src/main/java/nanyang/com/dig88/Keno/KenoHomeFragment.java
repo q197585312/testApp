@@ -1,16 +1,8 @@
 package nanyang.com.dig88.Keno;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2016/6/7.

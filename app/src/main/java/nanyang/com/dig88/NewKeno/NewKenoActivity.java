@@ -1,27 +1,28 @@
 package nanyang.com.dig88.NewKeno;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.annotation.IdRes;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.NewKeno.presenter.NewKenoActivityPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.SoundPlayUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2018/9/11.
@@ -29,19 +30,19 @@ import xs.com.mylibrary.allinone.util.AppTool;
 
 public class NewKenoActivity extends BaseActivity<NewKenoActivityPresenter> {
     public String baseUrl = "https://newkeno.k-api.com/api/";//http://newkeno.k-api.com
-    @Bind(R.id.rg)
+    @BindView(R.id.rg)
     RadioGroup rg;
-    @Bind(R.id.rb_keno4)
+    @BindView(R.id.rb_keno4)
     RadioButton rb4;
-    @Bind(R.id.rb_keno3)
+    @BindView(R.id.rb_keno3)
     RadioButton rb3;
-    @Bind(R.id.rb_keno2)
+    @BindView(R.id.rb_keno2)
     RadioButton rb2;
-    @Bind(R.id.rb_list)
+    @BindView(R.id.rb_list)
     RadioButton rb_list;
-    @Bind(R.id.rb_result)
+    @BindView(R.id.rb_result)
     RadioButton rb_result;
-    @Bind(R.id.rb_rule)
+    @BindView(R.id.rb_rule)
     RadioButton rb_rule;
     NewKenoBaseFragment keno4Fragment;
     NewKenoBaseFragment keno3Fragment;

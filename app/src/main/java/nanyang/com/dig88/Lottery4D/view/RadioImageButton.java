@@ -7,11 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.RadioButton;
-
-import com.bumptech.glide.BitmapTypeRequest;
-import com.bumptech.glide.Glide;
 
 import nanyang.com.dig88.R;
 

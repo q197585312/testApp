@@ -14,16 +14,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Activity.RegisterActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.BankAccountDetailBean;
 import nanyang.com.dig88.Entity.BankInfoBean;
 import nanyang.com.dig88.Entity.RegistInfo;
 import nanyang.com.dig88.Entity.SendTelBean;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -91,51 +90,6 @@ public class RegisterPresenter extends BaseRetrofitPresenter<RegisterActivity> {
                     }
                 }
                 registerActivity.onGetBankStateList(beanList);
-            }
-        });
-    }
-
-    public void getBankSate() {
-        Map<String, String> p = new HashMap<>();
-        p.put("web_id", WebSiteUrl.WebId);
-        doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(WebSiteUrl.GetBankStatus, p), new BaseConsumer<String>(baseContext) {
-            @Override
-            protected void onBaseGetData(String data) throws JSONException {
-                NyBaseResponse<List<BankInfoBean>> dataBean = gson.fromJson(data, new TypeToken<NyBaseResponse<List<BankInfoBean>>>() {
-                }.getType());
-                List<BankInfoBean> bankInfoBeanList = new ArrayList<>();
-                if (BuildConfig.FLAVOR.equals("coin365bet")) {
-                    for (int i = 0; i < dataBean.getData().size(); i++) {
-                        BankInfoBean bankInfoBean = dataBean.getData().get(i);
-                        if (i > 0) {
-                            bankInfoBeanList.add(bankInfoBean);
-                        }
-                    }
-                } else if (BuildConfig.FLAVOR.equals("henbet")) {
-                    for (int i = 0; i < dataBean.getData().size(); i++) {
-                        BankInfoBean bankInfoBean = dataBean.getData().get(i);
-                        if (!bankInfoBean.getId_mod_bank().equals("2427")) {
-                            bankInfoBeanList.add(bankInfoBean);
-                        }
-                    }
-                } else if (BuildConfig.FLAVOR.equals("fafa191")) {
-                    for (int i = 0; i < dataBean.getData().size(); i++) {
-                        BankInfoBean bankInfoBean = dataBean.getData().get(i);
-                        if (i < 10 || bankInfoBean.getId_mod_bank().equals("2548")) {
-                            bankInfoBeanList.add(bankInfoBean);
-                        }
-                    }
-                } else if (BuildConfig.FLAVOR.equals("dewancash")) {
-                    for (int i = 0; i < dataBean.getData().size(); i++) {
-                        BankInfoBean bankInfoBean = dataBean.getData().get(i);
-                        if (!bankInfoBean.getId_mod_bank().equals("2876") && !bankInfoBean.getId_mod_bank().equals("2877")) {
-                            bankInfoBeanList.add(bankInfoBean);
-                        }
-                    }
-                } else {
-                    bankInfoBeanList = dataBean.getData();
-                }
-                registerActivity.onGetBankStateList(bankInfoBeanList);
             }
         });
     }

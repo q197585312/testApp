@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.ChinaLotteryBalanceBean;
 import nanyang.com.dig88.Entity.FFYLPokerBalanceBean;
@@ -36,7 +36,6 @@ import nanyang.com.dig88.Fragment.TransferAccFragment;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.Dig88Utils;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -63,39 +62,16 @@ public class TransferAccPresenter extends BaseRetrofitPresenter<TransferAccFragm
         addTransferGame(AppConfig.IBC_GAME, baseContext.getString(R.string.saba_yue_money), list);
         addTransferGame(AppConfig.KLAS_Poker, baseContext.getString(R.string.klaspoker_game_money), list);
         addTransferGame(AppConfig.POKER_GAME, baseContext.getString(R.string.texas_holdem) + "(" + baseContext.getString(R.string.Balance) + "):", list);
-//        addTransferGame(AppConfig.Joker123_GAME, baseContext.getString(R.string.Joker123_game_money), list);
         if (baseContext.getCurrency().equals("CNY")) {
             addTransferGame(AppConfig.HC_LOTTERY, baseContext.getString(R.string.hc_lottery) + "(" + baseContext.getString(R.string.Balance) + "):", list);
             addTransferGame(AppConfig.IG_LOTTERY, baseContext.getString(R.string.ig_lottery) + "(" + baseContext.getString(R.string.Balance) + "):", list);
         }
-        if (!BuildConfig.FLAVOR.equals("afbcash") || (BuildConfig.FLAVOR.equals("afbcash") && !transferAccFragment.getCurrency().equals("IDR"))) {
+        if (!transferAccFragment.getCurrency().equals("IDR")) {
             addTransferGame(AppConfig.Scr888, baseContext.getString(R.string.scr888) + "(" + baseContext.getString(R.string.Balance) + "):", list);
-        }
-        if (BuildConfig.FLAVOR.equals("ibet567") || BuildConfig.FLAVOR.equals("khmergaming") || BuildConfig.FLAVOR.equals("dig88") || BuildConfig.FLAVOR.equals("u2bet")) {
-            String name = baseContext.getString(R.string.transfer_ongdo_poker);
-            if (BuildConfig.FLAVOR.equals("u2bet")) {
-                name = "KHMER GAMES";
-            }
-            addTransferGame(AppConfig.Ibet567_Poker, name + ":", list);
-        }
-        if (BuildConfig.FLAVOR.equals("khmergaming") || BuildConfig.FLAVOR.equals("gasia88") || BuildConfig.FLAVOR.equals("onegold77")) {
-            addTransferGame(AppConfig.Mega888, "Mega888" + "(" + baseContext.getString(R.string.Balance) + ")" + ":", list);
-        }
-        if (BuildConfig.FLAVOR.equals("mmbet")) {
-            addTransferGame(AppConfig.JdbSlots, baseContext.getString(R.string.jdb_game_slots) + ":", list);
         }
         addTransferGame(AppConfig.We1poker, transferAccFragment.getString(R.string.we1poker) + "(" + baseContext.getString(R.string.Balance) + ")" + ":", list);
         addTransferGame(AppConfig.FFYL_POKER_GAME, "FFYL " + transferAccFragment.getString(R.string.texas_holdem1) + "(" + baseContext.getString(R.string.Balance) + ")" + ":", list);
         addTransferGame(AppConfig.KY_poker, "Kai Yuan " + transferAccFragment.getString(R.string.texas_holdem1) + "(" + baseContext.getString(R.string.Balance) + ")" + ":", list);
-        if (BuildConfig.FLAVOR.equals("gasia88")) {
-            for (int i = 0; i < list.size(); i++) {
-                if (i > 0) {
-                    TransferAccContentBean transferAccContentBean = list.get(i);
-                    String gameName = transferAccContentBean.getGameName();
-                    transferAccContentBean.setGameName(gameName.toUpperCase());
-                }
-            }
-        }
         return list;
     }
 

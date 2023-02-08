@@ -3,14 +3,14 @@ package nanyang.com.dig88.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.multidex.MultiDex;
 import android.util.Log;
+
+import androidx.multidex.MultiDex;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.tencent.smtt.sdk.QbSdk;
 import com.unkonw.testapp.libs.base.BaseApplication;
 
 import java.io.IOException;
@@ -49,8 +49,6 @@ import nanyang.com.dig88.Table.entity.BettingInfoBean;
 import nanyang.com.dig88.Table.entity.BettingParPromptBean;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.reporter.AndroidCrash;
-import xs.com.mylibrary.allinone.util.reporter.mailreporter.CrashEmailReporter;
 
 /**
  * Created by Administrator on 2015/10/21.
@@ -878,8 +876,8 @@ public class DigApp extends BaseApplication {
 //        handleSSLHandshake();
         Fresco.initialize(this);
         closeAndroidPDialog();
-        iniBugly();
-        initX5WebView();
+//        iniBugly();
+//        initX5WebView();
     }
 
     @Override
@@ -888,84 +886,84 @@ public class DigApp extends BaseApplication {
         MultiDex.install(base);
     }
 
-    private void initX5WebView() {
-        //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
-        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
-
-            @Override
-            public void onViewInitFinished(boolean arg0) {
-                // TODO Auto-generated method stub
-                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
-                Log.d("onViewInitFinished", " onViewInitFinished is " + arg0);
-            }
-
-            @Override
-            public void onCoreInitFinished() {
-                // TODO Auto-generated method stub
-            }
-        };
-        //x5内核初始化接口
-        QbSdk.initX5Environment(getApplicationContext(), cb);
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
-
-        strategy.setCrashHandleCallback(new CrashReport.CrashHandleCallback() {
-
-            public Map<String, String> onCrashHandleStart(int crashType, String errorType, String errorMessage, String errorStack) {
-
-                LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-
-                String x5CrashInfo = com.tencent.smtt.sdk.WebView.getCrashExtraMessage(getApplicationContext());
-
-                map.put("x5crashInfo", x5CrashInfo);
-
-                return map;
-
-            }
-
-            @Override
-
-            public byte[] onCrashHandleStart2GetExtraDatas(int crashType, String errorType, String errorMessage, String errorStack) {
-
-                try {
-
-                    return "Extra data.".getBytes("UTF-8");
-
-                } catch (Exception e) {
-
-                    return null;
-
-                }
-
-            }
-
-        });
-
-        CrashReport.initCrashReport(getApplicationContext(), "356b7590e8", true, strategy);
-    }
-
-    private void iniBugly() {
-        CrashReport.initCrashReport(getApplicationContext(), "356b7590e8", false);
-    }
+//    private void initX5WebView() {
+//        //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
+//        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+//
+//            @Override
+//            public void onViewInitFinished(boolean arg0) {
+//                // TODO Auto-generated method stub
+//                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+//                Log.d("onViewInitFinished", " onViewInitFinished is " + arg0);
+//            }
+//
+//            @Override
+//            public void onCoreInitFinished() {
+//                // TODO Auto-generated method stub
+//            }
+//        };
+//        //x5内核初始化接口
+//        QbSdk.initX5Environment(getApplicationContext(), cb);
+//        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+//
+//        strategy.setCrashHandleCallback(new CrashReport.CrashHandleCallback() {
+//
+//            public Map<String, String> onCrashHandleStart(int crashType, String errorType, String errorMessage, String errorStack) {
+//
+//                LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+//
+//                String x5CrashInfo = com.tencent.smtt.sdk.WebView.getCrashExtraMessage(getApplicationContext());
+//
+//                map.put("x5crashInfo", x5CrashInfo);
+//
+//                return map;
+//
+//            }
+//
+//            @Override
+//
+//            public byte[] onCrashHandleStart2GetExtraDatas(int crashType, String errorType, String errorMessage, String errorStack) {
+//
+//                try {
+//
+//                    return "Extra data.".getBytes("UTF-8");
+//
+//                } catch (Exception e) {
+//
+//                    return null;
+//
+//                }
+//
+//            }
+//
+//        });
+//
+//        CrashReport.initCrashReport(getApplicationContext(), "356b7590e8", true, strategy);
+//    }
+//
+//    private void iniBugly() {
+//        CrashReport.initCrashReport(getApplicationContext(), "356b7590e8", false);
+//    }
 
     /**
      * 使用EMAIL发送日志
      */
-    private void initEmailReporter() {
-        CrashEmailReporter reporter = new CrashEmailReporter(this) {
-            @Override
-            public void closeApp(Thread thread, Throwable ex) {
-
-            }
-        };
-        reporter.setReceiver(getResources().getString(R.string.crash_mail));
-        reporter.setSender(getResources().getString(R.string.crash_mail));
-        reporter.setSendPassword(getResources().getString(
-                R.string.crash_mail_passwd));
-        reporter.setSMTPHost(getResources().getString(
-                R.string.crash_mail_smtphost));
-        reporter.setPort(getResources().getString(R.string.crash_mail_port));
-        AndroidCrash.getInstance().setCrashReporter(reporter).init(this);
-    }
+//    private void initEmailReporter() {
+//        CrashEmailReporter reporter = new CrashEmailReporter(this) {
+//            @Override
+//            public void closeApp(Thread thread, Throwable ex) {
+//
+//            }
+//        };
+//        reporter.setReceiver(getResources().getString(R.string.crash_mail));
+//        reporter.setSender(getResources().getString(R.string.crash_mail));
+//        reporter.setSendPassword(getResources().getString(
+//                R.string.crash_mail_passwd));
+//        reporter.setSMTPHost(getResources().getString(
+//                R.string.crash_mail_smtphost));
+//        reporter.setPort(getResources().getString(R.string.crash_mail_port));
+//        AndroidCrash.getInstance().setCrashReporter(reporter).init(this);
+//    }
 
     public boolean isFirstUse(Context context) {
         boolean isFirstUse = PreferenceManager.getDefaultSharedPreferences(

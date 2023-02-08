@@ -6,25 +6,23 @@ import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.Encrypt;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
 
 /**
  * Created by Administrator on 2016/10/12.
  */
 public class GoldCasinoActivity extends BaseWebGameActivity {
-    @Bind(R.id.web_left_back)
+    @BindView(R.id.web_left_back)
     ImageView exitImgl;
     HttpClient httpClient;
     String requestUrl = "http://gd.digapi.net/main.php?";

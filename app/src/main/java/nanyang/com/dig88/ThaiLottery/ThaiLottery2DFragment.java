@@ -15,16 +15,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.ThaiLottery.bean.ThaiLottery2DBean;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 import static android.R.id.list;
 
@@ -33,9 +33,9 @@ import static android.R.id.list;
  */
 
 public class ThaiLottery2DFragment extends ThaiLotteryBaseFragment {
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
-    @Bind(R.id.lottery_center_progress_ll)
+    @BindView(R.id.lottery_center_progress_ll)
     LinearLayout lottery_center_progress_ll;
     QuickBaseAdapter<ThaiLottery2DBean> adapter;
     private List<ThaiLottery2DBean> betBeanList;

@@ -11,7 +11,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.myview.mylistview.PinnedSectionListView;
+import gaming178.com.mylibrary.myview.mylistview.PullToRefreshLayout;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.LinkedViewPager.ViewPager;
 import nanyang.com.dig88.R;
@@ -19,46 +21,44 @@ import nanyang.com.dig88.Table.Thread.ThreadEndT;
 import nanyang.com.dig88.Table.entity.TableModuleBean;
 import nanyang.com.dig88.Table.utils.TableAdapterHelper;
 import nanyang.com.dig88.Table.utils.TableDataHelper;
-import xs.com.mylibrary.myview.mylistview.PinnedSectionListView;
-import xs.com.mylibrary.myview.mylistview.PullToRefreshLayout;
 
 /**
  * Created by Administrator on 2015/11/26.
  */
 public class GameCollectionActivity extends GameBaseActivity {
-    @Bind(R.id.table_number_tv)
+    @BindView(R.id.table_number_tv)
     TextView tableNumberTv;
-    @Bind(R.id.table_match_mark_tv)
+    @BindView(R.id.table_match_mark_tv)
     TextView tableMatchMarkTv;
-    @Bind(R.id.ballgame_left_tv)
+    @BindView(R.id.ballgame_left_tv)
     TextView ballgameLeftTv;
-    @Bind(R.id.ballgame_center_vp)
+    @BindView(R.id.ballgame_center_vp)
     ViewPager ballgameCenterVp;
-    @Bind(R.id.ballgame_mark_tv)
+    @BindView(R.id.ballgame_mark_tv)
     TextView ballgameMarkTv;
-    @Bind(R.id.pull_icon)
+    @BindView(R.id.pull_icon)
     ImageView pullIcon;
-    @Bind(R.id.refreshing_icon)
+    @BindView(R.id.refreshing_icon)
     ImageView refreshingIcon;
-    @Bind(R.id.state_tv)
+    @BindView(R.id.state_tv)
     TextView stateTv;
-    @Bind(R.id.state_iv)
+    @BindView(R.id.state_iv)
     ImageView stateIv;
-    @Bind(R.id.head_view)
+    @BindView(R.id.head_view)
     RelativeLayout headView;
-    @Bind(R.id.ballgame_table_content_explv)
+    @BindView(R.id.ballgame_table_content_explv)
     PinnedSectionListView ballgameTableContentExplv;
-    @Bind(R.id.pullup_icon)
+    @BindView(R.id.pullup_icon)
     ImageView pullupIcon;
-    @Bind(R.id.loading_icon)
+    @BindView(R.id.loading_icon)
     ImageView loadingIcon;
-    @Bind(R.id.loadstate_tv)
+    @BindView(R.id.loadstate_tv)
     TextView loadstateTv;
-    @Bind(R.id.loadstate_iv)
+    @BindView(R.id.loadstate_iv)
     ImageView loadstateIv;
-    @Bind(R.id.loadmore_view)
+    @BindView(R.id.loadmore_view)
     RelativeLayout loadmoreView;
-    @Bind(R.id.ballgame_table_refresh_view)
+    @BindView(R.id.ballgame_table_refresh_view)
     PullToRefreshLayout ballgameTableRefreshView;
     TableDataHelper helper;
     Handler updateHandler=new Handler();

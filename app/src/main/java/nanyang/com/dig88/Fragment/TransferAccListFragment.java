@@ -2,11 +2,12 @@ package nanyang.com.dig88.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -14,7 +15,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Entity.DepositListBean;
 import nanyang.com.dig88.Entity.TransferAccPersonBean;
 import nanyang.com.dig88.Fragment.Presenter.TransferAccListPresenter;
@@ -26,7 +27,7 @@ import nanyang.com.dig88.Util.WebSiteUrl;
  */
 
 public class TransferAccListFragment extends BaseFragment<TransferAccListPresenter> {
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<TransferAccPersonBean.DataBean> adapter;
 // listView.setAdapter(new TransferAccPersonAdapter(mContext, list, masterAcc, saba, sb, scr));

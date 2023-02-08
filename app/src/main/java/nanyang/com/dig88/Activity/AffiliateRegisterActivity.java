@@ -13,8 +13,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Activity.presenter.AffiliateRegisterPresenter;
 import nanyang.com.dig88.Entity.AffiliateDataBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;
@@ -22,38 +23,37 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseContentListPopWindow;
 import nanyang.com.dig88.Util.BaseListPopWindow;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2019/9/29.
  */
 
 public class AffiliateRegisterActivity extends BaseActivity<AffiliateRegisterPresenter> {
-    @Bind(R.id.tv_name1)
+    @BindView(R.id.tv_name1)
     TextView tvName1;
-    @Bind(R.id.tv_name2)
+    @BindView(R.id.tv_name2)
     TextView tvName2;
-    @Bind(R.id.tv_name3)
+    @BindView(R.id.tv_name3)
     TextView tvName3;
-    @Bind(R.id.edt_password)
+    @BindView(R.id.edt_password)
     EditText edtPassword;
-    @Bind(R.id.edt_password_confirm)
+    @BindView(R.id.edt_password_confirm)
     EditText edtPasswordConfirm;
-    @Bind(R.id.tv_choice)
+    @BindView(R.id.tv_choice)
     TextView tvChoice;
-    @Bind(R.id.tv_currency)
+    @BindView(R.id.tv_currency)
     TextView tvCurrency;
-    @Bind(R.id.tv_http)
+    @BindView(R.id.tv_http)
     TextView tvHttp;
-    @Bind(R.id.tv_domain)
+    @BindView(R.id.tv_domain)
     TextView tvDomain;
-    @Bind(R.id.edt_email)
+    @BindView(R.id.edt_email)
     EditText edtEmail;
-    @Bind(R.id.edt_tel)
+    @BindView(R.id.edt_tel)
     EditText edtTel;
-    @Bind(R.id.edt_code)
+    @BindView(R.id.edt_code)
     EditText edtCode;
-    @Bind(R.id.tv_code)
+    @BindView(R.id.tv_code)
     TextView tvCode;
     String domain;
     String choice;

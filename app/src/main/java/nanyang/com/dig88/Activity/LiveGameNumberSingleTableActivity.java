@@ -44,7 +44,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Adapter.PersonGameResultAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Config.AppConfig;
@@ -57,7 +58,6 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.GameBaseActivity;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
 
 public class LiveGameNumberSingleTableActivity extends GameBaseActivity{
@@ -78,108 +78,108 @@ public class LiveGameNumberSingleTableActivity extends GameBaseActivity{
 //    private static final int OPEN_VIDEO_FAIL = 21;
 //    private static final int SHOW_BITMAP = 4;
     boolean bActivityExist = true;
-     @Bind(R.id.b_imageView_video)
+     @BindView(R.id.b_imageView_video)
      IjkVideoView view;
-     @Bind(R.id.b_text_video)
+     @BindView(R.id.b_text_video)
      TextView text_Video;
     // end
-     @Bind(R.id.videoErrorMesseg)
+     @BindView(R.id.videoErrorMesseg)
      TextView videoErrorMesseg;
-     @Bind(R.id.b_btn_video_reload)
+     @BindView(R.id.b_btn_video_reload)
      Button btn_Video;
-     @Bind(R.id.b_voice)
+     @BindView(R.id.b_voice)
      Button btn_Mute;
     //视频结束
-    @Bind(R.id.tv_time)
+    @BindView(R.id.tv_time)
     TextView tv_time;
-    @Bind(R.id.tv_cycle)
+    @BindView(R.id.tv_cycle)
     TextView tv_cycle;
-    @Bind(R.id.tv_ball_result)
+    @BindView(R.id.tv_ball_result)
     TextView tv_ball_result;
-    @Bind(R.id.lv_ball_result)
+    @BindView(R.id.lv_ball_result)
     ListView lv_ball_result;
-    @Bind(R.id.tv_nodata)
+    @BindView(R.id.tv_nodata)
     TextView tv_nodata;
     //号码 赔率
-    @Bind(R.id.tv_bet_pop_odds)
+    @BindView(R.id.tv_bet_pop_odds)
     TextView tv_odds;
-    @Bind(R.id.btn_big)
+    @BindView(R.id.btn_big)
     Button btn_big;
-    @Bind(R.id.btn_small)
+    @BindView(R.id.btn_small)
     Button btn_small;
-    @Bind(R.id.btn_double)
+    @BindView(R.id.btn_double)
     Button btn_even;
-    @Bind(R.id.btn_simgle)
+    @BindView(R.id.btn_simgle)
     Button btn_odd;
     //全部
-    @Bind(R.id.tv_all)
+    @BindView(R.id.tv_all)
     Button tv_all;
     //清除
-    @Bind(R.id.tv_delete)
+    @BindView(R.id.tv_delete)
     Button tv_delete;
     //投注
-    @Bind(R.id.tv_bet_pop_number)
+    @BindView(R.id.tv_bet_pop_number)
     Button btn_bet;
-    @Bind(R.id.tv_big_odds)
+    @BindView(R.id.tv_big_odds)
     TextView tv_big_odds;
-    @Bind(R.id.tv_small_odds)
+    @BindView(R.id.tv_small_odds)
     TextView tv_small_odds;
-    @Bind(R.id.tv_double_odds)
+    @BindView(R.id.tv_double_odds)
     TextView tv_double_odds;
-    @Bind(R.id.tv_single_odds)
+    @BindView(R.id.tv_single_odds)
     TextView tv_single_odds;
-    @Bind(R.id.tv_small_double_odds)
+    @BindView(R.id.tv_small_double_odds)
     TextView tv_small_double_odds;
-    @Bind(R.id.tv_small_single_odds)
+    @BindView(R.id.tv_small_single_odds)
     TextView tv_small_single_odds;
-    @Bind(R.id.tv_big_single_odds)
+    @BindView(R.id.tv_big_single_odds)
     TextView tv_big_single_odds;
-    @Bind(R.id.tv_big_double_odds)
+    @BindView(R.id.tv_big_double_odds)
     TextView tv_big_double_odds;
     //点击
-    @Bind(R.id.rl_big)
+    @BindView(R.id.rl_big)
     LinearLayout rl_big;
-    @Bind(R.id.rl_small)
+    @BindView(R.id.rl_small)
     LinearLayout rl_small;
-    @Bind(R.id.rl_double)
+    @BindView(R.id.rl_double)
     LinearLayout rl_double;
-    @Bind(R.id.rl_single)
+    @BindView(R.id.rl_single)
     LinearLayout rl_single;
-    @Bind(R.id.rl_small_double)
+    @BindView(R.id.rl_small_double)
     LinearLayout rl_small_double;
-    @Bind(R.id.rl_small_single)
+    @BindView(R.id.rl_small_single)
     LinearLayout rl_small_single;
-    @Bind(R.id.rl_big_single)
+    @BindView(R.id.rl_big_single)
     LinearLayout rl_big_single;
-    @Bind(R.id.rl_big_double)
+    @BindView(R.id.rl_big_double)
     LinearLayout rl_big_double;
-    @Bind(R.id.rl_red)
+    @BindView(R.id.rl_red)
     RelativeLayout rl_red;
-    @Bind(R.id.rl_yellow)
+    @BindView(R.id.rl_yellow)
     RelativeLayout rl_yellow;
-    @Bind(R.id.rl_blue)
+    @BindView(R.id.rl_blue)
     RelativeLayout rl_blue;
-    @Bind(R.id.tv_red)
+    @BindView(R.id.tv_red)
     TextView tv_red;
-    @Bind(R.id.tv_yellow)
+    @BindView(R.id.tv_yellow)
     TextView tv_yellow;
-    @Bind(R.id.tv_blue)
+    @BindView(R.id.tv_blue)
     TextView tv_blue;
-    @Bind(R.id.tv_titletop)
+    @BindView(R.id.tv_titletop)
     TextView tv_titletop;
-    @Bind(R.id.back)
+    @BindView(R.id.back)
     ImageView back1;
     //赔率
-    @Bind(R.id.tv_red_odds)
+    @BindView(R.id.tv_red_odds)
     TextView tv_red_odds;
-    @Bind(R.id.tv_yelllow_odds)
+    @BindView(R.id.tv_yelllow_odds)
     TextView tv_yelllow_odds;
-    @Bind(R.id.tv_blue_odds)
+    @BindView(R.id.tv_blue_odds)
     TextView tv_blue_odds;
     //开奖
-    @Bind(R.id.tv_toumingdu)
+    @BindView(R.id.tv_toumingdu)
     TextView betBackGround;
-    @Bind(R.id.rl_dialog1)
+    @BindView(R.id.rl_dialog1)
     RelativeLayout noBetLoading;
     /**
      * 下注信息
@@ -187,33 +187,33 @@ public class LiveGameNumberSingleTableActivity extends GameBaseActivity{
      */
 
     //翻译
-    @Bind(R.id.tv_more)
+    @BindView(R.id.tv_more)
     TextView tv_more;
-    @Bind(R.id.tv1)
+    @BindView(R.id.tv1)
     TextView tv1;
-    @Bind(R.id.tv2)
+    @BindView(R.id.tv2)
     TextView tv2;
-    @Bind(R.id.tv3)
+    @BindView(R.id.tv3)
     TextView tv3;
-    @Bind(R.id.tv4)
+    @BindView(R.id.tv4)
     TextView tv4;
-    @Bind(R.id.tv5)
+    @BindView(R.id.tv5)
     TextView tv5;
-    @Bind(R.id.tv6)
+    @BindView(R.id.tv6)
     TextView tv6;
-    @Bind(R.id.tv7)
+    @BindView(R.id.tv7)
     TextView tv7;
-    @Bind(R.id.tv8)
+    @BindView(R.id.tv8)
     TextView tv8;
-    @Bind(R.id.red)
+    @BindView(R.id.red)
     TextView red;
-    @Bind(R.id.yellow)
+    @BindView(R.id.yellow)
     TextView yellow;
-    @Bind(R.id.blue)
+    @BindView(R.id.blue)
     TextView blue;
-    @Bind(R.id.btn_login)
+    @BindView(R.id.btn_login)
     Button btn_login;
-    @Bind(R.id.fragment_game_hall_one)
+    @BindView(R.id.fragment_game_hall_one)
     FrameLayout fragment_game_hall_one;
     boolean bGetNumberStatus = true;
     boolean bTimerStatus = true;

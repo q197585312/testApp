@@ -3,7 +3,6 @@ package nanyang.com.dig88.Table;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,7 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.easyandroidanimations.library.BounceAnimation;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -28,9 +28,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
 import butterknife.BindColor;
 import butterknife.BindString;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.TimeUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
+import gaming178.com.mylibrary.popupwindow.AbsListPopupWindow;
 import nanyang.com.dig88.Adapter.MyFragmentPagerAdapter;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.SerializableMap;
@@ -50,12 +55,7 @@ import nanyang.com.dig88.Table.fragment.SoccerGameFragment;
 import nanyang.com.dig88.Table.fragment.TableBaseFragment;
 import nanyang.com.dig88.Table.fragment.TennisGamesFragment;
 import nanyang.com.dig88.Table.utils.TableAdapterHelper;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
-import xs.com.mylibrary.allinone.util.TimeUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
-import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
 
 /**
  * Created by xToney on 2015/10/22.
@@ -74,19 +74,19 @@ public class BallGameActivity extends GameBaseActivity implements IClickListener
     String other;
     @BindString(R.string.rugby)
     String rugby;
-    @Bind(R.id.ballgame_tabs_pstabs)
+    @BindView(R.id.ballgame_tabs_pstabs)
     PagerSlidingTabStrip ballgameTabsPstabs;
-    @Bind(R.id.ballgame_pager_vp)
+    @BindView(R.id.ballgame_pager_vp)
     ViewPager ballgamePagerVp;
-    @Bind(R.id.ballgame_bottom_ll)
+    @BindView(R.id.ballgame_bottom_ll)
     LinearLayout ballgameBottomLl;
-    @Bind(R.id.ballgame_clearance_rb)
+    @BindView(R.id.ballgame_clearance_rb)
     CheckBox clearanceRb;
-    @Bind(R.id.ballgame_menu_btn)
+    @BindView(R.id.ballgame_menu_btn)
     TextView menuBtn;
-    @Bind(R.id.ballgame_collection_btn)
+    @BindView(R.id.ballgame_collection_btn)
     TextView collectionBtn;
-    @Bind(R.id.ballgame_refresh_btn)
+    @BindView(R.id.ballgame_refresh_btn)
     TextView refreshBtn;
     @BindColor(R.color.white)
     int white;
@@ -338,7 +338,7 @@ public class BallGameActivity extends GameBaseActivity implements IClickListener
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);
@@ -416,7 +416,7 @@ public class BallGameActivity extends GameBaseActivity implements IClickListener
             protected void initView(View view) {
                 super.initView(view);
                 View gv = view.findViewById(R.id.gridview_content_gv);
-                new BounceAnimation(gv).animate();
+//                new BounceAnimation(gv).animate();
             }
 
             @Override

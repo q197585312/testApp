@@ -14,6 +14,9 @@ import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 import java.util.List;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
@@ -24,10 +27,7 @@ import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ICountLotteryBet;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
 
 /**
  * Created by Administrator on 2016/2/20.

@@ -7,13 +7,13 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Entity.UploadBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2019/6/12.

@@ -5,22 +5,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import butterknife.Bind;
-import nanyang.com.dig88.Activity.MainTabActivity;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2017/4/25.
  */
 
 public class ChangePasswordCenterFragment extends BaseFragment implements View.OnClickListener {
-    @Bind(R.id.re_changepassword)
+    @BindView(R.id.re_changepassword)
     RelativeLayout re_changepassword;
 
-    @Bind(R.id.re_scr_changepasswrod)
+    @BindView(R.id.re_scr_changepasswrod)
     RelativeLayout re_scr_changepasswrod;
-    @Bind(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
 

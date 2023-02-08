@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.Entity.BankAccountDetailBean;
 import nanyang.com.dig88.Entity.BankInfoBean;
@@ -27,8 +29,6 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseListPopWindow;
 import nanyang.com.dig88.Util.UIUtil;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2019/10/24.
@@ -36,25 +36,25 @@ import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 public class Hjlh6688OnlineWithdrawFragment extends BaseFragment<Hjlh6688OnlineWithdrawPresenter> {
 
-    @Bind(R.id.tv_toolbar_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @Bind(R.id.tv_toolbar_right)
+    @BindView(R.id.tv_toolbar_right)
     TextView tvToolbarRight;
-    @Bind(R.id.img_toolbar_left)
+    @BindView(R.id.img_toolbar_left)
     ImageView imgToolbarLeft;
-    @Bind(R.id.tv_bank_name)
+    @BindView(R.id.tv_bank_name)
     TextView tvBankName;
-    @Bind(R.id.edt_open_bank)
+    @BindView(R.id.edt_open_bank)
     EditText edtOpenBank;
-    @Bind(R.id.edt_bank_account)
+    @BindView(R.id.edt_bank_account)
     EditText edtBankAccount;
-    @Bind(R.id.edt_bank_number)
+    @BindView(R.id.edt_bank_number)
     EditText edtBankNumber;
-    @Bind(R.id.edt_tel)
+    @BindView(R.id.edt_tel)
     EditText edtTel;
-    @Bind(R.id.edt_person_number)
+    @BindView(R.id.edt_person_number)
     EditText edtPersonNumber;
-    @Bind(R.id.edt_amount)
+    @BindView(R.id.edt_amount)
     EditText edtAmount;
     VipInfoBean info;
     String openBank;
@@ -121,7 +121,7 @@ public class Hjlh6688OnlineWithdrawFragment extends BaseFragment<Hjlh6688OnlineW
         presenter.getWithdrawBank();
     }
 
-    public void onGetBindingBank(final List<BankInfoBean> bankInfoBeanList) {
+    public void onGetBindViewingBank(final List<BankInfoBean> bankInfoBeanList) {
         final List<String> bankNameList = new ArrayList<>();
         for (int i = 0; i < bankInfoBeanList.size(); i++) {
             BankInfoBean bankInfoBean = bankInfoBeanList.get(i);

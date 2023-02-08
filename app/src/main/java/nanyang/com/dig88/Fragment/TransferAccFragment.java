@@ -1,9 +1,7 @@
 package nanyang.com.dig88.Fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
@@ -14,19 +12,21 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Activity.Scr888ChangePasswordActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
@@ -37,21 +37,19 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseListPopWindow;
 import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2017/1/17.
  */
 
 public class TransferAccFragment extends BaseFragment<TransferAccPresenter> {
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout llContent;
-    @Bind(R.id.tv_from)
+    @BindView(R.id.tv_from)
     TextView tvFrom;
-    @Bind(R.id.tv_to)
+    @BindView(R.id.tv_to)
     TextView tvTo;
-    @Bind(R.id.edt_amount)
+    @BindView(R.id.edt_amount)
     EditText edtAmount;
     TextView tvIbcNoClear;
     ProgressBar pbLoadingIbcNoClear;
@@ -103,21 +101,11 @@ public class TransferAccFragment extends BaseFragment<TransferAccPresenter> {
         ggPoker = getString(R.string.texas_holdem);
         joker123 = getString(R.string.joker_game_slots);
         ongdoPoker = getString(R.string.transfer_ongdo_poker);
-        if (BuildConfig.FLAVOR.equals("u2bet")) {
-            ongdoPoker = "KHMER GAMES";
-        }
         meaga888 = getString(R.string.mega_game_slots);
         jdb = getString(R.string.jdb_game_slots);
         ffyl = "FFYL POKER";
         KYPoker = "Kai Yuan";
         we1poker = getString(R.string.we1poker);
-        if (BuildConfig.FLAVOR.equals("gasia88")) {
-            saba = saba.toUpperCase();
-            klasPoker = klasPoker.toUpperCase();
-            joker123 = joker123.toUpperCase();
-            scr = scr.toUpperCase();
-            meaga888 = meaga888.toUpperCase();
-        }
         act.rightTv2.setVisibility(View.VISIBLE);
         act.rightTv2.setBackgroundResource(R.mipmap.deposit_list);
         act.rightTv2.setOnClickListener(new View.OnClickListener() {
@@ -137,9 +125,6 @@ public class TransferAccFragment extends BaseFragment<TransferAccPresenter> {
             }
         });
         info = (VipInfoBean) AppTool.getObjectData(mContext, "vipInfo");
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            masterAcc = getString(R.string.master_balance);
-        }
         tvFrom.setText(masterAcc);
         tvTo.setText(masterAcc);
         initGameBalance();

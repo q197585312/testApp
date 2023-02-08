@@ -1,6 +1,7 @@
 package nanyang.com.dig88.Lottery4D.Bean;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Administrator on 2018/11/19.

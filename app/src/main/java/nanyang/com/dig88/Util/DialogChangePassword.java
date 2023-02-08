@@ -34,7 +34,7 @@ public class DialogChangePassword {
     }
 
     public void show() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, xs.com.mylibrary.R.style.dialog);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, gaming178.com.mylibrary.R.style.dialog);
         LayoutInflater inflater = LayoutInflater.from(activity);
         View v = inflater.inflate(R.layout.activity_xiugai_passwd, null);
         edt_old_pass = v.findViewById(R.id.edt_old_pass);

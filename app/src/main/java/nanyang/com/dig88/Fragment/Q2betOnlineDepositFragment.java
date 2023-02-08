@@ -11,10 +11,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Activity.DesipotWebActitvity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.BankInfoBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
@@ -23,26 +24,24 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseContentListPopWindow;
 import nanyang.com.dig88.Util.BaseListPopWindow;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2019/8/8.
  */
 
 public class Q2betOnlineDepositFragment extends BaseFragment<Q2betOnlineDepositPresenter> {
-    @Bind(R.id.tv_deposit_way)
+    @BindView(R.id.tv_deposit_way)
     TextView tvDepositWay;
-    @Bind(R.id.tv_choice_bank)
+    @BindView(R.id.tv_choice_bank)
     TextView tvChoiceBank;
-    @Bind(R.id.edt_amount)
+    @BindView(R.id.edt_amount)
     EditText edtAmount;
     String bankId;
-    @Bind(R.id.tv_select_promotion)
+    @BindView(R.id.tv_select_promotion)
     TextView tvSelectPromotion;
-    @Bind(R.id.tv_hint)
+    @BindView(R.id.tv_hint)
     TextView tvHint;
-    @Bind(R.id.tv_k9th_hint)
+    @BindView(R.id.tv_k9th_hint)
     TextView tvK9thHint;
     String amount;
     BaseContentListPopWindow popPromotion;
@@ -65,49 +64,13 @@ public class Q2betOnlineDepositFragment extends BaseFragment<Q2betOnlineDepositP
         createPresenter(new Q2betOnlineDepositPresenter(this));
         depositWayBankList = presenter.getDepositWayBank();
         info = (VipInfoBean) AppTool.getObjectData(mContext, "vipInfo");
-        if (BuildConfig.FLAVOR.equals("ttwin168")) {
-            tvDepositWay.setText("TTPay2u");
-        } else if (BuildConfig.FLAVOR.equals("club988")) {
-            tvDepositWay.setText("TTPay2u");
-            club988Payment = "ibank88";
-        } else if (BuildConfig.FLAVOR.equals("afbcash")) {
-            club988OnlineBankList = new ArrayList<>();
-            club988OnlineBankList.add(new ContentInfoBean("Help2pay", "help2pay"));
-            club988OnlineBankList.add(new ContentInfoBean("Paytrust", "paytrust"));
-            tvDepositWay.setText(club988OnlineBankList.get(0).getContent());
-            club988Payment = club988OnlineBankList.get(0).getContentId();
-            tvChoiceBank.setVisibility(View.GONE);
-            ip = SharePreferenceUtil.getString(mContext, "IP");
-        } else if (BuildConfig.FLAVOR.equals("hjlh6688")) {
-            club988OnlineBankList = new ArrayList<>();
-            club988OnlineBankList.add(new ContentInfoBean("支付宝", "1"));
-            club988OnlineBankList.add(new ContentInfoBean("云闪付", "9"));
-            club988OnlineBankList.add(new ContentInfoBean("支付宝2", "11"));
-            tvDepositWay.setText(club988OnlineBankList.get(0).getContent());
-            club988Payment = club988OnlineBankList.get(0).getContentId();
-            tvChoiceBank.setVisibility(View.GONE);
-            ip = SharePreferenceUtil.getString(mContext, "IP");
-        } else if (BuildConfig.FLAVOR.equals("mgold1")) {
-            tvDepositWay.setVisibility(View.GONE);
-            ip = SharePreferenceUtil.getString(mContext, "IP");
-        } else if (BuildConfig.FLAVOR.equals("k9th")) {
-            tvK9thHint.setVisibility(View.VISIBLE);
-            tvDepositWay.setText("โอนผ่านมือถือ");
-            tvChoiceBank.setText(depositWayBankList.get(0).getName());
-            bankId = depositWayBankList.get(0).getId_mod_bank();
-        } else {
-            if (BuildConfig.FLAVOR.equals("q2bet")) {
-                tvSelectPromotion.setVisibility(View.VISIBLE);
-                presenter.getPromotion();
-            }
-            tvDepositWay.setText("Help2pay");
-        }
-        if (BuildConfig.FLAVOR.equals("win3888")) {
-            edtAmount.setHint(getString(R.string.amount_hint));
-            if (getLocalLanguage().equals("vn")) {
-                tvHint.setVisibility(View.VISIBLE);
-            }
-        }
+        club988OnlineBankList = new ArrayList<>();
+        club988OnlineBankList.add(new ContentInfoBean("Help2pay", "help2pay"));
+        club988OnlineBankList.add(new ContentInfoBean("Paytrust", "paytrust"));
+        tvDepositWay.setText(club988OnlineBankList.get(0).getContent());
+        club988Payment = club988OnlineBankList.get(0).getContentId();
+        tvChoiceBank.setVisibility(View.GONE);
+        ip = SharePreferenceUtil.getString(mContext, "IP");
     }
 
     public void onGetPromotionData(final List<ContentInfoBean> list) {
@@ -131,26 +94,24 @@ public class Q2betOnlineDepositFragment extends BaseFragment<Q2betOnlineDepositP
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_deposit_way:
-                if (BuildConfig.FLAVOR.equals("afbcash") || BuildConfig.FLAVOR.equals("hjlh6688")) {
-                    BaseContentListPopWindow bankNamePop = new BaseContentListPopWindow(mContext, tvDepositWay, tvDepositWay.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT) {
-                        @Override
-                        public List<ContentInfoBean> getContentData() {
-                            return club988OnlineBankList;
-                        }
+                BaseContentListPopWindow bankNamePop = new BaseContentListPopWindow(mContext, tvDepositWay, tvDepositWay.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                    @Override
+                    public List<ContentInfoBean> getContentData() {
+                        return club988OnlineBankList;
+                    }
 
-                        @Override
-                        public void onClickItem(int position, ContentInfoBean item) {
-                            club988RequestType = position;
-                            tvDepositWay.setText(item.getContent());
-                            club988Payment = item.getContentId();
-                            depositWayBankList = presenter.getDepositWayBank();
-                            if (position == 0) {
-                                depositWayBankList.remove(depositWayBankList.size() - 1);
-                            }
+                    @Override
+                    public void onClickItem(int position, ContentInfoBean item) {
+                        club988RequestType = position;
+                        tvDepositWay.setText(item.getContent());
+                        club988Payment = item.getContentId();
+                        depositWayBankList = presenter.getDepositWayBank();
+                        if (position == 0) {
+                            depositWayBankList.remove(depositWayBankList.size() - 1);
                         }
-                    };
-                    bankNamePop.showPopupDownWindow();
-                }
+                    }
+                };
+                bankNamePop.showPopupDownWindow();
                 break;
             case R.id.tv_choice_bank:
                 BaseListPopWindow bankPop = new BaseListPopWindow(mContext, tvChoiceBank, tvChoiceBank.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT) {
@@ -188,52 +149,16 @@ public class Q2betOnlineDepositFragment extends BaseFragment<Q2betOnlineDepositP
         String param = "paymentType=1" + "&bank_id=" + bankId + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
                 "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
                 "&bankaccount=" + "&promo=" + promotionCode;
-        if (BuildConfig.FLAVOR.equals("ttwin168")) {
-            url = "http://pay.8188.ws/ibank/pay-go.php";
-            param = "banktype=" + bankId + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
-                    "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                    "&bankaccount=187";
-        } else if (BuildConfig.FLAVOR.equals("club988")) {
-            url = "http://pay.8188.ws/ibank/pay-go.php";
-            param = "payment=" + club988Payment + "&banktype=" + bankId + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
-                    "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                    "&bankaccount=4948";
-        } else if (BuildConfig.FLAVOR.equals("afbcash")) {
-            if (club988RequestType == 0) {
-                url = "http://pay.khmergaming.com/help2pay/pay-go.php";
-                param = "payment=" + club988Payment + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
-                        "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                        "&bankaccount=2946" + "&ipaddress=" + ip;
-            } else {
-                url = "http://pay.khmergaming.com/trust88/pay-go.php";
-                param = "payment=" + club988Payment + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
-                        "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                        "&bankaccount=1484" + "&ipaddress=" + ip;
-            }
-//            url = "http://pay.khmergaming.com/trust88/pay-go.php";
-//            param = "payment=" + club988Payment + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
-//                    "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-//                    "&bankaccount=1484" + "&ipaddress=" + ip;
-        } else if (BuildConfig.FLAVOR.equals("hjlh6688")) {
-            url = "http://pay.8188.ws/p07/pay-go.php";
-            param = "banktype=" + club988Payment + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
-                    "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                    "&bankaccount=4634";
-        } else if (BuildConfig.FLAVOR.equals("mgold1")) {
+        if (club988RequestType == 0) {
             url = "http://pay.khmergaming.com/help2pay/pay-go.php";
-            param = "bank_id=" + bankId + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
+            param = "payment=" + club988Payment + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
                     "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                    "&bankaccount=3018" + "&hidden=save";
-        } else if (BuildConfig.FLAVOR.equals("win3888")) {
-            url = "http://pay.khmergaming.com/help2pay/pay-go.php";
-            param = "bank_id=" + bankId + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
+                    "&bankaccount=2946" + "&ipaddress=" + ip;
+        } else {
+            url = "http://pay.khmergaming.com/trust88/pay-go.php";
+            param = "payment=" + club988Payment + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
                     "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                    "&bankaccount=5328" + "&hidden=save";
-        } else if (BuildConfig.FLAVOR.equals("k9th")) {
-            url = "http://pay.8188.ws/amb/pay-go.php";
-            param = "paymentType=7" + "&banktype=" + bankId + "&amount=" + amount + "&web_id=" + WebSiteUrl.WebId + "&member_id=" + getUserInfo().getUser_id() +
-                    "&username=" + info.getUsername() + "&currency=" + getCurrency() + "&tel=" + info.getTel() + "&email=" + info.getEmail() + "&language=" + presenter.getLanguage() +
-                    "&bankaccount=27";
+                    "&bankaccount=1484" + "&ipaddress=" + ip;
         }
         Intent intent = new Intent(mContext, DesipotWebActitvity.class);
         intent.putExtra("url", url);

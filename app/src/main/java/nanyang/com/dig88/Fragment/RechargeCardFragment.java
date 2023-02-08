@@ -10,20 +10,20 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Fragment.Presenter.RechargeCardPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2015/12/21. (取款列表)
  */
 public class RechargeCardFragment extends BaseFragment<RechargeCardPresenter> {
-    @Bind(R.id.edt_recharge_card_num)
+    @BindView(R.id.edt_recharge_card_num)
     EditText edtRechargeCardNum;
-    @Bind(R.id.edt_recharge_card_passwrod)
+    @BindView(R.id.edt_recharge_card_passwrod)
     EditText edtRechargeCardPassword;
     private String rechargeCardNum;
     private String rechargeCardPassword;

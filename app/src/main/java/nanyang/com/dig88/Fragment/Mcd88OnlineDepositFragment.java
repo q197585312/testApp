@@ -10,31 +10,27 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Activity.DesipotWebActitvity;
-import nanyang.com.dig88.BuildConfig;
-import nanyang.com.dig88.Entity.BankInfoBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Fragment.Presenter.Mcd88OnlineDepositPresenter;
-import nanyang.com.dig88.Fragment.Presenter.Q2betOnlineDepositPresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseContentListPopWindow;
-import nanyang.com.dig88.Util.BaseListPopWindow;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2019/8/8.
  */
 
 public class Mcd88OnlineDepositFragment extends BaseFragment<Mcd88OnlineDepositPresenter> {
-    @Bind(R.id.tv_deposit_method)
+    @BindView(R.id.tv_deposit_method)
     TextView tvDepositMethod;
-    @Bind(R.id.tv_select_promotion)
+    @BindView(R.id.tv_select_promotion)
     TextView tvSelectPromotion;
-    @Bind(R.id.edt_amount)
+    @BindView(R.id.edt_amount)
     EditText edtAmount;
     String amount;
     List<ContentInfoBean> payMethodList;

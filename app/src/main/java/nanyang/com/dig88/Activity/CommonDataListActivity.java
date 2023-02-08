@@ -16,11 +16,9 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import nanyang.com.dig88.Activity.presenter.CommonDataListPresenter;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.AutoPromotionBean;
 import nanyang.com.dig88.Entity.PromotionListBean;
 import nanyang.com.dig88.R;
-import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
 
 /**
@@ -121,13 +119,6 @@ public class CommonDataListActivity extends BaseActivity<CommonDataListPresenter
                     tv_turnover.setText(getString(R.string.Turnover) + item.getTurnover_amount());
                     TextView tv_status = holder.getView(R.id.tv_status);
                     String status_text = item.getStatus_text();
-                    if (BuildConfig.FLAVOR.equals("kimsa1") && getLocalLanguage().equals("vn")) {
-                        if (status_text.equals("Approved")) {
-                            status_text = "OK";
-                        } else if (status_text.equals("Refused")) {
-                            status_text = "Từ chối";
-                        }
-                    }
                     tv_status.setText(getString(R.string.Status) + status_text);
                 }
             }

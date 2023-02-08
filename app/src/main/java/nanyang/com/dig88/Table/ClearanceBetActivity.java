@@ -19,8 +19,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
 import butterknife.BindString;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.ItemCLickImp;
+import gaming178.com.mylibrary.base.QuickAdapterImp;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.myview.mylistview.DelSlideListView;
+import gaming178.com.mylibrary.myview.mylistview.FSVListView;
+import gaming178.com.mylibrary.popupwindow.BaseYseNoChoosePopupwindow;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.Thread.TableHttpHelper;
 import nanyang.com.dig88.Table.Thread.ThreadEndT;
@@ -31,14 +39,6 @@ import nanyang.com.dig88.Table.entity.LeagueBean;
 import nanyang.com.dig88.Table.utils.TableDataHelper;
 import nanyang.com.dig88.Util.WebSiteUrl;
 import nanyang.com.dig88.Util.BlockDialog;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.ItemCLickImp;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.myview.mylistview.DelSlideListView;
-import xs.com.mylibrary.myview.mylistview.FSVListView;
-import xs.com.mylibrary.popupwindow.BaseYseNoChoosePopupwindow;
 
 /**
  * Created by Administrator on 2015/12/3.
@@ -46,9 +46,9 @@ import xs.com.mylibrary.popupwindow.BaseYseNoChoosePopupwindow;
  */
 public class ClearanceBetActivity extends GameBaseActivity {
 
-    @Bind(R.id.slideCutListView)
+    @BindView(R.id.slideCutListView)
     DelSlideListView slideCutListView;
-    @Bind(R.id.clearance_bottom_fsvlst)
+    @BindView(R.id.clearance_bottom_fsvlst)
     FSVListView fsvlst;
     @BindString(R.string.loading)
     String loading;
@@ -74,7 +74,7 @@ public class ClearanceBetActivity extends GameBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);

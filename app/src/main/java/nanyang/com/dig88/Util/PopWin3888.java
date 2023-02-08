@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import butterknife.OnClick;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2020/3/12.

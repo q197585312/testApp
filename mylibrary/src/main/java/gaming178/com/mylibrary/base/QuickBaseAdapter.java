@@ -159,4 +159,7 @@ public abstract class QuickBaseAdapter<T> extends BaseAdapter {
      * @param item   The item that needs to be displayed.
      */
     protected abstract void convert(ViewHolder helper, T item, int position);
+    public void operateListView(){
+
+    }
 }

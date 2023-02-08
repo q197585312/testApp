@@ -18,7 +18,7 @@ public class CookieManger implements CookieJar {
     private PersistentCookieStore cookieStore;
     private static CookieManger instance;
 
-    private CookieManger() {
+    public CookieManger() {
         if (cookieStore == null) {
             cookieStore = new PersistentCookieStore();
         }

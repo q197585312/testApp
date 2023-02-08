@@ -4,20 +4,20 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.ThaiLottery.bean.HotNumberBean;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2019/1/22.
  */
 
 public class HotNumberFragment extends ThaiLotteryBaseFragment {
-    @Bind(R.id.lv_hotNumber)
+    @BindView(R.id.lv_hotNumber)
     ListView lv_hotNumber;
     QuickBaseAdapter<HotNumberBean.DataBean> adapter;
 

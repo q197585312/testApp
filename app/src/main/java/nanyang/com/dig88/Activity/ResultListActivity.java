@@ -14,7 +14,8 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Adapter.GameResultListAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Config.AppConfig;
@@ -23,7 +24,6 @@ import nanyang.com.dig88.Entity.DigGameResultBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2016/1/4.
@@ -33,7 +33,7 @@ public class ResultListActivity extends BaseActivity{
     public  List<DigGameResultBean> gameResultsList=new ArrayList<DigGameResultBean>();
     public GameResultListAdapter gameResultsAdapter;
     public String gameResults="";
-    @Bind(R.id.list_result)
+    @BindView(R.id.list_result)
     ListView lv_result;
   /*  NyVolleyJsonThreadHandler<List<DigGameResultBean>> listgamedata;
     public static List<DigGameResultBean> diggamelist=new ArrayList<DigGameResultBean>();
@@ -44,7 +44,7 @@ public class ResultListActivity extends BaseActivity{
     SharedPreferences sharedPreferences1;
     public static int biaozhi;*/
     //////////////////lanjian change
-  @Bind(R.id.tv_nodata)
+  @BindView(R.id.tv_nodata)
   TextView tv_nodata;
     boolean bTimerResults = true;
     boolean bGetResults = true;

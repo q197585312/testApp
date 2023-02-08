@@ -29,7 +29,9 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Entity.KlasPokerBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.R;
@@ -39,17 +41,15 @@ import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 /**
  * Created by Administrator on 2016/10/12.
  */
 public class klasPokerActivity extends BaseActivity {
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
-    @Bind(R.id.web_left_back)
+    @BindView(R.id.web_left_back)
     ImageView exitImgl;
     HttpClient httpClient;
     String username;
@@ -72,7 +72,7 @@ public class klasPokerActivity extends BaseActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);

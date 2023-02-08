@@ -7,19 +7,19 @@ import android.widget.LinearLayout;
 
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.BindColor;
+import butterknife.BindView;
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.QuickAdapterImp;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.VsTableRowBean;
 import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.BettingInfoBean;
 import nanyang.com.dig88.Table.popupwindow.BetBasePop;
 import nanyang.com.dig88.Util.DeviceUtils;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by Administrator on 2015/11/4.
@@ -27,10 +27,10 @@ import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 public class BetSingleDoubleFragment extends BaseFragment {
     @BindColor(R.color.grey_background)
     int grey;
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
     AdapterViewContent<VsTableRowBean> content;
-    @Bind(R.id.ll_base_listview)
+    @BindView(R.id.ll_base_listview)
     LinearLayout ll_base_listview;
     private List<VsTableRowBean> data;
 

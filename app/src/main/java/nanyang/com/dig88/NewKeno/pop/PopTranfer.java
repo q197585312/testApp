@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,17 +19,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import nanyang.com.dig88.Activity.BaseActivity;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.Entity.BankAccountDetailBean;
 import nanyang.com.dig88.Entity.NewKenoBalanceBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.NewKeno.NewKenoActivity;
@@ -38,30 +39,26 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.ListviewItemOnclick;
-import nanyang.com.dig88.Util.MyListviewPopu;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/11/23.
  */
 
 public class PopTranfer extends BasePopupWindow {
-    @Bind(R.id.tv_from)
+    @BindView(R.id.tv_from)
     TextView tv_from;
-    @Bind(R.id.tv_to)
+    @BindView(R.id.tv_to)
     TextView tv_to;
-    @Bind(R.id.edt_amount)
+    @BindView(R.id.edt_amount)
     EditText edt_amount;
-    @Bind(R.id.tv_submit)
+    @BindView(R.id.tv_submit)
     TextView tv_submit;
-    @Bind(R.id.tv_cancel)
+    @BindView(R.id.tv_cancel)
     TextView tv_cancel;
-    @Bind(R.id.tv_balance)
+    @BindView(R.id.tv_balance)
     TextView tv_balance;
-    @Bind(R.id.tv_main_balance)
+    @BindView(R.id.tv_main_balance)
     TextView tv_main_balance;
     String[] transfer;
     String master;

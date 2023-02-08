@@ -8,7 +8,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
@@ -16,7 +17,6 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.UIUtil;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2018/1/10.
@@ -24,11 +24,11 @@ import xs.com.mylibrary.allinone.util.AppTool;
 
 public class IbetPokerActivity extends BaseWebGameActivity {
 
-    @Bind(R.id.tv_toolbar_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @Bind(R.id.img_toolbar_left)
+    @BindView(R.id.img_toolbar_left)
     ImageView imgToolbarLeft;
-    @Bind(R.id.rl_title)
+    @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
     private LoginInfoBean s;
     private String pokerId;

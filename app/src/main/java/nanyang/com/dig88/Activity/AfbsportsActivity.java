@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Entity.AfbH5HostBean;
 import nanyang.com.dig88.Entity.AfbLimitBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
@@ -23,7 +24,6 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BlockDialog;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2016/10/12.

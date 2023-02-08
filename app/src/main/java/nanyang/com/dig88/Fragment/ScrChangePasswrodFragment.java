@@ -15,8 +15,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import butterknife.Bind;
-import nanyang.com.dig88.Activity.MainTabActivity;
+import butterknife.BindView;
 import nanyang.com.dig88.Entity.TransferScrDataBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpClient;
@@ -27,9 +26,9 @@ import nanyang.com.dig88.Util.WebSiteUrl;
  */
 
 public class ScrChangePasswrodFragment extends BaseFragment implements View.OnClickListener {
-    @Bind(R.id.edt_changPassword)
+    @BindView(R.id.edt_changPassword)
     EditText edt_changePassword;
-    @Bind(R.id.btn_submit)
+    @BindView(R.id.btn_submit)
     Button btn_submit;
     HttpClient httpClient;
     String requestUrl;

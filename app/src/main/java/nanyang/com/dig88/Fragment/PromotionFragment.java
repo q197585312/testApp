@@ -8,19 +8,17 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import nanyang.com.dig88.BuildConfig;
+import butterknife.BindView;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2019/9/17.
  */
 
 public class PromotionFragment extends BaseFragment {
-    @Bind(R.id.tv_toolbar_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
 
 
@@ -66,38 +64,7 @@ public class PromotionFragment extends BaseFragment {
     }
 
     public String getPromotionsUrl() {
-        String url = BuildConfig.PromotionsUrl;
-        if (BuildConfig.FLAVOR.equals("q2bet") || BuildConfig.FLAVOR.equals("ibet567")) {
-            url += "&set_lang=" + getLanguage();
-        }
+        String url = "http://m.afbcash.com/index.php?page=promotion&from=app";
         return url;
-    }
-
-    private String getLanguage() {
-        String lg = AppTool.getAppLanguage(mContext);
-        if (TextUtils.isEmpty(lg)) {
-            return "en";
-        } else {
-            switch (lg) {
-                case "en":
-                    return "en";
-                case "th":
-                    return "th";
-                case "vn":
-                    return "vn";
-                case "zh":
-                    return "cn";
-                case "in":
-                    return "id";
-                case "kr":
-                    return "kr";
-                case "my":
-                    return "ma";
-                case "kh":
-                    return "ca";
-                default:
-                    return "en";
-            }
-        }
     }
 }

@@ -7,12 +7,13 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
+import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -30,19 +31,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.finalteam.toolsfinal.StringUtils;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.ScreenUtil;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
+import gaming178.com.mylibrary.allinone.util.UpdateManager;
 import nanyang.com.dig88.Activity.MainTabActivity;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.IpBean;
 import nanyang.com.dig88.Entity.UpdateAppInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.MCPTool;
-import nanyang.com.dig88.Util.UIUtil;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.ScreenUtil;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
-import xs.com.mylibrary.allinone.util.UpdateManager;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -61,17 +60,15 @@ public class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
 
     public void handleAffiliateId() {
         baseContext.getApp().setAffiliateId("");
-        if (!StringUtils.isEmpty(BuildConfig.AFFILIATE_PACKAGE)) {
-            String packagePath = getPackagePath(baseContext);
-            File file = new File(packagePath);
-            String s = readApk(file);
-            if (!TextUtils.isEmpty(s)) {
-                String[] split = s.split("-");
-                String affiliateId = split[0];
-                String webId = split[1];
-                WebSiteUrl.WebId = webId;
-                baseContext.getApp().setAffiliateId(affiliateId);
-            }
+        String packagePath = getPackagePath(baseContext);
+        File file = new File(packagePath);
+        String s = readApk(file);
+        if (!TextUtils.isEmpty(s)) {
+            String[] split = s.split("-");
+            String affiliateId = split[0];
+            String webId = split[1];
+            WebSiteUrl.WebId = webId;
+            baseContext.getApp().setAffiliateId(affiliateId);
         }
     }
 
@@ -162,15 +159,15 @@ public class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         updateManager.setLoadTitle(baseContext.getString(R.string.app_update));
         updateManager.setLater(baseContext.getString(R.string.later));
         String affiliateId = baseContext.getApp().getAffiliateId();
-        if (!TextUtils.isEmpty(affiliateId)) {
-            //http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=51003-2&fileName=android_afbcash_release.apk&packgeName=afbcash
-            String downloadUrl = "http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=" + affiliateId + "-" + WebSiteUrl.WebId;
-            downloadUrl += "&fileName=android_" + BuildConfig.AFFILIATE_PACKAGE + "_release.apk" + "&packgeName=" + BuildConfig.AFFILIATE_PACKAGE;
-            updateManager.checkUpdate(downloadUrl);
-        } else {
-            updateManager.checkUpdate(WebSiteUrl.DownLoadAppUrl);
-        }
-
+//        if (!TextUtils.isEmpty(affiliateId)) {
+//            //http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=51003-2&fileName=android_afbcash_release.apk&packgeName=afbcash
+//            String downloadUrl = "http://down-hk01-cn2.k-api.com:8080/api/az/getApk?comment=" + affiliateId + "-" + WebSiteUrl.WebId;
+//            downloadUrl += "&fileName=android_" + BuildConfig.AFFILIATE_PACKAGE + "_release.apk" + "&packgeName=" + BuildConfig.AFFILIATE_PACKAGE;
+//            updateManager.checkUpdate(downloadUrl);
+//        } else {
+//
+//        }
+        updateManager.checkUpdate(WebSiteUrl.DownLoadAppUrl);
     }
 
     public String getPackagePath(Context context) {

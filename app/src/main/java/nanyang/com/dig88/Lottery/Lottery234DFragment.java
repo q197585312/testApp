@@ -14,17 +14,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.Entity.Lottery234BetBean;
 import nanyang.com.dig88.Entity.LotteryCountBean;
 import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * 2 3 4D
@@ -34,7 +34,7 @@ import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 public class Lottery234DFragment extends LotteryBaseFragment<Lottery234BetBean> {
 
 
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
 
     TextView lotteryDiscount2dTv;
@@ -43,7 +43,7 @@ public class Lottery234DFragment extends LotteryBaseFragment<Lottery234BetBean> 
     TextView lotteryOdds2dTv;
     TextView lotteryOdds3dTv;
     TextView lotteryOdds4dTv;
-    @Bind(R.id.lottery_center_progress_ll)
+    @BindView(R.id.lottery_center_progress_ll)
     View progressView;
     private BasePopupWindow edtPop;
     private String discount2D;

@@ -16,7 +16,8 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Adapter.ApplyDividendListAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Entity.ApplyDividendListBean;
@@ -25,7 +26,6 @@ import nanyang.com.dig88.Util.CalendarPopuWindow;
 import nanyang.com.dig88.Util.DateUtils;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
 
 /**
@@ -35,13 +35,13 @@ public class BonusApplyListFragment extends BaseFragment implements View.OnClick
     private static final int SUBMIT_SUCCESS = 0;
     private static final int SUBMIT_ERROR = 1;
     private static final int SUBMIT_NODATA = 2;
-    @Bind(R.id.tv_start_time)
+    @BindView(R.id.tv_start_time)
     TextView tv_start_time;
-    @Bind(R.id.tv_end_time)
+    @BindView(R.id.tv_end_time)
     TextView tv_end_time;
-    @Bind(R.id.btn_queren)
+    @BindView(R.id.btn_queren)
     Button btn_queren;
-    @Bind(R.id.lv_apply_deposit)
+    @BindView(R.id.lv_apply_deposit)
     ListView lv_apply_deposit;
     ApplyDividendListAdapter applyDividendListAdapter;
     String starttime;

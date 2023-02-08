@@ -5,6 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
+import java.math.RoundingMode;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
@@ -24,6 +25,7 @@ public final class StringUtils {
 
     /**
      * 把string数组装换成get请求的？/& 拼接的字符串
+     *
      * @param strings
      * @return
      */
@@ -58,6 +60,7 @@ public final class StringUtils {
         }
         return false;
     }
+
     /**
      * 判断字符串是否为null或""
      *
@@ -66,7 +69,7 @@ public final class StringUtils {
      */
     @SuppressLint("NewApi")
     public static boolean isNull(String string) {
-        return string == null || "".equals(string);
+        return !(string == null && "".equals(string));
     }
 
     public static String join(String[] array, String sep) {
@@ -177,34 +180,60 @@ public final class StringUtils {
 
     /**
      * 使用java正则表达式去掉多余的.与0
+     *
      * @param s
      * @return
      */
-    public static String subZeroAndDot(float s){
-        String ss=s+"";
-        if(ss.indexOf(".") > 0){
+    public static String subZeroAndDot(float s) {
+        String ss = s + "";
+        if (ss.indexOf(".") > 0) {
             ss = ss.replaceAll("0+?$", "");//去掉多余的0
             ss = ss.replaceAll("[.]$", "");//如最后一位是.则去掉
         }
         return ss;
     }
-    public static String  URLEncode(String url)  {
+
+    public static String URLEncode(String url) {
         try {
-            return URLEncoder.encode(url,"UTF-8");
+            return URLEncoder.encode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return url;
     }
 
-    public static String floatDecimalFormat(float f,String format) {
+    public static String floatDecimalFormat(double f, String format) {
         DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
         return decimalFormat.format(f);//format 返回的是字符串收藏不除以10
 
 
     }
-    public static  Map<String,Integer> countDifferentCharMap(String str) {
-        Map<String,Integer> countMap=new LinkedHashMap<>();
+
+    public static String floatDecimalFormat(double f) {
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        decimalFormat.setGroupingSize(0);
+        decimalFormat.setRoundingMode(RoundingMode.FLOOR);
+        String result = decimalFormat.format(f);
+        double v = Double.parseDouble(result);
+        if (v > f) {
+            String ff = f + "";
+            int index = ff.indexOf(".");
+            StringBuffer sb = new StringBuffer();
+            int lc = ff.length() - index;
+            if (lc >= 2) {
+                for (int i = 0; i <= index + 2; i++) {
+                    sb.append(ff.charAt(i) + "");
+                }
+            }
+            return sb.toString();
+        } else {
+            return result;
+        }
+    }
+
+    public static Map<String, Integer> countDifferentCharMap(String str) {
+        Map<String, Integer> countMap = new LinkedHashMap<>();
         for (char ch : str.toCharArray()) {
             String ss = String.valueOf(ch);
             Integer count = countMap.get(ss);
@@ -216,16 +245,19 @@ public final class StringUtils {
         }
         return countMap;
     }
+
     public static String findGroup0(String str1, String fromat) {
         Pattern pattern2 = Pattern.compile(fromat);
         Matcher matcher2 = pattern2.matcher(str1);
         while (matcher2.find()) {
-           return matcher2.group(0);
+            return matcher2.group(0);
         }
         return "";
     }
-    public static boolean matches(String str1,  String fromat){
-        return str1.matches(fromat);
-    }
 
+    public static String format2F(String format) {
+        double formatDouble = Double.valueOf(format);
+        String formatStr = String.format("%.2f", formatDouble);
+        return formatStr;
+    }
 }

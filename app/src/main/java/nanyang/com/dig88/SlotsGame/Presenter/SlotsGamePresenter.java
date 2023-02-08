@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nanyang.com.dig88.BuildConfig;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.SharePreferenceUtil;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.JdbFishBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
@@ -24,8 +25,6 @@ import nanyang.com.dig88.SlotsGame.W88GameConfigBean;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.SharePreferenceUtil;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -55,58 +54,8 @@ public class SlotsGamePresenter extends BaseRetrofitPresenter<SlotsGameActivity>
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 List<W88GameConfigBean.DataBean> dataList = new ArrayList<>();
-                if (gameType.equals(AppConfig.FISHING_GAME)) {
-                    if (BuildConfig.FLAVOR.equals("mmbet")) {
-                        JdbFishBean jdbFishBean = gson.fromJson(data, JdbFishBean.class);
-                        List<JdbFishBean.DataBean> beanList = jdbFishBean.getData();
-                        for (int i = 0; i < beanList.size(); i++) {
-                            JdbFishBean.DataBean jdbBean = beanList.get(i);
-                            W88GameConfigBean.DataBean dataBean = new W88GameConfigBean.DataBean();
-                            dataBean.setGname_cn(jdbBean.getGname_cn());
-                            dataBean.setGname_en(jdbBean.getGname_en());
-                            dataBean.setGid(jdbBean.getGid());
-                            dataBean.setImage(jdbBean.getImage());
-                            dataList.add(dataBean);
-                        }
-                    } else if (BuildConfig.FLAVOR.equals("khmergaming") || BuildConfig.FLAVOR.equals("dig88") || BuildConfig.FLAVOR.equals("q2bet") || BuildConfig.FLAVOR.equals("kimsa1")) {
-                        W88GameConfigBean w88GameConfigBean = gson.fromJson(data, W88GameConfigBean.class);
-//                        W88GameConfigBean.DataBean dataBean = new W88GameConfigBean.DataBean();
-//                        dataBean.setGname_en("Ag Fishing");
-//                        dataBean.setGname_cn("Ag 捕鱼");
-//                        dataBean.setGname_vn("Bắn Cá AG");
-//                        dataBean.setImage("-1");
-//                        dataList.add(dataBean);
-                        if (BuildConfig.FLAVOR.equals("q2bet")) {
-                            dataList.add(w88GameConfigBean.getData().get(0));
-                            dataList.add(w88GameConfigBean.getData().get(1));
-                        } else if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                            w88GameConfigBean.getData().get(0).setGname_vn("Bắn Cá Vui Vẻ");
-                            dataList.add(w88GameConfigBean.getData().get(0));
-                        } else {
-                            dataList.addAll(w88GameConfigBean.getData());
-                        }
-                    } else if ((BuildConfig.FLAVOR.equals("kb99bet") && slotsGameActivity.getCurrency().equals("SGD"))) {
-                        W88GameConfigBean w88GameConfigBean = gson.fromJson(data, W88GameConfigBean.class);
-                        dataList.add(w88GameConfigBean.getData().get(1));
-                    } else if (BuildConfig.FLAVOR.equals("k9th")) {
-                        W88GameConfigBean w88GameConfigBean = gson.fromJson(data, W88GameConfigBean.class);
-                        if (slotsGameActivity.getCurrency().equals("TWD") || slotsGameActivity.getCurrency().equals("VND")) {
-                            dataList.add(w88GameConfigBean.getData().get(0));
-                        } else {
-                            dataList.addAll(w88GameConfigBean.getData());
-                        }
-                    } else if (BuildConfig.FLAVOR.equals("jf58")) {
-                        W88GameConfigBean w88GameConfigBean = gson.fromJson(data, W88GameConfigBean.class);
-                        dataList.add(w88GameConfigBean.getData().get(0));
-                        dataList.add(w88GameConfigBean.getData().get(1));
-                    } else {
-                        W88GameConfigBean w88GameConfigBean = gson.fromJson(data, W88GameConfigBean.class);
-                        dataList.addAll(w88GameConfigBean.getData());
-                    }
-                } else {
-                    W88GameConfigBean w88GameConfigBean = gson.fromJson(data, W88GameConfigBean.class);
-                    dataList.addAll(w88GameConfigBean.getData());
-                }
+                W88GameConfigBean w88GameConfigBean = gson.fromJson(data, W88GameConfigBean.class);
+                dataList.addAll(w88GameConfigBean.getData());
                 slotsGameActivity.onGetSlotsData(dataList);
             }
         });
@@ -385,11 +334,7 @@ public class SlotsGamePresenter extends BaseRetrofitPresenter<SlotsGameActivity>
                 param.put("provider", "slots_mg");
                 break;
             case AppConfig.FISHING_GAME:
-                if (BuildConfig.FLAVOR.equals("mmbet")) {
-                    param.put("provider", "slots_jdb");
-                } else {
-                    param.put("provider", "slots_fish");
-                }
+                param.put("provider", "slots_fish");
                 break;
             case AppConfig.PP_Slots:
                 param.put("provider", "slots_pplay");
@@ -446,9 +391,7 @@ public class SlotsGamePresenter extends BaseRetrofitPresenter<SlotsGameActivity>
     }
 
     public String getFishImgUrlHead(String fishName) {
-        if (BuildConfig.FLAVOR.equals("mmbet")) {
-            return "https://s3-ap-northeast-1.amazonaws.com/hcgames.3g/content/images/game/jdb/";
-        } else if (fishName.equals("Fishing king") || fishName.equals("Yu Le Wu Qiong")) {
+        if (fishName.equals("Fishing king") || fishName.equals("Yu Le Wu Qiong")) {
             return "https://s3-ap-northeast-1.amazonaws.com/hcgames.3g/content/images/ig/";
         } else {
             return "https://s3-ap-northeast-1.amazonaws.com/hcgames.3g/content/images/game/joker123/";

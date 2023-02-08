@@ -3,8 +3,8 @@ package nanyang.com.dig88.Table.popupwindow;
 import android.content.Context;
 import android.view.View;
 
+import gaming178.com.mylibrary.popupwindow.BaseYseNoChoosePopupwindow;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.popupwindow.BaseYseNoChoosePopupwindow;
 
 /**
  * Created by Administrator on 2016/1/7.

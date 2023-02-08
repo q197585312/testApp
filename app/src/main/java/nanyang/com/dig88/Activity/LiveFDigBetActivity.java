@@ -15,7 +15,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -39,7 +38,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Adapter.PersonGameResultAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
@@ -54,10 +54,7 @@ import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.GameBaseActivity;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Util.BlockDialog;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.allinone.util.ScreenUtil;
 
 /**
  * Created by Administrator on 2015/11/16. (轮盘)
@@ -83,156 +80,156 @@ public class LiveFDigBetActivity extends GameBaseActivity{
     boolean m_res = false;
     boolean m_res_video = false;
     boolean bActivityExist = true;
-    @Bind(R.id.b_imageView_video)
+    @BindView(R.id.b_imageView_video)
     IjkVideoView view;
-    @Bind(R.id.b_text_video)
+    @BindView(R.id.b_text_video)
     TextView text_Video;
-    @Bind(R.id.videoErrorMesseg)
+    @BindView(R.id.videoErrorMesseg)
     TextView videoErrorMesseg;
-    @Bind(R.id.b_btn_video_reload)
+    @BindView(R.id.b_btn_video_reload)
     Button btn_Video;
-    @Bind(R.id.b_voice)
+    @BindView(R.id.b_voice)
     Button btn_Mute;
     //视频结束
     //第一行
-    @Bind(R.id.ll_tv3)
+    @BindView(R.id.ll_tv3)
     LinearLayout ll_tv3;
-    @Bind(R.id.ll_tv6)
+    @BindView(R.id.ll_tv6)
     LinearLayout ll_tv6;
-    @Bind(R.id.ll_tv9)
+    @BindView(R.id.ll_tv9)
     LinearLayout ll_tv9;
-    @Bind(R.id.ll_tv12)
+    @BindView(R.id.ll_tv12)
     LinearLayout ll_tv12;
-    @Bind(R.id.ll_tv15)
+    @BindView(R.id.ll_tv15)
     LinearLayout ll_tv15;
-    @Bind(R.id.ll_tv18)
+    @BindView(R.id.ll_tv18)
     LinearLayout ll_tv18;
-    @Bind(R.id.ll_tv21)
+    @BindView(R.id.ll_tv21)
     LinearLayout ll_tv21;
-    @Bind(R.id.ll_tv24)
+    @BindView(R.id.ll_tv24)
     LinearLayout ll_tv24;
-    @Bind(R.id.ll_tv27)
+    @BindView(R.id.ll_tv27)
     LinearLayout ll_tv27;
-    @Bind(R.id.ll_tv30)
+    @BindView(R.id.ll_tv30)
     LinearLayout ll_tv30;
-    @Bind(R.id.ll_tv33)
+    @BindView(R.id.ll_tv33)
     LinearLayout ll_tv33;
-    @Bind(R.id.ll_tv36)
+    @BindView(R.id.ll_tv36)
     LinearLayout ll_tv36;
-    @Bind(R.id.ll_tv2to1)
+    @BindView(R.id.ll_tv2to1)
     LinearLayout ll_tv2to1;
     //第二行
-    @Bind(R.id.ll_tv2)
+    @BindView(R.id.ll_tv2)
     LinearLayout ll_tv2;
-    @Bind(R.id.ll_tv5)
+    @BindView(R.id.ll_tv5)
     LinearLayout ll_tv5;
-    @Bind(R.id.ll_tv8)
+    @BindView(R.id.ll_tv8)
     LinearLayout ll_tv8;
-    @Bind(R.id.ll_tv11)
+    @BindView(R.id.ll_tv11)
     LinearLayout ll_tv11;
-    @Bind(R.id.ll_tv14)
+    @BindView(R.id.ll_tv14)
     LinearLayout ll_tv14;
-    @Bind(R.id.ll_tv17)
+    @BindView(R.id.ll_tv17)
     LinearLayout ll_tv17;
-    @Bind(R.id.ll_tv20)
+    @BindView(R.id.ll_tv20)
     LinearLayout ll_tv20;
-    @Bind(R.id.ll_tv23)
+    @BindView(R.id.ll_tv23)
     LinearLayout ll_tv23;
-    @Bind(R.id.ll_tv26)
+    @BindView(R.id.ll_tv26)
     LinearLayout ll_tv26;
-    @Bind(R.id.ll_tv29)
+    @BindView(R.id.ll_tv29)
     LinearLayout ll_tv29;
-    @Bind(R.id.ll_tv32)
+    @BindView(R.id.ll_tv32)
     LinearLayout ll_tv32;
-    @Bind(R.id.ll_tv35)
+    @BindView(R.id.ll_tv35)
     LinearLayout ll_tv35;
-    @Bind(R.id.ll_tv2to11)
+    @BindView(R.id.ll_tv2to11)
     LinearLayout ll_tv2to11;
     //第三行
-    @Bind(R.id.ll_tv1)
+    @BindView(R.id.ll_tv1)
     LinearLayout ll_tv1;
-    @Bind(R.id.ll_tv4)
+    @BindView(R.id.ll_tv4)
     LinearLayout ll_tv4;
-    @Bind(R.id.ll_tv7)
+    @BindView(R.id.ll_tv7)
     LinearLayout ll_tv7;
-    @Bind(R.id.ll_tv10)
+    @BindView(R.id.ll_tv10)
     LinearLayout ll_tv10;
-    @Bind(R.id.ll_tv13)
+    @BindView(R.id.ll_tv13)
     LinearLayout ll_tv13;
-    @Bind(R.id.ll_tv16)
+    @BindView(R.id.ll_tv16)
     LinearLayout ll_tv16;
-    @Bind(R.id.ll_tv19)
+    @BindView(R.id.ll_tv19)
     LinearLayout ll_tv19;
-    @Bind(R.id.ll_tv22)
+    @BindView(R.id.ll_tv22)
     LinearLayout ll_tv22;
-    @Bind(R.id.ll_tv25)
+    @BindView(R.id.ll_tv25)
     LinearLayout ll_tv25;
-    @Bind(R.id.ll_tv28)
+    @BindView(R.id.ll_tv28)
     LinearLayout ll_tv28;
-    @Bind(R.id.ll_tv31)
+    @BindView(R.id.ll_tv31)
     LinearLayout ll_tv31;
-    @Bind(R.id.ll_tv34)
+    @BindView(R.id.ll_tv34)
     LinearLayout ll_tv34;
-    @Bind(R.id.ll_tv2to22)
+    @BindView(R.id.ll_tv2to22)
     LinearLayout ll_tv2to22;
     //倒数第二行
-    @Bind(R.id.ll_tv1st12)
+    @BindView(R.id.ll_tv1st12)
     LinearLayout ll_tv1st12;
-    @Bind(R.id.ll_tv2nd12)
+    @BindView(R.id.ll_tv2nd12)
     LinearLayout ll_tv2nd12;
-    @Bind(R.id.ll_tv3rd12)
+    @BindView(R.id.ll_tv3rd12)
     LinearLayout ll_tv3rd12;
     //倒数第一行
-    @Bind(R.id.ll_tv1to18)
+    @BindView(R.id.ll_tv1to18)
     LinearLayout ll_tv1to18;
-    @Bind(R.id.ll_tveven)
+    @BindView(R.id.ll_tveven)
     LinearLayout ll_tveven;
-    @Bind(R.id.ll_tvred)
+    @BindView(R.id.ll_tvred)
     LinearLayout ll_tvred;
-    @Bind(R.id.ll_tvblack)
+    @BindView(R.id.ll_tvblack)
     LinearLayout ll_tvblack;
-    @Bind(R.id.ll_tvodd)
+    @BindView(R.id.ll_tvodd)
     LinearLayout ll_tvodd;
-    @Bind(R.id.ll_tv19to36)
+    @BindView(R.id.ll_tv19to36)
     LinearLayout ll_tv19to36;
-    @Bind(R.id.tv_titletop)
+    @BindView(R.id.tv_titletop)
     TextView tv_titletop;
-    @Bind(R.id.back)
+    @BindView(R.id.back)
     ImageView back1;
-    @Bind(R.id.six_black_tv)
+    @BindView(R.id.six_black_tv)
     TextView six_black_tv;
-    @Bind(R.id.six_red_tv)
+    @BindView(R.id.six_red_tv)
     TextView six_red_tv;
-    @Bind(R.id.six_odd_tv)
+    @BindView(R.id.six_odd_tv)
     TextView six_odd_tv;
-    @Bind(R.id.six_even_tv)
+    @BindView(R.id.six_even_tv)
     TextView six_even_tv;
     String account;
     NyVolleyJsonThreadHandler<DigGameBetBean> diggameThread;
-    @Bind(R.id.tv_nodata)
+    @BindView(R.id.tv_nodata)
     TextView tv_nodata;
-    @Bind(R.id.lv_ball_result)
+    @BindView(R.id.lv_ball_result)
     ListView lv_ball_result;
-    @Bind(R.id.tv_cycle)
+    @BindView(R.id.tv_cycle)
     TextView tv_cycle;
-    @Bind(R.id.tv_ball_result)
+    @BindView(R.id.tv_ball_result)
     TextView tv_ball_result;
-    @Bind(R.id.tv_time)
+    @BindView(R.id.tv_time)
     TextView tv_time;
     int tag = 0;
     int tag1; //区别是下注还是获取列表
     BroadcastReceiver mItemViewListClickReceiver;
     int timeend;
     //开奖
-    @Bind(R.id.rl_dialog1)
+    @BindView(R.id.rl_dialog1)
     RelativeLayout rl_dialog;
-    @Bind(R.id.tv_toumingdu)
+    @BindView(R.id.tv_toumingdu)
     TextView tv_toumingdu;
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     ProgressBar loading;
-    @Bind(R.id.progress_dialog_tv)
+    @BindView(R.id.progress_dialog_tv)
     TextView progress_dialog_tv;
-    @Bind(R.id.fragment_game_hall_one)
+    @BindView(R.id.fragment_game_hall_one)
     FrameLayout fragment_game_hall_one;
     //Scoll balls
     Double gettotalbetscoll;
@@ -254,10 +251,10 @@ public class LiveFDigBetActivity extends GameBaseActivity{
     //获取倒计时
     SharedPreferences sharedPreferencesdaojishi;
     String dao;
-    @Bind(R.id.btn_login)
+    @BindView(R.id.btn_login)
     Button btn_login;
     double yue=0.0;
-    @Bind(R.id.tv_more)
+    @BindView(R.id.tv_more)
     TextView tv_more;
     int huyin;
     boolean bGetNumberStatus = true;
@@ -1143,7 +1140,7 @@ public class LiveFDigBetActivity extends GameBaseActivity{
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
     }

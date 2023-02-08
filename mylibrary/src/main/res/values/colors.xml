@@ -103,4 +103,5 @@
     <color name="win_color">#00BFFF</color>
     <color name="banker_color">#ff0000</color>
     <color name="lose_color">#fd3a5c</color>
+    <color name="title_bg_color">#1C78F6</color>
 </resources>

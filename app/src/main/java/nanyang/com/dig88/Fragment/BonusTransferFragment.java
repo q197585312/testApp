@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.popupwindow.AbsListPopupWindow;
 import nanyang.com.dig88.Adapter.DividendRecordListAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.DividendCenterBean;
 import nanyang.com.dig88.Entity.DividendCenterListBean;
 import nanyang.com.dig88.R;
@@ -29,9 +31,6 @@ import nanyang.com.dig88.Table.entity.GameMenuItem;
 import nanyang.com.dig88.Util.BlockDialog;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
 
 /**
  * Created by Administrator on 2015/12/21. (红利中心1)
@@ -46,13 +45,13 @@ public class BonusTransferFragment extends BaseFragment implements View.OnClickL
     private static final int SUBMIT_REPEAT_ERROR = 6;
     public BlockDialog dialog;
     public List<DividendCenterListBean> listData = new ArrayList<DividendCenterListBean>();
-    @Bind(R.id.tv_leixing)
+    @BindView(R.id.tv_leixing)
     TextView tv_leixing;
-    @Bind(R.id.et_jine)
+    @BindView(R.id.et_jine)
     EditText et_jine;
-    @Bind(R.id.btn_tijiao)
+    @BindView(R.id.btn_tijiao)
     Button btn_tijiao;
-    @Bind(R.id.lv_hongli_center)
+    @BindView(R.id.lv_hongli_center)
     ListView lv_hongli_center;
     DividendRecordListAdapter dividendRecordListAdapter;
     String stringjine;
@@ -128,9 +127,7 @@ public class BonusTransferFragment extends BaseFragment implements View.OnClickL
         AppTool.setAppLanguage(mContext, "");
         bonusData = new ArrayList<>();
         bonusData.add(new GameMenuItem(0, getString(R.string.zhuankuanhl), "5"));
-        if (!BuildConfig.FLAVOR.equals("fun77") && !BuildConfig.FLAVOR.equals("jf58") && !BuildConfig.FLAVOR.equals("villabetting")) {
-            bonusData.add(new GameMenuItem(0, getString(R.string.withdraw_bonus), "4"));
-        }
+        bonusData.add(new GameMenuItem(0, getString(R.string.withdraw_bonus), "4"));
         bonusSelectedItem = bonusData.get(0);
         getAct().setTitle(getString(R.string.honglizx));
         dialog = new BlockDialog(getActivity(), getString(R.string.zhengjiazai));
@@ -147,19 +144,6 @@ public class BonusTransferFragment extends BaseFragment implements View.OnClickL
         stringjine = et_jine.getText().toString().trim();
         if (stringjine.length() != 0) {
             double min = 50;
-            if (BuildConfig.FLAVOR.equals("fun77")) {
-                min = 5;
-            } else if (BuildConfig.FLAVOR.equals("gasia88")) {
-                if (bonusSelectedItem.getValue().equals("5")) {
-                    min = 0.1;
-                }
-            } else if (BuildConfig.FLAVOR.equals("asap888")) {
-                min = 0.1;
-            } else if (BuildConfig.FLAVOR.equals("dig88") || BuildConfig.FLAVOR.equals("mmbet")) {
-                min = 1;
-            }else if (BuildConfig.FLAVOR.equals("istana168") || BuildConfig.FLAVOR.equals("betting234")) {
-                min = 20;
-            }
             if (Double.parseDouble(stringjine) < min) {
                 Toast.makeText(getActivity(), getString(R.string.transfer_bouns_error) + " "+min, Toast.LENGTH_LONG).show();
                 return;

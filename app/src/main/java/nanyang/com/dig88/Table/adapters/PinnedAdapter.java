@@ -8,10 +8,10 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.myview.mylistview.PinnedSectionListView;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.MatchBean;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.myview.mylistview.PinnedSectionListView;
 
 /**
  * Created by Administrator on 2015/11/17.

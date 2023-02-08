@@ -8,18 +8,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.annotation.RequiresApi;
+
 import org.reactivestreams.Subscription;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -28,23 +29,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import gaming178.com.mylibrary.allinone.RequestUtils;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import nanyang.com.dig88.Base.BaseHttpRequestPresenter;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.GameBalanceBean;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Entity.MsgNoReadBean;
 import nanyang.com.dig88.Entity.SendTelBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.Fragment.BaseFragment;
-import nanyang.com.dig88.Home.Bean.LoginStatusBean;
 import nanyang.com.dig88.R;
-import nanyang.com.dig88.Table.popupwindow.DigYesNoChoosePop;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.BlockDialog;
 import nanyang.com.dig88.Util.ChoicePicHelper;
@@ -52,14 +52,11 @@ import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.ImageBase64;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.RequestUtils;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
 
 /**
  * Created by Administrator on 2015/10/19.
  */
-public abstract class BaseActivity<T extends BaseRetrofitPresenter> extends xs.com.mylibrary.base.component.BaseActivity implements IBaseContext {
+public abstract class BaseActivity<T extends BaseRetrofitPresenter> extends gaming178.com.mylibrary.base.component.BaseActivity implements IBaseContext {
 
     private final int maxErrorCount = 4;
     public int screenWidth;

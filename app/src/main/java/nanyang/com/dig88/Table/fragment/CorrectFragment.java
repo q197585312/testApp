@@ -9,27 +9,27 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.QuickAdapterImp;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.VsTableRowBean1;
 import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.BettingInfoBean;
 import nanyang.com.dig88.Table.popupwindow.BetBasePop;
 import nanyang.com.dig88.Util.DeviceUtils;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by Administrator on 2015/11/4.
  */
 public class CorrectFragment extends BaseFragment {
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
     AdapterViewContent<VsTableRowBean1> content;
-    @Bind(R.id.ll_base_listview)
+    @BindView(R.id.ll_base_listview)
     LinearLayout ll_base_listview;
     private List<VsTableRowBean1> data;
 
@@ -63,15 +63,15 @@ public class CorrectFragment extends BaseFragment {
                 }
                 helper.setText(R.id.vs_row_content_tv11, item.getRows().get(0).getKey().toString());
                 helper.setText(R.id.vs_row_content_tv12, item.getRows().get(0).getValue());
-                setOddsTextColor(item.getRows().get(0).getValue(),helper.getTextView(R.id.vs_row_content_tv12));
+                setOddsTextColor(item.getRows().get(0).getValue(),helper.retrieveView(R.id.vs_row_content_tv12));
 
                 helper.setText(R.id.vs_row_content_tv21, item.getRows().get(1).getKey().toString());
                 helper.setText(R.id.vs_row_content_tv22, item.getRows().get(1).getValue());
-                setOddsTextColor(item.getRows().get(1).getValue(),helper.getTextView(R.id.vs_row_content_tv22));
+                setOddsTextColor(item.getRows().get(1).getValue(),helper.retrieveView(R.id.vs_row_content_tv22));
 
                 helper.setText(R.id.vs_row_content_tv31, item.getRows().get(2).getKey().toString());
                 helper.setText(R.id.vs_row_content_tv32, item.getRows().get(2).getValue());
-                setOddsTextColor(item.getRows().get(2).getValue(),helper.getTextView(R.id.vs_row_content_tv32));
+                setOddsTextColor(item.getRows().get(2).getValue(),helper.retrieveView(R.id.vs_row_content_tv32));
 
                 if (item.getRows().get(0).getValue() == null || item.getRows().get(0).getValue().equals("")) {
                     helper.setVisibility(R.id.vs_row_content_tv1x, View.INVISIBLE);

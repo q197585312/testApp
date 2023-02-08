@@ -1,14 +1,13 @@
 package nanyang.com.dig88.Util;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Entity.MsgTotalDataBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by 47184 on 2019/3/25.

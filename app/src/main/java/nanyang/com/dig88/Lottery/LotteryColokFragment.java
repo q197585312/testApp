@@ -18,25 +18,25 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
+import gaming178.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.Entity.Lottery234BetBean;
 import nanyang.com.dig88.Entity.LotteryCountBean;
 import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by Administrator on 2016/2/24.
  */
 public class LotteryColokFragment extends LotteryBaseFragment<ColokBean> {
-    @Bind(R.id.list_content_ptrlv)
+    @BindView(R.id.list_content_ptrlv)
     PullToRefreshListView listContentPtrlv;
-    @Bind(R.id.lottery_center_progress_ll)
+    @BindView(R.id.lottery_center_progress_ll)
     View progressView;
     private HashMap<Integer, Integer> selectedMap = new HashMap<>();
     private String period;
@@ -358,7 +358,7 @@ public class LotteryColokFragment extends LotteryBaseFragment<ColokBean> {
                         if(position==1&&childId!=1&&childId!=4){
                            if(str.length()>1){
                                StringBuilder b=new StringBuilder();
-                              Map<String,Integer> diffMap=StringUtils.countDifferentCharMap(str);
+                              Map<String,Integer> diffMap= StringUtils.countDifferentCharMap(str);
                                Iterator<Map.Entry<String, Integer>> it = diffMap.entrySet().iterator();
                                while(it.hasNext()){
                                    Map.Entry<String, Integer> next = it.next();

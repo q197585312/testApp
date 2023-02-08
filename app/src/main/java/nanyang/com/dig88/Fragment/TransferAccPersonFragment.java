@@ -2,11 +2,12 @@ package nanyang.com.dig88.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -14,7 +15,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Activity.ActivityFragmentShow;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.GameMenuItem;
@@ -24,7 +25,7 @@ import nanyang.com.dig88.Table.entity.GameMenuItem;
  */
 
 public class TransferAccPersonFragment extends BaseFragment {
-    @Bind(R.id.rc_content)
+    @BindView(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<GameMenuItem> adapter;
 

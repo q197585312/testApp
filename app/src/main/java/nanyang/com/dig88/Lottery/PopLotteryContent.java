@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.R;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/8/22.
  */
 
 public class PopLotteryContent extends BasePopupWindow {
-    @Bind(R.id.tv_content)
+    @BindView(R.id.tv_content)
     TextView tv_content;
 
     public PopLotteryContent(Context context, View v, int width, int height) {

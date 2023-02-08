@@ -1,7 +1,6 @@
 package nanyang.com.dig88.Fragment.Presenter;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
@@ -15,18 +14,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.BankAccountDetailBean;
 import nanyang.com.dig88.Entity.BankInfoBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.Entity.UserInfoBean;
 import nanyang.com.dig88.Entity.VipInfoBean;
 import nanyang.com.dig88.Fragment.Funplay26BountBankFragment;
-import nanyang.com.dig88.Fragment.Q2betOnlineDepositFragment;
 import nanyang.com.dig88.Util.ApiService;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 

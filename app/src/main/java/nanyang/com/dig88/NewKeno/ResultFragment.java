@@ -3,13 +3,13 @@ package nanyang.com.dig88.NewKeno;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,33 +18,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Entity.ContentInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.BaseContentListPopWindow;
 import nanyang.com.dig88.Util.CalendarPopuWindow;
 import nanyang.com.dig88.Util.DateUtils;
 import nanyang.com.dig88.Util.HttpClient;
-import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.LoadMoreListView;
 import nanyang.com.dig88.Util.RefreshAndLoadMoreView;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2018/9/13.
  */
 
 public class ResultFragment extends NewKenoBaseFragment {
-    @Bind(R.id.mRefreshAndLoadMoreView)
+    @BindView(R.id.mRefreshAndLoadMoreView)
     RefreshAndLoadMoreView mRefreshAndLoadMoreView;
-    @Bind(R.id.mLoadMoreListView)
+    @BindView(R.id.mLoadMoreListView)
     LoadMoreListView mLoadMoreListView;
-    @Bind(R.id.tv_date)
+    @BindView(R.id.tv_date)
     TextView tv_date;
-    @Bind(R.id.tv_rule)
+    @BindView(R.id.tv_rule)
     TextView tv_rule;
     String rule;
     String resultUrl = "http://kgweb.keno6.com/api/api.php?page=keno_new_result_submitter";

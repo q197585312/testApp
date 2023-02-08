@@ -3,12 +3,12 @@ package nanyang.com.dig88.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Entity.N2CasinoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2018/5/9.

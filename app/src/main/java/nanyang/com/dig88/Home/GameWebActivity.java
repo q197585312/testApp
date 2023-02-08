@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 
-import butterknife.Bind;
 import nanyang.com.dig88.Activity.BaseWebActivity;
 import nanyang.com.dig88.R;
 

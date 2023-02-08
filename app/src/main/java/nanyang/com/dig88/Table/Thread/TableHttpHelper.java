@@ -3,17 +3,22 @@ package nanyang.com.dig88.Table.Thread;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.MyLog;
+import gaming178.com.mylibrary.allinone.util.ThreadPoolUtils;
+import gaming178.com.mylibrary.allinone.util.WidgetUtil;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Entity.AfbH5HostBean;
 import nanyang.com.dig88.Entity.AfbLimitBean;
@@ -21,10 +26,6 @@ import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.Util.HttpClient;
 import nanyang.com.dig88.Util.ICookie;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.MyLog;
-import xs.com.mylibrary.allinone.util.ThreadPoolUtils;
-import xs.com.mylibrary.allinone.util.WidgetUtil;
 
 /**
  * Created by Administrator on 2015/11/9.
@@ -211,7 +212,7 @@ public class TableHttpHelper<T> implements ICookie {
         };
         if (dataView != null) {
             loadingV = LayoutInflater.from(context).inflate(
-                    xs.com.mylibrary.R.layout.green_center_loading, null);
+                    gaming178.com.mylibrary.R.layout.green_center_loading, null);
             loadingV.setVisibility(View.VISIBLE);
             WidgetUtil.coverView(dataView, loadingV);
         }
@@ -336,7 +337,7 @@ public class TableHttpHelper<T> implements ICookie {
     private void startThread(Runnable run, boolean showAble) {
         if (dataView != null && showAble) {
             loadingV = LayoutInflater.from(context).inflate(
-                    xs.com.mylibrary.R.layout.green_center_loading, null);
+                    gaming178.com.mylibrary.R.layout.green_center_loading, null);
             loadingV.setVisibility(View.VISIBLE);
             WidgetUtil.coverView(dataView, loadingV);
         }

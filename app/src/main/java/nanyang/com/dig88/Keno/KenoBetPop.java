@@ -18,41 +18,41 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Lottery.LotteryBetResultBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2016/6/16.
  */
 public class KenoBetPop extends BasePopupWindow {
-    @Bind(R.id.tv_bet_pop_title)
+    @BindView(R.id.tv_bet_pop_title)
     TextView tvBetPopTitle;
-    @Bind(R.id.tv_bet_pop_country)
+    @BindView(R.id.tv_bet_pop_country)
     TextView tvBetPopCountry;
-    @Bind(R.id.ll_country)
+    @BindView(R.id.ll_country)
     LinearLayout llCountry;
-    @Bind(R.id.tv_bet_pop_number)
+    @BindView(R.id.tv_bet_pop_number)
     TextView tvBetPopNumber;
-    @Bind(R.id.tv_bet_pop_odds)
+    @BindView(R.id.tv_bet_pop_odds)
     TextView tvBetPopOdds;
-    @Bind(R.id.edt_bet_pop_amount)
+    @BindView(R.id.edt_bet_pop_amount)
     EditText edtBetPopAmount;
-    @Bind(R.id.tv_bet_pop_actual_amount)
+    @BindView(R.id.tv_bet_pop_actual_amount)
     TextView tvBetPopActualAmount;
-    @Bind(R.id.btn_bet_pop_sure)
+    @BindView(R.id.btn_bet_pop_sure)
     Button btnBetPopSure;
-    @Bind(R.id.btn_bet_pop_cancel)
+    @BindView(R.id.btn_bet_pop_cancel)
     Button btnBetPopCancel;
-    @Bind(R.id.iv_hide)
+    @BindView(R.id.iv_hide)
     ImageView ivHide;
     KenoBetBean betBean;
     private boolean canBet = true;

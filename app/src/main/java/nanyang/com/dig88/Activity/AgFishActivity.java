@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 
 import java.io.IOException;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Entity.AgFishConfigBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.Dig88Utils;
@@ -28,9 +28,9 @@ import nanyang.com.dig88.Util.WebSiteUrl;
  */
 
 public class AgFishActivity extends BaseActivity {
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
-    @Bind(R.id.ll_parent)
+    @BindView(R.id.ll_parent)
     LinearLayout llParent;
     HttpClient httpClient;
     private Handler agHandler = new Handler() {

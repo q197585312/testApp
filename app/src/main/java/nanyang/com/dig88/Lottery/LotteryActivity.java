@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -24,11 +25,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.TimeUtils;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
+import gaming178.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
+import gaming178.com.mylibrary.popupwindow.AbsListPopupWindow;
 import nanyang.com.dig88.Adapter.MyFragmentPagerAdapter;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.Entity.LotteryCountBean;
 import nanyang.com.dig88.Entity.LotteryPromptBean;
@@ -36,12 +42,6 @@ import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.GameBaseActivity;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.TimeUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
-import xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
-import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
 
 /**
  * Created by Administrator on 2015/12/8.彩票
@@ -49,24 +49,24 @@ import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
 public class LotteryActivity extends GameBaseActivity {
 
     private static final String TIMER_ACTION = "TIMER_ACTION";
-    @Bind(R.id.lottery_bottom_bet_fl)
+    @BindView(R.id.lottery_bottom_bet_fl)
     LinearLayout lotteryBottomBetFl;
-    @Bind(R.id.lottery_bottom_submit_btn)
+    @BindView(R.id.lottery_bottom_submit_btn)
     Button submitBtn;
-    @Bind(R.id.fragment)
+    @BindView(R.id.fragment)
     FrameLayout fragment;
     //更新操作
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     PagerSlidingTabStrip tabs;
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager contentPager;
-    @Bind(R.id.total_amount_tv)
+    @BindView(R.id.total_amount_tv)
     TextView total_amount_tv;
-    @Bind(R.id.bet_total_amount_tv)
+    @BindView(R.id.bet_total_amount_tv)
     TextView bet_total_amount_tv;
-    @Bind(R.id.prompt_single_tv)
+    @BindView(R.id.prompt_single_tv)
     TextView prompt_single_tv;
-    @Bind(R.id.prompt_total_tv)
+    @BindView(R.id.prompt_total_tv)
     TextView prompt_total_tv;
     LotteryStateGameBean selectedStateBean;
     Handler updateHandler = new Handler();
@@ -113,7 +113,7 @@ public class LotteryActivity extends GameBaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
     }
@@ -187,19 +187,13 @@ public class LotteryActivity extends GameBaseActivity {
         } else if (name.equals("KUALA_LUMPUR")) {
             name = getString(R.string.KUALA_LUMPUR);
         } else if (name.equals("HONGKONG")) {
-            name = getString(R.string.HONGKONG);
-            if (BuildConfig.FLAVOR.equals("afbcash")) {
-                name = "HONGKONGPOOL";
-            }
+            name = "HONGKONGPOOL";
         } else if (name.equals("MALAYSIA")) {
             name = getString(R.string.MALAYSIA);
         } else if (name.equals("CHINA")) {
             name = getString(R.string.CHINA);
         } else if (name.equals("HKD")) {
-            name = getString(R.string.HK4D);
-            if (BuildConfig.FLAVOR.equals("afbcash")) {
-                name = "HK4D";
-            }
+            name = "HK4D";
         } else if (name.equals("CAMBODIA")) {
             name = getString(R.string.CAMBODIA);
         } else if (name.equals("MACAU")) {
@@ -207,10 +201,7 @@ public class LotteryActivity extends GameBaseActivity {
         } else if (name.equals("CANADA4D")) {
             name = getString(R.string.CANADA4D);
         } else if (name.equals("HONGKONGPOOL")) {
-            name = getString(R.string.HONGKONG);
-            if (BuildConfig.FLAVOR.equals("afbcash")) {
-                name = "HK LOTTO";
-            }
+            name = "HK LOTTO";
         } else if (name.equals("SYDNEY")) {
             name = getString(R.string.SYDNEY);
         } else if (name.equals("TaiWan")) {

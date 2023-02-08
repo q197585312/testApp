@@ -3,15 +3,14 @@ package nanyang.com.dig88.Util;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import nanyang.com.dig88.BuildConfig;
+import androidx.annotation.Nullable;
+
 import nanyang.com.dig88.R;
 
 /**
@@ -71,9 +70,6 @@ public class AutoScrollLayout extends LinearLayout {
         double totalTime = screenWidth / baseMoveWidth * 1000;
         if (measuredWidth > screenWidth) {
             totalTime = measuredWidth / baseMoveWidth * 1000;
-        }
-        if (BuildConfig.FLAVOR.equals("asap888") || BuildConfig.FLAVOR.equals("gasia88")) {
-            totalTime = totalTime / 4;
         }
         setTime((int) totalTime);
     }

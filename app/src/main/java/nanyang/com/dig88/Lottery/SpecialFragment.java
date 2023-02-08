@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import gaming178.com.mylibrary.base.ViewHolder;
+import gaming178.com.mylibrary.base.quick.QuickRequestBean;
 import nanyang.com.dig88.Base.NyBaseResponse;
 import nanyang.com.dig88.Base.NyVolleyJsonThreadHandler;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
@@ -22,8 +24,6 @@ import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.Entity.SpecialBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.base.quick.QuickRequestBean;
 
 /**
  * @author Administrator
@@ -31,9 +31,9 @@ import xs.com.mylibrary.base.quick.QuickRequestBean;
 public class SpecialFragment extends LotteryBaseFragment<SpecialBean> {
 
 
-    @Bind(R.id.special_bet_list_lv)
+    @BindView(R.id.special_bet_list_lv)
     ListView specialBetListLv;
-    @Bind(R.id.special_no_record_tv)
+    @BindView(R.id.special_no_record_tv)
     TextView specialNoRecordTv;
 
     @Override
@@ -229,6 +229,6 @@ public class SpecialFragment extends LotteryBaseFragment<SpecialBean> {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unBindView(this);
     }
 }

@@ -2,9 +2,6 @@ package nanyang.com.dig88.Activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.IdRes;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
-import nanyang.com.dig88.BuildConfig;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import nanyang.com.dig88.Fragment.BaseFragment;
 import nanyang.com.dig88.Fragment.DepositCenterFragment;
 import nanyang.com.dig88.Fragment.PromotionFragment;
@@ -35,7 +36,6 @@ import nanyang.com.dig88.Home.MenuWithdrawFragment;
 import nanyang.com.dig88.Home.Presenter.MainHomePresenter;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.Pop88gasiaContact;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 /**
  * Created by Administrator on 2015/10/19.
@@ -54,29 +54,29 @@ public class MainTabActivity extends BaseActivity<MainHomePresenter> {
     public BaseFragment firstFragment;
     public BaseFragment secondFragment;
     public BaseFragment currentFragment;
-    @Bind(R.id.rg_home)
+    @BindView(R.id.rg_home)
     RadioGroup rg_home;
-    @Bind(R.id.rg_home_my2bet)
+    @BindView(R.id.rg_home_my2bet)
     RadioGroup rg_home_my2bet;
-    @Bind(R.id.img_home)
+    @BindView(R.id.img_home)
     ImageView img_home;
-    @Bind(R.id.tv_msg_count)
+    @BindView(R.id.tv_msg_count)
     TextView tvMsgCount;
-    @Bind(R.id.rb_deposit)
+    @BindView(R.id.rb_deposit)
     RadioButton rbDeposit;
-    @Bind(R.id.rb_withdraw)
+    @BindView(R.id.rb_withdraw)
     RadioButton rbWithdraw;
-    @Bind(R.id.rb_contact)
+    @BindView(R.id.rb_contact)
     RadioButton rbContact;
-    @Bind(R.id.rb_user)
+    @BindView(R.id.rb_user)
     RadioButton rbUser;
-    @Bind(R.id.img_home_my2bet)
+    @BindView(R.id.img_home_my2bet)
     ImageView imgHomeMy2bet;
-    @Bind(R.id.tv_msg_count_my2bet)
+    @BindView(R.id.tv_msg_count_my2bet)
     TextView tvMsgCountMy2bet;
-    @Bind(R.id.rl_home_normal)
+    @BindView(R.id.rl_home_normal)
     RelativeLayout rlHomeNormal;
-    @Bind(R.id.rl_home_my2bet)
+    @BindView(R.id.rl_home_my2bet)
     RelativeLayout rlhomemy2bet;
     Pop88gasiaContact pop88gasiaContact;
     int lastIndex = -1;
@@ -97,11 +97,9 @@ public class MainTabActivity extends BaseActivity<MainHomePresenter> {
         rbContact.setText(getString(R.string.contact));
         rbUser.setText(getString(R.string.user));
         getApp().setRegisterFirstIn(false);
-        if (!BuildConfig.FLAVOR.equals("khmergaming") && !BuildConfig.FLAVOR.equals("kbet3") && !BuildConfig.FLAVOR.equals("ttwin168") && !BuildConfig.FLAVOR.equals("club988")) {
-            presenter.getNetIp();
-            presenter.handleAffiliateId();
-            presenter.handleNewVersion();
-        }
+        presenter.getNetIp();
+        presenter.handleAffiliateId();
+        presenter.handleNewVersion();
         depositCenterFragment = new DepositCenterFragment();
         withdrawCenterFragment = new WithdrawCenterFragment();
         depositFragment = new MenuDepositFragment();
@@ -112,55 +110,25 @@ public class MainTabActivity extends BaseActivity<MainHomePresenter> {
         promotionFragment = new PromotionFragment();
         firstFragment = depositFragment;
         secondFragment = withdrawFragment;
-        if (BuildConfig.FLAVOR.equals("q2bet") || BuildConfig.FLAVOR.equals("ttwin168") || BuildConfig.FLAVOR.equals("u2bet") ||
-                BuildConfig.FLAVOR.equals("mcd88") || BuildConfig.FLAVOR.equals("club988") || BuildConfig.FLAVOR.equals("afbcash") ||
-                BuildConfig.FLAVOR.equals("hjlh6688") || BuildConfig.FLAVOR.equals("win3888")) {
-            firstFragment = depositCenterFragment;
-        }
-        if (BuildConfig.FLAVOR.equals("funplay26") || BuildConfig.FLAVOR.equals("mcd88") || BuildConfig.FLAVOR.equals("onegold77") ||
-                BuildConfig.FLAVOR.equals("afbcash") || BuildConfig.FLAVOR.equals("hjlh6688") || BuildConfig.FLAVOR.equals("xslot88")) {
-            secondFragment = withdrawCenterFragment;
-        }
+        firstFragment = depositCenterFragment;
+        secondFragment = withdrawCenterFragment;
         lastFragment = userFragment;
-        if (BuildConfig.FLAVOR.equals("my2bet")) {
-            rlHomeNormal.setVisibility(View.GONE);
-            rlhomemy2bet.setVisibility(View.VISIBLE);
-            fragmentList = Arrays.asList(contactFragment, homeFragment, userFragment);
-            setRGCheckedChangeListener();
-            switchFragment(1);
-            imgHomeMy2bet.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (lastIndex == 1) {
-                        return;
-                    }
-                    rg_home_my2bet.clearCheck();
-                    switchFragment(1);
-                    initRGCheckedChangeListener(rg_home_my2bet);
+        fragmentList = Arrays.asList(firstFragment, secondFragment, homeFragment, contactFragment, lastFragment);
+        setRGCheckedChangeListener();
+        rlHomeNormal.setVisibility(View.VISIBLE);
+        rlhomemy2bet.setVisibility(View.GONE);
+        img_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (lastIndex == 2) {
+                    return;
                 }
-            });
-        } else {
-            fragmentList = Arrays.asList(firstFragment, secondFragment, homeFragment, contactFragment, lastFragment);
-            setRGCheckedChangeListener();
-            rlHomeNormal.setVisibility(View.VISIBLE);
-            rlhomemy2bet.setVisibility(View.GONE);
-            img_home.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (lastIndex == 2) {
-                        return;
-                    }
-                    if (BuildConfig.FLAVOR.equals("gasia88")) {
-                        showPop();
-                    }
-                    rg_home.clearCheck();
-                    switchFragment(2);
-                    initRGCheckedChangeListener(rg_home);
-                }
-            });
-            switchFragment(2);
-
-        }
+                rg_home.clearCheck();
+                switchFragment(2);
+                initRGCheckedChangeListener(rg_home);
+            }
+        });
+        switchFragment(2);
     }
 
     private void showPop() {
@@ -200,70 +168,35 @@ public class MainTabActivity extends BaseActivity<MainHomePresenter> {
     }
 
     private void setRGCheckedChangeListener() {
-        if (BuildConfig.FLAVOR.equals("my2bet")) {
-            rg_home_my2bet.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                    if (!hasLoginInfo() && checkedId != R.id.rb_contact_my2bet && checkedId != -1) {
-                        initRGCheckedChangeListener(rg_home_my2bet);
-                        ToastUtils.showShort(getString(R.string.please_login));
-                        return;
-                    }
-                    switch (checkedId) {
-                        case R.id.rb_contact_my2bet:
-                            switchFragment(0);
-                            break;
-                        case R.id.rb_user_my2bet:
-                            switchFragment(2);
-                            break;
-                    }
+        rg_home.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if (!hasLoginInfo() && checkedId != R.id.rb_contact && checkedId != R.id.rb_user && checkedId != -1) {
+                    initRGCheckedChangeListener(rg_home);
+                    ToastUtils.showShort(getString(R.string.please_login));
+                    return;
                 }
-            });
-        } else {
-            rg_home.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                    if (!hasLoginInfo() && checkedId != R.id.rb_contact && checkedId != R.id.rb_user && checkedId != -1) {
-                        initRGCheckedChangeListener(rg_home);
-                        if (checkedId == R.id.rb_deposit && BuildConfig.FLAVOR.equals("ibet567")) {
-                            presenter.openUrl("http://m.ibet567.com");
-                        } else if (checkedId == R.id.rb_withdraw && BuildConfig.FLAVOR.equals("ibet567")) {
-                            presenter.openUrl("https://www.ibet567.com/index.php?mobile=1");
-                        } else {
+                switch (checkedId) {
+                    case R.id.rb_deposit:
+                        switchFragment(0);
+                        break;
+                    case R.id.rb_withdraw:
+                        switchFragment(1);
+                        break;
+                    case R.id.rb_contact:
+                        switchFragment(3);
+                        break;
+                    case R.id.rb_user:
+                        if (!hasLoginInfo()) {
+                            initRGCheckedChangeListener(rg_home);
                             ToastUtils.showShort(getString(R.string.please_login));
+                        } else {
+                            switchFragment(4);
                         }
-                        return;
-                    }
-                    switch (checkedId) {
-                        case R.id.rb_deposit:
-                            if (BuildConfig.FLAVOR.equals("k9th") && getCurrency().equals("THB")) {
-                                firstFragment = depositCenterFragment;
-                                fragmentList.set(0, firstFragment);
-                            }
-                            switchFragment(0);
-                            break;
-                        case R.id.rb_withdraw:
-                            switchFragment(1);
-                            break;
-                        case R.id.rb_contact:
-                            switchFragment(3);
-                            break;
-                        case R.id.rb_user:
-                            if (BuildConfig.FLAVOR.equals("ibet567")) {
-                                switchFragment(4);
-                            } else {
-                                if (!hasLoginInfo()) {
-                                    initRGCheckedChangeListener(rg_home);
-                                    ToastUtils.showShort(getString(R.string.please_login));
-                                } else {
-                                    switchFragment(4);
-                                }
-                            }
-                            break;
-                    }
+                        break;
                 }
-            });
-        }
+            }
+        });
     }
 
     private void switchFragment(int index) {
@@ -314,9 +247,6 @@ public class MainTabActivity extends BaseActivity<MainHomePresenter> {
     protected void onResume() {
         super.onResume();
         updateDigitalGamesMoney();
-        if (BuildConfig.FLAVOR.equals("gasia88") && currentFragment.equals(homeFragment)) {
-            showPop();
-        }
     }
 
     @Override
@@ -328,9 +258,6 @@ public class MainTabActivity extends BaseActivity<MainHomePresenter> {
     @Override
     public void onGetMsgBoxCount(String count) {
         super.onGetMsgBoxCount(count);
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            return;
-        }
         showMsgCount(count);
     }
 
@@ -341,25 +268,10 @@ public class MainTabActivity extends BaseActivity<MainHomePresenter> {
                 if (!TextUtils.isEmpty(count)) {
                     if (tvMsgCount != null && tvMsgCountMy2bet != null) {
                         if (!count.equals("0")) {
-                            if (BuildConfig.FLAVOR.equals("my2bet")) {
-                                tvMsgCountMy2bet.setVisibility(View.VISIBLE);
-                                tvMsgCountMy2bet.setText(count);
-                            } else {
-                                tvMsgCount.setVisibility(View.VISIBLE);
-                                tvMsgCount.setText(count);
-                            }
+                            tvMsgCount.setVisibility(View.VISIBLE);
+                            tvMsgCount.setText(count);
                         } else {
-                            if (BuildConfig.FLAVOR.equals("my2bet")) {
-                                tvMsgCountMy2bet.setVisibility(View.GONE);
-                            } else {
-                                tvMsgCount.setVisibility(View.GONE);
-                            }
-                        }
-                    }
-                    if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        if (homeFragment != null) {
-                            homeFragment.setMsgCount(count);
-                            homeFragment.showMsgCount(count);
+                            tvMsgCount.setVisibility(View.GONE);
                         }
                     }
                     if (contactFragment != null) {

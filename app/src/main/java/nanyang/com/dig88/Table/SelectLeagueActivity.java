@@ -2,7 +2,6 @@ package nanyang.com.dig88.Table;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,23 +10,25 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.viewpager.widget.ViewPager;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.base.AdapterViewContent;
+import gaming178.com.mylibrary.base.BasePageAdapter;
+import gaming178.com.mylibrary.base.ItemCLickImp;
+import gaming178.com.mylibrary.base.QuickAdapterImp;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Activity.BaseActivity;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.SerializableMap;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Table.entity.PopMenuItemBean;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.BasePageAdapter;
-import xs.com.mylibrary.base.ItemCLickImp;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2015/12/3.
@@ -35,9 +36,9 @@ import xs.com.mylibrary.base.ViewHolder;
  */
 public class SelectLeagueActivity extends BaseActivity {
     public static final int SELETED_RESULT=0x0000000B;
-    @Bind(R.id.list_content_lv)
+    @BindView(R.id.list_content_lv)
     ListView listContentLv;
-    @Bind(R.id.detail_top_vp)
+    @BindView(R.id.detail_top_vp)
     ViewPager detailTopVp;
 //    @Bind(R.id.detail_top_cpi)
 //    CirclePageIndicator detailTopCpi;
@@ -61,7 +62,7 @@ public class SelectLeagueActivity extends BaseActivity {
         toolbar.setVisibility(View.GONE);
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);

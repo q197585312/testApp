@@ -8,7 +8,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import nanyang.com.dig88.Entity.DigGameOddsBean;
 import nanyang.com.dig88.Entity.LotteryStateGameBean;
 import nanyang.com.dig88.R;
@@ -18,13 +18,13 @@ import nanyang.com.dig88.R;
  */
 
 public class Lottery2DNewFragment extends LotteryBaseFragment<Object> {
-    @Bind(R.id.lottery_discount_2d_tv)
+    @BindView(R.id.lottery_discount_2d_tv)
     TextView lotteryDiscount2dTv;
-    @Bind(R.id.lottery_odds_2d_tv)
+    @BindView(R.id.lottery_odds_2d_tv)
     TextView lotteryOdds2dTv;
-    @Bind(R.id.edt_content)
+    @BindView(R.id.edt_content)
     EditText edt_content;
-    @Bind(R.id.tv_type)
+    @BindView(R.id.tv_type)
     TextView tv_type;
     DigGameOddsBean digGameOddsBean;
     String content;

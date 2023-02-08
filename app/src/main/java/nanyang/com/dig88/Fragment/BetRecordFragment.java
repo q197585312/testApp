@@ -1,13 +1,14 @@
 package nanyang.com.dig88.Fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -15,7 +16,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import nanyang.com.dig88.Entity.Afb2BetRecordBean;
 import nanyang.com.dig88.Entity.ContentInfoBean;
@@ -32,9 +33,9 @@ import nanyang.com.dig88.Util.WebSiteUrl;
  */
 
 public class BetRecordFragment extends BaseFragment<BetRecordPresenter> {
-    @Bind(R.id.rc_deposit)
+    @BindView(R.id.rc_deposit)
     RecyclerView rcDeposit;
-    @Bind(R.id.tv_choice_type)
+    @BindView(R.id.tv_choice_type)
     TextView tvChoiceType;
     List<ContentInfoBean> list;
 

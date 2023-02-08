@@ -11,18 +11,17 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import nanyang.com.dig88.Activity.BaseActivity;
+import gaming178.com.mylibrary.allinone.util.AppTool;
+import gaming178.com.mylibrary.allinone.util.DecimalUtils;
+import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 import nanyang.com.dig88.Entity.LoginInfoBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.OkhttpUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
 import okhttp3.FormBody;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.DecimalUtils;
-import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 /**
  * Created by Administrator on 2018/9/18.
@@ -30,15 +29,15 @@ import xs.com.mylibrary.popupwindow.BasePopupWindow;
 
 public abstract class PopNewKenoBet extends BasePopupWindow {
     NewKenoActivity activity;
-    @Bind(R.id.tv_username)
+    @BindView(R.id.tv_username)
     TextView tv_username;
-    @Bind(R.id.tv_bet_gid)
+    @BindView(R.id.tv_bet_gid)
     TextView tv_bet_gid;
-    @Bind(R.id.edt_bet_amount)
+    @BindView(R.id.edt_bet_amount)
     EditText edt_bet_amount;
-    @Bind(R.id.tv_max_payout)
+    @BindView(R.id.tv_max_payout)
     TextView tv_max_payout;
-    @Bind(R.id.tv_bet_limit)
+    @BindView(R.id.tv_bet_limit)
     TextView tv_bet_limit;
     Gson gson;
     String betUrl = "";

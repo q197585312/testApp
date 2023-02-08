@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gaming178.com.mylibrary.allinone.util.AppTool;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -34,7 +35,6 @@ import io.reactivex.schedulers.Schedulers;
 import nanyang.com.dig88.Activity.Gd88WebActivity;
 import nanyang.com.dig88.Activity.IbetPokerActivity;
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.Afb1188LoginBean;
 import nanyang.com.dig88.Entity.AppVersionBean;
@@ -58,7 +58,6 @@ import nanyang.com.dig88.Util.ApkUtils;
 import nanyang.com.dig88.Util.Dig88Utils;
 import nanyang.com.dig88.Util.PopIbetPokerTransfer;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -115,10 +114,7 @@ public class GameContentPresenter extends BaseRetrofitPresenter<GameContentActiv
             String gameType = gameList.get(i);
             switch (gameType) {
                 case AppConfig.GD_GAME:
-                    String gd88Name = gameContentActivity.getString(R.string.gd_live_entertainment);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        gd88Name = "GD88 " + gameContentActivity.getString(R.string.live_entertainment);
-                    }
+                    String gd88Name = "GD88 " + gameContentActivity.getString(R.string.live_entertainment);
                     bean.setGameName(gd88Name);
                     bean.setGamePic(R.mipmap.casino_gd);
                     break;
@@ -159,10 +155,7 @@ public class GameContentPresenter extends BaseRetrofitPresenter<GameContentActiv
                     bean.setGamePic(R.mipmap.evogaming_casino);
                     break;
                 case AppConfig.AFB_GAME:
-                    String afb88Name = gameContentActivity.getString(R.string.afb88_sports);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        afb88Name = "AFB88";
-                    }
+                    String afb88Name = "AFB88";
                     bean.setGameName(afb88Name);
                     bean.setGamePic(R.mipmap.sport_afb88);
                     break;
@@ -172,85 +165,46 @@ public class GameContentPresenter extends BaseRetrofitPresenter<GameContentActiv
                     break;
                 case AppConfig.AFB_h5_GAME:
                     String afbH5Name = gameContentActivity.getString(R.string.afb88_sports_h5);
-                    if (BuildConfig.FLAVOR.equals("bbet99")) {
-                        afbH5Name = "AFB88";
-                    } else if (BuildConfig.FLAVOR.equals("uplay365")) {
-                        afbH5Name = "U.Sports-H5";
-                    }
                     bean.setGameName(afbH5Name);
                     bean.setGamePic(R.mipmap.sport_afb88_h5);
                     break;
                 case AppConfig.AFB1188_GAME:
-                    String afb1188Name = gameContentActivity.getString(R.string.afb1188_sports);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        afb1188Name = "AFB1188_H5";
-                    } else if (BuildConfig.FLAVOR.equals("bbet99")) {
-                        afb1188Name = "AFB88 NEW";
-                    } else if (BuildConfig.FLAVOR.equals("uplay365")) {
-                        afb1188Name = "U.Sports";
-                    }
+                    String afb1188Name = "AFB1188_H5";
                     bean.setGameName(afb1188Name);
                     bean.setGamePic(R.mipmap.sport_afb1188);
                     break;
                 case AppConfig.AFB1188_Desktop_GAME:
                     bean.setGameName(gameContentActivity.getString(R.string.AFB1188_Desktop));
-                    if (BuildConfig.FLAVOR.equals("fun77")) {
-                        bean.setGamePic(R.mipmap.sport_afb88_h5);
-                    } else {
-                        bean.setGamePic(R.mipmap.sport_afb1188);
-                    }
+                    bean.setGamePic(R.mipmap.sport_afb1188);
                     break;
                 case AppConfig.IBC_GAME:
-                    String ibcName = gameContentActivity.getString(R.string.i_sport_betting);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        ibcName = "";
-                    }
+                    String ibcName = "";
                     bean.setGameName(ibcName);
                     bean.setGamePic(R.mipmap.sport_ibc);
                     break;
                 case AppConfig.SBO_GAME:
-                    String sboName = gameContentActivity.getString(R.string.s_sport_betting);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        sboName = "";
-                    } else if (BuildConfig.FLAVOR.equals("uplay365")) {
-                        sboName = "S.Sports";
-                    }
+                    String sboName = "";
                     bean.setGameName(sboName);
                     bean.setGamePic(R.mipmap.sport_sbo);
                     break;
                 case AppConfig.Scr888:
-                    bean.setGameName(gameContentActivity.getString(R.string.scr888));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("918Kiss");
-                    }
+                    bean.setGameName("918Kiss");
                     bean.setGamePic(R.mipmap.game_scr888);
                     break;
                 case AppConfig.Xe88_Slot:
-                    bean.setGameName(gameContentActivity.getString(R.string.xe88_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("XE88 Slots");
-                    }
+                    bean.setGameName("XE88 Slots");
                     bean.setGamePic(R.mipmap.game_xe88);
                     break;
                 case AppConfig.BEST_GAME:
-                    bean.setGameName(gameContentActivity.getString(R.string.best_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("AFB GAMING");
-                    }
+                    bean.setGameName("AFB GAMING");
                     bean.setGamePic(R.mipmap.game_bestgame);
                     break;
                 case AppConfig.NETENT_GAME:
-                    bean.setGameName(gameContentActivity.getString(R.string.netent_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("NETENT Slots");
-                    }
+                    bean.setGameName("NETENT Slots");
                     bean.setGamePic(R.mipmap.slots_netent);
                     break;
                 case AppConfig.PLAYSTAR_SLOTS:
-                    bean.setGameName(gameContentActivity.getString(R.string.playstar_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("PLAYSTAR Slots");
-                    }
+                    bean.setGameName("PLAYSTAR Slots");
                     bean.setGamePic(R.mipmap.slots_playstar);
                     break;
                 case AppConfig.PG_SLOTS:
@@ -258,74 +212,39 @@ public class GameContentPresenter extends BaseRetrofitPresenter<GameContentActiv
                     bean.setGamePic(R.mipmap.pg_slots);
                     break;
                 case AppConfig.HABA_GAME:
-                    bean.setGameName(gameContentActivity.getString(R.string.haba_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("HABA Slots");
-                    } else if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        bean.setGameName("HABA Slot");
-                    }
+                    bean.setGameName("HABA Slots");
                     bean.setGamePic(R.mipmap.game_haba);
                     break;
                 case AppConfig.SAgaming_Slots_GAME:
                     bean.setGameName(gameContentActivity.getString(R.string.sa_game_slots));
-                    if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        bean.setGameName("SA Slot");
-                    }
                     bean.setGamePic(R.mipmap.game_sa);
                     break;
                 case AppConfig.Joker123_GAME:
-                    bean.setGameName(gameContentActivity.getString(R.string.joker_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("Joker123");
-                    }
+                    bean.setGameName("Joker123");
                     bean.setGamePic(R.mipmap.game_joker);
                     break;
                 case AppConfig.W88_GAME:
-                    bean.setGameName(gameContentActivity.getString(R.string.w88_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("W88 Slots");
-                    } else if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        bean.setGameName("W88 Slot");
-                    }
+                    bean.setGameName("W88 Slots");
                     bean.setGamePic(R.mipmap.game_w88);
                     break;
                 case AppConfig.PT_GAME:
                     bean.setGameName(gameContentActivity.getString(R.string.pt_game_slots));
-                    if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        bean.setGameName("PT Slot");
-                    }
                     bean.setGamePic(R.mipmap.game_pt);
                     break;
                 case AppConfig.MG_GAME:
-                    bean.setGameName(gameContentActivity.getString(R.string.mg_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("MG Slots");
-                    } else if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        bean.setGameName("MG Slot");
-                    }
+                    bean.setGameName("MG Slots");
                     bean.setGamePic(R.mipmap.game_mg);
                     break;
                 case AppConfig.FISHING_GAME:
-                    bean.setGameName(gameContentActivity.getString(R.string.fish_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("Fishing Games");
-                    }
+                    bean.setGameName("Fishing Games");
                     bean.setGamePic(R.mipmap.game_fish);
                     break;
                 case AppConfig.PP_Slots:
-                    bean.setGameName(gameContentActivity.getString(R.string.pp_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("Pragmatic Play Slots");
-                    } else if (BuildConfig.FLAVOR.equals("kimsa1")) {
-                        bean.setGameName("PP Slot");
-                    }
+                    bean.setGameName("Pragmatic Play Slots");
                     bean.setGamePic(R.mipmap.game_pp);
                     break;
                 case AppConfig.RTG_Slots:
-                    bean.setGameName(gameContentActivity.getString(R.string.rtg_game_slots));
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        bean.setGameName("RTG Slots");
-                    }
+                    bean.setGameName("RTG Slots");
                     bean.setGamePic(R.mipmap.game_rtg);
                     break;
                 case AppConfig.POKER_GAME:
@@ -353,10 +272,7 @@ public class GameContentPresenter extends BaseRetrofitPresenter<GameContentActiv
                     bean.setGamePic(R.mipmap.lottery_thai);
                     break;
                 case AppConfig.LOTTERY_4D:
-                    String lottery4DName = gameContentActivity.getString(R.string.lottery4d);
-                    if (BuildConfig.FLAVOR.equals("afbcash")) {
-                        lottery4DName = gameContentActivity.getString(R.string.lottery4d1);
-                    }
+                    String lottery4DName = gameContentActivity.getString(R.string.lottery4d1);
                     bean.setGameName(lottery4DName);
                     bean.setGamePic(R.mipmap.lottery_4d);
                     break;

@@ -11,27 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import gaming178.com.mylibrary.allinone.util.StringUtils;
+import gaming178.com.mylibrary.base.QuickBaseAdapter;
+import gaming178.com.mylibrary.base.ViewHolder;
 import nanyang.com.dig88.Lottery4D.Bean.BetListBean;
 import nanyang.com.dig88.R;
 import nanyang.com.dig88.Util.HttpUtils;
 import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.QuickBaseAdapter;
-import xs.com.mylibrary.base.ViewHolder;
 
 /**
  * Created by Administrator on 2018/11/16.
  */
 
 public class BetListFragment extends Lottery4DBaseFragment {
-    @Bind(R.id.lv_bet_list)
+    @BindView(R.id.lv_bet_list)
     ListView lv_bet_list;
-    @Bind(R.id.tv_amount)
+    @BindView(R.id.tv_amount)
     TextView tv_amount;
-    @Bind(R.id.tv_a)
+    @BindView(R.id.tv_a)
     TextView tv_a;
-    @Bind(R.id.tv_abc)
+    @BindView(R.id.tv_abc)
     TextView tv_abc;
     String url = "http://app.info.dig88api.com/index.php?page=4d_betlist_submitter";
     QuickBaseAdapter<BetListBean.DataBean> adapter;

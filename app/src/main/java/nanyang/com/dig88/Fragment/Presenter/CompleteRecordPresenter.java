@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import nanyang.com.dig88.Base.NyBaseResponse;
-import nanyang.com.dig88.BuildConfig;
 import nanyang.com.dig88.Config.AppConfig;
 import nanyang.com.dig88.Entity.Afb1188StatementBean;
 import nanyang.com.dig88.Entity.AfbSportsStatementBean;
@@ -62,47 +61,30 @@ public class CompleteRecordPresenter extends BaseRetrofitPresenter<CompleteRecor
 
     public List<StatementInfoBean> getGameContentList() {
         List<StatementInfoBean> list = new ArrayList<>();
-        if (BuildConfig.FLAVOR.equals("ibet567")) {
-            list.add(new StatementInfoBean(WebSiteUrl.Afb1188StatementUrl, baseContext.getString(R.string.afb1188_sports), AppConfig.Statement_afb1188));
-            list.add(new StatementInfoBean(WebSiteUrl.Dg99GameStatementUrl, "Dg99 " + baseContext.getString(R.string.casino), AppConfig.Statement_dg99Casino));
-            list.add(new StatementInfoBean(WebSiteUrl.SexyCasinoStatementUrl, baseContext.getString(R.string.sexy_live_entertainment), AppConfig.Statement_sexyCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.SaGameStatementUrl, "SA GAMING " + baseContext.getString(R.string.casino), AppConfig.Statement_saCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.CockfightStatementUrl, baseContext.getString(R.string.Cockfight), AppConfig.Statement_Cockfight));
-            list.add(new StatementInfoBean("", baseContext.getString(R.string.Keno), AppConfig.Statement_Keno));
-            list.add(new StatementInfoBean("", baseContext.getString(R.string.ongdo_poker), AppConfig.Statement_Ongdo));
-        } else if (BuildConfig.FLAVOR.equals("hjlh6688")) {
-            list.add(new StatementInfoBean(WebSiteUrl.StatementsList, baseContext.getString(R.string.khmergaming), AppConfig.Statement_statement));
-            list.add(new StatementInfoBean(WebSiteUrl.AfbSportGameStatementUrl, baseContext.getString(R.string.afb_sport_betting), AppConfig.Statement_afbSports));
-            list.add(new StatementInfoBean(WebSiteUrl.AgGameStatementUrl, "Ag " + baseContext.getString(R.string.casino), AppConfig.Statement_agCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.BestGameStatementUrl, baseContext.getString(R.string.bestgame_slots), AppConfig.Statement_bestGame));
-            list.add(new StatementInfoBean(WebSiteUrl.HabaGameStatementUrl, "Haba " + baseContext.getString(R.string.game), AppConfig.Statement_habaGame));
-            list.add(new StatementInfoBean(WebSiteUrl.PPlayGameStatementUrl, "PPlay " + baseContext.getString(R.string.game), AppConfig.Statement_pplayGame));
-        } else {
-            list.add(new StatementInfoBean(WebSiteUrl.StatementsList, baseContext.getString(R.string.khmergaming), AppConfig.Statement_statement));
-            list.add(new StatementInfoBean(WebSiteUrl.AfbSportGameStatementUrl, baseContext.getString(R.string.afb_sport_betting), AppConfig.Statement_afbSports));
-            list.add(new StatementInfoBean(WebSiteUrl.Afb1188StatementUrl, baseContext.getString(R.string.afb2_sport_betting), AppConfig.Statement_afb1188));
-            list.add(new StatementInfoBean(WebSiteUrl.SabaSportGameStatementUrl, baseContext.getString(R.string.list2_saba), AppConfig.Statement_sabaSports));
-            list.add(new StatementInfoBean(WebSiteUrl.SboSportGameStatementUrl, baseContext.getString(R.string.list2_ib), AppConfig.Statement_sboSports));
-            list.add(new StatementInfoBean(WebSiteUrl.ForexStatementUrl, baseContext.getString(R.string.eightqihuo), AppConfig.Statement_forex));
-            list.add(new StatementInfoBean(WebSiteUrl.W88StatementUrl, completeRecordFragment.getString(R.string.W88_Casino_Slots), AppConfig.Statement_w88));
-            list.add(new StatementInfoBean(WebSiteUrl.GoldStatementUrl, baseContext.getString(R.string.gold_live_entertainment), AppConfig.Statement_goldCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.SaGameStatementUrl, "SA GAMING " + baseContext.getString(R.string.casino), AppConfig.Statement_saCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.Dg99GameStatementUrl, "Dg99 " + baseContext.getString(R.string.casino), AppConfig.Statement_dg99Casino));
-            list.add(new StatementInfoBean(WebSiteUrl.AgGameStatementUrl, "Ag " + baseContext.getString(R.string.casino), AppConfig.Statement_agCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.AllBetStatementUrl, "AllBet " + baseContext.getString(R.string.casino), AppConfig.Statement_AllbetCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.EvoStatementUrl, "Evo " + baseContext.getString(R.string.casino), AppConfig.Statement_EvoCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.MgStatementUrl, baseContext.getString(R.string.tiyubocai1), AppConfig.Statement_mgGame));
-            list.add(new StatementInfoBean(WebSiteUrl.BestGameStatementUrl, baseContext.getString(R.string.bestgame_slots), AppConfig.Statement_bestGame));
-            list.add(new StatementInfoBean(WebSiteUrl.PtGameStatementUrl, baseContext.getString(R.string.pt_game_slots), AppConfig.Statement_ptGame));
-            list.add(new StatementInfoBean(WebSiteUrl.HabaGameStatementUrl, "Haba " + baseContext.getString(R.string.game), AppConfig.Statement_habaGame));
-            list.add(new StatementInfoBean(WebSiteUrl.PPlayGameStatementUrl, "PPlay " + baseContext.getString(R.string.game), AppConfig.Statement_pplayGame));
-            list.add(new StatementInfoBean(WebSiteUrl.NewkenoStatementUrl, completeRecordFragment.getString(R.string.NewKeno), AppConfig.Statement_Newkeno));
-            list.add(new StatementInfoBean(WebSiteUrl.Gd88GameStatementUrl, baseContext.getString(R.string.gd_live_entertainment), AppConfig.Statement_gd88Casino));
-            list.add(new StatementInfoBean(WebSiteUrl.SexyCasinoStatementUrl, baseContext.getString(R.string.sexy_live_entertainment), AppConfig.Statement_sexyCasino));
-            list.add(new StatementInfoBean(WebSiteUrl.Lottery4dGameStatementUrl, "4D " + baseContext.getString(R.string.indonesia_lottery), AppConfig.Statement_4dLottery));
-            list.add(new StatementInfoBean(WebSiteUrl.JokerGameStatementUrl, baseContext.getString(R.string.joker_game_slots), AppConfig.Statement_jokerGame));
-            list.add(new StatementInfoBean(WebSiteUrl.FfylStatementUrl, completeRecordFragment.getString(R.string.FFYL_Poker), AppConfig.Statement_ffyl));
-        }
+        list.add(new StatementInfoBean(WebSiteUrl.StatementsList, baseContext.getString(R.string.khmergaming), AppConfig.Statement_statement));
+        list.add(new StatementInfoBean(WebSiteUrl.AfbSportGameStatementUrl, baseContext.getString(R.string.afb_sport_betting), AppConfig.Statement_afbSports));
+        list.add(new StatementInfoBean(WebSiteUrl.Afb1188StatementUrl, baseContext.getString(R.string.afb2_sport_betting), AppConfig.Statement_afb1188));
+        list.add(new StatementInfoBean(WebSiteUrl.SabaSportGameStatementUrl, baseContext.getString(R.string.list2_saba), AppConfig.Statement_sabaSports));
+        list.add(new StatementInfoBean(WebSiteUrl.SboSportGameStatementUrl, baseContext.getString(R.string.list2_ib), AppConfig.Statement_sboSports));
+        list.add(new StatementInfoBean(WebSiteUrl.ForexStatementUrl, baseContext.getString(R.string.eightqihuo), AppConfig.Statement_forex));
+        list.add(new StatementInfoBean(WebSiteUrl.W88StatementUrl, completeRecordFragment.getString(R.string.W88_Casino_Slots), AppConfig.Statement_w88));
+        list.add(new StatementInfoBean(WebSiteUrl.GoldStatementUrl, baseContext.getString(R.string.gold_live_entertainment), AppConfig.Statement_goldCasino));
+        list.add(new StatementInfoBean(WebSiteUrl.SaGameStatementUrl, "SA GAMING " + baseContext.getString(R.string.casino), AppConfig.Statement_saCasino));
+        list.add(new StatementInfoBean(WebSiteUrl.Dg99GameStatementUrl, "Dg99 " + baseContext.getString(R.string.casino), AppConfig.Statement_dg99Casino));
+        list.add(new StatementInfoBean(WebSiteUrl.AgGameStatementUrl, "Ag " + baseContext.getString(R.string.casino), AppConfig.Statement_agCasino));
+        list.add(new StatementInfoBean(WebSiteUrl.AllBetStatementUrl, "AllBet " + baseContext.getString(R.string.casino), AppConfig.Statement_AllbetCasino));
+        list.add(new StatementInfoBean(WebSiteUrl.EvoStatementUrl, "Evo " + baseContext.getString(R.string.casino), AppConfig.Statement_EvoCasino));
+        list.add(new StatementInfoBean(WebSiteUrl.MgStatementUrl, baseContext.getString(R.string.tiyubocai1), AppConfig.Statement_mgGame));
+        list.add(new StatementInfoBean(WebSiteUrl.BestGameStatementUrl, baseContext.getString(R.string.bestgame_slots), AppConfig.Statement_bestGame));
+        list.add(new StatementInfoBean(WebSiteUrl.PtGameStatementUrl, baseContext.getString(R.string.pt_game_slots), AppConfig.Statement_ptGame));
+        list.add(new StatementInfoBean(WebSiteUrl.HabaGameStatementUrl, "Haba " + baseContext.getString(R.string.game), AppConfig.Statement_habaGame));
+        list.add(new StatementInfoBean(WebSiteUrl.PPlayGameStatementUrl, "PPlay " + baseContext.getString(R.string.game), AppConfig.Statement_pplayGame));
+        list.add(new StatementInfoBean(WebSiteUrl.NewkenoStatementUrl, completeRecordFragment.getString(R.string.NewKeno), AppConfig.Statement_Newkeno));
+        list.add(new StatementInfoBean(WebSiteUrl.Gd88GameStatementUrl, baseContext.getString(R.string.gd_live_entertainment), AppConfig.Statement_gd88Casino));
+        list.add(new StatementInfoBean(WebSiteUrl.SexyCasinoStatementUrl, baseContext.getString(R.string.sexy_live_entertainment), AppConfig.Statement_sexyCasino));
+        list.add(new StatementInfoBean(WebSiteUrl.Lottery4dGameStatementUrl, "4D " + baseContext.getString(R.string.indonesia_lottery), AppConfig.Statement_4dLottery));
+        list.add(new StatementInfoBean(WebSiteUrl.JokerGameStatementUrl, baseContext.getString(R.string.joker_game_slots), AppConfig.Statement_jokerGame));
+        list.add(new StatementInfoBean(WebSiteUrl.FfylStatementUrl, completeRecordFragment.getString(R.string.FFYL_Poker), AppConfig.Statement_ffyl));
         return list;
     }
 
