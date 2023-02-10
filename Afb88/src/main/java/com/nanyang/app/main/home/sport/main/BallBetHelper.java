@@ -45,7 +45,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
         oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc, item);
 
-        LogUtil.d("updateListText", "oddsUrlBean--oid:" + oid + ",item:" + item.getHome() + "-"+item.getAway());
+        LogUtil.d("updateListText", "oddsUrlBean--oid:" + oid + ",item:" + item.getHome() + "-" + item.getAway());
         final boolean typeHasPar = type.equalsIgnoreCase("over")
                 || type.equalsIgnoreCase("under")
                 || type.equalsIgnoreCase("even")
@@ -75,20 +75,24 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                             onChangeSuccess(app.removeSameMix(oddsUrlBean));
                         }*/
                         saveCurrentSingleBet(oddsUrlBean);
-                        if (StringUtils.isEmpty(app.getRefreshSingleOddsUrl())) {
-                            (baseActivity).getBetContent().closePopupWindow();
-                        } else {
-                            if (app.getMixBetList().size() > 14) {
-                                app.isSingleBet = false;
-                                betOddsUrl = app.getRefreshMixOddsUrl();
-                                getDisposable(v, isHf, betOddsUrl);
 
+                        if (app.getMixBetList().size() > 1) {
+                            app.isSingleBet = false;
+                            betOddsUrl = app.getRefreshMixOddsUrl();
+                            getDisposable(v, isHf, betOddsUrl);
+
+                        } else {
+                            if (baseActivity.getOtType().toLowerCase().startsWith("r"))
+                                (baseActivity).getBetContent().isNeedInitWeb = true;
+                            if (StringUtils.isEmpty(app.getRefreshSingleOddsUrl())) {
+                                (baseActivity).getBetContent().closePopupWindow();
                             } else {
-                                if (baseActivity.getOtType().toLowerCase().startsWith("r"))
-                                    (baseActivity).getBetContent().isNeedInitWeb = true;
                                 getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
                             }
+
+
                         }
+
 
                     }
 
