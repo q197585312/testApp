@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/green_black_shadow_bottom"
-                android:src="@mipmap/arrow_left_white_double" />
+                android:src="@mipmap/double_left_red" />
 
             <ImageView
                 android:id="@+id/img_top_click_right"
@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="right|center_vertical"
                 android:background="@drawable/green_black_shadow_bottom"
-                android:src="@mipmap/arrow_right_white_double" />
+                android:src="@mipmap/double_right_red" />
 
         </FrameLayout>
 
