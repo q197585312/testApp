@@ -619,7 +619,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
 
         SettingBean infoBean11 = new SettingBean("3", getBaseActivity().getString(R.string.chip_set), "", chipList1);
         SettingBean infoBean12 = new SettingBean("3", "", "", chipList2);
-        SettingBean infoBean13 = new SettingBean("1", "MAIN_FAVORITE", "");
+        SettingBean infoBean13 = new SettingBean("1", getBaseActivity().getString(R.string.my_favorite), "");
 
 
         List<String> stringList = new ArrayList<>();
