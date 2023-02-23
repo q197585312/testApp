@@ -361,13 +361,13 @@ public class BetGoalWindowUtils {
         }
         SoundPlayUtils.play();
 
-        view.setTag(1);
+        view.setTag(3);
         handler.post(new Runnable() {
             @Override
             public void run() {
                 int tag = (int) view.getTag();
                 tvCount.setText(tag + "s");
-                if (tag == 1) {
+                if (tag == 3) {
                     imgClose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
