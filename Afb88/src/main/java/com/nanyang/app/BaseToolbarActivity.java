@@ -374,7 +374,6 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                     public void accept(Response responseBodyResponse) throws JSONException {
                         int code = responseBodyResponse.code();
                         String body = responseBodyResponse.body() != null ? responseBodyResponse.body().toString() : "null";
-                        LogIntervalUtils.logTime("请求数据完成开始解析s:" + body + ",code=" + code);
                         Request rawRequest = responseBodyResponse.raw().request();
                         HttpUrl url1 = rawRequest.url();
 

@@ -73,10 +73,9 @@ public class LivePlayHelper {
                     if (tvPathIBC.contains("GL")) {
                         loadWebViewPlayGL(tvPathIBC);
                     }
-                }else if(tvPathIBC.toLowerCase().contains("img")){
+                } else if (tvPathIBC.toLowerCase().contains("img")) {
                     loadWebViewPlayIMG(tvPathIBC);
-                }
-                else {
+                } else {
                     onResumePlay();
                 }
             }
@@ -189,7 +188,7 @@ public class LivePlayHelper {
             webloading = false;
         }
         holder.fl_top_video.setVisibility(View.VISIBLE);
-        if (checkLivePlayVisible(itemBall) && !webloading && itemBall.getTvPathIBC() != null && !itemBall.getTvPathIBC().contains("GL")) {
+        if (checkLivePlayVisible(itemBall) && !webloading && itemBall.getTvPathIBC() != null && !itemBall.getTvPathIBC().contains("GL") && !itemBall.getTvPathIBC().toLowerCase().contains("img")) {
 
             setLivePlayUrlId(itemBall.getTvPathIBC());
             onResumePlay();
@@ -198,10 +197,11 @@ public class LivePlayHelper {
         } else {
             String tvPathIBC = itemBall.getTvPathIBC();
             LogUtil.d("tvPathIBC", "tvPathIBC:" + tvPathIBC);
-            if (tvPathIBC.contains("GL") || tvPathIBC.contains("GL")) {
-
+            if (tvPathIBC.contains("GL")) {
                 loadWebViewPlayGL(tvPathIBC);
 
+            } else if (tvPathIBC.toLowerCase().contains("img")) {
+                loadWebViewPlayIMG(tvPathIBC);
             } else {
                 onResumeWeb();
             }
