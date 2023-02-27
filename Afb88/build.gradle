@@ -68,7 +68,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '3.22'
+            versionName '3.23'
 
             buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W0/Pub/wfMain0.html"'
 //https://test.khsport.net:8011/W0/Pub/wfMain0.html
@@ -86,7 +86,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '3.18'
+            versionName '3.19'
 
             buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W2/Pub/wfMain.html"'
 
@@ -101,7 +101,7 @@ android {
         ez2888 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ez2888"]
             applicationId 'com.nanyang.ez2888'
-            versionName '3.14'
+            versionName '3.15'
 
             buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W9/Pub/wfMain0.html"'
 
@@ -116,7 +116,7 @@ android {
         usun {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "usun"]
             applicationId 'com.nanyang.usun'
-            versionName '3.06'
+            versionName '3.07'
 
             buildConfigField "String", "PC_URL", '"https://wsapp.khsport.net/W0SUN/Pub/wfMain0.html"'
 
