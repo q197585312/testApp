@@ -24,56 +24,81 @@
             android:paddingTop="1dp"
             android:paddingBottom="1dp">
 
-
-            <TextView
-                android:id="@+id/bet_home_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:maxWidth="160dp"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_vs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:text="-vs-"
-                android:textColor="@color/black"
-                android:textSize="11sp" />
-
-            <TextView
-                android:id="@+id/bet_away_tv"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:maxWidth="160dp"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:orientation="horizontal">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/black_grey"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/edt_single_bet"
+                <TextView
+                    android:id="@+id/bet_home_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:maxWidth="100dp"
+                    android:maxLines="2"
+                    android:text="fsdfsasfsdfdsafdasfsdafsdafs"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_vs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:singleLine="true"
+                    android:text="-vs-"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/bet_away_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="100dp"
+                    android:maxLines="2"
+                    android:text="fsdfsasfsdfdsafdasfsdafsdafdsfsfs"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <FrameLayout
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="@drawable/rectangle_edt_white"
-                android:gravity="center"
-                android:hint="@string/single"
-                android:imeOptions="flagNoExtractUi"
-                android:inputType="number|numberDecimal"
-                android:padding="2dp"
-                android:textColor="@color/black_grey"
-                android:textColorHint="@color/grey_light"
-                android:textSize="13sp" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/edt_single_bet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="@drawable/rectangle_edt_white"
+                    android:gravity="center"
+                    android:hint="@string/single"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="number|numberDecimal"
+                    android:padding="2dp"
+                    android:textColor="@color/black_grey"
+                    android:textColorHint="@color/grey_light"
+                    android:textSize="13sp" />
+                <ImageView
+                    android:id="@+id/img_clear"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="5dp"
+                    android:background="@mipmap/red_x" />
+            </FrameLayout>
+
         </LinearLayout>
 
         <com.nanyang.app.Utils.FlowLayout
@@ -83,16 +108,6 @@
             android:orientation="horizontal"
             android:paddingTop="1dp"
             android:paddingBottom="1dp">
-
-            <TextView
-                android:id="@+id/tv_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="5dp"
-                android:textColor="@color/black_grey"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
 
             <TextView
                 android:id="@+id/bet_name_tv"
@@ -209,10 +224,9 @@
 
         <ImageView
             android:id="@+id/img_delete"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:layout_marginTop="3dp"
-            android:background="@mipmap/exit_delete_red" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/red_delete" />
 
         <View
             android:layout_width="1dp"

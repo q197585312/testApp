@@ -902,6 +902,7 @@ public class BetPop {
                     final TextView edt_single_bet = holder.getView(R.id.edt_single_bet);
 
                     ImageView imgDelete = holder.getView(R.id.img_delete);
+                    ImageView imgClear = holder.getView(R.id.img_clear);
                     TextView tv_order_index = holder.getView(R.id.tv_order_index);
                     TextView tvBetHome = holder.getView(R.id.bet_home_tv);
                     TextView tvScore = holder.getView(R.id.tv_score);
@@ -917,6 +918,12 @@ public class BetPop {
                     View vLine = holder.getView(R.id.v_line);
                     View ll_second = holder.getView(R.id.ll_second);
                     String typeOdds = item.getOddsType();
+                    imgClear.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            edt_single_bet.setText("");
+                        }
+                    });
                     if (list.size() < 2 && typeOdds != null && (typeOdds.toLowerCase().contains("home") || typeOdds.toLowerCase().contains("away") || typeOdds.toLowerCase().contains("over") || typeOdds.toLowerCase().contains("under"))) {
                         tv_vs.setVisibility(View.GONE);
                         tvBetHome.setVisibility(View.GONE);
