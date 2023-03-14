@@ -1712,6 +1712,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final I item, final int position) {
+        helper.getView(R.id.module_match_home_red_card_tv).setVisibility(View.GONE);
+        helper.getView(R.id.module_match_away_red_card_tv).setVisibility(View.GONE);
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         tvRightMark.setVisibility(View.VISIBLE);
         View collectionTv = helper.getView(R.id.module_match_collection_tv);
