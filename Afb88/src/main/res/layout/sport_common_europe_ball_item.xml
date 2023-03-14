@@ -549,7 +549,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/match_odds_content_bg">
+                            android:background="@drawable/match_odds_content_bg_new">
 
                             <TextView
                                 android:id="@+id/europe_1_full_time_odds_tv"
@@ -582,7 +582,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/match_odds_content_bg">
+                            android:background="@drawable/match_odds_content_bg_new">
 
                             <TextView
                                 android:id="@+id/europe_x_full_time_odds_tv"
@@ -616,7 +616,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/match_odds_content_bg">
+                            android:background="@drawable/match_odds_content_bg_new">
 
                             <TextView
                                 android:id="@+id/europe_2_full_time_odds_tv"

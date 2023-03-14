@@ -44,7 +44,7 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
         View parent = getParentRelativeLayout(tv);
         if (parent == null)
             return;
-        parent.setBackgroundResource(R.drawable.match_odds_content_bg);
+        parent.setBackgroundResource(R.drawable.match_odds_content_bg_new);
 //        tv.setTextColor(act.getResources().getColor(R.color.black_grey));
     }
 
