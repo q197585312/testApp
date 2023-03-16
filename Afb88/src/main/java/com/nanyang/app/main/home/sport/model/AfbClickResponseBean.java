@@ -45,7 +45,7 @@ public class AfbClickResponseBean implements Serializable {
             parUrl = dataListArray1.optString(4);
             maxLimit = dataListArray1.optString(0);
             minLimit = dataListArray1.optString(1);
-            payoutOdds = dataListArray1.optString(2);
+            payoutOdds = dataListArray1.optString(7);
             exRate = dataListArray1.optString(5);
         }
     }

@@ -419,201 +419,7 @@ public class BetPop {
     public static final int MIN_CLICK_DELAY_TIME = 1000;
     private long lastClickTime = 0;
 
-    public void initContent() {
-        tvMixBet.setText(R.string.Parlay);
-        tvSingleBet.setText(R.string.single_bet);
-        max_win.setText(R.string.max_win);
-        max_bet.setText(R.string.max_bet_money);
-        min_bet.setText(R.string.min_bet_money);
-        max_single_bet.setText(R.string.max_single_money);
-        bet_amount.setText(R.string.bet_limit);
-        my_bets.setText(R.string.TabMyBets);
-        betSureBtn.setText(R.string.bet1);
-        betCancelBtn.setText(R.string.cancel);
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
-        activity = (SportActivity) context;
-        handler = new Handler();
-        afbApplication = activity.getApp();
-        img_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                betAmountEdt.setText("");
-            }
-        });
-        betAmountEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    goBetting();
-                    return true;
-                }
-                return false;
-            }
-
-        });
-        betAmountEdt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
-                double max;
-                if (betAfbList != null && list.size() > 1 && !StringUtils.isEmpty(betAfbList.getMaxLimit())) {
-
-                    max = Double.parseDouble(betAfbList.getMaxLimit());
-                } else {
-                    max = list.get(0).getMaxLimit();
-                }
-                afterChange(s, max, betAmountEdt, this, true);
-
-            }
-
-
-        });
-
-        llBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goMixAndClose();
-            }
-        });
-
-        my_bets.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showMyBets(view);
-            }
-        });
-        tvDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopUpdateOdds();
-                goCancel();
-            }
-        });
-        tvSingleBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goChooseBetSingle(true);
-                webView.reload();
-            }
-        });
-        tvMixBet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                closePopupWindow();
-
-                if (afbApplication.getMixBetList().size() > 1) {
-                    goChooseBetSingle(false);
-                } else {
-                    closePopupWindow();
-                }
-
-            }
-        });
-        betSureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goBetting();
-
-            }
-        });
-        betCancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closePopupWindow();
-            }
-        });
-        betSureBtn.setEnabled(true);
-        betCancelBtn.setEnabled(true);
-        imgFailed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llBetFailedHint.setVisibility(View.GONE);
-            }
-        });
-        initBetChip();
-        MenuItemInfo item1 = new MenuItemInfo();
-        item1.setKeyName("1");
-        MenuItemInfo item2 = new MenuItemInfo();
-        item2.setKeyName("2");
-        MenuItemInfo item3 = new MenuItemInfo();
-        item3.setKeyName("3");
-        MenuItemInfo item4 = new MenuItemInfo();
-        item4.setKeyName("4");
-        MenuItemInfo item5 = new MenuItemInfo();
-        item5.setKeyName("5");
-        MenuItemInfo itemClose = new MenuItemInfo();
-        itemClose.setKeyName("Close");
-        itemClose.setType(1);
-
-        MenuItemInfo item6 = new MenuItemInfo();
-        item6.setKeyName("6");
-
-        MenuItemInfo item7 = new MenuItemInfo();
-        item7.setKeyName("7");
-        MenuItemInfo item8 = new MenuItemInfo();
-        item8.setKeyName("8");
-        MenuItemInfo item9 = new MenuItemInfo();
-        item9.setKeyName("9");
-        MenuItemInfo item0 = new MenuItemInfo();
-        item0.setKeyName("0");
-        MenuItemInfo itemD = new MenuItemInfo();
-        itemD.setItemRes(R.mipmap.ketdel);
-        itemD.setType(2);
-
-        betAmountEdt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CursorEditView cursorEditView = new CursorEditView("", betAmountEdt);
-                cursorMap.put(true, cursorEditView);
-                betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
-                betNumView.setVisibility(View.VISIBLE);
-            }
-
-        });
-        betNumView.viewModel.setData(Arrays.asList(item1, item2, item3, item4, item5, itemClose, item6, item7, item8, item9, item0, itemD));
-        betNumView.viewModel.setItemClick((view, menuItemInfo) -> {
-
-            TextView edt = betAmountEdt;
-            CursorEditView cursorEditView = cursorMap.get(true);
-            if (cursorEditView != null && cursorEditView.getEditView() != null) {
-                edt = cursorEditView.getEditView();
-            }
-            String getText = edt.getText().toString();
-            if (menuItemInfo.getType() == 0) {
-
-                String s = edt.getText() + menuItemInfo.getKeyName();
-                edt.setText(s);
-                if (cursorEditView!=null&&cursorEditView.getItemSocId() != null && !cursorEditView.getItemSocId().isEmpty()) {
-                    contentAdapter.notifyDataSetChanged();
-                }
-
-            } else if (menuItemInfo.getType() == 1) {
-                betNumView.setVisibility(View.GONE);
-            } else if (menuItemInfo.getType() == 2) {
-
-                if (getText.length() > 0) {
-                    edt.setText(getText.substring(0, getText.length() - 1));
-                    if (cursorEditView!=null&&cursorEditView.getItemSocId() != null && !cursorEditView.getItemSocId().isEmpty()) {
-                        contentAdapter.notifyDataSetChanged();
-                    }
-                }
-            }
-
-            return Unit.INSTANCE;
-        });
-    }
+    private int mixSize;
 
     private void goBetting() {
         //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
@@ -866,6 +672,254 @@ public class BetPop {
     HashMap<String, String> hashMap = new HashMap();
     HashMap<Boolean, CursorEditView> cursorMap = new HashMap();
 
+    public void initContent() {
+        tvMixBet.setText(R.string.Parlay);
+        tvSingleBet.setText(R.string.single_bet);
+        max_win.setText(R.string.max_win);
+        max_bet.setText(R.string.max_bet_money);
+        min_bet.setText(R.string.min_bet_money);
+        max_single_bet.setText(R.string.max_single_money);
+        bet_amount.setText(R.string.bet_limit);
+        my_bets.setText(R.string.TabMyBets);
+        betSureBtn.setText(R.string.bet1);
+        betCancelBtn.setText(R.string.cancel);
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
+        activity = (SportActivity) context;
+        handler = new Handler();
+        afbApplication = activity.getApp();
+        img_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                betAmountEdt.setText("");
+            }
+        });
+        betAmountEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    goBetting();
+                    return true;
+                }
+                return false;
+            }
+
+        });
+        betAmountEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+                double max;
+                if (betAfbList != null && list.size() > 1 && !StringUtils.isEmpty(betAfbList.getMaxLimit())) {
+
+                    max = Double.parseDouble(betAfbList.getMaxLimit());
+                } else {
+                    max = list.get(0).getMaxLimit();
+                }
+                afterChange(s, max, betAmountEdt, this, true);
+
+            }
+
+
+        });
+
+        llBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMixAndClose();
+            }
+        });
+
+        my_bets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMyBets(view);
+            }
+        });
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopUpdateOdds();
+                goCancel();
+            }
+        });
+        tvSingleBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goChooseBetSingle(true);
+                webView.reload();
+            }
+        });
+        tvMixBet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                closePopupWindow();
+
+                if (afbApplication.getMixBetList().size() > 1) {
+                    goChooseBetSingle(false);
+                } else {
+                    closePopupWindow();
+                }
+
+            }
+        });
+        betSureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBetting();
+
+            }
+        });
+        betCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closePopupWindow();
+            }
+        });
+        betSureBtn.setEnabled(true);
+        betCancelBtn.setEnabled(true);
+        imgFailed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llBetFailedHint.setVisibility(View.GONE);
+            }
+        });
+        initBetChip();
+        MenuItemInfo item1 = new MenuItemInfo();
+        item1.setKeyName("1");
+        MenuItemInfo item2 = new MenuItemInfo();
+        item2.setKeyName("2");
+        MenuItemInfo item3 = new MenuItemInfo();
+        item3.setKeyName("3");
+        MenuItemInfo item4 = new MenuItemInfo();
+        item4.setKeyName("4");
+        MenuItemInfo item5 = new MenuItemInfo();
+        item5.setKeyName("5");
+        MenuItemInfo itemClose = new MenuItemInfo();
+        itemClose.setKeyName("Close");
+        itemClose.setType(1);
+
+        MenuItemInfo item6 = new MenuItemInfo();
+        item6.setKeyName("6");
+
+        MenuItemInfo item7 = new MenuItemInfo();
+        item7.setKeyName("7");
+        MenuItemInfo item8 = new MenuItemInfo();
+        item8.setKeyName("8");
+        MenuItemInfo item9 = new MenuItemInfo();
+        item9.setKeyName("9");
+        MenuItemInfo item0 = new MenuItemInfo();
+        item0.setKeyName("0");
+        MenuItemInfo itemD = new MenuItemInfo();
+        itemD.setItemRes(R.mipmap.ketdel);
+        itemD.setType(2);
+
+        betAmountEdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CursorEditView cursorEditView = new CursorEditView("", betAmountEdt);
+                cursorMap.put(true, cursorEditView);
+                betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
+                betNumView.setVisibility(View.VISIBLE);
+            }
+
+        });
+        betNumView.viewModel.setData(Arrays.asList(item1, item2, item3, item4, item5, itemClose, item6, item7, item8, item9, item0, itemD));
+        betNumView.viewModel.setItemClick((view, menuItemInfo) -> {
+
+            TextView edt = betAmountEdt;
+            CursorEditView cursorEditView = cursorMap.get(true);
+            if (cursorEditView != null && cursorEditView.getEditView() != null) {
+                edt = cursorEditView.getEditView();
+            }
+            String getText = edt.getText().toString();
+            if (menuItemInfo.getType() == 0) {
+
+                String s = edt.getText() + menuItemInfo.getKeyName();
+                edt.setText(s);
+                if (cursorEditView != null && cursorEditView.getItemSocId() != null && !cursorEditView.getItemSocId().isEmpty()) {
+                    contentAdapter.notifyDataSetChanged();
+                }
+
+            } else if (menuItemInfo.getType() == 1) {
+                betNumView.setVisibility(View.GONE);
+            } else if (menuItemInfo.getType() == 2) {
+
+                if (getText.length() > 0) {
+                    edt.setText(getText.substring(0, getText.length() - 1));
+                    if (cursorEditView != null && cursorEditView.getItemSocId() != null && !cursorEditView.getItemSocId().isEmpty()) {
+                        contentAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            return Unit.INSTANCE;
+        });
+    }
+
+    private void deletedOne(AfbClickBetBean afbClickBetBean) {
+        String socOddsId = afbClickBetBean.getSocOddsId();
+        String id = afbClickBetBean.getId();
+        List<OddsClickBean> mixBetList = afbApplication.getMixBetList();
+        Iterator<OddsClickBean> iterator = mixBetList.iterator();
+        while (iterator.hasNext()) {
+            OddsClickBean oddsClickBean = iterator.next();
+            if (oddsClickBean.getBETID().equals(id)
+                    || oddsClickBean.getBETID_PAR().equals(id)
+                    || socOddsId.equals(oddsClickBean.getOid())
+                    || socOddsId.equals(oddsClickBean.getOid_fh())) {
+                iterator.remove();
+                if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null && presenter.getBaseView().getIBaseContext().getBaseActivity() instanceof SportActivity) {
+                    ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
+                }
+            }
+        }
+        if (afbApplication.getSingleBet() != null && (afbApplication.getSingleBet().getBETID().equals(id)
+                || afbApplication.getSingleBet().getBETID_PAR().equals(id)
+                || socOddsId.equals(afbApplication.getSingleBet().getOid())
+                || socOddsId.equals(afbApplication.getSingleBet().getOid_fh()))) {
+            if (mixBetList.size() > 0)
+                afbApplication.setSingleBet(mixBetList.get(mixBetList.size() - 1));
+
+        }
+    }
+
+    public void setEditNum() {
+
+        if (list == null)
+            return;
+        if (list.size() <= 1) {
+            betAmountEdt.setHint(R.string.single_bet);
+            String quickAmount = afbApplication.getQuickAmount();
+            if (quickAmount.equals("0"))
+                betAmountEdt.setText("");
+            else {
+                betAmountEdt.setText(quickAmount);
+            }
+        } else {
+            betAmountEdt.setHint(R.string.mix);
+            String mixParAmount = afbApplication.mixParAmount;
+            if (mixParAmount.equals("0"))
+                betAmountEdt.setText("");
+            else {
+                betAmountEdt.setText(mixParAmount);
+            }
+        }
+    }
+
+    private List<ClearanceBetAmountBean> clearanceBetAmountBeenList;
+
     private void initRcBetContent() {
         refreshChip();
         if (list.size() > 1) {
@@ -937,6 +991,7 @@ public class BetPop {
                     if (list.size() < 2) {
                         edt_single_bet.setVisibility(View.GONE);
                         tv_order_index.setVisibility(View.GONE);
+                        imgClear.setVisibility(View.GONE);
 
                     } else {
                         int res = position % 2 == 0 ? R.drawable.bet_item_white_shadow_bottom : R.drawable.bet_item_grey_shadow_bottom;
@@ -944,6 +999,7 @@ public class BetPop {
                         tv_order_index.setVisibility(View.VISIBLE);
                         tv_order_index.setText(list.size() - position + "");
                         edt_single_bet.setVisibility(View.VISIBLE);
+                        imgClear.setVisibility(View.VISIBLE);
 
                         edt_single_bet.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -1075,6 +1131,9 @@ public class BetPop {
                     tvHdp.setText(HtmlTagHandler.spanFontHtml(hdp));
                     tvBetHdp.setText(HtmlTagHandler.spanFontHtml(item.getBTT()));
                     String odds = item.getNOddsOLD();
+                    if (contentAdapter.getItemCount() > 1) {
+                        odds = item.getOdds();
+                    }
                     Spanned spanned = HtmlTagHandler.spanFontHtml(odds);
                     tvBetOdds.setText(spanned);
                     tvBetOddsAnimation.setText(spanned);
@@ -1182,58 +1241,6 @@ public class BetPop {
 
     }
 
-    private void deletedOne(AfbClickBetBean afbClickBetBean) {
-        String socOddsId = afbClickBetBean.getSocOddsId();
-        String id = afbClickBetBean.getId();
-        List<OddsClickBean> mixBetList = afbApplication.getMixBetList();
-        Iterator<OddsClickBean> iterator = mixBetList.iterator();
-        while (iterator.hasNext()) {
-            OddsClickBean oddsClickBean = iterator.next();
-            if (oddsClickBean.getBETID().equals(id)
-                    || oddsClickBean.getBETID_PAR().equals(id)
-                    || socOddsId.equals(oddsClickBean.getOid())
-                    || socOddsId.equals(oddsClickBean.getOid_fh())) {
-                iterator.remove();
-                if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null && presenter.getBaseView().getIBaseContext().getBaseActivity() instanceof SportActivity) {
-                    ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
-                }
-            }
-        }
-        if (afbApplication.getSingleBet() != null && (afbApplication.getSingleBet().getBETID().equals(id)
-                || afbApplication.getSingleBet().getBETID_PAR().equals(id)
-                || socOddsId.equals(afbApplication.getSingleBet().getOid())
-                || socOddsId.equals(afbApplication.getSingleBet().getOid_fh()))) {
-            if (mixBetList.size() > 0)
-                afbApplication.setSingleBet(mixBetList.get(mixBetList.size() - 1));
-
-        }
-    }
-
-    public void setEditNum() {
-
-        if (list == null)
-            return;
-        if (list.size() <= 1) {
-            betAmountEdt.setHint(R.string.single_bet);
-            String quickAmount = afbApplication.getQuickAmount();
-            if (quickAmount.equals("0"))
-                betAmountEdt.setText("");
-            else {
-                betAmountEdt.setText(quickAmount);
-            }
-        } else {
-            betAmountEdt.setHint(R.string.mix);
-            String mixParAmount = afbApplication.mixParAmount;
-            if (mixParAmount.equals("0"))
-                betAmountEdt.setText("");
-            else {
-                betAmountEdt.setText(mixParAmount);
-            }
-        }
-    }
-
-    private List<ClearanceBetAmountBean> clearanceBetAmountBeenList;
-
     private void initMix() {
         clearanceBetAmountBeenList = new ArrayList<>();
         int size = list.size();
@@ -1256,8 +1263,12 @@ public class BetPop {
         } else {
             clearanceBetAmountBeenList = Arrays.asList(new ClearanceBetAmountBean(1, list.size() + "  X  1"));
         }
-        tv1x2.setText(clearanceBetAmountBeenList.get(0).getTitle());
-        coupon = clearanceBetAmountBeenList.get(0).getAmount();
+        if (mixSize != list.size()) {
+            mixSize = list.size();
+            tv1x2.setText(clearanceBetAmountBeenList.get(0).getTitle());
+            coupon = clearanceBetAmountBeenList.get(0).getAmount();
+            afbApplication.setCoupon(coupon + "");
+        }
         if (afbApplication.getBetAfbList() != null && !StringUtils.isEmpty(afbApplication.getBetAfbList().getPayoutOdds()))
             tv1x2Odds.setText(AfbUtils.decimalValue(Float.parseFloat(afbApplication.getBetAfbList().getPayoutOdds()), "0.00"));
         ll1x2.setOnClickListener(new View.OnClickListener() {
@@ -1343,6 +1354,24 @@ public class BetPop {
         hashMap = new HashMap<>();
     }
 
+    protected void onClose() {
+
+//        activity.hintPopInput(betAmountEdt);
+        llBetFailedHint.setVisibility(View.GONE);
+        stopUpdateOdds();
+        betAmountEdt.setText("");
+        isNeedInitWeb = true;
+        for (ValueAnimator objectAnimator : objectAnimatorMap.values()) {
+            if (objectAnimator != null) {
+                objectAnimator.cancel();
+            }
+        }
+        objectAnimatorMap.clear();
+        afbApplication.setCoupon("1");
+        webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+
+
+    }
 
     public class MixDialog extends Dialog {
 
@@ -1369,8 +1398,12 @@ public class BetPop {
             adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<ClearanceBetAmountBean>() {
                 @Override
                 public void onItemClick(View view, ClearanceBetAmountBean item, int position) {
+                    if (item.getAmount() == coupon) {
+                        return;
+                    }
                     tv1x2.setText(item.getTitle());
                     coupon = item.getAmount();
+                    afbApplication.setCoupon(coupon + "");
                     mixdialog.dismiss();
                 }
             });
@@ -1386,26 +1419,6 @@ public class BetPop {
             wlp.width = v.getWidth();
             window.setAttributes(wlp);
         }
-    }
-
-
-    protected void onClose() {
-
-//        activity.hintPopInput(betAmountEdt);
-        llBetFailedHint.setVisibility(View.GONE);
-        stopUpdateOdds();
-        betAmountEdt.setText("");
-        isNeedInitWeb = true;
-        for (ValueAnimator objectAnimator : objectAnimatorMap.values()) {
-            if (objectAnimator != null) {
-                objectAnimator.cancel();
-            }
-        }
-        objectAnimatorMap.clear();
-
-        webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-
-
     }
 
 

@@ -72,7 +72,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
 public class AfbApplication extends BaseApplication {
 
 
-    public String H5MainChoose="";
+    public String H5MainChoose = "";
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
@@ -215,139 +215,7 @@ public class AfbApplication extends BaseApplication {
     public LinkedHashMap<String, SportIdBean> sportMap = new LinkedHashMap<>();
     public LinkedHashMap<String, SportIdBean> othersMap = new LinkedHashMap<>();
     public LinkedHashMap<String, SportIdBean> outRightMap = new LinkedHashMap<>();
-
-    public void initAllSprotMap() {
-        BaseSportFragment soccerFragment = new SoccerFragment();
-        BaseSportFragment basketballFragment = new BasketballFragment();
-        BaseSportFragment tennisFragment = new TennisFragment();
-        BaseSportFragment financialFragment = new FinancialFragment();
-        BaseSportFragment game4dFragment = new Game4dFragment();
-        BaseSportFragment eSportFragment = new ESportFragment();
-        BaseSportFragment muayThaiFragment = new MuayThaiFragment();
-        BaseMoreFragment huayThaiFragment = new HuayThaiFragment();
-
-        BaseSportFragment europeFragment = new EuropeFragment();
-        BaseSportFragment usFootballFragment = new USFootballFragment();
-        BaseSportFragment baseballFragment = new BaseballFragment();
-        BaseSportFragment iceHockeyFragment = new IceHockeyFragment();
-        BaseSportFragment poolSnookerFragment = new PoolSnookerFragment();
-        BaseSportFragment rugbyFragment = new RugbyFragment();
-        BaseSportFragment dartsFragment = new DartsFragment();
-        BaseSportFragment boxingFragment = new BoxingFragment();
-        BaseSportFragment motorFragment = new MotorFragment();
-        BaseSportFragment golfFragment = new GolfFragment();
-        BaseSportFragment futsalFragment = new FutsalFragment();
-        BaseSportFragment badmintonFragment = new BadmintonFragment();
-        BaseSportFragment volleyballFragment = new VolleyballFragment();
-        BaseSportFragment cricketFragment = new CricketFragment();
-
-        BaseSportFragment handballFragment = new HandballFragment();
-        BaseSportFragment cyclingFragment = new CyclingFragment();
-
-        BaseSportFragment beachSoccerFragment = new BeachSportFragment();
-        BaseSportFragment athleticsFragment = new AthleticsFragment();
-        BaseSportFragment squashFragment = new SquashFragment();
-
-        BaseSportFragment winterSportFragment = new WinterSportFragment();
-        BaseSportFragment waterSportFragment = new WaterSportFragment();
-        //    BaseSportFragment superComboFragment = new SuperComboFragment();
-        BaseSportFragment tableTennisFragment = new TableTennisFragment();
-        BaseSportFragment formulaFragment = new FormulaFragment();
-        BaseSportFragment outRightFragment = new OutRightFragment();
-        BaseSportFragment allRunningFragment = new AllRunningFragment();
-        beanHashMap = new LinkedHashMap<>();
-        sportMap = new LinkedHashMap<>();
-        othersMap = new LinkedHashMap<>();
-        outRightMap = new LinkedHashMap<>();
-        beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-
-        putOtherMap(beanHashMap, soccerFragment);
-
-        beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball, R.mipmap.white_basketball2));
-        beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis, R.mipmap.white_table_tennis));
-        beanHashMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball, R.mipmap.white_baseball));
-        beanHashMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton, R.mipmap.white_badminton2));
-        beanHashMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.BLACK, R.mipmap.e_sport, R.mipmap.white_e_sports2));
-        beanHashMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing, R.mipmap.white_soccer_small));
-        beanHashMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
-// '26', g = '65', img = 'https://www.afb1188.com/H50/Img/cycling.jpg'
-
-        beanHashMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling, R.mipmap.white_soccer_small));
-
-        beanHashMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts, R.mipmap.white_soccer_small));
-
-        beanHashMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
-        beanHashMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, futsalFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-        beanHashMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-        beanHashMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_soccer_small));
-        beanHashMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-        beanHashMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_ice_hockey));
-        beanHashMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, motorFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
-        beanHashMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
-
-        beanHashMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby, R.mipmap.white_soccer_small));
-        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Pool, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
-        beanHashMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis, R.mipmap.white_table_tennis));
-        beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
-        beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
-        beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, waterSportFragment, Color.BLACK, R.mipmap.water_polo, R.mipmap.white_soccer_small));
-        beanHashMap.put("108", new SportIdBean("108", "35", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
-        beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running, R.mipmap.white_soccer_small));
-        beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright, R.mipmap.white_soccer_small));
-        SportIdBean soccerRunning = new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small);
-        soccerRunning.setKey("-1");
-
-        SportIdBean soccerEuro_2020= new SportIdBean("1", "1", R.string.Euro_2020, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football,R.mipmap.white_soccer_small);
-        soccerEuro_2020.setKey("122");
-
-        sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running, R.mipmap.white_soccer_small));
-        sportMap.put("-1", soccerRunning);
-//        sportMap.put("122", soccerEuro_2020);
-
-        sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-        sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-        sportMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball, R.mipmap.white_basketball2));
-        sportMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis, R.mipmap.white_table_tennis));
-        sportMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
-        sportMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.BLACK, R.mipmap.e_sport, R.mipmap.white_e_sports2));
-        sportMap.put("6", new SportIdBean("6", "5", R.string.Specials_4D, "Specials_4D", SportActivity.class, game4dFragment, Color.BLACK, R.mipmap.baseball, R.mipmap.white_baseball));
-        sportMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright, R.mipmap.white_soccer_small));
-
-
-        sportMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
-        sportMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball, R.mipmap.white_baseball));
-        sportMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_ice_hockey));
-        sportMap.put("11", new SportIdBean("11", "11", R.string.Pool, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
-        sportMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby, R.mipmap.white_soccer_small));
-        sportMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts, R.mipmap.white_soccer_small));
-        sportMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing, R.mipmap.white_soccer_small));
-        sportMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, motorFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
-
-        sportMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
-        sportMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_soccer_small));
-        sportMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, futsalFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-        sportMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton, R.mipmap.white_badminton2));
-        sportMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, waterSportFragment, Color.BLACK, R.mipmap.water_polo, R.mipmap.white_soccer_small));
-        sportMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis, R.mipmap.white_table_tennis));
-        sportMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
-        sportMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
-        sportMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
-        sportMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling, R.mipmap.white_soccer_small));
-        sportMap.put("67", new SportIdBean("67", "27", R.string.Beach_Soccer, "Beach_Soccer", SportActivity.class, beachSoccerFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
-
-        sportMap.put("101", new SportIdBean("101", "29", R.string.Athletics, "Athletics", SportActivity.class, athleticsFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
-        sportMap.put("103", new SportIdBean("103", "30", R.string.WinterSport, "WinterSport", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.ice_sport, R.mipmap.white_soccer_small));
-        sportMap.put("105", new SportIdBean("105", "31", R.string.Squash, "Squash", SportActivity.class, squashFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
-       /* if (!AppConstant.IS_AGENT) {
-            sportMap.put("33_18", new SportIdBean("33_18", "33_18", R.string.Thai_game1, "Thai_1d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial,R.mipmap.white_soccer_small));
-            sportMap.put("33_19", new SportIdBean("33_19", "33_19", R.string.Thai_game2, "Thai_2d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial,R.mipmap.white_soccer_small));
-            sportMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.Thai_game3, "Thai_3d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial,R.mipmap.white_soccer_small));
-        }*/
-        sportMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
-
-        putOtherMap(othersMap, soccerFragment);
-
-    }
+    String coupon = "1";
 
     private static void putOtherMap(LinkedHashMap<String, SportIdBean> map, BaseSportFragment soccerFragment) {
         if (BuildConfig.FLAVOR.equals("ez2888")) {
@@ -568,6 +436,143 @@ public class AfbApplication extends BaseApplication {
 
     }
 
+    public void initAllSprotMap() {
+        BaseSportFragment soccerFragment = new SoccerFragment();
+        BaseSportFragment basketballFragment = new BasketballFragment();
+        BaseSportFragment tennisFragment = new TennisFragment();
+        BaseSportFragment financialFragment = new FinancialFragment();
+        BaseSportFragment game4dFragment = new Game4dFragment();
+        BaseSportFragment eSportFragment = new ESportFragment();
+        BaseSportFragment muayThaiFragment = new MuayThaiFragment();
+        BaseMoreFragment huayThaiFragment = new HuayThaiFragment();
+
+        BaseSportFragment europeFragment = new EuropeFragment();
+        BaseSportFragment usFootballFragment = new USFootballFragment();
+        BaseSportFragment baseballFragment = new BaseballFragment();
+        BaseSportFragment iceHockeyFragment = new IceHockeyFragment();
+        BaseSportFragment poolSnookerFragment = new PoolSnookerFragment();
+        BaseSportFragment rugbyFragment = new RugbyFragment();
+        BaseSportFragment dartsFragment = new DartsFragment();
+        BaseSportFragment boxingFragment = new BoxingFragment();
+        BaseSportFragment motorFragment = new MotorFragment();
+        BaseSportFragment golfFragment = new GolfFragment();
+        BaseSportFragment futsalFragment = new FutsalFragment();
+        BaseSportFragment badmintonFragment = new BadmintonFragment();
+        BaseSportFragment volleyballFragment = new VolleyballFragment();
+        BaseSportFragment cricketFragment = new CricketFragment();
+
+        BaseSportFragment handballFragment = new HandballFragment();
+        BaseSportFragment cyclingFragment = new CyclingFragment();
+
+        BaseSportFragment beachSoccerFragment = new BeachSportFragment();
+        BaseSportFragment athleticsFragment = new AthleticsFragment();
+        BaseSportFragment squashFragment = new SquashFragment();
+
+        BaseSportFragment winterSportFragment = new WinterSportFragment();
+        BaseSportFragment waterSportFragment = new WaterSportFragment();
+        //    BaseSportFragment superComboFragment = new SuperComboFragment();
+        BaseSportFragment tableTennisFragment = new TableTennisFragment();
+        BaseSportFragment formulaFragment = new FormulaFragment();
+        BaseSportFragment outRightFragment = new OutRightFragment();
+        BaseSportFragment allRunningFragment = new AllRunningFragment();
+        beanHashMap = new LinkedHashMap<>();
+        sportMap = new LinkedHashMap<>();
+        othersMap = new LinkedHashMap<>();
+        outRightMap = new LinkedHashMap<>();
+        beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+
+        putOtherMap(beanHashMap, soccerFragment);
+
+        beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball, R.mipmap.white_basketball2));
+        beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis, R.mipmap.white_table_tennis));
+        beanHashMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball, R.mipmap.white_baseball));
+        beanHashMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton, R.mipmap.white_badminton2));
+        beanHashMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.BLACK, R.mipmap.e_sport, R.mipmap.white_e_sports2));
+        beanHashMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing, R.mipmap.white_soccer_small));
+        beanHashMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
+// '26', g = '65', img = 'https://www.afb1188.com/H50/Img/cycling.jpg'
+
+        beanHashMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling, R.mipmap.white_soccer_small));
+
+        beanHashMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts, R.mipmap.white_soccer_small));
+
+        beanHashMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
+        beanHashMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, futsalFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+        beanHashMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+        beanHashMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_soccer_small));
+        beanHashMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+        beanHashMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_ice_hockey));
+        beanHashMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, motorFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
+        beanHashMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
+
+        beanHashMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby, R.mipmap.white_soccer_small));
+        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Pool, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
+        beanHashMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis, R.mipmap.white_table_tennis));
+        beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
+        beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
+        beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, waterSportFragment, Color.BLACK, R.mipmap.water_polo, R.mipmap.white_soccer_small));
+        beanHashMap.put("108", new SportIdBean("108", "35", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
+        beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running, R.mipmap.white_soccer_small));
+        beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright, R.mipmap.white_soccer_small));
+        SportIdBean soccerRunning = new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small);
+        soccerRunning.setKey("-1");
+
+        SportIdBean soccerEuro_2020 = new SportIdBean("1", "1", R.string.Euro_2020, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small);
+        soccerEuro_2020.setKey("122");
+
+        sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running, R.mipmap.white_soccer_small));
+        sportMap.put("-1", soccerRunning);
+//        sportMap.put("122", soccerEuro_2020);
+
+        sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+        sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+        sportMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball, R.mipmap.white_basketball2));
+        sportMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis, R.mipmap.white_table_tennis));
+        sportMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
+        sportMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.BLACK, R.mipmap.e_sport, R.mipmap.white_e_sports2));
+        sportMap.put("6", new SportIdBean("6", "5", R.string.Specials_4D, "Specials_4D", SportActivity.class, game4dFragment, Color.BLACK, R.mipmap.baseball, R.mipmap.white_baseball));
+        sportMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright, R.mipmap.white_soccer_small));
+
+
+        sportMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
+        sportMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball, R.mipmap.white_baseball));
+        sportMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_ice_hockey));
+        sportMap.put("11", new SportIdBean("11", "11", R.string.Pool, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
+        sportMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby, R.mipmap.white_soccer_small));
+        sportMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts, R.mipmap.white_soccer_small));
+        sportMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing, R.mipmap.white_soccer_small));
+        sportMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, motorFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
+
+        sportMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, Color.BLACK, R.mipmap.motor_sports, R.mipmap.white_soccer_small));
+        sportMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK, R.mipmap.ice_hockey, R.mipmap.white_soccer_small));
+        sportMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, futsalFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+        sportMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton, R.mipmap.white_badminton2));
+        sportMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, waterSportFragment, Color.BLACK, R.mipmap.water_polo, R.mipmap.white_soccer_small));
+        sportMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis, R.mipmap.white_table_tennis));
+        sportMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket, R.mipmap.white_soccer_small));
+        sportMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball, R.mipmap.white_soccer_small));
+        sportMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football, R.mipmap.white_soccer_small));
+        sportMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling, R.mipmap.white_soccer_small));
+        sportMap.put("67", new SportIdBean("67", "27", R.string.Beach_Soccer, "Beach_Soccer", SportActivity.class, beachSoccerFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
+
+        sportMap.put("101", new SportIdBean("101", "29", R.string.Athletics, "Athletics", SportActivity.class, athleticsFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
+        sportMap.put("103", new SportIdBean("103", "30", R.string.WinterSport, "WinterSport", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.ice_sport, R.mipmap.white_soccer_small));
+        sportMap.put("105", new SportIdBean("105", "31", R.string.Squash, "Squash", SportActivity.class, squashFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
+       /* if (!AppConstant.IS_AGENT) {
+            sportMap.put("33_18", new SportIdBean("33_18", "33_18", R.string.Thai_game1, "Thai_1d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial,R.mipmap.white_soccer_small));
+            sportMap.put("33_19", new SportIdBean("33_19", "33_19", R.string.Thai_game2, "Thai_2d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial,R.mipmap.white_soccer_small));
+            sportMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.Thai_game3, "Thai_3d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial,R.mipmap.white_soccer_small));
+        }*/
+        sportMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial, R.mipmap.white_soccer_small));
+
+        putOtherMap(othersMap, soccerFragment);
+
+    }
+
+    public void setCoupon(String coupon) {
+        this.coupon = coupon;
+    }
+
     public synchronized String getRefreshMixOddsUrl() {
 
         if (getMixBetList() == null || getMixBetList().size() == 0)
@@ -583,7 +588,7 @@ public class AfbApplication extends BaseApplication {
                 ids += itemId + ",";
             }
             ids = ids.substring(0, ids.length() - 1);
-            betOddsUrl = "BTMD=P&coupon=1&BETID=" + ids;
+            betOddsUrl = "BTMD=P&coupon=" + coupon + "&BETID=" + ids;
         }
         return AppConstant.getInstance().URL_ODDS + betOddsUrl;
 
@@ -659,7 +664,6 @@ public class AfbApplication extends BaseApplication {
         AppCacheUtils.getInstance(this).put("RefreshData", refreshDataBean);
         this.refreshDataBean = refreshDataBean;
     }
-
 
 
     public synchronized boolean saveCurrentBet(OddsClickBean oddsUrlBean) {
