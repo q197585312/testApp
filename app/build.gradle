@@ -118,12 +118,6 @@ android {
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.42'
             }
-            depocasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "depocasino"]
-                buildConfigField "String", "Labelid", '"186"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
-            }
             dewicasino88 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "dewicasino88"]
                 buildConfigField "String", "Labelid", '"164"'
@@ -248,7 +242,7 @@ android {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ratucasino88"]
                 buildConfigField "String", "Labelid", '"134"'
                 applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
+                versionName '4.43'
             }
             royalkasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "royalkasino"]
@@ -267,14 +261,6 @@ android {
             sultankasino {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sultankasino"]
                 buildConfigField "String", "Labelid", '"128"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
-            }
-
-
-            ularnaga {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ularnaga"]
-                buildConfigField "String", "Labelid", '"187"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.42'
             }
@@ -330,28 +316,9 @@ android {
                 versionName '4.42'
 
             }
-            merpatislot {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "merpatislot"]
-                buildConfigField "String", "Labelid", '"214"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
-
-            }
             wingsbet88 {
                 manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wingsbet88"]
                 buildConfigField "String", "Labelid", '"107"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
-            }
-            mesin18 {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "mesin18"]
-                buildConfigField "String", "Labelid", '"110"'
-                applicationId 'gaming178.com.baccaratgame'
-                versionName '4.42'
-            }
-            garudakasino {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "garudakasino"]
-                buildConfigField "String", "Labelid", '"108"'
                 applicationId 'gaming178.com.baccaratgame'
                 versionName '4.42'
             }

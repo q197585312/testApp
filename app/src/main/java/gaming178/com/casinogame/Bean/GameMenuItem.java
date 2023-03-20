@@ -16,6 +16,11 @@ public class GameMenuItem implements Serializable {
         this.value=value;
     }
 
+    public GameMenuItem(String title, String value) {
+        this.title = title;
+        this.value = value;
+    }
+
     public int getDrawableRes() {
         return drawableRes;
     }

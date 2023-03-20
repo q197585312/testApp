@@ -63,6 +63,7 @@ import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.RegisterActivity;
+import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.Liga365AgentBean;
 import gaming178.com.casinogame.Bean.NamePicBean;
 import gaming178.com.casinogame.Bean.UserBean;
@@ -286,62 +287,45 @@ public class LoginActivity extends BaseActivity {
         tv_register = (TextView) findViewById(R.id.gd__tv_register);
         tvWhatsApp = findViewById(R.id.gd__tv_whatsapp);
         tvPromo = findViewById(R.id.gd__tv_promo);
-        if (BuildConfig.FLAVOR.equals("depocasino")) {
-            imgGif1 = findViewById(R.id.img_gif_1);
-            imgGif2 = findViewById(R.id.img_gif_2);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.depo_gif_1).into(imgGif1);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.depo_gif_2).into(imgGif2);
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "http://45.77.243.206/depocasino/";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return context.getString(R.string.PROMOTION);
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
-                }
-            });
-            ObjectAnimator objectTranslationY = ObjectAnimator.ofFloat(tvWhatsApp, "translationY", 0, -40, 0);
-            objectTranslationY.setDuration(700);
-            objectTranslationY.setRepeatCount(Animation.INFINITE);
-            ObjectAnimator objectScaleY = ObjectAnimator.ofFloat(tvWhatsApp, "scaleY", (float) 0.95, (float) 1.25, (float) 0.95);
-            objectScaleY.setDuration(700);
-            objectScaleY.setRepeatCount(Animation.INFINITE);
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(objectTranslationY, objectScaleY);
-            animatorSet.start();
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_depocasino).into(img_login_title_main);
-            img_login_title_main.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://rtpgg.com/");
-                }
-            });
-        }
         if (BuildConfig.FLAVOR.equals("ratucasino88")) {
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.kilat).into(img_login_title);
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    goNetWA(-1);
+                    goNetWA(1);
                 }
             });
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gd_spin).into(img_login_title_main);
-            img_login_title_main.setOnClickListener(new View.OnClickListener() {
+            tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://b.link/ratuspin");
+                    goNetWA(2);
                 }
             });
+            RecyclerView recyclerView = findViewById(R.id.rc_game);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(layoutManager);
+            List<GameMenuItem> list = new ArrayList();
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20gatotfury.png","Gatot Kaca's Fury™"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/fortune-rabbit.png","Fortune Rabbit"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/midas-fortune.png","Midas Fortune"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20sugarrush.png","Sugar Rush"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vswayshammthor.png"," Power Of Thor"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/HABAImg/SGTheKoiGate.png","Koi Gate"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20olympgate.png","Gates of Olympus™"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/mahjong-ways2.png","Mahjong Ways 2"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/afbgaming/highroadKing.png","Highroad King"));
+            list.add(new GameMenuItem("https://nx-cdn.nexus2wlb.com/Images/providers/ADVANTPLAY/AdvantPlay_10027.webp?v=20230228","Disco 777"));
+            BaseRecyclerAdapter<GameMenuItem> adapter = new BaseRecyclerAdapter<GameMenuItem>(mContext, list, R.layout.ratu_game_item) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, GameMenuItem item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    TextView textView = holder.getTextView(R.id.tv);
+                    Glide.with(LoginActivity.this).load(item.getTitle()).into(imageView);
+                    textView.setText(item.getValue());
+                }
+            };
+            recyclerView.setAdapter(adapter);
         }
 
         if (BuildConfig.FLAVOR.equals("pemain")) {
@@ -404,39 +388,6 @@ public class LoginActivity extends BaseActivity {
             ll_register_bg = findViewById(R.id.ll_register_bg);
             ObjectAnimator objectAnimator = WidgetUtil.startAlphaAnimation(ll_register_bg, 800);
             objectAnimator.start();
-        }
-
-        if (BuildConfig.FLAVOR.equals("ularnaga")) {
-            img_ula_enter_bg = findViewById(R.id.img_ula_enter_bg);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.form_bg).into(img_ula_enter_bg);
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PopWebView popWebView = new PopWebView(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                        @Override
-                        public String getUrl() {
-                            return "http://45.77.243.206/ularnaga/";
-                        }
-
-                        @Override
-                        public String getTitle() {
-                            return getString(R.string.PROMOTION);
-                        }
-                    };
-                    popWebView.showPopupCenterWindow();
-                }
-            });
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_dragon).into(img_login_title_main);
-
-            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_ularnaga).into(gd_img_login_title_main_sbocasino77);
-            gd_img_login_title_main_sbocasino77.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://rtpgg.com/");
-                }
-            });
         }
 
         if (BuildConfig.FLAVOR.equals("serbacasino")) {
@@ -691,20 +642,6 @@ public class LoginActivity extends BaseActivity {
             tv_name.setTransformationMethod(new AllCapTransformationMethod());
         }
 
-        if (BuildConfig.FLAVOR.equals("merpatislot")) {
-            gd_img_login_title_main_sbocasino77 = findViewById(R.id.gd_img_login_title_main_sbocasino77);
-            gd_img_login_title_main_sbocasino77.post(new Runnable() {
-                @Override
-                public void run() {
-                    int width = gd_img_login_title_main_sbocasino77.getWidth();
-                    ViewGroup.LayoutParams layoutParams = gd_img_login_title_main_sbocasino77.getLayoutParams();
-                    layoutParams.width = width;
-                    layoutParams.height = (int) (width / 1.46);
-                    gd_img_login_title_main_sbocasino77.setLayoutParams(layoutParams);
-                }
-            });
-        }
-
         if (BuildConfig.FLAVOR.equals("casino388")) {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -790,7 +727,7 @@ public class LoginActivity extends BaseActivity {
             img_login_title.setImageResource(R.mipmap.gd_app_logo);
         } else {
             tv_register.setVisibility(View.VISIBLE);
-            if (!BuildConfig.FLAVOR.equals("depocasino") && !BuildConfig.FLAVOR.equals("ratucasino88") &&
+            if (!BuildConfig.FLAVOR.equals("ratucasino88") &&
                     !BuildConfig.FLAVOR.equals("kasino365") && !BuildConfig.FLAVOR.equals("mainkasino") &&
                     !BuildConfig.FLAVOR.equals("memoricasino")) {
                 img_login_title.setImageResource(R.mipmap.gd_title_logo);
@@ -1142,194 +1079,6 @@ public class LoginActivity extends BaseActivity {
             });
         }
 
-        if (BuildConfig.FLAVOR.equals("garudakasino")) {
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.garuda_kasino_title_gif).into(img_login_title_main);
-            bannerView = findViewById(R.id.banner_view);
-            bannerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    int width = bannerView.getWidth();
-                    ViewGroup.LayoutParams layoutParams = bannerView.getLayoutParams();
-                    layoutParams.height = (int) (width / 3.62);
-                    bannerView.setLayoutParams(layoutParams);
-                }
-            });
-            hallGameBottomPromptTv = findViewById(R.id.gd__hall_game_bottom_prompt_tv);
-            hallGameBottomPromptTv.setSelected(true);
-            hallGameBottomPromptTv.stopScroll();
-            hallGameBottomPromptTv.setTextColor(Color.WHITE);
-            hallGameBottomPromptTv.setSpeed(0.8f);
-            new Thread() {
-                @Override
-                public void run() {
-                    String url = "http://www.grjl25.com/getDomainInform.jsp?";
-                    String param = "labelid=" + BuildConfig.Labelid;
-                    String result = httpClient.getHttpClient(url + param, null);
-                    WebSiteUrl.setNormal(result);
-                    String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
-                    String annoucement = httpClient.sendPost(WebSiteUrl.GAME_GG_URL, annoucementParams);
-                    url = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "getSliderImg.jsp";
-                    String bannerResult = httpClient.sendPost(url, "");
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (annoucement.startsWith("Results=ok")) {
-                                String[] split = annoucement.split("\\|");
-                                hallGameBottomPromptTv.setText(split[1]);
-                            } else {
-                                hallGameBottomPromptTv.setText("Info : Untuk Bonus deposit dapat diklaim melalui whatsapp ataupun livechat ya bosku!!!");
-                            }
-                            hallGameBottomPromptTv.init(hallGameBottomPromptTv.getWidth());
-                            hallGameBottomPromptTv.startScroll();
-                            List<Integer> imgErrorList = new ArrayList<>();
-                            imgErrorList.add(R.mipmap.garudakasino_slide);
-                            if (bannerResult.contains("Success")) {
-                                BannerBean bannerBean = new Gson().fromJson(bannerResult, BannerBean.class);
-                                List<BannerBean.DataBean> data = bannerBean.getData();
-                                if (data != null && data.size() > 0) {
-                                    List<String> lists = new ArrayList<>();
-                                    for (int i = 0; i < data.size(); i++) {
-                                        BannerBean.DataBean dataBean = data.get(i);
-                                        lists.add(dataBean.getPath());
-                                    }
-                                    bannerView.setLifecycleRegistry(getLifecycle()).
-                                            setAdapter(new MyNetWorkBannerAdapter()).
-                                            setScrollDuration(500).
-                                            setIndicatorSliderColor(Color.WHITE,
-                                                    getResources().getColor(R.color.yellow_gold2)).
-                                            setIndicatorGravity(IndicatorGravity.CENTER).
-                                            create(lists);
-                                } else {
-                                    bannerView.setLifecycleRegistry(getLifecycle()).
-                                            setAdapter(new MyBannerAdapter()).
-                                            setScrollDuration(500).
-                                            setIndicatorSliderColor(Color.WHITE,
-                                                    getResources().getColor(R.color.yellow_gold2)).
-                                            setIndicatorGravity(IndicatorGravity.CENTER).
-                                            create(imgErrorList);
-                                }
-                            } else {
-                                bannerView.setLifecycleRegistry(getLifecycle()).
-                                        setAdapter(new MyBannerAdapter()).
-                                        setScrollDuration(500).
-                                        setIndicatorSliderColor(Color.WHITE,
-                                                getResources().getColor(R.color.yellow_gold2)).
-                                        setIndicatorGravity(IndicatorGravity.CENTER).
-                                        create(imgErrorList);
-                            }
-                        }
-                    });
-                    goNetWA(2);
-                }
-            }.start();
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    goNetWA(1);
-                }
-            });
-            List<NamePicBean> listSlot = new ArrayList<>();
-            listSlot.add(new NamePicBean("", R.mipmap.garuda_pplay));
-            listSlot.add(new NamePicBean("", R.mipmap.garuda_cq9));
-            listSlot.add(new NamePicBean("", R.mipmap.garuda_joker));
-            listSlot.add(new NamePicBean("", R.mipmap.garuda_afb));
-            listSlot.add(new NamePicBean("", R.mipmap.garuda_pg));
-            listSlot.add(new NamePicBean("", R.mipmap.garuda_haba));
-            List<NamePicBean> listCasino = new ArrayList<>();
-            listCasino.add(new NamePicBean("", R.mipmap.garuda_lg));
-            listCasino.add(new NamePicBean("", R.mipmap.garuda_gd88));
-            List<NamePicBean> listSport = new ArrayList<>();
-            listSport.add(new NamePicBean("", R.mipmap.garuda_afb88));
-            List<NamePicBean> listCock = new ArrayList<>();
-            listCock.add(new NamePicBean("", R.mipmap.garuda_sv388));
-            List<NamePicBean> listPoker = new ArrayList<>();
-            listPoker.add(new NamePicBean("", R.mipmap.garuda_we1poker));
-            listPoker.add(new NamePicBean("", R.mipmap.garuda_cerahqq));
-            rajaRc2 = findViewById(R.id.rc_raja2);
-            rajaRc2.setNestedScrollingEnabled(false);
-            rajaRc2.setLayoutManager(new GridLayoutManager(this, 3));
-            List<NamePicBean> currentList = new ArrayList<>();
-            currentList.addAll(listSlot);
-            BaseRecyclerAdapter<NamePicBean> adapterSlot = new BaseRecyclerAdapter<NamePicBean>(mContext, currentList, R.layout.item_raja_show_slot) {
-                @Override
-                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
-                    ImageView imageView = holder.getImageView(R.id.img);
-                    imageView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            int width = imageView.getWidth();
-                            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-                            layoutParams.height = (int) (width * 1.36);
-                            imageView.setLayoutParams(layoutParams);
-                            imageView.setBackgroundResource(item.getPic());
-                        }
-                    });
-                }
-            };
-            adapterSlot.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<NamePicBean>() {
-                @Override
-                public void onItemClick(View view, NamePicBean item, int position) {
-                    PopImgTitleHint popImgTitleHint = new PopImgTitleHint(mContext, logoutTv, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    popImgTitleHint.showPopupCenterWindow();
-                }
-            });
-            rajaRc2.setAdapter(adapterSlot);
-            rajaRc = findViewById(R.id.rc_raja);
-            rajaRc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            List<NamePicBean> list = new ArrayList<>();
-            list.add(new NamePicBean("SLOT", R.mipmap.garuda_slot));
-            list.add(new NamePicBean("CASINO", R.mipmap.garuda_caisno));
-            list.add(new NamePicBean("SPORTS", R.mipmap.garuda_sport));
-            list.add(new NamePicBean("SABUNG AYAM", R.mipmap.garuda_ayam));
-            list.add(new NamePicBean("POKER", R.mipmap.garuda_poker));
-            BaseRecyclerAdapter<NamePicBean> adapter = new BaseRecyclerAdapter<NamePicBean>(mContext, list, R.layout.item_raja_show) {
-                @Override
-                public void convert(MyRecyclerViewHolder holder, int position, NamePicBean item) {
-                    ImageView imageView = holder.getImageView(R.id.img);
-                    TextView textView = holder.getTextView(R.id.tv);
-                    textView.setText(item.getName());
-                    imageView.setBackgroundResource(item.getPic());
-                }
-            };
-            adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<NamePicBean>() {
-                @Override
-                public void onItemClick(View view, NamePicBean item, int position) {
-                    switch (position) {
-                        case 0:
-                            adapterSlot.addAllAndClear(listSlot);
-                            break;
-                        case 1:
-                            adapterSlot.addAllAndClear(listCasino);
-                            break;
-                        case 2:
-                            adapterSlot.addAllAndClear(listSport);
-                            break;
-                        case 3:
-                            adapterSlot.addAllAndClear(listCock);
-                            break;
-                        case 4:
-                            adapterSlot.addAllAndClear(listPoker);
-                            break;
-                    }
-                }
-            });
-            rajaRc.setAdapter(adapter);
-            FrameLayout flSlideLeft = findViewById(R.id.fl_slide_left);
-            FrameLayout flSlideRight = findViewById(R.id.fl_slide_right);
-            flSlideLeft.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    rajaRc.scrollBy(-100, 0);
-                }
-            });
-            flSlideRight.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    rajaRc.scrollBy(100, 0);
-                }
-            });
-        }
         if (BuildConfig.FLAVOR.equals("wingsbet88")) {
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1859,21 +1608,6 @@ public class LoginActivity extends BaseActivity {
                                         Gd88Utils.goBrowser(mContext, currentWABean.getPemenang());
                                     }
                                 }
-                            } else if (BuildConfig.FLAVOR.equals("garudakasino")) {
-                                if (type == 1) {
-                                    if (!TextUtils.isEmpty(currentWABean.getLayananVIP())) {
-                                        Gd88Utils.goBrowser(mContext, currentWABean.getLayananVIP());
-                                    }
-                                } else if (type == 2) {
-                                    if (!TextUtils.isEmpty(currentWABean.getPopup())) {
-                                        PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                                        popImg.setLoadUrl(currentWABean.getPopup());
-                                        if (!TextUtils.isEmpty(currentWABean.getPopupLink())) {
-                                            popImg.setGoUrl(currentWABean.getPopupLink());
-                                        }
-                                        popImg.showPopupCenterWindow();
-                                    }
-                                }
                             } else if (BuildConfig.FLAVOR.equals("mastercasino88")) {
                                 if (type == 1) {
                                     if (!TextUtils.isEmpty(currentWABean.getWA())) {
@@ -1900,19 +1634,14 @@ public class LoginActivity extends BaseActivity {
                                     }
                                 }
                             } else if (BuildConfig.FLAVOR.equals("ratucasino88")) {
-                                if (!TextUtils.isEmpty(currentWABean.getPromo())) {
-                                    PopWebView popWebView = new PopWebView(mContext, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
-                                        @Override
-                                        public String getUrl() {
-                                            return currentWABean.getPromo();
-                                        }
-
-                                        @Override
-                                        public String getTitle() {
-                                            return getString(R.string.PROMOTION);
-                                        }
-                                    };
-                                    popWebView.showPopupCenterWindow();
+                                if (type == 1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getSuperBonusVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getSuperBonusVIP());
+                                    }
+                                } else if (type == 2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getVIP());
+                                    }
                                 }
                             } else if (BuildConfig.FLAVOR.equals("wingsbet88")) {
                                 if (type == -1) {
