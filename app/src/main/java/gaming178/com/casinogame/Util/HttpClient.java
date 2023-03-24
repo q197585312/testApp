@@ -92,7 +92,7 @@ public class HttpClient {
             conn.setReadTimeout(130000);
 //            conn.setDoOutput(true);
             conn.setRequestMethod("POST");
-            if (!urlString.contains("112api.gd09.info")) {
+            if (!urlString.contains("112api.gd88bet.net")) {
                 conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows 2000)");
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             }

@@ -2179,10 +2179,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         //http://112-alias-api.gd88.org/GDWebService?wsdl
         WebSiteUrl.isDomain = true;
         LogIntervalUtils.logCustomTime(currentTime, "开始启动登录线程");
-        if (type == 5)
-            WebSiteUrl.setOther("http://112api.gd09.info/", "");
-        else {
-            WebSiteUrl.setOther("http://afb88.bpt88.net/", "OLTGames/");
+        if (type == 5) {
+            String afb1188JumpHost = extras.getString("afb1188JumpHost");
+            WebSiteUrl.setOther(afb1188JumpHost, "");
+//            WebSiteUrl.setOther("https://112api.gd88bet.net/", "");
+        } else {
+            WebSiteUrl.setOther("https://afb88.bpt88.net/", "OLTGames/");
         }
         //https://112api.gd88bet.net/cklogin.jsp?txtAcctid=Demoafba0310&txtPwd=12345678&txtLang=0&txtRandCode=Ma5qXnw1HuauTpIpzO5WLWkE7tBgduFHmtNCClCEx4tM1xHZloL
         mAppViewModel.setCookie("");
@@ -2197,7 +2199,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             @Override
             public void run() {
                 String strAgent = Gd88Utils.getCurCodeMap().get(curCode);
-                String sbUrl = "http://112api.gd09.info/player/afb1188/GD88WebService?wsdl";
+                String sbUrl = "https://112api.gd88bet.net/player/afb1188/GD88WebService?wsdl";
                 String sbParam = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:maw=\"http://gd88/\"><soapenv:Header/><soapenv:Body><maw:CreateAccount><!--Optional:--><strUsername>"
                         + username + "</strUsername><Api_key>"
                         + "j0h93zNB7VDGn4TJEMbnm8WfpOuLMDwl"

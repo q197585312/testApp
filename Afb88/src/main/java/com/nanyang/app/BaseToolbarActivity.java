@@ -381,6 +381,8 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                         PersonalInfo info = getApp().getUser();
 
                         if (url.contains("login.jsp") && info != null && !StringUtils.isNull(info.getLoginName())) {
+                            int index = url.indexOf("cklogin");
+                            String afb1188JumpHost = url.substring(0, index);
                             SettingAllDataBean bean = getApp().getSettingAllDataBean();
                             Bundle intent = new Bundle();
                             intent.putString("username", info.getLoginName());
@@ -390,6 +392,7 @@ public abstract class BaseToolbarActivity<T extends BaseRetrofitPresenter> exten
                             intent.putInt("gameType", 5);
                             intent.putString("balance", info.getCredit2());
                             intent.putString("curCode", bean.getCurCode());
+                            intent.putString("afb1188JumpHost", afb1188JumpHost);
                             LogIntervalUtils.logTime("请求数据完成开始跳转");
                             getBaseActivity().skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.LobbyActivity");
                         } else if (code == 200 && body.contains("not online") || StringUtils.isNull(getApp().getUser().getLoginName()) || getApp().getUser().getLoginName().equals("@@@AFB88###")) {
