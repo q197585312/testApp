@@ -483,6 +483,9 @@ public class TableChangePop extends BasePopupWindow {
         gv.setLayoutManager(new GridLayoutManager(context, (count % 2 == 0) ? count / 2 : count / 2 + 1));
     }
 
+    private LinearLayout ll_packet_network, ll_gd88;
+    private ImageView gd88_img_b,gd88_img_d,gd88_img_r,gd88_img_s,gd88_img_slot,gd88_img_afb_sport,gd88_img_cock_fighting,gd88_img_cq9;
+
     @Override
     protected void initView(View view) {
         super.initView(view);
@@ -505,6 +508,23 @@ public class TableChangePop extends BasePopupWindow {
                 closePopupWindow();
             }
         });
+        ll_packet_network = view.findViewById(R.id.ll_packet_network);
+        ll_gd88 = view.findViewById(R.id.ll_gd88);
+        gd88_img_b = view.findViewById(R.id.gd88_img_b);
+        gd88_img_d = view.findViewById(R.id.gd88_img_d);
+        gd88_img_r = view.findViewById(R.id.gd88_img_r);
+        gd88_img_s = view.findViewById(R.id.gd88_img_s);
+        gd88_img_slot = view.findViewById(R.id.gd88_img_slot);
+        gd88_img_afb_sport = view.findViewById(R.id.gd88_img_afb_sport);
+        gd88_img_cock_fighting = view.findViewById(R.id.gd88_img_cock_fighting);
+        gd88_img_cq9 = view.findViewById(R.id.gd88_img_cq9);
+        if (Gd88Utils.isGd88AndLiga365AndJump()) {
+            ll_gd88.setVisibility(View.VISIBLE);
+            ll_packet_network.setVisibility(View.GONE);
+        } else {
+            ll_gd88.setVisibility(View.GONE);
+            ll_packet_network.setVisibility(View.VISIBLE);
+        }
         img_b = view.findViewById(R.id.gd__img_b);
         img_r = view.findViewById(R.id.gd__img_r);
         img_s = view.findViewById(R.id.gd__img_s);
@@ -515,6 +535,100 @@ public class TableChangePop extends BasePopupWindow {
         } else {
             img_slot.setVisibility(View.VISIBLE);
         }
+        gd88_img_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.VISIBLE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                gd88_img_b.setImageResource(R.drawable.table_b_bg_select);
+                gd88_img_d.setImageResource(R.drawable.table_d_bg);
+                gd88_img_r.setImageResource(R.drawable.table_r_bg);
+                gd88_img_s.setImageResource(R.drawable.table_s_bg);
+            }
+        });
+        gd88_img_d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                gd88_img_b.setImageResource(R.drawable.table_b_bg);
+                gd88_img_d.setImageResource(R.drawable.table_d_bg_select);
+                gd88_img_r.setImageResource(R.drawable.table_r_bg);
+                gd88_img_s.setImageResource(R.drawable.table_s_bg);
+            }
+        });
+        gd88_img_r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                gd88_img_b.setImageResource(R.drawable.table_b_bg);
+                gd88_img_d.setImageResource(R.drawable.table_d_bg);
+                gd88_img_r.setImageResource(R.drawable.table_r_bg_select);
+                gd88_img_s.setImageResource(R.drawable.table_s_bg);
+            }
+        });
+        gd88_img_s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                gd88_img_b.setImageResource(R.drawable.table_b_bg);
+                gd88_img_d.setImageResource(R.drawable.table_d_bg);
+                gd88_img_r.setImageResource(R.drawable.table_r_bg);
+                gd88_img_s.setImageResource(R.drawable.table_s_bg_select);
+            }
+        });
+        gd88_img_slot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseActivity baseActivity = (BaseActivity) context;
+                baseActivity.skipAct(SlotsGameActivity.class);
+                baseActivity.finish();
+            }
+        });
+        gd88_img_afb_sport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseActivity baseActivity = (BaseActivity) context;
+                mAppViewModel.setSkipLobbyToAfb1188(true);
+                baseActivity.skipAct(LobbyActivity.class);
+                baseActivity.finish();
+            }
+        });
+        gd88_img_cock_fighting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseActivity baseActivity = (BaseActivity) context;
+                baseActivity.skipAct(CockFightingWebActivity.class);
+                baseActivity.finish();
+            }
+        });
+        gd88_img_cq9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseActivity baseActivity = (BaseActivity) context;
+                baseActivity.skipAct(CQSlotsGameActivity.class);
+                baseActivity.finish();
+            }
+        });
+
         lvChips = view.findViewById(R.id.gd_lv_chips);
         img_b.setImageResource(R.mipmap.gd__img_b_select);
         img_b.setOnClickListener(new View.OnClickListener() {
@@ -879,8 +993,10 @@ public class TableChangePop extends BasePopupWindow {
         if (WebSiteUrl.isDomain && WebSiteUrl.GameType != 3) {
             return;
         }
-        addSlots(slotList, 0, View.VISIBLE);
-        addSlots(slotRoundList, 6, View.GONE);
+        if (!Gd88Utils.isGd88AndLiga365AndJump()){
+            addSlots(slotList, 0, View.VISIBLE);
+            addSlots(slotRoundList, 6, View.GONE);
+        }
     }
 
     private void addSlots(List<View> slotList, int round, int visibility) {
