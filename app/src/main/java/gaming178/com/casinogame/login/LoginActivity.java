@@ -306,16 +306,16 @@ public class LoginActivity extends BaseActivity {
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerView.setLayoutManager(layoutManager);
             List<GameMenuItem> list = new ArrayList();
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20gatotfury.png","Gatot Kaca's Fury™"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/fortune-rabbit.png","Fortune Rabbit"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/midas-fortune.png","Midas Fortune"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20sugarrush.png","Sugar Rush"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vswayshammthor.png"," Power Of Thor"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/HABAImg/SGTheKoiGate.png","Koi Gate"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20olympgate.png","Gates of Olympus™"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/mahjong-ways2.png","Mahjong Ways 2"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/afbgaming/highroadKing.png","Highroad King"));
-            list.add(new GameMenuItem("https://nx-cdn.nexus2wlb.com/Images/providers/ADVANTPLAY/AdvantPlay_10027.webp?v=20230228","Disco 777"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20gatotfury.png", "Gatot Kaca's Fury™"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/fortune-rabbit.png", "Fortune Rabbit"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/midas-fortune.png", "Midas Fortune"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20sugarrush.png", "Sugar Rush"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vswayshammthor.png", " Power Of Thor"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/HABAImg/SGTheKoiGate.png", "Koi Gate"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20olympgate.png", "Gates of Olympus™"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/mahjong-ways2.png", "Mahjong Ways 2"));
+            list.add(new GameMenuItem("https://www.grjl25.com/images/afbgaming/highroadKing.png", "Highroad King"));
+            list.add(new GameMenuItem("https://nx-cdn.nexus2wlb.com/Images/providers/ADVANTPLAY/AdvantPlay_10027.webp?v=20230228", "Disco 777"));
             BaseRecyclerAdapter<GameMenuItem> adapter = new BaseRecyclerAdapter<GameMenuItem>(mContext, list, R.layout.ratu_game_item) {
                 @Override
                 public void convert(MyRecyclerViewHolder holder, int position, GameMenuItem item) {
@@ -782,19 +782,19 @@ public class LoginActivity extends BaseActivity {
             tvPromo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "http://68.65.120.194/bonus/");
+                    goNetWA(1);
                 }
             });
             imgWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://bit.ly/wamkasino");
+                    goNetWA(2);
                 }
             });
             imgFB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://bit.ly/3rtJWdQ");
+                    goNetWA(3);
                 }
             });
         }
@@ -1711,6 +1711,20 @@ public class LoginActivity extends BaseActivity {
                                         PopImg popImg = new PopImg(LoginActivity.this, tv_name, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                                         popImg.setLoadUrl(currentWABean.get365KasinoPopup());
                                         popImg.showPopupCenterWindow();
+                                    }
+                                }
+                            } else if (BuildConfig.FLAVOR.equals("mainkasino")) {
+                                if (type == 1) {
+                                    if (!TextUtils.isEmpty(currentWABean.getBonusKhusus())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getBonusKhusus());
+                                    }
+                                } else if (type == 2) {
+                                    if (!TextUtils.isEmpty(currentWABean.getMainVIP())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getMainVIP());
+                                    }
+                                } else if (type == 3) {
+                                    if (!TextUtils.isEmpty(currentWABean.getFBMessenger())) {
+                                        Gd88Utils.goBrowser(mContext, currentWABean.getFBMessenger());
                                     }
                                 }
                             }

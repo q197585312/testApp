@@ -25,6 +25,9 @@ public class WABean {
     private String LuckyDragon;
     private String PopUP;
     private String SuperBonusVIP;
+    private String BonusKhusus;
+    private String FBMessenger;
+    private String LayananVip;
     /**
      * code : 0
      * data : [{"name":"RTP","URL":"/http://202.36.58.165/images/RTP.webp","link":"https://rebrand.ly/RTPdoacasino/"}]
@@ -166,6 +169,30 @@ public class WABean {
 
     public void setSuperBonusVIP(String superBonusVIP) {
         SuperBonusVIP = superBonusVIP;
+    }
+
+    public String getBonusKhusus() {
+        return BonusKhusus;
+    }
+
+    public void setBonusKhusus(String bonusKhusus) {
+        BonusKhusus = bonusKhusus;
+    }
+
+    public String getFBMessenger() {
+        return FBMessenger;
+    }
+
+    public void setFBMessenger(String FBMessenger) {
+        this.FBMessenger = FBMessenger;
+    }
+
+    public String getMainVIP() {
+        return LayananVip;
+    }
+
+    public void setMainVIP(String LayananVIP) {
+        this.LayananVip = LayananVip;
     }
 
     public static class DataBean {
