@@ -301,31 +301,6 @@ public class LoginActivity extends BaseActivity {
                     goNetWA(2);
                 }
             });
-            RecyclerView recyclerView = findViewById(R.id.rc_game);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            recyclerView.setLayoutManager(layoutManager);
-            List<GameMenuItem> list = new ArrayList();
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20gatotfury.png", "Gatot Kaca's Fury™"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/fortune-rabbit.png", "Fortune Rabbit"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/midas-fortune.png", "Midas Fortune"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20sugarrush.png", "Sugar Rush"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vswayshammthor.png", " Power Of Thor"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/HABAImg/SGTheKoiGate.png", "Koi Gate"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/pragmaticImg/vs20olympgate.png", "Gates of Olympus™"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/PGImg/mahjong-ways2.png", "Mahjong Ways 2"));
-            list.add(new GameMenuItem("https://www.grjl25.com/images/afbgaming/highroadKing.png", "Highroad King"));
-            list.add(new GameMenuItem("https://nx-cdn.nexus2wlb.com/Images/providers/ADVANTPLAY/AdvantPlay_10027.webp?v=20230228", "Disco 777"));
-            BaseRecyclerAdapter<GameMenuItem> adapter = new BaseRecyclerAdapter<GameMenuItem>(mContext, list, R.layout.ratu_game_item) {
-                @Override
-                public void convert(MyRecyclerViewHolder holder, int position, GameMenuItem item) {
-                    ImageView imageView = holder.getImageView(R.id.img);
-                    TextView textView = holder.getTextView(R.id.tv);
-                    Glide.with(LoginActivity.this).load(item.getTitle()).into(imageView);
-                    textView.setText(item.getValue());
-                }
-            };
-            recyclerView.setAdapter(adapter);
         }
 
         if (BuildConfig.FLAVOR.equals("pemain")) {
