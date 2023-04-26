@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unkonw.testapp.libs.utils.ToastUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +105,12 @@ public class PopShowGame extends BasePopupWindow {
                 imageView.setImageResource(item.getDrawableRes());
             }
         };
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<GameMenuItem>() {
+            @Override
+            public void onItemClick(View view, GameMenuItem item, int position) {
+                ToastUtils.showShort("Silakan Login Terlebih Dahulu!");
+            }
+        });
         rc_game.setAdapter(adapter);
     }
 
