@@ -89,6 +89,11 @@
         <item name="android:windowExitAnimation">@anim/pop_bank_animation_exit</item>
     </style>
 
+    <style name="popWindow_animation_Top_Center">
+        <item name="android:windowEnterAnimation">@anim/pop_show_game_animation_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_show_game_animation_exit</item>
+    </style>
+
     <style name="Dialog" parent="android:style/Theme.Dialog">
         <item name="android:background">#00000000</item>
         <item name="android:windowBackground">@android:color/transparent</item>

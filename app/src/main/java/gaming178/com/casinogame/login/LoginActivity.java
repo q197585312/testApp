@@ -74,6 +74,7 @@ import gaming178.com.casinogame.Control.AutoScrollTextView;
 import gaming178.com.casinogame.Popupwindow.PopImg;
 import gaming178.com.casinogame.Popupwindow.PopImgTitleHint;
 import gaming178.com.casinogame.Popupwindow.PopLanguage;
+import gaming178.com.casinogame.Popupwindow.PopShowGame;
 import gaming178.com.casinogame.Util.AllCapTransformationMethod;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.CircleAnimation;
@@ -571,8 +572,10 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (BuildConfig.FLAVOR.equals("oricasino")) {
+            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.form_bg_ori).into(img_login_title_main);
             img_ula_enter_bg = findViewById(R.id.img_ula_enter_bg);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.form_bg_ori).into(img_ula_enter_bg);
+            Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_ori_bg).into(img_ula_enter_bg);
             tvWhatsApp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -585,8 +588,66 @@ public class LoginActivity extends BaseActivity {
                     goNetWA(2);
                 }
             });
-            img_login_title_main = findViewById(R.id.gd_img_login_title_main);
-            Glide.with(LoginActivity.this).asGif().load(R.mipmap.login_ori_bg).into(img_login_title_main);
+
+            RecyclerView recyclerView = findViewById(R.id.rc_liveCasino);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(layoutManager);
+            List<GameMenuItem> list = new ArrayList();
+            list.add(new GameMenuItem(R.mipmap.ori_poker, "", ""));
+            list.add(new GameMenuItem(R.mipmap.ori_slot, "", ""));
+            list.add(new GameMenuItem(R.mipmap.ori_casino, "", ""));
+            list.add(new GameMenuItem(R.mipmap.ori_sports, "", ""));
+            list.add(new GameMenuItem(R.mipmap.ori_sabung_ayam, "", ""));
+            BaseRecyclerAdapter<GameMenuItem> adapter = new BaseRecyclerAdapter<GameMenuItem>(mContext, list, R.layout.ori_game_item) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, GameMenuItem item) {
+                    ImageView imageView = holder.getImageView(R.id.img);
+                    imageView.setImageResource(item.getDrawableRes());
+                    View view = holder.getView(R.id.view);
+                    if (position == list.size() - 1) {
+                        view.setVisibility(View.GONE);
+                    } else {
+                        view.setVisibility(View.VISIBLE);
+                    }
+                }
+            };
+            adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<GameMenuItem>() {
+                @Override
+                public void onItemClick(View view, GameMenuItem item, int position) {
+                    PopShowGame popShowGame = new PopShowGame(mContext, recyclerView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    popShowGame.showContent(position);
+                    popShowGame.showPopupDownWindow(R.style.popWindow_animation_Top_Center);
+                }
+            });
+            recyclerView.setAdapter(adapter);
+
+            tvCount = findViewById(R.id.gd_tv_count);
+            count = 829466500;
+            new Thread() {
+                @Override
+                public void run() {
+                    while (isNeedCount) {
+                        try {
+                            Thread.sleep(2);
+                            format++;
+                            if (format == 3) {
+                                format = 0;
+                                count++;
+                            }
+                            getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String a = Gd88Utils.formatTosepara(count);
+                                    tvCount.setText(a);
+                                }
+                            });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }.start();
         }
 
         if (BuildConfig.FLAVOR.equals("hitamslot")) {
