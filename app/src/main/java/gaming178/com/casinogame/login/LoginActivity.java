@@ -678,15 +678,6 @@ public class LoginActivity extends BaseActivity {
             tv_name.setTransformationMethod(new AllCapTransformationMethod());
         }
 
-        if (BuildConfig.FLAVOR.equals("casino388")) {
-            tvWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Gd88Utils.goBrowser(mContext, "https://api.whatsapp.com/send/?phone=6282298087754&text&app_absent=0");
-                }
-            });
-        }
-
         if (BuildConfig.FLAVOR.equals("kasino365")) {
             Glide.with(LoginActivity.this).asGif().load(R.mipmap.gif_365_logo).into(img_login_title);
             WebView wb_notice = findViewById(R.id.wb_notice);
