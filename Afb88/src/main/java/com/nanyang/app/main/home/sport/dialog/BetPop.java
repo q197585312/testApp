@@ -434,11 +434,12 @@ public class BetPop {
             return;
         if (afbApplication.getBetParList() == null)
             return;
-        if (list.size() > 1) {
-            showParlayDialog();
-        } else {
-            directBet();
-        }
+//        if (list.size() > 1) {
+//            showParlayDialog();
+//        } else {
+//            directBet();
+//        }
+        directBet();
     }
 
     private boolean amountValid() {

@@ -141,8 +141,8 @@ public class MainPresenter extends BaseSwitchPresenter {
                 } else {
                     ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
                     ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getQuerBetAmt() + "");
-                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).mixParAmount=(settingAllDataBean.getQuerMixParBetAmt() + "");
-                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).parAmtAmount=(settingAllDataBean.getQuerParBetAmt() + "");
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).mixParAmount = (settingAllDataBean.getQuerMixParBetAmt() + "");
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).parAmtAmount = (settingAllDataBean.getQuerParBetAmt() + "");
                     ((AfbApplication) baseContext.getBaseActivity().getApplication()).setHideChip(settingAllDataBean.getIsHideChipSet());
                     ((AfbApplication) baseContext.getBaseActivity().getApplication()).setLiveCentreSetting(settingAllDataBean.getLiveCentreSetting());
                     AfbUtils.setChipStatusMap(settingAllDataBean.getChipSetChoose());
@@ -204,6 +204,8 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.JILIGameWfBean("GetTT", "", "wfSlotLogin"), "", "^.*\"(http[^\"]+)\".*$");
         } else if (g.equals("Lucky361")) {
             skipPCashio("get", "", g, new LoginInfo.Lucky361WfBean("GetTT", "", "wfSlotLogin"), "", "^.*\"(http[^\"]+)\".*$");
+        } else if (g.equals("TopTrend")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfTTGLogin"), "", "^.*\"(http[^\"]+)\".*$");
         }
     }
 

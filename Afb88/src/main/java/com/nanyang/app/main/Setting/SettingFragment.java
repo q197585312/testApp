@@ -660,6 +660,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         gameChooseBeans3.add(new GameChooseBean("CQ", "CQCashio"));
 
         gameChooseBeans4.add(new GameChooseBean("JKR", "JKRCashio"));
+        gameChooseBeans4.add(new GameChooseBean("TTG", "TTGCashio"));
         gameChooseBeans4.add(new GameChooseBean("E-SPORTS", "TFGCashio"));
         gameChooseBeans4.add(new GameChooseBean("COCK FIGHT", "Cockfigh"));
         gameChooseBeans4.add(new GameChooseBean("KENO", "Keno"));
