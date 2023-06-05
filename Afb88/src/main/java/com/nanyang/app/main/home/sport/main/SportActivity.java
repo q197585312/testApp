@@ -640,12 +640,14 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMixCount.setText("" + getApp().getMixBetList().size());
             MixCount.setText("" + getApp().getMixBetList().size());
             tvOrderCount.setText("" + getApp().getMixBetList().size());
+            MixCount.setVisibility(View.VISIBLE);
         } else {
             ivOrderTop.setImageResource(R.mipmap.sport_bottom_teb_shopping_white);
             tvMixCount.setVisibility(View.GONE);
             tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");
             MixCount.setText("0");
+            MixCount.setVisibility(View.GONE);
             tvOrderCount.setText("0");
             if (betPop != null && betPop.v.getVisibility() == View.VISIBLE)
                 betPop.closePopupWindow();
@@ -1239,11 +1241,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private void setLeftMenuTypeState(MenuItemInfo item) {
         String type = item.getType();
         if (type.equals("Early")) {
-            tvLeftMenuEarly.setTextColor(ContextCompat.getColor(mContext, R.color.keno_text_clik1));
+            tvLeftMenuEarly.setTextColor(ContextCompat.getColor(mContext, R.color.sport_text_menu));
             tvLeftMenuToday.setTextColor(Color.WHITE);
         } else if (type.equals("Today")) {
             tvLeftMenuEarly.setTextColor(Color.WHITE);
-            tvLeftMenuToday.setTextColor(ContextCompat.getColor(mContext, R.color.keno_text_clik1));
+            tvLeftMenuToday.setTextColor(ContextCompat.getColor(mContext, R.color.sport_text_menu));
         } else {
             tvLeftMenuEarly.setTextColor(Color.WHITE);
             tvLeftMenuToday.setTextColor(Color.WHITE);

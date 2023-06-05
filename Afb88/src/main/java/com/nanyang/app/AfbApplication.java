@@ -252,6 +252,7 @@ public class AfbApplication extends BaseApplication {
 //        map.put("betsoft", new SportIdBean("betsoft", "", R.string.betsoft, "betsoft", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.bts_gaming));
             map.put("Joker", new SportIdBean("Joker", "", R.string.Joker, "Joker", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.joker_game));
             map.put("AFB GAMING", new SportIdBean("AFB GAMING", "", R.string.afb_gaming, "AFB GAMING", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_afb_slot_gaming));
+            map.put("TopTrend", new SportIdBean("TopTrend", "", R.string.toptrend_game, "TopTrend", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_toptrend));
 
         }
     }
@@ -779,6 +780,7 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("AFB GAMING", isEnabledWM);
         enableMap.put("JILI", isEnabledWM);
         enableMap.put("Lucky361", isEnabledWM);
+        enableMap.put("TopTrend", isEnabledWM);
         return enableMap;
     }
 

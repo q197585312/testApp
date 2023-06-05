@@ -27,7 +27,7 @@
             android:padding="3dp"
             android:text="@string/sport_match"
             android:textAllCaps="true"
-            android:textColor="@color/keno_text_color1"
+            android:textColor="@color/sport_menu_text_color"
             android:textStyle="bold" />
 
         <RadioButton
@@ -41,7 +41,7 @@
             android:checked="false"
             android:padding="3dp"
             android:text="@string/other"
-            android:textColor="@color/keno_text_color1"
+            android:textColor="@color/sport_menu_text_color"
             android:textStyle="bold" />
     </RadioGroup>
 

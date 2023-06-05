@@ -802,6 +802,8 @@ public class AfbUtils {
                 return "Keno";
             case "LOTTERY":
                 return "Lottery";
+            case "TopTrend":
+                return "TTGCashio";
             default:
                 return tem;
         }
@@ -871,6 +873,8 @@ public class AfbUtils {
         map.put("Keno", init);
 
         map.put("Lottery", init);
+
+        map.put("TTGCashio", init);
         return map;
     }
 }
