@@ -47,82 +47,85 @@ public class WebSocketManager {
     Timer timerRetry = new Timer();
 
     public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final BaseActivity context) {
-        isRunning = true;
-        Log.e("Socket", "正在连接----------------" + AppConstant.getInstance().WebSocket_HOST);
 
-        AsyncHttpClient.getDefaultInstance().websocket(AppConstant.getInstance().WebSocket_HOST, null, new AsyncHttpClient.WebSocketConnectCallback() {
+       if(!isRunning) {
+           isRunning = true;
+           Log.e("Socket", "正在连接----------------" + AppConstant.getInstance().WebSocket_HOST);
 
-            @Override
-            public void onCompleted(Exception ex, final WebSocket webSocket) {
-                if (ex != null) {
-                    Log.e("Socket", "Exception----------------" + ex.getMessage());
-                    ex.printStackTrace();
-                    if (webSocket == null && isRunning)
-                        context.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                createWebSocket(back, stringCallback, context);
-                            }
-                        });
-                }
-                if (webSocket == null)
-                    return;
-                webSocket.setPingCallback(new WebSocket.PingCallback() {
-                    @Override
-                    public void onPingReceived(String s) {
-                        Log.d("Socket", "onPongCallback" + s);
-                    }
-                });
-                webSocket.setPongCallback(new WebSocket.PongCallback() {
-                    @Override
-                    public void onPongReceived(String s) {
-                        Log.d("Socket", "onPongReceived" + s);
-                    }
-                });
-                webSocket.setClosedCallback(new CompletedCallback() {
-                    @Override
-                    public void onCompleted(Exception ex) {
-                        if (isRunning && !webSocket.isOpen())
-                            context.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    createWebSocket(back, stringCallback, context);
-                                }
-                            });
-                        if (ex != null) {
-                            Log.d("Socket", "onClosedCallback出错");
-                            return;
-                        }
-                        Log.d("Socket", "onClosedCallback");
-                    }
-                });
-                webSocket.setEndCallback(new CompletedCallback() {
-                    @Override
-                    public void onCompleted(Exception ex) {
-                        if (ex != null) {
-                            Log.d("Socket", "setEndCallback出错");
-                            return;
-                        }
-                        Log.d("Socket", "setEndCallback");
-                    }
-                });
-                webSocket.setWriteableCallback(new WritableCallback() {
-                    @Override
-                    public void onWriteable() {
-                        Log.d("Socket", "WritableCallback");
+           AsyncHttpClient.getDefaultInstance().websocket(AppConstant.getInstance().WebSocket_HOST, null, new AsyncHttpClient.WebSocketConnectCallback() {
 
-                    }
-                });
-                webSocket.setStringCallback(stringCallback);
-                WebSocketManager.this.webSocket = webSocket;
-                try {
-                    back.onBack(null);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+               @Override
+               public void onCompleted(Exception ex, final WebSocket webSocket) {
+                   if (ex != null) {
+                       Log.e("Socket", "Exception----------------" + ex.getMessage());
+                       ex.printStackTrace();
+                       if (webSocket == null && isRunning)
+                           context.runOnUiThread(new Runnable() {
+                               @Override
+                               public void run() {
+                                   createWebSocket(back, stringCallback, context);
+                               }
+                           });
+                   }
+                   if (webSocket == null)
+                       return;
+                   webSocket.setPingCallback(new WebSocket.PingCallback() {
+                       @Override
+                       public void onPingReceived(String s) {
+                           Log.d("Socket", "onPongCallback" + s);
+                       }
+                   });
+                   webSocket.setPongCallback(new WebSocket.PongCallback() {
+                       @Override
+                       public void onPongReceived(String s) {
+                           Log.d("Socket", "onPongReceived" + s);
+                       }
+                   });
+                   webSocket.setClosedCallback(new CompletedCallback() {
+                       @Override
+                       public void onCompleted(Exception ex) {
+                           if (isRunning && !webSocket.isOpen())
+                               context.runOnUiThread(new Runnable() {
+                                   @Override
+                                   public void run() {
+                                       createWebSocket(back, stringCallback, context);
+                                   }
+                               });
+                           if (ex != null) {
+                               Log.d("Socket", "onClosedCallback出错");
+                               return;
+                           }
+                           Log.d("Socket", "onClosedCallback");
+                       }
+                   });
+                   webSocket.setEndCallback(new CompletedCallback() {
+                       @Override
+                       public void onCompleted(Exception ex) {
+                           if (ex != null) {
+                               Log.d("Socket", "setEndCallback出错");
+                               return;
+                           }
+                           Log.d("Socket", "setEndCallback");
+                       }
+                   });
+                   webSocket.setWriteableCallback(new WritableCallback() {
+                       @Override
+                       public void onWriteable() {
+                           Log.d("Socket", "WritableCallback");
 
-            }
-        });
+                       }
+                   });
+                   webSocket.setStringCallback(stringCallback);
+                   WebSocketManager.this.webSocket = webSocket;
+                   try {
+                       back.onBack(null);
+                   } catch (JSONException e) {
+                       e.printStackTrace();
+                   }
+
+               }
+           });
+       }
 
     }
 

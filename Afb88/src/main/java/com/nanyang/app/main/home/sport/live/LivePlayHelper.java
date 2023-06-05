@@ -128,7 +128,9 @@ public class LivePlayHelper {
         }
     }
 
-
+    public void refreshPlay(){
+        openRunMatch(itemBall, null);
+    }
     public void onResumePlay() {
         if (checkLivePlayVisible(itemBall)) {
             if (playType == 2) {

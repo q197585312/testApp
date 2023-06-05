@@ -389,7 +389,7 @@ class TableBgView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         var chipX = (typePoint.x - chipWidth / 2)
         for (index in 1..n) {
             var chipY = typePoint.y - index * chipSpace
-            canvas.drawBitmap(mBitmapRotate10, chipX, chipY, mPaint)
+//            canvas.drawBitmap(mBitmapRotate10, chipX, chipY, mPaint)
         }
     }
 

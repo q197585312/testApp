@@ -71,6 +71,7 @@ import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.utils.GZipUtil;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.MyFileUtils;
+import com.unkonw.testapp.libs.utils.SharePreferenceUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -270,23 +271,19 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (outState != null) {
             //销毁时不保存fragment的状态
             outState.remove(BUNDLE_FRAGMENTS_KEY);
-            outState.putBoolean(HAS_BET,hasBet);
-        }
-    }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        hasBet=savedInstanceState.getBoolean(HAS_BET, hasBet);
-        super.onRestoreInstanceState(savedInstanceState);
+        }
     }
 
     @BindView(R.id.tv_top_right_oval)
     TextView tvTopRightOval;
 
     public void onCreate(Bundle savedInstanceState) {
+        hasBet = false;
         if (savedInstanceState != null) {
             //重建时清除 fragment的状态
             savedInstanceState.remove(BUNDLE_FRAGMENTS_KEY);
+            hasBet= SharePreferenceUtil.getBoolean(mContext,HAS_BET);
         }
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
@@ -296,7 +293,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
         updateMixOrderCount();
-        hasBet = false;
         if (BuildConfig.FLAVOR.equals("ez2888")) {
             tvRecord.setTextColor(Color.WHITE);
             tvMix.setTextColor(Color.WHITE);
@@ -1540,7 +1536,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void onChangeMatchClick(View view) {
-        liveMatchHelper.onResumePlay();
+
+        liveMatchHelper.refreshPlay();
 /*        viewModel.getShowContent().setValue(false);
         onlyShowOne = !onlyShowOne;
         if (!onlyShowOne)
@@ -1582,6 +1579,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             protected void clickItem(TextView tv, MenuItemInfo<String> item) {
                 super.clickItem(tv, item);
                 closePopupWindow();
+                SharePreferenceUtil.setValue(mContext.getApplicationContext(),HAS_BET,hasBet);
                 AfbUtils.switchLanguage(item.getType(), mContext);
                 presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                     @Override

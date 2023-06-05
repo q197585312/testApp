@@ -96,6 +96,11 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hasAttached = true;
+    }
 
     @Override
     public void onAttachedToWindow() {
