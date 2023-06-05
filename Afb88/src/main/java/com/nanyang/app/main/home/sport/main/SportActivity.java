@@ -262,6 +262,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     MyGoHomeBroadcastReceiver myGoHomeBroadcastReceiver;
     public String wd = "";
     private static final String BUNDLE_FRAGMENTS_KEY = "android:support:fragments";
+    private static final String HAS_BET = "HAS_BET";
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -269,7 +270,14 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (outState != null) {
             //销毁时不保存fragment的状态
             outState.remove(BUNDLE_FRAGMENTS_KEY);
+            outState.putBoolean(HAS_BET,hasBet);
         }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        hasBet=savedInstanceState.getBoolean(HAS_BET, hasBet);
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     @BindView(R.id.tv_top_right_oval)
@@ -1532,12 +1540,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void onChangeMatchClick(View view) {
-        viewModel.getShowContent().setValue(false);
+        liveMatchHelper.onResumePlay();
+/*        viewModel.getShowContent().setValue(false);
         onlyShowOne = !onlyShowOne;
         if (!onlyShowOne)
             closeTv(view);
         else
-            clickRunMatchPlay(itemBallAdded, positionBallAdded, true);
+            clickRunMatchPlay(itemBallAdded, positionBallAdded, true);*/
 
     }
 

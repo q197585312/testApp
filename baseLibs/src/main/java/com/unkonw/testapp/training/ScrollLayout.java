@@ -15,9 +15,6 @@ import java.util.Set;
 
 import cn.finalteam.toolsfinal.DeviceUtils;
 
-/**
- * Created by guolin on 16/1/12.
- */
 public class ScrollLayout extends ViewGroup {
 
     /**
