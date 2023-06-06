@@ -36,7 +36,6 @@ proguard/
 *.iws
 .idea/
 /.idea/misc.xml
-app/libs/
 autolayout/build/
 autolayout/build
 mylibrary/build/
