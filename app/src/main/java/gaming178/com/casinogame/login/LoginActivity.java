@@ -233,7 +233,6 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void initControl() {
-        //test
         if (BuildConfig.FLAVOR.equals("gd88")) {
             webView = findViewById(R.id.gd_login_webview);
             img_exit = findViewById(R.id.gd_img_exit);
